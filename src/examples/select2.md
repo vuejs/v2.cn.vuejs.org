@@ -1,9 +1,9 @@
 ---
-title: Custom Directive
+title: 自定义指令
 type: examples
 order: 8
 ---
 
-> In this example we are integrating a 3rd party jQuery plugin (select2) by wrapping it inside a custom directive.
+> 在这个例子中，Vue.js 与一个第三方 jQuery 插件(select2) 整合，通过将它包装到一个自定义指令中实现。
 
 <iframe width="100%" height="500" src="http://jsfiddle.net/yyx990803/157m67zu/embedded/result,html,js,css" allowfullscreen="allowfullscreen" frameborder="0"></iframe>

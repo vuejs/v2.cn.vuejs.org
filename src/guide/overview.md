@@ -1,45 +1,45 @@
 ---
-title: Overview
+title: 概述
 type: guide
 order: 2
 ---
 
-Vue.js (pronounced /vjuː/, like **view**) is a library for building interactive web interfaces. The goal of Vue.js is to provide the benefits of **reactive data binding** and **composable view components** with an API that is as simple as possible.
+Vue.js（读音 /vjuː/, 类似于 **view**）是一个构建数据驱动的 web 界面的库。Vue.js 的目标是尽可能简单地实现**响应的数据绑定**和**组合的视图组件**。
 
-Vue.js itself is not a full-blown framework - it is focused on the view layer only. It is therefore very easy to pick up and to integrate with other libraries or existing projects. On the other hand, when used in combination with proper tooling and supporting libraries, Vue.js is also perfectly capable of powering sophisticated Single-Page Applications.
+Vue.js 自身不是一个全能框架——它只聚焦于视图层。因此它非常容易学习，非常容易与其它库或已有项目整合。另一方面，在与相关工具和支持库一起使用时，Vue.js 也能完美地驱动单页应用。
 
-If you are an experienced frontend developer and want to know how Vue.js compares to other libraries/frameworks, check out the [Comparison with Other Frameworks](comparison.html); if you are more interested about how Vue.js approaches larger-scale applications, check out the section on [Building Larger-Scale Applications](application.html).
+如果你是有经验的前端开发者，想知道 Vue.js 与其它库/框架的区别，查看[对比其它框架](comparison.html)；如果你对使用 Vue.js 开发大型应用更感兴趣，查看[构建大型应用](application.html)。
 
-## Reactive Data Binding
+## 响应的数据绑定
 
-At the core of Vue.js is a reactive data-binding system that makes it extremely simple to keep your data and the DOM in sync. When using jQuery to manually manipulate the DOM, the code we write is often imperative, repetitive and error-prone. Vue.js embraces the concept of **data-driven view**. In plain words, it means we use special syntax in our normal HTML templates to "bind" the DOM to the underlying data. Once the bindings are created, the DOM will then be kept in sync with the data. Whenever you modify the data, the DOM updates accordingly. As a result, most of our application logic is now directly manipulating data, rather than messing around with DOM updates. This makes our code easier to write, easier to reason about and easier to maintain.
+Vue.js 的核心是一个响应的数据绑定系统，它让数据与 DOM 保持同步非常简单。在使用 jQuery 手工操作 DOM 时，我们的代码常常是命令式的、重复的与易错的。Vue.js 拥抱**数据驱动的视图**概念。通俗地讲，它意味着我们在普通 HTML 模板中使用特殊的语法将 DOM “绑定”到底层数据。一旦创建了绑定，DOM 将与数据保持同步。每当修改了数据，DOM 便相应地更新。于是应用的多数逻辑现在变为直接修改数据，不必与 DOM 更新搅在一起。这让我们的代码更容易撰写、理解与维护。
 
 ![MVVM](/images/mvvm.png)
 
-For the simplest possible example:
+可能是最简单的例子：
 
 ``` html
-<!-- this is our View -->
+<!-- 这是我们的 View -->
 <div id="example-1">
   Hello {{ name }}!
 </div>
 ```
 
 ``` js
-// this is our Model
+// 这是我们的 Model
 var exampleData = {
   name: 'Vue.js'
 }
 
-// create a Vue instance, or, a "ViewModel"
-// which links the View and the Model
+// 创建一个 Vue 实例或 "ViewModel"
+// 它连接 View 与 Model
 var exampleVM = new Vue({
   el: '#example-1',
   data: exampleData
 })
 ```
 
-Result:
+结果：
 {% raw %}
 <div id="example-1" class="demo">Hello {{ name }}!</div>
 <script>
@@ -53,11 +53,11 @@ var exampleVM = new Vue({
 </script>
 {% endraw %}
 
-This looks pretty similar to just rendering a template, but Vue.js has done a lot of work under the hood. The data and the DOM are now linked, and everything is now **reactive**. How do we know? Just open up your browser developer console and modify `exampleData.name`. You should see the rendered example above update accordingly.
+看起来这跟单单渲染一个模板非常类似，但是 Vue.js 在背后做了大量工作。数据与 DOM 现在链接起来，是**响应的**。我们如何知道？打开你的浏览器的控制台，修改 `exampleData.name`，你将看到上例相应地更新。
 
-Note that we didn't have to write any DOM-manipulating code: the HTML template, enhanced with the bindings, is a declarative mapping of the underlying data state, which is in turn just plain JavaScript objects. Our view is entirely data-driven.
+注意我们不需要撰写任何 DOM 操作代码：被绑定增强的 HTML 模板是底层数据状态的声明式的映射，数据不过是普通 JavaScript 对象。我们的视图完全由数据驱动。 
 
-Let's look at a second example:
+让我们来看第二个例子：
 
 ``` html
 <div id="example-2">
@@ -88,19 +88,19 @@ var exampleVM2 = new Vue({
 </script>
 {% endraw %}
 
-Here we are encountering something new. The `v-if` attribute you are seeing are called **Directives**. Directives are prefixed with `v-` to indicate that they are special attributes provided by Vue.js, and as you may have guessed, they apply special reactive behavior to the rendered DOM. Go ahead and set `exampleVM2.greeting` to `false` in the console. You should see the "Hello!" message disappear.
+这里我们遇到新东西。你看到的 `v-if` 特性被称为**指令**。指令带有前缀 `v-`，以指示它们是 Vue.js 提供的特殊特性。并且可能你已经猜到，它们应用特别响应的行为到 DOM 上。继续在控制台设置 `exampleVM2.greeting` 为 `false`，你将看到出现 "Hello!" 消息。
 
-This second example demonstrates that not only can we bind DOM text to the data, we can also bind the **structure** of the DOM to the data. Moreover, Vue.js also provides a powerful transition effect system that can automatically apply transition effects when elements are inserted/removed by Vue.
+第二个例子演示了我们不仅可以绑定 DOM 文本到数据，也可以绑定 DOM **结构** 到数据。而且，Vue.js 也提供一个强大的过渡效果系统，可以在 Vue 插入/删除元素时自动地应用过渡效果。
 
-There are quite a few other directives, each with its own special functionality. For example the `v-for` directive for displaying items in an Array, or the `v-bind` directive for binding HTML attributes. We will discuss the full data-binding syntax with more details later.
+也有一些其它指令，每个都有特殊的功能。例如 `v-for` 指令用于显示数组元素，`v-bind` 指令用于绑定 HTML 特性。我们将在后面详细讨论全部的数据绑定语法。
 
-## Component System
+## 组件系统
 
-The Component System is another important concept in Vue.js, because it's an abstraction that allows us to build large-scale applications composed of small, self-contained, and often reusable components. If we think about it, almost any type of application interface can be abstracted into a tree of components:
+组件系统是 Vue.js 另一个重要概念，因为它是抽象的，故我们可以用小、独立且一般是复用的组件来构建大型应用。如果我们考虑到这点，几乎任意类型的应用的界面都可以抽象为一个组件树：
 
 ![Component Tree](/images/components.png)
 
-In fact, a typical large application built with Vue.js would form exactly what is on the right - a tree of components. We will talk a lot more about components later in the guide, but here's an (imaginary) example of what an app's template would look like with components:
+实际上，一个典型的用 Vue.js 构建的大型应用将形成一个组件树。在后面的教程中我们将详述组件，不过这里有一个假想的例子，看看使用了组件的应用模板是什么样的：
 
 ``` html
 <div id="app">
@@ -112,10 +112,10 @@ In fact, a typical large application built with Vue.js would form exactly what i
 </div>
 ```
 
-You may have noticed that Vue.js components are very similar to **Custom Elements**, which is part of the [Web Components Spec](http://www.w3.org/wiki/WebComponents/). In fact, Vue.js' component syntax is loosely modeled after the spec. For example, Vue components implement the [Slot API](https://github.com/w3c/webcomponents/blob/gh-pages/proposals/Slots-Proposal.md) and the `is` special attribute. However, there are a few key differences:
+你可能已经注意到 Vue.js 组件非常类似于**自定义元素**——定义在[Web 组件规范](http://www.w3.org/wiki/WebComponents/)中。实际上 Vue.js 的组件的语法参考了规范。例如 Vue 组件实现了 [Slot API](https://github.com/w3c/webcomponents/blob/gh-pages/proposals/Slots-Proposal.md) 与 `is` 特性。但是，有几个关键的不同：  
 
-1. The Web Components Spec is still very much a work in progress, and is not natively implemented in every browser. In comparison, Vue.js components don't require any polyfills and works consistently in all supported browsers (IE9 and above). When needed, Vue.js components can also be wrapped inside a native custom element.
+1. Web 组件规范仍然远末完成，并且没有浏览器实现。相比之下，Vue.js 组件不需要任何补丁，并且在所有支持的浏览器（IE9 及更高版本）之下表现一致。在需要时，Vue.js 组件也可以放在原生自定义元素之内。
 
-2. Vue.js components provide important features that are not available in plain custom elements, most notably cross-component data flow, custom event communication and dynamic component switching with transition effects.
+2. Vue.js 组件提供了原生自定义元素所不具备的一些重要功能，比如组件间的数据流，自定义事件系统，以及动态的、带特效的组件替换。
 
-The component system is the foundation for building large apps with Vue.js. In addition, the Vue.js ecosystem also provides advanced tooling and various supporting libraries that can be put together to create a more "framework" like system.
+组件系统是用 Vue.js 构建大型应用的基础。另外，Vue.js 生态系统也提供了高级工具与多种支持库，可以与 Vue.js 一起构成一个差不多的“框架”系统。

@@ -4,7 +4,8 @@
     </ul>
     <div class="list">
         <h2>
-            <%- type === 'api' ? 'API' : (type.charAt(0).toUpperCase() + type.slice(1)) %>
+			<% titles = {api: 'API', examples: '示例', guide: '教程'} %>
+			<%- titles[type] %>
             <select class="version-select">
                 <option selected>1.0</option>
                 <option>0.12</option>

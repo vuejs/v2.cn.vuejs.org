@@ -1,12 +1,12 @@
 ---
-title: Computed Properties
+title: 计算属性
 type: guide
 order: 5
 ---
 
-In-template expressions are very convenient, but they are really meant for simple operations only. Templates are meant to describe the structure of your view. Putting too much logic into your templates can make them bloated and hard to maintain. This is why Vue.js limits binding expressions to one expression only. For any logic that requires more than one expression, you should use a **computed property**.
+在模板中表达式非常便利，但是它们实际上只用于简单的操作。模板是为了描述视图的结构。在模板中放入太多的逻辑会让模板过重且难以维护。这就是为什么 Vue.js 将绑定表达式限制为一个表达式。如果需要多于一个表达式的逻辑，应当使用**计算属性**。
 
-### Basic Example
+### 基础例子
 
 ``` html
 <div id="example">
@@ -21,16 +21,16 @@ var vm = new Vue({
     a: 1
   },
   computed: {
-    // a computed getter
+    // getter
     b: function () {
-      // `this` points to the vm instance
+      // `this` 指向 vm 实例
       return this.a + 1
     }
   }
 })
 ```
 
-Result:
+结果：
 
 {% raw %}
 <div id="example" class="demo">
@@ -51,7 +51,7 @@ var vm = new Vue({
 </script>
 {% endraw %}
 
-Here we have declared a computed property `b`. The function we provided will be used as the getter function for the property `vm.b`:
+这里我们声明了一个计算属性 `b`。我们提供的函数将用作属性 `vm.b`的读取器函数（getter）。
 
 ``` js
 console.log(vm.b) // -> 2
@@ -59,13 +59,13 @@ vm.a = 2
 console.log(vm.b) // -> 3
 ```
 
-You can open the console and play with the example vm yourself. The value of `vm.b` is always dependent on the value of `vm.a`.
+你可以打开浏览器的控制台，修改例子的 vm。`vm.b` 的值始终取决于 `vm.a` 的值。
 
-You can data-bind to computed properties in templates just like a normal property. Vue is aware that `vm.b` depends on `vm.a`, so it will update any bindings that depends on `vm.b` when `vm.a` changes. And the best part is that we've created this dependency relationship declaratively: the computed getter function is pure and has no side effects, which makes it easy to test and reason about.
+在模板中可以像普通属性一样将数据绑定到计算属性。Vue 知道 `vm.b` 依赖于 `vm.a`，因此在 `vm.a` 改变时它将更新任何依赖于 `vm.b` 的绑定。而且最妙的是我们是声明式地创建这种依赖关系：计算读取器函数是纯粹的且没有副效应，这让它易于测试与理解。
 
-### Computed Property vs. $watch
+### 计算属性 vs. $watch
 
-Vue.js does provide an API method called `$watch` that allows you to observe data changes on a Vue instance. When you have some data that needs to change based on some other data, it is tempting to use `$watch` - especially if you are coming from an AngularJS background. However, it is often a better idea to use a computed property rather than an imperative `$watch` callback. Consider this example:
+Vue.js 提供了一个方法 `$watch`，它用于观察 Vue 实例上的数据变动。当一些数据需要根据其它数据变化时， `$watch` 很诱人 —— 特别是如果你来自 AngularJS。不过，通常更好的办法是使用计算属性而不是一个命令式的 `$watch` 回调。考虑下面例子：
 
 ``` html
 <div id="demo">{{fullName}}</div>
@@ -89,7 +89,7 @@ vm.$watch('lastName', function (val) {
 })
 ```
 
-The above code is imperative and repetitive. Compare it with a computed property version:
+上面代码是命令式的重复的。跟计算属性对比：
 
 ``` js
 var vm = new Vue({
@@ -105,11 +105,11 @@ var vm = new Vue({
 })
 ```
 
-Much better, isn't it?
+更好，不是吗？
 
-### Computed Setter
+### 计算存储器
 
-Computed properties are by default getter-only, but you can also provide a setter when you need it:
+计算属性默认只是读取器，不过在需要时你也可以提供一个存储器：
 
 ``` js
 // ...
@@ -130,6 +130,6 @@ computed: {
 // ...
 ```
 
-Now when you call `vm.fullName = 'John Doe'`, the setter will be invoked and `vm.firstName` and `vm.lastName` will be updated accordingly.
+现在在调用 `vm.fullName = 'John Doe'` 时，存储器被调用，`vm.firstName` 和 `vm.lastName` 将相应地更新。
 
-The technical details behind how computed properties are updated are [discussed in another section](reactivity.html#Inside_Computed_Properties) dedicated to the reactivity system.
+关于计算属性是如何更新的技术细节见[响应系统](reactivity.html#Inside_Computed_Properties)。

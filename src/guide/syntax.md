@@ -1,58 +1,58 @@
 ---
-title: Data Binding Syntax
+title: 数据绑定语法
 type: guide
 order: 4
 ---
 
-Vue.js uses a DOM-based templating implementation. This means that all Vue.js templates are essentially valid, parsable HTML enhanced with some special attributes. Keep that in mind, since this makes Vue templates fundamentally different from string-based templates.
+Vue.js 使用基于 DOM 的模板。这意味着所有的 Vue.js 模板是合法的、可解析的、使用一些特殊特性增强的 HTML。Vue 模板因而从根本上不同于基于字符串的模板，请记住这点。
 
-## Interpolations
+## 插值
 
-### Text
+### 文本
 
-The most basic form of data binding is text interpolation using the "Mustache" syntax (double curly braces):
+数据绑定最基础的形式是文本插值，使用 "Mustache" 语法（双大括号）：
 
 ``` html
 <span>Message: {{ msg }}</span>
 ```
 
-The mustache tag will be replaced with the value of the `msg` property on the corresponding data object. It will also be updated whenever the data object's `msg` property changes.
+Mustache 标签会被相应数据对象的 `msg` 属性的值替换。每当这个属性变化时它也会更新。
 
-You can also perform one-time interpolations that do not update on data change:
+也可以是单次插值，数据变化时不更新：
 
 ``` html
 <span>This will never change: {{* msg }}</span>
 ```
 
-### Raw HTML
+### 原生 HTML
 
-The double mustaches interprets the data as plain text, not HTML. In order to output real HTML, you will need to use triple mustaches:
+双 Mustache 标签将数据解析为纯文本而不是 HTML。为了输出真的 HTML 字符串，需要用三 Mustache 标签：
 
 ``` html
 <div>{{{ raw_html }}}</div>
 ```
 
-The contents are inserted as plain HTML - data bindings are ignored. If you need to reuse template pieces, you should use [partials](/api/#partial).
+内容以 HTML 字符串插入——数据绑定将被忽略。如果需要复用模板片断，应当使用 [partials](/api/#partial)。
 
-<p class="tip">Dynamically rendering arbitrary HTML on your website can be very dangerous because it can easily lead to [XSS attacks](https://en.wikipedia.org/wiki/Cross-site_scripting). Only use HTML interpolation on trusted content and **never** on user-provided content.</p>
+<p class="tip">在网站上动态渲染任意 HTML 是非常危险的，因为容易导致 [XSS 攻击](https://en.wikipedia.org/wiki/Cross-site_scripting)。记住，只对可信内容使用 HTML 插值，**永不**用于用户提交的内容。</p>
 
-### Attributes
+### HTML 特性
 
-Mustaches can also be used inside HTML attributes:
+Mustache 标签也可以用在 HTML 特性内：
 
 ``` html
 <div id="item-{{ id }}"></div>
 ```
 
-Note that attribute interpolations are disallowed in Vue.js directives and special attributes. Don't worry, Vue.js will raise warnings for you when mustaches are used in wrong places.
+注意在 Vue.js 指令和特殊特性内不能用插值。不必担心，如果 Mustache 标签用错了地方 Vue.js 会给出警告。
 
-## Binding Expressions
+## 绑定表达式
 
-The text we put inside mustache tags are called **binding expressions**. In Vue.js, a binding expression consists of a single JavaScript expression optionally followed by one or more filters.
+放在 Mustache 标签内的文本称为**绑定表达式**。在 Vue.js 中，一个绑定表达式包含一个 JavaScript 表达式以及随后一个或多个可选的过滤器。
 
-### JavaScript Expressions
+### JavaScript 表达式
 
-So far we've only been binding to simple property keys in our templates. But Vue.js actually supports the full power of JavaScript expressions inside data bindings:
+到目前为止，我们的模板只绑定到简单的属性键。不过实际上 Vue.js 在数据绑定内支持全功能的 JavaScript表达式：
 
 ``` html
 {{ number + 1 }}
@@ -62,102 +62,102 @@ So far we've only been binding to simple property keys in our templates. But Vue
 {{ message.split('').reverse().join('') }}
 ```
 
-These expressions will be evaluated in the data scope of the owner Vue instance. One restriction is that each binding can only contain **one single expression**, so the following will **NOT** work:
+这些表达式将在所属的 Vue 实例的作用域内计算。一个限制是每个绑定只能包含**单个表达式**，因此下面**不**可以：
 
 ``` html
-<!-- this is a statement, not an expression: -->
+<!-- 这是一个语句，不是一个表达式： -->
 {{ var a = 1 }}
 
-<!-- flow control won't work either, use ternary expressions -->
+<!-- 流程控制也不可以，可使用三元表达式 -->
 {{ if (ok) { return message } }}
 ```
 
-### Filters
+### 过滤器
 
-Vue.js allows you to append optional "filters" to the end of an expression, denoted by the "pipe" symbol:
+Vue.js 允许在表达式后添加可选的“过滤器”，以“管道符”指示：
 
 ``` html
 {{ message | capitalize }}
 ```
 
-Here we are "piping" the value of the `message` expression through the built-in `capitalize` filter, which is in fact just a JavaScript function that returns the capitalized value. Vue.js provides a number of built-in filters, and we will talk about how to write your own filters later.
+这里我们将表达式 `message` 的值“管输”到内置的 `capitalize` 过滤器，这个过滤器其实只是一个 JavaScript 函数，返回大写化的值。Vue.js 提供数个内置过滤器，在后面我们会谈到如何开发自己的过滤器。
 
-Note that the pipe syntax is not part of JavaScript syntax, therefore you cannot mix filters inside expressions; you can only append them at the end of an expression.
+注意管道语法不是 JavaScript 语法，因此不能在表达式内使用过滤器，只能添加到表达式的后面。
 
-Filters can be chained:
+过滤器可以串联：
 
 ``` html
 {{ message | filterA | filterB }}
 ```
 
-Filters can also take arguments:
+过滤器也可以接受参数：
 
 ``` html
 {{ message | filterA 'arg1' arg2 }}
 ```
 
-The filter function always receives the expression's value as the first argument. Quoted arguments are interpreted as plain string, while un-quoted ones will be evaluated as expressions. Here, the plain string `'arg1'` will be passed into the filter as the second argument, and the value of expression `arg2` will be evaluated and passed in as the third argument.
+过滤器函数始终以表达式的值作为第一个参数。引用起来的参数视为纯字符串，而没有引用起来的参数按表达式计算。这里，纯属字符串 `'arg1'` 将传给过滤器作为第二个参数，表达式 `arg2` 的值在计算出来之后作为第三个参数。
 
-## Directives
+## 指令
 
-Directives are special attributes with the `v-` prefix. Directive attribute values are expected to be **binding expressions**, so the rules about JavaScript expressions and filters mentioned above apply here as well. A directive's job is to reactively apply special behavior to the DOM when the value of its expression changes. Let's review the example we've seen in the introduction:
+指令是特殊的带有前缀 `v-` 的特性。指令的值限定为**绑定表达式**，因此上面提到的 JavaScript 表达式及过滤器规则在这里也适用。一个指令的任务是在它的表达式的值变化时响应地应用特定行为到 DOM。我们来回看“概述”里的例子：
 
 ``` html
 <p v-if="greeting">Hello!</p>
 ```
 
-Here, the `v-if` directive would remove/insert the `<p>` element based on the truthiness of the value of the expression `greeting`.
+这里 `v-if` 指令将根据表达式 `greeting` 值的真假删除/插入 `<p>` 元素。
 
-### Arguments
+### 参数
 
-Some directives can take an "argument", denoted by a colon after the directive name. For example, the `v-bind` directive is used to reactively update an HTML attribute:
+一些指令可以接受一个参数，以指令名字后面的冒号指示。例如，`v-bind` 指令用于响应地更新 HTML 特性：
 
 ``` html
 <a v-bind:href="url"></a>
 ```
 
-Here `href` is the argument, which tells the `v-bind` directive to bind the element's `href` attribute to the value of the expression `url`. You may have noticed this achieves the same result as an attribute interpolation using `{% raw %}href="{{url}}"{% endraw %}`: that is correct, and in fact, attribute interpolations are translated into `v-bind` bindings internally.
+这里 `href` 是参数，它告诉 `v-bind` 指令将元素的 `href` 特性跟表达式 `url` 的值绑定。可能你已注意到可以用特性插值 `{% raw %}href="{{url}}"{% endraw %}` 获得同样的结果：这样没错，并且实际上在内部特性插值会转为 `v-bind` 绑定。
 
-Another example is the `v-on` directive, which listens to DOM events:
+另一个例子是 `v-on` 指令，它用于监听 DOM 事件：
 
 ``` html
 <a v-on:click="doSomething">
 ```
 
-Here the argument is the event name to listen to. We will talk about event handling in more details too.
+这里参数是被监听的事件的名字。我们也会详细说明事件绑定。
 
-### Modifiers
+### 修饰符
 
-Modifiers are special postfixes denoted by a dot, which indicates that a directive should be bound in some special way. For example, the `.literal` modifier tells the directive to interpret its attribute value as a literal string rather than an expression:
+修饰符是小点打头的后缀，用于指示指令应当以特殊方式绑定。例如 `.literal` 修饰符告诉指令将它的值解析为一个字面字符串而不是一个表达式： 
 
 ``` html
 <a v-bind:href.literal="/a/b/c"></a>
 ```
 
-Of course, this seems pointless because we can just do `href="/a/b/c"` instead of using a directive. The example here is just for demonstrating the syntax. We will see more practical uses of modifiers later.
+当然，这似乎没有意义，因为我们只需要使用 `href="/a/b/c"` 而不必使用一个指令。这个例子只是为了演示语法。后面我们将看到修饰符更多的实践用法。
 
-## Shorthands
+## 缩写
 
-The `v-` prefix serves as a visual cue for identifying Vue-specific attributes in your templates. This is useful when you are using Vue.js to apply dynamic behavior to some existing markup, but can feel verbose for some frequently used directives. At the same time, the need for the `v-` prefix becomes less important when you are building an SPA where Vue.js manages every template. Therefore, Vue.js provides special shorthands for two of the most often used directives, `v-bind` and `v-on`:
+`v-` 前缀从视觉上提示模板中特殊的 Vue 特性。在使用 Vue.js 应用动态行为到已有标记时这较为有用。不过在构建单页应用时，如果用 Vue.js 管理所有的模板，`v-` 前缀不大必要。因此Vue.js 为两个最常用的指令 `v-bind` 和 `v-on` 提供特别的缩写：
 
-### `v-bind` Shorthand
+### `v-bind` 缩写
 
 ``` html
-<!-- full syntax -->
+<!-- 完整语法 -->
 <a v-bind:href="url"></a>
 
-<!-- shorthand -->
+<!-- 缩写 -->
 <a :href="url"></a>
 ```
 
-### `v-on` Shorthand
+### `v-on` 缩写
 
 ``` html
-<!-- full syntax -->
+<!-- 完整语法 -->
 <a v-on:click="doSomething"></a>
 
-<!-- shorthand -->
+<!-- 缩写 -->
 <a @click="doSomething"></a>
 ```
 
-They may look a bit different from "valid" HTML, but all Vue.js supported browsers can parse it correctly, and they do not appear in the final rendered markup. The shorthand syntax is totally optional, but you will likely appreciate it when you learn more about its usage later.
+它们看起来跟“合法”的 HTML 有点不同，但是它们在所有支持 Vue.js 的浏览器中都能被正确地解析，并且不会出现在最终渲染的标记中。缩写语法完全是可选的，不过等你更熟悉它之后，你可能会感激它。

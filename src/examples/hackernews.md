@@ -1,10 +1,10 @@
 ---
-title: HackerNews Clone
+title: HackerNews 克隆
 type: examples
 order: 10
 ---
 
-> This is a HackerNews clone built upon HN's official Firebase API, and using Webpack + vue-loader for the build setup.
+> 这是 HackerNews 的克隆，建立在 HN 官方的 Firebase API 上，并且使用 Webpack + vue-loader 构建。
 
 <div style="max-width:600px">
   <a href="http://vuejs.github.io/vue-hackernews" target="_blank"><img style="width:100%" src="/images/hn.png"></a>

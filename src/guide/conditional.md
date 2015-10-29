@@ -1,36 +1,36 @@
 ---
-title: Conditional Rendering
+title: 条件渲染
 type: guide
 order: 7
 ---
 
 ## v-if
 
-In string templates, for example Handlebars, we would write a conditional block like this:
+在字符串模板中，如 Handlebars，我们得像这样写一个条件块：
 
 ``` html
-<!-- Handlebars template -->
+<!-- Handlebars 模板 -->
 {{#if ok}}
   <h1>Yes</h1>
 {{/if}}
 ```
 
-In Vue.js, we use the `v-if` directive to achieve the same:
+在 Vue.js，我们使用 `v-if` 指令实现同样的功能：
 
 ``` html
 <h1 v-if="ok">Yes</h1>
 ```
 
-It is also possible to add an "else" block with `v-else`:
+也可以用 `v-else` 添加一个 "else" 块：
 
 ``` html
 <h1 v-if="ok">Yes</h1>
 <h1 v-else>No</h1>
 ```
 
-## Template v-if
+## template v-if
 
-Because `v-if` is a directive, it has to be attached to a single element. But what if we want to toggle more than one element? In this case we can use `v-if` on a `<template>` element, which serves as an invisible wrapper. The final rendered result will not include the `<template>` element.
+因为 `v-if` 是一个指令，需要将它添加到一个元素上。但是如果我们想切换多个元素呢？此时我们可以在 `<template>` 元素上使用 `v-if`，这个元素为不可见的包装元素，最终的渲染结果不会包含它。
 
 ``` html
 <template v-if="ok">
@@ -42,19 +42,19 @@ Because `v-if` is a directive, it has to be attached to a single element. But wh
 
 ## v-show
 
-Another option for conditionally displaying an element is the `v-show` directive. The usage is largely the same:
+另一个条件显示一个元素的方法是使用 `v-show` 指令。用法大体上一样：
 
 ``` html
 <h1 v-show="ok">Hello!</h1>
 ```
 
-The difference is that an element with `v-show` will always be rendered and remain in the DOM; `v-show` simply toggles the `display` CSS property of the element.
+不同的是有 `v-show` 的元素会始终渲染并保持在 DOM 中。`v-show` 是简单的切换元素的 CSS 属性 `display`。
 
-Note that `v-show` doesn't support the `<template>` syntax.
+注意 `v-show` 不支持 `<template>` 语法。
 
 ## v-else
 
-You can use the `v-else` directive to indicate an "else block" for `v-if` or `v-show`:
+可以用 `v-else` 指令给 `v-if` 或 `v-show` 添加一个 "else 块"：
 
 ``` html
 <div v-if="Math.random() > 0.5">
@@ -65,14 +65,14 @@ You can use the `v-else` directive to indicate an "else block" for `v-if` or `v-
 </div>
 ```
 
-The `v-else` element must following immediately after the `v-if` or `v-show` element - otherwise it will not be recognized.
+`v-else` 元素必须立即跟在 `v-if` 或 `v-show` 元素的后面——否则它不能被识别。
 
 ## v-if vs. v-show
 
-When a `v-if` block is toggled, Vue.js will have to perform a partial compilation/teardown process, because the template content inside `v-if` can also contain data bindings or child components. `v-if` is "real" conditional rendering because it ensures that event listeners and child components inside the conditional block are properly destroyed and re-created during toggles.
+在切换 `v-if` 块时，Vue.js 有一个局部编译/卸载过程，因为 `v-if` 之中的模板也可能包括数据绑定或子组件。`v-if` 是真实的条件渲染，因为它确定在切换时合适地销毁与重建在条件块内的事件处理器和子组件。
 
-`v-if` is also **lazy**: if the condition is false on initial render, it will not do anything - partial compilation won't start until the condition becomes true for the first time (and the compilation is subsequently cached).
+`v-if` 也是**惰性的**：如果在初始渲染时条件为假，则什么也不做——在条件第一次变为真时才开始局部编译，编译会被缓存起来。
 
-In comparison, `v-show` is much simpler - the element is always compiled and preserved, with just simple CSS-based toggling.
+相比之下，`v-show` 简单得多——元素始终被编译并保留，只是简单地基于 CSS 切换。
 
-Generally speaking, `v-if` has higher toggle costs while `v-show` has higher initial render costs. So prefer `v-show` if you need to toggle something very often, and prefer `v-if` if the condition is unlikely to change at runtime.
+一般来说，`v-if` 有更高的切换消耗而 `v-show` 有更高的初始渲染消耗。因此，如果需要频繁切换 `v-show` 较好，如果在运行时条件不大可能改变 `v-if` 较好。

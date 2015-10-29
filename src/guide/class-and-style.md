@@ -1,16 +1,16 @@
 ---
-title: Class and Style Bindings
+title: Class 与 Style 绑定
 type: guide
 order: 6
 ---
 
-A common need for data binding is manipulating an element's class list and its inline styles. Since they are both attributes, we can use `v-bind` to handle them: we just need to calculate a final string with our expressions. However, meddling with string concatenation is annoying and error-prone. For this reason, Vue.js provides special enhancements when `v-bind` is used for `class` and `style`. In addition to Strings, the expressions can also evaluate to Objects or Arrays.
+数据绑定一个常见需求是操作元素的 class 列表和它的内联样式。因为它们都是属性，我们可以用 `v-bind` 处理它们：我们只需要计算出表达式最终的字符串。不过，字符串拼接麻烦又易错。因此，在`v-bind`用于 `class` 和 `style` 时，Vue.js 专门增强了它。除了字符串，表达式的结果也可以是对象或数组。
 
-## Binding HTML Classes
+## 绑定 HTML Class
 
-### Object Syntax
+### 对象语法
 
-We can pass an Object to `v-bind:class` to dynamically toggle classes. Note the `v-bind:class` directive can co-exist with the plain `class` attribute:
+我们可以传给 `v-bind:class` 一个对象，以动态地切换 class。注意  `v-bind:class` 指令可以与普通的 `class`特性共存：
 
 ``` html
 <div class="static" v-bind:class="{ 'class-a': isA, 'class-b': isB }"></div>
@@ -22,15 +22,15 @@ data: {
 }
 ```
 
-Which will render:
+渲染为：
 
 ``` html
 <div class="static class-a"></div>
 ```
 
-When `isA` and `isB` changes, the class list will be updated accordingly. For example, if `isB` becomes `true`, the class list will become `"class-a class-b"`.
+当 `isA` 和 `isB` 变化时，class 列表将相应地更新。例如，如果 `isB` 变为 `true`，class 列表将变为 `"class-a class-b"`。
 
-And you can directly bind to an object in data as well:
+而且也可以直接绑定到数据对象内部一个对象：
 
 ``` html
 <div v-bind:class="classObject"></div>
@@ -44,11 +44,11 @@ data: {
 }
 ```
 
-This will render the same result. As you may have noticed, we can also bind to a [computed property](computed.html) that returns an Object. This is a common and powerful pattern.
+渲染的结果一样。可能你已注意到，我们也可以绑定到一个[计算属性](computed.html)（返回对象）。这是一个常用且强大的模式。
 
-### Array Syntax
+### 数组语法
 
-We can pass an Array to `v-bind:class` to apply a list of classes:
+我们可以把一个数组传给 `v-bind:class`，以应用一个 class 列表：
 
 ``` html
 <div v-bind:class="[classA, classB]">
@@ -60,25 +60,25 @@ data: {
 }
 ```
 
-Which will render:
+渲染为：
 
 ``` html
 <div class="class-a class-b"></div>
 ```
 
-If you would like to also toggle a class in the list conditionally, you can do it with a ternary expression:
+如果你也想根据条件切换列表中的 class，可以用三元表达式：
 
 ``` html
 <div v-bind:class="[classA, isB ? classB : '']">
 ```
 
-This will always apply `classA`, but will only apply `classB` when `isB` is `true`.
+此例始终添加 `classA`，但是只有在 `isB` 是 `true` 时添加 `classB` 。
 
-## Binding Inline Styles
+## 绑定内联样式
 
-### Object Syntax
+### 对象语法
 
-The Object syntax for `v-bind:style` is pretty straightforward - it looks almost like CSS, except it's a JavaScript object. You can use either camelCase or kebab-case for the CSS property names:
+`v-bind:style` 的对象语法十分直观——看着非常像 CSS，除了它是一个 JavaScript 对象。CSS 属性名可以用驼峰式（camelCase）或肉串式（kebab-case）：
 
 ``` html
 <div v-bind:style="{ color: activeColor, fontSize: fontSize + 'px' }"></div>
@@ -90,7 +90,7 @@ data: {
 }
 ```
 
-It is often a good idea to bind to a style object directly so that the template is cleaner:
+直接绑定到一个样式对象通常更好，让模板更清晰：
 
 ``` html
 <div v-bind:style="styleObject"></div>
@@ -104,16 +104,16 @@ data: {
 }
 ```
 
-Again, the Object syntax is often used in conjunction with computed properties that return Objects.
+同样的，对象语法常常与计算属性（返回对象）一起用。
 
-### Array Syntax
+### 数组语法
 
-The Array syntax for `v-bind:style` allows you to apply multiple style objects to the same element:
+`v-bind:style` 的数组语法可以将多个样式对象应用到一个元素上：
 
 ``` html
 <div v-bind:style="[styleObjectA, styleObjectB]">
 ```
 
-### Auto-prefixing
+### 自动添加前缀
 
-When you use a CSS property that requires vendor prefixes in `v-bind:style`, for example `transform`, Vue.js will automatically detect and add appropriate prefixes to the applied styles.
+当 `v-bind:style` 使用需要厂商前缀的 CSS 属性时，如 `transform`，Vue.js 会自动侦测并添加相应的前缀。
