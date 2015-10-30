@@ -1,12 +1,12 @@
 ---
-title: Methods and Event Handling
+title: 方法与事件处理器
 type: guide
 order: 9
 ---
 
-## Method Handler
+## 方法处理器
 
-We can then use the `v-on` directive to listen to DOM events:
+可以用 `v-on` 指令监听 DOM 事件：
 
 ``` html
 <div id="example">
@@ -14,7 +14,7 @@ We can then use the `v-on` directive to listen to DOM events:
 </div>
 ```
 
-We are binding a click event listener to a method named `greet`. Here's how to define that method in our Vue instance:
+我们绑定了一个单击事件处理器到一个方法 `greet`。下面在 Vue 实例中定义这个方法：
 
 ``` js
 var vm = new Vue({
@@ -22,22 +22,22 @@ var vm = new Vue({
   data: {
     name: 'Vue.js'
   },
-  // define methods under the `methods` object
+  // 在 `methods` 对象中定义方法
   methods: {
     greet: function (event) {
-      // `this` inside methods point to the Vue instance
+      // 方法内 `this` 指向 vm
       alert('Hello ' + this.name + '!')
-      // `event` is the native DOM event
+      // `event` 是原生 DOM 事件
       alert(event.target.tagName)
     }
   }
 })
 
-// you can invoke methods in JavaScript too
+// 也可以在 JavaScript 代码中调用方法
 vm.greet() // -> 'Hello Vue.js!'
 ```
 
-Test it yourself:
+自己测试一下：
 
 {% raw %}
 <div id="example" class="demo">
@@ -49,12 +49,12 @@ var vm = new Vue({
   data: {
     name: 'Vue.js'
   },
-  // define methods under the `methods` object
+  // 在 `methods` 对象中定义方法
   methods: {
     greet: function (event) {
-      // `this` inside methods point to the vm
+      // 方法内 `this` 指向 vm
       alert('Hello ' + this.name + '!')
-      // `event` is the native DOM event
+      // `event` 是原生 DOM 事件
       alert(event.target.tagName)
     }
   }
@@ -62,9 +62,9 @@ var vm = new Vue({
 </script>
 {% endraw %}
 
-## Inline Statement Handler
+## 内联语句处理器
 
-Instead of binding directly to a method name, we can also use an inline JavaScript statement:
+除了直接绑定到一个方法，也可以用内联 JavaScript 语句：
 
 ``` html
 <div id="example-2">
@@ -101,9 +101,9 @@ new Vue({
 </script>
 {% endraw %}
 
-Similar to the restrictions on inline expressions, event handlers are restricted to **one statement only**.
+类似于内联表达式，事件处理器限制为**一个语句**。
 
-Sometimes we also need to access the original DOM event in an inline statement handler. You can pass it into a method using the special `$event` variable:
+有时也需要在内联语句处理器中访问原生 DOM 事件。可以用特殊变量 `$event` 把它传入方法：
 
 ``` html
 <button v-on:click="say('hello!', $event)">Submit</button>
@@ -113,52 +113,52 @@ Sometimes we also need to access the original DOM event in an inline statement h
 // ...
 methods: {
   say: function (msg, event) {
-    // now we have access to the native event
+    // 现在我们可以访问原生事件对象
     event.preventDefault()
   }
 }
 ```
 
-## Event Modifiers
+## 事件修饰符
 
-It is a very common need to call `event.preventDefault()` or `event.stopPropagation()` inside event handlers. Although we can do this easily inside methods, it would be better if the methods can be purely about data logic rather than having to deal with DOM event details.
+在事件处理器中经常需要调用 `event.preventDefault()` 或 `event.stopPropagation()`。尽管我们在方法内可以轻松做到，不过让方法是纯粹的数据逻辑而不处理 DOM 事件细节会更好。
 
-To address this problem, Vue.js provides two **event modifiers** for `v-on`: `.prevent` and `.stop`. Recall that modifiers are directive postfixes denoted by a dot:
+为了解决这个问题，Vue.js 为 `v-on` 提供两个 **事件修饰符**：`.prevent` 与 `.stop`。你是否还记得修饰符是点号打头的指令后缀？
 
 ``` html
-<!-- the click event's propagation will be stopped -->
+<!-- 阻止单击事件冒泡 -->
 <a v-on:click.stop="doThis"></a>
 
-<!-- the submit event will no longer reload the page -->
+<!-- 提交事件不再重载页面 -->
 <form v-on:submit.prevent="onSubmit"></form>
 
-<!-- modifiers can be chained -->
+<!-- 修饰符可以串联 -->
 <a v-on:click.stop.prevent="doThat">
 
-<!-- just the modifier -->
+<!-- 只有修饰符 -->
 <form v-on:submit.prevent></form>
 ```
 
-## Key Modifiers
+## 按键修饰符
 
-When listening for keyboard events, we often need to check for common key codes. Vue.js also allows adding key modifiers for `v-on` when listening for key events:
+在监听键盘事件时，我们经常需要检测 keyCode。Vue.js 允许为 `v-on` 添加按键修饰符：
 
 ``` html
-<!-- only call vm.submit() when the keyCode is 13 -->
+<!-- 只有在 keyCode 是 13 时调用 vm.submit() -->
 <input v-on:keyup.13="submit">
 ```
 
-Remembering all the keyCodes is a hassle, so Vue.js provides aliases for most commonly used keys:
+记住所有的 keyCode 比较困难，Vue.js 为最常用的按键提供别名：
 
 ``` html
-<!-- same as above -->
+<!-- 同上 -->
 <input v-on:keyup.enter="submit">
 
-<!-- also works for shorthand -->
+<!-- 缩写语法 -->
 <input @keyup.enter="submit">
 ```
 
-Here's the full list of key modifier aliases:
+全部的按键别名：
 
 - enter
 - tab
@@ -170,12 +170,12 @@ Here's the full list of key modifier aliases:
 - left
 - right
 
-## Why Listeners in HTML?
+## 为什么在 HTML 中监听事件?
 
-You might be concerned that this whole event listening approach violates the good old rules about "separation of concern". Rest assured - since all Vue.js handler functions and expressions are strictly bound to the ViewModel that's handling the current View, it won't cause any maintenance difficulty. In fact, there are several benefits in using `v-on`:
+你可能注意到这种事件监听的方式违背了传统理念 “separation of concern”。不必担心，因为所有的 Vue.js 事件处理方法和表达式都严格绑定在当前视图的 ViewModel 上，它不会导致任何维护困难。实际上，使用 `v-on` 有几个好处：
 
-1. It makes it easier to locate the handler function implementations within your JS code by simply skimming the HTML template.
+1. 扫一眼 HTML 模板便能轻松定位在 JavaScript 代码里对应的方法。
 
-2. Since you don't have to manually attach event listeners in JS, your ViewModel code can be pure logic and DOM-free. This makes it easier to test.
+2. 因为你无须在 JavaScript 里手动绑定事件，你的 ViewModel 代码可以是非常纯粹的逻辑，和 DOM 完全解耦，更易于测试。
 
-3. When a ViewModel is destroyed, all event listeners are automatically removed. You don't need to worry about cleaning it up yourself.
+3. 当一个 ViewModel 被销毁时，所有的事件处理器都会自动被删除。你无须担心如何自己清理它们。

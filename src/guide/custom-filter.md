@@ -1,12 +1,12 @@
 ---
-title: Custom Filters
+title: 自定义过滤器
 type: guide
 order: 15
 ---
 
-## Basics
+## 基础
 
-Similar to custom directives, you can register a custom filter with the global `Vue.filter()` method, passing in a **filterID** and a **filter function**. The filter function takes a value as the argument and returns the transformed value:
+类似于自定义指令，可以用全局方法 `Vue.filter()` 注册一个自定义过滤器，它接收两个参数：**过滤器 ID** 和**过滤器函数**。过滤器函数以值为参数，返回转换后的值：
 
 ``` js
 Vue.filter('reverse', function (value) {
@@ -19,7 +19,7 @@ Vue.filter('reverse', function (value) {
 <span v-text="message | reverse"></span>
 ```
 
-The filter function also receives any inline arguments:
+过滤器函数可以接收任意数量的参数：
 
 ``` js
 Vue.filter('wrap', function (value, begin, end) {
@@ -32,19 +32,19 @@ Vue.filter('wrap', function (value, begin, end) {
 <span v-text="message | wrap 'before' 'after'"></span>
 ```
 
-## Two-way Filters
+## 双向过滤器
 
-Up till now we have used filters to transform values coming from the model and before displaying them in the view. But it is also possible to define a filter that transforms the value before it is written back to the model from the view (input elements):
+目前我们使用过滤器都是在把来自模型的值显视在视图之前转换它。不过也可以定义一个过滤器，在把来自视图（`<input>` 元素）的值写回模型之前转化它：
 
 ``` js
 Vue.filter('currencyDisplay', {
   // model -> view
-  // formats the value when updating the input element.
+  // 在更新 `<input>` 元素之前格式化值
   read: function(val) {
     return '$'+val.toFixed(2)
   },
   // view -> model
-  // formats the value when writing to the data.
+  // 在写回数据之前格式化值
   write: function(val, oldVal) {
     var number = +val.replace(/[^\d.]/g, '')
     return isNaN(number) ? 0 : parseFloat(number.toFixed(2))
@@ -52,7 +52,7 @@ Vue.filter('currencyDisplay', {
 })
 ```
 
-Demo:
+示例：
 
 {% raw %}
 <div id="two-way-filter-demo" class="demo">
@@ -80,9 +80,9 @@ new Vue({
 </script>
 {% endraw %}
 
-## Dynamic Arguments
+## 动态参数
 
-If a filter argument is not enclosed by quotes, it will be evaluated dynamically in the current vm's data context. In addition, the filter function is always invoked using the current vm as its `this` context. For example:
+如果过滤器参数没有用引号包起来，则它会在当前 vm 作用域内动态计算。另外，过滤器函数的 `this` 始终指向调用它的 vm。例如：
 
 ``` html
 <input v-model="userInput">
@@ -91,11 +91,11 @@ If a filter argument is not enclosed by quotes, it will be evaluated dynamically
 
 ``` js
 Vue.filter('concat', function (value, input) {
-  // here `input` === `this.userInput`
+  // `input` === `this.userInput`
   return value + input
 })
 ```
 
-For this simple example above, you can achieve the same result with just an expression, but for more complicated procedures that need more than one statement, you need to put them either in a computed property or a custom filter.
+上例比较简单，也可以用表达式达到相同的结果，但是对于更复杂的逻辑——需要多于一个语句，这时需要将它放到计算属性或自定义过滤器中。
 
-The built-in `filterBy` and `orderBy` filters are both filters that perform non-trivial work on the Array being passed in and relies on the current state of the owner Vue instance.
+内置过滤器 `filterBy` 和 `orderBy`，根据所属 Vue 实例的当前状态，过滤/排序传入的数组。

@@ -1,12 +1,13 @@
 ---
-title: Form Input Bindings
+title: 表单控件绑定
 type: guide
 order: 10
 ---
 
-## Basics Usage
+## 基础用法
 
-You can use the `v-model` directive to create two-way data bindings on form input elements. It automatically picks the correct way to update the element based on the input type. Although a bit magical, `v-model` is essentially syntax sugar for updating data on user input events, plus special care for some edge cases.
+可以用 `v-model` 指令在表单控件元素上创建双向数据绑定。根据控件类型它自动选取正确的方法更新元素。尽管有点神奇，`v-model` 不过是语法糖，在用户输入事件中更新数据，以及特别处理一些极端例子。
+
 
 ### Text
 
@@ -33,7 +34,7 @@ new Vue({
 
 ### Checkbox
 
-Single checkbox, boolean value:
+单个勾选框，逻辑值：
 
 ``` html
 <input type="checkbox" id="checkbox" v-model="checked">
@@ -54,7 +55,7 @@ new Vue({
 </script>
 {% endraw %}
 
-Mutiple checkboxes, bound to the same Array:
+多个勾选框，绑定到同一个数组：
 
 ``` html
 <input type="checkbox" id="jack" value="Jack" v-model="checkedNames">
@@ -121,7 +122,7 @@ new Vue({
 
 ### Select
 
-Single select:
+单选：
 
 ``` html
 <select v-model="selected">
@@ -150,7 +151,7 @@ new Vue({
 </script>
 {% endraw %}
 
-Multiple select (bound to Array):
+多选（绑定到一个数组）：
 
 ``` html
 <select v-model="selected" multiple>
@@ -181,7 +182,7 @@ new Vue({
 </script>
 {% endraw %}
 
-Dynamic options rendered with `v-for`:
+动态选项，用 `v-for` 渲染：
 
 ``` html
 <select v-model="selected">
@@ -228,24 +229,24 @@ new Vue({
 </script>
 {% endraw %}
 
-## Value Bindings
+## 值绑定
 
-For radio, checkbox and select options, the `v-model` binding values are usually static strings (or booleans for checkbox):
+对于单选按钮，勾选框及选择框选项，`v-model` 绑定的值通常是静态字符串（对于勾选框是逻辑值）：
 
 ``` html
-<!-- `picked` is a string "a" when checked -->
+<!-- 当选中时，`picked` 为字符串 "a" -->
 <input type="radio" v-model="picked" value="a">
 
-<!-- `toggle` is either true or false -->
+<!-- `toggle` 为 true 或 false -->
 <input type="checkbox" v-model="toggle">
 
-<!-- `selected` is a string "abc" when selected -->
+<!-- 当选中时，`selected` 为字符串 "abc" -->
 <select v-model="selected">
   <option value="abc">ABC</option>
 </select>
 ```
 
-But sometimes we may want to bind the value to a dynamic property on the Vue instance. We can use `v-bind` to achieve that. In addition, using `v-bind` allows us to bind the input value to non-string values.
+但是有时我们想绑定值到 Vue 实例一个动态属性上。可以用 `v-bind` 做到。 而且 `v-bind` 允许绑定输入框的值到非字符串值。
 
 ### Checkbox
 
@@ -258,9 +259,9 @@ But sometimes we may want to bind the value to a dynamic property on the Vue ins
 ```
 
 ``` js
-// when checked:
+// 选中
 vm.toggle === vm.a
-// when unchecked:
+// 取消选中
 vm.toggle === vm.b
 ```
 
@@ -271,7 +272,7 @@ vm.toggle === vm.b
 ```
 
 ``` js
-// when checked:
+// 选中
 vm.pick === vm.a
 ```
 
@@ -279,31 +280,31 @@ vm.pick === vm.a
 
 ``` html
 <select v-model="selected">
-  <!-- inline object literal -->
+  <!-- 对象字面量 -->
   <option v-bind:value="{ number: 123 }">123</option>>
 </select>
 ```
 
 ``` js
-// when selected:
+// 选中
 typeof vm.selected // -> 'object'
 vm.selected.number // -> 123
 ```
 
-## Param Attributes
+## 参数特性
 
 ### lazy
 
-By default, `v-model` syncs the input with the data after each `input` event. You can add a `lazy` attribute to change the behavior to sync after `change` events:
+在默认情况下，`v-model` 在`input` 事件中同步输入框值与数据，可以添加一个特性 `lazy`，从而改到在 `change` 事件中同步：
 
 ``` html
-<!-- synced after "change" instead of "input" -->
+<!-- 在 "change" 而不是 "input" 事件中更新 -->
 <input v-model="msg" lazy>
 ```
 
 ### number
 
-If you want user input to be automatically persisted as numbers, you can add a `number` attribute to your `v-model` managed inputs:
+如果想自动将用户的输入保持为数字，可以添加一个特性 `number`：
 
 ``` html
 <input v-model="age" number>
@@ -311,7 +312,7 @@ If you want user input to be automatically persisted as numbers, you can add a `
 
 ### debounce
 
-The `debounce` param allows you to set a minimum delay after each keystroke before the input's value is synced to the model. This can be useful when you are performing expensive operations on each update, for example making an Ajax request for type-ahead autocompletion.
+`debounce` 设置一个最小的延时，在每次敲击之后延时同步输入框的值与数据。如果每次更新都要进行高耗操作（例如在输入提示中 Ajax 请求），它较为有用。
 
 ``` html
 <input v-model="msg" debounce="500">
@@ -329,4 +330,5 @@ new Vue({
 </script>
 {% endraw %}
 
-Note that the `debounce` param does not debounce the user's input events: it debounces the "write" operation to the underlying data. Therefore you should use `vm.$watch()` to react to data changes when using `debounce`. For debouncing real DOM events you should use the [debounce filter](/api/#debounce).
+注意 `debounce` 参数不会延迟 input 事件：它延迟“写入”底层数据。因此在使用 `debounce` 时应当用 `vm.$watch()` 响应数据的变化。若想延迟 DOM 事件，应当使用 [debounce 过滤器](/api/#debounce)。
+

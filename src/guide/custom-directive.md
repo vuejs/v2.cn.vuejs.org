@@ -1,75 +1,73 @@
 ---
-title: Custom Directives
+title: 自定义指令
 type: guide
 order: 14
 ---
 
-## Basics
+## 基础
 
-In addition to the default set of directives shipped in core, Vue.js also allows you to register custom directives. Custom directives provide a mechanism for mapping data changes to arbitrary DOM behavior.
+除了内置指令，Vue.js 也允许注册自定义指令。自定义指令提供一种机制将数据的变化映射为 DOM 行为。
 
-You can register a global custom directive with the `Vue.directive(id, definition)` method, passing in a **directive id** followed by a **definition object**. You can also register a local custom directive by including it in a component's `directives` option.
+可以用 `Vue.directive(id, definition)` 方法注册一个全局自定义指令，它接收两个参数**指令 ID** 与**定义对象**。也可以用组件的 `directives` 选项注册一个局部自定义指令。
 
-### Hook Functions
+### 钩子函数
 
-A definition object can provide several hook functions (all optional):
+定义对象可以提供几个钩子函数（都是可选的）：
 
-- **bind**: called only once, when the directive is first bound to the element.
+- **bind**：只调用一次，在指令第一次绑定到元素上时调用。
 
-- **update**: called for the first time immediately after `bind` with the initial value, then again whenever the binding value changes. The new value and the previous value are provided as the argument.
+- **update**： 在 `bind` 之后立即以初始值为参数第一次调用，之后每当绑定值变化时调用，参数为新值与旧值。
 
-- **unbind**: called only once, when the directive is unbound from the element.
+- **unbind**：只调用一次，在指令从元素上解绑时调用。
 
-**Example**
+**示例**
 
 ``` js
 Vue.directive('my-directive', {
   bind: function () {
-    // do preparation work
-    // e.g. add event listeners or expensive stuff
-    // that needs to be run only once
+    // 准备工作
+    // 例如，添加事件处理器或只需要运行一次的高耗任务
   },
   update: function (newValue, oldValue) {
-    // do something based on the updated value
-    // this will also be called for the initial value
+    // 值更新时的工作
+    // 也会以初始值为参数调用一次
   },
   unbind: function () {
-    // do clean up work
-    // e.g. remove event listeners added in bind()
+    // 清理工作
+    // 例如，删除 bind() 添加的事件监听器
   }
 })
 ```
 
-Once registered, you can use it in Vue.js templates like this (remember to add the `v-` prefix):
+在注册之后，便可以在 Vue.js 模板中这样用（记着添加前缀 `v-`）：
 
 ``` html
 <div v-my-directive="someValue"></div>
 ```
 
-When you only need the `update` function, you can pass in a single function instead of the definition object:
+当只需要 `update` 函数时，可以传入一个函数替代定义对象：
 
 ``` js
 Vue.directive('my-directive', function (value) {
-  // this function will be used as update()
+  // 这个函数用作 update()
 })
 ```
 
-### Directive Instance Properties
+### 指令实例属性
 
-All the hook functions will be copied into the actual **directive object**, which you can access inside these functions as their `this` context. The directive object exposes some useful properties:
+所有的钩子函数将被复制到实际的**指令对象**中，钩子内 `this` 指向这个指令对象。这个对象暴露了一些有用的属性：
 
-- **el**: the element the directive is bound to.
-- **vm**: the context ViewModel that owns this directive.
-- **expression**: the expression of the binding, excluding arguments and filters.
-- **arg**: the argument, if present.
-- **name**: the name of the directive, without the prefix.
-- **modifiers**: an object containing modifiers, if any.
-- **descriptor**: an object that contains the parsing result of the entire directive.
-- **params**: an object containing param attributes. [Explained below](#params).
+- **el**: 指令绑定的元素。
+- **vm**: 拥有该指令的上下文 ViewModel。
+- **expression**: 指令的表达式，不包括参数和过滤器。
+- **arg**: 指令的参数。
+- **name**: 指令的名字，不包含前缀。
+- **modifiers**: 一个对象，包含指令的修饰符。
+- **descriptor**: 一个对象，包含指令的解析结果。
 
-<p class="tip">You should treat all these properties as read-only and never modify them. You can attach custom properties to the directive object too, but be careful not to accidentally overwrite existing internal ones.</p>
+<p class="tip">你应当将这些属性视为只读的，不要修改它们。你也可以给指令对象添加自定义属性，但是注意不要覆盖已有的内部属性。</p>
 
-An example of a custom directive using some of these properties:
+示例：
 
 ``` html
 <div id="demo" v-demo:hello.a.b="msg"></div>
@@ -98,7 +96,7 @@ var demo = new Vue({
 })
 ```
 
-**Result**
+**结果**
 
 <div id="demo" v-demo:hello.a.b="msg"></div>
 <script>
@@ -123,9 +121,9 @@ var demo = new Vue({
 })
 </script>
 
-### Object Literals
+### 对象字面量
 
-If your directive needs multiple values, you can also pass in a JavaScript object literal. Remember, directives can take any valid JavaScript expression:
+如果指令需要多个值，可以传入一个 JavaScript 对象字面量。记住，指令可以使用任意合法的 JavaScript 表达式：
 
 ``` html
 <div v-demo="{ color: 'white', text: 'hello!' }"></div>
@@ -138,9 +136,9 @@ Vue.directive('demo', function (value) {
 })
 ```
 
-### Literal Modifier
+### 字面修饰符
 
-When a directive is used with the literal modifier, its attribute value will be interpreted as a plain string and passed directly into the `update` method. The `update` method will also be called only once, because a plain string cannot be reactive.
+当指令使用了字面修饰符，它的值将按普通字符串处理并传递给 `update` 方法。`update` 方法将只调用一次，因为普通字符串不能响应数据变化。
 
 ``` html
 <div v-demo.literal="foo bar baz">
@@ -151,40 +149,40 @@ Vue.directive('demo', function (value) {
 })
 ```
 
-### Element Directives
+### 元素指令
 
-In some cases, we may want our directive to be used in the form of a custom element rather than as an attribute. This is very similar to Angular's notion of "E" mode directives. Element directives provide a lighter-weight alternative to full-blown components (which are explained later in the guide). You can register a custom element directive like so:
+有时我们想以自定义元素的形式使用指令，而不是以特性的形式。这与 Angular 的 “E” 指令非常相似。元素指令可以看做是一个轻量组件。可以像下面这样注册一个自定义元素指令：
 
 ``` js
 Vue.elementDirective('my-directive', {
-  // same API as normal directives
+  // API 同普通指令
   bind: function () {
-    // manipulate this.el...
+    // 操作 this.el...
   }
 })
 ```
 
-Then, instead of:
+不这样写：
 
 ``` html
 <div v-my-directive></div>
 ```
 
-We can write:
+这样写：
 
 ``` html
 <my-directive></my-directive>
 ```
 
-Element directives cannot accept arguments or expressions, but it can read the element's attributes to determine its behavior.
+元素指令不能接受参数或表达式，但是它可以读取元素的特性从而决定它的行为。
 
-A big difference from normal directives is that element directives are **terminal**, which means once Vue encounters an element directive, it will completely skip that element - only the element directive itself will be able to manipulate that element and its children.
+迥异于普通指令，元素指令是**终结性**的，这意味着，一旦 Vue 遇到一个元素指令，它将跳过该元素及其子元素——只有该元素指令本身可以操作该元素及其子元素。
 
-## Advanced Options
+## 高级选项
 
 ### params
 
-Custom directive can provide a `params` array, and the Vue compiler will automatically extract these attributes on the element that the directive is bound to. Example:
+自定义指令可以接收一个 `params` 数组，指定一个特性列表，Vue 编译器将自动提取绑定元素的这些特性。例如：
 
 ``` html
 <div v-example a="hi"></div>
@@ -198,7 +196,7 @@ Vue.directive('example', {
 })
 ```
 
-This API also supports dynamic attributes. The `this.params[key]` value is automatically kept up-to-date. In addition, you can specify a callback when the value has changed:
+此 API 也支持动态属性。`this.params[key]` 会自动保持更新。另外，可以指定一个回调，在值变化时调用：
 
 ``` html
 <div v-example v-bind:a="someValue"></div>
@@ -216,7 +214,7 @@ Vue.directive('example', {
 
 ### deep
 
-If your custom directive is expected to be used on an Object, and it needs to trigger `update` when a nested property inside the object changes, you need to pass in `deep: true` in your directive definition.
+如果自定义指令用在一个对象上，当对象内部属性变化时要触发 `update`，则在指令定义对象中指定 `deep: true`。
 
 ``` html
 <div v-my-directive="obj"></div>
@@ -226,25 +224,23 @@ If your custom directive is expected to be used on an Object, and it needs to tr
 Vue.directive('my-directive', {
   deep: true,
   update: function (obj) {
-    // will be called when nested properties in `obj`
-    // changes.
+    // 在 `obj` 的嵌套属性变化时调用
   }
 })
 ```
 
 ### twoWay
 
-If your directive expects to write data back to the Vue instance, you need to pass in `twoWay: true`. This option allows the use of `this.set(value)` inside the directive:
+如果指令想向 Vue 实例写回数据，则在指令定义对象中指定 `twoWay: true` 。该选项允许在指令中使用 `this.set(value)`:
 
 ``` js
 Vue.directive('example', {
   twoWay: true,
   bind: function () {
     this.handler = function () {
-      // set data back to the vm.
-      // If the directive is bound as v-example="a.b.c",
-      // this will attempt to set `vm.a.b.c` with the
-      // given value.
+      // 将数据写回 vm
+      // 如果指令这样绑定 v-example="a.b.c"
+      // 它将用给定值设置 `vm.a.b.c`	  
       this.set(this.el.value)
     }.bind(this)
     this.el.addEventListener('input', this.handler)
@@ -257,7 +253,7 @@ Vue.directive('example', {
 
 ### acceptStatement
 
-Passing in `acceptStatement:true` enables your custom directive to accept inline statements like `v-on` does:
+传入 `acceptStatement:true` 可以让自定义指令接受内联语句，就像 `v-on` 那样：
 
 ``` html
 <div v-my-directive="a++"></div>
@@ -267,17 +263,16 @@ Passing in `acceptStatement:true` enables your custom directive to accept inline
 Vue.directive('my-directive', {
   acceptStatement: true,
   update: function (fn) {
-    // the passed in value is a function which when called,
-    // will execute the "a++" statement in the owner vm's
-    // scope.
+    // 传入值是一个函数
+    // 在调用它时将在所属实例作用域内计算 "a++" 语句
   }
 })
 ```
 
-Use this wisely though, because in general you want to avoid side-effects in your templates.
+明智地使用，因为通常你要在模板中避免副效应。
 
 ### priority
 
-You can optionally provide a priority number for your directive (defaults to 0). A directive with a higher priority will be processed earlier than other directives on the same element. Directives with the same priority will be processed in the order they appear in the element's attribute list, although that order is not guaranteed to be consistent in different browsers.
+可以给指令指定一个优先级（默认是 0）。同一个元素上优先级高的指令会比其它指令处理得早一些。优先级一样的指令按照它在元素特性列表中出现的顺序依次处理，但是不能保证这个顺序在不同的浏览器中是一致的。
 
-You can checkout the priorities for some built-in directives in the [API reference](/api/#Directives). Additionally, flow control directives `v-if` and `v-for` always have the highest priority in the compilation process.
+可以在 [API](/api/#指令) 中查看内置指令的优先级。另外，流程控制指令 `v-if` 和 `v-for` 在编译过程中始终拥有最高的优先级。
