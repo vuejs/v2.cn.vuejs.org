@@ -12,7 +12,7 @@ gz_size: "23.73"
 
 ## 独立版本
 
-直接下载并用 `<script>` 标签引入，`Vue` 被注册为一个全局变量。
+直接下载并用 `<script>` 标签引入，`Vue` 被注册为一个全局变量。**重要提示：在开发时请用开发版本，遇到常见错误它会给出好的警告。**
 
 <div id="downloads">
 <a class="button" href="https://raw.github.com/vuejs/vue/{{vue_version}}/dist/vue.js" download>开发版本</a><span class="light info">包含丰富的注释和调试信息。</span>
