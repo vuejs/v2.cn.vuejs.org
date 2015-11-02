@@ -714,6 +714,25 @@ new Vue({
 
 ## 杂项
 
+### 组件和 v-for
+自定义组件可以像普通元素一样直接使用  `v-for`：
+
+``` html
+<my-component v-for="item in items"></my-component>
+```
+
+但是，不能传递数据给组件，因为组件的作用域是孤立的。为了传递数据给组件，应当使用 props：
+
+``` html
+<my-component
+  v-for="item in items"
+  :item="item"
+  :index="$index">
+</my-component>
+```
+
+不自动把 `item` 注入组件的原因是这会导致组件跟当前 `v-for` 紧密耦合。显式声明数据来自哪里可以让组件复用在其它地方。
+
 ### 编写可复用组件
 
 在编写组件时，记住是否要复用组件有好处。一次性组件跟其它组件紧密耦合没关系，但是可复用组件应当定义一个清晰的公开接口。
