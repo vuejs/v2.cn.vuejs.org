@@ -32,15 +32,15 @@ Vue.js 不使用 Virtual DOM 而是使用真实 DOM 作为模板，数据绑定�
 
 React 的另一个问题是：由于 DOM 更新完全交给 Virtual DOM 管理，当想要自己控制 DOM 时就有点棘手了（虽然理论上可以做到，但是这样做就本质上违背了 React 的设计思想）。如果应用需要特别的自定义 DOM 操作，特别是复杂时间控制的动画，这个限制就很讨厌。在这方面，Vue.js 更灵活，有许多用 Vue.js 制作的 [FWA/Awwwards 获奖站点](https://github.com/vuejs/vue/wiki/Projects-Using-Vue.js#interactive-experiences)。
 
-Some additional notes:
+再多说几句：
 
-- The React team has very ambitious goals in making React a platform-agnostic UI development paradigm, while Vue is focused on providing a pragmatic solution for the web.
+- React 团队雄心勃勃，计划让 React 成为通用平台的 UI 开发工具，而 Vue 专注于为 Web 提供实用的解决方案。
 
-- React, due to its functional nature, plays very well with functional programming patterns. However it also introduces a higher learning barrier for junior developers and beginners. Vue is much easier to pick up and get productive with in this regard.
+- React，由于它的函数式特质，可以很好地使用函数式编程模式。但是对于初级开发者和初学者这也导致较大的学习难度。Vue 更易学习并能快速投入开发。
 
-- For large applications, the React community has been doing a lot of innovation in terms of state management solutions, e.g. Flux/Redux. Vue itself doesn't really address that problem (same for React core), but the state management patterns can be easily adopted for a similar architecture. I've seen users use Redux with Vue, and engineers at Optimizely have been using NuclearJS (their Flux dialect) with Vue as well.
+- 对于大型应用，React 社区已经创造了大量的状态管理方案，例如 Flux/Redux。Vue 本身不解决这个问题（React 内核也是），但是可以轻松地修改状态管理模式，实现一个类似的架构。我已经看到有用户以 Vue 使用 Redux。Optimizely 的工程师也以 Vue 使用 NuclearJS (他们的 Flux 实现)。
 
-- The trend in React development is pushing you to put everything in JavaScript, including your CSS. There has been many CSS-in-JS solutions out there but all more or less have its own problems. And most importantly, it deviates from the standard CSS authoring experience and makes it very awkward to leverage existing work in the CSS community. Vue's [single file components](http://vuejs.org/guide/application.html#Single_File_Components) gives you component-encapsulated CSS while still allowing you to use your pre-processors of choice.
+- React 的开发趋势是将所有东西都放在 JavaScript 中，包括 CSS。已经有许多 CSS-in-JS 方案，但是所有的方案多多少少都有它的问题。而且更重要的是，这么做脱离了标准的 CSS 开发经验，并且很难和 CSS 社区的已有工作配合。Vue 的 [单文件组件](http://vuejs.org/guide/application.html#单文件组件) 在把 CSS 封装到组件模块的同时仍然允许你使用你喜欢的预处理器。
 
 ## Ember
 
