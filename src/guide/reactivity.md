@@ -1,96 +1,97 @@
 ---
-title: Reactivity in Depth
+title: 深入响应
 type: guide
 order: 13
 ---
 
-We've covered most of the basics - now it's time to take a deep dive! One of Vue.js' most distinct features is the unobtrusive reactive system - models are just plain JavaScript objects, modify it and the view updates. It makes state management very simple and intuitive, but it's also important to understand how it works to avoid some common gotchas. In this section, we are going to dig into some of the lower-level details of Vue.js' reactivity system.
+大部分的基础内容我们已经讲到了，现在讲点底层内容。Vue.js 最显著的一个功能是响应系统——模型只是普通对象，修改它则更新视图。这让状态管理非常简单且直观，不过理解它的原理也很重要，可以避免一些常见问题。下面我们开始深挖 Vue.js 响应系统的底层细节。
 
-## How Changes Are Tracked
+## 如何追踪变化
 
-When you pass a plain JavaScript object to a Vue instance as its `data` option, Vue.js will walk through all of its properties and convert them to getter/setters using [Object.defineProperty](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty). This is an ES5-only and un-shimmable feature, which is why Vue.js doesn't support IE8 and below.
+把一个普通对象传给 Vue 实例作为它的 `data` 选项，Vue.js 将遍历它的属性，用 [Object.defineProperty](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty) 将它们转为 getter/setter。这是 ES5 特性，不能打补丁实现，这便是为什么 Vue.js 不支持 IE8 及更低版本。
 
-The getter/setters are invisible to the user, but under the hood they enable Vue.js to perform dependency-tracking and change-notification when properties are accessed or modified. One caveat is that browser consoles format getter/setters differently when converted data objects are logged, so make sure to use the `vm.$log()` instance method for more inspection-friendly output.
+用户看不到 getter/setters，但是在内部它们让 Vue.js 追踪依赖，在属性被访问和修改时通知变化。一个问题是在浏览器控制台打印数据对象时 getter/setter 的格式化不同，使用 `vm.$log()` 实例方法可以得到更友好的输出。
 
-For every directive / data binding in the template, there will be a corresponding **watcher** object, which records any properties "touched" during its evaluation as dependencies. Later on when a dependency's setter is called, it triggers the watcher to re-evaluate, and in turn causes its associated directive to perform DOM updates.
+模板中每个指令/数据绑定都有一个对应的 **watcher** 对象，在计算过程中它把属性记录为依赖。之后当依赖的 setter 被调用时，会触发 watcher 重新计算 ，也就会导致它的关联指令更新 DOM。 
 
 ![data](/images/data.png)
 
-## Change Detection Caveats
+## 变化检测问题
 
-Due to the limitation of ES5, Vue.js **cannot detect property addition or deletion**. Since Vue.js performs the getter/setter conversion process during instance initialization, a property must be present in the `data` object in order for Vue.js to convert it and make it reactive. For example:
+受 ES5 的限制，Vue.js **不能检测到对象属性的添加或删除**。因为 Vue.js 在初始化实例时将属性转为 getter/setter，所以属性必须在 `data` 对象上才能让 Vue.js 转换它，才能让它是响应的。例如：
 
 ``` js
 var data = { a: 1 }
 var vm = new Vue({
   data: data
 })
-// `vm.a` and `data.a` are now reactive
+// `vm.a` 和 `data.a` 现在是响应的
 
 vm.b = 2
-// `vm.b` is NOT reactive
+// `vm.b` 不是响应的
 
 data.b = 2
-// `data.b` is NOT reactive
+// `data.b` 不是响应的
 ```
 
-However, there are ways to **add a property and make it reactive** after an instance has been created.
+不过，有办法在实例创建之后**添加属性并且让它是响应的**。
 
-For Vue instances, you can use the `$set(path, value)` instance method:
+对于 Vue 实例，可以使用 `$set(key, value)` 实例方法：
 
 ``` js
 vm.$set('b', 2)
-// `vm.b` and `data.b` are now reactive
+// `vm.b` 和 `data.b` 现在是响应的
 ```
 
-For plain data objects, you can use the global `Vue.set(object, key, value)` method:
+对于普通数据对象，可以使用全局方法 `Vue.set(object, key, value)`：
 
 ``` js
 Vue.set(data, 'c', 3)
-// `vm.c` and `data.c` are now reactive
+// `vm.c` 和 `data.c` 现在是响应的
 ```
 
-There are also a few Array-related caveats, which were [discussed earlier in the list rendering section](/guide/list.html#Caveats).
+也有一些数组相关的问题，之前已经在[列表渲染](/guide/list.html#)中讲过。
 
-## Initialize Your Data
+## 初始化数据
 
-Although Vue.js provides the API to dynamically add reactive properties on the fly, it is recommended to declare all reactive properties upfront in the `data` option.
+尽管 Vue.js 提供了 API 动态地添加响应属性，还是推荐在 `data` 对象上声明所有的响应属性。
 
-Instead of this:
+不这么做：
 
 ``` js
 var vm = new Vue({
   template: '<div>{{msg}}</div>'
 })
-// add `msg` later
+// 然后添加 `msg`
 vm.$set('msg', 'Hello!')
 ```
 
-Prefer this:
+这么做：
 
 ``` js
 var vm = new Vue({
   data: {
-    // declare msg with an empty value
+    // 以一个空值声明 `msg`
     msg: ''
   },
   template: '<div>{{msg}}</div>'
 })
-// set `msg` later
+// 然后设置 `msg`
 vm.msg = 'Hello!'
 ```
 
-There are two reasons behind this pattern:
+这么做有两个原因：
 
-1. The `data` object is like the schema for your component's state. Declaring all reactive properties upfront makes the component code easier to understand and reason about.
+1. `data` 对象就像组件状态的模式（schema）。在它上面声明所有的属性让组件代码更易于理解。
 
-2. Adding a top level reactive property on a Vue instance will force all the watchers in its scope to re-evaluate, because it didn't exist before and no watcher could have tracked it as a dependency. The performance is usually acceptable (essentially the same as Angular's dirty checking), but can be avoided when you initialize the data properly.
+2. 添加一个顶级响应属性会强制所有的 watcher 重新计算，因为它之前不存在，没有 watcher 追踪它。这么做性能通常是可以接受的（特别是对比 Angular 的脏检查），但是可以在初始化时避免。
 
-## Async Update Queue
 
-By default, Vue.js performs DOM updates **asynchronously**. Whenever a data change is observed, Vue will open a queue and buffer all the data changes that happens in the same event loop. If the same watcher is triggered multiple times, it will be pushed into the queue only once. Then, in the next event loop "tick", Vue flushes the queue and performs only the necessary DOM updates. Internally Vue uses `MutationObserver` if available for the asynchronous queuing and falls back to `setTimeout(fn, 0)`.
+## 异步更新队列
 
-For example, when you set `vm.someData = 'new value'`, the DOM will not update immediately. It will update in the next "tick", when the queue is flushed. Most of the time we don't need to care about this, but it can be tricky when you want to do something that depends on the post-update DOM state. Although Vue.js generally encourages developers to think in a "data-driven" fashion and avoid touching the DOM directly, sometimes it might be necessary to get your hands dirty. In order to wait until Vue.js has finished updating the DOM after a data change, you can use `Vue.nextTick(callback)` immediately after the data is changed. The callback will be called after the DOM has been updated. For example:
+Vue.js 默认**异步**更新 DOM。每当观察到数据变化时，Vue 就开始一个队列，将同一事件循环内所有的数据变化缓存起来。如果一个 watcher 被多次触发，只会推入一次到队列中。等到下一次事件循环，Vue 将清空队列，只进行必要的 DOM 更新。在内部异步队列优先使用 `MutationObserver`，如果不支持则使用 `setTimeout(fn, 0)`。
+
+例如，设置了 `vm.someData = 'new value'`，DOM 不会立即更新，而是在下一次事件循环清空队列时更新。我们基本不用关心这个过程，但是如果想在 DOM 状态更新后做点什么，这会有帮助。尽管 Vue.js 鼓励开发者沿着数据驱动的思路，避免直接修改 DOM，但是有时确实要这么做。为了在数据变化之后等待 Vue.js 完成更新 DOM，可以在数据变化之后立即使用 `Vue.nextTick(callback)` 。回调在 DOM 更新完成后调用。例如：
 
 ``` html
 <div id="example">{{msg}}</div>
@@ -103,14 +104,14 @@ var vm = new Vue({
     msg: '123'
   }
 })
-vm.msg = 'new message' // change data
+vm.msg = 'new message' // 修改数据
 vm.$el.textContent === 'new message' // false
 Vue.nextTick(function () {
   vm.$el.textContent === 'new message' // true
 })
 ```
 
-There is also the `vm.$nextTick()` instance method, which is especially handy inside components, because it doesn't need global `Vue` and its callback's `this` context will be automatically bound to the current Vue instance:
+`vm.$nextTick()` 这个实例方法比较方便，因为它不需要全局 `Vue`，它的回调的 `this` 自动绑定到当前 Vue 实例：
 
 ``` js
 Vue.component('example', {
@@ -132,13 +133,13 @@ Vue.component('example', {
 })
 ```
 
-## Inside Computed Properties
+## 计算属性的秘密
 
-It should be noted that Vue.js computed properties are **not** simple getters. Each computed property keeps track of its own reactive dependencies. When a computed property is evaluated, Vue.js updates its dependency list and caches the result value. The cached value is only invalidated when one of the tracked dependencies have changed. Therefore, as long as the dependencies did not change, accessing the computed property will directly return the cached value instead of calling the getter.
+应注意到 Vue.js 的计算属性**不是**简单的 getter。计算属性持续追踪它的响应依赖。在计算一个计算属性时，Vue.js 更新它的依赖列表并缓存结果，只有当其中一个依赖发生了变化，缓存的结果才无效。因此，只要依赖不发生变化，访问计算属性会直接返回缓存的结果，而不是调用 getter。
 
-Why do we need caching? Imagine we have an expensive computed property **A**, which requires looping through a huge Array and doing a lot of computations. Then, we may have other computed properties that in turn depend on **A**. Without caching, we would be calling **A**’s getter many more times than necessary!
+为什么要缓存呢？假设我们有一个高耗计算属性 `A`，它要遍历一个巨型数组并做大量的计算。然后，可能有其它的计算属性依赖 `A`。如果没有缓存，我们将调用 `A` 的 getter 许多次，超过必要次数。  
 
-Because of computed property caching, the getter function is not always called when you access a computed property. Consider the following example:
+由于计算属性被缓存了，在访问它时 getter 不总是被调用。考虑下例：
 
 ``` js
 var vm = new Vue({
@@ -153,9 +154,9 @@ var vm = new Vue({
 })
 ```
 
-The computed property `example` has only one dependency: `vm.msg`. `Date.now()` is **not** a reactive dependency, because it has nothing to do with Vue's data observation system. Therefore, when you programmatically access `vm.example`, you will find the timestamp to remain the same unless `vm.msg` triggers a re-evaluation.
+计算属性 `example` 只有一个依赖：`vm.msg`。`Date.now()` **不是** 响应依赖，因为它跟 Vue 的数据观察系统无关。因而，在访问 `vm.example` 时将发现时间戳不变，除非 `vm.msg` 变了。
 
-In some use cases you may want to preserve the simple getter-like behavior, where every time you access `vm.example` it simply calls the getter again. You can do that by turning off caching for a specific computed property:
+有时希望 getter 不改变原有的行为，每次访问 `vm.example` 时都调用 getter。这时可以为指定的计算属性关闭缓存：
 
 ``` js
 computed: {
@@ -168,4 +169,4 @@ computed: {
 }
 ```
 
-Now, every time you access `vm.example`, the timestamp will be up-to-date. **However, note this only affects programmatic access inside JavaScript; data-bindings are still dependency-driven.** When you bind to a computed property in the template as `{% raw %}{{example}}{% endraw %}`, the DOM will only be updated when a reactive dependency has changed.
+现在每次访问 `vm.example` 时，时间戳都是新的。**但是，只是在 JavaScript 中访问是这样的；数据绑定仍是依赖驱动的。**如果在模块中这样绑定计算属性 `{% raw %}{{example}}{% endraw %}`，只有响应依赖发生变化时才更新 DOM。

@@ -1,45 +1,45 @@
 ---
-title: Building Large-Scale Apps
+title: 构建大型应用
 type: guide
 order: 18
 ---
 
-The Vue.js core library is designed to be focused and flexible - it's just a view layer library that doesn't enforce any application-level architecture. While this can be great for integrating with existing projects, it could be a challenge for those with less experience to build larger scale applications from scratch.
+Vue.js 的设计思想是专注与灵活——它只是一个界面库，不强制使用哪个架构。它能很好地与已有项目整合，不过对于经验欠缺的开发者，从头开始构建大型应用可能是一个挑战。
 
-The Vue.js ecosystem provides a set of tools, libraries on how to build large SPAs with Vue. This part is where we start get a bit "framework"-ish, but it's really just an opinionated list of recommendations; you still get to pick what to use for each part of the stack.
+Vue.js 生态系统提供了一系列的工具与库，用于构建单页应用。但是它们只是推荐而已。
 
-## Modularization
+## 模块化
 
-For large projects it's necessary to utilize a modularized build system to better organize your code. The recommended approach of doing so is by writing your source code in CommonJS or ES6 modules and bundle them using [Webpack](http://webpack.github.io/) or [Browserify](http://browserify.org/).
+对于大型项目，为了更好地管理代码使用模块构建系统非常必要。推荐代码使用 CommonJS 或 ES6 模块，然后使用 [Webpack](http://webpack.github.io/) 或 [Browserify](http://browserify.org/) 打包。
 
-Webpack and Browserify are more than just module bundlers, though. They both provide source transform APIs that allow you to transform your source code with other pre-processors. For example, you can write your code with future ES2015/2016 syntax using [babel-loader](https://github.com/babel/babel-loader) or [babelify](https://github.com/babel/babelify).
+Webpack 和 Browserify 不只是模块打包器。两者都提供了源码转换 API，通过它可以用其它预处理器转换源码。例如，借助 [babel-loader](https://github.com/babel/babel-loader) 或 [babelify](https://github.com/babel/babelify) 代码可以使用 ES2015/2016 语法。
 
-If you've never used them before, I highly recommend going through a few tutorials to get familiar with the concept of module bundlers, and start writing JavaScript using the latest ECMAScript features.
+如果你之前没有用过它们，我强烈推荐你阅读一些教程，了解模块打包器，然后使用最新的 ECMAScript 特性写 JavaScript。
 
-## Single File Components
+## 单文件组件
 
-In a typical Vue.js project we will be dividing our interface into many small components, and it would be nice to have each component encapsulate its CSS styles, template and JavaScript definition in the same place. As mentioned above, when using Webpack or Browserify, with proper source transforms we can write our components like this:
+在典型的 Vue.js 项目中，我们会把界面拆分为多个小组件，每个组件在同一地方封装它的 CSS 样式，模板和 JavaScript 定义，这么做比较好。如上所述，使用 Webpack 或 Browserify 以及合适的源码转换器，我们可以这样写组件：
 
 <img src="/images/vue-component.png">
 
-If you are into pre-processors, you can even do this:
+如果你喜欢预处理器，甚至可以这么做：
 
 <img src="/images/vue-component-with-pre-processors.png">
 
-You can build these single-file Vue components with Webpack + [vue-loader](https://github.com/vuejs/vue-loader) or Browserify + [vueify](https://github.com/vuejs/vueify). It is recommended to use the Webpack setup because Webpack's loader API enables better file dependency tracking / caching and some advanced features that are not feasible with Browserify transforms.
+你可以使用 Webpack + [vue-loader](https://github.com/vuejs/vue-loader) 或 Browserify + [vueify](https://github.com/vuejs/vueify) 构建这些单文件 Vue 组件。推荐使用 Webpack，因为它的加载器 API 提供更好的文件依赖追踪/缓存以及一些 Browserify 没有的转换功能。
 
-You can find examples of the build setups on GitHub:
+在 GitHub 上有一些构建示例：
 
 - [Webpack + vue-loader](https://github.com/vuejs/vue-loader-example)
 - [Browserify + vueify](https://github.com/vuejs/vueify-example)
 
-## Routing
+## 路由
 
-For Single Page Applications, it is recommended to use the [official vue-router library](https://github.com/vuejs/vue-router), which is currently in technical preview. For more details, please refer to vue-router's [documentation](http://vuejs.github.io/vue-router/).
+对于单页应用，推荐使用[官方库 vue-router](https://github.com/vuejs/vue-router)。详细请查看它的[文档](http://vuejs.github.io/vue-router/)。 
 
-If you just need some very simple routing logic, you can also implement it by manually listening on `hashchange` and utilizing a dynamic component:
+如果你只需要非常简单的路由逻辑，可以这么做，监听 `hashchange` 事件并使用动态组件：
 
-**Example:**
+**示例：**
 
 ``` html
 <div id="app">
@@ -56,19 +56,19 @@ var app = new Vue({
     currentView: 'home'
   }
 })
-// Switching pages in your route handler:
+// 在路由处理器中切换页面
 app.currentView = 'page1'
 ```
 
-With this mechanism it's also very easy to leverage external routing libraries such as [Page.js](https://github.com/visionmedia/page.js) or [Director](https://github.com/flatiron/director).
+利用这种机制也可以非常容易地配合其它路由库，如 [Page.js](https://github.com/visionmedia/page.js) 或 [Director](https://github.com/flatiron/director)。
 
-## Communication with Server
+## 与服务器通信
 
-All Vue instances can have their raw `$data` directly serialized with `JSON.stringify()` with no additional effort. The community has contributed the [vue-resource](https://github.com/vuejs/vue-resource) plugin, which provides an easy way to work with RESTful APIs. You can also use any Ajax library you like, e.g. `$.ajax` or [SuperAgent](https://github.com/visionmedia/superagent). Vue.js also plays nicely with no-backend services such as Firebase and Parse.
+Vue 实例的原始数据 `$data` 能直接用 `JSON.stringify()` 序列化。社区贡献了一个插件 [vue-resource](https://github.com/vuejs/vue-resource)，提供一种容易的方式与 RESTful APIs 配合。也可以使用任何自己喜欢的 Ajax 库，如 `$.ajax` 或 [SuperAgent](https://github.com/visionmedia/superagent)。Vue.js 也能很好地与无后端服务配合，如 Firebase 和 Parse。
 
-## State Management
+## 状态管理
 
-In large applications, state management often becomes complex due to multiple pieces of state scattered across many components and the interactions between them. It is often overlooked that the source of truth in Vue.js applications is the raw data object - a Vue instances simply proxies access to it. Therefore, if you have a piece of state that should be shared by multiple instances, you should avoid duplicating it and share it by identity:
+在大型应用中，状态管理常常变得复杂，因为状态分散在许多组件内。常常忽略 Vue.js 应用的来源是原生的数据对象—— Vue 实例代理访问它。因此，如果一个状态要被多个实例共享，应避免复制它：
 
 ``` js
 var sourceOfTruth = {}
@@ -82,7 +82,7 @@ var vmB = new Vue({
 })
 ```
 
-Now whenever `sourceOfTruth` is mutated, both `vmA` and `vmB` will update their views automatically. Extending this idea further, we would arrive at the **store pattern**:
+现在每当 `sourceOfTruth` 被修改后，`vmA` 与 `vmB` 将自动更新它们的视图。扩展这个思路，我们可以实现 **store 模式**：
 
 ``` js
 var store = {
@@ -112,21 +112,21 @@ var vmB = new Vue({
 })
 ```
 
-Notice we are putting all actions that mutate the store's state inside the store itself. This type of centralized state management makes it easier to understand what type of mutations could happen to the state, and how are they triggered. Each component can still own and manage its private state.
+我们把所有的 action 放在 store 内，action 修改 store 的状态。集中管理状态更易于理解状态将怎样变化。组件仍然可以拥有和管理它的私有状态。
 
-![State Management](/images/state.png)
+![状态管理](/images/state.png)
 
-One thing to take note is that you should never replace the original state object in your actions - the components and the store need to share reference to the same object in order for the mutations to be observed.
+有一点要注意，不要在 action 中替换原始的状态对象——为了观察到变化，组件和 store 需要共享这个对象。
 
-If we enforce a convention where components are never allowed to directly mutate state that belongs to a store, but should instead dispatch events that notify the store to perform actions, we've essentially arrived at the [Flux](https://facebook.github.io/flux/) architecture. The benefits of this convention is we can record all state mutations happening to the store, and on top of that we can implement advanced debugging helpers such as mutation logs, snapshots, history re-rolls etc.
+如果我们约定，组件不可以直接修改 store 的状态，而应当派发事件，通知 store 执行 action，那么我们基本上实现了 [Flux](https://facebook.github.io/flux/) 架构。此约定的好处是，我们能记录 store 所有的状态变化，并且在此之上实现高级的调试帮助函数，如修改日志，快照，历史回滚等。
 
-The Flux architecture is commonly used in React applications. Turns out the core idea behind Flux can be quite simply achieved in Vue.js, thanks to the unobtrusive reactivity system. Do note what we demonstrated here is just an example to introduce the concept - you may not need it at all for simple scenarios, and you should adapt the pattern to fit the real needs of your application.
+Flux 架构常用于 React 应用中。借助于响应系统，Flux 的核心思想能非常容易地用 Vue.js 实现。注意我们这里的演示只是为了介绍概念，简单的情况完全不需要这么做，应根据应用的需求调整这个模式。
 
-## Unit Testing
+## 单元测试
 
-Anything compatible with a module-based build system works. A recommendation is using the [Karma](http://karma-runner.github.io/0.12/index.html) test runner. It has a lot of community plugins, including support for [Webpack](https://github.com/webpack/karma-webpack) and [Browserify](https://github.com/Nikku/karma-browserify). For detailed setup, please refer to each project's respective documentation.
+任何支持模块构建系统的单元测试工具都可以。推荐使用 [Karma](http://karma-runner.github.io/0.12/index.html)。它有许多插件，支持 [Webpack](https://github.com/webpack/karma-webpack) 和 [Browserify](https://github.com/Nikku/karma-browserify)。用法见它们的文档。
 
-In terms of code structure for testing, the best practice is to export raw options / functions in your component modules. Consider this example:
+代码测试的最佳实践是导出组件模块的选项/函数。例如：
 
 ``` js
 // my-component.js
@@ -143,7 +143,7 @@ module.exports = {
 }
 ```
 
-You can use that file in your entry module like this:
+在入口模块中使用这个模块：
 
 ``` js
 // main.js
@@ -157,10 +157,10 @@ var app = new Vue({
 })
 ```
 
-And you can test that module like this:
+测试这个模块：
 
 ``` js
-// Some Jasmine 2.0 tests
+// Jasmine 2.0 测试
 describe('my-component', function () {
   // require source module
   var myComponent = require('../src/my-component')
@@ -175,15 +175,15 @@ describe('my-component', function () {
 })
 ```
 
-<p class="tip">Since Vue.js directives perform updates asynchronously, when you are asserting DOM state after changing the data, you will have to do so in a `Vue.nextTick` callback.</p>
+<p class="tip">因为 Vue.js 指令是异步更新，如果想在修改数据之后修改 DOM ，应当在 `Vue.nextTick` 的回调中操作。</p>
 
-## Deploying for Production
+## 生产发布
 
-The minified standalone build of Vue.js has already stripped out all the warnings for you for a smaller file size, but when you are using tools like Browserify or Webpack to build Vue.js applications, you will need some additional configuration to achieve this.
+为了更小的文件体积，Vue.js 的压缩版本删除所有的警告，但是在使用 Browserify 或 Webpack 等工具构建 Vue.js 应用时，压缩需要一些配置。
 
 ### Webpack
 
-Use Webpack's [DefinePlugin](http://webpack.github.io/docs/list-of-plugins.html#defineplugin) to indicate a production environment, so that warning blocks can be automatically dropped by UglifyJS during minification. Example config:
+使用插件 [DefinePlugin](http://webpack.github.io/docs/list-of-plugins.html#defineplugin) 将当前环境指定为生产环境，警告将在 UglifyJS 压缩代码过程中被删除。配置示例：
 
 ``` js
 var webpack = require('webpack')
@@ -208,12 +208,12 @@ module.exports = {
 
 ### Browserify
 
-Just run your bundling command with `NODE_ENV` set to `"production"`. Vue automatically applies [envify](https://github.com/hughsk/envify) transform to itself and makes warning blocks unreachable. For example:
+将 NODE_ENV 设置为 "production"，然后运行打包命令。Vue 会自动应用 [envify](https://github.com/hughsk/envify) 并让警告块不能运行。例如：
 
 ``` bash
 NODE_ENV=production browserify -e main.js | uglifyjs -c -m > build.js
 ```
 
-## An App Example
+## 应用示例
 
-The [Vue.js Hackernews Clone](https://github.com/vuejs/vue-hackernews) is an example application that uses Webpack + vue-loader for code organization, vue-router for routing, and HackerNews' official Firebase API as the backend. It's by no means a big application, but it demonstrates the combined usage of the concepts discussed on this page.
+[Vue.js Hackernews Clone](https://github.com/vuejs/vue-hackernews) 这个应用示例使用 Webpack + vue-loader 组织代码，使用 vue-router 作为路由器，HackerNews 官方的 Firebase API 作为后端。它当然不是大应用，但是它综合演示了本页讨论的概念。
