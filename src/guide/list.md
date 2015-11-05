@@ -61,7 +61,7 @@ var example1 = new Vue({
 ``` html
 <ul id="example-2">
   <li v-for="item in items">
-    {{ parentMessage }} {{ $index }} {{ item.message }}
+    {{ parentMessage }} - {{ $index }} - {{ item.message }}
   </li>
 </ul>
 ```

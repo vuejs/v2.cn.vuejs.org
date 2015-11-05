@@ -130,14 +130,3 @@
 
 <!-- Twitter follow button script -->
 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-
-<script>
-// Temporarily block translation links until they are done
-// for 1.0 updates.
-[].forEach.call(document.querySelectorAll('#translations .nav-link.wip'), function (link) {
-  link.addEventListener('click', function (e) {
-    e.preventDefault()
-    alert('1.0 translation for this language is still work in progress.')
-  })
-})
-</script>

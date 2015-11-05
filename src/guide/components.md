@@ -12,7 +12,7 @@ order: 12
 
 ``` js
 var MyComponent = Vue.extend({
-  // options...
+  // 选项...
 })
 ```
 
@@ -32,12 +32,12 @@ Vue.component('my-component', MyComponent)
 ```
 
 ``` js
-// define
+// 定义
 var MyComponent = Vue.extend({
   template: '<div>A custom component!</div>'
 })
 
-// register
+// 注册
 Vue.component('my-component', MyComponent)
 
 // 创建根实例
@@ -117,7 +117,7 @@ var MyComponent = Vue.extend({
 })
 ```
 
-这么做的问题是 `MyComponent` 所有的实例将共享同一个 `data` 对象！这基本不是我们想要的，因此我们应当使用一个函数作为 `data` 选项，函数返回一个新对象： 
+这么做的问题是 `MyComponent` 所有的实例将共享同一个 `data` 对象！这基本不是我们想要的，因此我们应当使用一个函数作为 `data` 选项，函数返回一个新对象：
 
 ``` js
 var MyComponent = Vue.extend({
@@ -241,6 +241,22 @@ new Vue({
 </script>
 {% endraw %}
 
+### 字面量语法 vs. 动态语法
+
+初学者常犯的一个错误是使用字面量语法传递数值：
+
+``` html
+<!-- 传递了一个字符串 "1" -->
+<comp some-prop="1"></comp>
+```
+
+因为它是一个字面 prop，它的值以字符串 `"1"` 而不是以实际的数字传下去。如果想传递一个实际的 JavaScript 数字，需要使用动态语法，从而让它的值被当作 JavaScript 表达式计算：
+
+``` html
+<!-- 传递实际的数字  -->
+<comp :some-prop="1"></comp>
+```
+
 ### Prop 绑定类型
 
 prop 默认是**单向**绑定：当父组件的属性变化时，将传导给子组件，但是反过来不会。这是为了防止子组件无意修改了父组件的状态——这会让应用的数据流难以理解。不过，也可以使用 `.sync` 或 `.once` **绑定修饰符**显式地强制双向或单次绑定：
@@ -248,7 +264,7 @@ prop 默认是**单向**绑定：当父组件的属性变化时，将传导给�
 比较语法：
 
 ``` html
-<!-- 默认，单向绑定 -->
+<!-- 默认为单向绑定 -->
 <child :msg="parentMsg"></child>
 
 <!-- 双向绑定 -->
@@ -390,7 +406,7 @@ var parent = new Vue({
     'child-msg': function (msg) {
       // 事件回调内的 `this` 自动绑定到注册它的实例上
       this.messages.push(msg)
-    })
+    }
   }
 })
 ```
@@ -437,7 +453,7 @@ var parent = new Vue({
 
 ### 使用 v-on 绑定自定义事件
 
-上例非常好，不过看着父组件的代码， `"child-msg"` 事件来自哪里不直观。如果我们在模板中子组件用到的地方声明事件处理器会更好。为了做到这点，子组件可以用 `v-on` 监听自定义事件： 
+上例非常好，不过看着父组件的代码， `"child-msg"` 事件来自哪里不直观。如果我们在模板中子组件用到的地方声明事件处理器会更好。为了做到这点，子组件可以用 `v-on` 监听自定义事件：
 
 ``` html
 <child v-on:child-msg="handleIt"></child>
@@ -630,7 +646,7 @@ new Vue({
 
 ### `activate` 钩子
 
-在切换组件时，切入组件在切入前可能需要进行一些异步操作。为了控制组件切换时长，给切入组件添加 `activate` 钩子： 
+在切换组件时，切入组件在切入前可能需要进行一些异步操作。为了控制组件切换时长，给切入组件添加 `activate` 钩子：
 
 ``` js
 Vue.component('activate-example', {
@@ -644,7 +660,7 @@ Vue.component('activate-example', {
 })
 ```
 
-注意 `activate` 钩子只用于切换动态组件——它不影响静态组件以及使用实例方法的手工插入。
+注意 `activate` 钩子只作用于动态组件切换或静态组件初始化渲染的过程中，不作用于使用实例方法手工插入的过程中。
 
 ### `transition-mode`
 
@@ -876,4 +892,4 @@ var StackOverflow = Vue.extend({
 </my-component>
 ```
 
-但是 `inline-template` 让模板的作用域难以理解，并且不能缓存模板编译结果。最佳实践是使用 `template` 选项在组件内定义模板。 
+但是 `inline-template` 让模板的作用域难以理解，并且不能缓存模板编译结果。最佳实践是使用 `template` 选项在组件内定义模板。
