@@ -12,10 +12,10 @@ gz_size: "23.76"
 
 ## 独立版本
 
-直接下载并用 `<script>` 标签引入，`Vue` 被注册为一个全局变量。**重要提示：在开发时请用开发版本，遇到常见错误它会给出友好的警告。**
+直接下载并用 `<script>` 标签引入，`Vue` 会被注册为一个全局变量。**重要提示：在开发时请用开发版本，遇到常见错误它会给出友好的警告。**
 
 <div id="downloads">
-<a class="button" href="https://raw.github.com/vuejs/vue/{{vue_version}}/dist/vue.js" download>开发版本</a><span class="light info">包含丰富的注释和调试信息。</span>
+<a class="button" href="https://raw.github.com/vuejs/vue/{{vue_version}}/dist/vue.js" download>开发版本</a><span class="light info">包含完整的警告和调试模式</span>
 
 <a class="button" href="https://raw.github.com/vuejs/vue/{{vue_version}}/dist/vue.min.js" download>生产版本</a><span class="light info">删除了警告，{{gz_size}}kb min+gzip</span>
 </div>
@@ -30,12 +30,12 @@ gz_size: "23.76"
 
 ## NPM
 
-在用 Vue.js 构建大型应用时推荐使用 NPM 安装，Vue.js 能很好地与 CommonJS 兼容模块打包器如 [Webpack](http://webpack.github.io/) 或 [Browserify](http://browserify.org/) 配合使用。Vue.js 也提供配套工具来开发[单文件组件](application.html#单文件组件)。
+在用 Vue.js 构建大型应用时推荐使用 NPM 安装，NPM 能很好地和诸如 [Webpack](http://webpack.github.io/) 或 [Browserify](http://browserify.org/) 的 CommonJS 模块打包器配合使用。Vue.js 也提供配套工具来开发[单文件组件](application.html#单文件组件)。
 
 ``` bash
 # 最新稳定版本
 $ npm install vue
-# 最新稳定版本 + CSP 兼容版本
+# 最新稳定 CSP 兼容版本
 $ npm install vue@csp
 # 开发版本（直接从 GitHub 安装）
 $ npm install vuejs/vue#dev
