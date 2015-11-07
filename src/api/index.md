@@ -1931,14 +1931,18 @@ type: api
 
 - **参数：**
   - `{Number} limit`
+  - `{Number} [offset]`
 
 - **用法：**
 
-  限制数组为开始 N 个元素，N 是参数。
+ 限制数组为开始 N 个元素，N 由第一个参数指定。第二个参数是可选的，指定开始的偏移量。
 
   ``` html
   <!-- 只显示开始 10 个元素 -->
   <div v-for="item in items | limitBy 10"></div>
+
+  <!-- 显示第 5 到 15 元素-->
+  <div v-for="item in items | limitBy 10 5"></div>
   ```
 
 ### filterBy
