@@ -8,6 +8,8 @@ order: 6
 
 ## 绑定 HTML Class
 
+<p class="tip">尽管可以用 Mustache 标签绑定 class，比如 `{% raw %}class="{{ className }}"{% endraw %}`，不推荐与 `v-bind:class` 一起用。两者只能选其一！</p>
+
 ### 对象语法
 
 我们可以传给 `v-bind:class` 一个对象，以动态地切换 class。注意  `v-bind:class` 指令可以与普通的 `class`特性共存：
