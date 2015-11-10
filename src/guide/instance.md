@@ -6,7 +6,7 @@ order: 3
 
 ## 构造器
 
-每个 Vue.js 应用的第一步都是通过构造函数 `Vue` 创建一个 **Vue 的根实例**：
+每个 Vue.js 应用的起步都是通过构造函数 `Vue` 创建一个 **Vue 的根实例**：
 
 ``` js
 var vm = new Vue({
