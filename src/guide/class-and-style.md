@@ -4,7 +4,7 @@ type: guide
 order: 6
 ---
 
-数据绑定一个常见需求是操作元素的 class 列表和它的内联样式。因为它们都是属性，我们可以用 `v-bind` 处理它们：我们只需要计算出表达式最终的字符串。不过，字符串拼接麻烦又易错。因此，在`v-bind`用于 `class` 和 `style` 时，Vue.js 专门增强了它。除了字符串，表达式的结果也可以是对象或数组。
+数据绑定一个常见需求是操作元素的 class 列表和它的内联样式。因为它们都是属性，我们可以用 `v-bind` 处理它们：我们只需要计算出表达式最终的字符串。不过，字符串拼接麻烦又易错。因此，在`v-bind` 用于 `class` 和 `style` 时，Vue.js 专门增强了它。除了字符串，表达式的结果也可以是对象或数组。
 
 ## 绑定 HTML Class
 
@@ -12,7 +12,7 @@ order: 6
 
 ### 对象语法
 
-我们可以传给 `v-bind:class` 一个对象，以动态地切换 class。注意  `v-bind:class` 指令可以与普通的 `class`特性共存：
+我们可以传给 `v-bind:class` 一个对象，以动态地切换 class。注意  `v-bind:class` 指令可以与普通的 `class` 特性共存：
 
 ``` html
 <div class="static" v-bind:class="{ 'class-a': isA, 'class-b': isB }"></div>
