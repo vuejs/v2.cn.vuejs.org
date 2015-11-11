@@ -65,7 +65,7 @@ console.log(vm.b) // -> 3
 
 ### 计算属性 vs. $watch
 
-Vue.js 提供了一个方法 `$watch`，它用于观察 Vue 实例上的数据变动。当你希望基于一些数据改变另一些数据时，最好试一试 `$watch`——尤其是有 AngularJS 背景的同学。而更好的选择通常是计算属性而不是命令式的 `$watch` 回调。考虑下面例子：
+Vue.js 提供了一个方法 `$watch`，它用于观察 Vue 实例上的数据变动。当一些数据需要根据其它数据变化时， `$watch` 很诱人 —— 特别是如果你来自 AngularJS。不过，通常更好的办法是使用计算属性而不是一个命令式的 `$watch` 回调。考虑下面例子：
 
 ``` html
 <div id="demo">{{fullName}}</div>
