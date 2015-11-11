@@ -132,4 +132,4 @@ computed: {
 
 现在在调用 `vm.fullName = 'John Doe'` 时，setter 会被调用，`vm.firstName` 和 `vm.lastName` 也会有相应更新。
 
-关于计算属性背后的原理和技术细节详见响应系统介绍中的[具体章节](reactivity.html#Inside_Computed_Properties)。
+关于计算属性背后的原理和技术细节详见响应系统介绍中的[具体章节](reactivity.html#计算属性的秘密)。
