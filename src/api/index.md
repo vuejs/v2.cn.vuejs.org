@@ -52,7 +52,7 @@ type: api
 
   ``` js
   // make it look more dangerous
-  Vue.config.delimiters = ['{!!', '!!}']
+  Vue.config.unsafeDelimiters = ['{!!', '!!}']
   ```
 
   修改原生 HTML 插值的定界符。
