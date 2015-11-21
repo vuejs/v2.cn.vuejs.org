@@ -148,7 +148,15 @@ Vue.js 允许在表达式后添加可选的“过滤器”，以“管道符”�
 
 <!-- 缩写 -->
 <a :href="url"></a>
+
+
+<!-- 完整语法 -->
+<button v-bind:disabled="someDynamicCondition">Button</button>
+
+<!-- 缩写 -->
+<button :disabled="someDynamicCondition">Button</button>
 ```
+
 
 ### `v-on` 缩写
 
