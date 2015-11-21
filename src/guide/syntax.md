@@ -128,7 +128,7 @@ Vue.js 允许在表达式后添加可选的“过滤器”，以“管道符”�
 
 ### 修饰符
 
-修饰符是小点打头的后缀，用于指示指令应当以特殊方式绑定。例如 `.literal` 修饰符告诉指令将它的值解析为一个字面字符串而不是一个表达式： 
+修饰符是小点打头的后缀，用于指示指令应当以特殊方式绑定。例如 `.literal` 修饰符告诉指令将它的值解析为一个字面字符串而不是一个表达式：
 
 ``` html
 <a v-bind:href.literal="/a/b/c"></a>
@@ -149,14 +149,12 @@ Vue.js 允许在表达式后添加可选的“过滤器”，以“管道符”�
 <!-- 缩写 -->
 <a :href="url"></a>
 
-
 <!-- 完整语法 -->
 <button v-bind:disabled="someDynamicCondition">Button</button>
 
 <!-- 缩写 -->
 <button :disabled="someDynamicCondition">Button</button>
 ```
-
 
 ### `v-on` 缩写
 
