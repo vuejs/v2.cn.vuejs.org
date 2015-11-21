@@ -16,4 +16,11 @@ $ hexo server
 
 ## 翻译
 
-翻译要求见 [wiki](https://github.com/vuejs/cn.vuejs.org/wiki)
+欢迎提交 [pr](https://help.github.com/articles/using-pull-requests/)。
+
+翻译要求:
+
+- 汉字，字母，数字等之间以空格隔开。
+- 中文使用中文符号，英文使用英文符号。
+- 专有词注意大小写，如 HTML，CSS，JavaScript。
+- 术语与已有译文保持一致，如果有不同意见请在 issue 中讨论。
