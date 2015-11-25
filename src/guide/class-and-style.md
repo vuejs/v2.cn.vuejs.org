@@ -4,15 +4,15 @@ type: guide
 order: 6
 ---
 
-数据绑定一个常见需求是操作元素的 class 列表和它的内联样式。因为它们都是属性，我们可以用 `v-bind` 处理它们：我们只需要计算出表达式最终的字符串。不过，字符串拼接麻烦又易错。因此，在`v-bind`用于 `class` 和 `style` 时，Vue.js 专门增强了它。除了字符串，表达式的结果也可以是对象或数组。
+数据绑定一个常见需求是操作元素的 class 列表和它的内联样式。因为它们都是属性，我们可以用 `v-bind` 处理它们：我们只需要计算出表达式最终的字符串。不过，字符串拼接麻烦又易错。因此，在`v-bind` 用于 `class` 和 `style` 时，Vue.js 专门增强了它。表达式的结果类型除了字符串之外，还可以是对象或数组。
 
 ## 绑定 HTML Class
 
-<p class="tip">尽管可以用 Mustache 标签绑定 class，比如 `{% raw %}class="{{ className }}"{% endraw %}`，不推荐与 `v-bind:class` 一起用。两者只能选其一！</p>
+<p class="tip">尽管可以用 Mustache 标签绑定 class，比如 `{% raw %}class="{{ className }}"{% endraw %}`，但是我们不推荐这种写法和 `v-bind:class` 混用。两者只能选其一！</p>
 
 ### 对象语法
 
-我们可以传给 `v-bind:class` 一个对象，以动态地切换 class。注意  `v-bind:class` 指令可以与普通的 `class`特性共存：
+我们可以传给 `v-bind:class` 一个对象，以动态地切换 class。注意  `v-bind:class` 指令可以与普通的 `class` 特性共存：
 
 ``` html
 <div class="static" v-bind:class="{ 'class-a': isA, 'class-b': isB }"></div>
@@ -32,7 +32,7 @@ data: {
 
 当 `isA` 和 `isB` 变化时，class 列表将相应地更新。例如，如果 `isB` 变为 `true`，class 列表将变为 `"class-a class-b"`。
 
-而且也可以直接绑定到数据对象内部一个对象：
+你也可以直接绑定数据里的一个对象：
 
 ``` html
 <div v-bind:class="classObject"></div>
@@ -46,7 +46,7 @@ data: {
 }
 ```
 
-渲染的结果一样。可能你已注意到，我们也可以绑定到一个[计算属性](computed.html)（返回对象）。这是一个常用且强大的模式。
+我们也可以在这里绑定一个返回对象的[计算属性](computed.html)。这是一个常用且强大的模式。
 
 ### 数组语法
 
@@ -80,7 +80,7 @@ data: {
 
 ### 对象语法
 
-`v-bind:style` 的对象语法十分直观——看着非常像 CSS，除了它是一个 JavaScript 对象。CSS 属性名可以用驼峰式（camelCase）或肉串式（kebab-case）：
+`v-bind:style` 的对象语法十分直观——看着非常像 CSS，其实它是一个 JavaScript 对象。CSS 属性名可以用驼峰式（camelCase）或短横分隔命名（kebab-case）：
 
 ``` html
 <div v-bind:style="{ color: activeColor, fontSize: fontSize + 'px' }"></div>
@@ -106,7 +106,7 @@ data: {
 }
 ```
 
-同样的，对象语法常常与计算属性（返回对象）一起用。
+同样的，对象语法常常结合返回对象的计算属性使用。
 
 ### 数组语法
 

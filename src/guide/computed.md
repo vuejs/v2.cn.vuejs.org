@@ -21,7 +21,7 @@ var vm = new Vue({
     a: 1
   },
   computed: {
-    // getter
+    // 一个计算属性的 getter
     b: function () {
       // `this` 指向 vm 实例
       return this.a + 1
@@ -51,7 +51,7 @@ var vm = new Vue({
 </script>
 {% endraw %}
 
-这里我们声明了一个计算属性 `b`。我们提供的函数将用作属性 `vm.b`的读取器函数（getter）。
+这里我们声明了一个计算属性 `b`。我们提供的函数将用作属性 `vm.b`的 getter。
 
 ``` js
 console.log(vm.b) // -> 2
@@ -61,7 +61,7 @@ console.log(vm.b) // -> 3
 
 你可以打开浏览器的控制台，修改例子的 vm。`vm.b` 的值始终取决于 `vm.a` 的值。
 
-在模板中可以像普通属性一样将数据绑定到计算属性。Vue 知道 `vm.b` 依赖于 `vm.a`，因此在 `vm.a` 改变时它将更新任何依赖于 `vm.b` 的绑定。而且最妙的是我们是声明式地创建这种依赖关系：计算读取器函数是纯粹的且没有副效应，这让它易于测试与理解。
+你可以像绑定普通属性一样在模板中绑定计算属性。Vue 知道 `vm.b` 依赖于 `vm.a`，因此当 `vm.a` 发生改变时，依赖于 `vm.b` 的绑定也会更新。而且最妙的是我们是声明式地创建这种依赖关系：计算属性的 getter 是干净无副作用的，因此也是易于测试和理解的。
 
 ### 计算属性 vs. $watch
 
@@ -107,9 +107,9 @@ var vm = new Vue({
 
 更好，不是吗？
 
-### 计算存储器
+### 计算 setter
 
-计算属性默认只是读取器，不过在需要时你也可以提供一个存储器：
+计算属性默认只是 getter，不过在需要时你也可以提供一个 setter：
 
 ``` js
 // ...
@@ -130,6 +130,6 @@ computed: {
 // ...
 ```
 
-现在在调用 `vm.fullName = 'John Doe'` 时，存储器被调用，`vm.firstName` 和 `vm.lastName` 将相应地更新。
+现在在调用 `vm.fullName = 'John Doe'` 时，setter 会被调用，`vm.firstName` 和 `vm.lastName` 也会有相应更新。
 
-关于计算属性是如何更新的技术细节见[响应系统](reactivity.html#Inside_Computed_Properties)。
+关于计算属性背后的原理和技术细节详见响应系统介绍中的[具体章节](reactivity.html#计算属性的秘密)。
