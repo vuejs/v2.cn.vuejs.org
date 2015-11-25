@@ -2,10 +2,10 @@
 title: 安装
 type: guide
 order: 0
-vue_version: 1.0.7
-dev_size: "241.91"
-min_size: "72.50"
-gz_size: "23.82"
+vue_version: 1.0.10
+dev_size: "240.69"
+min_size: "68.54"
+gz_size: "23.46"
 ---
 
 > **兼容性提示：** Vue.js 不支持 IE8 及其以下版本。
@@ -15,9 +15,9 @@ gz_size: "23.82"
 直接下载并用 `<script>` 标签引入，`Vue` 会被注册为一个全局变量。**重要提示：在开发时请用开发版本，遇到常见错误它会给出友好的警告。**
 
 <div id="downloads">
-<a class="button" href="https://raw.github.com/vuejs/vue/{{vue_version}}/dist/vue.js" download>开发版本</a><span class="light info">包含完整的警告和调试模式</span>
+<a class="button" href="/js/vue.js" download>开发版本</a><span class="light info">包含完整的警告和调试模式</span>
 
-<a class="button" href="https://raw.github.com/vuejs/vue/{{vue_version}}/dist/vue.min.js" download>生产版本</a><span class="light info">删除了警告，{{gz_size}}kb min+gzip</span>
+<a class="button" href="/js/vue.min.js" download>生产版本</a><span class="light info">删除了警告，{{gz_size}}kb min+gzip</span>
 </div>
 
 ### CDN

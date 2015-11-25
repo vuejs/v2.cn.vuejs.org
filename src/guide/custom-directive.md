@@ -76,8 +76,7 @@ Vue.directive('my-directive', function (value) {
 ``` js
 Vue.directive('demo', {
   bind: function () {
-    this.el.style.color = '#fff'
-    this.el.style.backgroundColor = this.arg
+    console.log('demo bound!')
   },
   update: function (value) {
     this.el.innerHTML =
