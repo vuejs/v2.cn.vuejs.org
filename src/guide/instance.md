@@ -14,7 +14,7 @@ var vm = new Vue({
 })
 ```
 
-一个 Vue 实例不过是一个 [MVVM 模式](https://en.wikipedia.org/wiki/Model_View_ViewModel) 定义的 **ViewModel** ，因而你会看到变量名 `vm` 遍及文档。
+一个 Vue 实例不过是一个 [MVVM 模式](https://en.wikipedia.org/wiki/Model_View_ViewModel) 定义的 **ViewModel** ，因而你会看到变量名 `vm` 遍及整个文档。
 
 在实例化 Vue 时，需要传入一个**选项对象**，它可以包含数据、模板、挂载元素、方法、生命周期钩子等选项。全部的选项可以在 API 文档中查看。
 
@@ -91,7 +91,7 @@ var vm = new Vue({
 // -> "a is: 1"
 ```
 
-也有一些其它的钩子，在实例生命周期的不同阶段调用，如 `compiled`、 `ready` 、`destroyed`。钩子的 `this` 指向调用它的 vm 实例。一些用户可能会问 Vue.js 是否有“控制器”的概念？答案是，没有。组件的自定义逻辑可以分割在这些钩子中。
+也有一些其它的钩子，在实例生命周期的不同阶段调用，如 `compiled`、 `ready` 、`destroyed`。钩子的 `this` 指向调用它的 vm 实例。一些用户可能会问 Vue.js 是否有“控制器(Controller)”的概念？答案是，没有。组件的自定义逻辑可以分割在这些钩子中。
 
 ## 生命周期图示
 
