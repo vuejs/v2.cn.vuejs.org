@@ -281,7 +281,7 @@ vm.pick === vm.a
 ``` html
 <select v-model="selected">
   <!-- 对象字面量 -->
-  <option v-bind:value="{ number: 123 }">123</option>>
+  <option v-bind:value="{ number: 123 }">123</option>
 </select>
 ```
 
