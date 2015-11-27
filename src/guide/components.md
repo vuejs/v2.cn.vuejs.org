@@ -883,7 +883,7 @@ var StackOverflow = Vue.extend({
 
 ### 内联模板
 
-如果子组件有 `inline-template` 特性，组件将把它的内容当作它的模块，而不是把它当作分发内容。这让模板更灵活。
+如果子组件有 `inline-template` 特性，组件将把它的内容当作它的模板，而不是把它当作分发内容。这让模板更灵活。
 
 ``` html
 <my-component inline-template>
