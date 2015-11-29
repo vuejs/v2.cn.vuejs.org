@@ -412,10 +412,10 @@ var parent = new Vue({
 ```
 
 {% raw %}
-<template id="child-template">
+<script type="x/template" id="child-template">
   <input v-model="msg">
   <button v-on:click="notify">Dispatch Event</button>
-</template>
+</script>
 
 <div id="events-example" class="demo">
   <p>Messages: {{ messages | json }}</p>
@@ -856,11 +856,28 @@ var StackOverflow = Vue.extend({
 
 在使用 `template` 选项时，模板的内容将替换实例的挂载元素。因而推荐模板的顶级元素始终是单个元素。
 
+不这么写模板：
+
+``` html
+<div>root node 1</div>
+<div>root node 2</div>
+```
+
+推荐这么写：
+
+``` html
+<div>
+  I have a single root node!
+  <div>node 1</div>
+  <div>node 2</div>
+</div>
+```
+
 下面几种情况会让实例变成一个**片断实例**：
 
 1. 模板包含多个顶级元素。
 2. 模板只包含普通文本。
-3. 模板只包含其它组件。
+3. 模板只包含其它组件（其它组件可能是一个片段实例）。
 4. 模板只包含一个元素指令，如 `<partial>` 或 vue-router 的 `<router-view>`。
 5. 模板根节点有一个流程控制指令，如 `v-if` 或 `v-for`。
 
