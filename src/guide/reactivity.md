@@ -50,6 +50,13 @@ Vue.set(data, 'c', 3)
 // `vm.c` 和 `data.c` 现在是响应的
 ```
 
+有时你想向已有对象上添加一些属性，例如使用 `Object.assign()` 或 `_.extend()` 添加属性。但是，添加到对象上的新属性不会触发更新。这时可以创建一个新的对象，包含原对象的属性和新的属性：
+
+``` js
+// 不使用 `Object.assign(this.someObject, { a: 1, b: 2 })`
+this.someObject = Object.assign({}, this.someObject, { a: 1, b: 2 })
+```
+
 也有一些数组相关的问题，之前已经在[列表渲染](/guide/list.html#)中讲过。
 
 ## 初始化数据
