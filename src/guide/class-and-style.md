@@ -30,7 +30,7 @@ data: {
 <div class="static class-a"></div>
 ```
 
-当 `isA` 和 `isB` 变化时，class 列表将相应地更新。例如，如果 `isB` 变为 `true`，class 列表将变为 `"class-a class-b"`。
+当 `isA` 和 `isB` 变化时，class 列表将相应地更新。例如，如果 `isB` 变为 `true`，class 列表将变为 `"static class-a class-b"`。
 
 你也可以直接绑定数据里的一个对象：
 
