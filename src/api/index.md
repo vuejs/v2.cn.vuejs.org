@@ -169,6 +169,8 @@ type: api
   - `{String} key`
   - `{*} value`
 
+- **返回值：** 设置的值
+
 - **用法：**
 
   设置对象的属性。如果对象是响应的，将触发视图更新。这个方法主要用于解决 不能检测到属性添加的限制。
@@ -983,6 +985,9 @@ type: api
 
   观察 Vue 实例的一个表达式或计算函数。回调的参数为新值和旧值。表达式可以是某个键路径或任意合法绑定表达式。
 
+<p class="tip">注意：在修改（不是替换）对象或数组时，旧值将与新值相同，因为它们索引同一个对象/数组。Vue 不会保留修改之前值的副本。</p>
+
+
 - **示例：**
 
   ``` js
@@ -1543,6 +1548,11 @@ type: api
   绑定事件监听器。事件类型由参数指定。表达式可以是一个方法的名字或一个内联语句，如果没有修饰符也可以省略。
 
   用在普通元素上时，只能监听**原生 DOM 事件**。用在自定义元素组件上时，也可以监听子组件触发的**自定义事件**。
+  
+  在监听原生 DOM 事件时，方法以事件为唯一的参数。如果使用内联语句，语句可以访问一个 `$event` 属性： `v-on:click="handle('ok', $event)"`。
+
+  **1.0.11+** 在监听自定义事件时，内联语句可以访问一个 `$arguments` 属性，它是一个数组，包含传给子组件的 `$emit` 回调的参数。
+
 
 - **示例：**
 
@@ -1551,7 +1561,7 @@ type: api
   <button v-on:click="doThis"></button>
 
   <!-- 内联语句 -->
-  <button v-on:click="doThat('hello')"></button>
+  <button v-on:click="doThat('hello', $event)"></button>
 
   <!-- 缩写 -->
   <button @click="doThis"></button>
@@ -1579,6 +1589,9 @@ type: api
 
   ``` html
   <my-component @my-event="handleThis"></my-component>
+
+  <!-- 内联语句 -->
+  <my-component @my-event="handleThis(123, $arguments)"></my-component>
   ```
 
 - **另见：** [方法与事件处理器](/guide/events.html)

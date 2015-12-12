@@ -2,10 +2,10 @@
 title: 安装
 type: guide
 order: 0
-vue_version: 1.0.10
-dev_size: "240.69"
-min_size: "68.54"
-gz_size: "23.46"
+vue_version: 1.0.11
+dev_size: "243.36"
+min_size: "69.07"
+gz_size: "23.69"
 ---
 
 > **兼容性提示：** Vue.js 不支持 IE8 及其以下版本。
@@ -37,8 +37,17 @@ gz_size: "23.46"
 $ npm install vue
 # 最新稳定 CSP 兼容版本
 $ npm install vue@csp
-# 开发版本（直接从 GitHub 安装）
-$ npm install vuejs/vue#dev
+```
+
+## 开发
+
+**重要**：发布到 NPM 上的 CommonJS 包 (`vue.common.js`) **没有**签入源码，因此要使用 GitHub 上最新的源码，自己编译：
+
+``` bash
+git clone https://github.com/vuejs/vue.git node_modules/vue
+cd node_modules/vue
+npm install
+npm run build
 ```
 
 ## Bower
