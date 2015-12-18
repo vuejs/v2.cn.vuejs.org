@@ -23,7 +23,7 @@ var MyComponent = Vue.extend({
 Vue.component('my-component', MyComponent)
 ```
 
-对于自定义标签名字，Vue.js 不强制要求遵循 [W3C 规则](http://www.w3.org/TR/custom-elements/#concepts)（小写，并且包含一个短杠），尽管遵循这个规则比较好。
+<p class="tip">对于自定义标签名字，Vue.js 不强制要求遵循 [W3C 规则](http://www.w3.org/TR/custom-elements/#concepts)（小写，并且包含一个短杠），尽管遵循这个规则比较好。</p>
 
 在注册之后，组件便可以用在父实例的模块中，以自定义元素 `<my-component>` 的形式使用。要确保在初始化根实例**之前**注册了组件：
 
