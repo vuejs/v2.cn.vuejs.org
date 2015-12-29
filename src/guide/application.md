@@ -4,6 +4,8 @@ type: guide
 order: 18
 ---
 
+> **新：** 使用脚手架工具 [vue-cli](https://github.com/vuejs/vue-cli) 可以快速地构建项目：单文件 Vue 组件，热加载，保存时检查代码，单元测试等。
+
 Vue.js 的设计思想是专注与灵活——它只是一个界面库，不强制使用哪个架构。它能很好地与已有项目整合，不过对于经验欠缺的开发者，从头开始构建大型应用可能是一个挑战。
 
 Vue.js 生态系统提供了一系列的工具与库，用于构建单页应用。但是它们只是推荐而已。
@@ -28,14 +30,14 @@ Webpack 和 Browserify 不只是模块打包器。两者都提供了源码转换
 
 你可以使用 Webpack + [vue-loader](https://github.com/vuejs/vue-loader) 或 Browserify + [vueify](https://github.com/vuejs/vueify) 构建这些单文件 Vue 组件。推荐使用 Webpack，因为它的加载器 API 提供更好的文件依赖追踪/缓存以及一些 Browserify 没有的转换功能。
 
-在 GitHub 上有一些构建示例：
+最快的构建方式是使用官方出品的脚手架工具 [vue-cli](https://github.com/vuejs/vue-cli)。你也可以在 GitHub 上找到一些构建示例：
 
 - [Webpack + vue-loader](https://github.com/vuejs/vue-loader-example)
 - [Browserify + vueify](https://github.com/vuejs/vueify-example)
 
 ## 路由
 
-对于单页应用，推荐使用[官方库 vue-router](https://github.com/vuejs/vue-router)。详细请查看它的[文档](http://vuejs.github.io/vue-router/)。 
+对于单页应用，推荐使用[官方库 vue-router](https://github.com/vuejs/vue-router)。详细请查看它的[文档](http://vuejs.github.io/vue-router/)。
 
 如果你只需要非常简单的路由逻辑，可以这么做，监听 `hashchange` 事件并使用动态组件：
 
@@ -174,6 +176,8 @@ describe('my-component', function () {
   })
 })
 ```
+
+Karma 的示例配置：[Webpack](https://github.com/vuejs/vue-loader-example/blob/master/build/karma.conf.js), [Browserify](https://github.com/vuejs/vueify-example/blob/master/karma.conf.js)。
 
 <p class="tip">因为 Vue.js 指令是异步更新，如果想在修改数据之后修改 DOM ，应当在 `Vue.nextTick` 的回调中操作。</p>
 

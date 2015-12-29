@@ -2,10 +2,10 @@
 title: 安装
 type: guide
 order: 0
-vue_version: 1.0.11
-dev_size: "243.36"
-min_size: "69.07"
-gz_size: "23.69"
+vue_version: 1.0.13
+dev_size: "244.48"
+min_size: "69.37"
+gz_size: "23.85"
 ---
 
 > **兼容性提示：** Vue.js 不支持 IE8 及其以下版本。
