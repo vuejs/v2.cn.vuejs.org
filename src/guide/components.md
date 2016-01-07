@@ -323,6 +323,11 @@ Vue.component('example', {
       coerce: function (val) {
         return val + '' // 将值转换为字符串
       }
+    },
+    propH: {
+      coerce: function (val) {
+        return JSON.parse(val) // 将 JSON 字符串转换为对象
+      }
     }
   }
 })

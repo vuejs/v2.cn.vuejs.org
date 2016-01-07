@@ -39,7 +39,22 @@ $ npm install vue
 $ npm install vue@csp
 ```
 
-## 开发
+## 命令行工具
+
+Vue.js 提供一个[官方命令行工具](https://github.com/vuejs/vue-cli)，可用于快速搭建大型单页应用。该工具提供开箱即用的构建工具配置，带来现代化的前端开发流程。只需一分钟即可启动带热重载、保存时静态检查以及可用于生产环境的构建配置的项目：
+
+``` bash
+# 全局安装 vue-cli
+$ npm install -g vue-cli
+# 创建一个基于 "webpack" 模板的新项目
+$ vue init webpack my-project
+# 安装依赖，走你
+$ cd my-project
+$ npm install
+$ npm run dev
+```
+
+## 开发版本
 
 **重要**：发布到 NPM 上的 CommonJS 包 (`vue.common.js`) **没有**签入源码，因此要使用 GitHub 上最新的源码，自己编译：
 
