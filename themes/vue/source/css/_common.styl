@@ -186,12 +186,35 @@ a.button
             width 14px
             height 14px
             position absolute
-            top 3px
-            left 5px
+            top 2px
+            left 6px
         a
             font 700 11px/14px 'Helvetica Neue', Helvetica, Arial, sans-serif
             color #333333
             text-shadow 0 1px 0 #fff
             position absolute
             top 2px
-            left 24px
+            left 26px
+
+#qrcode
+    display none    
+    position fixed
+    z-index 9999
+    width 300px
+    padding 20px 30px 30px
+    top 50%
+    left 50%
+    margin-top -230px
+    margin-left -180px
+    border 1px solid #eee
+    box-shadow 0 4px 12px rgba(0,0,0,.2)
+    text-align center
+    background-color #fff
+    transition all .25s ease-in-out
+    img
+        display block
+        width 300px
+        height 300px
+    &.hidden
+        opacity 0
+        transform translate3d(0, 20px, 0)
