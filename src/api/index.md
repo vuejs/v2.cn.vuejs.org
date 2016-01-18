@@ -973,7 +973,7 @@ type: api
 ### vm.$watch( expOrFn, callback, [options] )
 
 - **参数：**
-  - `{String|Function} expOrFn`
+  - `{String | Function} expOrFn`
   - `{Function} callback`
   - `{Object} [options]`
     - `{Boolean} deep`
@@ -1292,7 +1292,7 @@ type: api
 ### vm.$appendTo( elementOrSelector, [callback] )
 
 - **参数：**
-  - `{Element|String} elementOrSelector`
+  - `{Element | String} elementOrSelector`
   - `{Function} [callback]`
 
 - **返回值：** `vm`——实例自身
@@ -1304,7 +1304,7 @@ type: api
 ### vm.$before( elementOrSelector, [callback] )
 
 - **参数：**
-  - `{Element|String} elementOrSelector`
+  - `{Element | String} elementOrSelector`
   - `{Function} [callback]`
 
 - **返回值：** `vm`——实例自身
@@ -1316,7 +1316,7 @@ type: api
 ### vm.$after( elementOrSelector, [callback] )
 
 - **参数：**
-  - `{Element|String} elementOrSelector`
+  - `{Element | String} elementOrSelector`
   - `{Function} [callback]`
 
 - **返回值：** `vm`——实例自身
@@ -1375,7 +1375,7 @@ type: api
 ### vm.$mount( [elementOrSelector] )
 
 - **参数：**
-  - `{Element|String} [elementOrSelector]`
+  - `{Element | String} [elementOrSelector]`
 
 - **返回值：** `vm`——实例自身
 
@@ -1785,6 +1785,8 @@ type: api
 
 - **特性：**
   - `is`
+  - [`keep-alive`](/guide/components.html#keep-alive)
+  - [`transition-mode`](/guide/components.html#transition-mode)
 
 - **用法：**
 

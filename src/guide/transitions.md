@@ -158,6 +158,36 @@ new Vue({
 
 如果 `transition` 特性没有值，类名默认是 `.v-transition`, `.v-enter` 和 `.v-leave`。
 
+### 自定义过渡类名
+
+> 1.0.14 新增
+
+我们可以在过渡的 JavaScript 定义中声明自定义的 CSS 过渡类名。这些自定义类名会覆盖默认的类名。当需要和第三方的 CSS 动画库，比如 [Animate.css](https://daneden.github.io/animate.css/) 配合时会非常有用：
+
+``` html
+<div v-show="ok" class="animated" transition="bounce">Watch me bounce</div>
+```
+
+``` js
+Vue.transition('bounce', {
+  enterClass: 'bounceInLeft',
+  leaveClass: 'bounceOutRight'
+})
+```
+
+### 显式声明 CSS 过渡类型
+
+> 1.0.14 新增
+
+Vue.js 需要给过渡元素添加事件侦听器来侦听过渡何时结束。基于所使用的 CSS，该事件要么是 `transitionend`，要么是 `animationend`。如果你只使用了两者中的一种，那么 Vue.js 将能够根据生效的 CSS 规则自动推测出对应的事件类型。但是，有些情况下一个元素可能需要同时带有两种类型的动画。比如你可能希望让 Vue 来触发一个 CSS animation，同时该元素在鼠标悬浮时又有 CSS transition 效果。这样的情况下，你需要显式地声明你希望 Vue 处理的动画类型 (`animation` 或是 `transition`)：
+
+``` js
+Vue.transition('bounce', {
+  // 该过渡效果将只侦听 `animationend` 事件
+  type: 'animation'
+})
+```
+
 ### 过渡流程详解
 
 当 `show` 属性改变时，Vue.js 将相应地插入或删除 `<div>` 元素，按照如下规则改变过渡的 CSS 类名：
