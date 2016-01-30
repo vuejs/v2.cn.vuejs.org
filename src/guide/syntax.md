@@ -124,7 +124,6 @@ Vue.js 允许在表达式后添加可选的“过滤器 (Filter) ”，以“管
 <a v-on:click="doSomething">
 ```
 
-Here the argument is the event name to listen to. We will talk about event handling in more details too.
 这里参数是被监听的事件的名字。我们也会详细说明事件绑定。
 
 ### 修饰符
