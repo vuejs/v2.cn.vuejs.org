@@ -23,7 +23,7 @@ type: api
   1. 为所有的警告打印栈追踪。
 
   2. 把所有的锚节点以注释节点显示在 DOM 中，更易于检查渲染结果的结构。
-  
+
 
   <p class="tip">只有开发版本可以使用调试模式。</p>
 
@@ -92,7 +92,7 @@ type: api
 - **默认值：** `false`
 
 - **用法：**
-  
+
   ``` js
   Vue.config.convertAllProperties = true
   ```
@@ -128,7 +128,7 @@ type: api
       firstName: 'Walter',
       lastName: 'White',
       alias: 'Heisenberg'
-    }  
+    }
   })
   // 挂载到元素上
   profile.$mount('#mount-point')
@@ -196,7 +196,7 @@ type: api
   - `{Function | Object} [definition]`
 
 - **用法：**
-  
+
   注册或获取全局指令。
 
   ``` js
@@ -374,7 +374,7 @@ type: api
   在实例创建之后，可以用 `vm.$data` 访问原始数据对象。Vue 实例也代理了数据对象所有的属性。
 
   名字以 `_` 或 `$`开始的属性**不会**被 Vue 实例代理，因为它们可能与 Vue 的内置属性与 API 方法冲突。用 `vm.$data._property` 访问它们。
-  
+
   可以通过将 `vm.$data` 传入 `JSON.parse(JSON.stringify(...))` 得到原始数据对象。
 
 
@@ -566,7 +566,7 @@ type: api
 
 ### replace
 
-- **类型：** `Boolean`  
+- **类型：** `Boolean`
 
 - **默认值：** `true`
 
@@ -619,12 +619,22 @@ type: api
 
 ## 选项 / 生命周期钩子
 
+### init
+
+- **类型:** `Function`
+
+- **详细:**
+
+  在实例开始初始化时同步调用。此时数据观测、事件和 watcher 都尚未初始化。
+
+- **另见:** [生命周期图示](/guide/instance.html#Lifecycle_Diagram)
+
 ### created
 
 - **类型：** `Function`
 
 - **详细：**
-  
+
   在实例创建之后同步调用。此时实例已经结束解析选项，这意味着已建立：数据绑定，计算属性，方法，watcher/事件回调。但是还没有开始 DOM 编译，`$el` 还不存在。
 
 - **另见：** [生命周期图示](/guide/instance.html#生命周期图示)
@@ -634,7 +644,7 @@ type: api
 - **类型：** `Function`
 
 - **详细：**
-  
+
   在编译开始前调用。
 
 - **另见：** [生命周期图示](/guide/instance.html#生命周期图示)
@@ -664,7 +674,7 @@ type: api
 - **类型：** `Function`
 
 - **详细：**
-  
+
   在 `vm.$el` 插入 DOM 时调用。必须是由指令或实例方法（如 `$appendTo()`）插入，直接操作 `vm.$el` **不会** 触发这个钩子。
 
 ### detached
@@ -672,7 +682,7 @@ type: api
 - **类型：** `Function`
 
 - **详细：**
-  
+
   在 `vm.$el` 从 DOM 中删除时调用。必须是由指令或实例方法删除，直接操作 `vm.$el` **不会** 触发这个钩子。
 
 ### beforeDestroy
@@ -680,7 +690,7 @@ type: api
 - **类型：** `Function`
 
 - **详细：**
-  
+
   在开始销毁实例时调用。此时实例仍然有功能。
 
 - **另见：** [生命周期图示](/guide/instance.html#生命周期图示)
@@ -776,7 +786,7 @@ type: api
 
 - **详细：**
 
-  指定实例的父实例，在两者之间建立父子关系。子实例可以用 `this.$parent` 访问父实例，子实例被推入父实例的 `$children` 数组中。 
+  指定实例的父实例，在两者之间建立父子关系。子实例可以用 `this.$parent` 访问父实例，子实例被推入父实例的 `$children` 数组中。
 
 - **另见：** [父子组件通信](/guide/components.html#父子组件通信)
 
@@ -1051,7 +1061,7 @@ type: api
 - **用法：**
 
   从 Vue 实例获取指定表达式的值。如果表达式抛出错误，则取消错误并返回 `undefined`。
-  
+
 - **示例：**
 
   ``` js
@@ -1092,7 +1102,7 @@ type: api
       }
     }
   })
-  
+
   // keypath 存在
   vm.$set('a.b', 2)
   vm.a.b // -> 2
@@ -1333,7 +1343,7 @@ type: api
 - **返回值：** `vm`——实例自身
 
 - **用法：**
-  
+
   从 DOM 中删除实例的 DOM 元素或片断。如果有过渡则触发过渡。回调在过渡完成后执行，如果没有触发过渡则立即执行。
 
 ### vm.$nextTick( callback )
@@ -1386,7 +1396,7 @@ type: api
   如果没有参数，模板将被创建为文档之外的的片断，需要手工用其它的 DOM 实例方法把它插入文档中。如果 `replace` 选项为 `false`，则自动创建一个空 `<div>`，作为包装元素。
 
   在已经挂载的实例上调用 `$mount()` 没有效果。这个方法返回实例自身，因而可以链式调用其它实例方法。
-  
+
 
 - **示例：**
 
@@ -1394,7 +1404,7 @@ type: api
   var MyComponent = Vue.extend({
     template: '<div>Hello!</div>'
   })
-  
+
   // 创建并挂载到 #app (会替换 #app)
   new MyComponent().$mount('#app')
 
@@ -1541,6 +1551,8 @@ type: api
 - **修饰符：**
   - `.stop` - 调用 `event.stopPropagation()`。
   - `.prevent` - 调用 `event.preventDefault()`。
+  - `.capture` - 添加事件侦听器时使用 capture 模式。
+  - `.self` - 只当事件是从侦听器绑定的元素本身触发时才触发回调。
   - `.{keyCode | keyAlias}` - 只在指定按键上触发回调。
 
 - **用法：**
@@ -1548,7 +1560,7 @@ type: api
   绑定事件监听器。事件类型由参数指定。表达式可以是一个方法的名字或一个内联语句，如果没有修饰符也可以省略。
 
   用在普通元素上时，只能监听**原生 DOM 事件**。用在自定义元素组件上时，也可以监听子组件触发的**自定义事件**。
-  
+
   在监听原生 DOM 事件时，方法以事件为唯一的参数。如果使用内联语句，语句可以访问一个 `$event` 属性： `v-on:click="handle('ok', $event)"`。
 
   **1.0.11+** 在监听自定义事件时，内联语句可以访问一个 `$arguments` 属性，它是一个数组，包含传给子组件的 `$emit` 回调的参数。
@@ -1607,6 +1619,7 @@ type: api
 - **修饰符：**
   - `.sync` - 双向绑定，只能用于 prop 绑定。
   - `.once` - 单次绑定，只能用于 prop 绑定。
+  - `.camel` - 将绑定的特性名字转回驼峰命名。只能用于普通 HTML 特性的绑定，通常用于绑定用驼峰命名的 SVG 特性，比如 `viewBox`。
 
 - **用法：**
 
@@ -1723,7 +1736,7 @@ type: api
 - **参数：** `id`（必需）
 
 - **用法：**
-  
+
   为 DOM 元素注册一个索引，方便通过所属实例的 `$els` 访问这个元素。
 
 - **注意：**
@@ -1909,7 +1922,7 @@ type: api
   {{count}} {{count | pluralize 'item'}}
   ```
 
-  *1 => '1 item'*  
+  *1 => '1 item'*
   *2 => '2 items'*
 
   ``` html
@@ -1918,7 +1931,7 @@ type: api
 
   结果：
 
-  *1 => '1st'*  
+  *1 => '1st'*
   *2 => '2nd'*
   *3 => '3rd'*
   *4 => '4th'*
@@ -1930,7 +1943,7 @@ type: api
   - `{Number} [indent] - 默认值：2`
 
 - **用法：**
-  
+
   输出经 `JSON.stringify()` 处理后的结果，而不是输出 `toString()` 的结果（如 `[object Object]`）。
 
 - **示例：**

@@ -139,6 +139,16 @@ methods: {
 <form v-on:submit.prevent></form>
 ```
 
+1.0.16 添加了两个额外的修饰符：
+
+``` html
+<!-- 添加事件侦听器时使用 capture 模式 -->
+<div v-on:click.capture="doThis">...</div>
+
+<!-- 只当事件在该元素本身（而不是子元素）触发时触发回调 -->
+<div v-on:click.self="doThat">...</div>
+```
+
 ## 按键修饰符
 
 在监听键盘事件时，我们经常需要检测 keyCode。Vue.js 允许为 `v-on` 添加按键修饰符：
