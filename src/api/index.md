@@ -102,7 +102,7 @@ type: api
 
 ## 全局 API
 
-### Vue.extend( options )
+<h3 id="Vue-extend">Vue.extend( options )</h3>
 
 - **参数：**
   - `{Object} options`
@@ -142,10 +142,10 @@ type: api
 
 - **另见：** [组件](/guide/components.html)
 
-### Vue.nextTick( callback )
+<h3 id="Vue-nextTick">Vue.nextTick( callback )</h3>
 
 - **参数：**
-  - `{Functon} callback`
+  - `{Function} callback`
 
 - **用法：**
 
@@ -162,7 +162,7 @@ type: api
 
 - **另见：** [异步更新队列](/guide/reactivity.html#异步更新队列)
 
-### Vue.set( object, key, value )
+<h3 id="Vue-set">Vue.set( object, key, value )</h3>
 
 - **参数：**
   - `{Object} object`
@@ -177,7 +177,7 @@ type: api
 
 - **另见：** [深入响应](/guide/reactivity.html)
 
-### Vue.delete( object, key )
+<h3 id="Vue-delete">Vue.delete( object, key )</h3>
 
 - **参数：**
   - `{Object} object`
@@ -189,7 +189,7 @@ type: api
 
 - **另见：** [深入响应](/guide/reactivity.html)
 
-### Vue.directive( id, [definition] )
+<h3 id="Vue-directive">Vue.directive( id, [definition] )</h3>
 
 - **参数：**
   - `{String} id`
@@ -218,7 +218,7 @@ type: api
 
 - **另见：** [自定义指令](/guide/custom-directive.html)
 
-### Vue.elementDirective( id, [definition] )
+<h3 id="Vue-elementDirective">Vue.elementDirective( id, [definition] )</h3>
 
 - **参数：**
   - `{String} id`
@@ -242,7 +242,7 @@ type: api
 
 - **另见：** [元素指令](/guide/custom-directive.html#元素指令)
 
-### Vue.filter( id, [definition] )
+<h3 id="Vue-filter">Vue.filter( id, [definition] )</h3>
 
 - **参数：**
   - `{String} id`
@@ -270,7 +270,7 @@ type: api
 
 - **另见：** [自定义过滤器](/guide/custom-filter.html)
 
-### Vue.component( id, [definition] )
+<h3 id="Vue-component">Vue.component( id, [definition] )</h3>
 
 - **参数：**
   - `{String} id`
@@ -293,7 +293,7 @@ type: api
 
 - **另见：** [组件](/guide/components.html).
 
-### Vue.transition( id, [hooks] )
+<h3 id="Vue-transition">Vue.transition( id, [hooks] )</h3>
 
 - **参数：**
   - `{String} id`
@@ -316,7 +316,7 @@ type: api
 
 - **另见：** [过渡](/guide/transitions.html).
 
-### Vue.partial( id, [partial] )
+<h3 id="Vue-partial">Vue.partial( id, [partial] )</h3>
 
 - **参数：**
   - `{String} id`
@@ -336,7 +336,7 @@ type: api
 
 - **另见：** [特殊元素 - &lt;partial&gt;](#partial)。
 
-### Vue.use( plugin, [options] )
+<h3 id="Vue-use">Vue.use( plugin, [options] )</h3>
 
 - **参数：**
   - `{Object | Function} plugin`
@@ -348,7 +348,7 @@ type: api
 
 - **另见：** [插件](/guide/plugins.html).
 
-### Vue.mixin( mixin )
+<h3 id="Vue-mixin">Vue.mixin( mixin )</h3>
 
 - **参数：**
   - `{Object} mixin`
@@ -365,13 +365,15 @@ type: api
 
 - **类型：** `Object | Function`
 
-- **限制：** 在 `Vue.extend()` 中只能是函数。
+- **限制：** 在组件定义中只能是函数。
 
 - **详细：**
 
   Vue 实例的数据对象。Vue.js 会递归地将它全部属性转为 getter/setter，从而让它能响应数据变化。**这个对象必须是普通对象**：原生对象，getter/setter 及原型属性会被忽略。不推荐观察复杂对象。
 
   在实例创建之后，可以用 `vm.$data` 访问原始数据对象。Vue 实例也代理了数据对象所有的属性。
+
+  在定义**组件**时，同一定义将创建多个实例，此时 `data` 必须是一个函数，返回原始数据对象。如果 `data` 仍然是一个普通对象，则所有的实例将指向同一个对象！换成函数后，每当创建一个实例时，会调用这个函数，返回一个新的原始数据对象的副本。
 
   名字以 `_` 或 `$`开始的属性**不会**被 Vue 实例代理，因为它们可能与 Vue 的内置属性与 API 方法冲突。用 `vm.$data._property` 访问它们。
 
@@ -535,7 +537,7 @@ type: api
 
 - **类型：** `String | HTMLElement | Function`
 
-- **限制：** `Vue.extend()` 内只能是函数
+- **限制：** 在组件定义中只能是函数。
 
 - **详细：**
 
@@ -627,7 +629,7 @@ type: api
 
   在实例开始初始化时同步调用。此时数据观测、事件和 watcher 都尚未初始化。
 
-- **另见:** [生命周期图示](/guide/instance.html#Lifecycle_Diagram)
+- **另见:** [生命周期图示](/guide/instance.html#生命周期图示)
 
 ### created
 
@@ -980,7 +982,7 @@ type: api
 
 ## 实例方法 / 数据
 
-### vm.$watch( expOrFn, callback, [options] )
+<h3 id="vm-watch">vm.$watch( expOrFn, callback, [options] )</h3>
 
 - **参数：**
   - `{String | Function} expOrFn`
@@ -1053,7 +1055,7 @@ type: api
   // 立即以 `a` 的当前值触发回调
   ```
 
-### vm.$get( expression )
+<h3 id="vm-get">vm.$get( expression )</h3>
 
 - **参数：**
   - `{String} expression`
@@ -1076,7 +1078,7 @@ type: api
   vm.$get('a.b + 1') // -> 2
   ```
 
-### vm.$set( keypath, value )
+<h3 id="vm-set">vm.$set( keypath, value )</h3>
 
 - **参数：**
   - `{String} keypath`
@@ -1114,7 +1116,7 @@ type: api
 
 - **另见：** [深入响应](/guide/reactivity.html)
 
-### vm.$delete( key )
+<h3 id="vm-delete">vm.$delete( key )</h3>
 
 - **参数：**
   - `{String} key`
@@ -1123,7 +1125,7 @@ type: api
 
   删除 Vue 实例（以及它的 `$data`）上的顶级属性。强制 digest 循环，不推荐使用。
 
-### vm.$eval( expression )
+<h3 id="vm-eval">vm.$eval( expression )</h3>
 
 - **参数：**
   - `{String} expression`
@@ -1139,7 +1141,7 @@ type: api
   vm.$eval('msg | uppercase') // -> 'HELLO'
   ```
 
-### vm.$interpolate( templateString )
+<h3 id="vm-interpolate">vm.$interpolate( templateString )</h3>
 
 - **参数：**
   - `{String} templateString`
@@ -1155,7 +1157,7 @@ type: api
   vm.$interpolate('{{msg}} world!') // -> 'hello world!'
   ```
 
-### vm.$log( [keypath] )
+<h3 id="vm-log">vm.$log( [keypath] )</h3>
 
 - **参数：**
   - `{String} [keypath]`
@@ -1171,7 +1173,7 @@ type: api
 
 ## 实例属性 / 事件
 
-### vm.$on( event, callback )
+<h3 id="vm-on">vm.$on( event, callback )</h3>
 
 - **参数：**
   - `{String} event`
@@ -1191,7 +1193,7 @@ type: api
   // -> "hi"
   ```
 
-### vm.$once( event, callback )
+<h3 id="vm-once">vm.$once( event, callback )</h3>
 
 - **参数：**
   - `{String} event`
@@ -1201,7 +1203,7 @@ type: api
 
   监听一个自定义事件，但是只触发一次，在第一次触发之后删除监听器。
 
-### vm.$off( [event, callback] )
+<h3 id="vm-off">vm.$off( [event, callback] )</h3>
 
 - **参数：**
   - `{String} [event]`
@@ -1217,7 +1219,7 @@ type: api
 
   - 如果同时提供了事件与回调，则只删除这个回调。
 
-### vm.$emit( event, [...args] )
+<h3 id="vm-emit">vm.$emit( event, [...args] )</h3>
 
 - **参数：**
   - `{String} event`
@@ -1225,7 +1227,7 @@ type: api
 
   触发当前实例上的事件。附加参数都会传给监听器回调。
 
-### vm.$dispatch( event, [...args] )
+<h3 id="vm-dispatch">vm.$dispatch( event, [...args] )</h3>
 
 - **参数：**
   - `{String} event`
@@ -1261,7 +1263,7 @@ type: api
 
 - **另见：** [父子组件通信](/guide/components.html#父子组件通信)
 
-### vm.$broadcast( event, [...args] )
+<h3 id="vm-broadcast">vm.$broadcast( event, [...args] )</h3>
 
 - **参数：**
   - `{String} event`
@@ -1299,7 +1301,7 @@ type: api
 
 ## 实例方法 / DOM
 
-### vm.$appendTo( elementOrSelector, [callback] )
+<h3 id="vm-appendTo">vm.$appendTo( elementOrSelector, [callback] )</h3>
 
 - **参数：**
   - `{Element | String} elementOrSelector`
@@ -1311,7 +1313,7 @@ type: api
 
   将实例的 DOM 元素或片断插入目标元素内。第一个参数可以是一个元素或选择器字符串。如果有过渡则触发过渡。回调在过渡完成后执行，如果没有触发过渡则立即执行。
 
-### vm.$before( elementOrSelector, [callback] )
+<h3 id="vm-before">vm.$before( elementOrSelector, [callback] )</h3>
 
 - **参数：**
   - `{Element | String} elementOrSelector`
@@ -1323,7 +1325,7 @@ type: api
 
   将实例的 DOM 元素或片断插到目标元素的前面。第一个参数可以是一个元素或选择器字符串。如果有过渡则触发过渡。回调在过渡完成后执行，如果没有触发过渡则立即执行。
 
-### vm.$after( elementOrSelector, [callback] )
+<h3 id="vm-after">vm.$after( elementOrSelector, [callback] )</h3>
 
 - **参数：**
   - `{Element | String} elementOrSelector`
@@ -1335,7 +1337,7 @@ type: api
 
   将实例的 DOM 元素或片断插到目标元素的后面。第一个参数可以是一个元素或选择器字符串。如果有过渡则触发过渡。回调在过渡完成后执行，如果没有触发过渡则立即执行。
 
-### vm.$remove( [callback] )
+<h3 id="vm-remove">vm.$remove( [callback] )</h3>
 
 - **参数：**
   - `{Function} [callback]`
@@ -1346,7 +1348,7 @@ type: api
 
   从 DOM 中删除实例的 DOM 元素或片断。如果有过渡则触发过渡。回调在过渡完成后执行，如果没有触发过渡则立即执行。
 
-### vm.$nextTick( callback )
+<h3 id="vm-nextTick">vm.$nextTick( callback )</h3>
 
 - **参数：**
   - `{Function} [callback]`
@@ -1382,7 +1384,7 @@ type: api
 
 ## 实例方法 / 生命周期
 
-### vm.$mount( [elementOrSelector] )
+<h3 id="vm-mount">vm.$mount( [elementOrSelector] )</h3>
 
 - **参数：**
   - `{Element | String} [elementOrSelector]`
@@ -1417,7 +1419,7 @@ type: api
 
 - **另见：** [生命周期图示](/guide/instance.html#生命周期图示)
 
-### vm.$destroy( [remove] )
+<h3 id="vm-destroy">vm.$destroy( [remove] )</h3>
 
 - **参数：**
   - `{Boolean} [remove] - default: false`
