@@ -245,7 +245,7 @@ CSS 动画用法同 CSS 过渡，区别是在动画中 `v-enter` 类名在节点
 
 ``` css
 .bounce-transition {
-  display: inline-block; /* otherwise scale animation won't work */
+  display: inline-block; /* 否则 scale 动画不起作用 */
 }
 .bounce-enter {
   animation: bounce-in .5s;
