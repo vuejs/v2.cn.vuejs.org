@@ -404,7 +404,7 @@ Vue.transition('fade', {
 `transition` 与 `v-for` 一起用时可以创建渐近过渡。给过渡元素添加一个特性 `stagger`, `enter-stagger` 或 `leave-stagger`：
 
 ``` html
-<div v-for="list" transition stagger="100"></div>
+<div v-for="item in list" transition="stagger" stagger="100"></div>
 ```
 
 或者，提供一个钩子 `stagger`, `enter-stagger` 或 `leave-stagger`，以更好的控制：
