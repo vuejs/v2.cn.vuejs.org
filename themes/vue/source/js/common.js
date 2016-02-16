@@ -13,9 +13,8 @@
 
   function initSearch () {
     docsearch({
-      appId: 'BH4D9OD16A',
-      apiKey: '85cc3221c9f23bfbaa4e3913dd7625ea',
-      indexName: 'vuejs',
+      apiKey: '6975326a4ea9315c3ffc44f03a3f743d',
+      indexName: 'vuejs_cn',
       inputSelector: '#search-query'
     });
   }
