@@ -40,7 +40,7 @@ React 的另一个问题是：由于 DOM 更新完全交给 Virtual DOM 管理�
 
 - React，由于它的函数式特质，可以很好地使用函数式编程模式。但是对于初级开发者和初学者这也导致较大的学习难度。Vue 更易学习并能快速投入开发。
 
-- 对于大型应用，React 社区已经创造了大量的状态管理方案，例如 Flux/Redux。Vue 本身不解决这个问题（React 内核也是），但是可以轻松地修改状态管理模式，实现一个类似的架构。我已经看到有用户以 Vue 使用 Redux。Optimizely 的工程师也以 Vue 使用 NuclearJS (他们的 Flux 实现)。
+- 对于大型应用，React 社区已经创造了大量的状态管理方案，例如 Flux/Redux。Vue 本身不解决这个问题（React 内核也是），但是可以轻松地修改状态管理模式，实现一个类似的架构。Vue 有自己的状态管理方案 [Vuex](https://github.com/vuejs/vuex)，而且 Vue 也可以与 [Redux](https://github.com/egoist/revue) 一起用。
 
 - React 的开发趋势是将所有东西都放在 JavaScript 中，包括 CSS。已经有许多 CSS-in-JS 方案，但是所有的方案多多少少都有它的问题。而且更重要的是，这么做脱离了标准的 CSS 开发经验，并且很难和 CSS 社区的已有工作配合。Vue 的 [单文件组件](http://vuejs.org/guide/application.html#单文件组件) 在把 CSS 封装到组件模块的同时仍然允许你使用你喜欢的预处理器。
 
