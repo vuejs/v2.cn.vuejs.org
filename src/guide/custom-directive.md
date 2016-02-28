@@ -211,7 +211,7 @@ Vue.directive('example', {
 })
 ```
 
-<p class="tip">Note that similar to props, directive params follow the same camelCase <=> kebab case mapping between JavaScript and HTML. For example, for a param used as `disable-effect` in the template, you need to access it as `disableEffect` in JavaScript.</p>
+<p class="tip">类似于 props，指令参数的名字在 JavaScript 中使用 camelCase 风格，在 HTML 中对应使用 kebab-case 风格。例如，假设在模板里有一个参数 `disable-effect`，在 JavaScript 里以 `disableEffect` 访问它。</p>
 
 ### deep
 
