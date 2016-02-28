@@ -211,6 +211,8 @@ Vue.directive('example', {
 })
 ```
 
+<p class="tip">Note that similar to props, directive params follow the same camelCase <=> kebab case mapping between JavaScript and HTML. For example, for a param used as `disable-effect` in the template, you need to access it as `disableEffect` in JavaScript.</p>
+
 ### deep
 
 如果自定义指令用在一个对象上，当对象内部属性变化时要触发 `update`，则在指令定义对象中指定 `deep: true`。

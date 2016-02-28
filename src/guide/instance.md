@@ -72,7 +72,7 @@ vm.$watch('a', function (newVal, oldVal) {
 })
 ```
 
-参考 API 文档查看全部的实例属性与方法。
+参考 [API 文档](/api)查看全部的实例属性与方法。
 
 ## 实例生命周期
 
