@@ -1,5 +1,5 @@
 /*!
- * Vue.js v1.0.16
+ * Vue.js v1.0.17
  * (c) 2016 Evan You
  * Released under the MIT License.
  */
@@ -210,7 +210,7 @@
    * @return {Function}
    */
 
-  function bind$1(fn, ctx) {
+  function bind(fn, ctx) {
     return function (a) {
       var l = arguments.length;
       return l ? l > 1 ? fn.apply(ctx, arguments) : fn.call(ctx, a) : fn.call(ctx);
@@ -393,11 +393,13 @@
   // Browser environment sniffing
   var inBrowser = typeof window !== 'undefined' && Object.prototype.toString.call(window) !== '[object Object]';
 
+  // detect devtools
   var devtools = inBrowser && window.__VUE_DEVTOOLS_GLOBAL_HOOK__;
 
-  var isIE9 = inBrowser && navigator.userAgent.toLowerCase().indexOf('msie 9.0') > 0;
-
-  var isAndroid = inBrowser && navigator.userAgent.toLowerCase().indexOf('android') > 0;
+  // UA sniffing for working around browser-specific quirks
+  var UA = inBrowser && window.navigator.userAgent.toLowerCase();
+  var isIE9 = UA && UA.indexOf('msie 9.0') > 0;
+  var isAndroid = UA && UA.indexOf('android') > 0;
 
   var transitionProp = undefined;
   var transitionEndEvent = undefined;
@@ -651,7 +653,6 @@
    */
 
   function parseDirective(s) {
-
     var hit = cache$1.get(s);
     if (hit) {
       return hit;
@@ -850,9 +851,9 @@ var directive = Object.freeze({
    * @return {String}
    */
 
-  var filterRE$1 = /[^|]\|[^|]/;
+  var filterRE = /[^|]\|[^|]/;
   function inlineFilters(exp, single) {
-    if (!filterRE$1.test(exp)) {
+    if (!filterRE.test(exp)) {
       return single ? exp : '(' + exp + ')';
     } else {
       var dir = parseDirective(exp);
@@ -867,7 +868,7 @@ var directive = Object.freeze({
     }
   }
 
-var text$1 = Object.freeze({
+var text = Object.freeze({
     compileRegex: compileRegex,
     parseText: parseText,
     tokensToExp: tokensToExp
@@ -907,14 +908,6 @@ var text$1 = Object.freeze({
      */
 
     warnExpressionErrors: true,
-
-    /**
-     * Whether or not to handle fully object properties which
-     * are already backed by getters and seters. Depending on
-     * use case and environment, this might introduce non-neglible
-     * performance penalties.
-     */
-    convertAllProperties: false,
 
     /**
      * Internal flag to indicate the delimiters have been
@@ -1077,6 +1070,13 @@ var text$1 = Object.freeze({
     transition[action](op, cb);
   }
 
+var transition = Object.freeze({
+    appendWithTransition: appendWithTransition,
+    beforeWithTransition: beforeWithTransition,
+    removeWithTransition: removeWithTransition,
+    applyTransition: applyTransition
+  });
+
   /**
    * Query an element selector if it's not an element already.
    *
@@ -1230,7 +1230,7 @@ var text$1 = Object.freeze({
    * @param {Boolean} [useCapture]
    */
 
-  function on$1(el, event, cb, useCapture) {
+  function on(el, event, cb, useCapture) {
     el.addEventListener(event, cb, useCapture);
   }
 
@@ -1258,7 +1258,7 @@ var text$1 = Object.freeze({
 
   function setClass(el, cls) {
     /* istanbul ignore if */
-    if (isIE9 && !(el instanceof SVGElement)) {
+    if (isIE9 && !/svg$/.test(el.namespaceURI)) {
       el.className = cls;
     } else {
       el.setAttribute('class', cls);
@@ -1312,14 +1312,14 @@ var text$1 = Object.freeze({
    *
    * @param {Element} el
    * @param {Boolean} asFragment
-   * @return {Element}
+   * @return {Element|DocumentFragment}
    */
 
   function extractContent(el, asFragment) {
     var child;
     var rawContent;
     /* istanbul ignore if */
-    if (isTemplate(el) && el.content instanceof DocumentFragment) {
+    if (isTemplate(el) && isFragment(el.content)) {
       el = el.content;
     }
     if (el.hasChildNodes()) {
@@ -1389,7 +1389,7 @@ var text$1 = Object.freeze({
 
   function createAnchor(content, persist) {
     var anchor = config.debug ? document.createComment(content) : document.createTextNode(persist ? ' ' : '');
-    anchor.__vue_anchor = true;
+    anchor.__v_anchor = true;
     return anchor;
   }
 
@@ -1464,8 +1464,53 @@ var text$1 = Object.freeze({
     }
   }
 
+  /**
+   * Check if a node is a DocumentFragment.
+   *
+   * @param {Node} node
+   * @return {Boolean}
+   */
+
+  function isFragment(node) {
+    return node && node.nodeType === 11;
+  }
+
+  /**
+   * Get outerHTML of elements, taking care
+   * of SVG elements in IE as well.
+   *
+   * @param {Element} el
+   * @return {String}
+   */
+
+  function getOuterHTML(el) {
+    if (el.outerHTML) {
+      return el.outerHTML;
+    } else {
+      var container = document.createElement('div');
+      container.appendChild(el.cloneNode(true));
+      return container.innerHTML;
+    }
+  }
+
   var commonTagRE = /^(div|p|span|img|a|b|i|br|ul|ol|li|h1|h2|h3|h4|h5|h6|code|pre|table|th|td|tr|form|label|input|select|option|nav|article|section|header|footer)$/;
   var reservedTagRE = /^(slot|partial|component)$/;
+
+  var isUnknownElement = undefined;
+  if ('development' !== 'production') {
+    isUnknownElement = function (el, tag) {
+      if (tag.indexOf('-') > -1) {
+        // http://stackoverflow.com/a/28210364/1070244
+        return el.constructor === window.HTMLUnknownElement || el.constructor === window.HTMLElement;
+      } else {
+        return (/HTMLUnknownElement/.test(el.toString()) &&
+          // Chrome returns unknown for several HTML5 elements.
+          // https://code.google.com/p/chromium/issues/detail?id=540526
+          !/^(data|time|rtc|rb)$/.test(tag)
+        );
+      }
+    };
+  }
 
   /**
    * Check if an element is a component, if yes return its
@@ -1487,10 +1532,10 @@ var text$1 = Object.freeze({
         if (is) {
           return is;
         } else if ('development' !== 'production') {
-          if (tag.indexOf('-') > -1 || /HTMLUnknownElement/.test(el.toString()) &&
-          // Chrome returns unknown for several HTML5 elements.
-          // https://code.google.com/p/chromium/issues/detail?id=540526
-          !/^(data|time|rtc|rb)$/.test(tag)) {
+          var expectedTag = options._componentNameMap && options._componentNameMap[tag];
+          if (expectedTag) {
+            warn('Unknown custom element: <' + tag + '> - ' + 'did you mean <' + expectedTag + '>? ' + 'HTML is case-insensitive, remember to use kebab-case in templates.');
+          } else if (isUnknownElement(el, tag)) {
             warn('Unknown custom element: <' + tag + '> - did you ' + 'register the component correctly? For recursive components, ' + 'make sure to provide the "name" option.');
           }
         }
@@ -1542,11 +1587,12 @@ var text$1 = Object.freeze({
    */
 
   function assertProp(prop, value) {
-    // if a prop is not provided and is not required,
-    // skip the check.
-    if (prop.raw === null && !prop.required) {
-      return true;
-    }
+    if (!prop.options.required && ( // non-required
+    prop.raw === null || // abscent
+    value == null) // null or undefined
+    ) {
+        return true;
+      }
     var options = prop.options;
     var type = options.type;
     var valid = true;
@@ -1580,7 +1626,7 @@ var text$1 = Object.freeze({
     }
     var validator = options.validator;
     if (validator) {
-      if (!validator.call(null, value)) {
+      if (!validator(value)) {
         'development' !== 'production' && warn('Invalid prop: custom validator check failed for ' + prop.path + '="' + prop.raw + '"');
         return false;
       }
@@ -1702,7 +1748,7 @@ var text$1 = Object.freeze({
    * Hooks and param attributes are merged as arrays.
    */
 
-  strats.init = strats.created = strats.ready = strats.attached = strats.detached = strats.beforeCompile = strats.compiled = strats.beforeDestroy = strats.destroyed = function (parentVal, childVal) {
+  strats.init = strats.created = strats.ready = strats.attached = strats.detached = strats.beforeCompile = strats.compiled = strats.beforeDestroy = strats.destroyed = strats.activate = function (parentVal, childVal) {
     return childVal ? parentVal ? parentVal.concat(childVal) : isArray(childVal) ? childVal : [childVal] : parentVal;
   };
 
@@ -1786,13 +1832,21 @@ var text$1 = Object.freeze({
   function guardComponents(options) {
     if (options.components) {
       var components = options.components = guardArrayAssets(options.components);
-      var def;
       var ids = Object.keys(components);
+      var def;
+      if ('development' !== 'production') {
+        var map = options._componentNameMap = {};
+      }
       for (var i = 0, l = ids.length; i < l; i++) {
         var key = ids[i];
         if (commonTagRE.test(key) || reservedTagRE.test(key)) {
           'development' !== 'production' && warn('Do not use built-in or reserved HTML elements as component ' + 'id: ' + key);
           continue;
+        }
+        // record a all lowercase <-> kebab-case mapping for
+        // possible custom element case error warning
+        if ('development' !== 'production') {
+          map[key.replace(/-/g, '').toLowerCase()] = hyphenate(key);
         }
         def = components[key];
         if (isPlainObject(def)) {
@@ -1932,7 +1986,7 @@ var text$1 = Object.freeze({
     }
   }
 
-  var uid$3 = 0;
+  var uid$1 = 0;
 
   /**
    * A dep is an observable that can have multiple
@@ -1941,7 +1995,7 @@ var text$1 = Object.freeze({
    * @constructor
    */
   function Dep() {
-    this.id = uid$3++;
+    this.id = uid$1++;
     this.subs = [];
   }
 
@@ -2162,7 +2216,9 @@ var text$1 = Object.freeze({
    */
 
   function protoAugment(target, src) {
+    /* eslint-disable no-proto */
     target.__proto__ = src;
+    /* eslint-enable no-proto */
   }
 
   /**
@@ -2218,16 +2274,14 @@ var text$1 = Object.freeze({
   function defineReactive(obj, key, val) {
     var dep = new Dep();
 
-    // cater for pre-defined getter/setters
-    var getter, setter;
-    if (config.convertAllProperties) {
-      var property = Object.getOwnPropertyDescriptor(obj, key);
-      if (property && property.configurable === false) {
-        return;
-      }
-      getter = property && property.get;
-      setter = property && property.set;
+    var property = Object.getOwnPropertyDescriptor(obj, key);
+    if (property && property.configurable === false) {
+      return;
     }
+
+    // cater for pre-defined getter/setters
+    var getter = property && property.get;
+    var setter = property && property.set;
 
     var childOb = observe(val);
     Object.defineProperty(obj, key, {
@@ -2281,7 +2335,7 @@ var text$1 = Object.freeze({
   	camelize: camelize,
   	hyphenate: hyphenate,
   	classify: classify,
-  	bind: bind$1,
+  	bind: bind,
   	toArray: toArray,
   	extend: extend,
   	isObject: isObject,
@@ -2312,7 +2366,7 @@ var text$1 = Object.freeze({
   	remove: remove,
   	prepend: prepend,
   	replace: replace,
-  	on: on$1,
+  	on: on,
   	off: off,
   	setClass: setClass,
   	addClass: addClass,
@@ -2324,6 +2378,8 @@ var text$1 = Object.freeze({
   	findRef: findRef,
   	mapNodeRange: mapNodeRange,
   	removeNodeRange: removeNodeRange,
+  	isFragment: isFragment,
+  	getOuterHTML: getOuterHTML,
   	mergeOptions: mergeOptions,
   	resolveAsset: resolveAsset,
   	assertAsset: assertAsset,
@@ -2339,7 +2395,6 @@ var text$1 = Object.freeze({
   var uid = 0;
 
   function initMixin (Vue) {
-
     /**
      * The main init sequence. This is called for every
      * instance, including ones that are created from extended
@@ -2352,7 +2407,6 @@ var text$1 = Object.freeze({
      */
 
     Vue.prototype._init = function (options) {
-
       options = options || {};
 
       this.$el = null;
@@ -2790,7 +2844,7 @@ var path = Object.freeze({
 
   var wsRE = /\s/g;
   var newlineRE = /\n/g;
-  var saveRE = /[\{,]\s*[\w\$_]+\s*:|('(?:[^'\\]|\\.)*'|"(?:[^"\\]|\\.)*")|new |typeof |void /g;
+  var saveRE = /[\{,]\s*[\w\$_]+\s*:|('(?:[^'\\]|\\.)*'|"(?:[^"\\]|\\.)*"|`(?:[^`\\]|\\.)*\$\{|\}(?:[^`\\]|\\.)*`|`(?:[^`\\]|\\.)*`)|new |typeof |void /g;
   var restoreRE = /"(\d+)"/g;
   var pathTestRE = /^[A-Za-z_$][\w$]*(?:\.[A-Za-z_$][\w$]*|\['.*?'\]|\[".*?"\]|\[\d+\]|\[[A-Za-z_$][\w$]*\])*$/;
   var identRE = /[^\w$\.](?:[A-Za-z_$][\w$]*)/g;
@@ -2893,7 +2947,9 @@ var path = Object.freeze({
 
   function makeGetterFn(body) {
     try {
+      /* eslint-disable no-new-func */
       return new Function('scope', 'return ' + body + ';');
+      /* eslint-enable no-new-func */
     } catch (e) {
       'development' !== 'production' && warn('Invalid expression. ' + 'Generated function body: ' + body);
     }
@@ -3365,7 +3421,7 @@ var expression = Object.freeze({
     }
   }
 
-  var text = {
+  var text$1 = {
 
     bind: function bind() {
       this.attr = this.el.nodeType === 3 ? 'data' : 'textContent';
@@ -3403,7 +3459,7 @@ var expression = Object.freeze({
    */
 
   function isRealTemplate(node) {
-    return isTemplate(node) && node.content instanceof DocumentFragment;
+    return isTemplate(node) && isFragment(node.content);
   }
 
   var tagRE$1 = /<([\w:]+)/;
@@ -3435,7 +3491,6 @@ var expression = Object.freeze({
       // text only, return a single text node.
       frag.appendChild(document.createTextNode(templateString));
     } else {
-
       var tag = tagMatch && tagMatch[1];
       var wrap = map[tag] || map.efault;
       var depth = wrap[0];
@@ -3591,7 +3646,7 @@ var expression = Object.freeze({
 
     // if the template is already a document fragment,
     // do nothing
-    if (template instanceof DocumentFragment) {
+    if (isFragment(template)) {
       trimNode(template);
       return shouldClone ? cloneNode(template) : template;
     }
@@ -3687,7 +3742,7 @@ var template = Object.freeze({
     this.unlink = linker(vm, frag, host, scope, this);
     var single = this.single = frag.childNodes.length === 1 &&
     // do not go single mode if the only node is an anchor
-    !frag.childNodes[0].__vue_anchor;
+    !frag.childNodes[0].__v_anchor;
     if (single) {
       this.node = frag.childNodes[0];
       this.before = singleBefore;
@@ -3701,7 +3756,7 @@ var template = Object.freeze({
       this.before = multiBefore;
       this.remove = multiRemove;
     }
-    this.node.__vfrag__ = this;
+    this.node.__v_frag = this;
   }
 
   /**
@@ -3827,7 +3882,7 @@ var template = Object.freeze({
     if (this.parentFrag) {
       this.parentFrag.childFrags.$remove(this);
     }
-    this.node.__vfrag__ = null;
+    this.node.__v_frag = null;
     this.unlink();
   };
 
@@ -3879,7 +3934,7 @@ var template = Object.freeze({
     var linker;
     var cid = vm.constructor.cid;
     if (cid > 0) {
-      var cacheId = cid + (isString ? el : el.outerHTML);
+      var cacheId = cid + (isString ? el : getOuterHTML(el));
       linker = linkerCache.get(cacheId);
       if (!linker) {
         linker = compile(template, vm.$options, true);
@@ -3915,7 +3970,7 @@ var template = Object.freeze({
   var IF = 2000;
   var SLOT = 2100;
 
-  var uid$1 = 0;
+  var uid$3 = 0;
 
   var vFor = {
 
@@ -3924,8 +3979,8 @@ var template = Object.freeze({
     params: ['track-by', 'stagger', 'enter-stagger', 'leave-stagger'],
 
     bind: function bind() {
-      // support "item in items" syntax
-      var inMatch = this.expression.match(/(.*) in (.*)/);
+      // support "item in/of items" syntax
+      var inMatch = this.expression.match(/(.*) (?:in|of) (.*)/);
       if (inMatch) {
         var itMatch = inMatch[1].match(/\((.*),(.*)\)/);
         if (itMatch) {
@@ -3943,7 +3998,7 @@ var template = Object.freeze({
       }
 
       // uid as a cache identifier
-      this.id = '__v-for__' + ++uid$1;
+      this.id = '__v-for__' + ++uid$3;
 
       // check if this is an option list,
       // so that we know if we need to update the <select>'s
@@ -4064,9 +4119,11 @@ var template = Object.freeze({
         }
       }
       this.vm._vForRemoving = false;
-      this.vm._watchers = this.vm._watchers.filter(function (w) {
-        return w.active;
-      });
+      if (removalIndex) {
+        this.vm._watchers = this.vm._watchers.filter(function (w) {
+          return w.active;
+        });
+      }
 
       // Final pass, move/insert new fragments into the
       // right place.
@@ -4191,7 +4248,7 @@ var template = Object.freeze({
         var anchor = frag.staggerAnchor;
         if (!anchor) {
           anchor = frag.staggerAnchor = createAnchor('stagger-anchor');
-          anchor.__vfrag__ = frag;
+          anchor.__v_frag = frag;
         }
         after(anchor, prevEl);
         var op = frag.staggerCb = cancellable(function () {
@@ -4440,12 +4497,12 @@ var template = Object.freeze({
     var el = frag.node.previousSibling;
     /* istanbul ignore if */
     if (!el) return;
-    frag = el.__vfrag__;
+    frag = el.__v_frag;
     while ((!frag || frag.forId !== id || !frag.inserted) && el !== anchor) {
       el = el.previousSibling;
       /* istanbul ignore if */
       if (!el) return;
-      frag = el.__vfrag__;
+      frag = el.__v_frag;
     }
     return frag;
   }
@@ -4501,7 +4558,7 @@ var template = Object.freeze({
         var next = el.nextElementSibling;
         if (next && getAttr(next, 'v-else') !== null) {
           remove(next);
-          this.elseFactory = new FragmentFactory(this.vm, next);
+          this.elseFactory = new FragmentFactory(next._context || this.vm, next);
         }
         // check main block
         this.anchor = createAnchor('v-if');
@@ -4627,10 +4684,6 @@ var template = Object.freeze({
         });
         this.on('blur', function () {
           self.focused = false;
-          // do not sync value after fragment removal (#2017)
-          if (!self._frag || self._frag.inserted) {
-            self.rawListener();
-          }
         });
       }
 
@@ -4668,12 +4721,12 @@ var template = Object.freeze({
       this.hasjQuery = typeof jQuery === 'function';
       if (this.hasjQuery) {
         var method = jQuery.fn.on ? 'on' : 'bind';
-        jQuery(el)[method]('change', this.listener);
+        jQuery(el)[method]('change', this.rawListener);
         if (!lazy) {
           jQuery(el)[method]('input', this.listener);
         }
       } else {
-        this.on('change', this.listener);
+        this.on('change', this.rawListener);
         if (!lazy) {
           this.on('input', this.listener);
         }
@@ -5037,17 +5090,18 @@ var template = Object.freeze({
     };
   }
 
-  var on = {
+  var on$1 = {
 
-    acceptStatement: true,
     priority: ON,
+    acceptStatement: true,
+    keyCodes: keyCodes,
 
     bind: function bind() {
       // deal with iframes
       if (this.el.tagName === 'IFRAME' && this.arg !== 'load') {
         var self = this;
         this.iframeBind = function () {
-          on$1(self.el.contentWindow, self.arg, self.handler, self.modifiers.capture);
+          on(self.el.contentWindow, self.arg, self.handler, self.modifiers.capture);
         };
         this.on('load', this.iframeBind);
       }
@@ -5089,7 +5143,7 @@ var template = Object.freeze({
       if (this.iframeBind) {
         this.iframeBind();
       } else {
-        on$1(this.el, this.arg, this.handler, this.modifiers.capture);
+        on(this.el, this.arg, this.handler, this.modifiers.capture);
       }
     },
 
@@ -5220,6 +5274,9 @@ var template = Object.freeze({
   // these attributes should also set their corresponding properties
   // because they only affect the initial state of the element
   var attrWithPropsRE = /^(?:value|checked|selected|muted)$/;
+  // these attributes expect enumrated values of "true" or "false"
+  // but are not boolean attributes
+  var enumeratedAttrRE = /^(?:draggable|contenteditable|spellcheck)$/;
 
   // these attributes should set a hidden property for
   // binding v-model to object values
@@ -5229,7 +5286,7 @@ var template = Object.freeze({
     'false-value': '_falseValue'
   };
 
-  var bind = {
+  var bind$1 = {
 
     priority: BIND,
 
@@ -5313,7 +5370,9 @@ var template = Object.freeze({
         return;
       }
       // update attribute
-      if (value != null && value !== false) {
+      if (enumeratedAttrRE.test(attr)) {
+        el.setAttribute(attr, value ? 'true' : 'false');
+      } else if (value != null && value !== false) {
         if (attr === 'class') {
           // handle edge case #1960:
           // class interpolation should not overwrite Vue transition class
@@ -5374,15 +5433,15 @@ var template = Object.freeze({
   };
 
   // must export plain object
-  var publicDirectives = {
-    text: text,
+  var directives = {
+    text: text$1,
     html: html,
     'for': vFor,
     'if': vIf,
     show: show,
     model: model,
-    on: on,
-    bind: bind,
+    on: on$1,
+    bind: bind$1,
     el: el,
     ref: ref,
     cloak: cloak
@@ -5432,7 +5491,7 @@ var template = Object.freeze({
         var i = this.prevKeys.length;
         while (i--) {
           var key = this.prevKeys[i];
-          if (key && (!value || !contains$1(value, key))) {
+          if (key && (!value || !contains(value, key))) {
             removeClass(this.el, key);
           }
         }
@@ -5450,7 +5509,7 @@ var template = Object.freeze({
     return res;
   }
 
-  function contains$1(value, key) {
+  function contains(value, key) {
     return isArray(value) ? value.indexOf(key) > -1 : hasOwn(value, key);
   }
 
@@ -5575,12 +5634,12 @@ var template = Object.freeze({
       // actual mount
       this.unbuild(true);
       var self = this;
-      var activateHook = this.Component.options.activate;
+      var activateHooks = this.Component.options.activate;
       var cached = this.getCached();
       var newComponent = this.build();
-      if (activateHook && !cached) {
+      if (activateHooks && !cached) {
         this.waitingFor = newComponent;
-        activateHook.call(newComponent, function () {
+        callActivateHooks(activateHooks, newComponent, function () {
           if (self.waitingFor !== newComponent) {
             return;
           }
@@ -5790,12 +5849,32 @@ var template = Object.freeze({
     }
   };
 
+  /**
+   * Call activate hooks in order (asynchronous)
+   *
+   * @param {Array} hooks
+   * @param {Vue} vm
+   * @param {Function} cb
+   */
+
+  function callActivateHooks(hooks, vm, cb) {
+    var total = hooks.length;
+    var called = 0;
+    hooks[0].call(vm, next);
+    function next() {
+      if (++called >= total) {
+        cb();
+      } else {
+        hooks[called].call(vm, next);
+      }
+    }
+  }
+
   var bindingModes = config._propBindingModes;
 
   var propDef = {
 
     bind: function bind() {
-
       var child = this.vm;
       var parent = child._context;
       // passed in from compiler directly
@@ -5917,7 +5996,7 @@ var template = Object.freeze({
     }
     // bind
     var self = this;['enterNextTick', 'enterDone', 'leaveNextTick', 'leaveDone'].forEach(function (m) {
-      self[m] = bind$1(self[m], self);
+      self[m] = bind(self[m], self);
     });
   }
 
@@ -5970,7 +6049,6 @@ var template = Object.freeze({
    */
 
   p$1.enterNextTick = function () {
-
     // Important hack:
     // in Chrome, if a just-entered element is applied the
     // leave class while its interpolated property still has
@@ -6213,7 +6291,7 @@ var template = Object.freeze({
         }
       }
     };
-    on$1(el, event, onEnd);
+    on(el, event, onEnd);
   };
 
   /**
@@ -6225,10 +6303,17 @@ var template = Object.freeze({
    */
 
   function isHidden(el) {
-    return !(el.offsetWidth || el.offsetHeight || el.getClientRects().length);
+    if (/svg$/.test(el.namespaceURI)) {
+      // SVG elements do not have offset(Width|Height)
+      // so we need to check the client rect
+      var rect = el.getBoundingClientRect();
+      return !(rect.width || rect.height);
+    } else {
+      return !(el.offsetWidth || el.offsetHeight || el.getClientRects().length);
+    }
   }
 
-  var transition = {
+  var transition$1 = {
 
     priority: TRANSITION,
 
@@ -6237,8 +6322,7 @@ var template = Object.freeze({
       // resolve on owner vm
       var hooks = resolveAsset(this.vm.$options, 'transitions', id);
       id = id || 'v';
-      // apply on closest vm
-      el.__v_trans = new Transition(el, id, hooks, this.el.__vue__ || this.vm);
+      el.__v_trans = new Transition(el, id, hooks, this.vm);
       if (oldId) {
         removeClass(el, oldId + '-transition');
       }
@@ -6251,7 +6335,7 @@ var template = Object.freeze({
     'class': vClass,
     component: component,
     prop: propDef,
-    transition: transition
+    transition: transition$1
   };
 
   var propBindingModes = config._propBindingModes;
@@ -6339,9 +6423,16 @@ var template = Object.freeze({
       } else if ((value = getAttr(el, attr)) !== null) {
         // has literal binding!
         prop.raw = value;
-      } else if (options.required) {
-        // warn missing required
-        'development' !== 'production' && warn('Missing required prop: ' + name);
+      } else if ('development' !== 'production') {
+        // check possible camelCase prop usage
+        var lowerCaseName = path.toLowerCase();
+        value = /[A-Z\-]/.test(name) && (el.getAttribute(lowerCaseName) || el.getAttribute(':' + lowerCaseName) || el.getAttribute('v-bind:' + lowerCaseName) || el.getAttribute(':' + lowerCaseName + '.once') || el.getAttribute('v-bind:' + lowerCaseName + '.once') || el.getAttribute(':' + lowerCaseName + '.sync') || el.getAttribute('v-bind:' + lowerCaseName + '.sync'));
+        if (value) {
+          warn('Possible usage error for prop `' + lowerCaseName + '` - ' + 'did you mean `' + attr + '`? HTML is case-insensitive, remember to use ' + 'kebab-case for props in templates.');
+        } else if (options.required) {
+          // warn missing required
+          warn('Missing required prop: ' + name);
+        }
       }
       // push prop
       props.push(prop);
@@ -6373,22 +6464,23 @@ var template = Object.freeze({
           initProp(vm, prop, getDefault(vm, options));
         } else if (prop.dynamic) {
           // dynamic prop
-          if (vm._context) {
-            if (prop.mode === propBindingModes.ONE_TIME) {
-              // one time binding
-              value = (scope || vm._context).$get(prop.parentPath);
-              initProp(vm, prop, value);
-            } else {
+          if (prop.mode === propBindingModes.ONE_TIME) {
+            // one time binding
+            value = (scope || vm._context || vm).$get(prop.parentPath);
+            initProp(vm, prop, value);
+          } else {
+            if (vm._context) {
               // dynamic binding
               vm._bindDir({
                 name: 'prop',
                 def: propDef,
                 prop: prop
               }, null, null, scope); // el, host, scope
-            }
-          } else {
-              'development' !== 'production' && warn('Cannot bind dynamic prop on a root instance' + ' with no parent: ' + prop.name + '="' + raw + '"');
-            }
+            } else {
+                // root instance
+                initProp(vm, prop, vm.$get(prop.parentPath));
+              }
+          }
         } else if (prop.optimizedLiteral) {
           // optimized literal, cast it and just set once
           var stripped = stripQuotes(raw);
@@ -6803,7 +6895,7 @@ var template = Object.freeze({
       var parsed = parseDirective(token.value);
       token.descriptor = {
         name: type,
-        def: publicDirectives[type],
+        def: directives[type],
         expression: parsed.expression,
         filters: parsed.filters
       };
@@ -6900,11 +6992,8 @@ var template = Object.freeze({
 
   function checkElementDirectives(el, options) {
     var tag = el.tagName.toLowerCase();
-    if (commonTagRE.test(tag)) return;
-    // special case: give named slot a higher priority
-    // than unnamed slots
-    if (tag === 'slot' && hasBindAttr(el, 'name')) {
-      tag = '_namedSlot';
+    if (commonTagRE.test(tag)) {
+      return;
     }
     var def = resolveAsset(options, 'elementDirectives', tag);
     if (def) {
@@ -7001,7 +7090,8 @@ var template = Object.freeze({
       filters: parsed.filters,
       raw: value,
       // either an element directive, or if/for
-      def: def || publicDirectives[dirName]
+      // #2366 or custom terminal directive
+      def: def || resolveAsset(options, 'directives', dirName)
     };
     // check ref for v-for and router-view
     if (dirName === 'for' || dirName === 'router-view') {
@@ -7044,7 +7134,7 @@ var template = Object.freeze({
       if (tokens) {
         value = tokensToExp(tokens);
         arg = name;
-        pushDir('bind', publicDirectives.bind, tokens);
+        pushDir('bind', directives.bind, tokens);
         // warn against mixing mustaches with v-bind
         if ('development' !== 'production') {
           if (name === 'class' && Array.prototype.some.call(attrs, function (attr) {
@@ -7064,7 +7154,7 @@ var template = Object.freeze({
           // event handlers
           if (onRE.test(name)) {
             arg = name.replace(onRE, '');
-            pushDir('on', publicDirectives.on);
+            pushDir('on', directives.on);
           } else
 
             // attribute bindings
@@ -7074,7 +7164,7 @@ var template = Object.freeze({
                 pushDir(dirName, internalDirectives[dirName]);
               } else {
                 arg = dirName;
-                pushDir('bind', publicDirectives.bind);
+                pushDir('bind', directives.bind);
               }
             } else
 
@@ -7220,7 +7310,7 @@ var template = Object.freeze({
         el = transcludeTemplate(el, options);
       }
     }
-    if (el instanceof DocumentFragment) {
+    if (isFragment(el)) {
       // anchors for fragment instance
       // passing in `persist: true` to avoid them being
       // discarded by IE during template cloning
@@ -7320,6 +7410,77 @@ var template = Object.freeze({
     }
   }
 
+  /**
+   * Scan and determine slot content distribution.
+   * We do this during transclusion instead at compile time so that
+   * the distribution is decoupled from the compilation order of
+   * the slots.
+   *
+   * @param {Element|DocumentFragment} template
+   * @param {Element} content
+   * @param {Vue} vm
+   */
+
+  function scanSlots(template, content, vm) {
+    if (!content) {
+      return;
+    }
+    var contents = vm._slotContents = {};
+    var slots = template.querySelectorAll('slot');
+    if (slots.length) {
+      var hasDefault, slot, name;
+      for (var i = 0, l = slots.length; i < l; i++) {
+        slot = slots[i];
+        /* eslint-disable no-cond-assign */
+        if (name = slot.getAttribute('name')) {
+          select(slot, name);
+        } else if ('development' !== 'production' && (name = getBindAttr(slot, 'name'))) {
+          warn('<slot :name="' + name + '">: slot names cannot be dynamic.');
+        } else {
+          // default slot
+          hasDefault = true;
+        }
+        /* eslint-enable no-cond-assign */
+      }
+      if (hasDefault) {
+        contents['default'] = extractFragment(content.childNodes, content);
+      }
+    }
+
+    function select(slot, name) {
+      // named slot
+      var selector = '[slot="' + name + '"]';
+      var nodes = content.querySelectorAll(selector);
+      if (nodes.length) {
+        contents[name] = extractFragment(nodes, content);
+      }
+    }
+  }
+
+  /**
+   * Extract qualified content nodes from a node list.
+   *
+   * @param {NodeList} nodes
+   * @param {Element} parent
+   * @return {DocumentFragment}
+   */
+
+  function extractFragment(nodes, parent) {
+    var frag = document.createDocumentFragment();
+    nodes = toArray(nodes);
+    for (var i = 0, l = nodes.length; i < l; i++) {
+      var node = nodes[i];
+      if (node.parentNode === parent) {
+        if (isTemplate(node) && !node.hasAttribute('v-if') && !node.hasAttribute('v-for')) {
+          parent.removeChild(node);
+          node = parseTemplate(node);
+        }
+        frag.appendChild(node);
+      }
+    }
+    return frag;
+  }
+
 
 
   var compiler = Object.freeze({
@@ -7327,11 +7488,11 @@ var template = Object.freeze({
   	compileAndLinkProps: compileAndLinkProps,
   	compileRoot: compileRoot,
   	terminalDirectives: terminalDirectives,
-  	transclude: transclude
+  	transclude: transclude,
+  	scanSlots: scanSlots
   });
 
   function stateMixin (Vue) {
-
     /**
      * Accessor for `$data` property, since setting $data
      * requires observing the new object and updating
@@ -7524,8 +7685,8 @@ var template = Object.freeze({
             def.get = makeComputedGetter(userDef, this);
             def.set = noop;
           } else {
-            def.get = userDef.get ? userDef.cache !== false ? makeComputedGetter(userDef.get, this) : bind$1(userDef.get, this) : noop;
-            def.set = userDef.set ? bind$1(userDef.set, this) : noop;
+            def.get = userDef.get ? userDef.cache !== false ? makeComputedGetter(userDef.get, this) : bind(userDef.get, this) : noop;
+            def.set = userDef.set ? bind(userDef.set, this) : noop;
           }
           Object.defineProperty(this, key, def);
         }
@@ -7557,7 +7718,7 @@ var template = Object.freeze({
       var methods = this.$options.methods;
       if (methods) {
         for (var key in methods) {
-          this[key] = bind$1(methods[key], this);
+          this[key] = bind(methods[key], this);
         }
       }
     };
@@ -7579,7 +7740,6 @@ var template = Object.freeze({
   var eventRE = /^v-on:|^@/;
 
   function eventsMixin (Vue) {
-
     /**
      * Setup the instance's option events & watchers.
      * If the value is a string, we pull it from the
@@ -7610,8 +7770,12 @@ var template = Object.freeze({
         if (eventRE.test(name)) {
           name = name.replace(eventRE, '');
           handler = (vm._scope || vm._context).$eval(attrs[i].value, true);
-          handler._fromParent = true;
-          vm.$on(name.replace(eventRE), handler);
+          if (typeof handler === 'function') {
+            handler._fromParent = true;
+            vm.$on(name.replace(eventRE), handler);
+          } else if ('development' !== 'production') {
+            warn('v-on:' + name + '="' + attrs[i].value + '"' + (vm.$options.name ? ' on component <' + vm.$options.name + '>' : '') + ' expects a function value, got ' + handler);
+          }
         }
       }
     }
@@ -7839,8 +8003,8 @@ var template = Object.freeze({
       } else {
         this._update = noop;
       }
-      var preProcess = this._preProcess ? bind$1(this._preProcess, this) : null;
-      var postProcess = this._postProcess ? bind$1(this._postProcess, this) : null;
+      var preProcess = this._preProcess ? bind(this._preProcess, this) : null;
+      var postProcess = this._postProcess ? bind(this._postProcess, this) : null;
       var watcher = this._watcher = new Watcher(this.vm, this.expression, this._update, // callback
       {
         filters: this.filters,
@@ -7996,7 +8160,7 @@ var template = Object.freeze({
    */
 
   Directive.prototype.on = function (event, handler, useCapture) {
-    on$1(this.el, event, handler, useCapture);(this._listeners || (this._listeners = [])).push([event, handler]);
+    on(this.el, event, handler, useCapture);(this._listeners || (this._listeners = [])).push([event, handler]);
   };
 
   /**
@@ -8035,7 +8199,6 @@ var template = Object.freeze({
   };
 
   function lifecycleMixin (Vue) {
-
     /**
      * Update v-ref for component.
      *
@@ -8090,6 +8253,10 @@ var template = Object.freeze({
       var contextOptions = this._context && this._context.$options;
       var rootLinker = compileRoot(el, options, contextOptions);
 
+      // scan for slot distribution before compiling the content
+      // so that it's decoupeld from slot/directive compilation order
+      scanSlots(el, options._content, this);
+
       // compile and link the rest
       var contentLinkFn;
       var ctor = this.constructor;
@@ -8133,7 +8300,7 @@ var template = Object.freeze({
      */
 
     Vue.prototype._initElement = function (el) {
-      if (el instanceof DocumentFragment) {
+      if (isFragment(el)) {
         this._isFragment = true;
         this.$el = this._fragmentStart = el.firstChild;
         this._fragmentEnd = el.lastChild;
@@ -8282,7 +8449,6 @@ var template = Object.freeze({
   }
 
   function miscMixin (Vue) {
-
     /**
      * Apply a list of filter (descriptors) to a value.
      * Using plain for loops here because this will be called in
@@ -8350,7 +8516,7 @@ var template = Object.freeze({
         } else {
           factory.requested = true;
           var cbs = factory.pendingCallbacks = [cb];
-          factory(function resolve(res) {
+          factory.call(this, function resolve(res) {
             if (isPlainObject(res)) {
               res = Vue.extend(res);
             }
@@ -8371,165 +8537,9 @@ var template = Object.freeze({
     };
   }
 
-  function globalAPI (Vue) {
-
-    /**
-     * Expose useful internals
-     */
-
-    Vue.util = util;
-    Vue.config = config;
-    Vue.set = set;
-    Vue['delete'] = del;
-    Vue.nextTick = nextTick;
-
-    /**
-     * The following are exposed for advanced usage / plugins
-     */
-
-    Vue.compiler = compiler;
-    Vue.FragmentFactory = FragmentFactory;
-    Vue.internalDirectives = internalDirectives;
-    Vue.parsers = {
-      path: path,
-      text: text$1,
-      template: template,
-      directive: directive,
-      expression: expression
-    };
-
-    /**
-     * Each instance constructor, including Vue, has a unique
-     * cid. This enables us to create wrapped "child
-     * constructors" for prototypal inheritance and cache them.
-     */
-
-    Vue.cid = 0;
-    var cid = 1;
-
-    /**
-     * Class inheritance
-     *
-     * @param {Object} extendOptions
-     */
-
-    Vue.extend = function (extendOptions) {
-      extendOptions = extendOptions || {};
-      var Super = this;
-      var isFirstExtend = Super.cid === 0;
-      if (isFirstExtend && extendOptions._Ctor) {
-        return extendOptions._Ctor;
-      }
-      var name = extendOptions.name || Super.options.name;
-      if ('development' !== 'production') {
-        if (!/^[a-zA-Z][\w-]*$/.test(name)) {
-          warn('Invalid component name: "' + name + '". Component names ' + 'can only contain alphanumeric characaters and the hyphen.');
-          name = null;
-        }
-      }
-      var Sub = createClass(name || 'VueComponent');
-      Sub.prototype = Object.create(Super.prototype);
-      Sub.prototype.constructor = Sub;
-      Sub.cid = cid++;
-      Sub.options = mergeOptions(Super.options, extendOptions);
-      Sub['super'] = Super;
-      // allow further extension
-      Sub.extend = Super.extend;
-      // create asset registers, so extended classes
-      // can have their private assets too.
-      config._assetTypes.forEach(function (type) {
-        Sub[type] = Super[type];
-      });
-      // enable recursive self-lookup
-      if (name) {
-        Sub.options.components[name] = Sub;
-      }
-      // cache constructor
-      if (isFirstExtend) {
-        extendOptions._Ctor = Sub;
-      }
-      return Sub;
-    };
-
-    /**
-     * A function that returns a sub-class constructor with the
-     * given name. This gives us much nicer output when
-     * logging instances in the console.
-     *
-     * @param {String} name
-     * @return {Function}
-     */
-
-    function createClass(name) {
-      return new Function('return function ' + classify(name) + ' (options) { this._init(options) }')();
-    }
-
-    /**
-     * Plugin system
-     *
-     * @param {Object} plugin
-     */
-
-    Vue.use = function (plugin) {
-      /* istanbul ignore if */
-      if (plugin.installed) {
-        return;
-      }
-      // additional parameters
-      var args = toArray(arguments, 1);
-      args.unshift(this);
-      if (typeof plugin.install === 'function') {
-        plugin.install.apply(plugin, args);
-      } else {
-        plugin.apply(null, args);
-      }
-      plugin.installed = true;
-      return this;
-    };
-
-    /**
-     * Apply a global mixin by merging it into the default
-     * options.
-     */
-
-    Vue.mixin = function (mixin) {
-      Vue.options = mergeOptions(Vue.options, mixin);
-    };
-
-    /**
-     * Create asset registration methods with the following
-     * signature:
-     *
-     * @param {String} id
-     * @param {*} definition
-     */
-
-    config._assetTypes.forEach(function (type) {
-      Vue[type] = function (id, definition) {
-        if (!definition) {
-          return this.options[type + 's'][id];
-        } else {
-          /* istanbul ignore if */
-          if ('development' !== 'production') {
-            if (type === 'component' && (commonTagRE.test(id) || reservedTagRE.test(id))) {
-              warn('Do not use built-in or reserved HTML elements as component ' + 'id: ' + id);
-            }
-          }
-          if (type === 'component' && isPlainObject(definition)) {
-            definition.name = id;
-            definition = Vue.extend(definition);
-          }
-          this.options[type + 's'][id] = definition;
-          return definition;
-        }
-      };
-    });
-  }
-
-  var filterRE = /[^|]\|[^|]/;
+  var filterRE$1 = /[^|]\|[^|]/;
 
   function dataAPI (Vue) {
-
     /**
      * Get the value from an expression on this vm.
      *
@@ -8626,7 +8636,7 @@ var template = Object.freeze({
 
     Vue.prototype.$eval = function (text, asStatement) {
       // check for filters.
-      if (filterRE.test(text)) {
+      if (filterRE$1.test(text)) {
         var dir = parseDirective(text);
         // the filter regex check might give false positive
         // for pipes inside strings, so it's possible that
@@ -8698,7 +8708,6 @@ var template = Object.freeze({
   }
 
   function domAPI (Vue) {
-
     /**
      * Convenience on-instance nextTick. The callback is
      * auto-bound to the instance, and this avoids component
@@ -8884,7 +8893,6 @@ var template = Object.freeze({
   }
 
   function eventsAPI (Vue) {
-
     /**
      * Listen on the given `event` with `fn`.
      *
@@ -9076,7 +9084,6 @@ var template = Object.freeze({
   }
 
   function lifecycleAPI (Vue) {
-
     /**
      * Set instance target element and kick off the compilation
      * process. The passed in `el` can be a selector string, an
@@ -9165,57 +9172,25 @@ var template = Object.freeze({
   lifecycleMixin(Vue);
   miscMixin(Vue);
 
-  // install APIs
-  globalAPI(Vue);
+  // install instance APIs
   dataAPI(Vue);
   domAPI(Vue);
   eventsAPI(Vue);
   lifecycleAPI(Vue);
 
-  // This is the elementDirective that handles <content>
-  // transclusions. It relies on the raw content of an
-  // instance being stored as `$options._content` during
-  // the transclude phase.
-
-  // We are exporting two versions, one for named and one
-  // for unnamed, because the unnamed slots must be compiled
-  // AFTER all named slots have selected their content. So
-  // we need to give them different priorities in the compilation
-  // process. (See #1965)
-
   var slot = {
 
     priority: SLOT,
+    params: ['name'],
 
     bind: function bind() {
-      var host = this.vm;
-      var raw = host.$options._content;
-      if (!raw) {
+      // this was resolved during component transclusion
+      var name = this.params.name || 'default';
+      var content = this.vm._slotContents && this.vm._slotContents[name];
+      if (!content || !content.hasChildNodes()) {
         this.fallback();
-        return;
-      }
-      var context = host._context;
-      var slotName = this.params && this.params.name;
-      if (!slotName) {
-        // Default slot
-        this.tryCompile(extractFragment(raw.childNodes, raw, true), context, host);
       } else {
-        // Named slot
-        var selector = '[slot="' + slotName + '"]';
-        var nodes = raw.querySelectorAll(selector);
-        if (nodes.length) {
-          this.tryCompile(extractFragment(nodes, raw), context, host);
-        } else {
-          this.fallback();
-        }
-      }
-    },
-
-    tryCompile: function tryCompile(content, context, host) {
-      if (content.hasChildNodes()) {
-        this.compile(content, context, host);
-      } else {
-        this.fallback();
+        this.compile(content.cloneNode(true), this.vm._context, this.vm);
       }
     },
 
@@ -9227,6 +9202,8 @@ var template = Object.freeze({
           var elseBlock = document.createElement('template');
           elseBlock.setAttribute('v-else', '');
           elseBlock.innerHTML = this.el.innerHTML;
+          // the else block should be compiled in child scope
+          elseBlock._context = this.vm;
           content.appendChild(elseBlock);
         }
         var scope = host ? host._scope : this._scope;
@@ -9249,48 +9226,6 @@ var template = Object.freeze({
       }
     }
   };
-
-  var namedSlot = extend(extend({}, slot), {
-    priority: slot.priority + 1,
-    params: ['name']
-  });
-
-  /**
-   * Extract qualified content nodes from a node list.
-   *
-   * @param {NodeList} nodes
-   * @param {Element} parent
-   * @param {Boolean} main
-   * @return {DocumentFragment}
-   */
-
-  function extractFragment(nodes, parent, main) {
-    var frag = document.createDocumentFragment();
-    for (var i = 0, l = nodes.length; i < l; i++) {
-      var node = nodes[i];
-      // if this is the main outlet, we want to skip all
-      // previously selected nodes;
-      // otherwise, we want to mark the node as selected.
-      // clone the node so the original raw content remains
-      // intact. this ensures proper re-compilation in cases
-      // where the outlet is inside a conditional block
-      if (main && !node.__v_selected) {
-        append(node);
-      } else if (!main && node.parentNode === parent) {
-        node.__v_selected = true;
-        append(node);
-      }
-    }
-    return frag;
-
-    function append(node) {
-      if (isTemplate(node) && !node.hasAttribute('v-if') && !node.hasAttribute('v-for')) {
-        node = parseTemplate(node);
-      }
-      node = cloneNode(node);
-      frag.appendChild(node);
-    }
-  }
 
   var partial = {
 
@@ -9334,7 +9269,6 @@ var template = Object.freeze({
 
   var elementDirectives = {
     slot: slot,
-    _namedSlot: namedSlot, // same as slot but with higher priority
     partial: partial
   };
 
@@ -9387,12 +9321,12 @@ var template = Object.freeze({
       if (j) {
         while (j--) {
           key = keys[j];
-          if (key === '$key' && contains(item.$key, search) || contains(getPath(val, key), search)) {
+          if (key === '$key' && contains$1(item.$key, search) || contains$1(getPath(val, key), search)) {
             res.push(item);
             break;
           }
         }
-      } else if (contains(item, search)) {
+      } else if (contains$1(item, search)) {
         res.push(item);
       }
     }
@@ -9431,20 +9365,20 @@ var template = Object.freeze({
    * @param {String} search
    */
 
-  function contains(val, search) {
+  function contains$1(val, search) {
     var i;
     if (isPlainObject(val)) {
       var keys = Object.keys(val);
       i = keys.length;
       while (i--) {
-        if (contains(val[keys[i]], search)) {
+        if (contains$1(val[keys[i]], search)) {
           return true;
         }
       }
     } else if (isArray(val)) {
       i = val.length;
       while (i--) {
-        if (contains(val[i], search)) {
+        if (contains$1(val[i], search)) {
           return true;
         }
       }
@@ -9523,7 +9457,7 @@ var template = Object.freeze({
       var head = i > 0 ? _int.slice(0, i) + (_int.length > 3 ? ',' : '') : '';
       var _float = stringified.slice(-3);
       var sign = value < 0 ? '-' : '';
-      return _currency + sign + head + _int.slice(i).replace(digitsRE, '$1,') + _float;
+      return sign + _currency + head + _int.slice(i).replace(digitsRE, '$1,') + _float;
     },
 
     /**
@@ -9561,32 +9495,193 @@ var template = Object.freeze({
     }
   };
 
-  Vue.version = '1.0.16';
+  function installGlobalAPI (Vue) {
+    /**
+     * Vue and every constructor that extends Vue has an
+     * associated options object, which can be accessed during
+     * compilation steps as `this.constructor.options`.
+     *
+     * These can be seen as the default options of every
+     * Vue instance.
+     */
 
-  /**
-   * Vue and every constructor that extends Vue has an
-   * associated options object, which can be accessed during
-   * compilation steps as `this.constructor.options`.
-   *
-   * These can be seen as the default options of every
-   * Vue instance.
-   */
+    Vue.options = {
+      directives: directives,
+      elementDirectives: elementDirectives,
+      filters: filters,
+      transitions: {},
+      components: {},
+      partials: {},
+      replace: true
+    };
 
-  Vue.options = {
-    directives: publicDirectives,
-    elementDirectives: elementDirectives,
-    filters: filters,
-    transitions: {},
-    components: {},
-    partials: {},
-    replace: true
-  };
+    /**
+     * Expose useful internals
+     */
+
+    Vue.util = util;
+    Vue.config = config;
+    Vue.set = set;
+    Vue['delete'] = del;
+    Vue.nextTick = nextTick;
+
+    /**
+     * The following are exposed for advanced usage / plugins
+     */
+
+    Vue.compiler = compiler;
+    Vue.FragmentFactory = FragmentFactory;
+    Vue.internalDirectives = internalDirectives;
+    Vue.parsers = {
+      path: path,
+      text: text,
+      template: template,
+      directive: directive,
+      expression: expression
+    };
+
+    /**
+     * Each instance constructor, including Vue, has a unique
+     * cid. This enables us to create wrapped "child
+     * constructors" for prototypal inheritance and cache them.
+     */
+
+    Vue.cid = 0;
+    var cid = 1;
+
+    /**
+     * Class inheritance
+     *
+     * @param {Object} extendOptions
+     */
+
+    Vue.extend = function (extendOptions) {
+      extendOptions = extendOptions || {};
+      var Super = this;
+      var isFirstExtend = Super.cid === 0;
+      if (isFirstExtend && extendOptions._Ctor) {
+        return extendOptions._Ctor;
+      }
+      var name = extendOptions.name || Super.options.name;
+      if ('development' !== 'production') {
+        if (!/^[a-zA-Z][\w-]*$/.test(name)) {
+          warn('Invalid component name: "' + name + '". Component names ' + 'can only contain alphanumeric characaters and the hyphen.');
+          name = null;
+        }
+      }
+      var Sub = createClass(name || 'VueComponent');
+      Sub.prototype = Object.create(Super.prototype);
+      Sub.prototype.constructor = Sub;
+      Sub.cid = cid++;
+      Sub.options = mergeOptions(Super.options, extendOptions);
+      Sub['super'] = Super;
+      // allow further extension
+      Sub.extend = Super.extend;
+      // create asset registers, so extended classes
+      // can have their private assets too.
+      config._assetTypes.forEach(function (type) {
+        Sub[type] = Super[type];
+      });
+      // enable recursive self-lookup
+      if (name) {
+        Sub.options.components[name] = Sub;
+      }
+      // cache constructor
+      if (isFirstExtend) {
+        extendOptions._Ctor = Sub;
+      }
+      return Sub;
+    };
+
+    /**
+     * A function that returns a sub-class constructor with the
+     * given name. This gives us much nicer output when
+     * logging instances in the console.
+     *
+     * @param {String} name
+     * @return {Function}
+     */
+
+    function createClass(name) {
+      /* eslint-disable no-new-func */
+      return new Function('return function ' + classify(name) + ' (options) { this._init(options) }')();
+      /* eslint-enable no-new-func */
+    }
+
+    /**
+     * Plugin system
+     *
+     * @param {Object} plugin
+     */
+
+    Vue.use = function (plugin) {
+      /* istanbul ignore if */
+      if (plugin.installed) {
+        return;
+      }
+      // additional parameters
+      var args = toArray(arguments, 1);
+      args.unshift(this);
+      if (typeof plugin.install === 'function') {
+        plugin.install.apply(plugin, args);
+      } else {
+        plugin.apply(null, args);
+      }
+      plugin.installed = true;
+      return this;
+    };
+
+    /**
+     * Apply a global mixin by merging it into the default
+     * options.
+     */
+
+    Vue.mixin = function (mixin) {
+      Vue.options = mergeOptions(Vue.options, mixin);
+    };
+
+    /**
+     * Create asset registration methods with the following
+     * signature:
+     *
+     * @param {String} id
+     * @param {*} definition
+     */
+
+    config._assetTypes.forEach(function (type) {
+      Vue[type] = function (id, definition) {
+        if (!definition) {
+          return this.options[type + 's'][id];
+        } else {
+          /* istanbul ignore if */
+          if ('development' !== 'production') {
+            if (type === 'component' && (commonTagRE.test(id) || reservedTagRE.test(id))) {
+              warn('Do not use built-in or reserved HTML elements as component ' + 'id: ' + id);
+            }
+          }
+          if (type === 'component' && isPlainObject(definition)) {
+            definition.name = id;
+            definition = Vue.extend(definition);
+          }
+          this.options[type + 's'][id] = definition;
+          return definition;
+        }
+      };
+    });
+
+    // expose internal transition API
+    extend(Vue.transition, transition);
+  }
+
+  installGlobalAPI(Vue);
+
+  Vue.version = '1.0.17';
 
   // devtools global hook
   /* istanbul ignore next */
   if (devtools) {
     devtools.emit('init', Vue);
-  } else if ('development' !== 'production' && inBrowser && /Chrome\/\d+/.test(navigator.userAgent)) {
+  } else if ('development' !== 'production' && inBrowser && /Chrome\/\d+/.test(window.navigator.userAgent)) {
     console.log('Download the Vue Devtools for a better development experience:\n' + 'https://github.com/vuejs/vue-devtools');
   }
 

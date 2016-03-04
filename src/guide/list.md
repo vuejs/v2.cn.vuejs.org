@@ -114,6 +114,12 @@ var example2 = new Vue({
 </div>
 ```
 
+从 1.0.17 开始可以使用 `of` 分隔符，更接近 JavaScript 遍历器语法：
+
+``` html
+<div v-for="item of items"></div>
+```
+
 ## template v-for
 
 类似于 template `v-if`，也可以将 `v-for` 用在 `<template>` 标签上，以渲染一个包含多个元素的块。例如：
