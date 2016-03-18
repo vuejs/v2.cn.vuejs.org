@@ -85,6 +85,20 @@ type: api
 
   如果关闭了异步模式，Vue 在检测到数据变化时同步更新 DOM。在有些情况下这有助于调试，但是也可能导致性能下降，并且影响 watcher 回调的调用顺序。**`async: false`不推荐用在生产环境中。**
 
+### devtools
+
+- **类型：** `Boolean`
+
+- **默认值：** `true` (生产版为 `false`)
+
+- **用法：**
+
+  ``` js
+  Vue.config.devtools = true
+  ```
+
+  配置是否允许 [vue-devtools](https://github.com/vuejs/vue-devtools) 检查代码。开发版默认为 `true`， 生产版默认为 `false`。 可以让生产版设为 `true` 以启用检查。
+
 ## 全局 API
 
 <h3 id="Vue-extend">Vue.extend( options )</h3>
