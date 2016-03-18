@@ -97,7 +97,7 @@ type: api
   Vue.config.devtools = true
   ```
 
-  配置是否允许 [vue-devtools](https://github.com/vuejs/vue-devtools) 检查代码。开发版默认为 `true`， 生产版默认为 `false`。 可以让生产版设为 `true` 以启用检查。
+  配置是否允许 [vue-devtools](https://github.com/vuejs/vue-devtools) 检查代码。开发版默认为 `true`， 生产版默认为 `false`。 生产版设为 `true` 可以启用检查。
 
 ## 全局 API
 
