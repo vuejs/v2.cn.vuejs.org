@@ -59,6 +59,22 @@ order: 11
 }
 ```
 
+你可以在同一元素上通过动态绑定实现不同的过渡：
+
+```html
+<div v-if="show" :transition="transitionName">hello</div>
+```
+
+```js
+new Vue({
+  el: '...',
+  data: {
+    show: false,
+    transitionName: 'fade'
+  }
+})
+```
+
 另外，可以提供 JavaScript 钩子:
 
 ``` js

@@ -28,7 +28,9 @@ Webpack 和 Browserify 不只是模块打包器。两者都提供了源码转换
 
 <img src="/images/vue-component-with-pre-processors.png">
 
-你可以使用 Webpack + [vue-loader](https://github.com/vuejs/vue-loader) 或 Browserify + [vueify](https://github.com/vuejs/vueify) 构建这些单文件 Vue 组件。推荐使用 Webpack，因为它的加载器 API 提供更好的文件依赖追踪/缓存以及一些 Browserify 没有的转换功能。
+你可以使用 Webpack + [vue-loader](https://github.com/vuejs/vue-loader) 或 Browserify + [vueify](https://github.com/vuejs/vueify) 构建这些单文件 Vue 组件。你也可以在 [Webpackbin.com](http://www.webpackbin.com/vue) 上在线尝试！
+
+选择哪种构建工具取决于你的经验和需求。Webpack 的功能更强大，如代码分割，将静态资源当作模块，提取组件的 CSS 到单独的一个文件等，不过它的配置相对复杂一点。如果你不需要 Webpack 的那些功能，使用 Browserify 更简单，
 
 最快的构建方式是使用官方出品的脚手架工具 [vue-cli](https://github.com/vuejs/vue-cli)。你也可以在 GitHub 上查看官方的构建模板：
 
