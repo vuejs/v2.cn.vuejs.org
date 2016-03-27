@@ -76,6 +76,13 @@ data: {
 
 此例始终添加 `classA`，但是只有在 `isB` 是 `true` 时添加 `classB` 。
 
+不过，当有多个条件 class 时这样写有些繁琐。在 1.0.19+ 中，可以在数组语法中使用对象语法：
+
+``` html
+<div v-bind:class="[classA, { classB: isB, classC: isC }]">
+```
+
+
 ## 绑定内联样式
 
 ### 对象语法

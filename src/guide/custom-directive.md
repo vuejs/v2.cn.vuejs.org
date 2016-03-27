@@ -241,7 +241,7 @@ Vue.directive('example', {
     this.handler = function () {
       // 将数据写回 vm
       // 如果指令这样绑定 v-example="a.b.c"
-      // 它将用给定值设置 `vm.a.b.c`	  
+      // 它将用给定值设置 `vm.a.b.c`
       this.set(this.el.value)
     }.bind(this)
     this.el.addEventListener('input', this.handler)
@@ -272,8 +272,51 @@ Vue.directive('my-directive', {
 
 明智地使用，因为通常你要在模板中避免副效应。
 
+### terminal
+
+> 1.0.19+
+
+Vue 通过递归遍历 DOM 树来编译模块。但是当它遇到 **terminal** 指令时会停止遍历这个元素的后代元素。这个指令将接管编译这个元素及其后代元素的任务。`v-if` 和 `v-for` 都是 terminal 指令。
+
+编写自定义 terminal 指令是一个高级话题，需要较好的理解 Vue 的编译流程，但这不是说不可能编写自定义 terminal 指令。用 `terminal: true` 指定自定义 terminal 指令，可能还需要用 `Vue.FragmentFactory` 来编译 partial。下面是一个自定义 terminal 指令，它编译它的内容模板并将结果注入到页面的另一个地方：
+
+``` js
+var FragmentFactory = Vue.FragmentFactory
+var remove = Vue.util.remove
+var createAnchor = Vue.util.createAnchor
+
+Vue.directive('inject', {
+  terminal: true,
+  bind: function () {
+    var container = document.getElementById(this.arg)
+    this.anchor = createAnchor('v-inject')
+    container.appendChild(this.anchor)
+    remove(this.el)
+    var factory = new FragmentFactory(this.vm, this.el)
+    this.frag = factory.create(this._host, this._scope, this._frag)
+    this.frag.before(this.anchor)
+  },
+  unbind: function () {
+    this.frag.remove()
+    remove(this.anchor)
+  }
+})
+```
+
+``` html
+<div id="modal"></div>
+...
+<div v-inject:modal>
+  <h1>header</h1>
+  <p>body</p>
+  <p>footer</p>
+</div>
+```
+
+如果你想编写自定义 terminal 指令，建议你通读内置 terminal 指令的源码，如 `v-if` 和 `v-for`，以便更好地了解 Vue 的内部机制。
+
 ### priority
 
-可以给指令指定一个优先级（默认是 1000）。同一个元素上优先级高的指令会比其它指令处理得早一些。优先级一样的指令按照它在元素特性列表中出现的顺序依次处理，但是不能保证这个顺序在不同的浏览器中是一致的。
+可以给指令指定一个优先级。如果没有指定，普通指令默认是 `1000`， terminal 指令默认是 `2000`。同一个元素上优先级高的指令会比其它指令处理得早一些。优先级一样的指令按照它在元素特性列表中出现的顺序依次处理，但是不能保证这个顺序在不同的浏览器中是一致的。
 
 可以在 [API](/api/#指令) 中查看内置指令的优先级。另外，流程控制指令 `v-if` 和 `v-for` 在编译过程中始终拥有最高的优先级。

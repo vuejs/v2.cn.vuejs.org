@@ -2,13 +2,19 @@
 title: 安装
 type: guide
 order: 0
-vue_version: 1.0.18
-dev_size: "255.26"
-min_size: "72.36"
-gz_size: "24.91"
+vue_version: 1.0.20
+dev_size: "258.56"
+min_size: "72.92"
+gz_size: "25.10"
 ---
 
-> **兼容性提示：** Vue.js 不支持 IE8 及其以下版本。
+### 兼容性
+
+Vue.js 不支持 IE8 及其以下版本，因为 Vue.js 使用了 IE8 不能实现的 ECMAScript 5 特性。 Vue.js 支持所有[兼容 ECMASCript 5 的浏览器](http://caniuse.com/#feat=es5)。
+
+### 更新日志
+
+每个版本的更新日志见 [GitHub](https://github.com/vuejs/vue/releases)。
 
 ## 独立版本
 
@@ -56,7 +62,7 @@ $ npm run dev
 
 ## 开发版本
 
-**重要**：发布到 NPM 上的 CommonJS 包 (`vue.common.js`) **没有**签入源码，因此要使用 GitHub 上最新的源码，自己编译：
+**重要**：发布到 NPM 上的 CommonJS 包 (`vue.common.js`) 只在发布新版本时签入 master 分支，所以这些文件在 dev 分支下跟稳定版本是一样的。想使用 GitHub 上最新的源码，需要自己编译：
 
 ``` bash
 git clone https://github.com/vuejs/vue.git node_modules/vue

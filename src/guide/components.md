@@ -134,13 +134,37 @@ var MyComponent = Vue.extend({
 
 同理，`el` 选项用在 `Vue.extend()` 中时也须是一个函数。
 
-### `is` 特性
+### 模板解析
 
-一些 HTML 元素，如 `<table>`，限制什么元素可以放在它里面。自定义元素不在白名单上，将被放在元素的外面，因而渲染不正确。这时应当使用 `is` 特性，指示它是一个自定义元素：
+Vue 的模板是 DOM 模板，使用浏览器原生的解析器而不是自己实现一个。相对于字符串模板这有一些好处，但是也有问题。DOM 模板必须是有效的 HTML 片段。一些 HTML 元素对什么元素可以放在它里面有限制。常见的限制：
+
+- `a` 不能包含其它的交互元素（如按钮，链接）
+- `ul` 和 `ol` 只能直接包含 `li`
+- `select` 只能包含 `option` 和 `optgroup`
+- `table` 只能直接包含 `thead`, `tbody`, `tfoot`, `tr`, `caption`, `col`, `colgroup`
+- `tr` 只能直接包含 `th` 和 `td`
+
+
+在实际中，这些限制会导致意外的结果。尽管在简单的情况下它可能可以工作，但是你不能依赖自定义组件在浏览器验证之前的展开结果。例如 `<my-select><option>...</option></my-select>` 不是有效的模板，即使 `my-select` 组件最终展开为 `<select>...</select>`。
+
+另一个结果是，自定义标签（包括自定义元素和特殊标签，如 `<component>`、`<template>`、 `<partial>` ）不能用在 `ul`, `select`, `table` 等对内部元素有限制的标签内。放在这些元素内部的自定义标签将被提到元素的外面，因而渲染不正确。
+
+对于自定义元素，应当使用 `is` 特性：
 
 ``` html
 <table>
   <tr is="my-component"></tr>
+</table>
+```
+
+`<template>` 不能用在 `<table>` 内，这时应使用 `<tbody>`，`<table>` 可以有多个 `<tbody>`：
+
+``` html
+<table>
+  <tbody v-for="item in items">
+    <tr>Even row</tr>
+    <tr>Odd row</tr>
+  </tbody>
 </table>
 ```
 

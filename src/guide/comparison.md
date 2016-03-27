@@ -32,7 +32,7 @@ Vue.js 不使用 Virtual DOM 而是使用真实 DOM 作为模板，数据绑定�
 
 在 API 方面，React（或 JSX）的一个问题是，渲染函数常常包含大量的逻辑，最终看着更像是程序片断（实际上就是）而不是界面的视觉呈现。对于部分开发者来说，他们可能觉得这是个优点，但对那些像我一样兼顾设计和开发的人来说，模板能让我们更好地在视觉上思考设计和 CSS。JSX 和 JavaScript 逻辑的混合干扰了我将代码映射到设计的思维过程。相反，Vue.js 通过在模板中加入一个轻量级的 DSL (指令系统)，换来一个依旧直观的模板，且能将逻辑封装进指令和过滤器中。
 
-React 的另一个问题是：由于 DOM 更新完全交给 Virtual DOM 管理，当想要自己控制 DOM 时就有点棘手了（虽然理论上可以做到，但是这样做就本质上违背了 React 的设计思想）。如果应用需要特别的自定义 DOM 操作，特别是复杂时间控制的动画，这个限制就很讨厌。在这方面，Vue.js 更灵活，有许多用 Vue.js 制作的 [FWA/Awwwards 获奖站点](https://github.com/vuejs/vue/wiki/Projects-Using-Vue.js#interactive-experiences)。
+React 的另一个问题是：由于 DOM 更新完全交给 Virtual DOM 管理，当想要自己控制 DOM 时就有点棘手了（虽然理论上可以做到，但是这样做就本质上违背了 React 的设计思想）。如果应用需要特别的自定义 DOM 操作，特别是复杂时间控制的动画，这个限制就很讨厌。在这方面，Vue.js 更灵活，有许多用 Vue.js 制作的 [FWA/Awwwards 获奖站点](https://github.com/vuejs/awesome-vue#interactive-experiences)。
 
 再多说几句：
 
@@ -42,7 +42,7 @@ React 的另一个问题是：由于 DOM 更新完全交给 Virtual DOM 管理�
 
 - 对于大型应用，React 社区已经创造了大量的状态管理方案，例如 Flux/Redux。Vue 本身不解决这个问题（React 内核也是），但是可以轻松地修改状态管理模式，实现一个类似的架构。Vue 有自己的状态管理方案 [Vuex](https://github.com/vuejs/vuex)，而且 Vue 也可以与 [Redux](https://github.com/egoist/revue) 一起用。
 
-- React 的开发趋势是将所有东西都放在 JavaScript 中，包括 CSS。已经有许多 CSS-in-JS 方案，但是所有的方案多多少少都有它的问题。而且更重要的是，这么做脱离了标准的 CSS 开发经验，并且很难和 CSS 社区的已有工作配合。Vue 的 [单文件组件](http://vuejs.org/guide/application.html#单文件组件) 在把 CSS 封装到组件模块的同时仍然允许你使用你喜欢的预处理器。
+- React 的开发趋势是将所有东西都放在 JavaScript 中，包括 CSS。已经有许多 CSS-in-JS 方案，但是所有的方案多多少少都有它的问题。而且更重要的是，这么做脱离了标准的 CSS 开发经验，并且很难和 CSS 社区的已有工作配合。Vue 的 [单文件组件](/guide/application.html#单文件组件) 在把 CSS 封装到组件模块的同时仍然允许你使用你喜欢的预处理器。
 
 ## Ember
 

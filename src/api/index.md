@@ -562,7 +562,7 @@ type: api
 
 - **另见：**
   - [生命周期图示](/guide/instance.html#生命周期图示)
-  - [使用 slot 分发内容](/guide/components.html#使用 slot 分发内容)
+  - [使用 slot 分发内容](/guide/components.html#使用-Slot-分发内容)
   - [片断实例](/guide/components.html#片断实例)
 
 ### replace
@@ -731,7 +731,7 @@ type: api
   一个对象，包含元素指令。
 
 - **另见：**
-  - [元素指令](/guide/custom-directive.html#Element_Directives)
+  - [元素指令](/guide/custom-directive.html#Element-Directives)
   - [资源命名约定](/guide/components.html#资源命名约定)
 
 ### filters
@@ -902,7 +902,7 @@ type: api
 
 - **详细：**
 
-  Vue 实例的挂载元素。注意对于[片段实例](/guide/components.html#Fragment_Instance)，`vm.$el` 返回一个锚节点，指示片断的开始位置。
+  Vue 实例的挂载元素。注意对于[片段实例](/guide/components.html#片断实例)，`vm.$el` 返回一个锚节点，指示片断的开始位置。
 
 ### vm.$options
 
@@ -1646,6 +1646,7 @@ type: api
   <!-- 绑定 class -->
   <div :class="{ red: isRed }"></div>
   <div :class="[classA, classB]"></div>
+  <div :class="[classA, { classB: isB, classC: isC }]"></div>
 
   <!-- 绑定 style -->
   <div :style="{ fontSize: size + 'px' }"></div>
@@ -1827,7 +1828,7 @@ type: api
 
   有 `name` 特性的 slot 称为命名 slot。 有 `slot` 特性的内容将分发到名字相匹配的命名 slot。
 
-- **另见：** [使用 slot 分发内容](/guide/components.html#使用 slot 分发内容)
+- **另见：** [使用 slot 分发内容](/guide/components.html#使用-Slot-分发内容)
 
 ### partial
 

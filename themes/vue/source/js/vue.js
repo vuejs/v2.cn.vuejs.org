@@ -1,5 +1,5 @@
 /*!
- * Vue.js v1.0.18
+ * Vue.js v1.0.20
  * (c) 2016 Evan You
  * Released under the MIT License.
  */
@@ -648,7 +648,7 @@
    *   ]
    * }
    *
-   * @param {String} str
+   * @param {String} s
    * @return {Object}
    */
 
@@ -1254,6 +1254,22 @@ var transition = Object.freeze({
   }
 
   /**
+   * For IE9 compat: when both class and :class are present
+   * getAttribute('class') returns wrong value...
+   *
+   * @param {Element} el
+   * @return {String}
+   */
+
+  function getClass(el) {
+    var classname = el.className;
+    if (typeof classname === 'object') {
+      classname = classname.baseVal || '';
+    }
+    return classname;
+  }
+
+  /**
    * In IE9, setAttribute('class') will result in empty class
    * if the element also has the :class attribute; However in
    * PhantomJS, setting `className` does not work on SVG elements...
@@ -1283,7 +1299,7 @@ var transition = Object.freeze({
     if (el.classList) {
       el.classList.add(cls);
     } else {
-      var cur = ' ' + (el.getAttribute('class') || '') + ' ';
+      var cur = ' ' + getClass(el) + ' ';
       if (cur.indexOf(' ' + cls + ' ') < 0) {
         setClass(el, (cur + cls).trim());
       }
@@ -1301,7 +1317,7 @@ var transition = Object.freeze({
     if (el.classList) {
       el.classList.remove(cls);
     } else {
-      var cur = ' ' + (el.getAttribute('class') || '') + ' ';
+      var cur = ' ' + getClass(el) + ' ';
       var tar = ' ' + cls + ' ';
       while (cur.indexOf(tar) >= 0) {
         cur = cur.replace(tar, ' ');
@@ -1500,344 +1516,6 @@ var transition = Object.freeze({
     }
   }
 
-  var uid$1 = 0;
-
-  /**
-   * A dep is an observable that can have multiple
-   * directives subscribing to it.
-   *
-   * @constructor
-   */
-  function Dep() {
-    this.id = uid$1++;
-    this.subs = [];
-  }
-
-  // the current target watcher being evaluated.
-  // this is globally unique because there could be only one
-  // watcher being evaluated at any time.
-  Dep.target = null;
-
-  /**
-   * Add a directive subscriber.
-   *
-   * @param {Directive} sub
-   */
-
-  Dep.prototype.addSub = function (sub) {
-    this.subs.push(sub);
-  };
-
-  /**
-   * Remove a directive subscriber.
-   *
-   * @param {Directive} sub
-   */
-
-  Dep.prototype.removeSub = function (sub) {
-    this.subs.$remove(sub);
-  };
-
-  /**
-   * Add self as a dependency to the target watcher.
-   */
-
-  Dep.prototype.depend = function () {
-    Dep.target.addDep(this);
-  };
-
-  /**
-   * Notify all subscribers of a new value.
-   */
-
-  Dep.prototype.notify = function () {
-    // stablize the subscriber list first
-    var subs = toArray(this.subs);
-    for (var i = 0, l = subs.length; i < l; i++) {
-      subs[i].update();
-    }
-  };
-
-  var arrayProto = Array.prototype;
-  var arrayMethods = Object.create(arrayProto)
-
-  /**
-   * Intercept mutating methods and emit events
-   */
-
-  ;['push', 'pop', 'shift', 'unshift', 'splice', 'sort', 'reverse'].forEach(function (method) {
-    // cache original method
-    var original = arrayProto[method];
-    def(arrayMethods, method, function mutator() {
-      // avoid leaking arguments:
-      // http://jsperf.com/closure-with-arguments
-      var i = arguments.length;
-      var args = new Array(i);
-      while (i--) {
-        args[i] = arguments[i];
-      }
-      var result = original.apply(this, args);
-      var ob = this.__ob__;
-      var inserted;
-      switch (method) {
-        case 'push':
-          inserted = args;
-          break;
-        case 'unshift':
-          inserted = args;
-          break;
-        case 'splice':
-          inserted = args.slice(2);
-          break;
-      }
-      if (inserted) ob.observeArray(inserted);
-      // notify change
-      ob.dep.notify();
-      return result;
-    });
-  });
-
-  /**
-   * Swap the element at the given index with a new value
-   * and emits corresponding event.
-   *
-   * @param {Number} index
-   * @param {*} val
-   * @return {*} - replaced element
-   */
-
-  def(arrayProto, '$set', function $set(index, val) {
-    if (index >= this.length) {
-      this.length = Number(index) + 1;
-    }
-    return this.splice(index, 1, val)[0];
-  });
-
-  /**
-   * Convenience method to remove the element at given index.
-   *
-   * @param {Number} index
-   * @param {*} val
-   */
-
-  def(arrayProto, '$remove', function $remove(item) {
-    /* istanbul ignore if */
-    if (!this.length) return;
-    var index = indexOf(this, item);
-    if (index > -1) {
-      return this.splice(index, 1);
-    }
-  });
-
-  var arrayKeys = Object.getOwnPropertyNames(arrayMethods);
-
-  /**
-   * Observer class that are attached to each observed
-   * object. Once attached, the observer converts target
-   * object's property keys into getter/setters that
-   * collect dependencies and dispatches updates.
-   *
-   * @param {Array|Object} value
-   * @constructor
-   */
-
-  function Observer(value) {
-    this.value = value;
-    this.dep = new Dep();
-    def(value, '__ob__', this);
-    if (isArray(value)) {
-      var augment = hasProto ? protoAugment : copyAugment;
-      augment(value, arrayMethods, arrayKeys);
-      this.observeArray(value);
-    } else {
-      this.walk(value);
-    }
-  }
-
-  // Instance methods
-
-  /**
-   * Walk through each property and convert them into
-   * getter/setters. This method should only be called when
-   * value type is Object.
-   *
-   * @param {Object} obj
-   */
-
-  Observer.prototype.walk = function (obj) {
-    var keys = Object.keys(obj);
-    for (var i = 0, l = keys.length; i < l; i++) {
-      this.convert(keys[i], obj[keys[i]]);
-    }
-  };
-
-  /**
-   * Observe a list of Array items.
-   *
-   * @param {Array} items
-   */
-
-  Observer.prototype.observeArray = function (items) {
-    for (var i = 0, l = items.length; i < l; i++) {
-      observe(items[i]);
-    }
-  };
-
-  /**
-   * Convert a property into getter/setter so we can emit
-   * the events when the property is accessed/changed.
-   *
-   * @param {String} key
-   * @param {*} val
-   */
-
-  Observer.prototype.convert = function (key, val) {
-    defineReactive(this.value, key, val);
-  };
-
-  /**
-   * Add an owner vm, so that when $set/$delete mutations
-   * happen we can notify owner vms to proxy the keys and
-   * digest the watchers. This is only called when the object
-   * is observed as an instance's root $data.
-   *
-   * @param {Vue} vm
-   */
-
-  Observer.prototype.addVm = function (vm) {
-    (this.vms || (this.vms = [])).push(vm);
-  };
-
-  /**
-   * Remove an owner vm. This is called when the object is
-   * swapped out as an instance's $data object.
-   *
-   * @param {Vue} vm
-   */
-
-  Observer.prototype.removeVm = function (vm) {
-    this.vms.$remove(vm);
-  };
-
-  // helpers
-
-  /**
-   * Augment an target Object or Array by intercepting
-   * the prototype chain using __proto__
-   *
-   * @param {Object|Array} target
-   * @param {Object} proto
-   */
-
-  function protoAugment(target, src) {
-    /* eslint-disable no-proto */
-    target.__proto__ = src;
-    /* eslint-enable no-proto */
-  }
-
-  /**
-   * Augment an target Object or Array by defining
-   * hidden properties.
-   *
-   * @param {Object|Array} target
-   * @param {Object} proto
-   */
-
-  function copyAugment(target, src, keys) {
-    for (var i = 0, l = keys.length; i < l; i++) {
-      var key = keys[i];
-      def(target, key, src[key]);
-    }
-  }
-
-  /**
-   * Attempt to create an observer instance for a value,
-   * returns the new observer if successfully observed,
-   * or the existing observer if the value already has one.
-   *
-   * @param {*} value
-   * @param {Vue} [vm]
-   * @return {Observer|undefined}
-   * @static
-   */
-
-  function observe(value, vm) {
-    if (!value || typeof value !== 'object') {
-      return;
-    }
-    var ob;
-    if (hasOwn(value, '__ob__') && value.__ob__ instanceof Observer) {
-      ob = value.__ob__;
-    } else if ((isArray(value) || isPlainObject(value)) && Object.isExtensible(value) && !value._isVue) {
-      ob = new Observer(value);
-    }
-    if (ob && vm) {
-      ob.addVm(vm);
-    }
-    return ob;
-  }
-
-  /**
-   * Define a reactive property on an Object.
-   *
-   * @param {Object} obj
-   * @param {String} key
-   * @param {*} val
-   * @param {Boolean} doNotObserve
-   */
-
-  function defineReactive(obj, key, val, doNotObserve) {
-    var dep = new Dep();
-
-    var property = Object.getOwnPropertyDescriptor(obj, key);
-    if (property && property.configurable === false) {
-      return;
-    }
-
-    // cater for pre-defined getter/setters
-    var getter = property && property.get;
-    var setter = property && property.set;
-
-    // if doNotObserve is true, only use the child value observer
-    // if it already exists, and do not attempt to create it.
-    // this allows freezing a large object from the root and
-    // avoid unnecessary observation inside v-for fragments.
-    var childOb = doNotObserve ? isObject(val) && val.__ob__ : observe(val);
-    Object.defineProperty(obj, key, {
-      enumerable: true,
-      configurable: true,
-      get: function reactiveGetter() {
-        var value = getter ? getter.call(obj) : val;
-        if (Dep.target) {
-          dep.depend();
-          if (childOb) {
-            childOb.dep.depend();
-          }
-          if (isArray(value)) {
-            for (var e, i = 0, l = value.length; i < l; i++) {
-              e = value[i];
-              e && e.__ob__ && e.__ob__.dep.depend();
-            }
-          }
-        }
-        return value;
-      },
-      set: function reactiveSetter(newVal) {
-        var value = getter ? getter.call(obj) : val;
-        if (newVal === value) {
-          return;
-        }
-        if (setter) {
-          setter.call(obj, newVal);
-        } else {
-          val = newVal;
-        }
-        childOb = doNotObserve ? isObject(newVal) && newVal.__ob__ : observe(newVal);
-        dep.notify();
-      }
-    });
-  }
-
   var commonTagRE = /^(div|p|span|img|a|b|i|br|ul|ol|li|h1|h2|h3|h4|h5|h6|code|pre|table|th|td|tr|form|label|input|select|option|nav|article|section|header|footer)$/i;
   var reservedTagRE = /^(slot|partial|component)$/i;
 
@@ -1908,128 +1586,6 @@ var transition = Object.freeze({
         return { id: exp, dynamic: true };
       }
     }
-  }
-
-  /**
-   * Set a prop's initial value on a vm and its data object.
-   *
-   * @param {Vue} vm
-   * @param {Object} prop
-   * @param {*} value
-   */
-
-  function initProp(vm, prop, value) {
-    var key = prop.path;
-    value = coerceProp(prop, value);
-    if (value === undefined) {
-      value = getPropDefaultValue(vm, prop.options);
-    }
-    if (assertProp(prop, value)) {
-      defineReactive(vm, key, value, true /* doNotObserve */);
-    }
-  }
-
-  /**
-   * Get the default value of a prop.
-   *
-   * @param {Vue} vm
-   * @param {Object} options
-   * @return {*}
-   */
-
-  function getPropDefaultValue(vm, options) {
-    // no default, return undefined
-    if (!hasOwn(options, 'default')) {
-      // absent boolean value defaults to false
-      return options.type === Boolean ? false : undefined;
-    }
-    var def = options['default'];
-    // warn against non-factory defaults for Object & Array
-    if (isObject(def)) {
-      'development' !== 'production' && warn('Object/Array as default prop values will be shared ' + 'across multiple instances. Use a factory function ' + 'to return the default value instead.');
-    }
-    // call factory function for non-Function types
-    return typeof def === 'function' && options.type !== Function ? def.call(vm) : def;
-  }
-
-  /**
-   * Assert whether a prop is valid.
-   *
-   * @param {Object} prop
-   * @param {*} value
-   */
-
-  function assertProp(prop, value) {
-    if (!prop.options.required && ( // non-required
-    prop.raw === null || // abscent
-    value == null) // null or undefined
-    ) {
-        return true;
-      }
-    var options = prop.options;
-    var type = options.type;
-    var valid = true;
-    var expectedType;
-    if (type) {
-      if (type === String) {
-        expectedType = 'string';
-        valid = typeof value === expectedType;
-      } else if (type === Number) {
-        expectedType = 'number';
-        valid = typeof value === 'number';
-      } else if (type === Boolean) {
-        expectedType = 'boolean';
-        valid = typeof value === 'boolean';
-      } else if (type === Function) {
-        expectedType = 'function';
-        valid = typeof value === 'function';
-      } else if (type === Object) {
-        expectedType = 'object';
-        valid = isPlainObject(value);
-      } else if (type === Array) {
-        expectedType = 'array';
-        valid = isArray(value);
-      } else {
-        valid = value instanceof type;
-      }
-    }
-    if (!valid) {
-      'development' !== 'production' && warn('Invalid prop: type check failed for ' + prop.path + '="' + prop.raw + '".' + ' Expected ' + formatType(expectedType) + ', got ' + formatValue(value) + '.');
-      return false;
-    }
-    var validator = options.validator;
-    if (validator) {
-      if (!validator(value)) {
-        'development' !== 'production' && warn('Invalid prop: custom validator check failed for ' + prop.path + '="' + prop.raw + '"');
-        return false;
-      }
-    }
-    return true;
-  }
-
-  /**
-   * Force parsing value with coerce option.
-   *
-   * @param {*} value
-   * @param {Object} options
-   * @return {*}
-   */
-
-  function coerceProp(prop, value) {
-    var coerce = prop.options.coerce;
-    if (!coerce) {
-      return value;
-    }
-    // coerce is a function
-    return coerce(value);
-  }
-
-  function formatType(val) {
-    return val ? val.charAt(0).toUpperCase() + val.slice(1) : 'custom type';
-  }
-
-  function formatValue(val) {
-    return Object.prototype.toString.call(val).slice(8, -1);
   }
 
   /**
@@ -2359,6 +1915,357 @@ var transition = Object.freeze({
     }
   }
 
+  var uid$1 = 0;
+
+  /**
+   * A dep is an observable that can have multiple
+   * directives subscribing to it.
+   *
+   * @constructor
+   */
+  function Dep() {
+    this.id = uid$1++;
+    this.subs = [];
+  }
+
+  // the current target watcher being evaluated.
+  // this is globally unique because there could be only one
+  // watcher being evaluated at any time.
+  Dep.target = null;
+
+  /**
+   * Add a directive subscriber.
+   *
+   * @param {Directive} sub
+   */
+
+  Dep.prototype.addSub = function (sub) {
+    this.subs.push(sub);
+  };
+
+  /**
+   * Remove a directive subscriber.
+   *
+   * @param {Directive} sub
+   */
+
+  Dep.prototype.removeSub = function (sub) {
+    this.subs.$remove(sub);
+  };
+
+  /**
+   * Add self as a dependency to the target watcher.
+   */
+
+  Dep.prototype.depend = function () {
+    Dep.target.addDep(this);
+  };
+
+  /**
+   * Notify all subscribers of a new value.
+   */
+
+  Dep.prototype.notify = function () {
+    // stablize the subscriber list first
+    var subs = toArray(this.subs);
+    for (var i = 0, l = subs.length; i < l; i++) {
+      subs[i].update();
+    }
+  };
+
+  var arrayProto = Array.prototype;
+  var arrayMethods = Object.create(arrayProto)
+
+  /**
+   * Intercept mutating methods and emit events
+   */
+
+  ;['push', 'pop', 'shift', 'unshift', 'splice', 'sort', 'reverse'].forEach(function (method) {
+    // cache original method
+    var original = arrayProto[method];
+    def(arrayMethods, method, function mutator() {
+      // avoid leaking arguments:
+      // http://jsperf.com/closure-with-arguments
+      var i = arguments.length;
+      var args = new Array(i);
+      while (i--) {
+        args[i] = arguments[i];
+      }
+      var result = original.apply(this, args);
+      var ob = this.__ob__;
+      var inserted;
+      switch (method) {
+        case 'push':
+          inserted = args;
+          break;
+        case 'unshift':
+          inserted = args;
+          break;
+        case 'splice':
+          inserted = args.slice(2);
+          break;
+      }
+      if (inserted) ob.observeArray(inserted);
+      // notify change
+      ob.dep.notify();
+      return result;
+    });
+  });
+
+  /**
+   * Swap the element at the given index with a new value
+   * and emits corresponding event.
+   *
+   * @param {Number} index
+   * @param {*} val
+   * @return {*} - replaced element
+   */
+
+  def(arrayProto, '$set', function $set(index, val) {
+    if (index >= this.length) {
+      this.length = Number(index) + 1;
+    }
+    return this.splice(index, 1, val)[0];
+  });
+
+  /**
+   * Convenience method to remove the element at given index.
+   *
+   * @param {Number} index
+   * @param {*} val
+   */
+
+  def(arrayProto, '$remove', function $remove(item) {
+    /* istanbul ignore if */
+    if (!this.length) return;
+    var index = indexOf(this, item);
+    if (index > -1) {
+      return this.splice(index, 1);
+    }
+  });
+
+  var arrayKeys = Object.getOwnPropertyNames(arrayMethods);
+
+  /**
+   * By default, when a reactive property is set, the new value is
+   * also converted to become reactive. However in certain cases, e.g.
+   * v-for scope alias and props, we don't want to force conversion
+   * because the value may be a nested value under a frozen data structure.
+   *
+   * So whenever we want to set a reactive property without forcing
+   * conversion on the new value, we wrap that call inside this function.
+   */
+
+  var shouldConvert = true;
+
+  function withoutConversion(fn) {
+    shouldConvert = false;
+    fn();
+    shouldConvert = true;
+  }
+
+  /**
+   * Observer class that are attached to each observed
+   * object. Once attached, the observer converts target
+   * object's property keys into getter/setters that
+   * collect dependencies and dispatches updates.
+   *
+   * @param {Array|Object} value
+   * @constructor
+   */
+
+  function Observer(value) {
+    this.value = value;
+    this.dep = new Dep();
+    def(value, '__ob__', this);
+    if (isArray(value)) {
+      var augment = hasProto ? protoAugment : copyAugment;
+      augment(value, arrayMethods, arrayKeys);
+      this.observeArray(value);
+    } else {
+      this.walk(value);
+    }
+  }
+
+  // Instance methods
+
+  /**
+   * Walk through each property and convert them into
+   * getter/setters. This method should only be called when
+   * value type is Object.
+   *
+   * @param {Object} obj
+   */
+
+  Observer.prototype.walk = function (obj) {
+    var keys = Object.keys(obj);
+    for (var i = 0, l = keys.length; i < l; i++) {
+      this.convert(keys[i], obj[keys[i]]);
+    }
+  };
+
+  /**
+   * Observe a list of Array items.
+   *
+   * @param {Array} items
+   */
+
+  Observer.prototype.observeArray = function (items) {
+    for (var i = 0, l = items.length; i < l; i++) {
+      observe(items[i]);
+    }
+  };
+
+  /**
+   * Convert a property into getter/setter so we can emit
+   * the events when the property is accessed/changed.
+   *
+   * @param {String} key
+   * @param {*} val
+   */
+
+  Observer.prototype.convert = function (key, val) {
+    defineReactive(this.value, key, val);
+  };
+
+  /**
+   * Add an owner vm, so that when $set/$delete mutations
+   * happen we can notify owner vms to proxy the keys and
+   * digest the watchers. This is only called when the object
+   * is observed as an instance's root $data.
+   *
+   * @param {Vue} vm
+   */
+
+  Observer.prototype.addVm = function (vm) {
+    (this.vms || (this.vms = [])).push(vm);
+  };
+
+  /**
+   * Remove an owner vm. This is called when the object is
+   * swapped out as an instance's $data object.
+   *
+   * @param {Vue} vm
+   */
+
+  Observer.prototype.removeVm = function (vm) {
+    this.vms.$remove(vm);
+  };
+
+  // helpers
+
+  /**
+   * Augment an target Object or Array by intercepting
+   * the prototype chain using __proto__
+   *
+   * @param {Object|Array} target
+   * @param {Object} src
+   */
+
+  function protoAugment(target, src) {
+    /* eslint-disable no-proto */
+    target.__proto__ = src;
+    /* eslint-enable no-proto */
+  }
+
+  /**
+   * Augment an target Object or Array by defining
+   * hidden properties.
+   *
+   * @param {Object|Array} target
+   * @param {Object} proto
+   */
+
+  function copyAugment(target, src, keys) {
+    for (var i = 0, l = keys.length; i < l; i++) {
+      var key = keys[i];
+      def(target, key, src[key]);
+    }
+  }
+
+  /**
+   * Attempt to create an observer instance for a value,
+   * returns the new observer if successfully observed,
+   * or the existing observer if the value already has one.
+   *
+   * @param {*} value
+   * @param {Vue} [vm]
+   * @return {Observer|undefined}
+   * @static
+   */
+
+  function observe(value, vm) {
+    if (!value || typeof value !== 'object') {
+      return;
+    }
+    var ob;
+    if (hasOwn(value, '__ob__') && value.__ob__ instanceof Observer) {
+      ob = value.__ob__;
+    } else if (shouldConvert && (isArray(value) || isPlainObject(value)) && Object.isExtensible(value) && !value._isVue) {
+      ob = new Observer(value);
+    }
+    if (ob && vm) {
+      ob.addVm(vm);
+    }
+    return ob;
+  }
+
+  /**
+   * Define a reactive property on an Object.
+   *
+   * @param {Object} obj
+   * @param {String} key
+   * @param {*} val
+   */
+
+  function defineReactive(obj, key, val) {
+    var dep = new Dep();
+
+    var property = Object.getOwnPropertyDescriptor(obj, key);
+    if (property && property.configurable === false) {
+      return;
+    }
+
+    // cater for pre-defined getter/setters
+    var getter = property && property.get;
+    var setter = property && property.set;
+
+    var childOb = observe(val);
+    Object.defineProperty(obj, key, {
+      enumerable: true,
+      configurable: true,
+      get: function reactiveGetter() {
+        var value = getter ? getter.call(obj) : val;
+        if (Dep.target) {
+          dep.depend();
+          if (childOb) {
+            childOb.dep.depend();
+          }
+          if (isArray(value)) {
+            for (var e, i = 0, l = value.length; i < l; i++) {
+              e = value[i];
+              e && e.__ob__ && e.__ob__.dep.depend();
+            }
+          }
+        }
+        return value;
+      },
+      set: function reactiveSetter(newVal) {
+        var value = getter ? getter.call(obj) : val;
+        if (newVal === value) {
+          return;
+        }
+        if (setter) {
+          setter.call(obj, newVal);
+        } else {
+          val = newVal;
+        }
+        childOb = observe(newVal);
+        dep.notify();
+      }
+    });
+  }
+
 
 
   var util = Object.freeze({
@@ -2424,9 +2331,6 @@ var transition = Object.freeze({
   	resolveAsset: resolveAsset,
   	assertAsset: assertAsset,
   	checkComponentAttr: checkComponentAttr,
-  	initProp: initProp,
-  	assertProp: assertProp,
-  	coerceProp: coerceProp,
   	commonTagRE: commonTagRE,
   	reservedTagRE: reservedTagRE,
   	get warn () { return warn; }
@@ -3170,7 +3074,7 @@ var expression = Object.freeze({
    * This is used for both the $watch() api and directives.
    *
    * @param {Vue} vm
-   * @param {String} expression
+   * @param {String|Function} expOrFn
    * @param {Function} cb
    * @param {Object} options
    *                 - {Array} filters
@@ -3772,6 +3676,7 @@ var template = Object.freeze({
    * @param {DocumentFragment} frag
    * @param {Vue} [host]
    * @param {Object} [scope]
+   * @param {Fragment} [parentFrag]
    */
   function Fragment(linker, vm, frag, host, scope, parentFrag) {
     this.children = [];
@@ -4019,6 +3924,7 @@ var template = Object.freeze({
   var vFor = {
 
     priority: FOR,
+    terminal: true,
 
     params: ['track-by', 'stagger', 'enter-stagger', 'leave-stagger'],
 
@@ -4128,7 +4034,9 @@ var template = Object.freeze({
           // update data for track-by, object repeat &
           // primitive values.
           if (trackByKey || convertedFromObject || primitive) {
-            frag.scope[alias] = value;
+            withoutConversion(function () {
+              frag.scope[alias] = value;
+            });
           }
         } else {
           // new isntance
@@ -4218,7 +4126,11 @@ var template = Object.freeze({
       // for two-way binding on alias
       scope.$forContext = this;
       // define scope properties
-      defineReactive(scope, alias, value, true /* do not observe */);
+      // important: define the scope alias without forced conversion
+      // so that frozen data structures remain non-reactive.
+      withoutConversion(function () {
+        defineReactive(scope, alias, value);
+      });
       defineReactive(scope, '$index', index);
       if (key) {
         defineReactive(scope, '$key', key);
@@ -4594,6 +4506,7 @@ var template = Object.freeze({
   var vIf = {
 
     priority: IF,
+    terminal: true,
 
     bind: function bind() {
       var el = this.el;
@@ -5519,22 +5432,18 @@ var template = Object.freeze({
 
     handleObject: function handleObject(value) {
       this.cleanup(value);
-      var keys = this.prevKeys = Object.keys(value);
-      for (var i = 0, l = keys.length; i < l; i++) {
-        var key = keys[i];
-        if (value[key]) {
-          addClass(this.el, key);
-        } else {
-          removeClass(this.el, key);
-        }
-      }
+      this.prevKeys = Object.keys(value);
+      setObjectClasses(this.el, value);
     },
 
     handleArray: function handleArray(value) {
       this.cleanup(value);
       for (var i = 0, l = value.length; i < l; i++) {
-        if (value[i]) {
-          addClass(this.el, value[i]);
+        var val = value[i];
+        if (val && isPlainObject(val)) {
+          setObjectClasses(this.el, val);
+        } else if (val && typeof val === 'string') {
+          addClass(this.el, val);
         }
       }
       this.prevKeys = value.slice();
@@ -5545,13 +5454,29 @@ var template = Object.freeze({
         var i = this.prevKeys.length;
         while (i--) {
           var key = this.prevKeys[i];
-          if (key && (!value || !contains(value, key))) {
+          if (!key) continue;
+          if (isPlainObject(key)) {
+            var keys = Object.keys(key);
+            for (var k = 0; k < keys.length; k++) {
+              removeClass(this.el, keys[k]);
+            }
+          } else {
             removeClass(this.el, key);
           }
         }
       }
     }
   };
+
+  function setObjectClasses(el, obj) {
+    var keys = Object.keys(obj);
+    for (var i = 0, l = keys.length; i < l; i++) {
+      var key = keys[i];
+      if (obj[key]) {
+        addClass(el, key);
+      }
+    }
+  }
 
   function stringToObject(value) {
     var res = {};
@@ -5561,10 +5486,6 @@ var template = Object.freeze({
       res[keys[i]] = true;
     }
     return res;
-  }
-
-  function contains(value, key) {
-    return isArray(value) ? value.indexOf(key) > -1 : hasOwn(value, key);
   }
 
   var component = {
@@ -5663,16 +5584,19 @@ var template = Object.freeze({
     /**
      * Resolve the component constructor to use when creating
      * the child vm.
+     *
+     * @param {String|Function} value
+     * @param {Function} cb
      */
 
-    resolveComponent: function resolveComponent(id, cb) {
+    resolveComponent: function resolveComponent(value, cb) {
       var self = this;
       this.pendingComponentCb = cancellable(function (Component) {
-        self.ComponentName = Component.options.name || id;
+        self.ComponentName = Component.options.name || (typeof value === 'string' ? value : null);
         self.Component = Component;
         cb();
       });
-      this.vm._resolveComponent(id, this.pendingComponentCb);
+      this.vm._resolveComponent(value, this.pendingComponentCb);
     },
 
     /**
@@ -5804,7 +5728,9 @@ var template = Object.freeze({
 
     unbuild: function unbuild(defer) {
       if (this.waitingFor) {
-        this.waitingFor.$destroy();
+        if (!this.keepAlive) {
+          this.waitingFor.$destroy();
+        }
         this.waitingFor = null;
       }
       var child = this.childVM;
@@ -5923,6 +5849,288 @@ var template = Object.freeze({
     }
   }
 
+  var propBindingModes = config._propBindingModes;
+  var empty = {};
+
+  // regexes
+  var identRE$1 = /^[$_a-zA-Z]+[\w$]*$/;
+  var settablePathRE = /^[A-Za-z_$][\w$]*(\.[A-Za-z_$][\w$]*|\[[^\[\]]+\])*$/;
+
+  /**
+   * Compile props on a root element and return
+   * a props link function.
+   *
+   * @param {Element|DocumentFragment} el
+   * @param {Array} propOptions
+   * @return {Function} propsLinkFn
+   */
+
+  function compileProps(el, propOptions) {
+    var props = [];
+    var names = Object.keys(propOptions);
+    var i = names.length;
+    var options, name, attr, value, path, parsed, prop;
+    while (i--) {
+      name = names[i];
+      options = propOptions[name] || empty;
+
+      if ('development' !== 'production' && name === '$data') {
+        warn('Do not use $data as prop.');
+        continue;
+      }
+
+      // props could contain dashes, which will be
+      // interpreted as minus calculations by the parser
+      // so we need to camelize the path here
+      path = camelize(name);
+      if (!identRE$1.test(path)) {
+        'development' !== 'production' && warn('Invalid prop key: "' + name + '". Prop keys ' + 'must be valid identifiers.');
+        continue;
+      }
+
+      prop = {
+        name: name,
+        path: path,
+        options: options,
+        mode: propBindingModes.ONE_WAY,
+        raw: null
+      };
+
+      attr = hyphenate(name);
+      // first check dynamic version
+      if ((value = getBindAttr(el, attr)) === null) {
+        if ((value = getBindAttr(el, attr + '.sync')) !== null) {
+          prop.mode = propBindingModes.TWO_WAY;
+        } else if ((value = getBindAttr(el, attr + '.once')) !== null) {
+          prop.mode = propBindingModes.ONE_TIME;
+        }
+      }
+      if (value !== null) {
+        // has dynamic binding!
+        prop.raw = value;
+        parsed = parseDirective(value);
+        value = parsed.expression;
+        prop.filters = parsed.filters;
+        // check binding type
+        if (isLiteral(value) && !parsed.filters) {
+          // for expressions containing literal numbers and
+          // booleans, there's no need to setup a prop binding,
+          // so we can optimize them as a one-time set.
+          prop.optimizedLiteral = true;
+        } else {
+          prop.dynamic = true;
+          // check non-settable path for two-way bindings
+          if ('development' !== 'production' && prop.mode === propBindingModes.TWO_WAY && !settablePathRE.test(value)) {
+            prop.mode = propBindingModes.ONE_WAY;
+            warn('Cannot bind two-way prop with non-settable ' + 'parent path: ' + value);
+          }
+        }
+        prop.parentPath = value;
+
+        // warn required two-way
+        if ('development' !== 'production' && options.twoWay && prop.mode !== propBindingModes.TWO_WAY) {
+          warn('Prop "' + name + '" expects a two-way binding type.');
+        }
+      } else if ((value = getAttr(el, attr)) !== null) {
+        // has literal binding!
+        prop.raw = value;
+      } else if ('development' !== 'production') {
+        // check possible camelCase prop usage
+        var lowerCaseName = path.toLowerCase();
+        value = /[A-Z\-]/.test(name) && (el.getAttribute(lowerCaseName) || el.getAttribute(':' + lowerCaseName) || el.getAttribute('v-bind:' + lowerCaseName) || el.getAttribute(':' + lowerCaseName + '.once') || el.getAttribute('v-bind:' + lowerCaseName + '.once') || el.getAttribute(':' + lowerCaseName + '.sync') || el.getAttribute('v-bind:' + lowerCaseName + '.sync'));
+        if (value) {
+          warn('Possible usage error for prop `' + lowerCaseName + '` - ' + 'did you mean `' + attr + '`? HTML is case-insensitive, remember to use ' + 'kebab-case for props in templates.');
+        } else if (options.required) {
+          // warn missing required
+          warn('Missing required prop: ' + name);
+        }
+      }
+      // push prop
+      props.push(prop);
+    }
+    return makePropsLinkFn(props);
+  }
+
+  /**
+   * Build a function that applies props to a vm.
+   *
+   * @param {Array} props
+   * @return {Function} propsLinkFn
+   */
+
+  function makePropsLinkFn(props) {
+    return function propsLinkFn(vm, scope) {
+      // store resolved props info
+      vm._props = {};
+      var i = props.length;
+      var prop, path, options, value, raw;
+      while (i--) {
+        prop = props[i];
+        raw = prop.raw;
+        path = prop.path;
+        options = prop.options;
+        vm._props[path] = prop;
+        if (raw === null) {
+          // initialize absent prop
+          initProp(vm, prop, undefined);
+        } else if (prop.dynamic) {
+          // dynamic prop
+          if (prop.mode === propBindingModes.ONE_TIME) {
+            // one time binding
+            value = (scope || vm._context || vm).$get(prop.parentPath);
+            initProp(vm, prop, value);
+          } else {
+            if (vm._context) {
+              // dynamic binding
+              vm._bindDir({
+                name: 'prop',
+                def: propDef,
+                prop: prop
+              }, null, null, scope); // el, host, scope
+            } else {
+                // root instance
+                initProp(vm, prop, vm.$get(prop.parentPath));
+              }
+          }
+        } else if (prop.optimizedLiteral) {
+          // optimized literal, cast it and just set once
+          var stripped = stripQuotes(raw);
+          value = stripped === raw ? toBoolean(toNumber(raw)) : stripped;
+          initProp(vm, prop, value);
+        } else {
+          // string literal, but we need to cater for
+          // Boolean props with no value, or with same
+          // literal value (e.g. disabled="disabled")
+          // see https://github.com/vuejs/vue-loader/issues/182
+          value = options.type === Boolean && (raw === '' || raw === hyphenate(prop.name)) ? true : raw;
+          initProp(vm, prop, value);
+        }
+      }
+    };
+  }
+
+  /**
+   * Set a prop's initial value on a vm and its data object.
+   *
+   * @param {Vue} vm
+   * @param {Object} prop
+   * @param {*} value
+   */
+
+  function initProp(vm, prop, value) {
+    var key = prop.path;
+    value = coerceProp(prop, value);
+    if (value === undefined) {
+      value = getPropDefaultValue(vm, prop.options);
+    }
+    if (assertProp(prop, value)) {
+      defineReactive(vm, key, value);
+    }
+  }
+
+  /**
+   * Get the default value of a prop.
+   *
+   * @param {Vue} vm
+   * @param {Object} options
+   * @return {*}
+   */
+
+  function getPropDefaultValue(vm, options) {
+    // no default, return undefined
+    if (!hasOwn(options, 'default')) {
+      // absent boolean value defaults to false
+      return options.type === Boolean ? false : undefined;
+    }
+    var def = options['default'];
+    // warn against non-factory defaults for Object & Array
+    if (isObject(def)) {
+      'development' !== 'production' && warn('Object/Array as default prop values will be shared ' + 'across multiple instances. Use a factory function ' + 'to return the default value instead.');
+    }
+    // call factory function for non-Function types
+    return typeof def === 'function' && options.type !== Function ? def.call(vm) : def;
+  }
+
+  /**
+   * Assert whether a prop is valid.
+   *
+   * @param {Object} prop
+   * @param {*} value
+   */
+
+  function assertProp(prop, value) {
+    if (!prop.options.required && ( // non-required
+    prop.raw === null || // abscent
+    value == null) // null or undefined
+    ) {
+        return true;
+      }
+    var options = prop.options;
+    var type = options.type;
+    var valid = true;
+    var expectedType;
+    if (type) {
+      if (type === String) {
+        expectedType = 'string';
+        valid = typeof value === expectedType;
+      } else if (type === Number) {
+        expectedType = 'number';
+        valid = typeof value === 'number';
+      } else if (type === Boolean) {
+        expectedType = 'boolean';
+        valid = typeof value === 'boolean';
+      } else if (type === Function) {
+        expectedType = 'function';
+        valid = typeof value === 'function';
+      } else if (type === Object) {
+        expectedType = 'object';
+        valid = isPlainObject(value);
+      } else if (type === Array) {
+        expectedType = 'array';
+        valid = isArray(value);
+      } else {
+        valid = value instanceof type;
+      }
+    }
+    if (!valid) {
+      'development' !== 'production' && warn('Invalid prop: type check failed for ' + prop.path + '="' + prop.raw + '".' + ' Expected ' + formatType(expectedType) + ', got ' + formatValue(value) + '.');
+      return false;
+    }
+    var validator = options.validator;
+    if (validator) {
+      if (!validator(value)) {
+        'development' !== 'production' && warn('Invalid prop: custom validator check failed for ' + prop.path + '="' + prop.raw + '"');
+        return false;
+      }
+    }
+    return true;
+  }
+
+  /**
+   * Force parsing value with coerce option.
+   *
+   * @param {*} value
+   * @param {Object} options
+   * @return {*}
+   */
+
+  function coerceProp(prop, value) {
+    var coerce = prop.options.coerce;
+    if (!coerce) {
+      return value;
+    }
+    // coerce is a function
+    return coerce(value);
+  }
+
+  function formatType(val) {
+    return val ? val.charAt(0).toUpperCase() + val.slice(1) : 'custom type';
+  }
+
+  function formatValue(val) {
+    return Object.prototype.toString.call(val).slice(8, -1);
+  }
+
   var bindingModes = config._propBindingModes;
 
   var propDef = {
@@ -5935,11 +6143,18 @@ var template = Object.freeze({
       var childKey = prop.path;
       var parentKey = prop.parentPath;
       var twoWay = prop.mode === bindingModes.TWO_WAY;
+      var isSimple = isSimplePath(parentKey);
 
       var parentWatcher = this.parentWatcher = new Watcher(parent, parentKey, function (val) {
         val = coerceProp(prop, val);
         if (assertProp(prop, val)) {
-          child[childKey] = val;
+          if (isSimple) {
+            withoutConversion(function () {
+              child[childKey] = val;
+            });
+          } else {
+            child[childKey] = val;
+          }
         }
       }, {
         twoWay: twoWay,
@@ -5950,7 +6165,14 @@ var template = Object.freeze({
       });
 
       // set the child initial value.
-      initProp(child, prop, parentWatcher.value);
+      var value = parentWatcher.value;
+      if (isSimple && value !== undefined) {
+        withoutConversion(function () {
+          initProp(child, prop, value);
+        });
+      } else {
+        initProp(child, prop, value);
+      }
 
       // setup two-way binding
       if (twoWay) {
@@ -6017,6 +6239,32 @@ var template = Object.freeze({
   var TYPE_ANIMATION = 'animation';
   var transDurationProp = transitionProp + 'Duration';
   var animDurationProp = animationProp + 'Duration';
+
+  /**
+   * If a just-entered element is applied the
+   * leave class while its enter transition hasn't started yet,
+   * and the transitioned property has the same value for both
+   * enter/leave, then the leave transition will be skipped and
+   * the transitionend event never fires. This function ensures
+   * its callback to be called after a transition has started
+   * by waiting for double raf.
+   *
+   * It falls back to setTimeout on devices that support CSS
+   * transitions but not raf (e.g. Android 4.2 browser) - since
+   * these environments are usually slow, we are giving it a
+   * relatively large timeout.
+   */
+
+  var raf = inBrowser && window.requestAnimationFrame;
+  var waitForTransitionStart = raf
+  /* istanbul ignore next */
+  ? function (fn) {
+    raf(function () {
+      raf(fn);
+    });
+  } : function (fn) {
+    setTimeout(fn, 50);
+  };
 
   /**
    * A Transition object that encapsulates the state and logic
@@ -6102,19 +6350,13 @@ var template = Object.freeze({
    */
 
   p$1.enterNextTick = function () {
-    // Important hack:
-    // in Chrome, if a just-entered element is applied the
-    // leave class while its interpolated property still has
-    // a very small value (within one frame), Chrome will
-    // skip the leave transition entirely and not firing the
-    // transtionend event. Therefore we need to protected
-    // against such cases using a one-frame timeout.
-    this.justEntered = true;
-    var self = this;
-    setTimeout(function () {
-      self.justEntered = false;
-    }, 17);
+    var _this = this;
 
+    // prevent transition skipping
+    this.justEntered = true;
+    waitForTransitionStart(function () {
+      _this.justEntered = false;
+    });
     var enterDone = this.enterDone;
     var type = this.getCssTransitionType(this.enterClass);
     if (!this.pendingJsCb) {
@@ -6391,164 +6633,6 @@ var template = Object.freeze({
     transition: transition$1
   };
 
-  var propBindingModes = config._propBindingModes;
-  var empty = {};
-
-  // regexes
-  var identRE$1 = /^[$_a-zA-Z]+[\w$]*$/;
-  var settablePathRE = /^[A-Za-z_$][\w$]*(\.[A-Za-z_$][\w$]*|\[[^\[\]]+\])*$/;
-
-  /**
-   * Compile props on a root element and return
-   * a props link function.
-   *
-   * @param {Element|DocumentFragment} el
-   * @param {Array} propOptions
-   * @return {Function} propsLinkFn
-   */
-
-  function compileProps(el, propOptions) {
-    var props = [];
-    var names = Object.keys(propOptions);
-    var i = names.length;
-    var options, name, attr, value, path, parsed, prop;
-    while (i--) {
-      name = names[i];
-      options = propOptions[name] || empty;
-
-      if ('development' !== 'production' && name === '$data') {
-        warn('Do not use $data as prop.');
-        continue;
-      }
-
-      // props could contain dashes, which will be
-      // interpreted as minus calculations by the parser
-      // so we need to camelize the path here
-      path = camelize(name);
-      if (!identRE$1.test(path)) {
-        'development' !== 'production' && warn('Invalid prop key: "' + name + '". Prop keys ' + 'must be valid identifiers.');
-        continue;
-      }
-
-      prop = {
-        name: name,
-        path: path,
-        options: options,
-        mode: propBindingModes.ONE_WAY,
-        raw: null
-      };
-
-      attr = hyphenate(name);
-      // first check dynamic version
-      if ((value = getBindAttr(el, attr)) === null) {
-        if ((value = getBindAttr(el, attr + '.sync')) !== null) {
-          prop.mode = propBindingModes.TWO_WAY;
-        } else if ((value = getBindAttr(el, attr + '.once')) !== null) {
-          prop.mode = propBindingModes.ONE_TIME;
-        }
-      }
-      if (value !== null) {
-        // has dynamic binding!
-        prop.raw = value;
-        parsed = parseDirective(value);
-        value = parsed.expression;
-        prop.filters = parsed.filters;
-        // check binding type
-        if (isLiteral(value) && !parsed.filters) {
-          // for expressions containing literal numbers and
-          // booleans, there's no need to setup a prop binding,
-          // so we can optimize them as a one-time set.
-          prop.optimizedLiteral = true;
-        } else {
-          prop.dynamic = true;
-          // check non-settable path for two-way bindings
-          if ('development' !== 'production' && prop.mode === propBindingModes.TWO_WAY && !settablePathRE.test(value)) {
-            prop.mode = propBindingModes.ONE_WAY;
-            warn('Cannot bind two-way prop with non-settable ' + 'parent path: ' + value);
-          }
-        }
-        prop.parentPath = value;
-
-        // warn required two-way
-        if ('development' !== 'production' && options.twoWay && prop.mode !== propBindingModes.TWO_WAY) {
-          warn('Prop "' + name + '" expects a two-way binding type.');
-        }
-      } else if ((value = getAttr(el, attr)) !== null) {
-        // has literal binding!
-        prop.raw = value;
-      } else if ('development' !== 'production') {
-        // check possible camelCase prop usage
-        var lowerCaseName = path.toLowerCase();
-        value = /[A-Z\-]/.test(name) && (el.getAttribute(lowerCaseName) || el.getAttribute(':' + lowerCaseName) || el.getAttribute('v-bind:' + lowerCaseName) || el.getAttribute(':' + lowerCaseName + '.once') || el.getAttribute('v-bind:' + lowerCaseName + '.once') || el.getAttribute(':' + lowerCaseName + '.sync') || el.getAttribute('v-bind:' + lowerCaseName + '.sync'));
-        if (value) {
-          warn('Possible usage error for prop `' + lowerCaseName + '` - ' + 'did you mean `' + attr + '`? HTML is case-insensitive, remember to use ' + 'kebab-case for props in templates.');
-        } else if (options.required) {
-          // warn missing required
-          warn('Missing required prop: ' + name);
-        }
-      }
-      // push prop
-      props.push(prop);
-    }
-    return makePropsLinkFn(props);
-  }
-
-  /**
-   * Build a function that applies props to a vm.
-   *
-   * @param {Array} props
-   * @return {Function} propsLinkFn
-   */
-
-  function makePropsLinkFn(props) {
-    return function propsLinkFn(vm, scope) {
-      // store resolved props info
-      vm._props = {};
-      var i = props.length;
-      var prop, path, options, value, raw;
-      while (i--) {
-        prop = props[i];
-        raw = prop.raw;
-        path = prop.path;
-        options = prop.options;
-        vm._props[path] = prop;
-        if (raw === null) {
-          // initialize absent prop
-          initProp(vm, prop, undefined);
-        } else if (prop.dynamic) {
-          // dynamic prop
-          if (prop.mode === propBindingModes.ONE_TIME) {
-            // one time binding
-            value = (scope || vm._context || vm).$get(prop.parentPath);
-            initProp(vm, prop, value);
-          } else {
-            if (vm._context) {
-              // dynamic binding
-              vm._bindDir({
-                name: 'prop',
-                def: propDef,
-                prop: prop
-              }, null, null, scope); // el, host, scope
-            } else {
-                // root instance
-                initProp(vm, prop, vm.$get(prop.parentPath));
-              }
-          }
-        } else if (prop.optimizedLiteral) {
-          // optimized literal, cast it and just set once
-          var stripped = stripQuotes(raw);
-          value = stripped === raw ? toBoolean(toNumber(raw)) : stripped;
-          initProp(vm, prop, value);
-        } else {
-          // string literal, but we need to cater for
-          // Boolean props with no value
-          value = options.type === Boolean && raw === '' ? true : raw;
-          initProp(vm, prop, value);
-        }
-      }
-    };
-  }
-
   // special binding prefixes
   var bindRE = /^v-bind:|^:/;
   var onRE = /^v-on:|^@/;
@@ -6556,11 +6640,9 @@ var template = Object.freeze({
   var modifierRE = /\.[^\.]+/g;
   var transitionRE = /^(v-bind:|:)?transition$/;
 
-  // terminal directives
-  var terminalDirectives = ['for', 'if'];
-
   // default directive priority
   var DEFAULT_PRIORITY = 1000;
+  var DEFAULT_TERMINAL_PRIORITY = 2000;
 
   /**
    * Compile a template and return a reusable composite link
@@ -6826,9 +6908,10 @@ var template = Object.freeze({
     }
     var linkFn;
     var hasAttrs = el.hasAttributes();
+    var attrs = hasAttrs && toArray(el.attributes);
     // check terminal directives (for & if)
     if (hasAttrs) {
-      linkFn = checkTerminalDirectives(el, options);
+      linkFn = checkTerminalDirectives(el, attrs, options);
     }
     // check element directives
     if (!linkFn) {
@@ -6840,7 +6923,7 @@ var template = Object.freeze({
     }
     // normal directives
     if (!linkFn && hasAttrs) {
-      linkFn = compileDirectives(el.attributes, options);
+      linkFn = compileDirectives(attrs, options);
     }
     return linkFn;
   }
@@ -7069,11 +7152,12 @@ var template = Object.freeze({
    * If it finds one, return a terminal link function.
    *
    * @param {Element} el
+   * @param {Array} attrs
    * @param {Object} options
    * @return {Function} terminalLinkFn
    */
 
-  function checkTerminalDirectives(el, options) {
+  function checkTerminalDirectives(el, attrs, options) {
     // skip v-pre
     if (getAttr(el, 'v-pre') !== null) {
       return skip;
@@ -7085,13 +7169,28 @@ var template = Object.freeze({
         return skip;
       }
     }
-    var value, dirName;
-    for (var i = 0, l = terminalDirectives.length; i < l; i++) {
-      dirName = terminalDirectives[i];
-      value = el.getAttribute('v-' + dirName);
-      if (value != null) {
-        return makeTerminalNodeLinkFn(el, dirName, value, options);
+
+    var attr, name, value, modifiers, matched, dirName, rawName, arg, def, termDef;
+    for (var i = 0, j = attrs.length; i < j; i++) {
+      attr = attrs[i];
+      modifiers = parseModifiers(attr.name);
+      name = attr.name.replace(modifierRE, '');
+      if (matched = name.match(dirAttrRE)) {
+        def = resolveAsset(options, 'directives', matched[1]);
+        if (def && def.terminal) {
+          if (!termDef || (def.priority || DEFAULT_TERMINAL_PRIORITY) > termDef.priority) {
+            termDef = def;
+            rawName = attr.name;
+            value = attr.value;
+            dirName = matched[1];
+            arg = matched[2];
+          }
+        }
       }
+    }
+
+    if (termDef) {
+      return makeTerminalNodeLinkFn(el, dirName, value, options, termDef, rawName, arg, modifiers);
     }
   }
 
@@ -7108,20 +7207,24 @@ var template = Object.freeze({
    * @param {String} dirName
    * @param {String} value
    * @param {Object} options
-   * @param {Object} [def]
+   * @param {Object} def
+   * @param {String} [rawName]
+   * @param {String} [arg]
+   * @param {Object} [modifiers]
    * @return {Function} terminalLinkFn
    */
 
-  function makeTerminalNodeLinkFn(el, dirName, value, options, def) {
+  function makeTerminalNodeLinkFn(el, dirName, value, options, def, rawName, arg, modifiers) {
     var parsed = parseDirective(value);
     var descriptor = {
       name: dirName,
+      arg: arg,
       expression: parsed.expression,
       filters: parsed.filters,
       raw: value,
-      // either an element directive, or if/for
-      // #2366 or custom terminal directive
-      def: def || resolveAsset(options, 'directives', dirName)
+      attr: rawName,
+      modifiers: modifiers,
+      def: def
     };
     // check ref for v-for and router-view
     if (dirName === 'for' || dirName === 'router-view') {
@@ -7464,6 +7567,9 @@ var template = Object.freeze({
         (contents[name] || (contents[name] = [])).push(el);
       }
       /* eslint-enable no-cond-assign */
+      if ('development' !== 'production' && getBindAttr(el, 'slot')) {
+        warn('The "slot" attribute must be static.');
+      }
     }
     for (name in contents) {
       contents[name] = extractFragment(contents[name], content);
@@ -7500,7 +7606,6 @@ var template = Object.freeze({
   	compile: compile,
   	compileAndLinkProps: compileAndLinkProps,
   	compileRoot: compileRoot,
-  	terminalDirectives: terminalDirectives,
   	transclude: transclude,
   	resolveSlots: resolveSlots
   });
@@ -7564,6 +7669,10 @@ var template = Object.freeze({
     Vue.prototype._initData = function () {
       var dataFn = this.$options.data;
       var data = this._data = dataFn ? dataFn() : {};
+      if (!isPlainObject(data)) {
+        data = {};
+        'development' !== 'production' && warn('data functions should return an object.');
+      }
       var props = this._props;
       var runtimeData = this._runtimeData ? typeof this._runtimeData === 'function' ? this._runtimeData() : this._runtimeData : null;
       // proxy data on instance
@@ -7916,18 +8025,21 @@ var template = Object.freeze({
    * It registers a watcher with the expression and calls
    * the DOM update function when a change is triggered.
    *
-   * @param {String} name
-   * @param {Node} el
-   * @param {Vue} vm
    * @param {Object} descriptor
    *                 - {String} name
    *                 - {Object} def
    *                 - {String} expression
    *                 - {Array<Object>} [filters]
+   *                 - {Object} [modifiers]
    *                 - {Boolean} literal
    *                 - {String} attr
+   *                 - {String} arg
    *                 - {String} raw
-   * @param {Object} def - directive definition object
+   *                 - {String} [ref]
+   *                 - {Array<Object>} [interp]
+   *                 - {Boolean} [hasOneTime]
+   * @param {Vue} vm
+   * @param {Node} el
    * @param {Vue} [host] - transclusion host component
    * @param {Object} [scope] - v-for scope
    * @param {Fragment} [frag] - owner fragment
@@ -7963,8 +8075,6 @@ var template = Object.freeze({
    * Initialize the directive, mixin definition properties,
    * setup the watcher, call definition bind() and update()
    * if present.
-   *
-   * @param {Object} def
    */
 
   Directive.prototype._bind = function () {
@@ -8045,7 +8155,7 @@ var template = Object.freeze({
     var i = params.length;
     var key, val, mappedKey;
     while (i--) {
-      key = params[i];
+      key = hyphenate(params[i]);
       mappedKey = camelize(key);
       val = getBindAttr(this.el, key);
       if (val != null) {
@@ -8323,10 +8433,8 @@ var template = Object.freeze({
     /**
      * Create and bind a directive to an element.
      *
-     * @param {String} name - directive name
+     * @param {Object} descriptor - parsed directive descriptor
      * @param {Node} node   - target node
-     * @param {Object} desc - parsed directive descriptor
-     * @param {Object} def  - directive definition object
      * @param {Vue} [host] - transclusion host component
      * @param {Object} [scope] - v-for scope
      * @param {Fragment} [frag] - owner fragment
@@ -8469,7 +8577,7 @@ var template = Object.freeze({
     Vue.prototype._applyFilters = function (value, oldValue, filters, write) {
       var filter, fn, args, arg, offset, i, l, j, k;
       for (i = 0, l = filters.length; i < l; i++) {
-        filter = filters[i];
+        filter = filters[write ? l - i - 1 : i];
         fn = resolveAsset(this.$options, 'filters', filter.name);
         if ('development' !== 'production') {
           assertAsset(fn, 'filter', filter.name);
@@ -8497,14 +8605,19 @@ var template = Object.freeze({
      * resolves asynchronously and caches the resolved
      * constructor on the factory.
      *
-     * @param {String} id
+     * @param {String|Function} value
      * @param {Function} cb
      */
 
-    Vue.prototype._resolveComponent = function (id, cb) {
-      var factory = resolveAsset(this.$options, 'components', id);
-      if ('development' !== 'production') {
-        assertAsset(factory, 'component', id);
+    Vue.prototype._resolveComponent = function (value, cb) {
+      var factory;
+      if (typeof value === 'function') {
+        factory = value;
+      } else {
+        factory = resolveAsset(this.$options, 'components', value);
+        if ('development' !== 'production') {
+          assertAsset(factory, 'component', value);
+        }
       }
       if (!factory) {
         return;
@@ -8531,7 +8644,7 @@ var template = Object.freeze({
               cbs[i](res);
             }
           }, function reject(reason) {
-            'development' !== 'production' && warn('Failed to resolve async component: ' + id + '. ' + (reason ? '\nReason: ' + reason : ''));
+            'development' !== 'production' && warn('Failed to resolve async component' + (typeof value === 'string' ? ': ' + value : '') + '. ' + (reason ? '\nReason: ' + reason : ''));
           });
         }
       } else {
@@ -9137,6 +9250,9 @@ var template = Object.freeze({
     /**
      * Teardown the instance, simply delegate to the internal
      * _destroy.
+     *
+     * @param {Boolean} remove
+     * @param {Boolean} deferCleanup
      */
 
     Vue.prototype.$destroy = function (remove, deferCleanup) {
@@ -9149,6 +9265,8 @@ var template = Object.freeze({
      *
      * @param {Element|DocumentFragment} el
      * @param {Vue} [host]
+     * @param {Object} [scope]
+     * @param {Fragment} [frag]
      * @return {Function}
      */
 
@@ -9331,12 +9449,12 @@ var template = Object.freeze({
       if (j) {
         while (j--) {
           key = keys[j];
-          if (key === '$key' && contains$1(item.$key, search) || contains$1(getPath(val, key), search)) {
+          if (key === '$key' && contains(item.$key, search) || contains(getPath(val, key), search)) {
             res.push(item);
             break;
           }
         }
-      } else if (contains$1(item, search)) {
+      } else if (contains(item, search)) {
         res.push(item);
       }
     }
@@ -9375,20 +9493,20 @@ var template = Object.freeze({
    * @param {String} search
    */
 
-  function contains$1(val, search) {
+  function contains(val, search) {
     var i;
     if (isPlainObject(val)) {
       var keys = Object.keys(val);
       i = keys.length;
       while (i--) {
-        if (contains$1(val[keys[i]], search)) {
+        if (contains(val[keys[i]], search)) {
           return true;
         }
       }
     } else if (isArray(val)) {
       i = val.length;
       while (i--) {
-        if (contains$1(val[i], search)) {
+        if (contains(val[i], search)) {
           return true;
         }
       }
@@ -9685,7 +9803,7 @@ var template = Object.freeze({
 
   installGlobalAPI(Vue);
 
-  Vue.version = '1.0.18';
+  Vue.version = '1.0.20';
 
   // devtools global hook
   /* istanbul ignore next */

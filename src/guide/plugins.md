@@ -71,4 +71,4 @@ Vue.use(VueRouter)
 
 - [vue-element](https://github.com/vuejs/vue-element)：使用 Vue.js 注册自定义元素。
 
-- [用户贡献的工具](https://github.com/vuejs/vue/wiki/User-Contributed-Components-&-Tools)
+- [用户贡献的工具](https://github.com/vuejs/awesome-vue#libraries--plugins)
