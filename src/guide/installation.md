@@ -10,7 +10,7 @@ gz_size: "25.10"
 
 ### 兼容性
 
-Vue.js 不支持 IE8 及其以下版本，因为 Vue.js 使用了 IE8 不能实现的 ECMAScript 5 特性。 Vue.js 支持所有[兼容 ECMASCript 5 的浏览器](http://caniuse.com/#feat=es5)。
+Vue.js 不支持 IE8 及其以下版本，因为 Vue.js 使用了 IE8 不能实现的 ECMAScript 5 特性。 Vue.js 支持所有[兼容 ECMAScript 5 的浏览器](http://caniuse.com/#feat=es5)。
 
 ### 更新日志
 

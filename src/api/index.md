@@ -94,6 +94,7 @@ type: api
 - **用法：**
 
   ``` js
+  // 在加载 Vue 之后立即同步的设置
   Vue.config.devtools = true
   ```
 
@@ -2180,3 +2181,39 @@ type: api
   })
   </script>
   {% endraw %}
+
+## 数组扩展方法
+
+Vue.js 在 `Array.prototype` 上添加了两个方法，以方便常见的数组操作，并且能触发视图更新。
+
+### array.$set(index, value)
+
+- **参数：**
+  - `{Number} index`
+  - `{*} value`
+
+- **用法：**
+
+  通过索引设置数组元素并触发视图更新。
+
+  ``` js
+  vm.animals.$set(0, { name: 'Aardvark' })
+  ```
+
+- **另见：** [数组检测问题](/guide/list.html#问题)
+
+### array.$remove(reference)
+
+- **参数：**
+  - `{Reference} reference`
+
+- **用法：**
+
+  通过索引删除数组元素并触发视图更新。这个方法先在数组中搜索这个元素，如果找到了则调用 `array.splice(index, 1)`。
+
+  ``` js
+  var aardvark = vm.animals[0]
+  vm.animals.$remove(aardvark)
+  ```
+
+- **另见：** [变异方法](/guide/list.html#变异方法)
