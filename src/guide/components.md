@@ -316,6 +316,8 @@ Vue.component('example', {
   props: {
     // 基础类型检测 （`null` 意思是任何类型都可以）
     propA: Number,
+    // 多种类型 (1.0.21+)
+    propM: [String, Number],
     // 必需且是字符串
     propB: {
       type: String,

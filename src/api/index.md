@@ -2098,14 +2098,14 @@ type: api
 - **限制：** 指令的值须是数组，如 `v-for`
 
 - **参数：**
-  - `{String} sortKey`
+  - `{String | Array<String> | Function} ...sortKeys`
   - `{String} [order] - 默认值：1`
 
 - **用法：**
 
-  返回排序后的数组。`sortKey` 是用于排序的字段。可选参数 `order` 决定结果升序（`order >= 0`）或降序（`order < 0`）。
-
-  对于原始类型数组，`sortKey` 可以是任意的真值。
+  返回排序后的数组。你可以传入多个键名。你也可以传入一个数组，此数组包含排序的键名。如果你想使用自己的排序策略，可以传入一个函数。可选参数 `order` 决定结果升序（`order >= 0`）或降序（`order < 0`）。
+  
+  对于原始类型数组，可以忽略 `sortKey` ，只提供排序，例如 `orderBy 1`。
 
 - **示例：**
 
@@ -2162,6 +2162,16 @@ type: api
   })
   ```
 
+  使用两个键名排序：
+
+  ``` html
+  <ul>
+    <li v-for="user in users | orderBy 'lastName' 'firstName'">
+      {{ user.lastName }} {{ user.firstName }}
+    </li>
+  </ul>
+  ```
+
   {% raw %}
   <div id="orderby-example" class="demo">
     <button @click="order = order * -1">Reverse Sort Order</button>
@@ -2177,6 +2187,85 @@ type: api
     data: {
       order: 1,
       users: [{ name: 'Bruce' }, { name: 'Chuck' }, { name: 'Jackie' }]
+    }
+  })
+  </script>
+  {% endraw %}
+
+  使用一个函数排序：
+
+  ``` html
+  <div id="orderby-compare-example" class="demo">
+    <button @click="order = order * -1">Reverse Sort Order</button>
+    <ul>
+      <li v-for="user in users | orderBy ageByTen">
+        {{ user.name }} - {{ user.age }}
+      </li>
+    </ul>
+  </div>
+  ```
+
+  ``` js
+  new Vue({
+    el: '#orderby-compare-example',
+    data: {
+      order: 1,
+      users: [
+        {
+          name: 'Jackie',
+          age: 62
+        },
+        {
+          name: 'Chuck',
+          age: 76
+        },
+        {
+          name: 'Bruce',
+          age: 61
+        }
+      ]
+    },
+    methods: {
+      ageByTen: function (a, b) {
+        return Math.floor(a.age / 10) - Math.floor(b.age / 10)
+      }
+    }
+  })
+  ```
+
+  {% raw %}
+  <div id="orderby-compare-example" class="demo">
+    <button @click="order = order * -1">Reverse Sort Order</button>
+    <ul id="orderby-compare-example">
+      <li v-for="user in users | orderBy ageByTen order">
+        {{ user.name }} - {{ user.age }}
+      </li>
+    </ul>
+  </div>
+  <script>
+  new Vue({
+    el: '#orderby-compare-example',
+    data: {
+      order: 1,
+      users: [
+        {
+          name: 'Jackie',
+          age: 62
+        },
+        {
+          name: 'Chuck',
+          age: 76
+        },
+        {
+          name: 'Bruce',
+          age: 61
+        }
+      ]
+    },
+    methods: {
+      ageByTen: function (a, b) {
+        return Math.floor(a.age / 10) - Math.floor(b.age / 10)
+      }
     }
   })
   </script>
