@@ -67,7 +67,7 @@ Vue.use(VueRouter)
 
 - [vue-devtools](https://github.com/vuejs/vue-devtools)：Chrome 开发者工具扩展，用于调试  Vue.js 应用。
 
-- [vue-touch](https://github.com/vuejs/vue-touch)：使用 Hammer.js 添加触摸手势指令（已过时）。
+- [vue-touch](https://github.com/vuejs/vue-touch)：使用 Hammer.js 添加触摸手势指令。
 
 - [vue-element](https://github.com/vuejs/vue-element)：使用 Vue.js 注册自定义元素。
 
