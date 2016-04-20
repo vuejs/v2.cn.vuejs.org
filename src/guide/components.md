@@ -546,9 +546,9 @@ var child = parent.$refs.profile
 在深入内容分发 API 之前，我们先明确内容的编译作用域。假定模板为：
 
 ``` html
-<child>
+<child-component>
   {{ msg }}
-</child>
+</child-component>
 ```
 
 `msg` 应该绑定到父组件的数据，还是绑定到子组件的数据？答案是父组件。组件作用域简单地说是：
@@ -559,7 +559,7 @@ var child = parent.$refs.profile
 
 ``` html
 <!-- 无效 -->
-<child v-show="someChildProperty"></child>
+<child-component v-show="someChildProperty"></child-component>
 ```
 
 假定 `someChildProperty` 是子组件的属性，上例不能如预期工作。父组件模板不知道子组件的状态。

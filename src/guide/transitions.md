@@ -16,7 +16,7 @@ order: 11
 
 - `v-if`
 - `v-show`
-- `v-for` （只为插入和删除触发）
+- `v-for` （只在插入和删除时触发，[使用 vue-animated-list 插件](https://github.com/vuejs/vue-animated-list)）
 - 动态组件 （介绍见[组件](components.html#动态组件)）
 - 在组件的根节点上，并且被 Vue 实例 DOM 方法（如 `vm.$appendTo(el)`）触发。
 
