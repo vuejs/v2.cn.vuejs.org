@@ -131,9 +131,12 @@ a.button
     //     font-weight normal
 
 #nav
+    li
+        min-width 3em
     .nav-link
         cursor pointer
     .nav-dropdown-container
+        width 5em
         .nav-link
             &:hover
                 border-bottom none
@@ -144,7 +147,7 @@ a.button
         display none
         position absolute
         top 100%
-        left 0
+        left -30%
         background-color #fff
         padding 10px 0
         border 1px solid #ddd
