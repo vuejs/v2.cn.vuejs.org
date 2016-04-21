@@ -106,6 +106,8 @@ data: {
 
 Again, the Object syntax is often used in conjunction with computed properties that return Objects.
 
+Please use `fontSize` instead of `font-size`.
+
 ### Array Syntax
 
 The Array syntax for `v-bind:style` allows you to apply multiple style objects to the same element:
