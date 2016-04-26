@@ -291,7 +291,7 @@ type: api
   var MyComponent = Vue.component('my-component')
   ```
 
-- **另见：** [组件](/guide/components.html).
+- **另见：** [组件](/guide/components.html)
 
 <h3 id="Vue-transition">Vue.transition( id, [hooks] )</h3>
 
@@ -314,7 +314,7 @@ type: api
   var fadeTransition = Vue.transition('fade')
   ```
 
-- **另见：** [过渡](/guide/transitions.html).
+- **另见：** [过渡](/guide/transitions.html)
 
 <h3 id="Vue-partial">Vue.partial( id, [partial] )</h3>
 
@@ -334,7 +334,7 @@ type: api
   var myPartial = Vue.partial('my-partial')
   ```
 
-- **另见：** [特殊元素 - &lt;partial&gt;](#partial)。
+- **另见：** [特殊元素 - &lt;partial&gt;](#partial)
 
 <h3 id="Vue-use">Vue.use( plugin, [options] )</h3>
 
@@ -346,7 +346,7 @@ type: api
 
   安装 Vue.js 插件。如果插件是一个对象，必须有一个 `install` 方法。如果它是一个函数，它会被作为安装方法。安装方法以 Vue 为参数。
 
-- **另见：** [插件](/guide/plugins.html).
+- **另见：** [插件](/guide/plugins.html)
 
 <h3 id="Vue-mixin">Vue.mixin( mixin )</h3>
 
@@ -400,7 +400,7 @@ type: api
   })
   ```
 
-- **另见：** [深入响应](/guide/reactivity.html).
+- **另见：** [深入响应](/guide/reactivity.html)
 
 ### props
 
