@@ -239,9 +239,9 @@ new Vue({
 </script>
 {% endraw %}
 
-## 值绑定
+## 绑定 value
 
-对于单选按钮，勾选框及选择框选项，`v-model` 绑定的值通常是静态字符串（对于勾选框是逻辑值）：
+对于单选按钮，勾选框及选择框选项，`v-model` 绑定的 value 通常是静态字符串（对于勾选框是逻辑值）：
 
 ``` html
 <!-- 当选中时，`picked` 为字符串 "a" -->
@@ -256,7 +256,7 @@ new Vue({
 </select>
 ```
 
-但是有时我们想绑定值到 Vue 实例一个动态属性上。可以用 `v-bind` 做到。 而且 `v-bind` 允许绑定输入框的值到非字符串值。
+但是有时我们想绑定 value 到 Vue 实例的一个动态属性上，这时可以用 `v-bind` 实现，并且这个属性的值可以不是字符串。
 
 ### Checkbox
 
@@ -269,9 +269,9 @@ new Vue({
 ```
 
 ``` js
-// 选中
+// 当选中时
 vm.toggle === vm.a
-// 取消选中
+// 当没有选中时
 vm.toggle === vm.b
 ```
 
@@ -282,7 +282,7 @@ vm.toggle === vm.b
 ```
 
 ``` js
-// 选中
+// 当选中时
 vm.pick === vm.a
 ```
 
@@ -296,7 +296,7 @@ vm.pick === vm.a
 ```
 
 ``` js
-// 选中
+// 当选中时
 typeof vm.selected // -> 'object'
 vm.selected.number // -> 123
 ```
