@@ -3,6 +3,8 @@ title: Announcing Vue.js 2.0
 date: 2016-04-27 13:33:00
 ---
 
+[中文翻译](http://jiongks.name/blog/announcing-vue-2/)
+
 Today I am thrilled to announce the first public preview of Vue.js 2.0, which brings along many exciting improvements and new features. Let's take a peek at what's in store!
 
 ## Even Leaner, Even Faster
