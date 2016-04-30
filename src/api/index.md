@@ -575,47 +575,47 @@ type: api
 - **限制：** 只能与 **template** 选项一起用
 
 - **详细：**
-
-  决定是否替换模板的挂载元素。如果设为 `false` 模板将覆盖元素的内容，不会替换元素本身。
+  
+  决定是否用模板替换挂载元素。如果设为 `true`（这是默认值），模板将覆盖挂载元素，并合并挂载元素和模板根节点的 attributes。如果设为 `false` 模板将覆盖挂载元素的内容，不会替换挂载元素自身。
 
 - **示例：**
 
   ``` html
-  <div id="replace"></div>
+  <div id="replace" class="foo"></div>
   ```
 
   ``` js
   new Vue({
     el: '#replace',
-    template: '<p>replaced</p>'
+    template: '<p class="bar">replaced</p>'
   })
   ```
 
   结果：
 
   ``` html
-  <p>replaced</p>
+  <p class="foo bar" id="replace">replaced</p>
   ```
 
   `replace` 设为 `false`：
 
   ``` html
-  <div id="insert"></div>
+  <div id="insert" class="foo"></div>
   ```
 
   ``` js
   new Vue({
     el: '#insert',
     replace: false,
-    template: '<p>inserted</p>'
+    template: '<p class="bar">inserted</p>'
   })
   ```
 
   结果：
 
   ``` html
-  <div id="insert">
-    <p>inserted</p>
+  <div id="insert" class="foo">
+    <p class="bar">inserted</p>
   </div>
   ```
 
