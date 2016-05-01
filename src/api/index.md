@@ -175,7 +175,7 @@ type: api
 
   设置对象的属性。如果对象是响应的，将触发视图更新。这个方法主要用于解决 不能检测到属性添加的限制。
 
-- **另见：** [深入响应](/guide/reactivity.html)
+- **另见：** [深入响应式原理](/guide/reactivity.html)
 
 <h3 id="Vue-delete">Vue.delete( object, key )</h3>
 
@@ -187,7 +187,7 @@ type: api
 
   删除对象的属性。如果对象是响应的，将触发视图更新。这个方法主要用于解决 不能检测到属性删除的限制。
 
-- **另见：** [深入响应](/guide/reactivity.html)
+- **另见：** [深入响应式原理](/guide/reactivity.html)
 
 <h3 id="Vue-directive">Vue.directive( id, [definition] )</h3>
 
@@ -400,7 +400,7 @@ type: api
   })
   ```
 
-- **另见：** [深入响应](/guide/reactivity.html)
+- **另见：** [深入响应式原理](/guide/reactivity.html)
 
 ### props
 
@@ -471,7 +471,7 @@ type: api
 
 - **另见：**
   - [计算属性](/guide/computed.html)
-  - [深入响应：计算属性](/guide/reactivity.html#计算属性)
+  - [深入响应式原理：计算属性的奥秘](/guide/reactivity.html#计算属性的奥秘)
 
 ### methods
 
@@ -575,7 +575,7 @@ type: api
 - **限制：** 只能与 **template** 选项一起用
 
 - **详细：**
-  
+
   决定是否用模板替换挂载元素。如果设为 `true`（这是默认值），模板将覆盖挂载元素，并合并挂载元素和模板根节点的 attributes。如果设为 `false` 模板将覆盖挂载元素的内容，不会替换挂载元素自身。
 
 - **示例：**
@@ -825,7 +825,7 @@ type: api
   ```
 
 - **另见：**
-  - [实例方法 - 事件](#Instance_Methods_/_Events)
+  - [实例方法 - 事件](#实例方法-事件)
   - [父子组件通信](/guide/components.html#父子组件通信)
 
 ### mixins
@@ -1114,7 +1114,7 @@ type: api
   vm.c // ->
   ```
 
-- **另见：** [深入响应](/guide/reactivity.html)
+- **另见：** [深入响应式原理](/guide/reactivity.html)
 
 <h3 id="vm-delete">vm.$delete( key )</h3>
 
@@ -1171,7 +1171,7 @@ type: api
   vm.$log('item') // 打印 vm.item
   ```
 
-## 实例属性 / 事件
+## 实例方法 / 事件
 
 <h3 id="vm-on">vm.$on( event, callback )</h3>
 
@@ -1827,7 +1827,7 @@ type: api
 
   `<slot>` 元素作为组件模板之中的内容分发插槽。这个元素自身将被替换。
 
-  有 `name` 特性的 slot 称为命名 slot。 有 `slot` 特性的内容将分发到名字相匹配的命名 slot。
+  有 `name` 特性的 slot 称为具名 slot。 有 `slot` 特性的内容将分发到名字相匹配的具名 slot。
 
 - **另见：** [使用 slot 分发内容](/guide/components.html#使用-Slot-分发内容)
 
