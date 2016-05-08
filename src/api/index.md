@@ -426,13 +426,42 @@ type: api
       // 检测类型 + 其它验证
       name: {
         type: String,
-        required: true
+        required: true,
+        // 双向绑定
+        twoWay: true
       }
     }
   })
   ```
 
 - **另见：** [Props](/guide/components.html#Props)
+
+### propsData
+
+> 1.0.22+
+
+- **类型：** `Object`
+
+- **限制：** 只用于 `new` 创建实例中。
+
+- **详细：**
+
+  在创建实例的过程传递 props。主要作用是方便测试。
+
+- **示例：**
+
+  ``` js
+  var Comp = Vue.extend({
+    props: ['msg'],
+    template: '<div>{{ msg }}</div>'
+  })
+
+  var vm = new Comp({
+    propsData: {
+      msg: 'hello'
+    }
+  })
+  ```
 
 ### computed
 
@@ -883,6 +912,30 @@ type: api
   var vm = new Ctor()
 
   console.log(vm) // -> StackOverflow {$el: null, ...}
+  ```
+
+### extends
+
+> 1.0.22+
+
+- **类型：** `Object | Function`
+
+- **详细：**
+
+  声明式的扩展另一个组件（可以是选项对象或者构造器），而不必使用 `Vue.extend`。主要作用是更容易的扩展单文件组件。
+
+  这类似于 `mixins`，不同的是组件的选项比待扩展的源组件的选项优先。
+
+- *示例：**
+
+  ``` js
+  var CompA = { ... }
+
+  // 扩展 CompA，不用调用 Vue.extend
+  var CompB = {
+    extends: CompA,
+    ...
+  }
   ```
 
 ## 实例属性
@@ -1895,7 +1948,7 @@ type: api
 
 - **参数：**
   - `{String} [货币符号] - 默认值: '$'`
-  - `{Number} [小数位] - 默认值: 2`
+  - **1.0.22+** `{Number} [小数位] - 默认值: 2`
 
 - **示例：**
 
@@ -2207,7 +2260,7 @@ type: api
   <div id="orderby-compare-example" class="demo">
     <button @click="order = order * -1">Reverse Sort Order</button>
     <ul>
-      <li v-for="user in users | orderBy ageByTen">
+      <li v-for="user in users | orderBy ageByTen order">
         {{ user.name }} - {{ user.age }}
       </li>
     </ul>

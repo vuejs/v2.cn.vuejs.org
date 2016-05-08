@@ -223,6 +223,10 @@ if (index !== -1) {
 this.items.$remove(item)
 ```
 
+#### 使用 `Object.freeze()`
+
+在遍历一个数组时，如果数组元素是对象并且对象用 `Object.freeze()` 冻结，你需要明确指定 `track-by`。在这种情况下如果 Vue.js 不能自动追踪对象，将给出一条警告。
+
 ## 对象 v-for
 
 也可以使用 `v-for` 遍历对象。除了 `$index` 之外，作用域内还可以访问另外一个特殊变量 `$key`。
