@@ -314,12 +314,15 @@ vm.selected.number // -> 123
 
 ### number
 
-如果想自动将用户的输入保持为数字，可以添加一个特性 `number`：
+如果想自动将用户的输入保持为数字类型，可以添加一个特性 `number`：
 
 ``` html
 <input v-model="age" number>
 ```
 
+```javascript
+typeof(vm.age) // 输入18,返回number 输入abc18,返回string
+```
 ### debounce
 
 `debounce` 设置一个最小的延时，在每次敲击之后延时同步输入框的值与数据。如果每次更新都要进行高耗操作（例如在输入提示中 Ajax 请求），它较为有用。
