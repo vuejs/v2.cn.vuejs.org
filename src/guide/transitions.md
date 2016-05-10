@@ -62,7 +62,7 @@ order: 11
 你可以在同一元素上通过动态绑定实现不同的过渡：
 
 ```html
-<div v-if="show" :transition="transitionName">hello</div>
+<div v-if="show" transition="expand">hello</div>
 ```
 
 ```js
@@ -70,7 +70,7 @@ new Vue({
   el: '...',
   data: {
     show: false,
-    transitionName: 'fade'
+    transitionName: 'expand'
   }
 })
 ```
