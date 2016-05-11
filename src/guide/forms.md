@@ -314,14 +314,29 @@ vm.selected.number // -> 123
 
 ### number
 
-如果想自动将用户的输入保持为数字类型，可以添加一个特性 `number`：
+如果想自动将用户的输入在JavaScript中保持为number类型，可以添加一个特性 `number`：
 
 ``` html
-<input v-model="age" number>
+<div id="example">
+    <input v-model="message" number>
+    <span>{{message}}的类型是{{messageType}}</span>
+    <!--输入123,显示"123的类型是number"-->
+    <!--输入as123,显示"as123的类型是string"-->
+</div>
 ```
 
 ```javascript
-typeof(vm.age) // 输入18,返回number 输入abc18,返回string
+new Vue({
+    el: "#example",
+    data: {
+        message: '',
+    },
+    computed: {
+        messageType: function() {
+            return typeof(this.message);
+        }
+    }
+  })
 ```
 ### debounce
 
