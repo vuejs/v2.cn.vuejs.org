@@ -314,12 +314,30 @@ vm.selected.number // -> 123
 
 ### number
 
-如果想自动将用户的输入保持为数字，可以添加一个特性 `number`：
+如果想自动将用户的输入在JavaScript中保持为number类型，可以添加一个特性 `number`：
 
 ``` html
-<input v-model="age" number>
+<div id="example">
+    <input v-model="message" number>
+    <span>{{message}}的类型是{{messageType}}</span>
+    <!--输入123,显示"123的类型是number"-->
+    <!--输入as123,显示"as123的类型是string"-->
+</div>
 ```
 
+```javascript
+new Vue({
+    el: "#example",
+    data: {
+        message: '',
+    },
+    computed: {
+        messageType: function() {
+            return typeof(this.message);
+        }
+    }
+  })
+```
 ### debounce
 
 `debounce` 设置一个最小的延时，在每次敲击之后延时同步输入框的值与数据。如果每次更新都要进行高耗操作（例如在输入提示中 Ajax 请求），它较为有用。
