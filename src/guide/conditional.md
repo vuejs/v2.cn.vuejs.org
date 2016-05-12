@@ -67,6 +67,25 @@ order: 7
 
 `v-else` 元素必须立即跟在 `v-if` 或 `v-show` 元素的后面——否则它不能被识别。
 
+
+### 组件警告
+
+将 `v-show` 用在组件上时，因为指令的优先级 `v-else` 会出现问题。因此不要这样做：
+
+```html
+<custom-component v-show="condition"></custom-component>
+<p v-else>这可能也是一个组件</p>
+```
+
+用另一个 `v-show` 替换 `v-else`：
+
+```html
+<custom-component v-show="condition"></custom-component>
+<p v-show="!condition">这可能也是一个组件</p>
+```
+
+这样就可以达到 `v-if` 的效果。
+
 ## v-if vs. v-show
 
 在切换 `v-if` 块时，Vue.js 有一个局部编译/卸载过程，因为 `v-if` 之中的模板也可能包括数据绑定或子组件。`v-if` 是真实的条件渲染，因为它会确保条件块在切换当中合适地销毁与重建条件块内的事件监听器和子组件。

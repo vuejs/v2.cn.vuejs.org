@@ -1565,6 +1565,7 @@ type: api
   ```
 
 - **另见：** [条件渲染 - v-else](/guide/conditional.html#v-else)
+- **另见：** [条件渲染 - 组件警告](/guide/conditional.html#组件警告)
 
 ### v-for
 
