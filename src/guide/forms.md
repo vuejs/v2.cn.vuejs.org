@@ -314,7 +314,7 @@ vm.selected.number // -> 123
 
 ### number
 
-如果想自动将用户的输入保持为数字，可以添加一个特性 `number`：
+如果想自动将用户的输入转为 Number 类型（如果原值的转换结果为 NaN 则返回原值），可以添加一个特性 `number`：
 
 ``` html
 <input v-model="age" number>
