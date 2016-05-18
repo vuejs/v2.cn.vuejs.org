@@ -74,7 +74,7 @@ Mustache 标签也可以用在 HTML 特性 (Attributes) 内：
 
 ### 过滤器
 
-Vue.js 允许在表达式后添加可选的“过滤器 (Filter) ”，以“管道符”指示：
+Vue.js 允许在表达式后添加可选的“过滤器 (Filter) ”，以“管道符”为例：
 
 ``` html
 {{ message | capitalize }}
