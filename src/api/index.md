@@ -1501,7 +1501,7 @@ type: api
 
   ``` html
   <span v-text="msg"></span>
-  <!-- same as -->
+  <!-- 同于 -->
   <span>{{msg}}</span>
   ```
 
@@ -1521,7 +1521,7 @@ type: api
 
   ``` html
   <div v-html="html"></div>
-  <!-- 相同 -->
+  <!-- 同于 -->
   <div>{{{html}}}</div>
   ```
 
@@ -1547,7 +1547,7 @@ type: api
 
 ### v-else
 
-- **不需要表达式**
+- **不期望表达式**
 
 - **限制：** 前一兄弟元素必须有 `v-if` 或 `v-show`。
 
