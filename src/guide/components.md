@@ -98,6 +98,7 @@ Vue.component('my-component', {
 
 // also works for local registration
 var Parent = Vue.extend({
+  template:'..<my-component></my-component>..'
   components: {
     'my-component': {
       template: '<div>A custom component!</div>'
