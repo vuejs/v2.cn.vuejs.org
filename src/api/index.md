@@ -1075,7 +1075,7 @@ type: api
 
   // set a non-existent path, will force digest
   vm.$set('c', 3)
-  vm.c // ->
+  vm.c // -> 3
   ```
 
 - **See also:** [Reactivity in Depth](/guide/reactivity.html)
