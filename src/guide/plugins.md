@@ -29,6 +29,23 @@ MyPlugin.install = function (Vue, options) {
 }
 ```
 
+或者插件可以`export`出一个`plugin`函数， 这个函数的第一个参数是 `Vue` 构造器，第二个参数是一个可选的选项对象：
+
+
+``` js
+function plugin(Vue) {
+    if (plugin.installed) {
+        return;
+  }
+  // 1. 添加全局方法或属性
+  Vue.myGlobalMethod = ...
+  // 2. 添加全局资源
+  Vue.directive('my-directive', {})
+  // 3. 添加实例方法
+  Vue.prototype.$myMethod = ...
+}
+```
+
 ## 使用插件
 
 通过 `Vue.use()` 全局方法使用插件：
