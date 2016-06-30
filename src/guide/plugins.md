@@ -30,6 +30,21 @@ MyPlugin.install = function (Vue, options) {
   Vue.prototype.$myMethod = ...
 }
 ```
+or your plugin can export an `plugin` function which can be called with the `Vue` constructor as the first argument, along with possible options:
+
+```
+function plugin(Vue) {
+    if (plugin.installed) {
+        return;
+    }
+    // 1. add global method or property
+    Vue.myGlobalMethod = ...
+    // 2. add a global asset
+    Vue.directive('my-directive', {})
+    // 3. add an instance method
+    Vue.prototype.$myMethod = ...
+}
+```
 
 ## Using a Plugin
 
