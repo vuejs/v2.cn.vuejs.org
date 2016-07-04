@@ -68,7 +68,7 @@ app.currentView = 'page1'
 
 ## 与服务器通信
 
-Vue 实例的原始数据 `$data` 能直接用 `JSON.stringify()` 序列化。社区贡献了一个插件 [vue-resource](https://github.com/vuejs/vue-resource)，提供一种容易的方式与 RESTful APIs 配合。也可以使用任何自己喜欢的 Ajax 库，如 `$.ajax` 或 [SuperAgent](https://github.com/visionmedia/superagent)。Vue.js 也能很好地与无后端服务配合，如 Firebase 和 Parse。
+Vue 实例的原始数据 `$data` 能直接用 `JSON.stringify()` 序列化。社区贡献了一个插件 [vue-resource](https://github.com/vuejs/vue-resource)，提供一种容易的方式与 RESTful APIs 配合。也可以使用任何自己喜欢的 Ajax 库，如 `$.ajax` 或 [SuperAgent](https://github.com/visionmedia/superagent)。Vue.js 也能很好地与无后端服务配合，如 Firebase、Parse 和 Hoodie。
 
 ## 状态管理
 

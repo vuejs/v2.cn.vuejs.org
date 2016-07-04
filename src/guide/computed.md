@@ -73,6 +73,7 @@ Vue.js 提供了一个方法 `$watch`，它用于观察 Vue 实例上的数据�
 
 ``` js
 var vm = new Vue({
+  el: '#demo',
   data: {
     firstName: 'Foo',
     lastName: 'Bar',

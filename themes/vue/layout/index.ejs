@@ -26,6 +26,7 @@
         </span>
       </li>
     </ul>
+
     <ul id="translations">
       <li><a href="http://vuejs.org.cn" class="nav-link">中文</a></li>
       <li class="delimiter">|</li>
@@ -33,11 +34,18 @@
       <li class="delimiter">|</li>
       <li><a href="http://it.vuejs.org" class="nav-link">Italiano</a></li>
     </ul>
+
+    <div id="sponsors">
+      <%- partial('partials/sponsors') %>
+    </div>
   </div>
+
   <div class="down"><img src="/images/down.png"></div>
 </div>
 
-<%- partial('partials/ad') %>
+<div id="sponsors-mobile">
+  <%- partial('partials/sponsors') %>
+</div>
 
 <div id="example">
   <h2>10 秒钟看懂 Vue.js</h2>

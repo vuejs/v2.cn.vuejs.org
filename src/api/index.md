@@ -1164,7 +1164,7 @@ type: api
 
   // keypath 不存在
   vm.$set('c', 3)
-  vm.c // ->
+  vm.c // -> 3
   ```
 
 - **另见：** [深入响应式原理](/guide/reactivity.html)
