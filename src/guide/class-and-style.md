@@ -99,6 +99,8 @@ data: {
 }
 ```
 
+<p class="tip">尽管可以用 v-bind:style 绑定 style，比如 `{ color: activeColor, fontSize: fontSize + 'px' }`，但是要注意, 如果css属性名称中包含`-`等特殊字符, css属性名称需要使用单引号, 比如 `{'background-color': color}`！</p>
+
 直接绑定到一个样式对象通常更好，让模板更清晰：
 
 ``` html
