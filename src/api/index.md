@@ -2155,6 +2155,14 @@ type: api
   ``` html
   <div v-for="user in users | filterBy myCustomFilterFunction">
   ```
+   - 函数参数
+     - {*} [value] - 数组中的每个元素
+     - {Number} [index] - 元素索引
+     - {Array} [array] - 数组本身
+
+   - 用法
+
+     函数顺序处理数组中的每个元素，返回值为真表示命中
 
 ### orderBy
 
