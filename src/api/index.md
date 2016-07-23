@@ -2041,6 +2041,14 @@ type: api
   ``` html
   <div v-for="user in users | filterBy myCustomFilterFunction">
   ```
+   - arguments
+     - {*} [value] - element of the array
+     - {Number} [index] - element index
+     - {Array} [array] - the array itself
+
+   - usage
+
+     function filter every element in the array and return true if match.
 
 ### orderBy
 
