@@ -41,7 +41,7 @@ Vue.filter('currencyDisplay', {
   // model -> view
   // formats the value when updating the input element.
   read: function(val) {
-    return '$'+val.toFixed(2)
+    return '$'+parseFloat(val).toFixed(2)
   },
   // view -> model
   // formats the value when writing to the data.
