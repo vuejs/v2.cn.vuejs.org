@@ -270,7 +270,7 @@ It is possible for a component to specify the requirements for the props it is r
 Vue.component('example', {
   props: {
     // basic type check (`null` means accept any type)
-    propA: Number,
+    propA: null,
     // a required string
     propB: {
       type: String,
