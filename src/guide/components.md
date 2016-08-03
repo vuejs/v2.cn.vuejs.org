@@ -88,7 +88,7 @@ The same encapsulation applies for other assets types such as directives, filter
 
 ### Registration Sugar
 
-To make things easier, you can directly pass in the options object instead of an actual constructor to `Vue.component()` and the `component` option. Vue.js will automatically call `Vue.extend()` for you under the hood:
+To make things easier, you can directly pass in the options object instead of an actual constructor to `Vue.component()` and the `components` option. Vue.js will automatically call `Vue.extend()` for you under the hood:
 
 ``` js
 // extend and register in one step
