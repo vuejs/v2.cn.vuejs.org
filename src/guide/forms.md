@@ -8,7 +8,6 @@ order: 10
 
 可以用 `v-model` 指令在表单控件元素上创建双向数据绑定。根据控件类型它自动选取正确的方法更新元素。尽管有点神奇，`v-model` 不过是语法糖，在用户输入事件中更新数据，以及特别处理一些极端例子。
 
-
 ### Text
 
 ``` html
@@ -25,6 +24,31 @@ order: 10
 <script>
 new Vue({
   el: '#example-1',
+  data: {
+    message: ''
+  }
+})
+</script>
+{% endraw %}
+
+### Multiline text
+
+``` html
+<span>Multiline message is:</span>
+<p>{{ message }}</p>
+<br>
+<textarea v-model="message" placeholder="add multiple lines"></textarea>
+```
+
+{% raw %}
+<div id="example-textarea" class="demo">
+  <span>Message is:</span>
+  <p style="white-space: pre">{{ message }}</p><br>
+  <textarea v-model="message" placeholder="add multiple lines"></textarea>
+</div>
+<script>
+new Vue({
+  el: '#example-textarea',
   data: {
     message: ''
   }

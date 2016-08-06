@@ -35,6 +35,12 @@
   <a href="https://htmlburger.com" target="_blank">
     <img width="250px" src="/images/htmlburger.png">
   </a>
+  <a href="https://starter.someline.com/" target="_blank">
+    <img width="250px" src="/images/someline.png">
+  </a>
+  <a href="http://gold.xitu.io/?utm_source=vuejs&utm_medium=image&utm_content=juejin&utm_campaign=q3_website" target="_blank">
+    <img width="180px" src="/images/juejin.png">
+  </a>
 </p>
 
 Vue.js 是采用 MIT 许可的开源项目，使用完全免费。不过，如果没有资金的支持，维护和开发新功能是不可能持续的。你可以通过 [Patreon](https://www.patreon.com/evanyou) 或 [PayPal](https://www.paypal.me/evanyou) 来赞助。
