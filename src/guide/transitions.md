@@ -160,7 +160,7 @@ If the `transition` attribute has no value, the classes will default to `.v-tran
 
 ### Transition Flow Details
 
-When the `show` property changes, Vue.js will insert or remove the `<div>` element accordingly, and apply transition classes as specified below:
+When the `show` property changes, Vue.js will show or hide the `<div>` element accordingly, and apply transition classes as specified below:
 
 - When `show` becomes false, Vue.js will:
   1. Call `beforeLeave` hook;
