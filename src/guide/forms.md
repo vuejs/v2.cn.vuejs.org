@@ -294,7 +294,7 @@ vm.selected.number // -> 123
 
 ### lazy
 
-By default, `v-model` syncs the input with the data after each `input` event. You can add a `lazy` attribute to change the behavior to sync after `change` events:
+By default, `v-model` syncs the input with the data after each `change` event. You can add a `lazy` attribute to change the behavior to sync after `blur` events:
 
 ``` html
 <!-- synced after "change" instead of "input" -->
