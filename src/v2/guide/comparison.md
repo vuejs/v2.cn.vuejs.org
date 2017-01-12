@@ -30,15 +30,15 @@ React社区为我们准确进行平衡的考量提供了[非常积极地帮助](
 在渲染用户界面的时候，DOM 的操作成本是最高的，不幸的是没有库可以让这些原始操作变得更快。
 我们能做到的最好效果就是：
 
-1. Minimize the number of necessary DOM mutations. Both React and Vue use virtual DOM abstractions to accomplish this and both implementations work about equally well.
+1. 把必须的 Dom 更新降到最小。React 和 Vue 都是通过 Virtual Dom 抽象层来实现这一要求，而且他们都实现得一样赞。
 
-2. Add as little overhead (pure JavaScript computations) as possible on top of those DOM manipulations. This is an area where Vue and React differ.
+2. 在这些 Dom 操作之上，则尽可能少地添加额外性能开销（即：纯 JavaScript 运算）。这是 Vue 和 React 产生分歧之处。
 
-The JavaScript overhead is directly related to the mechanisms of computing the necessary DOM operations. Both Vue and React utilizes Virtual DOM to achieve that, but Vue's Virtual DOM implementation (a fork of [snabbdom](https://github.com/snabbdom/snabbdom)) is much lighter-weight and thus introduces less overhead than React's.
+JavaScript 开销直接与求算必要 DOM 操作的机制相关。尽管 Vue 和 React 都使用了 Virtual Dom 实现这一点，但 Vue 的 Virtual Dom 实现（复刻自  [snabbdom](https://github.com/snabbdom/snabbdom)）是更加轻量化的，因此也就比 React 的实现更高效。
 
 Vue 和 React 也提供功能性组件，这些组件因为都是没有声明，没有实例化的，因此会花费更少的开销。当这些都用于关键性能的场景时，Vue 将会更快。为了证明这点，我们建立了一个简单的[参照项目](https://github.com/chrisvfritz/vue-render-performance-comparisons)，它负责渲染 10,000 个列表项 100 次。我们鼓励你基于此去尝试运行一下。然而在实际上，由于浏览器和硬件的差异甚至 JavaScript 引擎的不同，结果都会相应有所不同。
 
-如果你懒得去做，下面的数值是来自于一个 2014 年产的 MacBook Air 并在 Chrome 52 版本下运行所产生的。为了避免偶然性，每个参照项目都分别运行 20 次并取自最好的结果：
+如果你懒得去做，下面的数值是产生自运行于 2014 款 MacBook Air 的 Chrome 52。为了避免偶然性，每个参照项目都分别运行 20 次并取自最好的结果：
 
 {% raw %}
 <table class="benchmark-table">
@@ -81,9 +81,9 @@ Vue 和 React 也提供功能性组件，这些组件因为都是没有声明，
 
 #### 更新性能
 
-In React, when a component's state changes, it triggers the re-render of the entire component sub-tree, starting at that component as root. 
+在 React 里，当某个组件的状态发生变化时，它会以该组件为根，重新渲染整个组件子树
 
-To avoid unnecessary re-renders of child components, you need to implement `shouldComponentUpdate` everywhere and use immutable data structures. In Vue, a component's dependencies are automatically tracked during its render, so the system knows precisely which components actually need to re-render.
+如要避免不必要的子组件的重渲染，你需要显式地在所有地方实现 `shouldComponentUpdate` 检测并使用不可变的数据结构。在 Vue 中，组件的依赖是在渲染过程中自动追踪的，所以系统能精确知晓哪个组件确实需要被重渲染。
 
 这意味着，未经优化的 Vue 相比未经优化的 React 要快的多。由于 Vue 改进过渲染性能，甚至全面优化过的 React 通常也会慢于开箱即用的 Vue。
 
