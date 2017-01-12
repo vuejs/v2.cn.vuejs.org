@@ -81,7 +81,7 @@ Vue 和 React 也提供功能性组件，这些组件因为都是没有声明，
 
 #### 更新性能
 
-在 React 里，当某个组件的状态发生变化时，它会以该组件为根，重新渲染整个组件子树
+在 React 里，当某个组件的状态发生变化时，它会以该组件为根，重新渲染整个组件子树。
 
 如要避免不必要的子组件的重渲染，你需要显式地在所有地方实现 `shouldComponentUpdate` 检测并使用不可变的数据结构。在 Vue 中，组件的依赖是在渲染过程中自动追踪的，所以系统能精确知晓哪个组件确实需要被重渲染。
 
@@ -91,7 +91,7 @@ Vue 和 React 也提供功能性组件，这些组件因为都是没有声明，
 
 显然，在生产环境中的性能是至关重要的，目前为止我们所具体讨论的便是针对此环境。但开发过程中的表现也不容小视。不错的是用 Vue 和 React 开发大多数应用的速度都是足够快的。
 
-当性能在生产中性能是直接与终端用户体验相关的更重要的指标时，表现在开发中仍然很重要,因为它是与开发相关经验
+当性能在生产中性能是直接与终端用户体验相关的更重要的指标时，表现在开发中仍然很重要,因为它是与开发相关经验。
 
 然而，假如你要开发一个对性能要求比较高的数据可视化或者动画的应用时，你需要了解到下面这点：在开发中，Vue 每秒最高处理 10 帧，而 React 每秒最高处理不到 1 帧。
 
@@ -202,7 +202,7 @@ Vue 和 React 都提供了强大的路由来应对大型应用。React 社区在
 
 两者另一个重要差异是，Vue 的路由库和状态管理库都是由官方维护支持且与核心库同步更新的。React 则是选择把这些问题交给社区维护，因此创建了一个更分散的生态系统。但相对的，React 的生态系统相比 Vue 更加繁荣。
 
-最后，Vue 提供了[Vue-cli 脚手架](https://github.com/vuejs/vue-cli)，能让你非常容易地构建项目，包含了 [Webpack](https://github.com/vuejs-templates/webpack), [Browserify](https://github.com/vuejs-templates/browserify), 甚至 [no build system](https://github.com/vuejs-templates/simple)。React 在这方面也提供了[create-react-app](https://github.com/facebookincubator/create-react-app)，但是现在还存在一些局限性：
+最后，Vue 提供了[Vue-cli 脚手架](https://github.com/vuejs/vue-cli)，能让你非常容易地构建项目，包含了 [Webpack](https://github.com/vuejs-templates/webpack)，[Browserify](https://github.com/vuejs-templates/browserify)，甚至 [no build system](https://github.com/vuejs-templates/simple)。React 在这方面也提供了[create-react-app](https://github.com/facebookincubator/create-react-app)，但是现在还存在一些局限性：
 
 - 它不允许在项目生成时进行任何配置，而 Vue 支持 Yeoman-like 定制。
 - 它只提供一个构建单页面应用的单一模板，而 Vue 提供了各种用途的模板。
