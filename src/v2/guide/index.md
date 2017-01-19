@@ -6,11 +6,11 @@ order: 2
 
 ## Vue.js 是什么
 
-Vue.js（读音 /vjuː/, 类似于 **view**） 是一套构建用户界面的 **渐进式框架**。与其他重量级框架不同的是，Vue 采用自底向上增量开发的设计。Vue 的核心库只关注视图层，并且非常容易学习，非常容易与其它库或已有项目整合。另一方面，Vue 完全有能力驱动采用[单文件组件](single-file-components.html)和 [Vue 生态系统支持的库](//github.com/vuejs/awesome-vue#libraries--plugins)开发的复杂单页应用。
+Vue.js（读音 /vjuː/, 类似于 **view**） 是一套构建用户界面的**渐进式框架**。与其他重量级框架不同的是，Vue 采用自底向上增量开发的设计。Vue 的核心库只关注视图层，并且非常容易学习，非常容易与其它库或已有项目整合。另一方面，Vue 完全有能力驱动采用 [单文件组件](single-file-components.html) 和  [Vue 生态系统支持的库](//github.com/vuejs/awesome-vue#libraries--plugins) 开发的复杂单页应用。
 
 Vue.js 的目标是通过尽可能简单的 API 实现**响应的数据绑定**和**组合的视图组件**。
 
-如果你是有经验的前端开发者，想知道 Vue.js 与其它库/框架的区别，查看[对比其它框架](comparison.html)。
+如果你是有经验的前端开发者，想知道 Vue.js 与其它库/框架的区别，查看 [对比其它框架](comparison.html)。
 
 ## 起步
 
@@ -22,7 +22,7 @@ Vue.js 的目标是通过尽可能简单的 API 实现**响应的数据绑定**�
 <script src="https://unpkg.com/vue/dist/vue.js"></script>
 ```
 
-你可以查看[安装指南](/guide/installation.html)来了解其他安装 Vue 的选项。请注意我们**不推荐**新手直接使用 `vue-cli`，尤其是对 Node.js 构建工具不够了解的同学。
+你可以查看 [安装指南](/guide/installation.html) 来了解其他安装 Vue 的选项。请注意我们**不推荐**新手直接使用 `vue-cli`，尤其是对 Node.js 构建工具不够了解的同学。
 
 
 ## 声明式渲染
@@ -93,7 +93,7 @@ var app2 = new Vue({
 
 这里我们遇到点新东西。你看到的 `v-bind` 属性被称为**指令**。指令带有前缀 `v-`，以表示它们是 Vue.js 提供的特殊属性。可能你已经猜到了，它们会在渲染过的 DOM 上应用特殊的响应式行为。这个指令的简单含义是说：将这个元素节点的 `title` 属性和 Vue 实例的 `message` 属性绑定到一起。
 
-你再次打开浏览器的控制台输入 `app2.message = 'some new message'`，你就会再一次看到这个绑定了`title`属性的HTML已经进行了更新。
+你再次打开浏览器的控制台输入 `app2.message = 'some new message'`，你就会再一次看到这个绑定了 `title` 属性的HTML已经进行了更新。
 
 ## 条件与循环
 
@@ -128,9 +128,9 @@ var app3 = new Vue({
 
 继续在控制台设置 `app3.seen = false`，你会发现 “Now you see me” 消失了。
 
-这个例子演示了我们不仅可以绑定 DOM 文本到数据，也可以绑定 DOM **结构**到数据。而且，Vue.js 也提供一个强大的过渡效果系统，可以在 Vue 插入/删除元素时自动应用[过渡效果](transitions.html)。
+这个例子演示了我们不仅可以绑定 DOM 文本到数据，也可以绑定 DOM **结构**到数据。而且，Vue.js 也提供一个强大的过渡效果系统，可以在 Vue 插入、删除元素时自动应用 [过渡效果](transitions.html)。
 
-也有一些其它指令，每个都有特殊的功能。例如， `v-for` 指令可以绑定数据到数组来渲染一个列表：
+也有一些其它指令，每个都有特殊的功能。例如，`v-for` 指令可以绑定数据到数组来渲染一个列表：
 
 ``` html
 <div id="app-4">
@@ -277,7 +277,7 @@ Vue.component('todo-item', {
 </ol>
 ```
 
-但是这样会为每个 todo 渲染同样的文本，这看起来并不是很酷。我们应该将数据从父作用域传到子组件。让我们来修改一下组件的定义，使得它能够接受一个[属性](components.html#Props)字段：
+但是这样会为每个 `todo` 渲染同样的文本，这看起来并不是很酷。我们应该将数据从父作用域传到子组件。让我们来修改一下组件的定义，使得它能够接受一个[属性](components.html#Props)字段：
 
 ``` js
 Vue.component('todo-item', {
@@ -289,7 +289,7 @@ Vue.component('todo-item', {
 })
 ```
 
-现在，我们可以使用 `v-bind` 指令将 todo 传到每一个重复的组件中：
+现在，我们可以使用 `v-bind` 指令将 `todo` 传到每一个重复的组件中：
 
 ``` html
 <div id="app-7">
@@ -344,7 +344,7 @@ var app7 = new Vue({
 
 这只是一个假设的例子，但是我们已经将应用分割成了两个更小的单元，子元素通过 `props` 接口实现了与父亲元素很好的解耦。我们现在可以在不影响到父应用的基础上，进一步为我们的 `todo` 组件改进更多复杂的模板和逻辑。
 
-在一个大型应用中，为了使得开发过程可控，有必要将应用整体分割成一个个的组件。在[后面的教程](components.html)中我们将详述组件，不过这里有一个（假想）的例子，看看使用了组件的应用模板是什么样的：
+在一个大型应用中，为了使得开发过程可控，有必要将应用整体分割成一个个的组件。在 [后面的教程](components.html) 中我们将详述组件，不过这里有一个（假想）的例子，看看使用了组件的应用模板是什么样的：
 
 ``` html
 <div id="app">
@@ -358,7 +358,7 @@ var app7 = new Vue({
 
 ## 与自定义元素的关系
 
-你可能已经注意到 Vue.js 组件非常类似于**自定义元素**——它是 [Web 组件规范](//www.w3.org/wiki/WebComponents/)的一部分。实际上 Vue.js 的组件语法参考了该规范。例如 Vue 组件实现了 [Slot API](//github.com/w3c/webcomponents/blob/gh-pages/proposals/Slots-Proposal.md) 与 `is` 特性。但是，有几个关键的不同：
+你可能已经注意到 Vue.js 组件非常类似于**自定义元素**——它是 [Web 组件规范](//www.w3.org/wiki/WebComponents/) 的一部分。实际上 Vue.js 的组件语法参考了该规范。例如 Vue 组件实现了 [Slot API](//github.com/w3c/webcomponents/blob/gh-pages/proposals/Slots-Proposal.md) 与 `is` 特性。但是，有几个关键的不同：
 
 1. Web 组件规范仍然远未完成，并且没有浏览器实现。相比之下，Vue.js 组件不需要任何补丁，并且在所有支持的浏览器（IE9 及更高版本）之下表现一致。必要时，Vue.js 组件也可以放在原生自定义元素之内。
 
