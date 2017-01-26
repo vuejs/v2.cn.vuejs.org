@@ -23,7 +23,7 @@ Vue 推荐使用在绝大多数情况下使用 template 来创建你的 HTML。�
 <anchored-heading :level="1">Hello world!</anchored-heading>
 ```
 
-当我们开始写一个通过 `level` prop 动态生成heading 标签的组件，你可很快能想到这样实现：
+当我们开始写一个通过 `level` prop 动态生成heading 标签的组件，你可能很快想到这样实现：
 
 ``` html
 <script type="text/x-template" id="anchored-heading-template">
