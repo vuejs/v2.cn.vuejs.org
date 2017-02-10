@@ -93,19 +93,18 @@ Vue.component('anchored-heading', {
 // @returns {VNode}
 createElement(
   // {String | Object | Function}
-  // 一个 HTML 标签，组件选项，或一个函数
-  // 必须 Return 上述其中一个
-  'div',
+  // 一个 HTML 标签字符串，组件选项对象，或者一个返回值类型为String/Object的函数，必要参数
+  'div',
 
   // {Object}
-  // 一个对应属性的数据对象
-  // 您可以在 template 中使用.可选项.
+  // 一个包含模板相关属性的数据对象
+  // 这样，您可以在 template 中使用这些属性.可选参数.
   {
-    // (下一章，将详细说明相关细节)
+    // (详情见下一节)
   },
 
   // {String | Array}
-  // 子节点(VNodes). 可选项.
+  // 子节点(VNodes)，可以是一个字符串或者一个数组. 可选参数.
   [
     createElement('h1', 'hello world'),
     createElement(MyComponent, {
@@ -118,9 +117,8 @@ createElement(
 )
 ```
 
-### 完整数据对象
-
-有一件事要注意：在 templates 中，`v-bind:class` 和  `v-bind:style` ，会有特别的处理，他们在 VNode 数据对象中，为最高级配置。
+### 深入data object参数
+有一件事要注意：正如在模板语法中，`v-bind:class` 和  `v-bind:style` ，会被特别对待一样，在 VNode 数据对象中，下列属性名是级别最高的字段。
 
 
 ``` js
@@ -153,13 +151,13 @@ createElement(
   on: {
     click: this.clickHandler
   },
-  // 仅对于组件，用于监听原生事件，而不是组件使用 vm.$emit 触发的事件。
+  // 仅对于组件，用于监听原生事件，而不是组件内部使用 vm.$emit 触发的事件。
   nativeOn: {
     click: this.nativeClickHandler
   },
   // 自定义指令. 注意事项：不能对绑定的旧值设值
-  // Vue 会为您持续追踨
-  directives: [
+  // Vue 会为您持续追踪
+  directives: [
     {
       name: 'my-custom-directive',
       value: '2'
@@ -175,8 +173,8 @@ createElement(
   scopedSlots: {
     default: props => h('span', props.text)
   },
-  // 如果子组件有定义 slot 的名称
-  slot: 'name-of-slot'
+  // 如果组件是其他组件的子组件，需为slot指定名称
+  slot: 'name-of-slot'
   // 其他特殊顶层属性
   key: 'myKey',
   ref: 'myRef'
@@ -185,7 +183,7 @@ createElement(
 
 ### 完整示例
 
-有了这方面的知识，我们现在可以完成我们最开始想实现的组件：
+有了这些知识，我们现在可以完成我们最开始想实现的组件：
 
 ``` js
 var getChildrenTextContent = function (children) {
@@ -229,14 +227,14 @@ Vue.component('anchored-heading', {
 
 #### VNodes 必须唯一
 
-所有组件树中的 VNodes 必须唯一。这意味着，下面的 render function 是无效的：
+组件树中的所有 VNodes 必须是唯一的。这意味着，下面的 render function 是无效的：
 
 ``` js
 render: function (createElement) {
   var myParagraphVNode = createElement('p', 'hi')
   return createElement('div', [
-    // Yikes - duplicate VNodes!
-    myParagraphVNode, myParagraphVNode
+    // 错误-重复的VNodes
+    myParagraphVNode, myParagraphVNode
   ])
 }
 ```
@@ -257,7 +255,7 @@ render: function (createElement) {
 
 ### `v-if` and `v-for`
 
-无论什么都可以使用原生的 JavaScript 来实现，Vue 的 render 函数不会提供专用的 API。比如， template 中的 `v-if` 和 `v-for`:
+由于使用原生的 JavaScript 来实现某些东西很简单，Vue 的 render 函数没有提供专用的 API。比如， template 中的 `v-if` 和 `v-for`:
 
 ``` html
 <ul v-if="items.length">
@@ -281,7 +279,7 @@ render: function (createElement) {
 
 ### `v-model`
 
-There is no direct `v-model` counterpart in render functions - you will have to implement the logic yourself:
+render函数中没有与`v-model`相应的api  - 你必须自己来实现相应的逻辑:
 
 ``` js
 render: function (createElement) {
@@ -299,11 +297,11 @@ render: function (createElement) {
 }
 ```
 
-This is the cost of going lower-level, but it also gives you much more control over the interaction details compared to `v-model`.
+这就是深入底层要付出的,尽管麻烦了一些，但相对于 `v-model`来说，你可以更灵活地控制。
 
-### Event & Key Modifiers
+### 事件 & 修饰符
 
-For the `.capture` and `.once` event modifiers, Vue offers prefixes that can be used with `on`:
+对于 `.capture` 和 `.once`事件修饰符, Vue 提供了相应的前缀可以用于 `on`:
 
 | Modifier(s) | Prefix |
 | ------ | ------ |
@@ -311,7 +309,7 @@ For the `.capture` and `.once` event modifiers, Vue offers prefixes that can be 
 | `.once` | `~` |
 | `.capture.once` or<br>`.once.capture` | `~!` |
 
-For example:
+例如:
 
 ```javascript
 on: {
@@ -321,7 +319,7 @@ on: {
 }
 ```
 
-For all other event and key modifiers, no proprietary prefix is necessary, because you can simply use event methods in the handler:
+对于其他的修饰符, 前缀不是很重要, 因为你可以直接在事件处理函数中使用事件方法:
 
 | Modifier(s) | Equivalent in Handler |
 | ------ | ------ |
@@ -331,30 +329,29 @@ For all other event and key modifiers, no proprietary prefix is necessary, becau
 | Keys:<br>`.enter`, `.13` | `if (event.keyCode !== 13) return` (change `13` to [another key code](http://keycode.info/) for other key modifiers) |
 | Modifiers Keys:<br>`.ctrl`, `.alt`, `.shift`, `.meta` | `if (!event.ctrlKey) return` (change `ctrlKey` to `altKey`, `shiftKey`, or `metaKey`, respectively) |
 
-Here's an example with all of these modifiers used together:
-
+这里是一个使用所有修饰符的例子:
 ```javascript
 on: {
   keyup: function (event) {
-    // Abort if the element emitting the event is not
-    // the element the event is bound to
-    if (event.target !== event.currentTarget) return
-    // Abort if the key that went up is not the enter
-    // key (13) and the shift key was not held down
-    // at the same time
-    if (!event.shiftKey || event.keyCode !== 13) return
-    // Stop event propagation
-    event.stopPropagation()
-    // Prevent the default keyup handler for this element
-    event.preventDefault()
+    // 如果触发事件的元素不是事件绑定的元素
+    // 则返回
+    if (event.target !== event.currentTarget) return
+    // 如果按下去的不是enter键或者
+    // 没有同时按下shift键
+    // 则返回
+    if (!event.shiftKey || event.keyCode !== 13) return
+    // 阻止 事件冒泡
+    event.stopPropagation()
+    // 阻止该元素默认的keyup事件
+    event.preventDefault()
     // ...
   }
 }
 ```
 
-### Slots
+### 内容插槽
 
-You can access static slot contents as Arrays of VNodes from [`this.$slots`](http://vuejs.org/v2/api/#vm-slots):
+你可以从[`this.$slots`](http://vuejs.org/v2/api/#vm-slots)获取VNodes列表中的静态内容:
 
 ``` js
 render: function (createElement) {
