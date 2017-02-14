@@ -113,9 +113,8 @@ computed: {
 
 我们为什么需要缓存？假设我们有一个重要的计算属性 **A** ，这个计算属性需要一个巨大的数组遍历和做大量的计算。然后我们可能有其他的计算属性依赖于 **A** 。如果没有缓存，我们将不可避免的多次执行 **A** 的 getter ！如果你不希望有缓存，请用 method 替代。
 
-### 计算属性 vs Watched Property
-
-Vue.js 提供了一个方法 `$watch` ，它用于观察 Vue 实例上的数据变动。当一些数据需要根据其它数据变化时， `$watch` 很诱人 —— 特别是如果你来自 AngularJS 。不过，通常更好的办法是使用计算属性而不是一个命令式的 `$watch` 回调。思考下面例子：
+### Computed 属性 vs Watched 属性
+Vue 确实提供了一种更通用的方式来观察和响应 Vue 实例上的数据变动：watch 属性。当你有一些数据需要随着其它数据变动而变动时，你很容易滥用 `watch`——特别是如果你之前使用过 AngularJS。然而，通常更好的想法是使用 computed 属性而不是命令式的 `watch` 回调。细想一下这个例子：
 
 ``` html
 <div id="demo">{{ fullName }}</div>
@@ -140,7 +139,7 @@ var vm = new Vue({
 })
 ```
 
-上面代码是命令式的和重复的。跟计算属性对比：
+上面代码是命令式的和重复的。将它与 computed 属性的版本进行比较：
 
 ``` js
 var vm = new Vue({
@@ -157,7 +156,7 @@ var vm = new Vue({
 })
 ```
 
-这样更好，不是吗？
+好得多了，不是吗？
 
 ### 计算 setter
 
@@ -182,7 +181,7 @@ computed: {
 // ...
 ```
 
-现在在运行 `vm.fullName = 'John Doe'` 时， setter 会被调用， `vm.firstName` 和 `vm.lastName` 也会被对应更新。
+现在在运行 `vm.fullName = 'John Doe'` 时， setter 会被调用， `vm.firstName` 和 `vm.lastName` 也相应地会被更新。
 
 ## 观察 Watchers
 
