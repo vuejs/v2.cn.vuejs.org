@@ -622,7 +622,12 @@ Vue.component('currency-input', {
     }
   }
 })
-new Vue({ el: '#currency-input-example' })
+new Vue({
+  el: '#currency-input-example',
+  data: {
+    price: 0
+  }
+})
 </script>
 {% endraw %}
 
