@@ -243,12 +243,11 @@ new Vue({ el: '#range' })
     placeholder="Add a todo"
   >
   <ul>
-    <li
-      is="todo-item"
+    <todo-item
       v-for="(todo, index) in todos"
       v-bind:title="todo"
       v-on:remove="todos.splice(index, 1)"
-    ></li>
+    ></todo-item>
   </ul>
 </div>
 ```
