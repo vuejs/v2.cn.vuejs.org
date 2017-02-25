@@ -226,9 +226,9 @@ new Vue({
 
 ### 使用 Prop 传递数据
 
-组件实例的作用域是**孤立的**。这意味着不能并且不应该在子组件的模板内直接引用父组件的数据。可以使用 props 把数据传给子组件。
+组件实例的作用域是**孤立的**。这意味着不能(也不应该)在子组件的模板内直接引用父组件的数据。要让子组件使用父组件的数据，我们需要通过子组件的props选项。
 
-prop 是父组件用来传递数据的一个自定义属性。子组件需要显式地用 [`props` 选项](../api/#props)声明 “prop”：
+子组件要显式地用 [`props` 选项](../api/#props)声明它期待获得的数据：
 
 ``` js
 Vue.component('child', {
@@ -240,7 +240,7 @@ Vue.component('child', {
 })
 ```
 
-然后向它传入一个普通字符串：
+然后我们可以这样向它传入一个普通字符串：
 
 ``` html
 <child message="hello!"></child>
@@ -267,7 +267,7 @@ new Vue({
 
 ### camelCase vs. kebab-case
 
-HTML 特性是不区分大小写的。所以，当使用非字符串模版时，camelCased (驼峰式) 命名的 prop 需要转换为相对应的 kebab-case (短横线隔开式) 命名：
+HTML 特性是不区分大小写的。所以，当使用的不是字符串模版，camelCased (驼峰式) 命名的 prop 需要转换为相对应的 kebab-case (短横线隔开式) 命名：
 
 ``` js
 Vue.component('child', {
@@ -282,11 +282,11 @@ Vue.component('child', {
 <child my-message="hello!"></child>
 ```
 
-再次说明，如果你使用字符串模版，不用在意这些限制。
+如果你使用字符串模版，则没有这些限制。
 
 ### 动态 Prop
 
-类似于用 `v-bind` 绑定 HTML 特性到一个表达式，也可以用 `v-bind` 动态绑定 props 的值到父组件的数据中。每当父组件的数据变化时，该变化也会传导给子组件：
+在模板中，要动态地绑定父组件的数据到子模板的props，与绑定到任何普通的HTML特性相类似，就是用 `v-bind`。每当父组件的数据变化时，该变化也会传导给子组件：
 
 ``` html
 <div>
@@ -335,10 +335,10 @@ new Vue({
 <comp some-prop="1"></comp>
 ```
 
-因为它是一个字面 prop ，它的值以字符串 `"1"` 而不是以实际的数字传下去。如果想传递一个实际的 JavaScript 数字，需要使用 `v-bind` ，从而让它的值被当作 JavaScript 表达式计算：
+因为它是一个字面 prop ，它的值是字符串 `"1"` 而不是number。如果想传递一个实际的number，需要使用 `v-bind` ，从而让它的值被当作 JavaScript 表达式计算：
 
 ``` html
-<!-- 传递实际的数字 -->
+<!-- 传递实际的mumber -->
 <comp v-bind:some-prop="1"></comp>
 ```
 
@@ -348,15 +348,15 @@ prop 是单向绑定的：当父组件的属性变化时，将传导给子组件
 
 另外，每次父组件更新时，子组件的所有 prop 都会更新为最新值。这意味着你**不应该**在子组件内部改变 prop 。如果你这么做了，Vue 会在控制台给出警告。
 
-通常有两种改变 prop 的情况：
+为什么我们会有修改prop中数据的冲动呢？通常是这两种原因：
 
-1. prop 作为初始值传入，子组件之后只是将它的初始值作为本地数据的初始值使用；
+1. prop 作为初始值传入后，子组件想把它当作局部数据来用；
 
-2. prop 作为需要被转变的原始值传入。
+2. prop 作为初始值传入，由子组件处理成其它数据输出。
 
-更确切的说这两种情况是：
+对这两种原因，正确的应对方式是：
 
-1. 定义一个局部 data 属性，并将 prop 的初始值作为局部数据的初始值。
+1. 定义一个局部变量，并用 prop 的值初始化它：
 
   ``` js
   props: ['initialCounter'],
@@ -365,7 +365,7 @@ prop 是单向绑定的：当父组件的属性变化时，将传导给子组件
   }
   ```
 
-2. 定义一个 computed 属性，此属性从 prop 的值计算得出。
+2. 定义一个计算属性，处理 prop 的值并返回。
 
   ``` js
   props: ['size'],
@@ -380,9 +380,9 @@ prop 是单向绑定的：当父组件的属性变化时，将传导给子组件
 
 ### Prop 验证
 
-组件可以为 props 指定验证要求。如果未指定验证要求，Vue 会发出警告。当组件给其他人使用时这很有用。
+我们可以为组件的 props 指定验证规格。如果传入的数据不符合规格，Vue 会发出警告。当组件给其他人使用时，这很有用。
 
-prop 是一个对象而不是字符串数组时，它包含验证要求：
+要指定验证规格，需要用对象的形式，而不能用字符串数组：
 
 ``` js
 Vue.component('example', {
@@ -427,9 +427,9 @@ Vue.component('example', {
 - Object
 - Array
 
-`type` 也可以是一个自定义构造器，使用 `instanceof` 检测。
+`type` 也可以是一个自定义构造器函数，使用 `instanceof` 检测。
 
-当 prop 验证失败了，如果使用的是开发版本会抛出一条警告。
+当 prop 验证失败，Vue会在抛出警告 (如果使用的是开发版本)。
 
 ## 自定义事件
 
@@ -445,6 +445,8 @@ Vue.component('example', {
 <p class="tip">Vue的事件系统分离自浏览器的[EventTarget API](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget)。尽管它们的运行类似，但是`$on` 和 `$emit` __不是__`addEventListener` 和 `dispatchEvent` 的别名。</p>
 
 另外，父组件可以在使用子组件的地方直接用 `v-on` 来监听子组件触发的事件。
+
+<p class="tip">不能用`$on`侦听子组件抛出的事件，而必须在模板里直接用`v-on`绑定，就像以下的例子：</p>
 
 下面是一个例子：
 
@@ -520,7 +522,7 @@ new Vue({
 </script>
 {% endraw %}
 
-在本例中，子组件已经和它外部完全解耦了。它所做的只是触发一个父组件关心的内部事件。
+在本例中，子组件已经和它外部完全解耦了。它所做的只是报告自己的内部事件，至于父组件是否关心则与它无关。留意到这一点很重要。
 
 #### 给组件绑定原生事件
 
@@ -532,13 +534,13 @@ new Vue({
 
 ### 使用自定义事件的表单输入组件
 
-自定义事件也可以用来创建自定义的表单输入组件，使用 `v-model` 来进行数据双向绑定。牢记：
+自定义事件可以用来创建自定义的表单输入组件，使用 `v-model` 来进行数据双向绑定。看看这个：
 
 ``` html
 <input v-model="something">
 ```
 
-仅仅是一个语法糖：
+这不过是以下示例的语法糖：
 
 ``` html
 <input v-bind:value="something" v-on:input="something = $event.target.value">
@@ -555,7 +557,7 @@ new Vue({
 - 接受一个 `value` 属性
 - 在有新的 value 时触发 `input` 事件
 
-一个非常简单的货币输入：
+我们来看一个非常简单的货币输入的自定义控件：
 
 ``` html
 <currency-input v-model="price"></currency-input>
@@ -626,11 +628,11 @@ new Vue({ el: '#currency-input-example' })
 </script>
 {% endraw %}
 
-上面的实现方式太过理想化了。 比如，用户甚至可以输入多个小数点或句号 - 哦哦！因此我们需要一个更有意义的例子，下面是一个更加完善的货币过滤器：
+当然，上面的例子是比较幼稚的。 比如，用户甚至可以输入多个小数点或句号 - 哦哦！因此我们需要一个更有意义的例子，下面是一个更加完善的货币过滤器：
 
 <iframe width="100%" height="300" src="https://jsfiddle.net/chrisvfritz/1oqjojjx/embedded/result,html,js" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
-这个接口不仅仅可以用来连接组件内部的表单输入，也很容易集成你自己创造的输入类型。想象一下：
+事件接口不仅仅可以用来连接组件内部的表单输入，也很容易集成你自己创造的输入类型。想象一下：
 
 ``` html
 <voice-recognizer v-model="question"></voice-recognizer>
@@ -640,7 +642,7 @@ new Vue({ el: '#currency-input-example' })
 
 ### 非父子组件通信
 
-有时候非父子关系的组件也需要通信。在简单的场景下，使用一个空的 Vue 实例作为中央事件总线：
+有时候两个组件也需要通信(非父子关系)。在简单的场景下，可以使用一个空的 Vue 实例作为中央事件总线：
 
 ``` js
 var bus = new Vue()
@@ -656,11 +658,11 @@ bus.$on('id-selected', function (id) {
 })
 ```
 
-在更多复杂的情况下，你应该考虑使用专门的 [状态管理模式](state-management.html).
+在复杂的情况下，我们应该考虑使用专门的 [状态管理模式](state-management.html).
 
 ## 使用 Slot 分发内容
 
-在使用组件时，常常要像这样组合它们：
+在使用组件时，我们常常要像这样组合它们：
 
 ``` html
 <app>
@@ -679,7 +681,7 @@ bus.$on('id-selected', function (id) {
 
 ### 编译作用域
 
-在深入内容分发 API 之前，我们先明确内容的编译作用域。假定模板为：
+在深入内容分发 API 之前，我们先明确内容在哪个作用域里编译。假定模板为：
 
 ``` html
 <child-component>
@@ -700,7 +702,7 @@ bus.$on('id-selected', function (id) {
 
 假定 `someChildProperty` 是子组件的属性，上例不会如预期那样工作。父组件模板不应该知道子组件的状态。
 
-如果要绑定子组件内的指令到一个组件的根节点，应当在它的模板内这么做：
+如果要绑定作用域内的指令到一个组件的根节点，你应当在组件自己的模板上做：
 
 ``` js
 Vue.component('child-component', {
@@ -714,7 +716,7 @@ Vue.component('child-component', {
 })
 ```
 
-类似地，分发内容是在父组件作用域内编译。
+类似地，分发内容是在父作用域内编译。
 
 ### 单个 Slot
 
@@ -876,8 +878,7 @@ Vue.component('child-component', {
 
 ## 动态组件
 
-多个组件可以使用同一个挂载点，然后动态地在它们之间切换。使用保留的 `<component>` 元素，动态地绑定到它的 `is` 特性：
-
+通过使用保留的 `<component>` 元素，动态地绑定到它的 `is` 特性，我们让多个组件可以使用同一个挂载点，并动态切换：
 ``` js
 var vm = new Vue({
   el: '#example',
@@ -1151,7 +1152,7 @@ Vue.component('hello-world', {
 
 这在有很多模版或者小的应用中有用，否则应该避免使用，因为它将模版和组件的其他定义隔离了。
 
-### 使用 `v-once` 的低级静态组件(Cheap Static Component)
+### 对低开销的静态组件使用 `v-once` 
 
 尽管在 Vue 中渲染 HTML 很快，不过当组件中包含**大量**静态内容时，可以考虑使用 `v-once` 将渲染结果缓存起来，就像这样：
 
