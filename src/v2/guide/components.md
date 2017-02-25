@@ -121,7 +121,7 @@ new Vue({
 
 ### `data` 必须是函数
 
-使用组件时，大多数可以传入到 Vue 构造器中的选项可以在注册组件时使用，有一个例外： `data` 必须是函数。 实际上，如果你这么做：
+通过Vue构造器传入的各种选项大多数都可以在组件里用。 `data` 是一个例外，它必须是函数。 实际上，如果你这么做：
 
 ``` js
 Vue.component('my-component', {
@@ -132,7 +132,7 @@ Vue.component('my-component', {
 })
 ```
 
-那么 Vue 会在控制台发出警告，告诉你在组件中 `data` 必须是一个函数。最好理解这种规则的存在意义。
+那么 Vue 会停止，并在控制台发出警告，告诉你在组件中 `data` 必须是一个函数。理解这种规则的存在意义很有帮助，让我们假设用如下方式来绕开Vue的警告：
 
 ``` html
 <div id="example-2">
@@ -147,9 +147,9 @@ var data = { counter: 0 }
 
 Vue.component('simple-counter', {
   template: '<button v-on:click="counter += 1">{{ counter }}</button>',
-  // data 是一个函数，因此 Vue 不会警告，
-  // 但是我们为每一个组件返回了同一个对象引用
-  data: function () {
+  // 技术上 data 的确是一个函数了，因此 Vue 不会警告，
+  // 但是我们返回给每个组件的实例的却引用了同一个data对象
+  data: function () {
     return data
   }
 })
@@ -179,7 +179,7 @@ new Vue({
 </script>
 {% endraw %}
 
-由于这三个组件共享了同一个 `data` ， 因此增加一个 counter 会影响所有组件！我们可以通过为每个组件返回新的 data 对象来解决这个问题：
+由于这三个组件共享了同一个 `data` ， 因此增加一个 counter 会影响所有组件！这不对。我们可以通过为每个组件返回全新的 data 对象来解决这个问题：
 
 ``` js
 data: function () {
