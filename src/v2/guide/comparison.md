@@ -104,7 +104,7 @@ To avoid unnecessary re-renders of child components, you need to implement `shou
 
 #### JSX vs Templates
 
-在 React 中，所有的组件的渲染功能都依靠 JSX。JSX 是使用 XML 语法编写 Javascript 的一种语法糖。这有一个[通过React社区审核过的例子](https://github.com/vuejs/vuejs.org/issues/364#issuecomment-244582684)：
+在 React 中，所有的组件的渲染功能都依靠 JSX。JSX 是使用 XML 语法编写 JavaScript 的一种语法糖。这有一个[通过React社区审核过的例子](https://github.com/vuejs/vuejs.org/issues/364#issuecomment-244582684)：
 
 ``` jsx
   render () {
