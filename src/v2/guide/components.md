@@ -1101,14 +1101,14 @@ template: '<div><stack-overflow></stack-overflow></div>'
 ```
 
 When you look closely, you'll see that these components will actually be each other's descendent _and_ ancestor in the render tree - a paradox! When registering components globally with `Vue.component`, this paradox is resolved for you automatically. If that's you, you can stop reading here.
-当你仔细看时，你会看到这些组件实际上将是对方组件的子级和父级 — — 一个悖论 ！当注册全局Vue组件时，这一悖论是会自动姐姐。如果那就是你，你读到这里就可以了。
-但是，如果你需要使用模块系统，例如Webpack 或者 Browserify，你会得到一个错误：
-
+当你仔细看时，会发现在渲染树上这两个组件同时为对方的父节点和子节点--这点是矛盾的。当使用`Vue.component`将这两个组件注册为全局组件的时候，框架会自动为你解决这个矛盾，如果你是这样做的，就不用继续往下看了。
+然而，如果你使用诸如Webpack或者Browserify之类的模块化管理工具来requiring/importing组件的话，就会报错了：
 ```
 Failed to mount component: template or render function not defined.
 ```
-来解释下发生了什么，比如我调用组件 A 和 B。模块系统看到它需要 A，但首先A需要 B，B 需要 A，但 A 需要 B，等等，等等。它卡在一个循环里，在首先加载领一个组件前不知道如何去全部加载任何组件。要解决这个问题，我们需要给模块系统一个点，告诉它，"A最终 需要 B但没必要首先加载B。
-在我们的例子中，我把点放在`tree-folder` 组件中，我们知道引起悖论的子组件是`tree-folder-contents`，所以我们在`beforeCreate` 生命周期钩子中去注册它：
+
+为了解释为什么会报错，简单的将上面两个组件称为 A 和 B ，模块系统看到它需要 A ，但是首先 A 需要 B ，但是 B 需要 A， 而 A 需要 B，陷入了一个无限循环，因此不知道到底应该先解决哪个。要解决这个问题，我们需要在其中一个组件中（比如 A ）告诉模块化管理系统，“A 虽然需要 B ，但是不需要优先导入 B”
+在我们的例子中，我们选择在`tree-folder` 组件中来告诉模块化管理系统循环引用的组件间的处理优先级，我们知道引起矛盾的子组件是`tree-folder-contents`，所以我们在`beforeCreate` 生命周期钩子中去注册它：
 
 ``` js
 beforeCreate: function () {
