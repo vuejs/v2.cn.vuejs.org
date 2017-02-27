@@ -30,7 +30,7 @@ order: 19
 
 <img src="/images/vue-component-with-preprocessors.png" style="display: block; margin: 30px auto">
 
-这些特定的语言只是例子，你可以只是简单地使用 Buble，TypeScript，SCSS，PostCSS - 或者其他任何能够帮助你提高生产力的预处理器。
+这些特定的语言只是例子，你可以只是简单地使用 Bable，TypeScript，SCSS，PostCSS - 或者其他任何能够帮助你提高生产力的预处理器。
 
 <!-- TODO: include CSS modules once it's supported in vue-loader 9.x -->
 
