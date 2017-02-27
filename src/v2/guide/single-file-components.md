@@ -6,7 +6,7 @@ order: 19
 
 ## 介绍
 
- 
+
 在很多Vue项目中，我们使用 `Vue.component` 来定义全局组件，紧接着用 `new Vue({ el: '#container '})` 在每个页面内指定一个容器元素。
 
 - **全局定义(Global definitions)**  强制要求每个 component 中的命名不得重复
@@ -30,7 +30,7 @@ order: 19
 
 <img src="/images/vue-component-with-preprocessors.png" style="display: block; margin: 30px auto">
 
-这些特定的语言只是例子，你可以只是简单地使用 Bable，TypeScript，SCSS，PostCSS - 或者其他任何能够帮助你提高生产力的预处理器。
+这些特定的语言只是例子，你可以只是简单地使用 Babel，TypeScript，SCSS，PostCSS - 或者其他任何能够帮助你提高生产力的预处理器。
 
 <!-- TODO: include CSS modules once it's supported in vue-loader 9.x -->
 
@@ -38,7 +38,7 @@ order: 19
 
 ### 针对刚接触 JavaScript 模块开发系统的用户
 
-有了 `.vue` 组件，我们就进入了高级 JavaScirpt 应用领域。如果你没有准备好的话，意味着还需要学会使用一些附加的工具：
+有了 `.vue` 组件，我们就进入了高级 JavaScript 应用领域。如果你没有准备好的话，意味着还需要学会使用一些附加的工具：
 
 - **Node Package Manager (NPM)**: 阅读 [Getting Started guide](https://docs.npmjs.com/getting-started/what-is-npm) 直到 _10: Uninstalling global packages_章节.
 
