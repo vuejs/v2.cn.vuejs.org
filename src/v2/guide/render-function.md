@@ -299,7 +299,7 @@ render: function (createElement) {
 
 这就是深入底层要付出的,尽管麻烦了一些，但相对于 `v-model`来说，你可以更灵活地控制。
 
-### 事件 & 修饰符
+### 事件 & 按键修饰符
 
 对于 `.capture` 和 `.once`事件修饰符, Vue 提供了相应的前缀可以用于 `on`:
 
@@ -349,7 +349,7 @@ on: {
 }
 ```
 
-### 内容插槽
+### slots
 
 你可以从[`this.$slots`](http://vuejs.org/v2/api/#vm-slots)获取VNodes列表中的静态内容:
 
