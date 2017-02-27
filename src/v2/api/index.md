@@ -1705,7 +1705,7 @@ type: api
 
   关于ref注册时间的重要说明: 因为ref本身是作为渲染结果被创建的，在初始渲染的时候你不能访问它们 - 它们还不存在！`$refs` 也不是响应式的，因此你不应该试图用它在模版中做数据绑定。
 
-- **参考：** [子组件 Refs](../guide/components.html#Child-Component-Refs)
+- **参考：** [子组件 Refs](../guide/components.html#子组件索引)
 
 ### slot
 
