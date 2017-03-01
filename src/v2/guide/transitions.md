@@ -638,7 +638,7 @@ new Vue({
 
 ``` html
 <transition>
-  <button v-bind:key="isEditing">
+  <button v-bind:key="isEditing ? 'Save' : 'Edit'">
     {{ isEditing ? 'Save' : 'Edit' }}
   </button>
 </transition>
