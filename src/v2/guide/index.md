@@ -8,19 +8,19 @@ order: 2
 
 Vue.js（读音 /vjuː/，类似于 **view**） 是一套构建用户界面的**渐进式框架**。与其他重量级框架不同的是，Vue 采用自底向上增量开发的设计。Vue 的核心库只关注视图层，它不仅易于上手，还便于与第三方库或既有项目整合。另一方面，当与[单文件组件](single-file-components.html)和 [Vue 生态系统支持的库](//github.com/vuejs/awesome-vue#libraries--plugins)结合使用时，Vue 也完全能够为复杂的单页应用程序提供驱动。
 
-如果您是有经验的前端开发者，想知道 Vue.js 与其它库/框架的区别，查看[对比其它框架](comparison.html)。
+如果你是有经验的前端开发者，想知道 Vue.js 与其它库/框架的区别，查看[对比其它框架](comparison.html)。
 
 ## 起步
 
-<p class="tip">官方教程假设您已有 HTML、CSS 和 JavaScript 中级前端知识。如果您是全新的前端开发者，将框架作为您的第一步可能不是最好的主意——掌握好基础知识再来！之前有其他框架的使用经验是有帮助的，但不是必需的。</p>
+<p class="tip">官方教程假设你已有 HTML、CSS 和 JavaScript 中级前端知识。如果你是全新的前端开发者，将框架作为你的第一步可能不是最好的主意——掌握好基础知识再来！之前有其他框架的使用经验是有帮助的，但不是必需的。</p>
 
-尝试 Vue.js 最简单的方法是使用 [JSFiddle Hello World 例子](https://jsfiddle.net/chrisvfritz/50wL7mdz/)。您可以在浏览器新标签页中打开它，跟着我们学习一些基础示例。或者您也可以创建一个本地的 `.html` 文件，然后通过如下方式引入 Vue：
+尝试 Vue.js 最简单的方法是使用 [JSFiddle Hello World 例子](https://jsfiddle.net/chrisvfritz/50wL7mdz/)。你可以在浏览器新标签页中打开它，跟着我们学习一些基础示例。或者你也可以创建一个本地的 `.html` 文件，然后通过如下方式引入 Vue：
 
 ``` html
 <script src="https://unpkg.com/vue/dist/vue.js"></script>
 ```
 
-您可以查看[安装教程](/guide/installation.html)来了解其他安装 Vue 的选项。请注意我们**不推荐**新手直接使用 `vue-cli`，尤其是对 Node.js 构建工具不够了解的同学。
+你可以查看[安装教程](/guide/installation.html)来了解其他安装 Vue 的选项。请注意我们**不推荐**新手直接使用 `vue-cli`，尤其是对 Node.js 构建工具不够了解的同学。
 
 
 ## 声明式渲染
@@ -54,7 +54,7 @@ var app = new Vue({
 </script>
 {% endraw %}
 
-我们已经生成了我们的第一个 Vue 应用！看起来这跟单单渲染一个字符串模板非常类似，但是 Vue 在背后做了大量工作。现在数据和 DOM 已经被绑定在一起，一切都是**响应式的**。我们如何知道？打开浏览器的 JavaScript 控制台，并修改 `app.message`，您将看到上面渲染的例子相应地更新了。
+我们已经生成了我们的第一个 Vue 应用！看起来这跟单单渲染一个字符串模板非常类似，但是 Vue 在背后做了大量工作。现在数据和 DOM 已经被绑定在一起，一切都是**响应式的**。我们如何知道？打开浏览器的 JavaScript 控制台，并修改 `app.message`，你将看到上面渲染的例子相应地更新了。
 
 除了文本插值，我们还可以采用这样的方式绑定 DOM 元素属性：
 
@@ -69,7 +69,7 @@ var app = new Vue({
 var app2 = new Vue({
   el: '#app-2',
   data: {
-    message: '您于 ' + new Date() + ' 加载了本页'
+    message: '页面加载于 ' + new Date()
   }
 })
 ```
@@ -83,15 +83,15 @@ var app2 = new Vue({
 var app2 = new Vue({
   el: '#app-2',
   data: {
-    message: '您于 ' + new Date() + ' 加载了本页'
+    message: '页面加载于 ' + new Date()
   }
 })
 </script>
 {% endraw %}
 
-这里我们遇到点新东西。您看到的 `v-bind` 属性被称为**指令**。指令带有前缀 `v-`，以表示它们是 Vue 提供的特殊属性。可能您已经猜到了，它们会在渲染的 DOM 上应用特殊的响应式行为。简言之，这里该指令的作用是：“将这个元素节点的 `title` 属性和 Vue 实例的 `message` 属性保持一致”。
+这里我们遇到点新东西。你看到的 `v-bind` 属性被称为**指令**。指令带有前缀 `v-`，以表示它们是 Vue 提供的特殊属性。可能你已经猜到了，它们会在渲染的 DOM 上应用特殊的响应式行为。简言之，这里该指令的作用是：“将这个元素节点的 `title` 属性和 Vue 实例的 `message` 属性保持一致”。
 
-再次打开浏览器的 JavaScript 控制台输入 `app2.message = '一些新消息'`，就会再一次看到这个绑定了 `title` 属性的 HTML 已经进行了更新。
+再次打开浏览器的 JavaScript 控制台输入 `app2.message = '新消息'`，就会再一次看到这个绑定了 `title` 属性的 HTML 已经进行了更新。
 
 ## 条件与循环
 
@@ -99,7 +99,7 @@ var app2 = new Vue({
 
 ``` html
 <div id="app-3">
-  <p v-if="seen">现在您看到我了</p>
+  <p v-if="seen">现在你看到我了</p>
 </div>
 ```
 ``` js
@@ -112,7 +112,7 @@ var app3 = new Vue({
 ```
 {% raw %}
 <div id="app-3" class="demo">
-  <span v-if="seen">现在您看到我了</span>
+  <span v-if="seen">现在你看到我了</span>
 </div>
 <script>
 var app3 = new Vue({
@@ -124,7 +124,7 @@ var app3 = new Vue({
 </script>
 {% endraw %}
 
-继续在控制台设置 `app3.seen = false`，您会发现 “现在您看到我了” 消失了。
+继续在控制台设置 `app3.seen = false`，你会发现 “现在你看到我了” 消失了。
 
 这个例子演示了我们不仅可以绑定 DOM 文本到数据，也可以绑定 DOM **结构**到数据。而且，Vue 也提供一个强大的过渡效果系统，可以在 Vue 插入/更新/删除元素时自动应用[过渡效果](transitions.html)。
 
@@ -173,11 +173,11 @@ var app4 = new Vue({
 </script>
 {% endraw %}
 
-在控制台里，输入 `app4.todos.push({ text: '新项目' })`，您会发现列表中添加了一个新项。
+在控制台里，输入 `app4.todos.push({ text: '新项目' })`，你会发现列表中添加了一个新项。
 
 ## 处理用户输入
 
-为了让用户和您的应用进行交互，我们可以用 `v-on` 指令绑定一个调用 Vue 实例方法的事件监听器：
+为了让用户和你的应用进行交互，我们可以用 `v-on` 指令绑定一个调用 Vue 实例方法的事件监听器：
 
 ``` html
 <div id="app-5">
@@ -218,7 +218,7 @@ var app5 = new Vue({
 </script>
 {% endraw %}
 
-注意在 `reverseMessage` 方法中，我们更新了应用的状态，但没有触碰 DOM - 所有的 DOM 操作都由 Vue 来处理，您编写的代码只需要关注底层逻辑。
+注意在 `reverseMessage` 方法中，我们更新了应用的状态，但没有触碰 DOM - 所有的 DOM 操作都由 Vue 来处理，你编写的代码只需要关注底层逻辑。
 
 Vue 还提供了 `v-model` 指令，使表单输入和应用状态间的双向绑定变得轻而易举。
 
@@ -266,7 +266,7 @@ Vue.component('todo-item', {
 })
 ```
 
-现在您可以用它构建另一个组件模板：
+现在你可以用它构建另一个组件模板：
 
 ``` html
 <ol>
@@ -356,7 +356,7 @@ var app7 = new Vue({
 
 ## 与自定义元素的关系
 
-您可能已经注意到 Vue 组件非常类似于**自定义元素**——它是 [Web 组件规范](//www.w3.org/wiki/WebComponents/)的一部分，这是因为 Vue 的组件语法部分参考了该规范。例如 Vue 组件实现了 [Slot API](//github.com/w3c/webcomponents/blob/gh-pages/proposals/Slots-Proposal.md) 与 `is` 特性。但是，还是有几个关键差别：
+你可能已经注意到 Vue 组件非常类似于**自定义元素**——它是 [Web 组件规范](//www.w3.org/wiki/WebComponents/)的一部分，这是因为 Vue 的组件语法部分参考了该规范。例如 Vue 组件实现了 [Slot API](//github.com/w3c/webcomponents/blob/gh-pages/proposals/Slots-Proposal.md) 与 `is` 特性。但是，还是有几个关键差别：
 
 1. Web 组件规范仍然处于草案阶段，并且尚无浏览器原生实现。相比之下，Vue 组件不需要任何补丁，并且在所有支持的浏览器（IE9 及更高版本）之下表现一致。必要时，Vue 组件也可以包装于原生自定义元素之内。
 
