@@ -132,14 +132,26 @@ new Vue({
 
 
 ``` html
-<input type="radio" id="one" value="One" v-model="picked">
-<label for="one">One</label>
-<br>
-<input type="radio" id="two" value="Two" v-model="picked">
-<label for="two">Two</label>
-<br>
-<span>Picked: {{ picked }}</span>
+<div id="example-4" class="demo">
+  <input type="radio" id="one" value="One" v-model="picked">
+  <label for="one">One</label>
+  <br>
+  <input type="radio" id="two" value="Two" v-model="picked">
+  <label for="two">Two</label>
+  <br>
+  <span>Picked: {{ picked }}</span>
+</div>
 ```
+
+``` js
+new Vue({
+  el: '#example-4',
+  data: {
+    picked: ''
+  }
+})
+```
+
 {% raw %}
 <div id="example-4" class="demo">
   <input type="radio" id="one" value="One" v-model="picked">
@@ -165,13 +177,25 @@ new Vue({
 单选列表:
 
 ``` html
-<select v-model="selected">
-  <option>A</option>
-  <option>B</option>
-  <option>C</option>
-</select>
-<span>Selected: {{ selected }}</span>
+<div id="example-5" class="demo">
+  <select v-model="selected">
+    <option>A</option>
+    <option>B</option>
+    <option>C</option>
+  </select>
+  <span>Selected: {{ selected }}</span>
+</div>
 ```
+
+``` js
+new Vue({
+  el: '#example-5',
+  data: {
+    selected: null
+  }
+})
+```
+
 {% raw %}
 <div id="example-5" class="demo">
   <select v-model="selected">
@@ -194,14 +218,26 @@ new Vue({
 多选列表（绑定到一个数组）：
 
 ``` html
-<select v-model="selected" multiple>
-  <option>A</option>
-  <option>B</option>
-  <option>C</option>
-</select>
-<br>
-<span>Selected: {{ selected }}</span>
+<div id="example-6" class="demo">
+  <select v-model="selected" multiple style="width: 50px">
+    <option>A</option>
+    <option>B</option>
+    <option>C</option>
+  </select>
+  <br>
+  <span>Selected: {{ selected }}</span>
+</div>
 ```
+
+``` js
+new Vue({
+  el: '#example-6',
+  data: {
+    selected: []
+  }
+})
+```
+
 {% raw %}
 <div id="example-6" class="demo">
   <select v-model="selected" multiple style="width: 50px">
@@ -232,6 +268,7 @@ new Vue({
 </select>
 <span>Selected: {{ selected }}</span>
 ```
+
 ``` js
 new Vue({
   el: '...',
@@ -245,6 +282,7 @@ new Vue({
   }
 })
 ```
+
 {% raw %}
 <div id="example-7" class="demo">
   <select v-model="selected">
