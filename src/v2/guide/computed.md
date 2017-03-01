@@ -85,13 +85,13 @@ console.log(vm.reversedMessage) // -> 'eybdooG'
 你可能已经注意到我们可以通过调用表达式中的method来达到同样的效果：
 
 ``` html
-<p>Reversed message: "{{ reverseMessage() }}"</p>
+<p>Reversed message: "{{ reversedMessage() }}"</p>
 ```
 
 ``` js
 // in component
 methods: {
-  reverseMessage: function () {
+  reversedMessage: function () {
     return this.message.split('').reverse().join('')
   }
 }
