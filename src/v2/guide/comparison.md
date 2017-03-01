@@ -30,15 +30,15 @@ React社区为我们准确进行平衡的考量提供了[非常积极地帮助](
 在渲染用户界面的时候，DOM 的操作成本是最高的，不幸的是没有库可以让这些原始操作变得更快。
 我们能做到的最好效果就是：
 
-1. Minimize the number of necessary DOM mutations. Both React and Vue use virtual DOM abstractions to accomplish this and both implementations work about equally well.
+1. 把必须的 Dom 更新降到最小。React 和 Vue 都是通过 Virtual Dom 抽象层来实现这一要求，而且他们都实现得一样赞。
 
-2. Add as little overhead (pure JavaScript computations) as possible on top of those DOM manipulations. This is an area where Vue and React differ.
+2. 在这些 Dom 操作之上，则尽可能少地添加额外性能开销（即：纯 JavaScript 运算）。这是 Vue 和 React 产生分歧之处。
 
-The JavaScript overhead is directly related to the mechanisms of computing the necessary DOM operations. Both Vue and React utilizes Virtual DOM to achieve that, but Vue's Virtual DOM implementation (a fork of [snabbdom](https://github.com/snabbdom/snabbdom)) is much lighter-weight and thus introduces less overhead than React's.
+JavaScript 开销直接与求算必要 DOM 操作的机制相关。尽管 Vue 和 React 都使用了 Virtual Dom 实现这一点，但 Vue 的 Virtual Dom 实现（复刻自  [snabbdom](https://github.com/snabbdom/snabbdom)）是更加轻量化的，因此也就比 React 的实现更高效。
 
 Vue 和 React 也提供功能性组件，这些组件因为都是没有声明，没有实例化的，因此会花费更少的开销。当这些都用于关键性能的场景时，Vue 将会更快。为了证明这点，我们建立了一个简单的[参照项目](https://github.com/chrisvfritz/vue-render-performance-comparisons)，它负责渲染 10,000 个列表项 100 次。我们鼓励你基于此去尝试运行一下。然而在实际上，由于浏览器和硬件的差异甚至 JavaScript 引擎的不同，结果都会相应有所不同。
 
-如果你懒得去做，下面的数值是来自于一个 2014 年产的 MacBook Air 并在 Chrome 52 版本下运行所产生的。为了避免偶然性，每个参照项目都分别运行 20 次并取自最好的结果：
+如果你懒得去做，下面的数值是产生自运行于 2014 款 MacBook Air 的 Chrome 52。为了避免偶然性，每个参照项目都分别运行 20 次并取自最好的结果：
 
 {% raw %}
 <table class="benchmark-table">
@@ -81,9 +81,9 @@ Vue 和 React 也提供功能性组件，这些组件因为都是没有声明，
 
 #### 更新性能
 
-In React, when a component's state changes, it triggers the re-render of the entire component sub-tree, starting at that component as root. 
+在 React 里，当某个组件的状态发生变化时，它会以该组件为根，重新渲染整个组件子树。
 
-To avoid unnecessary re-renders of child components, you need to implement `shouldComponentUpdate` everywhere and use immutable data structures. In Vue, a component's dependencies are automatically tracked during its render, so the system knows precisely which components actually need to re-render.
+如要避免不必要的子组件的重渲染，你需要显式地在所有地方实现 `shouldComponentUpdate` 检测并使用不可变的数据结构。在 Vue 中，组件的依赖是在渲染过程中自动追踪的，所以系统能精确知晓哪个组件确实需要被重渲染。
 
 这意味着，未经优化的 Vue 相比未经优化的 React 要快的多。由于 Vue 改进过渲染性能，甚至全面优化过的 React 通常也会慢于开箱即用的 Vue。
 
@@ -91,7 +91,7 @@ To avoid unnecessary re-renders of child components, you need to implement `shou
 
 显然，在生产环境中的性能是至关重要的，目前为止我们所具体讨论的便是针对此环境。但开发过程中的表现也不容小视。不错的是用 Vue 和 React 开发大多数应用的速度都是足够快的。
 
-当性能在生产中性能是直接与终端用户体验相关的更重要的指标时，表现在开发中仍然很重要,因为它是与开发相关经验
+当性能在生产中性能是直接与终端用户体验相关的更重要的指标时，表现在开发中仍然很重要,因为它是与开发相关经验。
 
 然而，假如你要开发一个对性能要求比较高的数据可视化或者动画的应用时，你需要了解到下面这点：在开发中，Vue 每秒最高处理 10 帧，而 React 每秒最高处理不到 1 帧。
 
@@ -202,7 +202,7 @@ Vue 和 React 都提供了强大的路由来应对大型应用。React 社区在
 
 两者另一个重要差异是，Vue 的路由库和状态管理库都是由官方维护支持且与核心库同步更新的。React 则是选择把这些问题交给社区维护，因此创建了一个更分散的生态系统。但相对的，React 的生态系统相比 Vue 更加繁荣。
 
-最后，Vue 提供了[Vue-cli 脚手架](https://github.com/vuejs/vue-cli)，能让你非常容易地构建项目，包含了 [Webpack](https://github.com/vuejs-templates/webpack), [Browserify](https://github.com/vuejs-templates/browserify), 甚至 [no build system](https://github.com/vuejs-templates/simple)。React 在这方面也提供了[create-react-app](https://github.com/facebookincubator/create-react-app)，但是现在还存在一些局限性：
+最后，Vue 提供了[Vue-cli 脚手架](https://github.com/vuejs/vue-cli)，能让你非常容易地构建项目，包含了 [Webpack](https://github.com/vuejs-templates/webpack)，[Browserify](https://github.com/vuejs-templates/browserify)，甚至 [no build system](https://github.com/vuejs-templates/simple)。React 在这方面也提供了[create-react-app](https://github.com/facebookincubator/create-react-app)，但是现在还存在一些局限性：
 
 - 它不允许在项目生成时进行任何配置，而 Vue 支持 Yeoman-like 定制。
 - 它只提供一个构建单页面应用的单一模板，而 Vue 提供了各种用途的模板。
