@@ -146,7 +146,7 @@ var app4 = new Vue({
     todos: [
       { text: '学习 JavaScript' },
       { text: '学习 Vue' },
-      { text: '搞个大新闻' }
+      { text: '整个牛项目' }
     ]
   }
 })
@@ -166,7 +166,7 @@ var app4 = new Vue({
     todos: [
       { text: '学习 JavaScript' },
       { text: '学习 Vue' },
-      { text: '搞个大新闻' }
+      { text: '整个牛项目' }
     ]
   }
 })
