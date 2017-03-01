@@ -6,7 +6,7 @@ order: 2
 
 ## Vue.js 是什么
 
-Vue.js（读音 /vjuː/, 类似于 **view**） 是一套构建用户界面的 **渐进式框架**。与其他重量级框架不同的是，Vue 采用自底向上增量开发的设计。Vue 的核心库只关注视图层，并且非常容易学习，非常容易与其它库或已有项目整合。另一方面，Vue 完全有能力驱动采用[单文件组件](single-file-components.html)和 [Vue 生态系统支持的库](//github.com/vuejs/awesome-vue#libraries--plugins)开发的复杂单页应用。
+Vue.js（读音 /vjuː/，类似于 **view**） 是一套构建用户界面的**渐进式框架**。与其他重量级框架不同的是，Vue 采用自底向上增量开发的设计。Vue 的核心库只关注视图层，并且非常容易学习，非常容易与其它库或已有项目整合。另一方面，Vue 完全有能力驱动采用[单文件组件](single-file-components.html)和 [Vue 生态系统支持的库](//github.com/vuejs/awesome-vue#libraries--plugins)开发的复杂单页应用。
 
 Vue.js 的目标是通过尽可能简单的 API 实现**响应的数据绑定**和**组合的视图组件**。
 
@@ -16,7 +16,7 @@ Vue.js 的目标是通过尽可能简单的 API 实现**响应的数据绑定**�
 
 <p class="tip">官方指南假设你已有 HTML、CSS 和 JavaScript 中级前端知识。如果你是全新的前端开发者，将框架作为你的第一步可能不是最好的主意——掌握好基础知识再来！之前有其他框架的使用经验是有帮助的，但不是必需的。</p>
 
-尝试 Vue.js 最简单的方法是使用 [JSFiddle Hello World 例子](https://jsfiddle.net/chrisvfritz/50wL7mdz/)。你可以在浏览器新标签页中打开它，跟着我们学习一些基础示例。或者你也可以创建一个本地的 `.html` 文件，然后通过如下方式引入 Vue:
+尝试 Vue.js 最简单的方法是使用 [JSFiddle Hello World 例子](https://jsfiddle.net/chrisvfritz/50wL7mdz/)。你可以在浏览器新标签页中打开它，跟着我们学习一些基础示例。或者你也可以创建一个本地的 `.html` 文件，然后通过如下方式引入 Vue：
 
 ``` html
 <script src="https://unpkg.com/vue/dist/vue.js"></script>
@@ -93,7 +93,7 @@ var app2 = new Vue({
 
 这里我们遇到点新东西。你看到的 `v-bind` 属性被称为**指令**。指令带有前缀 `v-`，以表示它们是 Vue.js 提供的特殊属性。可能你已经猜到了，它们会在渲染过的 DOM 上应用特殊的响应式行为。这个指令的简单含义是说：将这个元素节点的 `title` 属性和 Vue 实例的 `message` 属性绑定到一起。
 
-你再次打开浏览器的控制台输入 `app2.message = 'some new message'`，你就会再一次看到这个绑定了`title`属性的HTML已经进行了更新。
+你再次打开浏览器的控制台输入 `app2.message = 'some new message'`，你就会再一次看到这个绑定了 `title` 属性的 HTML 已经进行了更新。
 
 ## 条件与循环
 
@@ -130,7 +130,7 @@ var app3 = new Vue({
 
 这个例子演示了我们不仅可以绑定 DOM 文本到数据，也可以绑定 DOM **结构**到数据。而且，Vue.js 也提供一个强大的过渡效果系统，可以在 Vue 插入/删除元素时自动应用[过渡效果](transitions.html)。
 
-也有一些其它指令，每个都有特殊的功能。例如， `v-for` 指令可以绑定数据到数组来渲染一个列表：
+也有一些其它指令，每个都有特殊的功能。例如，`v-for` 指令可以绑定数据到数组来渲染一个列表：
 
 ``` html
 <div id="app-4">
@@ -277,7 +277,7 @@ Vue.component('todo-item', {
 </ol>
 ```
 
-但是这样会为每个 todo 渲染同样的文本，这看起来并不是很酷。我们应该将数据从父作用域传到子组件。让我们来修改一下组件的定义，使得它能够接受一个 [`prop`](components.html#Props) 字段：
+但是这样会为每个 todo 渲染同样的文本，这看起来并不是很酷。我们应该将数据从父作用域传到子组件。让我们来修改一下组件的定义，使得它能够接受一个[属性](components.html#Props)字段：
 
 ``` js
 Vue.component('todo-item', {
@@ -342,7 +342,7 @@ var app7 = new Vue({
 </script>
 {% endraw %}
 
-这只是一个假设的例子，但是我们已经将应用分割成了两个更小的单元，子元素通过 `props` 接口实现了与父亲元素很好的解耦。我们现在可以在不影响到父应用的基础上，进一步为我们的 `todo` 组件改进更多复杂的模板和逻辑。
+这只是一个假设的例子，但是我们已经将应用分割成了两个更小的单元，子元素通过 `props` 接口实现了与父元素很好的解耦。我们现在可以在不影响到父应用的基础上，进一步为我们的 `todo` 组件改进更多复杂的模板和逻辑。
 
 在一个大型应用中，为了使得开发过程可控，有必要将应用整体分割成一个个的组件。在[后面的教程](components.html)中我们将详述组件，不过这里有一个（假想）的例子，看看使用了组件的应用模板是什么样的：
 

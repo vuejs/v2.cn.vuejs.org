@@ -10,7 +10,7 @@ order: 10
 
 <p class="tip"> `v-model` 并不关心表单控件初始化所生成的值。因为它会选择 Vue 实例数据来作为具体的值。</p>
 
-<p class="tip" id="vmodel-ime-tip">For languages that require an [IME](https://en.wikipedia.org/wiki/Input_method) (Chinese, Japanese, Korean etc.), you'll notice that `v-model` doesn't get updated during IME composition. If you want to cater for these updates as well, use `input` event instead.</p>
+<p class="tip" id="vmodel-ime-tip">对于要求 IME （如中文、 日语、 韩语等） 的语言，你会发现那`v-model`不会在 ime 构成中得到更新。如果你也想实现更新，请使用 `input`事件。</p>
 
 ### 文本
 
@@ -132,14 +132,26 @@ new Vue({
 
 
 ``` html
-<input type="radio" id="one" value="One" v-model="picked">
-<label for="one">One</label>
-<br>
-<input type="radio" id="two" value="Two" v-model="picked">
-<label for="two">Two</label>
-<br>
-<span>Picked: {{ picked }}</span>
+<div id="example-4" class="demo">
+  <input type="radio" id="one" value="One" v-model="picked">
+  <label for="one">One</label>
+  <br>
+  <input type="radio" id="two" value="Two" v-model="picked">
+  <label for="two">Two</label>
+  <br>
+  <span>Picked: {{ picked }}</span>
+</div>
 ```
+
+``` js
+new Vue({
+  el: '#example-4',
+  data: {
+    picked: ''
+  }
+})
+```
+
 {% raw %}
 <div id="example-4" class="demo">
   <input type="radio" id="one" value="One" v-model="picked">
@@ -165,13 +177,25 @@ new Vue({
 单选列表:
 
 ``` html
-<select v-model="selected">
-  <option>A</option>
-  <option>B</option>
-  <option>C</option>
-</select>
-<span>Selected: {{ selected }}</span>
+<div id="example-5" class="demo">
+  <select v-model="selected">
+    <option>A</option>
+    <option>B</option>
+    <option>C</option>
+  </select>
+  <span>Selected: {{ selected }}</span>
+</div>
 ```
+
+``` js
+new Vue({
+  el: '#example-5',
+  data: {
+    selected: null
+  }
+})
+```
+
 {% raw %}
 <div id="example-5" class="demo">
   <select v-model="selected">
@@ -194,14 +218,26 @@ new Vue({
 多选列表（绑定到一个数组）：
 
 ``` html
-<select v-model="selected" multiple>
-  <option>A</option>
-  <option>B</option>
-  <option>C</option>
-</select>
-<br>
-<span>Selected: {{ selected }}</span>
+<div id="example-6" class="demo">
+  <select v-model="selected" multiple style="width: 50px">
+    <option>A</option>
+    <option>B</option>
+    <option>C</option>
+  </select>
+  <br>
+  <span>Selected: {{ selected }}</span>
+</div>
 ```
+
+``` js
+new Vue({
+  el: '#example-6',
+  data: {
+    selected: []
+  }
+})
+```
+
 {% raw %}
 <div id="example-6" class="demo">
   <select v-model="selected" multiple style="width: 50px">
@@ -232,6 +268,7 @@ new Vue({
 </select>
 <span>Selected: {{ selected }}</span>
 ```
+
 ``` js
 new Vue({
   el: '...',
@@ -245,6 +282,7 @@ new Vue({
   }
 })
 ```
+
 {% raw %}
 <div id="example-7" class="demo">
   <select v-model="selected">
@@ -368,7 +406,7 @@ vm.selected.number // -> 123
 
 > 如果你还不熟悉Vue的组件，跳过这里即可。
 
-HTML 内建的 input 类型有时不能满足你的需求。还好，Vue 的组件系统允许你创建一个具有自定义行为可复用的 input 类型，这些 input 类型甚至可以和 `v-model` 一起使用！要了解更多，请参阅[自定义 input 类型](components.html#Form-Input-Components-using-Custom-Events)
+HTML 内建的 input 类型有时不能满足你的需求。还好，Vue 的组件系统允许你创建一个具有自定义行为可复用的 input 类型，这些 input 类型甚至可以和 `v-model` 一起使用！要了解更多，请参阅[自定义 input 类型](components.html#使用自定义事件的表单输入组件)
 
 ***
 

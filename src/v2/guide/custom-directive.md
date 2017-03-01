@@ -150,7 +150,7 @@ Vue.directive('color-swatch', function (el, binding) {
 ```
 ## 对象字面量
 
-如果指令需要多个值，可以传入一个 JavaScript 对象字面量。记住，指令函数能够接受所有合法类型的 Javascript 表达式。
+如果指令需要多个值，可以传入一个 JavaScript 对象字面量。记住，指令函数能够接受所有合法类型的 JavaScript 表达式。
 
 ``` html
 <div v-demo="{ color: 'white', text: 'hello!' }"></div>
