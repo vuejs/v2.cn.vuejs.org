@@ -471,12 +471,11 @@ Vue.component('my-component', {
 
 在添加 `functional: true` 之后，锚点标题组件的 render 函数之间简单更新增加 `context` 参数，`this.$slots.default` 更新为 `context.children`，之后`this.level` 更新为 `context.props.level`。
 
-函数化组件只是一个函数，所以渲染开销也低很多。但同样它也有完整的组件封装，你需要知道这些， 比如：
+因为函数化组件只是一个函数，所以渲染开销也低很多。在作为包装组件时它们也同样非常有用，比如，当你需要做这些时：
 
 
 - 程序化地在多个组件中选择一个
 - 在将 children, props, data 传递给子组件之前操作它们。
-
 
 
 下面是一个依赖传入 props 的值的 `smart-list` 组件例子，它能代表更多具体的组件：
