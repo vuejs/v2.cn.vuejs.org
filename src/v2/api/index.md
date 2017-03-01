@@ -44,7 +44,7 @@ type: api
 
   合并策略选项分别接受第一个参数作为父实例，第二个参数为子实例，Vue实例上下文被作为第三个参数传入。
 
-- **参考** [自定义选项的混合策略](../guide/mixins.html#Custom-Option-Merge-Strategies)
+- **参考** [自定义选项的混合策略](../guide/mixins.html#自定义选项混合策略)
 
 ### devtools
 
@@ -176,7 +176,7 @@ type: api
 
   > 2.1.0新增：如果没有提供回调且支持 promise 的环境中返回 promise。
 
-- **参考：** [异步更新队列](../guide/reactivity.html#Async-Update-Queue)
+- **参考：** [异步更新队列](../guide/reactivity.html#异步更新队列)
 
 <h3 id="Vue-set">Vue.set( object, key, value )</h3>
 
@@ -305,7 +305,7 @@ type: api
 
   全局注册一个混合，影响注册之后所有创建的每个 Vue 实例。插件作者可以使用混合，向组件注入自定义的行为。**不推荐在应用代码中使用**。
 
-- **参考：** [全局混合](../guide/mixins.html#Global-Mixin)
+- **参考：** [全局混合](../guide/mixins.html#全局混合)
 
 <h3 id="Vue-compile">Vue.compile( template )</h3>
 
@@ -563,7 +563,7 @@ type: api
 
   <p class="tip"> 提供的元素只能作为挂载点。不同于 Vue 1.x，所有的挂载元素会被 Vue 生成的 DOM 替换。因此不推荐挂载root实例到 `<html>` 或者 `<body>` 上。</p>
 
-- **参考：** [生命周期图示](../guide/instance.html#Lifecycle-Diagram)
+- **参考：** [生命周期图示](../guide/instance.html#生命周期图示)
 
 ### template
 
@@ -578,8 +578,8 @@ type: api
   <p class="tip">出于安全考虑，您应该只使用您信任的 Vue 模板。避免使用其他人生成的内容作为您的模板。</p>
 
 - **参考：**
-  - [生命周期图示](../guide/instance.html#Lifecycle-Diagram)
-  - [内容分发](../guide/components.html#Content-Distribution-with-Slots)
+  - [生命周期图示](../guide/instance.html#生命周期图示)
+  - [内容分发](../guide/components.html#使用-Slot-分发内容)
 
 ### render
 
@@ -606,7 +606,7 @@ type: api
 
   在实例初始化之后，数据观测(data observer) 和 event/watcher 事件配置之前被调用。
 
-- **参考：** [生命周期图示](../guide/instance.html#Lifecycle-Diagram)
+- **参考：** [生命周期图示](../guide/instance.html#生命周期图示)
 
 ### created
 
@@ -616,7 +616,7 @@ type: api
 
   实例已经创建完成之后被调用。在这一步，实例已完成以下的配置：数据观测(data observer)，属性和方法的运算， watch/event 事件回调。然而，挂载阶段还没开始，`$el` 属性目前不可见。
 
-- **参考：** [生命周期图示](../guide/instance.html#Lifecycle-Diagram)
+- **参考：** [生命周期图示](../guide/instance.html#生命周期图示)
 
 ### beforeMount
 
@@ -628,7 +628,7 @@ type: api
 
   **该钩子在服务器端渲染期间不被调用。**
 
-- **参考：** [生命周期图示](../guide/instance.html#Lifecycle-Diagram)
+- **参考：** [生命周期图示](../guide/instance.html#生命周期图示)
 
 ### mounted
 
@@ -640,7 +640,7 @@ type: api
 
   **该钩子在服务器端渲染期间不被调用。**
 
-- **参考：** [生命周期图示](../guide/instance.html#Lifecycle-Diagram)
+- **参考：** [生命周期图示](../guide/instance.html#生命周期图示)
 
 ### beforeUpdate
 
@@ -654,7 +654,7 @@ type: api
 
   **该钩子在服务器端渲染期间不被调用。**
 
-- **参考：** [生命周期图示](../guide/instance.html#Lifecycle-Diagram)
+- **参考：** [生命周期图示](../guide/instance.html#生命周期图示)
 
 ### updated
 
@@ -668,7 +668,7 @@ type: api
 
   **该钩子在服务器端渲染期间不被调用。**
 
-- **参考：** [生命周期图示](../guide/instance.html#Lifecycle-Diagram)
+- **参考：** [生命周期图示](../guide/instance.html#生命周期图示)
 
 
 ### activated
@@ -709,7 +709,7 @@ type: api
 
   **该钩子在服务器端渲染期间不被调用。**
 
-- **参考：** [生命周期图示](../guide/instance.html#Lifecycle-Diagram)
+- **参考：** [生命周期图示](../guide/instance.html#生命周期图示)
 
 
 ### destroyed
@@ -722,7 +722,7 @@ type: api
 
   **该钩子在服务器端渲染期间不被调用。**
 
-- **参考：** [生命周期图示](../guide/instance.html#Lifecycle-Diagram)
+- **参考：** [生命周期图示](../guide/instance.html#生命周期图示)
 
 ## 选项 / 资源
 
@@ -861,7 +861,7 @@ type: api
   使组件无状态（没有 `data` ）和无实例（没有 `this` 上下文）。他们用一个简单的 `render` 函数返回虚拟节点使他们更容易渲染。
 
 - **参考：
-** [函数式组件](../guide/render-function.html#Functional-Components)
+** [函数式组件](../guide/render-function.html#函数化组件)
 
 ## 实例属性
 
@@ -942,7 +942,7 @@ type: api
 
 - **详细:**
 
-  用来访问被 [slot 分发](../guide/components.html#Content-Distribution-with-Slots)的内容。每个[具名 slot](../guide/components.html#Named-Slots) 有其相应的属性（例如：`slot="foo"` 中的内容将会在 `vm.$slots.foo` 中被找到）。`default` 属性包括了所有没有被包含在具名 slot 中的节点。
+  用来访问被 [slot 分发](../guide/components.html#使用-Slot-分发内容)的内容。每个[具名 slot](../guide/components.html#具名-Slot) 有其相应的属性（例如：`slot="foo"` 中的内容将会在 `vm.$slots.foo` 中被找到）。`default` 属性包括了所有没有被包含在具名 slot 中的节点。
 
   在使用 [render 函数](../guide/render-function.html)书写一个组件时，访问 `vm.$slots` 最有帮助。
 
@@ -981,7 +981,7 @@ type: api
 
 - **参考：**
   - [`<slot>` 组件](#slot-1)
-  - [使用 Slots 进行内容分发](../guide/components.html#Content-Distribution-with-Slots)
+  - [使用 Slots 进行内容分发](../guide/components.html#使用-Slot-分发内容)
   - [Render 函数](../guide/render-function.html#Slots)
 
 ### vm.$scopedSlots
@@ -1015,7 +1015,7 @@ type: api
   一个对象，其中包含了所有拥有 `ref` 注册的子组件。
 
 - **另见：**
-  - [子组件引用](../guide/components.html#Child-Component-Refs)
+  - [子组件引用](../guide/components.html#子组件索引)
   - [ref](#ref)
 
 ### vm.$isServer
@@ -1219,7 +1219,7 @@ type: api
   ```
 
 - **参考：**
-  - [生命周期图示](../guide/instance.html#Lifecycle-Diagram)
+  - [生命周期图示](../guide/instance.html#生命周期图示)
   - [服务端渲染](../guide/ssr.html)
 
 <h3 id="vm-forceUpdate">vm.$forceUpdate()</h3>
@@ -1263,7 +1263,7 @@ type: api
 
 - **参考：**
   - [Vue.nextTick](#Vue-nextTick)
-  - [异步更新队列](../guide/reactivity.html#Async-Update-Queue)
+  - [异步更新队列](../guide/reactivity.html#异步更新队列)
 
 <h3 id="vm-destroy">vm.$destroy()</h3>
 
@@ -1275,7 +1275,7 @@ type: api
 
   <p class="tip">在大多数场景中你不应该调用这个方法。最好使用 `v-if` 和 `v-for` 指令以数据驱动的方式控制子组件的生命周期。</p>
 
-- **参考：** [生命周期图示](../guide/instance.html#Lifecycle-Diagram)
+- **参考：** [生命周期图示](../guide/instance.html#生命周期图示)
 
 ## 指令
 
@@ -1295,7 +1295,7 @@ type: api
   <span>{{msg}}</span>
   ```
 
-- **参考：** [数据绑定语法 - 插值](../guide/syntax.html#Text)
+- **参考：** [数据绑定语法 - 插值](../guide/syntax.html#插值)
 
 ### v-html
 
@@ -1388,7 +1388,7 @@ type: api
   </div>
   ```
 
-- **See also:** [Conditional Rendering - v-else-if](../guide/conditional.html#v-else-if)
+- **See also:** [条件渲染 - v-else-if](../guide/conditional.html#v-else-if)
 
 ### v-for
 
@@ -1495,7 +1495,7 @@ type: api
 
 - **参考：**
   - [方法与事件处理器](../guide/events.html)
-  - [组件 - 自定义事件](../guide/components.html#Custom-Events)
+  - [组件 - 自定义事件](../guide/components.html#自定义事件)
 
 ### v-bind
 
@@ -1586,7 +1586,7 @@ type: api
 
 - **参考：**
   - [表单控件绑定](../guide/forms.html)
-  - [组件 - 在输入组件上使用自定义事件](../guide/components.html#Form-Input-Components-using-Custom-Events)
+  - [组件 - 在输入组件上使用自定义事件](../guide/components.html#使用自定义事件的表单输入组件)
 
 ### v-pre
 
@@ -1651,8 +1651,8 @@ type: api
   ```
 
 - **参考：**
-  - [数据绑定语法- 插值](../guide/syntax.html#Text)
-  - [组件 - 使用 v-once 实现轻量的静态组件](../guide/components.html#Cheap-Static-Components-with-v-once)
+  - [数据绑定语法- 插值](../guide/syntax.html#插值)
+  - [组件 - 使用 v-once 实现轻量的静态组件](../guide/components.html#使用-v-once-的低级静态组件-Cheap-Static-Component)
 
 ## 特殊属性
 
@@ -1715,7 +1715,7 @@ type: api
 
   详细用法，请参考下面指南部分的链接。
 
-- **参考：** [命名 Slots](../guide/components.html#Named-Slots)
+- **参考：** [具名 Slots](../guide/components.html#具名-Slot)
 
 ## 内置的组件
 
