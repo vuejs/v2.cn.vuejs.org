@@ -563,7 +563,11 @@ type: api
 
   <p class="tip"> 提供的元素只能作为挂载点。不同于 Vue 1.x，所有的挂载元素会被 Vue 生成的 DOM 替换。因此不推荐挂载root实例到 `<html>` 或者 `<body>` 上。</p>
 
-- **参考：** [生命周期图示](../guide/instance.html#生命周期图示)
+  <p class="tip">如果 `render` 函数和 `template` 属性都不存在，挂载 DOM 元素的 HTML 会被提取出来用作模板，此时，必须使用 Runtime + Compiler 构建的 Vue 库。</p>
+  
+- **参考：** 
+  - [生命周期图示](../guide/instance.html#生命周期图示)
+  - [独立构建-vs-运行时构建](../guide/installation.html#独立构建-vs-运行时构建)
 
 ### template
 
@@ -577,6 +581,8 @@ type: api
 
   <p class="tip">出于安全考虑，您应该只使用您信任的 Vue 模板。避免使用其他人生成的内容作为您的模板。</p>
 
+  <p class="tip">如果 Vue 选项中包含 render 函数，template 选项将被忽略。</p>
+  
 - **参考：**
   - [生命周期图示](../guide/instance.html#生命周期图示)
   - [内容分发](../guide/components.html#使用-Slot-分发内容)
@@ -590,6 +596,8 @@ type: api
     字符串模板的代替方案，允许你发挥 JavaScript 最大的编程能力。render 函数接收一个 `createElement` 方法作为第一个参数用来创建 `VNode`。
 
     如果组件是一个函数组件，Render 函数还会接收一个额外的 `context` 参数，为没有实例的函数组件提供上下文信息。
+
+    <p class="tip">Vue 选项中的 `render` 函数若存在，则 Vue 构造函数不会从 `template` 选项或通过 `el` 选项指定的挂载元素中提取出的 HTML 模板编译 render 函数。</p>
 
   - **参考：**
     - [Render 函数](../guide/render-function.html)
