@@ -238,6 +238,20 @@ if (route.meta.requiresAuth) {
 </div>
 {% endraw %}
 
+### Route Query 数组的 [] 语法 <sup>移除</sup>
+
+在 URL 中 query 数组的 [] 语法已移除。例如，`/foo?users[]=Tom&users[]=Jerry` 将变成 `/foo?users=Tom&users=Jerry`。
+
+由于 vue-router 将 `?users=Tom` 处理为 `query.users == 'Tom'`，除非你确信数组中的元素将超过一个，你需要添加如下类型的 watcher：  
+```javascript
+'$route.query.users': {
+  handler(val) {
+    this.$route.query.users = Array.isArray(val) ? val : [val]
+  },
+  immediate: true
+}
+```
+
 ## Route 匹配
 
 路由匹配现在使用 [path-to-regexp](https://github.com/pillarjs/path-to-regexp) 这个包，这将会使得工作与之前相比更加灵活。
