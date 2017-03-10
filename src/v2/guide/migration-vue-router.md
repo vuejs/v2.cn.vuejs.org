@@ -242,7 +242,10 @@ if (route.meta.requiresAuth) {
 
 在 URL 中 query 数组的 [] 语法已移除。例如，`/foo?users[]=Tom&users[]=Jerry` 将变成 `/foo?users=Tom&users=Jerry`。
 
-由于 vue-router 将 `?users=Tom` 处理为 `query.users == 'Tom'`，除非你确信数组中的元素将超过一个，你需要添加如下类型的 watcher：  
+由于 vue-router 将 `?users=Tom` 处理为 `query.users == 'Tom'`，除非你确信数组中的元素将超过一个，你需要检查并在必要时转换该 query 为 数组。
+
+一个可行的方案是添加如下类型的 watcher：  
+
 ```javascript
 '$route.query.users': {
   handler(val) {
