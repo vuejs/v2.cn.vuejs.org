@@ -244,16 +244,16 @@ if (route.meta.requiresAuth) {
 
 由于 vue-router 将 `?users=Tom` 处理为 `query.users == 'Tom'`，除非你确信数组中的元素将超过一个，你需要检查并在必要时转换该 query 为 数组。
 
-一个可行的方案是添加如下类型的 watcher：  
+一个可行的方案是添加如下所示的计算属性：
 
 ```javascript
-'$route.query.users': {
-  handler(val) {
-    this.$route.query.users = Array.isArray(val) ? val : [val]
-  },
-  immediate: true
+users () {
+  let val = this.$route.query.users
+  return Array.isArray(val) ? val : [val]
 }
 ```
+
+然后在用到 `this.$router.query.users` 的地方以计算属性 `users` 代替。
 
 ## Route 匹配
 
