@@ -77,7 +77,7 @@ type: api
 
   指定组件的渲染和观察期间未捕获错误的处理函数。这个处理函数被调用时，可获取错误信息和 Vue 实例。
 
-  > [Sentry](https://sentry.io), an error tracking service, provides [official integration](https://sentry.io/for/vue/) using this option.
+  > [Sentry](https://sentry.io), 一个错误追踪服务, 通过此选项提供[官方集成](https://sentry.io/for/vue/)。
 
 ### ignoredElements
 
@@ -994,9 +994,9 @@ type: api
 
 - **详细：**
 
-  Used to programmatically access [scoped slots](../guide/components.html#Scoped-Slots). For each slot, including the `default` one, the object contains a corresponding function that returns VNodes.
-
-  Accessing `vm.$scopedSlots` is most useful when writing a component with a [render function](../guide/render-function.html).
+  用来访问 [scoped slots](../guide/components.html#Scoped-Slots)。对于包括 `默认 slot` 在内的每一个 slot， 该对象都包含一个返回相应 VNode 的函数。
+  
+  在使用 [render 函数](../guide/render-function.html) 书写一个组件时，访问 `vm.$scopedSlots` 最有帮助。
 
 - **参考：**
   - [`<slot>` 组件](#slot-1)
@@ -1365,13 +1365,13 @@ type: api
 
 > 2.1.0新增
 
-- **Expects:** `any`
+- **类型:** `any`
 
-- **Restriction:** previous sibling element must have `v-if` or `v-else-if`.
+- **限制:** 前一兄弟元素必须有 `v-if` 或 `v-else-if`。
 
-- **Usage:**
+- **用法:**
 
-  Denote the "else if block" for `v-if`. Can be chained.
+  表示 `v-if` 的 "else if 块"。可以链式调用。
 
   ```html
   <div v-if="type === 'A'">
@@ -1388,7 +1388,7 @@ type: api
   </div>
   ```
 
-- **See also:** [条件渲染 - v-else-if](../guide/conditional.html#v-else-if)
+- **参考:** [条件渲染 - v-else-if](../guide/conditional.html#v-else-if)
 
 ### v-for
 
@@ -1553,13 +1553,13 @@ type: api
   <svg><a :xlink:special="foo"></a></svg>
   ```
 
-  The `.camel` modifier allows camelizing a `v-bind` attribute name when using in-DOM templates, e.g. the SVG `viewBox` attribute:
+  `.camel` 修饰符允许在使用 DOM 模板时将 `v-bind` 属性名称驼峰化，例如 SVG 的 `viewBox` 属性：
 
   ``` html
   <svg :view-box.camel="viewBox"></svg>
   ```
 
-  `.camel` is not needed if you are using string templates, or compiling with `vue-loader`/`vueify`.
+  在使用字符串模板或通过 `vue-loader`/`vueify` 编译时，无需使用 `.camel`。
 
 - **参考：**
   - [Class 与 Style 绑定](../guide/class-and-style.html)
@@ -1833,8 +1833,8 @@ type: api
 ### keep-alive
 
 - **Props:**
-  - `include` - string or RegExp. Only components matched by this will be cached.
-  - `exclude` - string or RegExp. Any component matched by this will not be cached.
+  - `include` - 字符串或正则表达式。只有匹配的组件会被缓存。
+  - `exclude` - 字符串或正则表达式。任何匹配的组件都不会被缓存。
 
 - **用法：**
 
@@ -1866,23 +1866,23 @@ type: api
 
 - **`include` and `exclude`**
 
-  > New in 2.1.0
+  > 2.1.0 新增
 
-  The `include` and `exclude` props allow components to be conditionally cached. Both props can either be a comma-delimited string or a RegExp:
+  `include` 和 `exclude` 属性允许组件有条件地缓存。二者都可以用逗号分隔字符串或正则表达式来表示:
 
   ``` html
-  <!-- comma-delimited string -->
+  <!-- 逗号分隔字符串 -->
   <keep-alive include="a,b">
     <component :is="view"></component>
   </keep-alive>
 
-  <!-- regex (use v-bind) -->
+  <!-- 正则表达式 (使用 v-bind) -->
   <keep-alive :include="/a|b/">
     <component :is="view"></component>
   </keep-alive>
   ```
 
-  The match is first checked on the component's own `name` option, then its local registration name (the key in the parent's `components` option) if the `name` option is not available. Anonymous components cannot be matched against.
+  匹配首先检查组件自身的 `name` 选项，如果 `name` 选项不可用，则匹配它的局部注册名称（父组件 `components` 选项的键值）。匿名组件不能被匹配。
 
   <p class="tip">`<keep-alive>` 不会在函数式组件中正常工作，因为它们没有缓存实例。</p>
 
