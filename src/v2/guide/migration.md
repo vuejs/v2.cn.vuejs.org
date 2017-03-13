@@ -287,8 +287,8 @@ computed: {
 
 Props 现在只能单项传递。为了对父组件产生反向影响，子组件需要显式地传递一个事件而不是依赖于隐式地双向绑定。详见：
 
-- [自定义组件事件](components.html#Custom-Events)
-- [自定义输入组件](components.html#Form-Input-Components-using-Custom-Events) (使用组件事件)
+- [自定义组件事件](components.html#自定义事件)
+- [自定义输入组件](components.html#使用自定义事件的表单输入组件) (使用组件事件)
 - [全局状态管理](state-management.html)
 
 {% raw %}
@@ -302,8 +302,8 @@ Props 现在只能单项传递。为了对父组件产生反向影响，子组�
 
 Props 现在只能单向传递。为了对父组件产生反向影响，子组件需要显式地传递一个事件而不是依赖于隐式地双向绑定。详见：
 
-- [自定义组件事件](components.html#Custom-Events)
-- [自定义输入组件](components.html#Form-Input-Components-using-Custom-Events) (使用组件事件)
+- [自定义组件事件](components.html#自定义事件)
+- [自定义输入组件](components.html#使用自定义事件的表单输入组件) (使用组件事件)
 - [全局状态管理](state-management.html)
 
 {% raw %}
