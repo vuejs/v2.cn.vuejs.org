@@ -238,22 +238,39 @@ if (route.meta.requiresAuth) {
 </div>
 {% endraw %}
 
-### Route Query 数组的 [] 语法 <sup>移除</sup>
+### Query 数组语法 <sup>移除</sup>
 
-在 URL 中 query 数组的 [] 语法已移除。例如，`/foo?users[]=Tom&users[]=Jerry` 将变成 `/foo?users=Tom&users=Jerry`。
-
-由于 vue-router 将 `?users=Tom` 处理为 `query.users == 'Tom'`，除非你确信数组中的元素将超过一个，你需要检查并在必要时转换该 query 为 数组。
-
-一个可行的方案是添加如下所示的计算属性：
+当传递数组给 query 参数时，URL 语法不再是 `/foo?users[]=Tom&users[]=Jerry`，取而代之，新语法是 `/foo?users=Tom&users=Jerry`，此时 `$route.query.users` 将仍旧是一个数组，不过如果在该 query 中只有一个参数：`/foo?users=Tom`，当直接访问该路由时，vue-router 将无法知道我们期待的 `users` 是个数组。因此，可以考虑添加一个计算属性并且在每个使用 `$route.query.users` 的地方以该计算属性代替：
 
 ```javascript
-users () {
-  let val = this.$route.query.users
-  return Array.isArray(val) ? val : [val]
+export default {
+  // ... 其他组件选项
+  computed: {
+    // ... 其他计算属性
+    users () { // 此计算属性将始终是个数组
+      const users = this.$route.query.users
+      return Array.isArray(users) ? users : [users]
+    }
+  }
 }
 ```
 
-然后在用到 `this.$router.query.users` 的地方以计算属性 `users` 代替。
+或者，如果确信该 query 是个数组，不用担心破坏 $route 对象的"原始性"，对 `$router.query.users` 设置一个 watcher 是个一劳永逸的方法：
+
+```javascript
+export default {
+  // ... 其他组件选项
+  watch: {
+    // ... 其他 watcher
+    '$route.query.users': {
+      handler(val) {
+        this.$route.query.users = Array.isArray(val) ? val : [val]
+      },
+      immediate: true
+    }
+  }
+}
+```
 
 ## Route 匹配
 
