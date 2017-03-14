@@ -247,7 +247,7 @@ export default {
   // ...
   computed: {
     // 此计算属性将始终是个数组
-    users () { // 
+    users () {
       const users = this.$route.query.users
       return Array.isArray(users) ? users : [users]
     }
