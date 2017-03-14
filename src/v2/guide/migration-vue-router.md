@@ -255,23 +255,6 @@ export default {
 }
 ```
 
-或者，如果确信该 query 是个数组，不用担心破坏 $route 对象的"原始性"，对 `$router.query.users` 设置一个 watcher 是个一劳永逸的方法：
-
-```javascript
-export default {
-  // ... 其他组件选项
-  watch: {
-    // ... 其他 watcher
-    '$route.query.users': {
-      handler(val) {
-        this.$route.query.users = Array.isArray(val) ? val : [val]
-      },
-      immediate: true
-    }
-  }
-}
-```
-
 ## Route 匹配
 
 路由匹配现在使用 [path-to-regexp](https://github.com/pillarjs/path-to-regexp) 这个包，这将会使得工作与之前相比更加灵活。
