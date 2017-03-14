@@ -244,10 +244,10 @@ if (route.meta.requiresAuth) {
 
 ```javascript
 export default {
-  // ... 其他组件选项
+  // ...
   computed: {
-    // ... 其他计算属性
-    users () { // 此计算属性将始终是个数组
+    // 此计算属性将始终是个数组
+    users () { // 
       const users = this.$route.query.users
       return Array.isArray(users) ? users : [users]
     }
