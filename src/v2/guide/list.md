@@ -329,6 +329,28 @@ new Vue({
 </script>
 {% endraw %}
 
+### `v-for` with `v-if`
+
+当它们处于同一节点， `v-for` 的优先级比 `v-if` 更高，这意味着 `v-if` 将分别重复运行于每个 `v-if` 循环中。当你想为仅有的 _一些_ 项渲染节点时，这种优先级的机制会十分有用，如下：
+
+``` html
+<li v-for="todo in todos" v-if="!todo.isComplete">
+  {{ todo }}
+</li>
+```
+
+上面的代码只传递了未complete的todos。
+
+而如果你的目的是有条件地跳过循环的执行，那么将 `v-if` 置于包装元素 (或 [`<template>`](conditional.html#Conditional-Groups-with-v-if-on-lt-template-gt))上。如:
+
+``` html
+<ul v-if="shouldRenderTodos">
+  <li v-for="todo in todos">
+    {{ todo }}
+  </li>
+</ul>
+```
+
 ## key
 
 当 Vue.js 用 `v-for` 正在更新已渲染过的元素列表时，它默认用 “就地复用” 策略。如果数据项的顺序被改变，Vue将不是移动 DOM 元素来匹配数据项的顺序，  而是简单复用此处每个元素，并且确保它在特定索引下显示已被渲染过的每个元素。这个类似 Vue 1.x 的 `track-by="$index"` 。
