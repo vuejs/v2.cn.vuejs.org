@@ -148,6 +148,9 @@ Vue.directive('color-swatch', function (el, binding) {
   el.style.backgroundColor = binding.value
 })
 ```
+
+<p class="tip">在表单中使用自定义指令时，尽量避免函数简写，因为表单变动会触发自定义指令的钩子函数 `update`，可能导致浏览器崩溃。</p>
+
 ## 对象字面量
 
 如果指令需要多个值，可以传入一个 JavaScript 对象字面量。记住，指令函数能够接受所有合法类型的 JavaScript 表达式。
