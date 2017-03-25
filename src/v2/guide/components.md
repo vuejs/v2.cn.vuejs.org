@@ -338,7 +338,7 @@ new Vue({
 因为它是一个字面 prop ，它的值是字符串 `"1"` 而不是number。如果想传递一个实际的number，需要使用 `v-bind` ，从而让它的值被当作 JavaScript 表达式计算：
 
 ``` html
-<!-- 传递实际的mumber -->
+<!-- 传递实际的number -->
 <comp v-bind:some-prop="1"></comp>
 ```
 
