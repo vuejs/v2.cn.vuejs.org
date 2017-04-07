@@ -862,7 +862,7 @@ Vue.component('child-component', {
 
 ``` html
 <my-awesome-list :items="items">
-  <!-- 作用域插槽也可以在这里命名 -->
+  <!-- 作用域插槽也可以是具名的 -->
   <template slot="item" scope="props">
     <li class="my-fancy-item">{{ props.text }}</li>
   </template>
@@ -876,7 +876,7 @@ Vue.component('child-component', {
   <slot name="item"
     v-for="item in items"
     :text="item.text">
-    <!-- fallback content here -->
+    <!-- 这里写入备用内容 -->
   </slot>
 </ul>
 ```
