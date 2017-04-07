@@ -238,6 +238,23 @@ if (route.meta.requiresAuth) {
 </div>
 {% endraw %}
 
+### URL 中的 Query 数组 [] 语法 <sup>移除</sup>
+
+当传递数组给 query 参数时，URL 语法不再是 `/foo?users[]=Tom&users[]=Jerry`，取而代之，新语法是 `/foo?users=Tom&users=Jerry`，此时 `$route.query.users` 将仍旧是一个数组，不过如果在该 query 中只有一个参数：`/foo?users=Tom`，当直接访问该路由时，vue-router 将无法知道我们期待的 `users` 是个数组。因此，可以考虑添加一个计算属性并且在每个使用 `$route.query.users` 的地方以该计算属性代替：
+
+```javascript
+export default {
+  // ...
+  computed: {
+    // 此计算属性将始终是个数组
+    users () {
+      const users = this.$route.query.users
+      return Array.isArray(users) ? users : [users]
+    }
+  }
+}
+```
+
 ## Route 匹配
 
 路由匹配现在使用 [path-to-regexp](https://github.com/pillarjs/path-to-regexp) 这个包，这将会使得工作与之前相比更加灵活。
