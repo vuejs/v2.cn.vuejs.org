@@ -331,14 +331,14 @@ new Vue({
 初学者常犯的一个错误是使用字面量语法传递数值：
 
 ``` html
-<!-- 传递了一个字符串"1" -->
+<!-- 传递了一个字符串 "1" -->
 <comp some-prop="1"></comp>
 ```
 
 因为它是一个字面 prop ，它的值是字符串 `"1"` 而不是number。如果想传递一个实际的number，需要使用 `v-bind` ，从而让它的值被当作 JavaScript 表达式计算：
 
 ``` html
-<!-- 传递实际的mumber -->
+<!-- 传递实际的 number -->
 <comp v-bind:some-prop="1"></comp>
 ```
 
