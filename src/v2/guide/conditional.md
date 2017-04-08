@@ -76,7 +76,7 @@ order: 7
 </div>
 ```
 
-类似于 `v-else`,，`v-else-if` 必须紧跟在 `v-if` 或者 `v-else-if` 元素之后。
+类似于 `v-else`，`v-else-if` 必须紧跟在 `v-if` 或者 `v-else-if` 元素之后。
 
 ### 用 `key` 管理可复用的元素
 
