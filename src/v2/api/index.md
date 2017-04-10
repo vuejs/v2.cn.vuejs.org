@@ -113,6 +113,30 @@ type: api
   ```
 
   给 v-on 自定义键位别名。
+  
+### performance 
+
+> 2.2.0 新增
+
+- **类型：** `boolean`
+
+- **默认值：** `false (自 2.2.3 起)`
+
+- **用法：**
+
+  设置为 `true` 以在浏览器开发工具中启用对组件初始化，渲染和打补丁的性能追踪。只适用于开发模式和支持 [`performance.mark`](https://developer.mozilla.org/en-US/docs/Web/API/Performance/mark) API的浏览器上。
+  
+### productionTip 
+
+> 2.2.0 新增
+
+- **类型：** `boolean`
+
+- **默认值：** `true`
+
+- **用法：**
+
+  设置为 `false` 以阻止 vue 在启动时生成生产提示。
 
 ## 全局 API
 
