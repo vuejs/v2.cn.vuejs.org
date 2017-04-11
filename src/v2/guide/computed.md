@@ -181,7 +181,7 @@ computed: {
 // ...
 ```
 
-现在在运行 `vm.fullName = 'John Doe'` 时， setter 会被调用， `vm.firstName` 和 `vm.lastName` 也相应地会被更新。
+现在再运行 `vm.fullName = 'John Doe'` 时， setter 会被调用， `vm.firstName` 和 `vm.lastName` 也相应地会被更新。
 
 ## 观察 Watchers
 
