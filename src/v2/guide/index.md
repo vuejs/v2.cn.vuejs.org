@@ -257,12 +257,17 @@ var app6 = new Vue({
 
 ![Component Tree](/images/components.png)
 
-在 Vue 里，一个组件本质上是一个拥有预定义选项的一个 Vue 实例，在 Vue 中注册组件很简单：
+在 Vue 里，一个组件本质上是一个拥有预定义选项的一个 Vue 实例，在 Vue 中注册组件很简单,注册完成之后，需要实例化：
 
 ``` js
 // 定义名为 todo-item 的新组件
 Vue.component('todo-item', {
   template: '<li>这是个待办项</li>'
+})
+／／实例化 todo-item
+var customApp = new Vue({
+  //customApp是自定义组件的id
+  el: "#customApp"
 })
 ```
 
@@ -270,8 +275,8 @@ Vue.component('todo-item', {
 
 ``` html
 <ol>
-  <!-- 创建一个 todo-item 组件的实例 -->
-  <todo-item></todo-item>
+  <!-- 创建一个 todo-item, id为customApp 组件的实例 -->
+  <todo-item id="customApp"></todo-item>
 </ol>
 ```
 
