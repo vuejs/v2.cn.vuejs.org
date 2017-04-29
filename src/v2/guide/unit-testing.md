@@ -112,7 +112,7 @@ describe('MyComponent', () => {
 
 ## 断言异步更新
 
-由于 Vue 进行 [异步更新DOM](reactivity.html#Async-Update-Queue) 的情况，一些依赖DOM更新结果的断言必须在 ` Vue.nextTick ` 回调中进行：
+由于 Vue 进行 [异步更新DOM](reactivity.html#Async-Update-Queue) 的情况，一些依赖DOM更新结果的断言必须在不带回调的调用 ` Vue.nextTick（）` 所返回的`Promise` 中进行：
 
 ``` js
 // 在状态更新后检查生成的 HTML
@@ -121,9 +121,16 @@ it('updates the rendered message when vm.message updates', done => {
   vm.message = 'foo'
 
   // 在状态改变后和断言 DOM 更新前等待一刻
-  Vue.nextTick(() => {
+  Vue.nextTick().then(() => {
     expect(vm.$el.textContent).toBe('foo')
     done()
+  })
+  
+  // 不要在回调中断言，因为`nextTick`会捕获回调中抛出的所有异常，而对部分测试框架而产生伪阴性结果
+  Vue.nextTick(() => {
+    expect(fase).toBe(ture)
+    // Error is capture by nextTick and test framework wouldn't know it.
+    done()
   })
 })
 ```
