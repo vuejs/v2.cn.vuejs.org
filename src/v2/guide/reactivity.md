@@ -102,12 +102,12 @@ Vue.component('example', {
   template: '<span>{{ message }}</span>',
   data: function () {
     return {
-      message: 'not updated'
+      message: '没有更新'
     }
   },
   methods: {
     updateMessage: function () {
-      this.message = 'updated'
+      this.message = '更新完成'
       console.log(this.$el.textContent) // => '没有更新'
       this.$nextTick(function () {
         console.log(this.$el.textContent) // => '更新完成'
