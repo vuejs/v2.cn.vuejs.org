@@ -460,6 +460,8 @@ Vue.component('my-component', {
 })
 ```
 
+> 注意：在 <2.3.0 的版本中，如果一个函数式组件想要接受 props，则 `props` 选项是必须的。在 2.3.0 或以上的版本中，你可以省略 `props` 选项，所有组件上的属性都会被自动解析为 props。
+
 组件需要的一切都是通过上下文传递，包括：
 
 - `props`: 提供props 的对象
@@ -467,6 +469,8 @@ Vue.component('my-component', {
 - `slots`: slots 对象
 - `data`: 传递给组件的 data 对象
 - `parent`: 对父组件的引用
+- `listeners`: (2.3.0+) 一个包含了组件上所注册的 `v-on` 侦听器的对象。这只是一个指向 `data.on` 的别名。
+- `injections`: (2.3.0+) 如果使用了 [`inject`](https://vuejs.org/v2/api/#provide-inject) 选项, 则该对象包含了应当被注入的属性。
 
 
 在添加 `functional: true` 之后，锚点标题组件的 render 函数之间简单更新增加 `context` 参数，`this.$slots.default` 更新为 `context.children`，之后`this.level` 更新为 `context.props.level`。

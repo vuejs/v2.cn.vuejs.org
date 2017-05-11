@@ -564,8 +564,8 @@ type: api
   <p class="tip"> 提供的元素只能作为挂载点。不同于 Vue 1.x，所有的挂载元素会被 Vue 生成的 DOM 替换。因此不推荐挂载root实例到 `<html>` 或者 `<body>` 上。</p>
 
   <p class="tip">如果 `render` 函数和 `template` 属性都不存在，挂载 DOM 元素的 HTML 会被提取出来用作模板，此时，必须使用 Runtime + Compiler 构建的 Vue 库。</p>
-  
-- **参考：** 
+
+- **参考：**
   - [生命周期图示](../guide/instance.html#生命周期图示)
   - [独立构建-vs-运行时构建](../guide/installation.html#独立构建-vs-运行时构建)
 
@@ -582,7 +582,7 @@ type: api
   <p class="tip">出于安全考虑，您应该只使用您信任的 Vue 模板。避免使用其他人生成的内容作为您的模板。</p>
 
   <p class="tip">如果 Vue 选项中包含 render 函数，template 选项将被忽略。</p>
-  
+
 - **参考：**
   - [生命周期图示](../guide/instance.html#生命周期图示)
   - [内容分发](../guide/components.html#使用-Slot-分发内容)
@@ -1003,7 +1003,7 @@ type: api
 - **详细：**
 
   用来访问 [scoped slots](../guide/components.html#Scoped-Slots)。对于包括 `默认 slot` 在内的每一个 slot， 该对象都包含一个返回相应 VNode 的函数。
-  
+
   在使用 [render 函数](../guide/render-function.html) 书写一个组件时，访问 `vm.$scopedSlots` 最有帮助。
 
 - **参考：**
@@ -1453,6 +1453,7 @@ type: api
   - `.left` - (2.2.0) 只当点击鼠标左键时触发。
   - `.right` - (2.2.0) 只当点击鼠标右键时触发。
   - `.middle` - (2.2.0) 只当点击鼠标中键时触发。
+  - `.passive` - (2.3.0) 以 `{ passive: true }` 模式添加侦听器
 
 - **用法：**
 
@@ -1522,7 +1523,8 @@ type: api
 
 - **修饰符：**
   - `.prop` - 被用于绑定 DOM 属性。([what's the difference?](http://stackoverflow.com/questions/6003819/properties-and-attributes-in-html#answer-6004028))
-  - `.camel` - transform the kebab-case attribute name into camelCase. (supported since 2.1.0)
+  - `.camel` - (2.1.0+) transform the kebab-case attribute name into camelCase. (supported since 2.1.0)
+  - `.sync` (2.3.0+) 语法糖，会扩展成一个更新父组件绑定值的 `v-on` 侦听器。
 
 - **用法：**
 
@@ -1542,7 +1544,7 @@ type: api
 
   <!-- 缩写 -->
   <img :src="imageSrc">
-  
+
   <!-- with inline string concatenation -->
   <img :src="'/path/to/images/' + fileName">
 
@@ -1579,6 +1581,7 @@ type: api
 - **参考：**
   - [Class 与 Style 绑定](../guide/class-and-style.html)
   - [组件 - 组件 Props](../guide/components.html#Props)
+  - [组件 - `.sync` 修饰符](../guide/components.html#sync-修饰符)
 
 ### v-model
 
