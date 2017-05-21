@@ -276,8 +276,11 @@ new Vue({
   },
   methods: {
     addNewTodo: function () {
+    if(this.newTodoText != '')
+    {
       this.todos.push(this.newTodoText)
-      this.newTodoText = ''
+    }
+     this.newTodoText = ''
     }
   }
 })
