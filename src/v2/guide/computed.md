@@ -80,7 +80,7 @@ console.log(vm.reversedMessage) // -> 'eybdooG'
 
 你可以像绑定普通属性一样在模板中绑定计算属性。 Vue 知道 `vm.reversedMessage` 依赖于 `vm.message` ，因此当 `vm.message` 发生改变时，所有依赖于 `vm.reversedMessage` 的绑定也会更新。而且最妙的是我们已经以声明的方式创建了这种依赖关系：计算属性的 getter 是没有副作用，这使得它易于测试和推理。
 
-### 计算缓存 vs Methods
+### 计算属性 vs Methods
 
 你可能已经注意到我们可以通过调用表达式中的 method 来达到同样的效果：
 
