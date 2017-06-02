@@ -151,7 +151,7 @@ HTML 最终将被渲染成为:
 
 ### 对象语法
 
-`v-bind:style` 的对象语法十分直观——看着非常像 CSS ，其实它是一个 JavaScript 对象。 CSS 属性名可以用驼峰式（camelCase）或短横分隔命名（kebab-case）：
+`v-bind:style` 的对象语法十分直观——看着非常像 CSS ，其实它是一个 JavaScript 对象。 CSS 属性名可以用驼峰式（camelCase）或短横线分隔命名（kebab-case，注意需要用引号包裹）：
 
 
 ``` html
@@ -190,7 +190,7 @@ data: {
 
 ### 自动添加前缀
 
-当 `v-bind:style` 使用需要特定前缀的 CSS 属性时，如 `transform` ，Vue.js 会自动侦测并添加相应的前缀。
+当 `v-bind:style` 使用需要特定的[浏览器引擎前缀](https://developer.mozilla.org/zh-CN/docs/Glossary/Vendor_Prefix)时，如 `transform` ，Vue.js 会自动侦测并添加相应的前缀。
 
 ### 多重值
 
