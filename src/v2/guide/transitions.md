@@ -51,7 +51,7 @@ new Vue({
 .fade-enter-active, .fade-leave-active {
   transition: opacity .5s
 }
-.fade-enter, .fade-leave-active {
+.fade-enter-active, .fade-leave-active {
   opacity: 0
 }
 ```
