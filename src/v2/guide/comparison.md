@@ -1,8 +1,9 @@
 ---
 title: 对比其他框架
 type: guide
-order: 28
+order: 29
 ---
+
 这个页面无疑是最难编写的，但我们认为它也是非常重要的。或许你曾遇到了一些问题并且已经用其他的框架解决了。你来这里的目的是看看 Vue 是否有更好的解决方案。这也是我们在此想要回答的。
 
 客观来说，作为核心团队成员，显然我们会更偏爱 Vue，认为对于某些问题来讲用 Vue 解决会更好。如果没有这点信念，我们也就不会整天为此忙活了。但是在此，我们想尽可能地公平和准确地来描述一切。其他的框架也有显著的优点，例如 React 庞大的生态系统，或者像是 Knockout 对浏览器的支持覆盖到了 IE6。我们会尝试着把这些内容全部列出来。
@@ -15,83 +16,33 @@ React 和 Vue 有许多相似之处，它们都有：
 
 - 使用 Virtual DOM
 - 提供了响应式（Reactive）和组件化（Composable）的视图组件。
-- 将注意力集中保持在核心库，伴随于此，有配套的路由和负责处理全局状态管理的库。
+- 将注意力集中保持在核心库，而将其他功能如路由和全局状态管理交给相关的库。
 
-由于有着众多的相似处，我们会用更多的时间在这一块进行比较。这里我们不只保证技术内容的准确性，同时也兼顾了平衡的考量。我们需要指出 React 比 Vue 更好的地方，像是他们的生态系统和丰富的自定义渲染器。
+由于有着众多的相似处，我们会用更多的时间在这一块进行比较。这里我们不只保证技术内容的准确性，同时也兼顾了平衡的考量。我们需要承认 React 比 Vue 更好的地方，比如更丰富的生态系统。
 
-React社区为我们准确进行平衡的考量提供了[非常积极地帮助](https://github.com/vuejs/vuejs.org/issues/364)，特别感谢来自 React 团队的 Dan Abramov 。他非常慷慨的花费时间来贡献专业知识，帮助我们完善这篇文档，最后我们对最终结果[都十分满意](https://github.com/vuejs/vuejs.org/issues/364#issuecomment-244575740)。
+React社区为我们准确进行平衡的考量提供了[非常积极的帮助](https://github.com/vuejs/vuejs.org/issues/364)，特别感谢来自 React 团队的 Dan Abramov 。他非常慷慨的花费时间来贡献专业知识来帮助我们完善这篇文档。
 
-### 性能简介
+### 性能
 
-到目前为止，针对现实情况的测试中，Vue 的性能是优于 React 的。如果你对此表示怀疑，请继续阅读。我们会解释为什么会这样（并且会提供一个与 React 团队共同约定的比较基准）。
+React 和 Vue 在大部分常见场景下都能提供近似的性能。通常 Vue 会有少量优势，因为 Vue 的 Virtual DOM 实现相对更为轻量一些。如果你对数据感兴趣，可以参考这个专门测试渲染和更新性能的[第三方跑分](https://rawgit.com/krausest/js-framework-benchmark/master/webdriver-ts/table.html)。注意这个跑分并不包含针对大量复杂组件树的情况，因此只建议作为参考。
 
-#### 渲染性能
+#### 优化
 
-在渲染用户界面的时候，DOM 的操作成本是最高的，不幸的是没有库可以让这些原始操作变得更快。
-我们能做到的最好效果就是：
+在 React 应用中，当某个组件的状态发生变化时，它会以该组件为根，重新渲染整个组件子树。
 
-1. 把必须的 Dom 更新降到最小。React 和 Vue 都是通过 Virtual Dom 抽象层来实现这一要求，而且他们都实现得一样赞。
+如要避免不必要的子组件的重渲染，你需要在所有可能的地方使用 `PureComponent`，或是手动实现 `shouldComponentUpdate` 方法。同时你可能会需要使用不可变的数据结构来使得你的组件更容易被优化。
 
-2. 在这些 Dom 操作之上，则尽可能少地添加额外性能开销（即：纯 JavaScript 运算）。这是 Vue 和 React 产生分歧之处。
+然而，使用 `PureComponent` 和 `shouldComponentUpdate` 时，需要保证该组件的整个子树的渲染输出都是由该组件的 props 所决定的。如果不符合这个情况，那么此类优化就会导致难以察觉的渲染结果不一致。这使得 React 中的组件优化伴随着相当的心智负担。
 
-JavaScript 开销直接与求算必要 DOM 操作的机制相关。尽管 Vue 和 React 都使用了 Virtual Dom 实现这一点，但 Vue 的 Virtual Dom 实现（复刻自  [snabbdom](https://github.com/snabbdom/snabbdom)）是更加轻量化的，因此也就比 React 的实现更高效。
+在 Vue 应用中，组件的依赖是在渲染过程中自动追踪的，所以系统能精确知晓哪个组件确实需要被重渲染。你可以理解为每一个组件都已经自动获得了 `shouldComponentUpdate`，并且没有上述的子树问题限制。
 
-Vue 和 React 也提供功能性组件，这些组件因为都是没有声明，没有实例化的，因此会花费更少的开销。当这些都用于关键性能的场景时，Vue 将会更快。为了证明这点，我们建立了一个简单的[参照项目](https://github.com/chrisvfritz/vue-render-performance-comparisons)，它负责渲染 10,000 个列表项 100 次。我们鼓励你基于此去尝试运行一下。然而在实际上，由于浏览器和硬件的差异甚至 JavaScript 引擎的不同，结果都会相应有所不同。
+Vue 的这个特点使得开发者不再需要考虑此类优化，从而能够更好地专注于应用本身。
 
-如果你懒得去做，下面的数值是产生自运行于 2014 款 MacBook Air 的 Chrome 52。为了避免偶然性，每个参照项目都分别运行 20 次并取自最好的结果：
-
-{% raw %}
-<table class="benchmark-table">
-  <thead>
-    <tr>
-      <th></th>
-      <th>Vue</th>
-      <th>React</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>Fastest</th>
-      <td>23ms</td>
-      <td>63ms</td>
-    </tr>
-    <tr>
-      <th>Median</th>
-      <td>42ms</td>
-      <td>81ms</td>
-    </tr>
-    <tr>
-      <th>Average</th>
-      <td>51ms</td>
-      <td>94ms</td>
-    </tr>
-    <tr>
-      <th>95th Perc.</th>
-      <td>73ms</td>
-      <td>164ms</td>
-    </tr>
-    <tr>
-      <th>Slowest</th>
-      <td>343ms</td>
-      <td>453ms</td>
-    </tr>
-  </tbody>
-</table>
-{% endraw %}
-
-#### 更新性能
-
-在 React 里，当某个组件的状态发生变化时，它会以该组件为根，重新渲染整个组件子树。
-
-如要避免不必要的子组件的重渲染，你需要显式地在所有地方实现 `shouldComponentUpdate` 检测并使用不可变的数据结构。在 Vue 中，组件的依赖是在渲染过程中自动追踪的，所以系统能精确知晓哪个组件确实需要被重渲染。
-
-这意味着，未经优化的 Vue 相比未经优化的 React 要快的多。由于 Vue 改进过渲染性能，甚至全面优化过的 React 通常也会慢于开箱即用的 Vue。
-
-#### 开发中
+#### 开发时性能
 
 显然，在生产环境中的性能是至关重要的，目前为止我们所具体讨论的便是针对此环境。但开发过程中的表现也不容小视。不错的是用 Vue 和 React 开发大多数应用的速度都是足够快的。
 
-当性能在生产中是直接与终端用户体验相关的更重要的指标时，表现在开发中仍然很重要,因为它是与开发者的经验相关的。
+当性能在生产中是直接与终端用户体验相关的更重要的指标时，表现在开发中仍然很重要,因为它与开发体验密切相关。
 
 然而，假如你要开发一个对性能要求比较高的数据可视化或者动画的应用时，你需要了解到下面这点：在开发中，Vue 每秒最高处理 10 帧，而 React 每秒最高处理不到 1 帧。
 
@@ -99,78 +50,33 @@ Vue 和 React 也提供功能性组件，这些组件因为都是没有声明，
 
 ### HTML & CSS
 
-在 React 中，它们都是 JavaScript 编写的，听起来这十分简单和优雅。然而不幸的事实是，JavaScript 内的 HTML 和 CSS 会产生很多痛点。在 Vue 中我们采用 Web 技术并在其上进行扩展。接下来将通过一些实例向你展示这意味的是什么。
+在 React 中，一切都是 JavaScript。不仅仅是 HTML 可以用 JSX 来表达，现在的潮流也越来越多地将 CSS 也纳入到 JavaScript 中来处理。这类方案有其优点，但也存在一些不是每个开发者都能接受的取舍。
 
+Vue 的整体思想是拥抱经典的 Web 技术，并在其上进行扩展。我们下面会详细分析一下。
 
 #### JSX vs Templates
 
-在 React 中，所有的组件的渲染功能都依靠 JSX。JSX 是使用 XML 语法编写 JavaScript 的一种语法糖。这有一个[通过React社区审核过的例子](https://github.com/vuejs/vuejs.org/issues/364#issuecomment-244582684)：
+在 React 中，所有的组件的渲染功能都依靠 JSX。JSX 是使用 XML 语法编写 JavaScript 的一种语法糖。
 
-``` jsx
-  render () {
-	    let { items } = this.props
+JSX 说是手写的渲染函数有下面这些优势：
 
-	    let children
-	    if ( items.length > 0 ) {
-	        children = (
-	            <ul>
-	                {items.map( item =>
-	                    <li key={item.id}>{item.name}</li>
-	                )}
-	            </ul>
-	        )
-	    } else {
-	        children = <p>No items found.</p>
-	    }
+- 你可以使用完整的编程语言 JavaScript 功能来构建你的视图页面。比如你可以使用临时变量、JS 自带的流程控制、以及直接引用当前 JS 作用域中的值等等。
 
-	    return (
-	        <div className = 'list-container'>
-	            {children}
-	        </div>
-	    )
-	}
-```
+- 开发工具对 JSX 的支持相比于现有可用的其他 Vue 模板还是比较先进的（比如，linting、类型检查、编辑器的自动完成）。
 
-JSX 的渲染功能有下面这些优势：
+事实上 Vue 也提供了[渲染函数](render-function.html) ，甚至[支持 JSX](render-function.html#JSX)。然而，我们默认推荐的还是模板。任何合乎规范的 HTML 都是合法的 Vue 模板，这也带来了一些特有的优势：
 
-- 你可以使用完整的编程语言 JavaScript 功能来构建你的视图页面。
-- 工具对 JSX 的支持相比于现有可用的其他 Vue 模板还是比较先进的（比如，linting、类型检查、编辑器的自动完成）。
+- 对于很多习惯了 HTML 的开发者来说，模板比起 JSX 读写起来更自然。这里当然有主观偏好的成分，但如果这种区别会导致开发效率的提升，那么它就有客观的价值存在。
 
-在 Vue 中，由于有时需要用这些功能，我们也提供了[渲染功能](render-function.html) 并且[支持了 JSX](render-function.html#JSX)。然而，对于大多数组件来说，渲染功能是不推荐使用了。
+- 基于 HTML 的模板使得将已有的应用逐步迁移到 Vue 更为容易。
 
-在这方面，我们提供的是更简单的模板：
+- 这也使得设计师和新人开发者更容易理解和参与到项目中。
 
-``` html
-	<template>
-	    <div class="list-container">
-	        <ul v-if="items.length">
-	            <li v-for="item in items">
-	                {{ item.name }}
-	            </li>
-	        </ul>
-	        <p v-else>No items found.</p>
-	    </div>
-	</template>
-```
+- 你甚至可以使用其他模板预处理器，比如 Pug 来书写 Vue 的模板。
 
-优点如下：
+有些开发者认为模板意味着需要学习额外的 DSL (Domain-Specific Language, 领域特定语言）才能进行开发 —— 我们认为这种区别是比较肤浅的。首先，JSX 并不是免费的 —— 它是基于 JS 之上的一套额外语法，因此也有它自己的学习成本。同时，正如同熟悉 JS 的人学习 JSX 会很容易一样，熟悉 HTML 的人学习 Vue 的模板语法也是很容易的。最后，DSL 的存在使得我们可以让开发者用更少的代码做更多的事，比如 `v-on` 的各种修饰符，在 JSX 中实现对应的功能会需要多得多的代码。
 
-- 在写模板的过程中，样式风格已定并涉及更少的功能实现。
-- 模板总是会被声明的。
-- 模板中任何 HTML 语法都是有效的。
-- 阅读起来更贴合英语（比如，for each item in items）。
-- 不需要高级版本的 JavaScript 语法，来增加可读性。
-
-这样，不仅开发人员更容易编写代码，设计人员和开发人员也可以更容易的分析代码和贡献代码。
-
-这还没有结束。Vue 拥抱 HTML，而不是用 JavaScript 去重塑它。在模板内，Vue 也允许你用预处理器比如 Pug（原名 Jade）。
-
-``` pug
-div.list-container
-  ul(v-if="items.length")
-    li(v-for="item in items") {{ item.name }}
-  p(v-else) No items found.
-```
+更抽象一点来看，我们可以把组件区分为两类：一类是偏视图表现的 (presentational)，一类则是偏逻辑的 (logical)。我们推荐在前者中使用模板，在后者中使用 JSX 或渲染函数。这两类组件的比例会根据应用类型的不同有所变化，但整体来说我们发现表现类的组件远远多于逻辑类组件。
 
 #### CSS 的组件作用域
 
@@ -233,7 +139,7 @@ ReactNative 能使你用相同的组件模型编写有本地渲染能力的 APP�
 
 Mobx 在 React 社区很流行，实际上在 Vue 也采用了几乎相同的反应系统。在有限程度上，React + Mobx 也可以被认为是更繁琐的 Vue，所以如果你习惯组合使用它们，那么选择 Vue 会更合理。
 
-## Angular 1
+## AngularJS (Angular 1)
 
 Vue 的一些语法和 Angular 的很相似（例如 `v-if` vs `ng-if`）。因为 Angular 是 Vue 早期开发的灵感来源。然而，Angular 中存在的许多问题，在 Vue 中已经得到解决。
 
@@ -264,31 +170,33 @@ Vue 则根本没有这个问题，因为它使用基于依赖追踪的观察系�
 
 有意思的是，Angular 2 和 Vue 用相似的设计解决了一些 Angular 1 中存在的问题。
 
-## Angular 2
+## Angular (原本的 Angular 2)
 
-我们单独将 Angular 2 作分类，因为它完全是一个全新的框架。例如：它具有优秀的组件系统，并且许多实现已经完全重写，API 也完全改变了。
+我们将 Angular 和 Angular 1 分开来讨论，因为它完全是一个全新的框架。例如：它具有优秀的组件系统，并且许多实现已经完全重写，API 也完全改变了。
 
 ### TypeScript
 
-Angular 1 面向的是较小的应用程序，Angular 2 已转移焦点，面向的是大型企业应用。在这一点上 TypeScript 经常会被引用，它对那些喜欢用 Java 或者 C# 等类型安全的语言的人是非常有用的。
+Angular 事实上必须用 TypeScript 来开发，因为它的文档和学习资源几乎全部是面向 TS 的。TS 有很多显而易见的好处 —— 静态类型检查在大规模的应用中非常有用，同时对于 Java 和 C# 背景的开发者也是非常提升开发效率的。
 
-Vue 也十分适合制作[企业应用](https://github.com/vuejs/awesome-vue#enterprise-usage)，你也可以通过使用[官方类型](https://github.com/vuejs/vue/tree/dev/types)或[官方装饰器](https://github.com/itsFrank/vue-typescript)来支持 TypeScript，这完全可由你的方案来定。
+然而，并不是所有人都想用 TS —— 在中小型规模的项目中，引入 TS 可能并不会带来太多明显的优势。在这些情况下，用 Vue 会是更好的选择，因为在不用 TS 的情况下使用 Angular 会很有挑战性。
+
+最后，虽然 Vue 和 TS 的整合可能不如 Angular 那么深入，我们也提供了官方的 [类型声明](https://github.com/vuejs/vue/tree/dev/types) 和 [组件装饰器](https://github.com/vuejs/vue-class-component)，并且知道有大量用户在生产环境中使用 Vue + TS 的组合。我们也和微软的 TS / VSCode 团队进行着积极的合作，目标是为 Vue + TS 用户提供更好的类型检查和 IDE 开发体验。
 
 ### 大小和性能
 
-在性能方面，这两个框架都非常的快。但目前尚没有足够的数据用例来具体展示。如果你一定要量化这些数据，你可以查看[第三方参照](http://stefankrause.net/js-frameworks-benchmark4/webdriver-ts/table.html)，它表明 Vue 2 相比 Angular2 是更快的。
+在性能方面，这两个框架都非常的快，我们也没有足够的实际应用数据来下一个结论。如果你一定想看些数据的话，你可以参考这个[第三方跑分](http://stefankrause.net/js-frameworks-benchmark4/webdriver-ts/table.html)。单就这个跑分来看，Vue 似乎比 Angular 要更快一些。
 
-在大小方面，虽然 Angular 2 使用 tree-shaking 和离线编译技术使代码体积减小了许多。但包含编译器和全部功能的 Vue2(23kb) 相比 Angular 2(50kb) 还是要小的多。但是要注意，用 Angular 2 的 App 的体积缩减是使用了 tree-shaking 移除了那些框架中没有用到的功能，但随着功能引入的不断增多，尺寸会变得越来越大。
+在大小方面，最近的 Angular 版本中在使用了 AOT 和 tree-shaking 技术后使得最终的代码体积减小了许多。但即使如此，一个包含了 vuex + vue-router 的 Vue 项目 (30kb gzipped) 相比使用了这些优化的 Angular CLI 生成的默认项目尺寸 (~130kb) 还是要小的多。
 
 ### 灵活性
 
-Vue 相比于 Angular 2 则更加灵活，Vue 官方提供了构建工具来协助你构建项目，但它并不限制你去如何构建。有人可能喜欢用统一的方式来构建，也有很多开发者喜欢这种灵活自由的方式。
+Vue 相比于 Angular 更加灵活，Vue 官方提供了构建工具来协助你构建项目，但它并不限制你去如何组织你的应用代码。有人可能喜欢有严格的代码组织规范，但也有开发者喜欢更灵活自由的方式。
 
 ### 学习曲线
 
-开始使用 Vue，你使用的是熟悉的 HTML、符合 ES5 规则的 JavaScript（也就是纯 JavaScript）。有了这些基本的技能，你可以快速地掌握它([指南](./))并投入开发 。
+要学习 Vue，你只需要有良好的 HTML 和 JavaScript 基础。有了这些基本的技能，你就可以非常快速地通过阅读 [指南](./) 投入开发。
 
-Angular 2 的学习曲线是非常陡峭的。即使不包括 TypeScript，它的[开始指南](https://angular.io/docs/js/latest/quickstart.html)中所用的就有 ES2015 标准的 JavaScript，18个 NPM 依赖包，4 个文件和超过 3 千多字的介绍，这一切都是为了完成个 Hello World。而[Vue's Hello World](https://jsfiddle.net/chrisvfritz/50wL7mdz/)就非常简单。甚至我们并不用花费一整个页面去介绍它。
+Angular 的学习曲线是非常陡峭的 —— 作为一个框架，它的 API 面积比起 Vue 要大得多，你也因此需要理解更多的概念才能开始有效率地工作。当然，Angular 本身的复杂度是因为它的设计目标就是只针对大型的复杂应用；但不可否认的是，这也使得它对于经验不甚丰富的开发者相当的不友好。
 
 ## Ember
 

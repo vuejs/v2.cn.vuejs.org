@@ -90,20 +90,24 @@ new Vue({
 
 2. 如果过渡组件提供了 [JavaScript 钩子函数](#JavaScript-Hooks)，这些钩子函数将在恰当的时机被调用。
 
-3. 如果没有找到 JavaScript 钩子并且也没有检测到 CSS 过渡/动画，DOM 操作（插入/删除）在下一帧中立即执行。(注意：此指浏览器逐帧动画机制，与 Vue，和Vue的 `nextTick` 概念不同)
+3. 如果没有找到 JavaScript 钩子并且也没有检测到 CSS 过渡/动画，DOM 操作（插入/删除）在下一帧中立即执行。(注意：此指浏览器逐帧动画机制，和Vue的 `nextTick` 概念不同)
 
 
 ### 过渡的-CSS-类名
 
-会有 4 个(CSS)类名在 enter/leave 的过渡中切换
+会有 6 个(CSS)类名在 enter/leave 的过渡中切换
 
 1. `v-enter`: 定义进入过渡的开始状态。在元素被插入时生效，在下一个帧移除。
 
-2. `v-enter-active`: 定义进入过渡的结束状态。在元素被插入时生效，在 `transition/animation` 完成之后移除。
+2. `v-enter-active`: 定义过渡的状态。在元素整个过渡过程中作用，在元素被插入时生效，在 `transition/animation` 完成之后移除。 这个类可以被用来定义过渡的过程时间，延迟和曲线函数。
 
-3. `v-leave`:  定义离开过渡的开始状态。在离开过渡被触发时生效，在下一个帧移除。
+3. `v-enter-to`: **2.1.8版及以上** 定义进入过渡的结束状态。在元素被插入一帧后生效（于此同时 `v-enter` 被删除），在 `transition/animation` 完成之后移除。
 
-4. `v-leave-active`: 定义离开过渡的结束状态。在离开过渡被触发时生效，在 `transition/animation` 完成之后移除。
+4. `v-leave`:  定义离开过渡的开始状态。在离开过渡被触发时生效，在下一个帧移除。
+
+5. `v-leave-active`: 定义过渡的状态。在元素整个过渡过程中作用，在离开过渡被触发后立即生效，在 `transition/animation` 完成之后移除。 这个类可以被用来定义过渡的过程时间，延迟和曲线函数。
+
+6. `v-leave-to`: **2.1.8版及以上** 定义离开过渡的结束状态。在离开过渡被触发一帧后生效（于此同时 `v-leave` 被删除），在 `transition/animation` 完成之后移除。
 
 
 ![Transition Diagram](/images/transition.png)

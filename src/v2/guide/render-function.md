@@ -83,7 +83,7 @@ Vue.component('anchored-heading', {
 })
 ```
 
-简单清晰很多！简单来说，这样代码精简很多，但是需要非常熟悉 Vue 的实例属性。在这个例子中，你需要知道当你不使用 `slot`  属性向组件中传递内容时，比如 `anchored-heading` 中的 `Hello world!`, 这些子元素被存储在组件实例中的 `$slots.default`中。如果你还不了解，** 在深入 render 函数之前推荐阅读 [instance properties API](../api/#vm-slots)。**
+简单清晰很多！简单来说，这样代码精简很多，但是需要非常熟悉 Vue 的实例属性。在这个例子中，你需要知道当你不使用 `slot`  属性向组件中传递内容时，比如 `anchored-heading` 中的 `Hello world!`, 这些子元素被存储在组件实例中的 `$slots.default`中。如果你还不了解，** 在深入 render 函数之前推荐阅读 [实例属性API](../api/#vm-slots)。**
 
 ## `createElement` 参数
 
@@ -460,6 +460,8 @@ Vue.component('my-component', {
 })
 ```
 
+> 注意：在 <2.3.0 的版本中，如果一个函数式组件想要接受 props，则 `props` 选项是必须的。在 2.3.0 或以上的版本中，你可以省略 `props` 选项，所有组件上的属性都会被自动解析为 props。
+
 组件需要的一切都是通过上下文传递，包括：
 
 - `props`: 提供props 的对象
@@ -467,6 +469,8 @@ Vue.component('my-component', {
 - `slots`: slots 对象
 - `data`: 传递给组件的 data 对象
 - `parent`: 对父组件的引用
+- `listeners`: (2.3.0+) 一个包含了组件上所注册的 `v-on` 侦听器的对象。这只是一个指向 `data.on` 的别名。
+- `injections`: (2.3.0+) 如果使用了 [`inject`](https://vuejs.org/v2/api/#provide-inject) 选项, 则该对象包含了应当被注入的属性。
 
 
 在添加 `functional: true` 之后，锚点标题组件的 render 函数之间简单更新增加 `context` 参数，`this.$slots.default` 更新为 `context.children`，之后`this.level` 更新为 `context.props.level`。
