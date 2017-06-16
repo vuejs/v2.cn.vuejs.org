@@ -437,7 +437,7 @@ Vue.component('example', {
 
 ### 使用 `v-on` 绑定自定义事件
 
-每个 Vue 实例都实现了[事件接口(Events interface)](../api/#Instance-Methods-Events)，即：
+每个 Vue 实例都实现了[事件接口(Events interface)](../api/#实例方法-事件)，即：
 
 - 使用 `$on(eventName)` 监听事件
 - 使用 `$emit(eventName)` 触发事件
