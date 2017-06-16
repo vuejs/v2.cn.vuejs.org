@@ -1590,6 +1590,9 @@ type: api
   <!-- prop 绑定. “prop” 必须在 my-component 中声明。 -->
   <my-component :prop="someThing"></my-component>
 
+  <!-- 通过 $props 将父组件的 props 一起传给子组件 -->
+  <child-component v-bind="$props"></child-component>
+
   <!-- XLink -->
   <svg><a :xlink:special="foo"></a></svg>
   ```
