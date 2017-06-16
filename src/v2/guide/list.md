@@ -195,9 +195,15 @@ new Vue({
 `v-for` 也可以取整数。在这种情况下，它将重复多次模板。
 
 ``` html
-<div>
+<div id="range">
   <span v-for="n in 10">{{ n }}</span>
 </div>
+```
+
+``` js
+new Vue({
+  el: '#range'
+})
 ```
 
 结果：
