@@ -231,7 +231,7 @@ methods: {
 
 ``` js
 // 可以使用 v-on:keyup.f1
-Vue.config.keyCodes.f1 = 112
+Vue.config.keyCodes.f2 = 113
 ```
 
 ## 按键修饰符
