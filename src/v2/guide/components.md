@@ -607,11 +607,12 @@ Vue.component('currency-input', {
   methods: {
     // 不是直接更新值，而是使用此方法来对输入值进行格式化和位数限制
     updateValue: function (value) {
-      var formattedValue = value
+      var index = value.indexOf('.'),
+          formattedValue = value
         // 删除两侧的空格符
         .trim()
         // 保留 2 小数位
-        .slice(0, value.indexOf('.') + 3)
+        .slice(0, index == -1 ? value.length : index + 3)
       // 如果值不统一，手动覆盖以保持一致
       if (formattedValue !== value) {
         this.$refs.input.value = formattedValue
