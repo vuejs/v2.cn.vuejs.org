@@ -218,8 +218,10 @@ new Vue({ el: '#range' })
 在自定义组件里，你可以像任何普通元素一样用 `v-for` 。
 
 ``` html
-<my-component v-for="item in items"></my-component>
+<my-component v-for="item in items" :key="item.id"></my-component>
 ```
+
+> 2.2.0+的版本里，当在组件中使用 `v-for` 时， `key` 现在是必须的。
 
 然而他不能自动传递数据到组件里，因为组件有自己独立的作用域。为了传递迭代数据到组件里，我们要用 `props` ：
 
@@ -227,7 +229,8 @@ new Vue({ el: '#range' })
 <my-component
   v-for="(item, index) in items"
   v-bind:item="item"
-  v-bind:index="index">
+  v-bind:index="index"
+  v-bind:key="item.id">
 </my-component>
 ```
 
