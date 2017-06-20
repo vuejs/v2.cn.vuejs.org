@@ -20,7 +20,7 @@ order: 10
 ```
 
 {% raw %}
-<div id="example-1" class="demo">
+<div id="example-1">
   <input v-model="message" placeholder="edit me">
   <p>Message is: {{ message }}</p>
 </div>
@@ -44,7 +44,7 @@ new Vue({
 ```
 
 {% raw %}
-<div id="example-textarea" class="demo">
+<div id="example-textarea">
   <span>Multiline message is:</span>
   <p style="white-space: pre">{{ message }}</p>
   <br>
@@ -71,7 +71,7 @@ new Vue({
 <label for="checkbox">{{ checked }}</label>
 ```
 {% raw %}
-<div id="example-2" class="demo">
+<div id="example-2">
   <input type="checkbox" id="checkbox" v-model="checked">
   <label for="checkbox">{{ checked }}</label>
 </div>
@@ -108,7 +108,7 @@ new Vue({
 ```
 
 {% raw %}
-<div id="example-3" class="demo">
+<div id="example-3">
   <input type="checkbox" id="jack" value="Jack" v-model="checkedNames">
   <label for="jack">Jack</label>
   <input type="checkbox" id="john" value="John" v-model="checkedNames">
@@ -132,7 +132,7 @@ new Vue({
 
 
 ``` html
-<div id="example-4" class="demo">
+<div id="example-4">
   <input type="radio" id="one" value="One" v-model="picked">
   <label for="one">One</label>
   <br>
@@ -153,7 +153,7 @@ new Vue({
 ```
 
 {% raw %}
-<div id="example-4" class="demo">
+<div id="example-4">
   <input type="radio" id="one" value="One" v-model="picked">
   <label for="one">One</label>
   <br>
@@ -177,7 +177,7 @@ new Vue({
 单选列表:
 
 ``` html
-<div id="example-5" class="demo">
+<div id="example-5">
   <select v-model="selected">
     <option>A</option>
     <option>B</option>
@@ -197,7 +197,7 @@ new Vue({
 ```
 
 {% raw %}
-<div id="example-5" class="demo">
+<div id="example-5">
   <select v-model="selected">
     <option>A</option>
     <option>B</option>
@@ -218,7 +218,7 @@ new Vue({
 多选列表（绑定到一个数组）：
 
 ``` html
-<div id="example-6" class="demo">
+<div id="example-6">
   <select v-model="selected" multiple style="width: 50px">
     <option>A</option>
     <option>B</option>
@@ -239,7 +239,7 @@ new Vue({
 ```
 
 {% raw %}
-<div id="example-6" class="demo">
+<div id="example-6">
   <select v-model="selected" multiple style="width: 50px">
     <option>A</option>
     <option>B</option>
@@ -284,7 +284,7 @@ new Vue({
 ```
 
 {% raw %}
-<div id="example-7" class="demo">
+<div id="example-7">
   <select v-model="selected">
     <option v-for="option in options" v-bind:value="option.value">
       {{ option.text }}
