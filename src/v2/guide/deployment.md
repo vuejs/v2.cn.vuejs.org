@@ -4,11 +4,19 @@ type: guide
 order: 20
 ---
 
-## 删除警告
+## 利用生产状态
 
-为了减少文件大小，Vue 精简独立版本已经删除了所有警告，但是当你使用 Webpack 或 Browserify 等工具时，你需要一些额外的配置实现这点。
+开发时，Vue 会提供很多警告来帮你解决常见的错误与陷阱。生产时，这些警告语句却没有用，反而会增加你的载荷量。再次，有些警告检查有小的运行时费用，生产时可以避免的。
 
-### Webpack
+### 不用打包工具
+
+如果用 Vue 完整独立版本（直接用 `<script>` 元素引入 Vue），生产时应该用精简版本（`vue.min.js`)。请查看[安装指导](installation.html#独立版本)，附有开发与精简版本。
+
+### 用打包工具
+
+如果用 Webpack 或 Browserify 类似的打包工具时，生产状态会在 Vue 源码中由 `process.env.NODE_ENV` 决定，默认在开发状态。Webpack 与 Browserify 两个打包工具都提供方法来覆盖此变量并使用生产状态，警告语句也会被精简掉。每一个 `vue-cli` 模版有预先配置好的打包工具，但了解怎样配置会更好。
+
+#### Webpack
 
 使用 Webpack 的 [DefinePlugin](http://webpack.github.io/docs/list-of-plugins.html#defineplugin) 来指定生产环境，以便在压缩时可以让 UglifyJS 自动删除代码块内的警告语句。例如配置：
 
@@ -33,7 +41,7 @@ module.exports = {
 }
 ```
 
-### Browserify
+#### Browserify
 
 - 运行打包命令，设置 `NODE_ENV` 为 `"production"`。等于告诉 `vueify` 避免引入热重载和开发相关代码。
 - 使用一个全局 [envify](https://github.com/hughsk/envify) 转换你的 bundle 文件。这可以精简掉包含在 Vue 源码中所有环境变量条件相关代码块内的警告语句。例如：
