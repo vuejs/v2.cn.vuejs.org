@@ -360,7 +360,7 @@ render: function (createElement) {
 }
 ```
 
-And access scoped slots as functions that return VNodes from [`this.$scopedSlots`](http://vuejs.org/v2/api/#vm-scopedSlots):
+还可以从[`this.$scopedSlots`](http://vuejs.org/v2/api/#vm-scopedSlots) 中获得能用作函数的作用域插槽，这个函数返回 VNodes:
 
 ``` js
 render: function (createElement) {
@@ -373,7 +373,7 @@ render: function (createElement) {
 }
 ```
 
-To pass scoped slots to a child component using render functions, use the `scopedSlots` field in VNode data:
+如果要用 render 函数向子组件中传递作用域插槽，可以利用VNode数据中的 `scopedSlots`域：
 
 ``` js
 render (createElement) {
