@@ -113,7 +113,7 @@ export default {
 
 - 因为第一条的局限, __如上的类型注释可能会很罗嗦__。TypeScript 不能正确推导 `message` 的类型，是唯一迫使我们手动声明它是 string 的原因。
 
-好消息是，[vue-class-component](https://github.com/vuejs/vue-class-component) 能解决以上的两个问题。这是一个官方的姐妹库，它能允许你把组件声明为一个原生的 JavaScript 类，外加一个 `@Component` 的修饰符。为了举例说明，我们把上面的栗子重写一下吧:
+好消息是，[vue-class-component](https://github.com/vuejs/vue-class-component) 能解决以上的两个问题。这是一个官方的姐妹库，它能允许你把组件声明为一个原生的 JavaScript 类，外加一个 `@Component` 的修饰符。为了举例说明，我们把上面的例子重写一下吧:
 
 ``` ts
 import Vue from 'vue'
