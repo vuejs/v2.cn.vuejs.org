@@ -190,6 +190,8 @@ methods: {
 <div v-on:click.self="doThat">...</div>
 ```
 
+<p class="tip">使用修饰服时，顺序很重要；相应的代码会以同样的顺序产生。因此，用 `@click.prevent.self` 会阻止**所有的点击**，而 `@click.self.prevent` 只会阻止元素上的点击。</p>
+
 > 2.1.4 新增
 
 ``` html
@@ -257,6 +259,18 @@ Vue.config.keyCodes.f1 = 112
 <!-- Ctrl + Click -->
 <div @click.ctrl="doSomething">Do something</div>
 ```
+
+<p class="tip">修饰符键比正常的按键不同；修饰符键和 `keyup` 事件一起用时，事件引发时必须按下正常的按键。换一种说法：如果要引发 `keyup.ctrl`，必须按下 `ctrl` 时释放其他的按键；单单释放 `ctrl` 不会引发事件。</p>
+
+### 滑鼠按键修饰符
+
+> 2.1.0 新增
+
+- `.left`
+- `.right`
+- `.middle`
+
+这些修饰符会限制处理程序监听特定的滑鼠按键。
 
 ## 为什么在 HTML 中监听事件?
 
