@@ -179,6 +179,7 @@ new Vue({
 ``` html
 <div id="example-5">
   <select v-model="selected">
+    <option disabled value="">请选择</option>
     <option>A</option>
     <option>B</option>
     <option>C</option>
@@ -199,6 +200,7 @@ new Vue({
 {% raw %}
 <div id="example-5">
   <select v-model="selected">
+    <option disabled value="">请选择</option>
     <option>A</option>
     <option>B</option>
     <option>C</option>
@@ -214,6 +216,8 @@ new Vue({
 })
 </script>
 {% endraw %}
+
+<p class="tip">如果 `v-model` 表达初始的值不相配任何的选择，`<select>` 元素就会以"未选中"的状态渲染。在 iOS，这会使用者无法选择第一个选择，因为这样的情况下， iOS 不会引发 change 事件。因此，像以上提供 disabled 选择是建议的做法。</p>
 
 多选列表（绑定到一个数组）：
 
