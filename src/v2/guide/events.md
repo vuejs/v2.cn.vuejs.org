@@ -190,7 +190,7 @@ methods: {
 <div v-on:click.self="doThat">...</div>
 ```
 
-<p class="tip">使用修饰服时，顺序很重要；相应的代码会以同样的顺序产生。因此，用 `@click.prevent.self` 会阻止**所有的点击**，而 `@click.self.prevent` 只会阻止元素上的点击。</p>
+<p class="tip">使用修饰符时，顺序很重要；相应的代码会以同样的顺序产生。因此，用 `@click.prevent.self` 会阻止**所有的点击**，而 `@click.self.prevent` 只会阻止元素上的点击。</p>
 
 > 2.1.4 新增
 
