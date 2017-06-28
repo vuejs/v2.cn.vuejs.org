@@ -200,7 +200,7 @@ methods: {
 ```
 不像其它只能对原生的 DOM 事件起作用的修饰符，`.once` 修饰符还能被用到自定义的[组件事件](components.html#Using-v-on-with-Custom-Events)上. 如果你还没有阅读关于组件的文档，现在大可不必担心。
 
-## 关键修饰符
+## 键值修饰符
 
 在监听键盘事件时，我们经常需要监测常见的键值。 Vue 允许为 `v-on` 在监听键盘事件时添加关键修饰符：
 
@@ -231,14 +231,14 @@ methods: {
 - `.left`
 - `.right`
 
-可以通过全局 `config.keyCodes` 对象[自定义关键修饰符别名](../api/#keyCodes)：
+可以通过全局 `config.keyCodes` 对象[自定义键值修饰符别名](../api/#keyCodes)：
 
 ``` js
 // 可以使用 v-on:keyup.f1
 Vue.config.keyCodes.f1 = 112
 ```
 
-## 修饰符键
+## 修饰键
 
 > 2.1.0 新增
 
@@ -260,7 +260,7 @@ Vue.config.keyCodes.f1 = 112
 <div @click.ctrl="doSomething">Do something</div>
 ```
 
-<p class="tip">修饰符键比正常的按键不同；修饰符键和 `keyup` 事件一起用时，事件引发时必须按下正常的按键。换一种说法：如果要引发 `keyup.ctrl`，必须按下 `ctrl` 时释放其他的按键；单单释放 `ctrl` 不会引发事件。</p>
+<p class="tip">修饰键比正常的按键不同；修饰键和 `keyup` 事件一起用时，事件引发时必须按下正常的按键。换一种说法：如果要引发 `keyup.ctrl`，必须按下 `ctrl` 时释放其他的按键；单单释放 `ctrl` 不会引发事件。</p>
 
 ### 滑鼠按键修饰符
 
