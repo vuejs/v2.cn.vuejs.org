@@ -145,13 +145,13 @@ createElement(
   domProps: {
     innerHTML: 'baz'
   },
-  // 事件监听器基于 "on"
-  // 所以不再支持如 v-on:keyup.enter 修饰器
+  // 事件监听器基于 `on`
+  // 所以不再支持如 `v-on:keyup.enter` 修饰器
   // 需要手动匹配 keyCode。
   on: {
     click: this.clickHandler
   },
-  // 仅对于组件，用于监听原生事件，而不是组件内部使用 vm.$emit 触发的事件。
+  // 仅对于组件，用于监听原生事件，而不是组件内部使用 `vm.$emit` 触发的事件。
   nativeOn: {
     click: this.nativeClickHandler
   },
@@ -355,7 +355,7 @@ on: {
 
 ``` js
 render: function (createElement) {
-  // <div><slot></slot></div>
+  // `<div><slot></slot></div>`
   return createElement('div', this.$slots.default)
 }
 ```
@@ -364,7 +364,7 @@ render: function (createElement) {
 
 ``` js
 render: function (createElement) {
-  // <div><slot :text="msg"></slot></div>
+  // `<div><slot :text="msg"></slot></div>`
   return createElement('div', [
     this.$scopedSlots.default({
       text: this.msg
@@ -379,7 +379,7 @@ render: function (createElement) {
 render (createElement) {
   return createElement('div', [
     createElement('child', {
-      // pass scopedSlots in the data object
+      // pass `scopedSlots` in the data object
       // in the form of { name: props => VNode | Array<VNode> }
       scopedSlots: {
         default: function (props) {

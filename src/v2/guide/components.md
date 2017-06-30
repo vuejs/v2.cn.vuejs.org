@@ -706,7 +706,7 @@ bus.$on('id-selected', function (id) {
 
 注意两点：
 
-1. `<app>` 组件不知道它的挂载点会有什么内容。挂载点的内容是由`<app>`的父组件决定的。
+1. `<app>` 组件不知道它会收到什么内容。这是由使用 `<app>` 的父组件决定的。
 
 2. `<app>` 组件很可能有它自己的模版。
 
@@ -1091,7 +1091,7 @@ components: {
 <!-- 在HTML模版中始终使用 kebab-case -->
 <kebab-cased-component></kebab-cased-component>
 <camel-cased-component></camel-cased-component>
-<title-cased-component></title-cased-component>
+<pascal-cased-component></pascal-cased-component>
 ```
 
 当使用字符串模式时，可以不受 HTML 的 case-insensitive 限制。这意味实际上在模版中，你可以使用 camelCase 、 TitleCase 或者 kebab-case 来引用：
