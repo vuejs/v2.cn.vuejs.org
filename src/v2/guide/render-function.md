@@ -104,15 +104,16 @@ createElement(
   },
 
   // {String | Array}
-  // 子节点(VNodes)，可以是一个字符串或者一个数组. 可选参数.
+  // 子节点 (VNodes)，由 `createElement()` 构建而成，
+  // 或简单的使用字符串来生成“文本结点”。可选参数。
   [
-    createElement('h1', 'hello world'),
+    '先写一些文字',
+    createElement('h1', '一则头条'),
     createElement(MyComponent, {
       props: {
-        someProp: 'foo'
+        someProp: 'foobar'
       }
-    }),
-    'bar'
+    })
   ]
 )
 ```
@@ -160,7 +161,7 @@ createElement(
   directives: [
     {
       name: 'my-custom-directive',
-      value: '2'
+      value: '2',
       expression: '1 + 1',
       arg: 'foo',
       modifiers: {
@@ -174,7 +175,7 @@ createElement(
     default: props => h('span', props.text)
   },
   // 如果组件是其他组件的子组件，需为slot指定名称
-  slot: 'name-of-slot'
+  slot: 'name-of-slot',
   // 其他特殊顶层属性
   key: 'myKey',
   ref: 'myRef'
@@ -470,7 +471,7 @@ Vue.component('my-component', {
 - `data`: 传递给组件的 data 对象
 - `parent`: 对父组件的引用
 - `listeners`: (2.3.0+) 一个包含了组件上所注册的 `v-on` 侦听器的对象。这只是一个指向 `data.on` 的别名。
-- `injections`: (2.3.0+) 如果使用了 [`inject`](https://vuejs.org/v2/api/#provide-inject) 选项, 则该对象包含了应当被注入的属性。
+- `injections`: (2.3.0+) 如果使用了 [`inject`](../api/#provide-inject) 选项, 则该对象包含了应当被注入的属性。
 
 
 在添加 `functional: true` 之后，锚点标题组件的 render 函数之间简单更新增加 `context` 参数，`this.$slots.default` 更新为 `context.children`，之后`this.level` 更新为 `context.props.level`。

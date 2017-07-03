@@ -16,7 +16,7 @@ Vue 的过渡系统提供了非常多简单的方法设置进入、离开和列�
 
 ## 状态动画 与 watcher
 
-通过 watcher 我们能监听到任何数值属性的数值更新。可能听起来很抽象，所以让我们先来看看使用Tweenjs一个例子：
+通过 watcher 我们能监听到任何数值属性的数值更新。可能听起来很抽象，所以让我们先来看看使用 [Tweenjs](https://github.com/tweenjs/tween.js) 一个例子：
 
 ``` html
 <script src="https://unpkg.com/tween.js@16.3.4"></script>
@@ -88,7 +88,7 @@ new Vue({
 </script>
 {% endraw %}
 
-当你把数值更新时，就会触发动画。这个是一个不错的演示，但是对于不能直接像数字一样存储的值，比如 CSS 中的 color 的值，通过下面的例子我们来通过 Color.js 实现一个例子：
+当你把数值更新时，就会触发动画。这个是一个不错的演示，但是对于不能直接像数字一样存储的值，比如 CSS 中的 color 的值，通过下面的例子我们来通过 [Color.js](https://github.com/brehaut/color-js) 实现一个例子：
 
 
 ``` html

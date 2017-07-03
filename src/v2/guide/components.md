@@ -426,6 +426,7 @@ Vue.component('example', {
 - Function
 - Object
 - Array
+- Symbol
 
 `type` 也可以是一个自定义构造器函数，使用 `instanceof` 检测。
 
@@ -611,7 +612,12 @@ Vue.component('currency-input', {
         // 删除两侧的空格符
         .trim()
         // 保留 2 小数位
-        .slice(0, value.indexOf('.') + 3)
+        .slice(
+          0,
+          value.indexOf('.') === -1
+            ? value.length
+            : value.indexOf('.') + 3
+        )
       // 如果值不统一，手动覆盖以保持一致
       if (formattedValue !== value) {
         this.$refs.input.value = formattedValue
@@ -644,7 +650,12 @@ Vue.component('currency-input', {
     updateValue: function (value) {
       var formattedValue = value
         .trim()
-        .slice(0, value.indexOf('.') + 3)
+        .slice(
+          0,
+          value.indexOf('.') === -1
+            ? value.length
+            : value.indexOf('.') + 3
+        )
       if (formattedValue !== value) {
         this.$refs.input.value = formattedValue
       }
@@ -665,13 +676,42 @@ new Vue({
 
 <iframe width="100%" height="300" src="https://jsfiddle.net/chrisvfritz/1oqjojjx/embedded/result,html,js" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
-事件接口不仅仅可以用来连接组件内部的表单输入，也很容易集成你自己创造的输入类型。想象一下：
+### Customizing Component `v-model`
+
+> New in 2.2.0
+
+By default, `v-model` on a component uses `value` as the prop and `input` as the event, but some input types such as checkboxes and radio buttons may want to use the `value` prop for a different purpose. Using the `model` option can avoid the conflict in such cases:
+
+``` js
+Vue.component('my-checkbox', {
+  model: {
+    prop: 'checked',
+    event: 'change'
+  },
+  props: {
+    checked: Boolean,
+    // this allows using the `value` prop for a different purpose
+    value: String
+  },
+  // ...
+})
+```
 
 ``` html
-<voice-recognizer v-model="question"></voice-recognizer>
-<webcam-gesture-reader v-model="gesture"></webcam-gesture-reader>
-<webcam-retinal-scanner v-model="retinalImage"></webcam-retinal-scanner>
+<my-checkbox v-model="foo" value="some value"></my-checkbox>
 ```
+
+The above will be equivalent to:
+
+``` html
+<my-checkbox
+  :checked="foo"
+  @change="val => { foo = val }"
+  value="some value">
+</my-checkbox>
+```
+
+<p class="tip">Note that you still have to declare the `checked` prop explicitly.</p>
 
 ### 非父子组件通信
 
@@ -1071,7 +1111,7 @@ const AsyncComp = () => ({
 
 ### 组件命名约定
 
-当注册组件（或者 props）时，可以使用 kebab-case ，camelCase ，或 TitleCase 。Vue 不关心这个。
+当注册组件（或者 props）时，可以使用 kebab-case，camelCase，或 PascalCase。
 
 ``` js
 // 在组件定义中
@@ -1080,8 +1120,8 @@ components: {
   'kebab-cased-component': { /* ... */ },
   // register using camelCase
   'camelCasedComponent': { /* ... */ },
-  // register using TitleCase
-  'TitleCasedComponent': { /* ... */ }
+  // register using PascalCase
+  'PascalCasedComponent': { /* ... */ }
 }
 ```
 
@@ -1094,14 +1134,32 @@ components: {
 <pascal-cased-component></pascal-cased-component>
 ```
 
-当使用字符串模式时，可以不受 HTML 的 case-insensitive 限制。这意味实际上在模版中，你可以使用 camelCase 、 TitleCase 或者 kebab-case 来引用：
+当使用字符串模式时，可以不受 HTML 的 case-insensitive 限制。这意味实际上在模版中，你可以使用下面的方式来引用你的组件：
+
+- kebab-case
+- camelCase 或 kebab-case 如果组件已经被定义为 camelCase
+- kebab-case，camelCase 或 PascalCase 如果组件已经被定义为 PascalCase
+
+``` js
+components: {
+  'kebab-cased-component': { /* ... */ },
+  camelCasedComponent: { /* ... */ },
+  PascalCasedComponent: { /* ... */ }
+}
+```
 
 ``` html
-<!-- 在字符串模版中可以用任何你喜欢的方式! -->
-<my-component></my-component>
-<myComponent></myComponent>
-<MyComponent></MyComponent>
+<kebab-cased-component></kebab-cased-component>
+
+<camel-cased-component></camel-cased-component>
+<camelCasedComponent></camelCasedComponent>
+
+<pascal-cased-component></pascal-cased-component>
+<pascalCasedComponent></pascalCasedComponent>
+<PascalCasedComponent></PascalCasedComponent>
 ```
+
+这意味着 PascalCase 是最通用的 _声明约定_ 而 kebab-case 是最通用的 _使用约定_。
 
 如果组件未经 `slot` 元素传递内容，你甚至可以在组件名后使用 `/` 使其自闭合：
 

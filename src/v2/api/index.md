@@ -1198,7 +1198,7 @@ type: api
 
 - **用法：**
 
-  移除事件监听器。
+  移除自定义事件监听器。
 
   - 如果没有提供参数，则移除所有的事件监听器；
 
@@ -1762,6 +1762,31 @@ type: api
 
 - **参考：** [具名 Slots](../guide/components.html#具名-Slot)
 
+### is
+
+- **Expects:** `string`
+
+  Used for [dynamic components](../guide/components.html#Dynamic-Components) and to work around [limitations of in-DOM templates](../guide/components.html#DOM-Template-Parsing-Caveats).
+
+  For example:
+
+  ``` html
+  <!-- component changes when currentView changes -->
+  <component v-bind:is="currentView"></component>
+
+  <!-- necessary because <my-row> would be invalid inside -->
+  <!-- a <table> element and so would be hoisted out      -->
+  <table>
+    <tr is="my-row"></tr>
+  </table>
+  ```
+
+  For detailed usage, follow the links in the description above.
+
+- **See also:**
+  - [Dynamic Components](../guide/components.html#Dynamic-Components)
+  - [DOM Template Parsing Caveats](../guide/components.html#DOM-Template-Parsing-Caveats)
+
 ## 内置的组件
 
 ### component
@@ -1908,6 +1933,8 @@ type: api
     </keep-alive>
   </transition>
   ```
+
+  Note, `<keep-alive>` is designed for the case where it has one direct child component that is being toggled. It does not work if you have `v-for` inside it. When there are multiple conditional children, as above, `<keep-alive>` requires that only one child is rendered at a time.
 
 - **`include` and `exclude`**
 
