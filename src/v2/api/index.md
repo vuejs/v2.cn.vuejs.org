@@ -70,8 +70,10 @@ type: api
 - **用法：**
 
   ``` js
-  Vue.config.errorHandler = function (err, vm) {
+  Vue.config.errorHandler = function (err, vm, info) {
     // handle error
+    // `info` 是 Vue 特定的错误信息，比如错误所在的生命周期钩子
+    // 只在 2.2.0+ 可用
   }
   ```
 
@@ -107,9 +109,16 @@ type: api
   Vue.config.keyCodes = {
     v: 86,
     f1: 112,
+    // camelCase 不可用
     mediaPlayPause: 179,
+    // 取而代之的是 kebab-case 且用双引号括起来
+    "media-play-pause": 179,
     up: [38, 87]
   }
+  ```
+
+  ```html
+  <input type="text" @keyup.media-play-pause="method">
   ```
 
   给 v-on 自定义键位别名。
@@ -202,11 +211,11 @@ type: api
 
 - **参考：** [异步更新队列](../guide/reactivity.html#异步更新队列)
 
-<h3 id="Vue-set">Vue.set( object, key, value )</h3>
+<h3 id="Vue-set">Vue.set( target, key, value )</h3>
 
 - **参数：**
-  - `{Object} object`
-  - `{string} key`
+  - `{Object | Array} target`
+  - `{string | number} key`
   - `{any} value`
 
 - **返回值：** 设置的值.
@@ -768,7 +777,6 @@ type: api
 
 - **参考：**
   - [自定义指令](../guide/custom-directive.html)
-  - [资源命名约定](../guide/components.html#Assets-Naming-Convention)
 
 ### filters
 
@@ -863,6 +871,105 @@ type: api
   }
   ```
 
+### provide / inject
+
+> New in 2.2.0
+
+- **Type:**
+  - **provide:** `Object | () => Object`
+  - **inject:** `Array<string> | { [key: string]: string | Symbol }`
+
+- **Details:**
+
+  <p class="tip">`provide` and `inject` are primarily provided for advanced plugin / component library use cases. It is NOT recommended to use them in generic application code.</p>
+
+  This pair of options are used together to allow an ancestor component to serve as a dependency injector for its all descendants, regardless of how deep the component hierarchy is, as long as they are in the same parent chain. If you are familiar with React, this is very similar to React's context feature.
+
+  The `provide` option should be an object or a function that returns an object. This object contains the properties that are available for injection into its descendants. You can use ES2015 Symbols as keys in this object, but only in environments that natively support `Symbol` and `Reflect.ownKeys`.
+
+  The `inject` options should be either an Array of strings or an object where the keys stand for the local binding name, and the value being the key (string or Symbol) to search for in available injections.
+
+  > Note: the `provide` and `inject` bindings are NOT reactive. This is intentional. However, if you pass down an observed object, properties on that object do remain reactive.
+
+- **Example:**
+
+  ``` js
+  var Provider = {
+    provide: {
+      foo: 'bar'
+    },
+    // ...
+  }
+
+  var Child = {
+    inject: ['foo'],
+    created () {
+      console.log(this.foo) // -> "bar"
+    }
+    // ...
+  }
+  ```
+
+  With ES2015 Symbols, function `provide` and object `inject`:
+  ``` js
+  const s = Symbol()
+
+  const Provider = {
+    provide () {
+      return {
+        [s]: 'foo'
+      }
+    }
+  }
+
+  const Child = {
+    inject: { s },
+    // ...
+  }
+  ```
+
+  > The next 2 examples only work with Vue > 2.2.1. Below that version, injected values were resolved after the `props` and the `data` initialization.
+
+  Using an injected value as the default for a prop:
+  ```js
+  const Child = {
+    inject: ['foo'],
+    props: {
+      bar: {
+        default () {
+          return this.foo
+        }
+      }
+    }
+  }
+  ```
+
+  Using an injected value as data entry:
+  ```js
+  const Child = {
+    inject: ['foo'],
+    data () {
+      return {
+        bar: this.foo
+      }
+    }
+  }
+  ```
+
+## Options / Misc
+
+### name
+
+- **Type:** `string`
+
+- **Restriction:** only respected when used as a component option.
+
+- **Details:**
+
+  Allow the component to recursively invoke itself in its template. Note that when a component is registered globally with `Vue.component()`, the global ID is automatically set as its name.
+
+  Another benefit of specifying a `name` option is debugging. Named components result in more helpful warning messages. Also, when inspecting an app in the [vue-devtools](https://github.com/vuejs/vue-devtools), unnamed components will show up as `<AnonymousComponent>`, which isn't very informative. By providing the `name` option, you will get a much more informative component tree.
+
 ### delimiters
 
 - **类型:** `Array<string>`
@@ -892,8 +999,52 @@ type: api
 
   使组件无状态（没有 `data` ）和无实例（没有 `this` 上下文）。他们用一个简单的 `render` 函数返回虚拟节点使他们更容易渲染。
 
-- **参考：
-** [函数式组件](../guide/render-function.html#函数化组件)
+- **参考：** [函数式组件](../guide/render-function.html#函数化组件)
+
+### model
+
+> New in 2.2.0
+
+- **Type:** `{ prop?: string, event?: string }`
+
+- **Details:**
+
+  Allows a custom component to customize the prop and event used when it's used with `v-model`. By default, `v-model` on a component uses `value` as the prop and `input` as the event, but some input types such as checkboxes and radio buttons may want to use the `value` prop for a different purpose. Using the `model` option can avoid the conflict in such cases.
+
+- **Example:**
+
+  ``` js
+  Vue.component('my-checkbox', {
+    model: {
+      prop: 'checked',
+      event: 'change'
+    },
+    props: {
+      // this allows using the `value` prop for a different purpose
+      value: String,
+      // use `checked` as the prop which take the place of `value`
+      checked: {
+        type: Number,
+        default: 0
+      }
+    },
+    // ...
+  })
+  ```
+
+  ``` html
+  <my-checkbox v-model="foo" value="some value"></my-checkbox>
+  ```
+
+  The above will be equivalent to:
+
+  ``` html
+  <my-checkbox
+    :checked="foo"
+    @change="val => { foo = val }"
+    value="some value">
+  </my-checkbox>
+  ```
 
 ## 实例属性
 
@@ -1131,11 +1282,11 @@ type: api
   // 立即以 `a` 的当前值触发回调
   ```
 
-<h3 id="vm-set">vm.$set( object, key, value )</h3>
+<h3 id="vm-set">vm.$set( target, key, value )</h3>
 
 - **参数：**
-  - `{Object} object`
-  - `{string} key`
+  - `{Object | Array} target`
+  - `{string | number} key`
   - `{any} value`
 
 - **返回值：** 设置的值.
@@ -1146,11 +1297,11 @@ type: api
 
 - **另见：** [Vue.set](#Vue-set)
 
-<h3 id="vm-delete">vm.$delete( object, key )</h3>
+<h3 id="vm-delete">vm.$delete( target, key )</h3>
 
 - **参数：**
-  - `{Object} object`
-  - `{string} key`
+  - `{Object | Array} target`
+  - `{string | number} key`
 
 - **用法：**
 

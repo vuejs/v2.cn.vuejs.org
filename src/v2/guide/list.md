@@ -221,7 +221,7 @@ new Vue({ el: '#range' })
 <my-component v-for="item in items" :key="item.id"></my-component>
 ```
 
-> 2.2.0+的版本里，当在组件中使用 `v-for` 时， `key` 现在是必须的。
+> 2.2.0+ 的版本里，当在组件中使用 `v-for` 时，`key` 现在是必须的。
 
 然而他不能自动传递数据到组件里，因为组件有自己独立的作用域。为了传递迭代数据到组件里，我们要用 `props` ：
 
@@ -249,6 +249,7 @@ new Vue({ el: '#range' })
     <li
       is="todo-item"
       v-for="(todo, index) in todos"
+      v-bind:key="todo"
       v-bind:title="todo"
       v-on:remove="todos.splice(index, 1)"
     ></li>
@@ -289,7 +290,7 @@ new Vue({
 {% raw %}
 <div id="todo-list-example" class="demo">
   <input
-    v-model="newTodoText" v
+    v-model="newTodoText"
     v-on:keyup.enter="addNewTodo"
     placeholder="Add a todo"
   >
@@ -297,6 +298,7 @@ new Vue({
     <li
       is="todo-item"
       v-for="(todo, index) in todos"
+      v-bind:key="todo"
       v-bind:title="todo"
       v-on:remove="todos.splice(index, 1)"
     ></li>
@@ -414,7 +416,7 @@ example1.items = example1.items.filter(function (item) {
 Vue.set(example1.items, indexOfItem, newValue)
 ```
 ``` js
-// Array.prototype.splice`
+// Array.prototype.splice
 example1.items.splice(indexOfItem, 1, newValue)
 ```
 
@@ -447,7 +449,7 @@ computed: {
 }
 ```
 
-或者，你也可以在计算属性不适用的情况下 (例如，在嵌套 `v-for` 循环中) 使用 method 方法：
+在计算属性不适用的情况下 (例如，在嵌套 `v-for` 循环中) 你可以使用一个 method 方法：
 
 ``` html
 <li v-for="n in even(numbers)">{{ n }}</li>

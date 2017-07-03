@@ -144,7 +144,9 @@ new Vue({
 有时也需要在内联语句处理器中访问原生 DOM 事件。可以用特殊变量 `$event` 把它传入方法：
 
 ``` html
-<button v-on:click="warn('Form cannot be submitted yet.', $event)">Submit</button>
+<button v-on:click="warn('Form cannot be submitted yet.', $event)">
+  Submit
+</button>
 ```
 
 ``` js
@@ -186,7 +188,7 @@ methods: {
 <!-- 添加事件侦听器时使用事件捕获模式 -->
 <div v-on:click.capture="doThis">...</div>
 
-<!-- 只当事件在该元素本身（而不是子元素）触发时触发回调 -->
+<!-- 只当事件在该元素本身（比如不是子元素）触发时触发回调 -->
 <div v-on:click.self="doThat">...</div>
 ```
 

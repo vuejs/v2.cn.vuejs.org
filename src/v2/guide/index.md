@@ -17,7 +17,7 @@ Vue.js（读音 /vjuː/，类似于 **view**） 是一套构建用户界面的**
 尝试 Vue.js 最简单的方法是使用 [JSFiddle Hello World 例子](https://jsfiddle.net/chrisvfritz/50wL7mdz/)。你可以在浏览器新标签页中打开它，跟着例子学习一些基础用法。或者你也可以<a href="https://gist.githubusercontent.com/chrisvfritz/7f8d7d63000b48493c336e48b3db3e52/raw/ed60c4e5d5c6fec48b0921edaed0cb60be30e87c/index.html" target="_blank" download="index.html">创建一个 <code>.html</code> 文件<a/>，然后通过如下方式引入 Vue：
 
 ``` html
-<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/vue"></script>
 ```
 
 你可以查看[安装教程](/guide/installation.html)来了解其他安装 Vue 的选项。请注意我们**不推荐**新手直接使用 `vue-cli`，尤其是对 Node.js 构建工具不够了解的同学。

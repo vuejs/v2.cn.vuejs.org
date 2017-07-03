@@ -190,7 +190,7 @@ data: {
 
 ### 自动添加前缀
 
-当 `v-bind:style` 使用需要特定前缀的 CSS 属性时，如 `transform` ，Vue.js 会自动侦测并添加相应的前缀。
+当 `v-bind:style` 使用需要[特定前缀](https://developer.mozilla.org/en-US/docs/Glossary/Vendor_Prefix)的 CSS 属性时，如 `transform` ，Vue.js 会自动侦测并添加相应的前缀。
 
 ### 多重值
 

@@ -8,7 +8,7 @@ order: 10
 
 你可以用 `v-model` 指令在表单控件元素上创建双向数据绑定。它会根据控件类型自动选取正确的方法来更新元素。尽管有些神奇，但 `v-model` 本质上不过是语法糖，它负责监听用户的输入事件以更新数据，并特别处理一些极端的例子。
 
-<p class="tip"> `v-model` 并不关心表单控件初始化所生成的值。因为它会选择 Vue 实例数据来作为具体的值。</p>
+<p class="tip"> `v-model` 会忽略所有表单元素的 `value`、`checked`、`selected` 特性的初始值。因为它会选择 Vue 实例数据来作为具体的值。你应该通过 JavaScript 在组件的 `data` 选项中声明初始值。</p>
 
 <p class="tip" id="vmodel-ime-tip">对于要求 IME （如中文、 日语、 韩语等） 的语言，你会发现那`v-model`不会在 ime 构成中得到更新。如果你也想实现更新，请使用 `input`事件。</p>
 
@@ -190,9 +190,9 @@ new Vue({
 
 ``` js
 new Vue({
-  el: '#example-5',
+  el: '...',
   data: {
-    selected: null
+    selected: ''
   }
 })
 ```
@@ -211,7 +211,7 @@ new Vue({
 new Vue({
   el: '#example-5',
   data: {
-    selected: null
+    selected: ''
   }
 })
 </script>

@@ -119,8 +119,7 @@ createElement(
 ```
 
 ### 深入data object参数
-有一件事要注意：正如在模板语法中，`v-bind:class` 和  `v-bind:style` ，会被特别对待一样，在 VNode 数据对象中，下列属性名是级别最高的字段。
-
+有一件事要注意：正如在模板语法中，`v-bind:class` 和  `v-bind:style` ，会被特别对待一样，在 VNode 数据对象中，下列属性名是级别最高的字段。该对象也允许你绑定普通的 HTML 特性，就像 DOM 属性一样，比如 `innerHTML` (这会取代 `v-html` 指令)。
 
 ``` js
 {
@@ -292,6 +291,7 @@ render: function (createElement) {
     on: {
       input: function (event) {
         self.value = event.target.value
+        self.$emit('input', event.target.value)
       }
     }
   })
@@ -352,7 +352,7 @@ on: {
 
 ### slots
 
-你可以从[`this.$slots`](http://vuejs.org/v2/api/#vm-slots)获取VNodes列表中的静态内容:
+你可以从[`this.$slots`](../api/#vm-slots)获取VNodes列表中的静态内容:
 
 ``` js
 render: function (createElement) {
@@ -361,7 +361,7 @@ render: function (createElement) {
 }
 ```
 
-还可以从[`this.$scopedSlots`](http://vuejs.org/v2/api/#vm-scopedSlots) 中获得能用作函数的作用域插槽，这个函数返回 VNodes:
+还可以从[`this.$scopedSlots`](../api/#vm-scopedSlots) 中获得能用作函数的作用域插槽，这个函数返回 VNodes:
 
 ``` js
 render: function (createElement) {
@@ -476,8 +476,9 @@ Vue.component('my-component', {
 
 在添加 `functional: true` 之后，锚点标题组件的 render 函数之间简单更新增加 `context` 参数，`this.$slots.default` 更新为 `context.children`，之后`this.level` 更新为 `context.props.level`。
 
-因为函数化组件只是一个函数，所以渲染开销也低很多。在作为包装组件时它们也同样非常有用，比如，当你需要做这些时：
+因为函数化组件只是一个函数，所以渲染开销也低很多。另外，这也意味着函数化组件不会出现在 VueJS Chrome 开发者工具的组件树里。
 
+在作为包装组件时它们也同样非常有用，比如，当你需要做这些时：
 
 - 程序化地在多个组件中选择一个
 - 在将 children, props, data 传递给子组件之前操作它们。

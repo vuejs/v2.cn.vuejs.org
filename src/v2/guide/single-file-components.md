@@ -24,7 +24,7 @@ order: 19
 
 现在我们获得：
 
-- [完整语法高亮](https://github.com/vuejs/awesome-vue#syntax-highlighting)
+- [完整语法高亮](https://github.com/vuejs/awesome-vue#source-code-editing)
 - [CommonJS 模块](https://webpack.github.io/docs/commonjs.html)
 - [组件化的 CSS](https://github.com/vuejs/vue-loader/blob/master/docs/en/features/scoped-css.md)
 

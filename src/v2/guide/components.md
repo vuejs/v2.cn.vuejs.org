@@ -1045,7 +1045,7 @@ var parent = new Vue({ el: '#parent' })
 var child = parent.$refs.profile
 ```
 
-当 `ref` 和 `v-for` 一起使用时， ref 是一个数组或对象，包含相应的子组件。
+当 `ref` 和 `v-for` 一起使用时， ref 是一个数组，包含相应的子组件。
 
 <p class="tip">`$refs` 只在组件渲染完成后才填充，并且它是非响应式的。它仅仅作为一个直接访问子组件的应急方案——应当避免在模版或计算属性中使用 `$refs` 。</p>
 
@@ -1082,6 +1082,17 @@ Vue.component(
   'async-webpack-example',
   () => import('./my-async-component')
 )
+```
+
+当使用[局部注册](components.html#局部注册)时，你也可以直接提供一个返回 `Promise` 的函数：
+
+``` js
+new Vue({
+  // ...
+  components: {
+    'my-component': () => import('./my-async-component')
+  }
+})
 ```
 
 <p class="tip">如果你是 <strong>Browserify</strong> 用户,可能就无法使用异步组件了,它的作者已经[表明](https://github.com/substack/node-browserify/issues/58#issuecomment-21978224) Browserify 是不支持异步加载的。Browserify 社区发现 [一些解决方法](https://github.com/vuejs/vuejs.org/issues/620)，可能有助于已存在的复杂应用。对于其他场景，我们推荐简单实用 Webpack 构建，一流的异步支持</p>

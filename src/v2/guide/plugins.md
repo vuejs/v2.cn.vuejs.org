@@ -79,7 +79,7 @@ var VueRouter = require('vue-router')
 Vue.use(VueRouter)
 ```
 
-[awesome-vue](https://github.com/vuejs/awesome-vue#libraries--plugins) 集合了来自社区贡献的数以千计的插件和库。
+[awesome-vue](https://github.com/vuejs/awesome-vue#components--plugins) 集合了来自社区贡献的数以千计的插件和库。
 
 
 
