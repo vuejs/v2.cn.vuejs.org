@@ -20,7 +20,7 @@ React 和 Vue 有许多相似之处，它们都有：
 
 由于有着众多的相似处，我们会用更多的时间在这一块进行比较。这里我们不只保证技术内容的准确性，同时也兼顾了平衡的考量。我们需要承认 React 比 Vue 更好的地方，比如更丰富的生态系统。
 
-React社区为我们准确进行平衡的考量提供了[非常积极的帮助](https://github.com/vuejs/vuejs.org/issues/364)，特别感谢来自 React 团队的 Dan Abramov 。他非常慷慨的花费时间来贡献专业知识来帮助我们完善这篇文档。
+React 社区为我们准确进行平衡的考量提供了[非常积极的帮助](https://github.com/vuejs/vuejs.org/issues/364)，特别感谢来自 React 团队的 Dan Abramov 。他非常慷慨的花费时间来贡献专业知识来帮助我们完善这篇文档。
 
 ### 性能
 
@@ -37,16 +37,6 @@ React 和 Vue 在大部分常见场景下都能提供近似的性能。通常 Vu
 在 Vue 应用中，组件的依赖是在渲染过程中自动追踪的，所以系统能精确知晓哪个组件确实需要被重渲染。你可以理解为每一个组件都已经自动获得了 `shouldComponentUpdate`，并且没有上述的子树问题限制。
 
 Vue 的这个特点使得开发者不再需要考虑此类优化，从而能够更好地专注于应用本身。
-
-#### 开发时性能
-
-显然，在生产环境中的性能是至关重要的，目前为止我们所具体讨论的便是针对此环境。但开发过程中的表现也不容小视。不错的是用 Vue 和 React 开发大多数应用的速度都是足够快的。
-
-当性能在生产中是直接与终端用户体验相关的更重要的指标时，表现在开发中仍然很重要,因为它与开发体验密切相关。
-
-然而，假如你要开发一个对性能要求比较高的数据可视化或者动画的应用时，你需要了解到下面这点：在开发中，Vue 每秒最高处理 10 帧，而 React 每秒最高处理不到 1 帧。
-
-这是由于 React 有大量的检查机制，这会让它提供许多有用的警告和错误提示信息。我们同样认为这些是很重要的，但是我们在实现这些检查时，也更加密切地关注了性能方面。
 
 ### HTML & CSS
 
@@ -80,18 +70,18 @@ JSX 说是手写的渲染函数有下面这些优势：
 
 #### CSS 的组件作用域
 
-除非你把组件分布在多个文件上(例如 [CSS Modules](https://github.com/gajus/react-css-modules))，要不在 React 中作用域内的 CSS 就会产生警告。非常简单的 CSS 还可以工作，但是稍微复杂点的，比如悬停状态、媒体查询、伪类选择符等要么通过沉重的依赖来重做要么就直接不能用。
+除非你把组件分布在多个文件上 (例如 [CSS Modules](https://github.com/gajus/react-css-modules))，要不在 React 中作用域内的 CSS 就会产生警告。非常简单的 CSS 还可以工作，但是稍微复杂点的，比如悬停状态、媒体查询、伪类选择符等要么通过沉重的依赖来重做要么就直接不能用。
 
 而 Vue 可以让你在每个[单文件组件](single-file-components.html)中完全访问 CSS。
 
 ``` html
-	<style scoped>
-	    @media (min-width: 250px) {
-	        .list-container:hover {
-	            background: orange;
-	        }
-	    }
-	</style>
+<style scoped>
+  @media (min-width: 250px) {
+    .list-container:hover {
+      background: orange;
+    }
+  }
+</style>
 ```
 
 这个可选 `scoped` 属性会自动添加一个唯一的属性（比如 `data-v-21e5b78`）为组件内 CSS 指定作用域，编译的时候 `.list-container:hover` 会被编译成类似 `.list-container[data-v-21e5b78]:hover`。
@@ -141,38 +131,38 @@ Mobx 在 React 社区很流行，实际上在 Vue 也采用了几乎相同的反
 
 ## AngularJS (Angular 1)
 
-Vue 的一些语法和 Angular 的很相似（例如 `v-if` vs `ng-if`）。因为 Angular 是 Vue 早期开发的灵感来源。然而，Angular 中存在的许多问题，在 Vue 中已经得到解决。
+Vue 的一些语法和 AngularJS 的很相似（例如 `v-if` vs `ng-if`）。因为 AngularJS 是 Vue 早期开发的灵感来源。然而，AngularJS 中存在的许多问题，在 Vue 中已经得到解决。
 
 ### 复杂性
 
-在 API 与设计两方面上 Vue.js 都比 Angular 1 简单得多，因此你可以快速地掌握它的全部特性并投入开发。
+在 API 与设计两方面上 Vue.js 都比 AngularJS 简单得多，因此你可以快速地掌握它的全部特性并投入开发。
 
 ### 灵活性和模块化
 
-Vue.js 是一个更加灵活开放的解决方案。它允许你以希望的方式组织应用程序，而不是在任何时候都必须遵循 Angular 1 制定的规则，这让 Vue 能适用于各种项目。我们知道把决定权交给你是非常必要的。
-这也就是为什么我们提供 [Webpack template](https://github.com/vuejs-templates/webpack)，让你可以用几分钟，去选择是否启用高级特性，比如热模块加载、linting、CSS 提取等等。
+Vue.js 是一个更加灵活开放的解决方案。它允许你以希望的方式组织应用程序，而不是在任何时候都必须遵循 AngularJS 制定的规则，这让 Vue 能适用于各种项目。我们知道把决定权交给你是非常必要的。
+这也就是为什么我们提供 [webpack template](https://github.com/vuejs-templates/webpack)，让你可以用几分钟，去选择是否启用高级特性，比如热模块加载、linting、CSS 提取等等。
 
 ### 数据绑定
 
-Angular 1 使用双向绑定，Vue 在不同组件间强制使用单向数据流。这使应用中的数据流更加清晰易懂。
+AngularJS 使用双向绑定，Vue 在不同组件间强制使用单向数据流。这使应用中的数据流更加清晰易懂。
 
 ### 指令与组件
 
-在 Vue 中指令和组件分得更清晰。指令只封装 DOM 操作，而组件代表一个自给自足的独立单元 —— 有自己的视图和数据逻辑。在 Angular 中两者有不少相混的地方。
+在 Vue 中指令和组件分得更清晰。指令只封装 DOM 操作，而组件代表一个自给自足的独立单元 —— 有自己的视图和数据逻辑。在 AngularJS 中两者有不少相混的地方。
 
 ### 性能
 
 Vue 有更好的性能，并且非常非常容易优化，因为它不使用脏检查。
 
-在 Angular 1 中，当 watcher 越来越多时会变得越来越慢，因为作用域内的每一次变化，所有 watcher 都要重新计算。并且，如果一些 watcher 触发另一个更新，脏检查循环（digest cycle）可能要运行多次。Angular 用户常常要使用深奥的技术，以解决脏检查循环的问题。有时没有简单的办法来优化有大量 watcher 的作用域。
+在 AngularJS 中，当 watcher 越来越多时会变得越来越慢，因为作用域内的每一次变化，所有 watcher 都要重新计算。并且，如果一些 watcher 触发另一个更新，脏检查循环（digest cycle）可能要运行多次。AngularJS 用户常常要使用深奥的技术，以解决脏检查循环的问题。有时没有简单的办法来优化有大量 watcher 的作用域。
 
 Vue 则根本没有这个问题，因为它使用基于依赖追踪的观察系统并且异步队列更新，所有的数据变化都是独立触发，除非它们之间有明确的依赖关系。
 
-有意思的是，Angular 2 和 Vue 用相似的设计解决了一些 Angular 1 中存在的问题。
+有意思的是，Angular 和 Vue 用相似的设计解决了一些 AngularJS 中存在的问题。
 
 ## Angular (原本的 Angular 2)
 
-我们将 Angular 和 Angular 1 分开来讨论，因为它完全是一个全新的框架。例如：它具有优秀的组件系统，并且许多实现已经完全重写，API 也完全改变了。
+我们将新的 Angular 独立开来讨论，因为它是一个和 AngularJS 完全不同的框架。例如：它具有优秀的组件系统，并且许多实现已经完全重写，API 也完全改变了。
 
 ### TypeScript
 
@@ -186,7 +176,7 @@ Angular 事实上必须用 TypeScript 来开发，因为它的文档和学习资
 
 在性能方面，这两个框架都非常的快，我们也没有足够的实际应用数据来下一个结论。如果你一定想看些数据的话，你可以参考这个[第三方跑分](http://stefankrause.net/js-frameworks-benchmark4/webdriver-ts/table.html)。单就这个跑分来看，Vue 似乎比 Angular 要更快一些。
 
-在大小方面，最近的 Angular 版本中在使用了 AOT 和 tree-shaking 技术后使得最终的代码体积减小了许多。但即使如此，一个包含了 vuex + vue-router 的 Vue 项目 (30kb gzipped) 相比使用了这些优化的 Angular CLI 生成的默认项目尺寸 (~130kb) 还是要小的多。
+在大小方面，最近的 Angular 版本中在使用了 AOT 和 tree-shaking 技术后使得最终的代码体积减小了许多。但即使如此，一个包含了 vuex + vue-router 的 Vue 项目 (30kb gzipped) 相比使用了这些优化的 `angular-cli` 生成的默认项目尺寸 (~130kb) 还是要小的多。
 
 ### 灵活性
 
@@ -208,7 +198,7 @@ Ember 是一个全能框架。它提供了大量的约定，一旦你熟悉了�
 
 * Vue 的模板语法可以用全功能的 JavaScript 表达式，而 Handlebars 的语法和帮助函数相比来说非常受限。
 
-* 在性能上，Vue 甩开 Ember 几条街，即使是 Ember 2.0 的最新 Glimmer 引擎。Vue 能够自动批量更新，而 Ember 在关键性能场景时需要手动管理。
+* 在性能上，Vue 比 Ember [好很多](https://rawgit.com/krausest/js-framework-benchmark/master/webdriver-ts/table.html)，即使是 Ember 2.x 的最新 Glimmer 引擎。Vue 能够自动批量更新，而 Ember 在关键性能场景时需要手动管理。
 
 ## Knockout
 
@@ -236,8 +226,8 @@ Riot 2.0 提供了一个类似于基于组件的开发模型（在 Riot 中称�
 
 - [过渡效果系统](transitions.html)。Riot 现在还没有提供。
 - 功能更加强大的路由机制，Riot 的路由功能的 API 是极少的。
-- 更好的性能。Riot 使用了 [遍历 DOM 树](http://riotjs.com/compare/#virtual-dom-vs-expressions-binding) 而不是虚拟 DOM，但实际上用的还是脏检查机制，因此和 Angular 1 患有相同的性能问题。
-- 更多成熟工具的支持。Vue 提供官方支持[Webpack](https://github.com/vuejs/vue-loader) 和 [Browserify](https://github.com/vuejs/vueify)，而 Riot 是依靠社区来建立集成系统。
+- 更好的性能。Riot 使用了 [遍历 DOM 树](http://riotjs.com/compare/#virtual-dom-vs-expressions-binding) 而不是虚拟 DOM，但实际上用的还是脏检查机制，因此和 AngularJS 患有相同的性能问题。
+- 更多成熟工具的支持。Vue 提供官方支持 [webpack](https://github.com/vuejs/vue-loader) 和 [Browserify](https://github.com/vuejs/vueify)，而 Riot 是依靠社区来建立集成系统。
 
 ***
 
