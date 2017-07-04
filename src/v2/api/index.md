@@ -124,8 +124,8 @@ type: api
   ```
 
   给 v-on 自定义键位别名。
-  
-### performance 
+
+### performance
 
 > 2.2.0 新增
 
@@ -137,7 +137,7 @@ type: api
 
   设置为 `true` 以在浏览器开发工具中启用对组件初始化，渲染和打补丁的性能追踪。只适用于开发模式和支持 [`performance.mark`](https://developer.mozilla.org/en-US/docs/Web/API/Performance/mark) API的浏览器上。
   
-### productionTip 
+### productionTip
 
 > 2.2.0 新增
 
@@ -658,17 +658,17 @@ if (version === 2) {
 
 ### renderError
 
-> New in 2.2.0
+> 2.2.0 新增
 
-  - **Type:** `(createElement: () => VNode, error: Error) => VNode`
+  - **类型：** `(createElement: () => VNode, error: Error) => VNode`
 
-  - **Details:**
+  - **详细：**
 
-    **Only works in development mode.**
+    **只在开发者环境下工作。**
 
-    Provide an alternative render output when the default `render` function encounters an error. The error will be passed to `renderError` as the second argument. This is particularly useful when used together with hot-reload.
+    当 `render` 函数遭遇错误时，提供另外一种渲染输出。其错误将会作为第二个参数传递到 `renderError`。这个功能配合 hot-reload 非常实用。
 
-  - **Example:**
+  - **示例：**
 
     ``` js
     new Vue({
@@ -681,8 +681,8 @@ if (version === 2) {
     }).$mount('#app')
     ```
 
-  - **See also:**
-    - [Render Functions](../guide/render-function)
+  - **参考：**
+    - [渲染函数](../guide/render-function)
 
 ## 选项 / 生命周期钩子
 
@@ -910,25 +910,25 @@ if (version === 2) {
 
 ### provide / inject
 
-> New in 2.2.0
+> 2.2.0 新增
 
-- **Type:**
+- **类型：**
   - **provide:** `Object | () => Object`
   - **inject:** `Array<string> | { [key: string]: string | Symbol }`
 
-- **Details:**
+- **详细：**
 
-  <p class="tip">`provide` and `inject` are primarily provided for advanced plugin / component library use cases. It is NOT recommended to use them in generic application code.</p>
+  <p class="tip">`provide` 和 `inject` 主要为高阶插件/组件库提供用例。并不推荐直接用于应用程序代码中。</p>
 
-  This pair of options are used together to allow an ancestor component to serve as a dependency injector for its all descendants, regardless of how deep the component hierarchy is, as long as they are in the same parent chain. If you are familiar with React, this is very similar to React's context feature.
+  这对选项需要一起使用，以允许一个祖先组件向其所有子孙后代注入一个依赖，不论组件层次有多深，并在起上下游关系成立的时间里始终生效。如果你熟悉 React，这与 React 的上下文特性很相似。
 
-  The `provide` option should be an object or a function that returns an object. This object contains the properties that are available for injection into its descendants. You can use ES2015 Symbols as keys in this object, but only in environments that natively support `Symbol` and `Reflect.ownKeys`.
+  `provide` 选项应该是一个对象或返回一个对象的函数。该对象包含可注入其子孙的属性。在该对象中你可以使用 ES2015 Symbols 作为 key，但是只在原生支持 `Symbol` 和 `Reflect.ownKeys` 的环境下可工作。
 
-  The `inject` options should be either an Array of strings or an object where the keys stand for the local binding name, and the value being the key (string or Symbol) to search for in available injections.
+  `inject` 选项应该是一个字符串数组或一个对象，该对象的 key 代表了本地绑定的名称，value 为其 key (字符串或 Symbol) 以在可用的注入中搜索。
 
-  > Note: the `provide` and `inject` bindings are NOT reactive. This is intentional. However, if you pass down an observed object, properties on that object do remain reactive.
+  > 提示：`provide` 和 `inject` 绑定并不是可响应的。这是刻意为之的。然而，如果你传入了一个可监听的对象，那么其对象的属性还是可响应的。
 
-- **Example:**
+- **示例：**
 
   ``` js
   var Provider = {
@@ -947,7 +947,8 @@ if (version === 2) {
   }
   ```
 
-  With ES2015 Symbols, function `provide` and object `inject`:
+  利用 ES2015 Symbols、函数 `provide` 和对象 `inject`：
+
   ``` js
   const s = Symbol()
 
@@ -965,9 +966,10 @@ if (version === 2) {
   }
   ```
 
-  > The next 2 examples only work with Vue > 2.2.1. Below that version, injected values were resolved after the `props` and the `data` initialization.
+  > 接下来 2 个例子只工作在 Vue > 2.2.1。低于这个版本时，注入的值会在 `props` 和 `data` 初始化之后得到。
 
-  Using an injected value as the default for a prop:
+  使用一个注入的值作为一个属性的默认值：
+
   ```js
   const Child = {
     inject: ['foo'],
@@ -981,7 +983,8 @@ if (version === 2) {
   }
   ```
 
-  Using an injected value as data entry:
+  使用一个注入的值作为数据入口：
+
   ```js
   const Child = {
     inject: ['foo'],
@@ -1039,13 +1042,13 @@ if (version === 2) {
 
 ### model
 
-> New in 2.2.0
+> 2.2.0 新增
 
-- **Type:** `{ prop?: string, event?: string }`
+- **类型：** `{ prop?: string, event?: string }`
 
-- **Details:**
+- **详细：**
 
-  Allows a custom component to customize the prop and event used when it's used with `v-model`. By default, `v-model` on a component uses `value` as the prop and `input` as the event, but some input types such as checkboxes and radio buttons may want to use the `value` prop for a different purpose. Using the `model` option can avoid the conflict in such cases.
+  允许一个自定义组件在使用 `v-model` 时定制 prop 和 event。默认情况下，一个组件上的 `v-model` 会把 `value` 用作 prop 且把 `input` 用作 event，但是一些输入类型比如单选框和复选框按钮可能像使用 `value` prop 来达到不同的目的。使用 `model` 选项可以回避这些情况产生的冲突。
 
 - **Example:**
 
@@ -1072,7 +1075,7 @@ if (version === 2) {
   <my-checkbox v-model="foo" value="some value"></my-checkbox>
   ```
 
-  The above will be equivalent to:
+  上述代码相当于：
 
   ``` html
   <my-checkbox
@@ -1096,13 +1099,13 @@ if (version === 2) {
 
 ### vm.$props
 
-> New in 2.2.0
+> 2.2.0 新增
 
-- **Type:** `Object`
+- **类型：** `Object`
 
-- **Details:**
+- **详细：**
 
-  An object representing the current props a component has received. The Vue instance proxies access to the properties on its props object.
+一个对象，代表当前组件收到的 props。Vue 示例代理访问到这个 props 对象的属性们。
 
 ### vm.$el
 
@@ -1510,7 +1513,7 @@ if (version === 2) {
 
 ### v-text
 
-- **类型：** `string`
+- **预期：** `string`
 
 - **详细：**
 
@@ -1528,7 +1531,7 @@ if (version === 2) {
 
 ### v-html
 
-- **类型：** `string`
+- **预期：** `string`
 
 - **详细：**
 
@@ -1545,7 +1548,7 @@ if (version === 2) {
 
 ### v-show
 
-- **类型：** `any`
+- **预期：** `any`
 
 - **用法：**
 
@@ -1559,7 +1562,7 @@ if (version === 2) {
 
 ### v-if
 
-- **类型：** `any`
+- **预期：** `any`
 
 - **用法：**
 
@@ -1622,7 +1625,7 @@ if (version === 2) {
 
 ### v-for
 
-- **类型：** `Array | Object | number | string`
+- **预期：** `Array | Object | number | string`
 
 - **用法：**
 
@@ -1660,7 +1663,7 @@ if (version === 2) {
 
 - **缩写：** `@`
 
-- **类型：** `Function | Inline Statement`
+- **预期：** `Function | Inline Statement`
 
 - **参数：** `event (required)`
 
@@ -1739,13 +1742,13 @@ if (version === 2) {
 
 - **缩写：** `:`
 
-- **类型：** `any (with argument) | Object (without argument)`
+- **预期：** `any (with argument) | Object (without argument)`
 
 - **参数：** `attrOrProp (optional)`
 
 - **修饰符：**
   - `.prop` - 被用于绑定 DOM 属性。([what's the difference?](http://stackoverflow.com/questions/6003819/properties-and-attributes-in-html#answer-6004028))
-  - `.camel` - (2.1.0+) transform the kebab-case attribute name into camelCase. (supported since 2.1.0)
+  - `.camel` - (2.1.0+) 将 kebab-case 特性名转换为 camelCase. (从 2.1.0 开始支持)
   - `.sync` (2.3.0+) 语法糖，会扩展成一个更新父组件绑定值的 `v-on` 侦听器。
 
 - **用法：**
@@ -1810,7 +1813,7 @@ if (version === 2) {
 
 ### v-model
 
-- **类型：** 随表单控件类型不同而不同。
+- **预期：** 随表单控件类型不同而不同。
 
 - **限制：**
   - `<input>`
@@ -1901,7 +1904,7 @@ if (version === 2) {
 
 ### key
 
-- **示例：** `string`
+- **预期：** `string`
 
   `key` 的特殊属性主要用在 Vue的虚拟DOM算法，在新旧nodes对比时辨识VNodes。如果不使用key，Vue会使用一种最大限度减少动态元素并且尽可能的尝试修复/再利用相同类型元素的算法。使用key，它会基于key的变化重新排列元素顺序，并且会移除key不存在的元素。
 
@@ -1932,7 +1935,7 @@ if (version === 2) {
 
 ### ref
 
-- **类型：** `string`
+- **预期：** `string`
 
   `ref` 被用来给元素或子组件注册引用信息。引用信息将会注册在父组件的 `$refs` 对象上。如果在普通的 DOM 元素上使用，引用指向的就是 DOM 元素; 如果用在子组件上，引用就指向组件实例:
 
@@ -1952,7 +1955,7 @@ if (version === 2) {
 
 ### slot
 
-- **类型：** `string`
+- **预期：** `string`
 
   用于标记往哪个slot中插入子组件内容。
 
@@ -1962,11 +1965,11 @@ if (version === 2) {
 
 ### is
 
-- **Expects:** `string`
+- **预期：** `string`
 
-  Used for [dynamic components](../guide/components.html#Dynamic-Components) and to work around [limitations of in-DOM templates](../guide/components.html#DOM-Template-Parsing-Caveats).
+  用于[动态组件](../guide/components.html#动态组件)且基于[DOM 内模板到限制](../guide/components.html#DOM 模版解析说明)来工作。
 
-  For example:
+  示例：
 
   ``` html
   <!-- component changes when currentView changes -->
@@ -1979,11 +1982,11 @@ if (version === 2) {
   </table>
   ```
 
-  For detailed usage, follow the links in the description above.
+  更多的使用细节，请移步至下面的链接。
 
 - **See also:**
-  - [Dynamic Components](../guide/components.html#Dynamic-Components)
-  - [DOM Template Parsing Caveats](../guide/components.html#DOM-Template-Parsing-Caveats)
+  - [动态组件](../guide/components.html#动态组件)
+  - [DOM 模版解析说明](../guide/components.html#DOM 模版解析说明)
 
 ## 内置的组件
 
