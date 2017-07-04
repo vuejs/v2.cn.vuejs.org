@@ -112,7 +112,7 @@ var example2 = new Vue({
 <div v-for="item of items"></div>
 ```
 
-### Template v-for
+### Template `v-for`
 
 如同 `v-if` 模板，你也可以用带有 `v-for` 的 `<template>` 标签来渲染多个元素块。例如： 
 
@@ -125,7 +125,7 @@ var example2 = new Vue({
 </ul>
 ```
 
-### 对象迭代 v-for
+### 对象迭代 `v-for`
 
 你也可以用 `v-for` 通过一个对象的属性来迭代。
 
@@ -142,9 +142,9 @@ new Vue({
   el: '#repeat-object',
   data: {
     object: {
-      FirstName: 'John',
-      LastName: 'Doe',
-      Age: 30
+      firstName: 'John',
+      lastName: 'Doe',
+      age: 30
     }
   }
 })
@@ -163,9 +163,9 @@ new Vue({
   el: '#repeat-object',
   data: {
     object: {
-      FirstName: 'John',
-      LastName: 'Doe',
-      Age: 30
+      firstName: 'John',
+      lastName: 'Doe',
+      age: 30
     }
   }
 })
@@ -190,7 +190,7 @@ new Vue({
 
 <p class="tip">在遍历对象时，是按 Object.keys() 的结果遍历，但是不能保证它的结果在不同的 JavaScript 引擎下是一致的。</p>
 
-### 整数迭代 v-for 
+### 整数迭代 `v-for`
 
 `v-for` 也可以取整数。在这种情况下，它将重复多次模板。
 
@@ -211,7 +211,7 @@ new Vue({ el: '#range' })
 </script>
 {% endraw %}
 
-### 组件 和 v-for
+### 组件 和 `v-for`
 
 > 了解组件相关知识，查看 [组件](components.html) 。完全可以先跳过它，以后再回来查看。
 
@@ -356,7 +356,7 @@ new Vue({
 </ul>
 ```
 
-## key
+## `key`
 
 当 Vue.js 用 `v-for` 正在更新已渲染过的元素列表时，它默认用 “就地复用” 策略。如果数据项的顺序被改变，Vue将不是移动 DOM 元素来匹配数据项的顺序，  而是简单复用此处每个元素，并且确保它在特定索引下显示已被渲染过的每个元素。这个类似 Vue 1.x 的 `track-by="$index"` 。
 

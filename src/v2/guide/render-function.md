@@ -171,9 +171,9 @@ createElement(
   // Scoped slots in the form of
   // { name: props => VNode | Array<VNode> }
   scopedSlots: {
-    default: props => h('span', props.text)
+    default: props => createElement('span', props.text)
   },
-  // 如果组件是其他组件的子组件，需为slot指定名称
+  // 如果组件是其他组件的子组件，需为 slot 指定名称
   slot: 'name-of-slot',
   // 其他特殊顶层属性
   key: 'myKey',
@@ -549,6 +549,7 @@ Vue.component('smart-list', {
     <pre><code>{{ result.render }}</code></pre>
     <label>staticRenderFns:</label>
     <pre v-for="(fn, index) in result.staticRenderFns"><code>_m({{ index }}): {{ fn }}</code></pre>
+    <pre v-if="!result.staticRenderFns.length"><code>{{ result.staticRenderFns }}</code></pre>
   </div>
   <div v-else>
     <label>Compilation Error:</label>
@@ -561,7 +562,9 @@ new Vue({
   data: {
     templateText: '\
 <div>\n\
-  <h1>I\'m a template!</h1>\n\
+  <header>\n\
+    <h1>I\'m a template!</h1>\n\
+  </header>\n\
   <p v-if="message">\n\
     {{ message }}\n\
   </p>\n\
@@ -612,7 +615,7 @@ console.error = function (error) {
 }
 #vue-compile-demo textarea {
   width: 100%;
-
+  font-family: monospace;
 }
 </style>
 {% endraw %}

@@ -10,7 +10,7 @@ order: 10
 
 <p class="tip"> `v-model` 会忽略所有表单元素的 `value`、`checked`、`selected` 特性的初始值。因为它会选择 Vue 实例数据来作为具体的值。你应该通过 JavaScript 在组件的 `data` 选项中声明初始值。</p>
 
-<p class="tip" id="vmodel-ime-tip">对于要求 IME （如中文、 日语、 韩语等） 的语言，你会发现那`v-model`不会在 ime 构成中得到更新。如果你也想实现更新，请使用 `input`事件。</p>
+<p class="tip" id="vmodel-ime-tip">对于要求 [IME](https://en.wikipedia.org/wiki/Input_method) (如中文、 日语、 韩语等) 的语言，你会发现那`v-model`不会在 ime 构成中得到更新。如果你也想实现更新，请使用 `input`事件。</p>
 
 ### 文本
 

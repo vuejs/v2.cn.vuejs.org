@@ -2,11 +2,11 @@
 title: 安装
 type: guide
 order: 1
-vue_version: 2.1.3
-dev_size: "206.14"
-min_size: "67.60"
-gz_size: "24.72"
-ro_gz_size: "17.14"
+vue_version: 2.3.0
+dev_size: "247.31"
+min_size: "76.64"
+gz_size: "28.03"
+ro_gz_size: "19.54"
 ---
 
 ### 兼容性
@@ -33,11 +33,11 @@ Vue.js 不支持 IE8 及其以下版本，因为 Vue.js 使用了 IE8 不能模�
 
 推荐：[https://unpkg.com/vue](https://unpkg.com/vue), 会保持和 npm 发布的最新的版本一致。可以在 [https://unpkg.com/vue/](https://unpkg.com/vue/) 浏览 npm 包资源。
 
-也可以从 [jsdelivr](//cdn.jsdelivr.net/vue/{{vue_version}}/vue.js) 或 [cdnjs](//cdnjs.cloudflare.com/ajax/libs/vue/{{vue_version}}/vue.js) 获取，不过这两个服务版本更新可能略滞后。
+也可以从 [jsDelivr](//cdn.jsdelivr.net/vue/latest/vue.js) 或 [cdnjs](//cdnjs.cloudflare.com/ajax/libs/vue/{{vue_version}}/vue.js) 获取，不过这两个服务版本更新可能略滞后。
 
 ## NPM
 
-在用 Vue.js 构建大型应用时推荐使用 NPM 安装， NPM 能很好地和诸如 [Webpack](http://webpack.github.io/) 或 [Browserify](http://browserify.org/) 模块打包器配合使用。 Vue.js 也提供配套工具来开发[单文件组件](single-file-components.html)。
+在用 Vue.js 构建大型应用时推荐使用 NPM 安装， NPM 能很好地和诸如 [Webpack](https://webpack.js.org/) 或 [Browserify](http://browserify.org/) 模块打包器配合使用。 Vue.js 也提供配套工具来开发[单文件组件](single-file-components.html)。
 
 ``` bash
 # 最新稳定版
@@ -61,26 +61,26 @@ $ npm run dev
 
 <p class="tip">CLI 工具假定用户对 Node.js 和相关构建工具有一定程度的了解。如果你是新手，我们强烈建议先在不用构建工具的情况下通读[指南](/guide/)，熟悉 Vue 本身之后再研究 CLI。</p>
 
-<p class="tip">对于大陆用户，建议将 npm 的注册表源[设置为国内的镜像](http://riny.net/2014/cnpm/)，可以大幅提升安装速度。</p>
+<p class="tip">译者注：对于大陆用户，建议将 npm 的注册表源[设置为国内的镜像](http://riny.net/2014/cnpm/)，可以大幅提升安装速度。</p>
 
 ## 对不同构建版本的解释
 
-In the [`dist/` directory of the NPM package](https://unpkg.com/vue@latest/dist/) you will find many different builds of Vue.js. Here's an overview of the difference between them:
+在 [NPM 包的 `dist/` 目录](https://unpkg.com/vue@latest/dist/)你将会找到很多不同的 Vue.js 构建。这里列出了他们之间的差别：
 
 | | UMD | CommonJS | ES Module |
 | --- | --- | --- | --- |
-| **Full** | vue.js | vue.common.js | vue.esm.js |
-| **Runtime-only** | vue.runtime.js | vue.runtime.common.js | vue.runtime.esm.js |
-| **Full (production)** | vue.min.js | - | - |
-| **Runtime-only (production)** | vue.runtime.min.js | - | - |
+| **完整版** | vue.js | vue.common.js | vue.esm.js |
+| **只包含运行时** | vue.runtime.js | vue.runtime.common.js | vue.runtime.esm.js |
+| **完整版 (生产环境)** | vue.min.js | - | - |
+| **只包含运行时 (生产环境)** | vue.runtime.min.js | - | - |
 
-### Terms
+### 术语
 
-- **Full**: builds that contains both the compiler and the runtime.
+- **完整版**: builds that contains both the compiler and the runtime.
 
-- **Compiler**: code that is responsible for compiling template strings into JavaScript render functions.
+- **编译器**: code that is responsible for compiling template strings into JavaScript render functions.
 
-- **Runtime**: code that is responsible for creating Vue instances, rendering and patching virtual DOM, etc. Basically everything minus the compiler.
+- **运行时**: code that is responsible for creating Vue instances, rendering and patching virtual DOM, etc. Basically everything minus the compiler.
 
 - **[UMD](https://github.com/umdjs/umd)**: UMD builds can be used directly in the browser via a `<script>` tag. The default file from Unpkg CDN at [https://unpkg.com/vue](https://unpkg.com/vue) is the Runtime + Compiler UMD build (`vue.js`).
 
@@ -212,7 +212,7 @@ Also see [Production Deployment Tips](deployment.html).
 
 另一方面，运行时构建的是完全兼容 CSP 的。当通过 [Webpack + vue-loader](https://github.com/vuejs-templates/webpack-simple) 或者 [Browserify + vueify](https://github.com/vuejs-templates/browserify-simple) 构建时，在 CSP 环境中模板将被完美预编译到 `render` 函数中。
 
-## 开发版本
+## 开发版构建
 
 **重要**: Github 仓库的 `/dist` 文件夹只有在新版本发布时才会更新。如果想要使用 Github 上 Vue 最新的源码，你需要自己构建。
 

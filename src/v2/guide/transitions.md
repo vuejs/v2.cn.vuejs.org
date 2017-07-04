@@ -77,7 +77,7 @@ new Vue({
 .demo-transition-enter-active, .demo-transition-leave-active {
   transition: opacity .5s
 }
-.demo-transition-enter, .demo-transition-leave-active {
+.demo-transition-enter, .demo-transition-leave-to {
   opacity: 0
 }
 </style>
@@ -85,13 +85,11 @@ new Vue({
 
 当插入或删除包含在 `transition` 组件中的元素时，Vue 将会做以下处理：
 
-
 1. 自动嗅探目标元素是否应用了 CSS 过渡或动画，如果是，在恰当的时机添加/删除 CSS 类名。
 
 2. 如果过渡组件提供了 [JavaScript 钩子函数](#JavaScript-钩子)，这些钩子函数将在恰当的时机被调用。
 
 3. 如果没有找到 JavaScript 钩子并且也没有检测到 CSS 过渡/动画，DOM 操作（插入/删除）在下一帧中立即执行。(注意：此指浏览器逐帧动画机制，和Vue的 `nextTick` 概念不同)
-
 
 ### 过渡的-CSS-类名
 
@@ -151,7 +149,8 @@ new Vue({
 .slide-fade-leave-active {
   transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
 }
-.slide-fade-enter, .slide-fade-leave-active {
+.slide-fade-enter, .slide-fade-leave-to
+/* .slide-fade-leave-active for <2.1.8 */ {
   transform: translateX(10px);
   opacity: 0;
 }
@@ -181,7 +180,7 @@ new Vue({
 .slide-fade-leave-active {
   transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
 }
-.slide-fade-enter, .slide-fade-leave-active {
+.slide-fade-enter, .slide-fade-leave-to {
   transform: translateX(10px);
   opacity: 0;
 }
@@ -297,8 +296,10 @@ new Vue({
 
 - `enter-class`
 - `enter-active-class`
+- `enter-to-class` (>= 2.1.8 only)
 - `leave-class`
 - `leave-active-class`
+- `leave-to-class` (>= 2.1.8 only)
 
 他们的优先级高于普通的类名，这对于 Vue 的过渡系统和其他第三方 CSS 动画库，如 [Animate.css](https://daneden.github.io/animate.css/) 结合使用十分有用。
 
@@ -360,6 +361,24 @@ new Vue({
 Vue 为了知道过渡的完成，必须设置相应的事件监听器。它可以是 `transitionend` 或 `animationend` ，这取决于给元素应用的 CSS 规则。如果你使用其中任何一种，Vue 能自动识别类型并设置监听。
 
 但是，在一些场景中，你需要给同一个元素同时设置两种过渡动效，比如 `animation` 很快的被触发并完成了，而 `transition` 效果还没结束。在这种情况中，你就需要使用 `type` 特性并设置 `animation` 或 `transition` 来明确声明你需要 Vue 监听的类型。
+
+### Explicit Transition Durations
+
+> New in 2.2.0
+
+In most cases, Vue can automatically figure out when the transition has finished. By default, Vue waits for the first `transitionend` or `animationend` event on the root transition element. However, this may not always be desired - for example, we may have a choreographed transition sequence where some nested inner elements have a delayed transition or a longer transition duration than the root transition element.
+
+In such cases you can specify an explicit transition duration (in milliseconds) using the `duration` prop on the `<transition>` component:
+
+``` html
+<transition :duration="1000">...</transition>
+```
+
+You can also specify separate values for enter and leave durations:
+
+``` html
+<transition :duration="{ enter: 500, leave: 800 }">...</transition>
+```
 
 ### JavaScript 钩子
 
@@ -550,6 +569,7 @@ new Vue({
 <transition
   appear
   appear-class="custom-appear-class"
+  appear-to-class="custom-appear-to-class" (>= 2.1.8 only)
   appear-active-class="custom-appear-active-class"
 >
   <!-- ... -->
@@ -564,6 +584,7 @@ new Vue({
   v-on:before-appear="customBeforeAppearHook"
   v-on:appear="customAppearHook"
   v-on:after-appear="customAfterAppearHook"
+  v-on:appear-cancelled="customAppearCancelledHook"
 >
   <!-- ... -->
 </transition>
@@ -897,7 +918,8 @@ new Vue({
 .component-fade-enter-active, .component-fade-leave-active {
   transition: opacity .3s ease;
 }
-.component-fade-enter, .component-fade-leave-active {
+.component-fade-enter, .component-fade-leave-to
+/* .component-fade-leave-active for <2.1.8 */ {
   opacity: 0;
 }
 ```
@@ -914,7 +936,7 @@ new Vue({
 .component-fade-enter-active, .component-fade-leave-active {
   transition: opacity .3s ease;
 }
-.component-fade-enter, .component-fade-leave-active {
+.component-fade-enter, .component-fade-leave-to {
   opacity: 0;
 }
 </style>
@@ -993,14 +1015,15 @@ new Vue({
 .list-enter-active, .list-leave-active {
   transition: all 1s;
 }
-.list-enter, .list-leave-active {
+.list-enter, .list-leave-to
+/* .list-leave-active for <2.1.8 */ {
   opacity: 0;
   transform: translateY(30px);
 }
 ```
 
 {% raw %}
-<div id="list-demo" class="demo">
+<div id="list-demo">
   <button v-on:click="add">Add</button>
   <button v-on:click="remove">Remove</button>
   <transition-group name="list" tag="p">
@@ -1037,7 +1060,7 @@ new Vue({
 .list-enter-active, .list-leave-active {
   transition: all 1s;
 }
-.list-enter, .list-leave-active {
+.list-enter, .list-leave-to {
   opacity: 0;
   transform: translateY(30px);
 }
@@ -1169,7 +1192,8 @@ new Vue({
   display: inline-block;
   margin-right: 10px;
 }
-.list-complete-enter, .list-complete-leave-active {
+.list-complete-enter, .list-complete-leave-to
+/* .list-complete-leave-active for <2.1.8 */ {
   opacity: 0;
   transform: translateY(30px);
 }
@@ -1219,7 +1243,7 @@ new Vue({
   display: inline-block;
   margin-right: 10px;
 }
-.list-complete-enter, .list-complete-leave-active {
+.list-complete-enter, .list-complete-leave-to {
   opacity: 0;
   transform: translateY(30px);
 }

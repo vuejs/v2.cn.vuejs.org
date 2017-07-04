@@ -1,12 +1,12 @@
 ---
-title: 生产环境部署
+title: 生产环境部署提示
 type: guide
 order: 20
 ---
 
-## 利用生产状态
+## 开启生产环境模式
 
-开发时，Vue 会提供很多警告来帮你解决常见的错误与陷阱。生产时，这些警告语句却没有用，反而会增加你的载荷量。再次，有些警告检查有小的运行时费用，生产时可以避免的。
+开发时，Vue 会提供很多警告来帮你解决常见的错误与陷阱。生产时，这些警告语句却没有用，反而会增加你的载荷量。再次，有些警告检查有小的运行时开销，生产环境模式下是可以避免的。
 
 ### 不用打包工具
 
@@ -46,23 +46,44 @@ module.exports = {
 - 运行打包命令，设置 `NODE_ENV` 为 `"production"`。等于告诉 `vueify` 避免引入热重载和开发相关代码。
 - 使用一个全局 [envify](https://github.com/hughsk/envify) 转换你的 bundle 文件。这可以精简掉包含在 Vue 源码中所有环境变量条件相关代码块内的警告语句。例如：
 
-
 ``` bash
 NODE_ENV=production browserify -g envify -e main.js | uglifyjs -c -m > build.js
 ```
 
-- 使用 vueify 中包含的 extract-css 插件，提取样式到单独的css文件。
+#### Rollup
 
-``` bash
-NODE_ENV=production browserify -g envify -p [ vueify/plugins/extract-css -o build.css ] -e main.js | uglifyjs -c -m > build.js
+使用 [rollup-plugin-replace](https://github.com/rollup/rollup-plugin-replace)：
+
+``` js
+const replace = require('rollup-plugin-replace')
+rollup({
+  // ...
+  plugins: [
+    replace({
+      'process.env.NODE_ENV': JSON.stringify( 'production' )
+    })
+  ]
+}).then(...)
 ```
+
+## 预编译模板
+
+When using in-DOM templates or in-JavaScript template strings, the template-to-render-function compilation is performed on the fly. This is usually fast enough in most cases, but is best avoided if your application is performance-sensitive.
+
+The easiest way to pre-compile templates is using [Single-File Components](./single-file-components.html) - the associated build setups automatically performs pre-compilation for you, so the built code contains the already compiled render functions instead of raw template strings.
+
+If you are using Webpack, and prefer separating JavaScript and template files, you can use [vue-template-loader](https://github.com/ktsn/vue-template-loader), which also transforms the template files into JavaScript render functions during the build step.
+
+## 提取 CSS
+
+When using Single-File Components, the CSS inside components are injected dynamically as `<style>` tags via JavaScript. This has a small runtime cost, and if you are using server-side rendering it will cause a "flash of unstyled content". Extracting the CSS across all components into the same file and avoid these issues, and also result in better CSS minification and caching.
+
+Refer to the respective build tool documentations to see how it's done:
+
+- [Webpack + vue-loader](http://vue-loader.vuejs.org/en/configurations/extract-css.html) (the `vue-cli` webpack template has this pre-configured)
+- [Browserify + vueify](https://github.com/vuejs/vueify#css-extraction)
+- [Rollup + rollup-plugin-vue](https://github.com/znck/rollup-plugin-vue#options)
 
 ## 跟踪运行时错误
 
 如果在组件渲染时出现运行错误，错误将会被传递至全局 `Vue.config.errorHandler` 配置函数（如果已设置）。利用这个钩子函数和错误跟踪服务（如 [Sentry](https://sentry.io)，它为 Vue 提供[官方集成](https://sentry.io/for/vue/)），可能是个不错的主意。
-
-## 提取 CSS
-
-使用[单文件组件](single-file-components.html)时，`<style>` 标签在开发运行过程中会被动态实时注入。在生产环境中，你可能需要从所有组件中提取样式到单独的 CSS 文件中。有关如何实现的详细信息，请查阅 [vue-loader](http://vue-loader.vuejs.org/en/configurations/extract-css.html) 和 [vueify](https://github.com/vuejs/vueify#css-extraction) 相应文档。
-
-`vue-cli` 已经配置好了官方的 `webpack` 模板。

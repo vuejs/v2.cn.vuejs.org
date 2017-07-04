@@ -572,16 +572,21 @@ this.$emit('update:foo', newValue)
 这不过是以下示例的语法糖：
 
 ``` html
-<input v-bind:value="something" v-on:input="something = $event.target.value">
+<input
+  v-bind:value="something"
+  v-on:input="something = $event.target.value">
 ```
 
 所以在组件中使用时，它相当于下面的简写：
 
 ``` html
-<custom-input v-bind:value="something" v-on:input="something = arguments[0]"></custom-input>
+<custom-input
+  v-bind:value="something"
+  v-on:input="something = arguments[0]">
+</custom-input>
 ```
 
-所以要让组件的 `v-model` 生效，它必须：
+所以要让组件的 `v-model` 生效，它应该 (在 2.2.0+ 这是可配置的)：
 
 - 接受一个 `value` 属性
 - 在有新的 value 时触发 `input` 事件
@@ -594,16 +599,16 @@ this.$emit('update:foo', newValue)
 
 ``` js
 Vue.component('currency-input', {
-  template: '\
-    <span>\
-      $\
-      <input\
-        ref="input"\
-        v-bind:value="value"\
-        v-on:input="updateValue($event.target.value)"\
-      >\
-    </span>\
-  ',
+  template: `
+    <span>
+      $
+      <input
+        ref="input"
+        v-bind:value="value"
+        v-on:input="updateValue($event.target.value)"
+      >
+    </span>
+  `,
   props: ['value'],
   methods: {
     // 不是直接更新值，而是使用此方法来对输入值进行格式化和位数限制
@@ -665,9 +670,7 @@ Vue.component('currency-input', {
 })
 new Vue({
   el: '#currency-input-example',
-  data: {
-    price: 0
-  }
+  data: { price: '' }
 })
 </script>
 {% endraw %}

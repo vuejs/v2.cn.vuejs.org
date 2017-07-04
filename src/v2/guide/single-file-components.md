@@ -25,16 +25,29 @@ order: 19
 现在我们获得：
 
 - [完整语法高亮](https://github.com/vuejs/awesome-vue#source-code-editing)
-- [CommonJS 模块](https://webpack.github.io/docs/commonjs.html)
+- [CommonJS 模块](https://webpack.js.org/concepts/modules/#what-is-a-webpack-module)
 - [组件化的 CSS](https://github.com/vuejs/vue-loader/blob/master/docs/en/features/scoped-css.md)
 
-正如我们说过的，我们可以使用预处理器来构建简洁和功能更丰富的组件，比如 Jade，Babel (with ES2015 modules)，和 Stylus。
+正如我们说过的，我们可以使用预处理器来构建简洁和功能更丰富的组件，比如 Pug，Babel (with ES2015 modules)，和 Stylus。
 
 <img src="/images/vue-component-with-preprocessors.png" style="display: block; margin: 30px auto">
 
-这些特定的语言只是例子，你可以只是简单地使用 Babel，TypeScript，SCSS，PostCSS - 或者其他任何能够帮助你提高生产力的预处理器。
+这些特定的语言只是例子，你可以只是简单地使用 Babel，TypeScript，SCSS，PostCSS - 或者其他任何能够帮助你提高生产力的预处理器。如果搭配 `vue-loader` 使用 Webpack，它也是把 CSS Modules 当作第一公民来对待的。
 
-<!-- TODO: include CSS modules once it's supported in vue-loader 9.x -->
+### What About Separation of Concerns?
+
+One important thing to note is that **separation of concerns is not equal to separation of file types.** In modern UI development, we have found that instead of dividing the codebase into three huge layers that interweaves with one another, it makes much more sense to divide them into loosely-coupled components and compose them. Inside a component, its template, logic and styles are inherently coupled, and collocating them actually makes the component more cohesive and maintainable.
+
+Even if you don't like the idea of Single-File Components, you can still leverage its hot-reloading and pre-compilation features by separating your JavaScript and CSS into separate files:
+
+``` html
+<!-- my-component.vue -->
+<template>
+  <div>This will be pre-compiled</div>
+</template>
+<script src="./my-component.js"></script>
+<style src="./my-component.css"></style>
+```
 
 ## 起步
 
@@ -56,7 +69,7 @@ order: 19
 
 无论你更钟情 Webpack 或是 Browserify，我们为简单的和更复杂的项目都提供了一些文档模板。我们建议浏览 [github.com/vuejs-templates](https://github.com/vuejs-templates)，找到你需要的部分，然后参考 README 中的说明，使用 [vue-cli](https://github.com/vuejs/vue-cli) 工具生成新的项目。
 
-模板中使用 [Webpack](https://webpack.github.io/) ，一个模块加载器加载多个模块然后构建成最终应用。为了进一步了解 Webpack, 可以看 [官方介绍视频](https://www.youtube.com/watch?v=WQue1AN93YU)。如果你有基础，可以看 [在 Egghead.io 上的 Webpack 进阶教程](https://egghead.io/courses/using-webpack-for-production-javascript-applications)。
+模板中使用 [Webpack](https://webpack.js.org/) ，一个模块加载器加载多个模块然后构建成最终应用。为了进一步了解 Webpack, 可以看 [官方介绍视频](https://www.youtube.com/watch?v=WQue1AN93YU)。如果你有基础，可以看 [在 Egghead.io 上的 Webpack 进阶教程](https://egghead.io/courses/using-webpack-for-production-javascript-applications)。
 
 ***
 

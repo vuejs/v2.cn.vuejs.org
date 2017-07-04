@@ -93,7 +93,9 @@ var example2 = new Vue({
   methods: {
     greet: function (event) {
       alert('Hello ' + this.name + '!')
-      alert(event.target.tagName)
+      if (event) {
+        alert(event.target.tagName)
+      }
     }
   }
 })
@@ -252,6 +254,7 @@ Vue.config.keyCodes.f1 = 112
 - `.meta`
 
 > 注意：在Mac系统键盘上，meta对应命令键 (⌘)。在Windows系统键盘meta对应windows徽标键(⊞)。在Sun操作系统键盘上，meta对应实心宝石键 (◆)。在其他特定键盘上，尤其在MIT和Lisp键盘及其后续，比如Knight键盘，space-cadet键盘，meta被标记为“META”。在Symbolics键盘上，meta被标记为“META” 或者 “Meta”。
+
 例如:
 
 ```html
