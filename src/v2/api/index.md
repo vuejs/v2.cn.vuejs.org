@@ -65,7 +65,7 @@ type: api
 
 - **类型：** `Function`
 
-- **默认值：** 默认抛出错误
+- **默认值：** `undefined`
 
 - **用法：**
 
@@ -78,6 +78,8 @@ type: api
   ```
 
   指定组件的渲染和观察期间未捕获错误的处理函数。这个处理函数被调用时，可获取错误信息和 Vue 实例。
+
+  > 在 2.2.0 中，这个钩子也会捕获组件生命周期钩子里的错误。同样的，当这个钩子是 `undefined` 时，被捕获的错误会通过 `console.error` 输出而避免应用崩溃。
 
   > [Sentry](https://sentry.io), 一个错误追踪服务, 通过此选项提供[官方集成](https://sentry.io/for/vue/)。
 
@@ -228,17 +230,19 @@ type: api
 
 - **参考：** [深入响应式原理](../guide/reactivity.html)
 
-<h3 id="Vue-delete">Vue.delete( object, key )</h3>
+<h3 id="Vue-delete">Vue.delete( target, key )</h3>
 
 - **参数：**
-  - `{Object} object`
-  - `{string} key`
+  - `{Object | Array} target`
+  - `{string | number} key`
 
 - **用法：**
 
   删除对象的属性。如果对象是响应式的，确保删除能触发更新视图。这个方法主要用于避开 Vue 不能检测到属性被删除的限制，但是你应该很少会使用它。
 
-  **注意对象不能是 Vue 实例，或者 Vue 实例的根数据对象**
+  > 在 2.2.0+ 中同样支持在数组上工作。
+
+  <p class="tip">目标对象不能是一个 Vue 示例或 Vue 示例的根数据对象。</p>
 
 - **参考：** [深入响应式原理](../guide/reactivity.html)
 
@@ -363,10 +367,27 @@ type: api
 
 - **参考：** [Render 函数](../guide/render-function.html)
 
+<h3 id="Vue-version">Vue.version</h3>
+
+- **细节：**提供字符串形式的 Vue 安装版本号。这对社区的插件和组件来说非常有用，你可以根据不同的版本号采取不同的策略。
+
+- **用法：**
+
+```js
+var version = Number(Vue.version.split('.')[0])
+
+if (version === 2) {
+  // Vue v2.x.x
+} else if (version === 1) {
+  // Vue v1.x.x
+} else {
+  // Unsupported versions of Vue
+}
+```
+
 ## 选项 / 数据
 
 ### data
-
 
 - **类型：** `Object | Function`
 
@@ -482,7 +503,7 @@ type: api
 
   <p class="tip">注意，__不应该使用箭头函数来定义计算属性函数__ (例如 `aDouble: () => this.a * 2`)。理由是箭头函数绑定了父级作用域的上下文，所以 `this` 将不会按照期望指向 Vue 实例，`this.a` 将是 undefined。</p>
 
-  计算属性的结果会被缓存，除非依赖的响应式属性变化才会重新计算。
+  计算属性的结果会被缓存，除非依赖的响应式属性变化才会重新计算。注意，如果实例范畴之外的依赖 (比如非响应式的 not reactive) 是__不会__触发计算属性更新的。
 
 - **示例:**
 
@@ -622,7 +643,7 @@ type: api
 
 ### render
 
-  - **类型：** `Function`
+  - **类型：** `(createElement: () => VNode) => VNode`
 
   - **详细：**
 
@@ -634,6 +655,34 @@ type: api
 
   - **参考：**
     - [Render 函数](../guide/render-function.html)
+
+### renderError
+
+> New in 2.2.0
+
+  - **Type:** `(createElement: () => VNode, error: Error) => VNode`
+
+  - **Details:**
+
+    **Only works in development mode.**
+
+    Provide an alternative render output when the default `render` function encounters an error. The error will be passed to `renderError` as the second argument. This is particularly useful when used together with hot-reload.
+
+  - **Example:**
+
+    ``` js
+    new Vue({
+      render (h) {
+        throw new Error('oops')
+      },
+      renderError (h, err) {
+        return h('pre', { style: { color: 'red' }}, err.stack)
+      }
+    }).$mount('#app')
+    ```
+
+  - **See also:**
+    - [Render Functions](../guide/render-function)
 
 ## 选项 / 生命周期钩子
 
@@ -705,7 +754,7 @@ type: api
 
   由于数据更改导致的虚拟 DOM 重新渲染和打补丁，在这之后会调用该钩子。
 
-  当这个钩子被调用时，组件 DOM 已经更新，所以你现在可以执行依赖于 DOM 的操作。然而在大多数情况下，你应该避免在此期间更改状态，因为这可能会导致更新无限循环。
+  当这个钩子被调用时，组件 DOM 已经更新，所以你现在可以执行依赖于 DOM 的操作。然而在大多数情况下，你应该避免在此期间更改状态。如果要相应状态改变，通常最好使用[计算属性](#computed)或 [watcher](#watch) 取而代之。
 
   **该钩子在服务器端渲染期间不被调用。**
 
@@ -800,7 +849,7 @@ type: api
 - **参考：**
   - [组件](../guide/components.html)
 
-## 选项 / 杂项
+## 选项 / 组合
 
 ### parent
 
@@ -836,18 +885,6 @@ type: api
   ```
 
 - **参考：** [混合](../guide/mixins.html)
-
-### name
-
-- **类型:** `string`
-
-- **限制:** 只有作为组件选项时起作用。
-
-- **详细:**
-
-  允许组件模板递归地调用自身。注意，组件在全局用 `Vue.component()` 注册时，全局 ID 自动作为组件的 name。
-
-  指定 `name` 选项的另一个好处是便于调试。有名字的组件有更友好的警告信息。另外，当在有 [vue-devtools](https://github.com/vuejs/vue-devtools), 未命名组件将显示成 `<AnonymousComponent>`, 这很没有语义。通过提供 `name` 选项，可以获得更有语义信息的组件树。
 
 ### extends
 
@@ -956,19 +993,19 @@ type: api
   }
   ```
 
-## Options / Misc
+## 选项 / 其它
 
 ### name
 
-- **Type:** `string`
+- **类型:** `string`
 
-- **Restriction:** only respected when used as a component option.
+- **限制:** 只有作为组件选项时起作用。
 
-- **Details:**
+- **详细:**
 
-  Allow the component to recursively invoke itself in its template. Note that when a component is registered globally with `Vue.component()`, the global ID is automatically set as its name.
+  允许组件模板递归地调用自身。注意，组件在全局用 `Vue.component()` 注册时，全局 ID 自动作为组件的 name。
 
-  Another benefit of specifying a `name` option is debugging. Named components result in more helpful warning messages. Also, when inspecting an app in the [vue-devtools](https://github.com/vuejs/vue-devtools), unnamed components will show up as `<AnonymousComponent>`, which isn't very informative. By providing the `name` option, you will get a much more informative component tree.
+  指定 `name` 选项的另一个好处是便于调试。有名字的组件有更友好的警告信息。另外，当在有 [vue-devtools](https://github.com/vuejs/vue-devtools), 未命名组件将显示成 `<AnonymousComponent>`, 这很没有语义。通过提供 `name` 选项，可以获得更有语义信息的组件树。
 
 ### delimiters
 
@@ -979,7 +1016,6 @@ type: api
 - **详细:**
 
  改变纯文本插入分隔符。 **这个选择只有在独立构建时才有用。**
-
 
 - **示例:**
 
@@ -1057,6 +1093,16 @@ type: api
   Vue 实例观察的数据对象。Vue 实例代理了对其 data 对象属性的访问。
 
 - **另见:** [选项 - data](#data)
+
+### vm.$props
+
+> New in 2.2.0
+
+- **Type:** `Object`
+
+- **Details:**
+
+  An object representing the current props a component has received. The Vue instance proxies access to the properties on its props object.
 
 ### vm.$el
 
@@ -1314,7 +1360,7 @@ type: api
 <h3 id="vm-on">vm.$on( event, callback )</h3>
 
 - **参数：**
-  - `{string} event`
+  - `{string | Array<string>} event` (数组只在 2.2.0+ 中支持)
   - `{Function} callback`
 
 - **用法：**
@@ -1486,7 +1532,6 @@ type: api
 
 - **详细：**
 
-
   更新元素的 `innerHTML` 。**注意：内容按普通 HTML 插入 - 不会作为 Vue 模板进行编译** 。如果试图使用 `v-html` 组合模板,可以重新考虑是否通过使用组件来替代。
 
   <p class="tip">在网站上动态渲染任意 HTML 是非常危险的，因为容易导致 [XSS 攻击](https://en.wikipedia.org/wiki/Cross-site_scripting)。只在可信内容上使用 `v-html`，**永不**用在用户提交的内容上。</p>
@@ -1507,6 +1552,8 @@ type: api
   根据表达式之真假值，切换元素的 `display` CSS 属性。
 
   当条件变化时该指令触发过渡效果。
+
+  <p class="tip">当和 `v-if` 一起使用时，`v-for` 的优先级比 `v-if` 更高。详见[列表渲染教程](../guide/list.html#v-for-with-v-if)</p>
 
 - **参考：** [条件渲染 - v-show](../guide/conditional.html#v-show)
 
@@ -1720,7 +1767,7 @@ type: api
   <!-- 缩写 -->
   <img :src="imageSrc">
 
-  <!-- with inline string concatenation -->
+  <!-- 内联字符串拼接 -->
   <img :src="'/path/to/images/' + fileName">
 
   <!-- class 绑定 -->
@@ -1778,7 +1825,7 @@ type: api
 
 - **用法：**
 
-  在表单控件或者组件上创建双向绑定。细节请看下面链接的教程。
+  在表单控件或者组件上创建双向绑定。细节请看下面的教程链接。
 
 - **参考：**
   - [表单控件绑定](../guide/forms.html)
@@ -1970,6 +2017,10 @@ type: api
   - `mode` - string, 控制离开/进入的过渡时间序列。有效的模式有 `"out-in"` 和 `"in-out"`；默认同时生效。
   - `enter-class` - string
   - `leave-class` - string
+  - `appear-class` - string
+  - `enter-to-class` - string
+  - `leave-to-class` - string
+  - `appear-to-class` - string
   - `enter-active-class` - string
   - `leave-active-class` - string
   - `appear-class` - string
@@ -1977,14 +2028,17 @@ type: api
 
 - **事件：**
   - `before-enter`
-  - `enter`
-  - `after-enter`
   - `before-leave`
-  - `leave`
-  - `after-leave`
   - `before-appear`
+  - `enter`
+  - `leave`
   - `appear`
+  - `after-enter`
+  - `after-leave`
   - `after-appear`
+  - `enter-cancelled`
+  - `leave-cancelled` (`v-show` only)
+  - `appear-cancelled`
 
 - **用法：**
 
@@ -2062,6 +2116,8 @@ type: api
   `<keep-alive>` 包裹动态组件时，会缓存不活动的组件实例，而不是销毁它们。和 `<transition>` 相似，`<keep-alive>` 是一个抽象组件：它自身不会渲染一个 DOM 元素，也不会出现在父组件链中。
 
   当组件在 `<keep-alive>` 内被切换，它的 `activated` 和 `deactivated` 这两个生命周期钩子函数将会被对应执行。
+
+  > 在 2.2.0 及其更高版本中，`activated` 和 `deactivated` 将会在 `<keep-alive>` 树内的所有嵌套组件中触发。
 
   主要用于保留组件状态或避免重新渲染。
 
