@@ -340,13 +340,13 @@ Props 现在只能单向传递。为了对父组件产生反向影响，子组�
 </div>
 {% endraw %}
 
-## Computed properties
+## 计算属性
 
-### `cache: false` <sup>deprecated</sup>
+### `cache: false` <sup>弃用</sup>
 
-Caching invalidation of computed properties will be removed in future major versions of Vue. Replace any uncached computed properties with methods, which will have the same result.
+在 Vue 未来的大版本中，计算属性的缓存验证将会被移除。把不缓存的计算属性转换为方法可以得到和之前相同的结果。
 
-For example:
+示例：
 
 ``` js
 template: '<p>message: {{ timeMessage }}</p>',
@@ -360,7 +360,7 @@ computed: {
 }
 ```
 
-Or with component methods:
+或者使用组件方法：
 
 ``` js
 template: '<p>message: {{ getTimeMessage }}</p>',
@@ -373,12 +373,12 @@ methods: {
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the <a href="https://github.com/vuejs/vue-migration-helper">migration helper</a> on your codebase to find examples of the <code>cache: false</code> option.</p>
+  <h4>升级方式</h4>
+  <p>运行<a href="https://github.com/vuejs/vue-migration-helper">迁移工具</a>找到 <code>cache: false</code> 的选项。</p>
 </div>
 {% endraw %}
 
-# Built-In 指令
+## Built-In 指令
 
 ### `v-bind` 真/假值 <sup>变更</sup>
 
