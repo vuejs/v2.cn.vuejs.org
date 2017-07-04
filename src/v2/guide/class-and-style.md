@@ -201,7 +201,7 @@ data: {
 <div :style="{ display: ['-webkit-box', '-ms-flexbox', 'flex'] }">
 ```
 
-This will only render the last value in the array which the browser supports. In this example, it will render `display: flex` for browsers that support the unprefixed version of flexbox.
+这会渲染数组中最后一个被浏览器支持的值。在这个例子中，如果浏览器支持不带浏览器前缀的 flexbox，那么渲染结果会是 `display: flex`。
 
 ***
 
