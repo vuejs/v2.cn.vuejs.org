@@ -2144,13 +2144,13 @@ if (version === 2) {
   </transition>
   ```
 
-  Note, `<keep-alive>` is designed for the case where it has one direct child component that is being toggled. It does not work if you have `v-for` inside it. When there are multiple conditional children, as above, `<keep-alive>` requires that only one child is rendered at a time.
+  注意，`<keep-alive>` 是用在其一个直属的子组件被开关的情形。如果你在其中有 `v-if` 则不会工作。如果有上述的多个条件性的子元素，`<keep-alive>` 要求同时只有一个字元素被渲染。
 
 - **`include` and `exclude`**
 
   > 2.1.0 新增
 
-  `include` 和 `exclude` 属性允许组件有条件地缓存。二者都可以用逗号分隔字符串或正则表达式来表示:
+  `include` 和 `exclude` 属性允许组件有条件地缓存。二者都可以用逗号分隔字符串、正则表达式或一个数组来表示:
 
   ``` html
   <!-- 逗号分隔字符串 -->
@@ -2160,6 +2160,11 @@ if (version === 2) {
 
   <!-- 正则表达式 (使用 v-bind) -->
   <keep-alive :include="/a|b/">
+    <component :is="view"></component>
+  </keep-alive>
+
+  <!-- Array (use v-bind) -->
+  <keep-alive :include="['a', 'b']">
     <component :is="view"></component>
   </keep-alive>
   ```

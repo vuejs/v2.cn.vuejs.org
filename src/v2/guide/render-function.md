@@ -302,10 +302,11 @@ render: function (createElement) {
 
 ### 事件 & 按键修饰符
 
-对于 `.capture` 和 `.once`事件修饰符, Vue 提供了相应的前缀可以用于 `on`:
+对于 `.passive`、`.capture` 和 `.once`事件修饰符, Vue 提供了相应的前缀可以用于 `on`:
 
 | Modifier(s) | Prefix |
 | ------ | ------ |
+| `.passive` | `&` |
 | `.capture` | `!` |
 | `.once` | `~` |
 | `.capture.once` or<br>`.once.capture` | `~!` |
