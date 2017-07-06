@@ -1,5 +1,5 @@
 ---
-title: Meet the Team
+title: 认识团队
 type: guide
 order: 31
 ---
@@ -19,7 +19,7 @@ order: 31
       </h3>
       <dl>
         <template v-if="profile.reposOfficial">
-          <dt>Core focus</dt>
+          <dt>CORE FOCUS</dt>
           <dd>
             <ul>
               <li v-for="repo in profile.reposOfficial">
@@ -29,7 +29,7 @@ order: 31
           </dd>
         </template>
         <template v-if="profile.github && profile.reposPersonal">
-          <dt>Ecosystem</dt>
+          <dt>ECOSYSTEM</dt>
           <dd>
             <ul>
               <li v-for="repo in profile.reposPersonal">
@@ -71,10 +71,10 @@ order: 31
 
 <div id="team-members">
   <div class="team">
-    <h2 id="the-core-team">The Core Team</h2>
+    <h2 id="the-core-team">核心团队</h2>
 
     <p>
-      The development of Vue and its ecosystem is guided by an international team, some of whom have chosen to be featured below.
+      Vue 的研发及其生态建设出自一个国际化的团队，这里会展示其中部分团队成员的信息。
     </p>
 
     <vuer-profile
@@ -85,10 +85,10 @@ order: 31
   </div>
 
   <div class="team">
-    <h2 id="community-partners">Community Partners</h2>
+    <h2 id="community-partners">社区伙伴</h2>
 
     <p>
-      Some members of the Vue community have so enriched it, that they deserve special mention. We've developed a more intimate relationship with these key partners, often coordinating with them on upcoming features and news.
+      一些 Vue 的社区成员让这里变得更加丰富多彩，有必要在此特别提及。我们与这些主要合作伙伴建立了更加亲密的关系，经常与他们就即将到来的功能和新闻展开协作。
     </p>
 
     <vuer-profile
