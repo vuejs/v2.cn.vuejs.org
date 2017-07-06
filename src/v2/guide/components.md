@@ -432,19 +432,19 @@ Vue.component('example', {
 
 当 prop 验证失败，Vue会在抛出警告 (如果使用的是开发版本)。Note that props are validated __before__ a component instance is created, so within `default` or `validator` functions, instance properties such as from `data`, `computed`, or `methods` will not be available.
 
-## Non-Prop Attributes
+## 非 Prop 属性
 
-A non-prop attribute is an attribute that is passed to a component, but does not have a corresponding prop defined.
+所谓非 `prop` 属性，就是它可以直接传入组件，而不需要定义相应的 `prop`。
 
-While explicitly defined props are preferred for passing information to a child component, authors of component libraries can't always foresee the contexts in which their components might be used. That's why components can accept arbitrary attributes, which are added to the component's root element.
+明确给组件定义 `prop` 是传参的推荐方式，但组件的作者并不总能预见到组件被使用的场景。所以，组件可以接收任意传入的属性，这些属性都会被添加到组件的根元素上。
 
-For example, imagine we're using a 3rd-party `bs-date-input` component with a Bootstrap plugin that requires a `data-3d-date-picker` attribute on the `input`. We can add this attribute to our component instance:
+例如，第三方组件 `bs-date-input`，当它要和某个 `Bootstrap` 插件互操作时，需要在这个第三方组件的 input 上添加 `data-3d-date-picker` 属性， 这时可以把属性直接添加到组件上（不需要事先定义 `prop` ):
 
 ``` html
 <bs-date-input data-3d-date-picker="true"></bs-date-input>
 ```
 
-And the `data-3d-date-picker="true"` attribute will automatically be added to the root element of `bs-date-input`.
+添加属性 `data-3d-date-picker="true"` 之后，它会被自动添加到 `bs-date-input` 的根元素上
 
 ### Replacing/Merging with Existing Attributes
 
