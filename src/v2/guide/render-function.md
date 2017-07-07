@@ -27,26 +27,24 @@ Vue 推荐在绝大多数情况下使用 template 来创建你的 HTML。然而�
 
 ``` html
 <script type="text/x-template" id="anchored-heading-template">
-  <div>
-    <h1 v-if="level === 1">
-      <slot></slot>
-    </h1>
-    <h2 v-if="level === 2">
-      <slot></slot>
-    </h2>
-    <h3 v-if="level === 3">
-      <slot></slot>
-    </h3>
-    <h4 v-if="level === 4">
-      <slot></slot>
-    </h4>
-    <h5 v-if="level === 5">
-      <slot></slot>
-    </h5>
-    <h6 v-if="level === 6">
-      <slot></slot>
-    </h6>
-  </div>
+  <h1 v-if="level === 1">
+    <slot></slot>
+  </h1>
+  <h2 v-else-if="level === 2">
+    <slot></slot>
+  </h2>
+  <h3 v-else-if="level === 3">
+    <slot></slot>
+  </h3>
+  <h4 v-else-if="level === 4">
+    <slot></slot>
+  </h4>
+  <h5 v-else-if="level === 5">
+    <slot></slot>
+  </h5>
+  <h6 v-else-if="level === 6">
+    <slot></slot>
+  </h6>
 </script>
 ```
 
@@ -62,7 +60,7 @@ Vue.component('anchored-heading', {
 })
 ```
 
-在这种场景中使用 template 并不是最好的选择：首先代码冗长，为了在不同级别的标题中插入锚点元素，我们需要重复地使用 `<slot></slot>`。其次由于组件必须有根节点，标题和锚点元素被包裹在了一个无用的 `div` 中。
+在这种场景中使用 template 并不是最好的选择：首先代码冗长，为了在不同级别的标题中插入锚点元素，我们需要重复地使用 `<slot></slot>`。
 
 虽然模板在大多数组件中都非常好用，但是在这里它就不是很简洁的了。那么，我们来尝试使用 `render` 函数重写上面的例子：
 
