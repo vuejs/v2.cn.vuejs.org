@@ -1082,45 +1082,45 @@ function pluralizeKnife (count) {
 </div>
 {% endraw %}
 
-### Two-Way Filters <sup>replaced</sup>
+### 双向过滤器 <sup>替换</sup>
 
-Some users have enjoyed using two-way filters with `v-model` to create interesting inputs with very little code. While _seemingly_ simple however, two-way filters can also hide a great deal of complexity - and even encourage poor UX by delaying state updates. Instead, components wrapping an input are recommended as a more explicit and feature-rich way of creating custom inputs.
+有些用户已经乐于通过 `v-model` 使用双向过滤器，以很少的代码创建有趣的输入。尽管表面上很_简单_，双向过滤器也会暗藏一些巨大的复杂性——甚至促使状态更新变得迟钝影响用户体验。推荐用包裹一个输入的组件取而代之，这样以更显性且功能更丰富的方式创建自定义的输入。
 
-As an example, we'll now walk the migration of a two-way currency filter:
+我们现在做一次双向汇率过滤器的迁移作为示范：
 
 <iframe width="100%" height="300" src="https://jsfiddle.net/chrisvfritz/6744xnjk/embedded/js,html,result" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
-It mostly works well, but the delayed state updates can cause strange behavior. For example, click on the `Result` tab and try entering `9.999` into one of those inputs. When the input loses focus, its value will update to `$10.00`. When looking at the calculated total however, you'll see that `9.999` is what's stored in our data. The version of reality that the user sees is out of sync!
+它基本工作良好，但是拖延的状态更新会导致奇怪的行为。比如，点击 `Result` 标签，试着在其中一个输入框中输入 `9.999`。当输入框失去焦点的时候，其值将会更新到 `$10.00`。然而当我们从整个计算器的角度看时，你会发现存储的数据是 `9.999`。用户看到的已经不是真实的同步了！
 
-To start transitioning towards a more robust solution using Vue 2.0, let's first wrap this filter in a new `<currency-input>` component:
+为了过渡到一个更加健壮的 Vue 2.0 的方案，让我们首先在一个新的 `<currency-input>` 组件中包裹这个过滤器：
 
 <iframe width="100%" height="300" src="https://jsfiddle.net/chrisvfritz/943zfbsh/embedded/js,html,result" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
-This allows us add behavior that a filter alone couldn't encapsulate, such as selecting the content of an input on focus. Now the next step will be to extract the business logic from the filter. Below, we pull everything out into an external [`currencyValidator` object](https://gist.github.com/chrisvfritz/5f0a639590d6e648933416f90ba7ae4e):
+它允许我们添加独立过滤器无法封装的行为，比如选择输入框聚焦的内容。下一步我们从过滤器中提取业务逻辑。接下来是我们把所有的东西放到一个外部的 [`currencyValidator` 对象](https://gist.github.com/chrisvfritz/5f0a639590d6e648933416f90ba7ae4e)中：
 
 <iframe width="100%" height="300" src="https://jsfiddle.net/chrisvfritz/9c32kev2/embedded/js,html,result" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
-This increased modularity not only makes it easier to migrate to Vue 2, but also allows currency parsing and formatting to be:
+这会更加模块化，不只是更容易的迁移到 Vue 2，同时也允许汇率间隙和格式化：
 
-- unit tested in isolation from your Vue code
-- used by other parts of your application, such as to validate the payload to an API endpoint
+- 从你的 Vue 代码中独立出来进行单元测试
+- 在你的应用程序的别的部分中使用，比如验证验证一个 API 端的负荷
 
-Having this validator extracted out, we've also more comfortably built it up into a more robust solution. The state quirks have been eliminated and it's actually impossible for users to enter anything wrong, similar to what the browser's native number input tries to do.
+把这个验证器提取出来之后，我们也可以更舒适的把它构建到更健壮的解决方案中。那些古怪的状态也消除了，用户不再可能会出入错我，就像浏览器原生的数字输入框一样。
 
-We're still limited however, by filters and by Vue 1.0 in general, so let's complete the upgrade to Vue 2.0:
+然而在 Vue 1.0 的过滤器中，我们仍然是受限的，所以还是完全升级到 Vue 2.0 吧：
 
 <iframe width="100%" height="300" src="https://jsfiddle.net/chrisvfritz/1oqjojjx/embedded/js,html,result" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
-You may notice that:
+你可能注意到了：
 
-- Every aspect of our input is more explicit, using lifecycle hooks and DOM events in place of the hidden behavior of two-way filters.
-- We can now use `v-model` directly on our custom inputs, which is not only more consistent with normal inputs, but also means our component is Vuex-friendly.
-- Since we're no longer using filter options that require a value to be returned, our currency work could actually be done asynchronously. That means if we had a lot of apps that had to work with currencies, we could easily refactor this logic into a shared microservice.
+- 我们的输入框的各方面都更显性，使用生命周期钩子和 DOM 事件以替代双向过滤器的隐藏行为。
+- 我们现在可以在自定义输入框中直接使用 `v-model`，其不只是固定配合正常的输入框来使用，这也意味着我们的组件是对 Vuex 友好的。
+- 因为我们已经不再要求过滤器选项必须要有一个返回值，所以实际上我们的汇率工作可以异步完成。这意味着如果我们有很多应用需要和汇率打交道，我们可以轻松的提炼这个逻辑并成为一个共享的微服务。
 
 {% raw %}
 <div class="upgrade-path">
-  <h4>Upgrade Path</h4>
-  <p>Run the<a href="https://github.com/vuejs/vue-migration-helper">迁移工具</a>on your codebase to find examples of filters used in directives like <code>v-model</code>. If you miss any, you should also see <strong>console errors</strong>.</p>
+  <h4>升级方式</h4>
+  <p>运行<a href="https://github.com/vuejs/vue-migration-helper">迁移工具</a>找到在例如 <code>v-model</code> 的指令中使用过滤器的例子。如果你错过了，则应该会收到<strong>命令行报错</strong>。</p>
 </div>
 {% endraw %}
 
@@ -1133,7 +1133,7 @@ You may notice that:
 {% raw %}
 <div class="upgrade-path">
   <h4>升级方式</h4>
-  <p>更新后运行测试，查看 <strong>控制台警告信息</strong> 关于重名slots的提示 <code>v-model</code>。</p>
+  <p>更新后运行测试，查看<strong>控制台警告信息</strong> 关于重名 slots 的提示 <code>v-model</code>。</p>
 </div>
 {% endraw %}
 
