@@ -95,7 +95,7 @@ $ npm run dev
 ``` js
 // 需要编译器
 new Vue({
-  template: `<div>{{ hi }}</div>`
+  template: '<div>{{ hi }}</div>'
 })
 
 // 不需要编译器
