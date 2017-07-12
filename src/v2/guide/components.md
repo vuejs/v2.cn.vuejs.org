@@ -430,7 +430,7 @@ Vue.component('example', {
 
 `type` 也可以是一个自定义构造器函数，使用 `instanceof` 检测。
 
-当 prop 验证失败，Vue 会在抛出警告 (如果使用的是开发版本)。注意 props 会在组件示例创建__之前__进行校验，所以在 `default` 或 `validator` 函数里，诸如 `data`、`computed` 或 `methods` 的示例属性还无法使用。
+当 prop 验证失败，Vue 会在抛出警告 (如果使用的是开发版本)。注意 props 会在组件实例创建__之前__进行校验，所以在 `default` 或 `validator` 函数里，诸如 `data`、`computed` 或 `methods` 等实例属性还无法使用。
 
 ## 非 Prop 属性
 
@@ -468,7 +468,7 @@ Vue.component('example', {
 - `form-control`，来自组件的模板
 - `date-picker-theme-dark`，从父组件传进来的
 
-对于多数特性来说，传递给组件的值会提到组件本身设定的值。即例如传递 `type="large"` 将会替换 `type="date"` 且有可能破坏该组件！索性我们对待 `class` 和 `style` 特性会更聪明一些，这两个特性的值都会做覆盖 (merge) 操作，让最终生成的值为：`form-control date-picker-theme-dark`。
+对于多数特性来说，传递给组件的值会覆盖组件本身设定的值。即例如传递 `type="large"` 将会覆盖 `type="date"` 且有可能破坏该组件！索性我们对待 `class` 和 `style` 特性会更聪明一些，这两个特性的值都会做合并 (merge) 操作，让最终生成的值为：`form-control date-picker-theme-dark`。
 
 ## 自定义事件
 
