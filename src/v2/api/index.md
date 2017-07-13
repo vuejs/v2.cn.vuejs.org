@@ -81,7 +81,27 @@ type: api
 
   > 在 2.2.0 中，这个钩子也会捕获组件生命周期钩子里的错误。同样的，当这个钩子是 `undefined` 时，被捕获的错误会通过 `console.error` 输出而避免应用崩溃。
 
+  > 在 2.4.0 中这个钩子也会捕获 Vue 自定义事件句柄内部的错误了。
+
   > [Sentry](https://sentry.io), 一个错误追踪服务, 通过此选项提供[官方集成](https://sentry.io/for/vue/)。
+
+### warnHandler
+
+> 2.4.0 新增
+
+- **类型：** `Function`
+
+- **默认值：** `undefined`
+
+- **用法：**
+
+  ``` js
+  Vue.config.warnHandler = function (msg, vm, trace) {
+    // 追踪组件继承
+  }
+  ```
+
+  为 Vue 的运行时警告赋于一个自定义句柄。注意这只会在开发者环境下生效，在生产环境下它会被忽略。
 
 ### ignoredElements
 
@@ -1085,6 +1105,30 @@ if (version === 2) {
   </my-checkbox>
   ```
 
+### inheritAttrs
+
+> 2.4.0 新增
+
+- **类型：** `boolean`
+
+- **默认值：** `true`
+
+- **详细：**
+
+  默认情况下父作用域的不被认作 props 的特性绑定 (attribute bindings) 将会“回退”且作为普通的 HTML 特性应用在子组件的根元素上。当撰写包裹一个目标元素或另一个组件的组件时，这可能不会总是符合预期行为。通过设置 `inheritAttrs` 到 `false`，这些默认行为将会被去掉。而通过 (同样是 2.4 新增的) 实例属性 `$attrs` 可以让这些特性生效，且可以通过 `v-bind` 显性的绑定到非根元素上。
+
+### comments
+
+> 2.4.0 新增
+
+- **类型** `boolean`
+
+- **默认值：** `false`
+
+- **详细：**
+
+  当设为 `true` 时，将会保留且渲染模板中的 HTML 注释。默认行为是舍弃它们。
+
 ## 实例属性
 
 ### vm.$data
@@ -1262,13 +1306,33 @@ if (version === 2) {
 
 - **参考：** [服务端渲染](../guide/ssr.html)
 
+### vm.$attrs
+
+- **类型：** `{ [key: string]: string }`
+
+- **只读**
+
+- **详细：**
+
+  包含了父作用域中不被认为 (且不预期为) props 的特性绑定。当一个组件没有声明任何 props 时，这里会包含除 `class` 和 `style` 之外的所有父作用域的绑定，并且可以通过 `v-bind="$attrs"` 传入内部组件——在创建更高层次的组件时非常有用。
+
+### vm.$listeners
+
+- **类型：** `{ [key: string]: Function | Array<Function> }`
+
+- **只读**
+
+- **详细：**
+
+  包含了父作用域中的 (不含 `.native` 修饰器的) `v-on` 事件监听器。它可以通过 `v-on="$listeners"` 传入内部组件——在创建更高层次的组件时非常有用。
+
 ## 实例方法 / 数据
 
 <h3 id="vm-watch">vm.$watch( expOrFn, callback, [options] )</h3>
 
 - **参数：**
   - `{string | Function} expOrFn`
-  - `{Function} callback`
+  - `{Function | Object} callback`
   - `{Object} [options]`
     - `{boolean} deep`
     - `{boolean} immediate`
@@ -1663,9 +1727,9 @@ if (version === 2) {
 
 - **缩写：** `@`
 
-- **预期：** `Function | Inline Statement`
+- **预期：** `Function | Inline Statement | Object`
 
-- **参数：** `event (required)`
+- **参数：** `event`
 
 - **修饰符：**
   - `.stop` - 调用 `event.stopPropagation()`。
@@ -1684,6 +1748,8 @@ if (version === 2) {
 
   绑定事件监听器。事件类型由参数指定。表达式可以是一个方法的名字或一个内联语句，如果没有修饰符也可以省略。
 
+  从 `2.4.0` 开始，`v-on` 同样支持不带参数绑定一个事件/监听器键值对的对象。注意当使用对象语法时，是不支持任何修饰器的。
+
   用在普通元素上时，只能监听 **原生 DOM 事件**。用在自定义元素组件上时，也可以监听子组件触发的**自定义事件**。
 
   在监听原生 DOM 事件时，方法以事件为唯一的参数。如果使用内联语句，语句可以访问一个 `$event` 属性： `v-on:click="handle('ok', $event)"`。
@@ -1693,6 +1759,9 @@ if (version === 2) {
   ```html
   <!-- 方法处理器 -->
   <button v-on:click="doThis"></button>
+
+  <!-- 对象语法 (2.4.0+) -->
+  <button v-on="{ mousedown: doThis, mouseup: doThat }"></button>
 
   <!-- 内联语句 -->
   <button v-on:click="doThat('hello', $event)"></button>
