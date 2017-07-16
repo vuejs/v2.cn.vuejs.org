@@ -475,7 +475,7 @@ Vue.component('my-component', {
 
 在添加 `functional: true` 之后，锚点标题组件的 render 函数之间简单更新增加 `context` 参数，`this.$slots.default` 更新为 `context.children`，之后`this.level` 更新为 `context.props.level`。
 
-因为函数化组件只是一个函数，所以渲染开销也低很多。另外，这也意味着函数化组件不会出现在 VueJS Chrome 开发者工具的组件树里。
+因为函数化组件只是一个函数，所以渲染开销也低很多。然而，对持久化实例的缺乏也意味着函数化组件不会出现在 [Vue devtools](https://github.com/vuejs/vue-devtools) 的组件树里。
 
 在作为包装组件时它们也同样非常有用，比如，当你需要做这些时：
 
