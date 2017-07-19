@@ -49,9 +49,6 @@ new Vue({
         .onUpdate(function () {
           vm.animatedNumber = this.tweeningNumber.toFixed(0)
         })
-        .onComplete(function () {
-          cancelAnimationFrame(animationFrame)
-        })
         .start()
 
       animate()
@@ -87,9 +84,6 @@ new Vue({
         .to({ tweeningNumber: newValue }, 500)
         .onUpdate(function () {
           vm.animatedNumber = this.tweeningNumber.toFixed(0)
-        })
-        .onComplete(function () {
-          cancelAnimationFrame(animationFrame)
         })
         .start()
 
