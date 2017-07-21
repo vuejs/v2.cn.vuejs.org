@@ -48,7 +48,7 @@ Mustache 不能在 HTML 属性中使用，应使用 [v-bind 指令](../api/#v-bi
 <div v-bind:id="dynamicId"></div>
 ```
 
-这对布尔值的属性也有效 —— 如果条件被求值为 false 的话该属性会被移除： 
+这对布尔值的属性也有效 —— 如果条件被求值为 false 的话该属性会被移除：
 
 ``` html
 <button v-bind:disabled="isButtonDisabled">Button</button>
@@ -131,10 +131,9 @@ Vue.js 允许你自定义过滤器，可被用作一些常见的文本格式化�
 <div v-bind:id="rawId | formatId"></div>
 ```
 
-<p class="tip">Vue 2.x 中，过滤器只能在 mustache 绑定和 `v-bind` 表达式（从 2.1.0 开始支持）中使用，因为过滤器设计目的就是用于文本转换。为了在其他指令中实现更复杂的数据变换，你应该使用[计算属性](computed.html)。</p>
+<p class="tip">Vue 2.x 中，过滤器只能在 mustache 绑定和 `v-bind` 表达式 (后者从 2.1.0 起支持) 中使用，因为过滤器设计目的就是用于文本转换。为了在其他指令中实现更复杂的数据变换，你应该使用[计算属性](computed.html)。</p>
 
 过滤器函数总接受表达式的值作为第一个参数。
-
 
 ``` js
 new Vue({

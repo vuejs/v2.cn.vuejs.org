@@ -79,9 +79,9 @@ type: api
 
   指定组件的渲染和观察期间未捕获错误的处理函数。这个处理函数被调用时，可获取错误信息和 Vue 实例。
 
-  > 在 2.2.0 中，这个钩子也会捕获组件生命周期钩子里的错误。同样的，当这个钩子是 `undefined` 时，被捕获的错误会通过 `console.error` 输出而避免应用崩溃。
+  > 从 2.2.0 起，这个钩子也会捕获组件生命周期钩子里的错误。同样的，当这个钩子是 `undefined` 时，被捕获的错误会通过 `console.error` 输出而避免应用崩溃。
 
-  > 在 2.4.0 中这个钩子也会捕获 Vue 自定义事件句柄内部的错误了。
+  > 从 2.4.0 起这个钩子也会捕获 Vue 自定义事件句柄内部的错误了。
 
   > [Sentry](https://sentry.io), 一个错误追踪服务, 通过此选项提供[官方集成](https://sentry.io/for/vue/)。
 
@@ -171,7 +171,7 @@ type: api
 
 ## 全局 API
 
-<h3 id="Vue-extend">Vue.extend( options )</h3>
+### Vue.extend( options )
 
 - **参数：**
   - `{Object} options`
@@ -210,7 +210,7 @@ type: api
 
 - **参考：** [组件](../guide/components.html)
 
-<h3 id="Vue-nextTick">Vue.nextTick( [callback, context] )</h3>
+### Vue.nextTick( [callback, context] )
 
 - **参数：**
   - `{Function} [callback]`
@@ -229,11 +229,11 @@ type: api
   })
   ```
 
-  > 2.1.0新增：如果没有提供回调且支持 promise 的环境中返回 promise。
+  > 2.1.0 起新增：如果没有提供回调且支持 promise 的环境中返回 promise。
 
 - **参考：** [异步更新队列](../guide/reactivity.html#异步更新队列)
 
-<h3 id="Vue-set">Vue.set( target, key, value )</h3>
+### Vue.set( target, key, value )
 
 - **参数：**
   - `{Object | Array} target`
@@ -250,7 +250,7 @@ type: api
 
 - **参考：** [深入响应式原理](../guide/reactivity.html)
 
-<h3 id="Vue-delete">Vue.delete( target, key )</h3>
+### Vue.delete( target, key )
 
 - **参数：**
   - `{Object | Array} target`
@@ -268,7 +268,7 @@ type: api
 
 - **参考：** [深入响应式原理](../guide/reactivity.html)
 
-<h3 id="Vue-directive">Vue.directive( id, [definition] )</h3>
+### Vue.directive( id, [definition] )
 
 - **参数：**
   - `{string} id`
@@ -299,7 +299,7 @@ type: api
 
 - **参考：** [自定义指令](../guide/custom-directive.html)
 
-<h3 id="Vue-filter">Vue.filter( id, [definition] )</h3>
+### Vue.filter( id, [definition] )
 
 - **参数：**
   - `{string} id`
@@ -319,7 +319,7 @@ type: api
   var myFilter = Vue.filter('my-filter')
   ```
 
-<h3 id="Vue-component">Vue.component( id, [definition] )</h3>
+### Vue.component( id, [definition] )
 
 - **参数：**
   - `{string} id`
@@ -342,7 +342,7 @@ type: api
 
 - **参考：** [组件](../guide/components.html)
 
-<h3 id="Vue-use">Vue.use( plugin )</h3>
+### Vue.use( plugin )
 
 - **参数：**
   - `{Object | Function} plugin`
@@ -355,7 +355,7 @@ type: api
 
 - **参考：** [插件](../guide/plugins.html)
 
-<h3 id="Vue-mixin">Vue.mixin( mixin )</h3>
+### Vue.mixin( mixin )
 
 - **参数：**
   - `{Object} mixin`
@@ -366,7 +366,7 @@ type: api
 
 - **参考：** [全局混合](../guide/mixins.html#全局混合)
 
-<h3 id="Vue-compile">Vue.compile( template )</h3>
+### Vue.compile( template )
 
 - **参数：**
   - `{string} template`
@@ -389,7 +389,7 @@ type: api
 
 - **参考：** [Render 函数](../guide/render-function.html)
 
-<h3 id="Vue-version">Vue.version</h3>
+### Vue.version
 
 - **细节：**提供字符串形式的 Vue 安装版本号。这对社区的插件和组件来说非常有用，你可以根据不同的版本号采取不同的策略。
 
@@ -708,7 +708,7 @@ if (version === 2) {
 
 ## 选项 / 生命周期钩子
 
-所有的生命周期钩子自动绑定 `this` 上下文到实例中，因此你可以访问数据，对属性和方法进行运算。这意味着 __你不能使用箭头函数来定义一个生命周期方法__ (例如 `created: () => this.fetchTodos()`)。这是因为箭头函数绑定了父上下文，因此 `this` 与你期待的 Vue 实例不同， `this.fetchTodos` 的行为未定义。
+<p class="tip">所有的生命周期钩子自动绑定 `this` 上下文到实例中，因此你可以访问数据，对属性和方法进行运算。这意味着 __你不能使用箭头函数来定义一个生命周期方法__ (例如 `created: () => this.fetchTodos()`)。这是因为箭头函数绑定了父上下文，因此 `this` 与你期待的 Vue 实例不同， `this.fetchTodos` 的行为未定义。</p>
 
 ### beforeCreate
 
@@ -988,7 +988,7 @@ if (version === 2) {
   }
   ```
 
-  > 接下来 2 个例子只工作在 Vue > 2.2.1。低于这个版本时，注入的值会在 `props` 和 `data` 初始化之后得到。
+  > 接下来 2 个例子只工作在 Vue 2.2.1 或更高版本。低于这个版本时，注入的值会在 `props` 和 `data` 初始化之后得到。
 
   使用一个注入的值作为一个属性的默认值：
 
@@ -1038,9 +1038,11 @@ if (version === 2) {
 
 - **默认值:** `{% raw %}["{{", "}}"]{% endraw %}`
 
+- **限制:** 这个选项只在完整构建版本中的浏览器内编译时可用。
+
 - **详细:**
 
- 改变纯文本插入分隔符。 **这个选择只有在独立构建时才有用。**
+ 改变纯文本插入分隔符。
 
 - **示例:**
 
@@ -1119,13 +1121,17 @@ if (version === 2) {
 
   默认情况下父作用域的不被认作 props 的特性绑定 (attribute bindings) 将会“回退”且作为普通的 HTML 特性应用在子组件的根元素上。当撰写包裹一个目标元素或另一个组件的组件时，这可能不会总是符合预期行为。通过设置 `inheritAttrs` 到 `false`，这些默认行为将会被去掉。而通过 (同样是 2.4 新增的) 实例属性 `$attrs` 可以让这些特性生效，且可以通过 `v-bind` 显性的绑定到非根元素上。
 
+  注意：这个选项**不影响** `class` 和 `style` 绑定。
+
 ### comments
 
 > 2.4.0 新增
 
-- **类型** `boolean`
+- **类型：** `boolean`
 
 - **默认值：** `false`
+
+- **限制：** 这个选项只在完整构建版本中的浏览器内编译时可用。
 
 - **详细：**
 
@@ -1264,7 +1270,7 @@ if (version === 2) {
 
 ### vm.$scopedSlots
 
-> 2.1.0新增
+> 2.1.0 新增
 
 - **类型：** `{ [name: string]: props => VNode | Array<VNode> }`
 
@@ -1316,7 +1322,7 @@ if (version === 2) {
 
 - **详细：**
 
-  包含了父作用域中不被认为 (且不预期为) props 的特性绑定。当一个组件没有声明任何 props 时，这里会包含除 `class` 和 `style` 之外的所有父作用域的绑定，并且可以通过 `v-bind="$attrs"` 传入内部组件——在创建更高层次的组件时非常有用。
+  包含了父作用域中不被认为 (且不预期为) props 的特性绑定 (`class` 和 `style` 除外)。当一个组件没有声明任何 props 时，这里会包含所有父作用域的绑定 (`class` 和 `style` 除外)，并且可以通过 `v-bind="$attrs"` 传入内部组件——在创建更高层次的组件时非常有用。
 
 ### vm.$listeners
 
@@ -1330,7 +1336,7 @@ if (version === 2) {
 
 ## 实例方法 / 数据
 
-<h3 id="vm-watch">vm.$watch( expOrFn, callback, [options] )</h3>
+### vm.$watch( expOrFn, callback, [options] )
 
 - **参数：**
   - `{string | Function} expOrFn`
@@ -1397,7 +1403,7 @@ if (version === 2) {
   // 立即以 `a` 的当前值触发回调
   ```
 
-<h3 id="vm-set">vm.$set( target, key, value )</h3>
+### vm.$set( target, key, value )
 
 - **参数：**
   - `{Object | Array} target`
@@ -1412,7 +1418,7 @@ if (version === 2) {
 
 - **另见：** [Vue.set](#Vue-set)
 
-<h3 id="vm-delete">vm.$delete( target, key )</h3>
+### vm.$delete( target, key )
 
 - **参数：**
   - `{Object | Array} target`
@@ -1426,7 +1432,7 @@ if (version === 2) {
 
 ## 实例方法/事件
 
-<h3 id="vm-on">vm.$on( event, callback )</h3>
+### vm.$on( event, callback )
 
 - **参数：**
   - `{string | Array<string>} event` (数组只在 2.2.0+ 中支持)
@@ -1446,7 +1452,7 @@ if (version === 2) {
   // -> "hi"
   ```
 
-<h3 id="vm-once">vm.$once( event, callback )</h3>
+### vm.$once( event, callback )
 
 - **参数：**
   - `{string} event`
@@ -1456,7 +1462,7 @@ if (version === 2) {
 
   监听一个自定义事件，但是只触发一次，在第一次触发之后移除监听器。
 
-<h3 id="vm-off">vm.$off( [event, callback] )</h3>
+### vm.$off( [event, callback] )
 
 - **参数：**
   - `{string} [event]`
@@ -1472,7 +1478,7 @@ if (version === 2) {
 
   - 如果同时提供了事件与回调，则只移除这个回调的监听器。
 
-<h3 id="vm-emit">vm.$emit( event, [...args] )</h3>
+### vm.$emit( event, [...args] )
 
 - **参数：**
   - `{string} event`
@@ -1482,7 +1488,7 @@ if (version === 2) {
 
 ## 实例方法 / 生命周期
 
-<h3 id="vm-mount">vm.$mount( [elementOrSelector] )</h3>
+### vm.$mount( [elementOrSelector] )
 
 - **参数：**
   - `{Element | string} [elementOrSelector]`
@@ -1520,23 +1526,22 @@ if (version === 2) {
   - [生命周期图示](../guide/instance.html#生命周期图示)
   - [服务端渲染](../guide/ssr.html)
 
-<h3 id="vm-forceUpdate">vm.$forceUpdate()</h3>
+### vm.$forceUpdate()
 
 - **示例：**
 
-  迫使Vue实例重新渲染。注意它仅仅影响实例本身和插入插槽内容的子组件，而不是所有子组件。
+  迫使 Vue 实例重新渲染。注意它仅仅影响实例本身和插入插槽内容的子组件，而不是所有子组件。
 
-<h3 id="vm-nextTick">vm.$nextTick( [callback] )</h3>
+### vm.$nextTick( [callback] )
 
 - **参数：**
   - `{Function} [callback]`
 
 - **用法：**
 
-  将回调延迟到下次 DOM 更新循环之后执行。在修改数据之后立即使用它，然后等待 DOM 更新。它跟全局方法 Vue.nextTick 一样，不同的是回调的 `this` 自动绑定到调用它的实例上。
+  将回调延迟到下次 DOM 更新循环之后执行。在修改数据之后立即使用它，然后等待 DOM 更新。它跟全局方法 `Vue.nextTick` 一样，不同的是回调的 `this` 自动绑定到调用它的实例上。
 
-
- > 2.1.0新增：如果没有提供回调且支持 promise 的环境中返回 promise。
+ > 2.1.0 新增：如果没有提供回调且支持 Promise 的环境中返回 Promise。
 
 - **示例：**
 
@@ -1563,7 +1568,7 @@ if (version === 2) {
   - [Vue.nextTick](#Vue-nextTick)
   - [异步更新队列](../guide/reactivity.html#异步更新队列)
 
-<h3 id="vm-destroy">vm.$destroy()</h3>
+### vm.$destroy()
 
 - **用法：**
 
@@ -1662,7 +1667,7 @@ if (version === 2) {
 
 ### v-else-if
 
-> 2.1.0新增
+> 2.1.0 新增
 
 - **类型:** `any`
 
