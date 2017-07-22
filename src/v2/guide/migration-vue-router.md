@@ -515,7 +515,7 @@ scrollBehavior: function (to, from, savedPosition) {
 
 ### `data` <sup>替换</sup>
 
-`$route`属性是响应式的，所有你可以就使用一个 watcher 去响应路由的改变，就像这样：
+`$route`属性是响应式的，所以你可以就使用一个 watcher 去响应路由的改变，就像这样：
 
 
 ``` js
