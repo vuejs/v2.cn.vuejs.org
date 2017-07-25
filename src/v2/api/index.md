@@ -704,7 +704,7 @@ if (version === 2) {
     ```
 
   - **参考：**
-    - [渲染函数](../guide/render-function)
+    - [渲染函数](../guide/render-function.html)
 
 ## 选项 / 生命周期钩子
 
