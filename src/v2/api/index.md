@@ -2102,7 +2102,6 @@ if (version === 2) {
   - `appear-to-class` - string
   - `enter-active-class` - string
   - `leave-active-class` - string
-  - `appear-class` - string
   - `appear-active-class` - string
 
 - **事件：**
