@@ -416,7 +416,7 @@ createElement(
 </anchored-heading>
 ```
 
-这就是会有一个 [Babel plugin](https://github.com/vuejs/babel-plugin-transform-vue-jsx) 插件，用于在 Vue 中使用 JSX 语法的原因，它可以让我们回到于更接近模板的语法上。
+这就是为什么会有一个 [Babel 插件](https://github.com/vuejs/babel-plugin-transform-vue-jsx) ，用于在 Vue 中使用 JSX 语法的原因，它可以让我们回到更接近于模板的语法上。
 
 
 ``` js
