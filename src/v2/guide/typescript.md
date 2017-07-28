@@ -136,3 +136,63 @@ export default class MyComponent extends Vue {
 ```
 
 有了这种备选语法，我们的组件定义不仅仅更加短小了，而且 TypeScript 也能在无需显式的接口声明的情况下，正确推断 `message` 和 `onClick` 的类型了呢。这个策略甚至能让你处理计算属性（computed），生命周期钩子以及 render 函数的类型。你可以参阅 [vue-class-component 文档](https://github.com/vuejs/vue-class-component#vue-class-component)，来了解完整的细节。
+
+## Declaring Types of Vue Plugins
+
+Plugins may add to Vue's global/instance properties and component options. In these cases, type declarations are needed to make plugins compile in TypeScript. Fortunately, there's a TypeScript feature to augment existing types called [module augmentation](https://www.typescriptlang.org/docs/handbook/declaration-merging.html#module-augmentation).
+
+For example, to declare an instance property `$myProperty` with type `string`:
+
+``` ts
+// 1. Make sure to import 'vue' before declaring augmented types
+import Vue from 'vue'
+
+// 2. Specify a file with the types you want to augment
+//    Vue has the constructor type in types/vue.d.ts
+declare module 'vue/types/vue' {
+  // 3. Declare augmentation for Vue
+  interface Vue {
+    $myProperty: string
+  }
+}
+```
+
+After including the above code as a declaration file (like `my-property.d.ts`) in your project, you can use `$myProperty` on a Vue instance.
+
+```ts
+var vm = new Vue()
+console.log(vm.$myProperty) // This will be successfully compiled
+```
+
+You can also declare additional global properties and component options:
+
+```ts
+import Vue from 'vue'
+
+declare module 'vue/types/vue' {
+  // Global properties can be declared
+  // by using `namespace` instead of `interface`
+  namespace Vue {
+    const $myGlobal: string
+  }
+}
+
+// ComponentOptions is declared in types/options.d.ts
+declare module 'vue/types/options' {
+  interface ComponentOptions<V extends Vue> {
+    myOption?: string
+  }
+}
+```
+
+The above declarations allow the following code to be compiled:
+
+```ts
+// Global property
+console.log(Vue.$myGlobal)
+
+// Additional component option
+var vm = new Vue({
+  myOption: 'Hello'
+})
+```
