@@ -137,47 +137,47 @@ export default class MyComponent extends Vue {
 
 有了这种备选语法，我们的组件定义不仅仅更加短小了，而且 TypeScript 也能在无需显式的接口声明的情况下，正确推断 `message` 和 `onClick` 的类型了呢。这个策略甚至能让你处理计算属性（computed），生命周期钩子以及 render 函数的类型。你可以参阅 [vue-class-component 文档](https://github.com/vuejs/vue-class-component#vue-class-component)，来了解完整的细节。
 
-## Declaring Types of Vue Plugins
+## 声明 Vue 插件补充的类型
 
-Plugins may add to Vue's global/instance properties and component options. In these cases, type declarations are needed to make plugins compile in TypeScript. Fortunately, there's a TypeScript feature to augment existing types called [module augmentation](https://www.typescriptlang.org/docs/handbook/declaration-merging.html#module-augmentation).
+插件可以增加 Vue 的全局/实例属性和组件选项。在这些情况下，在 TypeScript 中制作插件需要类型声明。庆幸的是，TypeScript 有一个特性来补充现有的类型，叫做[模块补充 (module augmentation)](https://www.typescriptlang.org/docs/handbook/declaration-merging.html#module-augmentation)。
 
-For example, to declare an instance property `$myProperty` with type `string`:
+例如，声明一个 `string` 类型的实例属性 `$myProperty`：
 
 ``` ts
-// 1. Make sure to import 'vue' before declaring augmented types
+// 1. 确保在声明补充的类型之前导入 'vue'
 import Vue from 'vue'
 
-// 2. Specify a file with the types you want to augment
-//    Vue has the constructor type in types/vue.d.ts
+// 2. 定制一个文件，设置你想要补充的类型
+//    在 types/vue.d.ts 里 Vue 有构造函数类型
 declare module 'vue/types/vue' {
-  // 3. Declare augmentation for Vue
+// 3. 声明为 Vue 补充的东西
   interface Vue {
     $myProperty: string
   }
 }
 ```
 
-After including the above code as a declaration file (like `my-property.d.ts`) in your project, you can use `$myProperty` on a Vue instance.
+在你的项目中包含了上述作为声明文件的代码之后 (像 `my-property.d.ts`)，你就可以在 Vue 实例上使用 `$myProperty` 了。
 
 ```ts
 var vm = new Vue()
-console.log(vm.$myProperty) // This will be successfully compiled
+console.log(vm.$myProperty) // 将会顺利编译通过
 ```
 
-You can also declare additional global properties and component options:
+你也可以声明额外的属性和组件选项：
 
 ```ts
 import Vue from 'vue'
 
 declare module 'vue/types/vue' {
-  // Global properties can be declared
-  // by using `namespace` instead of `interface`
+  // 可以使用 `namespace` 替代 `interface`
+  // 来声明全局属性
   namespace Vue {
     const $myGlobal: string
   }
 }
 
-// ComponentOptions is declared in types/options.d.ts
+// ComponentOptions 声明于 types/options.d.ts 之中
 declare module 'vue/types/options' {
   interface ComponentOptions<V extends Vue> {
     myOption?: string
@@ -185,13 +185,13 @@ declare module 'vue/types/options' {
 }
 ```
 
-The above declarations allow the following code to be compiled:
+上述的声明允许下面的代码顺利编译通过：
 
 ```ts
-// Global property
+// 全局属性
 console.log(Vue.$myGlobal)
 
-// Additional component option
+// 额外的组件选项
 var vm = new Vue({
   myOption: 'Hello'
 })
