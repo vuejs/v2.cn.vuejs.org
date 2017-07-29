@@ -1,5 +1,5 @@
 ---
-title: TypeScript Support
+title: TypeScript 支持
 type: guide
 order: 25
 ---
