@@ -230,8 +230,8 @@ new Vue({ el: '#range' })
   v-for="(item, index) in items"
   v-bind:item="item"
   v-bind:index="index"
-  v-bind:key="item.id">
-</my-component>
+  v-bind:key="item.id"
+></my-component>
 ```
 
 不自动注入 `item` 到组件里的原因是，因为这使得组件会紧密耦合到 `v-for` 如何运作。在一些情况下，明确数据的来源可以使组件可重用。
@@ -301,7 +301,7 @@ new Vue({
 ```
 
 {% raw %}
-<div id="todo-list-example">
+<div id="todo-list-example" class="demo">
   <input
     v-model="newTodoText"
     v-on:keyup.enter="addNewTodo"
