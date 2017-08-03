@@ -68,7 +68,7 @@ Vue.use(MyPlugin, { someOption: true })
 
 `Vue.use` 会自动阻止注册相同插件多次，届时只会注册一次该插件。
 
-一些插件，如 `vue-router` 如果 `Vue` 是全局变量则自动调用 `Vue.use()` 。不过在模块环境中应当始终显式调用 `Vue.use()` :
+Vue.js 官方提供的一些插件（例如 `vue-router`），如果检测到 `Vue` 是可访问的全局变量，这些插件会自动调用 `Vue.use()`。然而在例如 CommonJS 的模块环境中，你应该始终显式地调用 `Vue.use()`：
 
 ``` js
 // 通过 Browserify 或 Webpack 使用 CommonJS 兼容模块
@@ -81,11 +81,23 @@ Vue.use(VueRouter)
 
 [awesome-vue](https://github.com/vuejs/awesome-vue#components--libraries) 集合了来自社区贡献的数以千计的插件和库。
 
+***
 
+### 译注：
 
+> 如果检测到 `Vue` 是可访问的全局变量，这些插件会自动调用 `Vue.use()`
+
+可以参考 https://github.com/vuejs/vue-router/blob/dev/src/index.js#L233
+``` javascript
+if (inBrowser && window.Vue) {
+  window.Vue.use(VueRouter)
+}
+```
 
 ***
 
-> 原文： http://vuejs.org/guide/plugins.html
+***
+
+> 原文： http://vuejs.org/v2/guide/plugins.html
 
 ***
