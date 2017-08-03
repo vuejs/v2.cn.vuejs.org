@@ -71,7 +71,7 @@ Vue.use(MyPlugin, { someOption: true })
 Vue.js 官方提供的一些插件（例如 `vue-router`），如果检测到 `Vue` 是可访问的全局变量，这些插件会自动调用 `Vue.use()`。然而在例如 CommonJS 的模块环境中，你应该始终显式地调用 `Vue.use()`：
 
 ``` js
-// 通过 Browserify 或 Webpack 使用 CommonJS 兼容模块
+// 在使用由 Browserify 或 webpack 这些模块打包工具，提供的 CommonJS 模块环境时
 var Vue = require('vue')
 var VueRouter = require('vue-router')
 
