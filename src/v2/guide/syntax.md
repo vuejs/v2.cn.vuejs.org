@@ -192,6 +192,6 @@ new Vue({
 
 ***
 
-> 原文： http://vuejs.org/guide/syntax.html
+> 原文：http://vuejs.org/v2/guide/syntax.html
 
 ***
