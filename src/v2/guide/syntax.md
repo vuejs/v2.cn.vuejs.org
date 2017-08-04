@@ -42,13 +42,13 @@ Mustache 标签将会被替代为对应数据对象上 `msg` 属性的值。无�
 
 ### 属性
 
-Mustache 不能在 HTML 属性中使用，应使用 [v-bind 指令](../api/#v-bind)：
+不要在 HTML 属性中使用双花括号语法(mustache)，而应该使用 [v-bind 指令](../api/#v-bind)：
 
 ``` html
 <div v-bind:id="dynamicId"></div>
 ```
 
-这对布尔值的属性也有效 —— 如果条件被求值为 false 的话该属性会被移除：
+对于布尔值的属性，v-bind 指令也能使其正常工作 - 如果条件取值后是一个 false 值，属性会从 DOM 中移除：
 
 ``` html
 <button v-bind:disabled="isButtonDisabled">Button</button>
