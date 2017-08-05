@@ -40,7 +40,7 @@ Mustache 标签将会被替代为对应数据对象上 `msg` 属性的值。无�
 
 <p class="tip">你的站点上动态渲染的任意 HTML 可能会非常危险，因为它很容易导致 [XSS 攻击](https://en.wikipedia.org/wiki/Cross-site_scripting)。请只对可信内容使用 HTML 插值，**绝不要**对用户提供的内容插值。</p>
 
-### 属性
+### 特性
 
 Mustache 语法不能作用在 HTML 特性上，遇到这种情况应该使用 [v-bind 指令](../api/#v-bind)：
 
@@ -48,7 +48,7 @@ Mustache 语法不能作用在 HTML 特性上，遇到这种情况应该使用 [
 <div v-bind:id="dynamicId"></div>
 ```
 
-对于布尔值的属性，v-bind 指令也能使其正常工作 - 如果条件取值后是一个 false 值，属性会从 DOM 中移除：
+这同样适用于布尔类特性，如果求值结果是 falsy 的值，则该特性将会被删除：
 
 ``` html
 <button v-bind:disabled="isButtonDisabled">Button</button>
