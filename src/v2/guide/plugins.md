@@ -13,7 +13,7 @@ order: 18
 
 2. 添加全局资源：指令/过滤器/过渡等，如 [vue-touch](https://github.com/vuejs/vue-touch)
 
-3. 通过全局 mixin方法添加一些组件选项，如: [vuex](https://github.com/vuejs/vuex)
+3. 通过全局 mixin 方法添加一些组件选项，如: [vue-router](https://github.com/vuejs/vue-router)
 
 4. 添加 Vue 实例方法，通过把它们添加到 Vue.prototype 上实现。
 
