@@ -154,7 +154,7 @@ new Vue({
 {{ message | filterA | filterB }}
 ```
 
-在这个例子中，`filterA` 拥有单个参数，它会接收 `message` 的值，然后调用 `filterB`，且 `filterA` 的处理结果将会作为 `filterB` 的单个参数传递进来。
+在这个例子中，`filterA` 被定义为接收单个参数的过滤器函数，表达式 `message` 的值将作为参数传入到函数中，然后继续调用同样被定义为接收单个参数的过滤器函数 `filterB`，将 `filterA` 的结果传递到 `filterB` 中。
 
 过滤器是 JavaScript 函数，因此可以接受参数：
 
