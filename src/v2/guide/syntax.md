@@ -131,7 +131,7 @@ Vue.js 允许你自定义过滤器，可被用作一些常见的文本格式化�
 <div v-bind:id="rawId | formatId"></div>
 ```
 
-<p class="tip">Vue 2.x 中，过滤器只能在 mustache 绑定和 `v-bind` 表达式 (后者从 2.1.0 起支持) 中使用，因为过滤器设计目的就是用于文本转换。为了在其他指令中实现更复杂的数据变换，你应该使用[计算属性](computed.html)。</p>
+<p class="tip">由于最初计划过滤器的使用场景，是用于文本转换，所以 Vue 2.x 过滤器只能用于双花括号插值(mustache interpolation)和 `v-bind` 表达式中（后者在 2.1.0+ 版本支持）。对于复杂数据的转换，应该使用[计算属性](computed.html)。</p>
 
 过滤器函数总接受表达式的值 (之前的操作链的结果) 作为第一个参数。在这个例子中，`capitalize` 过滤器函数将会收到 `message` 的值作为第一个参数。
 
