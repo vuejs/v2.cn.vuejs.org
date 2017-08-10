@@ -89,7 +89,7 @@ Mustache 不能在 HTML 属性中使用，应使用 [v-bind 指令](../api/#v-bi
 <p v-if="seen">Now you see me</p>
 ```
 
-这里， `v-if` 指令将根据表达式 `seen` 的值的真假来移除/插入 `<p>` 元素。
+这里， `v-if` 指令将根据表达式 `seen` 的值的真假来插入/移除 `<p>` 元素。
 
 ### 参数
 
