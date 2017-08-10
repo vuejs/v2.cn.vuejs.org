@@ -54,7 +54,7 @@ var app = new Vue({
 </script>
 {% endraw %}
 
-我们已经生成了我们的第一个 Vue 应用！看起来这跟单单渲染一个字符串模板非常类似，但是 Vue 在背后做了大量工作。现在数据和 DOM 已经被绑定在一起，所有的元素都是**响应式的**。我们如何知道？打开你的浏览器的控制台（就在这个页面打开），并修改 `app.message`，你将看到上例相应地更新。
+我们已经生成了我们的第一个 Vue 应用！看起来这跟单单渲染一个字符串模板非常类似，但是 Vue 在背后做了大量工作。现在数据和 DOM 已经被绑定在一起，所有的元素都是**响应式的**。我们该如何知道呢？打开你的浏览器的控制台（就在这个页面打开），并修改 `app.message`，你将看到上例相应地更新。
 
 除了文本插值，我们还可以采用这样的方式绑定 DOM 元素属性：
 
@@ -69,7 +69,7 @@ var app = new Vue({
 var app2 = new Vue({
   el: '#app-2',
   data: {
-    message: '页面加载于 ' + new Date()
+    message: '页面加载于 ' + new Date().toLocaleString()
   }
 })
 ```
@@ -83,7 +83,7 @@ var app2 = new Vue({
 var app2 = new Vue({
   el: '#app-2',
   data: {
-    message: '页面加载于 ' + new Date()
+    message: '页面加载于 ' + new Date().toLocaleString()
   }
 })
 </script>
