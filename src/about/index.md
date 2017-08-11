@@ -78,5 +78,4 @@ order: 0
 
 翻译贡献者 ： [lindazhang102](https://github.com/lindazhang102)
 
-
 ## 感谢所有参与翻译的朋友们！
