@@ -90,7 +90,7 @@ $ npm run dev
 
 ### 运行时 + 编译器 vs. 只包含运行时
 
-如果你需要在客户端编译模板 (比如传入一个字符串的 `template` 选项，或挂载到一个元素上并以其内部的 HTML 作为模板)，你将需要加上编译器，即完整版的构建：
+如果你需要在客户端编译模板 (比如传入一个字符串给`template` 选项，或挂载到一个元素上并以其内部的 HTML 作为模板)，你将需要加上编译器，即完整版的构建：
 
 ``` js
 // 需要编译器
@@ -140,7 +140,7 @@ rollup({
 
 #### Browserify
 
-Add to your project's `package.json`:
+添加到你项目的 `package.json`:
 
 ``` js
 {
@@ -157,7 +157,7 @@ Add to your project's `package.json`:
 
 CommonJS 和 ES Module 构建是用于打包工具的，因此我们不提供压缩后的版本。你有必要在打最终包的时候压缩它们。
 
-CommonJS 和 ES Module 构建同时保留里原始的 `process.env.NODE_ENV` 检测，以决定它们应该运行在什么模式下。你应该使用适当的打包工具配置来替换它们的环境变量以便控制 Vue 所运行的模式。把 `process.env.NODE_ENV` 替换为字符串字面量同样可以让 UglifyJS 之类的压缩工具完全丢掉仅供开发环境的代码段，减少最终的文件尺寸。
+CommonJS 和 ES Module 构建同时保留原始的 `process.env.NODE_ENV` 检测，以决定它们应该运行在什么模式下。你应该使用适当的打包工具配置来替换它们的环境变量以便控制 Vue 所运行的模式。把 `process.env.NODE_ENV` 替换为字符串字面量同样可以让 UglifyJS 之类的压缩工具完全丢掉仅供开发环境的代码段，减少最终的文件尺寸。
 
 #### Webpack
 
@@ -204,17 +204,17 @@ rollup({
 NODE_ENV=production browserify -g envify -e main.js | uglifyjs -c -m > build.js
 ```
 
-也可以移步到[生产环境部署提示](deployment.html).
+也可以移步到[生产环境部署提示](deployment.html)。
 
 ### CSP 环境
 
-有些环境，如 Google Chrome Apps ，强制应用内容安全策略 (CSP) ，不能使用 new Function() 对表达式求值。这时可以用 CSP 兼容版本。独立的构建取决于该功能编译模板，所以无法使用这些环境。
+有些环境，如 Google Chrome Apps ，强制应用内容安全策略 (CSP) ，不能使用 `new Function()` 对表达式求值。这时可以用 CSP 兼容版本。独立的构建取决于该功能编译模板，所以无法使用这些环境。
 
 另一方面，运行时构建的是完全兼容 CSP 的。当通过 [Webpack + vue-loader](https://github.com/vuejs-templates/webpack-simple) 或者 [Browserify + vueify](https://github.com/vuejs-templates/browserify-simple) 构建时，在 CSP 环境中模板将被完美预编译到 `render` 函数中。
 
 ## 开发版构建
 
-**重要**: Github 仓库的 `/dist` 文件夹只有在新版本发布时才会更新。如果想要使用 Github 上 Vue 最新的源码，你需要自己构建。
+**重要**: Github 仓库的 `/dist` 文件夹只有在新版本发布时才会更新。如果想要使用 Github 上 Vue 最新的源码，你需要自己构建！
 
 ``` bash
 git clone https://github.com/vuejs/vue.git node_modules/vue
