@@ -69,7 +69,7 @@ var app = new Vue({
 var app2 = new Vue({
   el: '#app-2',
   data: {
-    message: '页面加载于 ' + new Date().toLocaleString()
+    message: '页面加载于 ' + new Date()
   }
 })
 ```
@@ -83,7 +83,7 @@ var app2 = new Vue({
 var app2 = new Vue({
   el: '#app-2',
   data: {
-    message: '页面加载于 ' + new Date().toLocaleString()
+    message: '页面加载于 ' + new Date()
   }
 })
 </script>
