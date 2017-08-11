@@ -25,7 +25,7 @@ Mustache 标签将会被替代为对应数据对象上 `msg` 属性的值。无�
 通过使用 [v-once 指令](../api/#v-once)，你也能执行一次性地插值，当数据改变时，插值处的内容不会更新。但请留心这会影响到该节点上所有的数据绑定：
 
 ``` html
-<span v-once>This will never change: {{ msg }}</span>
+<span v-once>这个将不会改变: {{ msg }}</span>
 ```
 
 ### 纯 HTML
@@ -86,7 +86,7 @@ mustache 语法不能作用在 HTML 特性上，遇到这种情况应该使用 [
 指令（Directives）是带有 `v-` 前缀的特殊属性。指令属性的值预期是**单个 JavaScript 表达式**（`v-for` 是例外情况，稍后我们再讨论）。指令的职责是，当表达式的值改变时，将其产生的连带影响，响应式地作用于 DOM。回顾我们在介绍中看到的例子：
 
 ``` html
-<p v-if="seen">Now you see me</p>
+<p v-if="seen">现在你看到我了</p>
 ```
 
 这里， `v-if` 指令将根据表达式 `seen` 的值的真假来插入/移除 `<p>` 元素。
