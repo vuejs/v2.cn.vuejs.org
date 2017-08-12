@@ -287,14 +287,14 @@ Vue.component('todo-item', {
 })
 ```
 
-现在，我们可以使用 `v-bind` 指令将todo传到每一个重复的组件中：
+现在，我们可以使用 `v-bind` 指令将 todo 传到每一个重复的组件中：
 
 ``` html
 <div id="app-7">
   <ol>
     <!--
-      现在我们为每个 todo-item 提供todo对象
-      todo对象是变量，即其内容可以是动态的。
+      现在我们为每个 todo-item 提供 todo 对象
+      todo 对象是变量，即其内容可以是动态的。
       我们也需要为每个组件提供一个“key”，晚些时候我们会做个解释。
     -->
     <todo-item
