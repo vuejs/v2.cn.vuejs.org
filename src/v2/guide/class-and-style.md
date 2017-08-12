@@ -201,6 +201,7 @@ data: {
 <div :style="{ display: ['-webkit-box', '-ms-flexbox', 'flex'] }">
 ```
 
+这会渲染数组中最后一个被浏览器支持的值。在这个例子中，如果浏览器支持不带浏览器内核类型前缀的 flexbox，那么渲染结果会是 `display: flex`。
 
 ***
 
