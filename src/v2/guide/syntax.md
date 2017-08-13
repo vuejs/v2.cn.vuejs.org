@@ -40,15 +40,15 @@ Mustache 标签将会被替代为对应数据对象上 `msg` 属性的值。无�
 
 <p class="tip">你的站点上动态渲染的任意 HTML 可能会非常危险，因为它很容易导致 [XSS 攻击](https://en.wikipedia.org/wiki/Cross-site_scripting)。请只对可信内容使用 HTML 插值，**绝不要**对用户提供的内容插值。</p>
 
-### 属性
+### 特性
 
-Mustache 不能在 HTML 属性中使用，应使用 [v-bind 指令](../api/#v-bind)：
+mustache 语法不能作用在 HTML 特性上，遇到这种情况应该使用 [v-bind 指令](../api/#v-bind)：
 
 ``` html
 <div v-bind:id="dynamicId"></div>
 ```
 
-这对布尔值的属性也有效 —— 如果条件被求值为 false 的话该属性会被移除：
+这同样适用于布尔类特性，如果求值结果是 falsy 的值，则该特性将会被删除：
 
 ``` html
 <button v-bind:disabled="isButtonDisabled">Button</button>
@@ -83,17 +83,17 @@ Mustache 不能在 HTML 属性中使用，应使用 [v-bind 指令](../api/#v-bi
 
 ## 指令
 
-指令（Directives）是带有 `v-` 前缀的特殊属性。指令属性的值预期是**单一 JavaScript 表达式**（除了 `v-for`，之后再讨论）。指令的职责就是当其表达式的值改变时相应地将某些行为应用到 DOM 上。让我们回顾一下在介绍里的例子：
+指令（Directives）是带有 `v-` 前缀的特殊属性。指令属性的值预期是**单个 JavaScript 表达式**（`v-for` 是例外情况，稍后我们再讨论）。指令的职责是，当表达式的值改变时，将其产生的连带影响，响应式地作用于 DOM。回顾我们在介绍中看到的例子：
 
 ``` html
 <p v-if="seen">现在你看到我了</p>
 ```
 
-这里， `v-if` 指令将根据表达式 `seen` 的值的真假来移除/插入 `<p>` 元素。
+这里， `v-if` 指令将根据表达式 `seen` 的值的真假来插入/移除 `<p>` 元素。
 
 ### 参数
 
-一些指令能接受一个“参数”，在指令后以冒号指明。例如， `v-bind` 指令被用来响应地更新 HTML 属性：
+一些指令能够接收一个“参数”，在指令名称之后以冒号表示。例如，`v-bind` 指令可以用于响应式地更新 HTML 属性：
 
 ``` html
 <a v-bind:href="url"></a>
@@ -131,9 +131,9 @@ Vue.js 允许你自定义过滤器，可被用作一些常见的文本格式化�
 <div v-bind:id="rawId | formatId"></div>
 ```
 
-<p class="tip">Vue 2.x 中，过滤器只能在 mustache 绑定和 `v-bind` 表达式 (后者从 2.1.0 起支持) 中使用，因为过滤器设计目的就是用于文本转换。为了在其他指令中实现更复杂的数据变换，你应该使用[计算属性](computed.html)。</p>
+<p class="tip">由于最初计划过滤器的使用场景，是用于文本转换，所以 Vue 2.x 过滤器只能用于双花括号插值(mustache interpolation)和 `v-bind` 表达式中（后者在 2.1.0+ 版本支持）。对于复杂数据的转换，应该使用[计算属性](computed.html)。</p>
 
-过滤器函数总接受表达式的值 (之前的操作链的结果) 作为第一个参数。在这个例子中，`capitalize` 过滤器函数将会收到 `message` 的值作为第一个参数。
+过滤器函数总接收表达式的值 (之前的操作链的结果) 作为第一个参数。在这个例子中，`capitalize` 过滤器函数将会收到 `message` 的值作为第一个参数。
 
 ``` js
 new Vue({
@@ -154,19 +154,19 @@ new Vue({
 {{ message | filterA | filterB }}
 ```
 
-在这个例子中，`filterA` 拥有单个参数，它会接收 `message` 的值，然后调用 `filterB`，且 `filterA` 的处理结果将会作为 `filterB` 的单个参数传递进来。
+在这个例子中，`filterA` 被定义为接收单个参数的过滤器函数，表达式 `message` 的值将作为参数传入到函数中，然后继续调用同样被定义为接收单个参数的过滤器函数 `filterB`，将 `filterA` 的结果传递到 `filterB` 中。
 
-过滤器是 JavaScript 函数，因此可以接受参数：
+过滤器是 JavaScript 函数，因此可以接收参数：
 
 ``` html
 {{ message | filterA('arg1', arg2) }}
 ```
 
-这里，`filterA` 是个拥有三个参数的函数。`message` 的值将会作为第一个参数传入。字符串 `'arg1'` 将作为第二个参数传给 `filterA`，表达式 `arg2` 的值将作为第三个参数。
+这里，`filterA` 被定义为接收三个参数的过滤器函数。其中 `message` 的值作为第一个参数，普通字符串 `'arg1'` 作为第二个参数，表达式 `arg2` 取值后的值作为第三个参数。
 
 ## 缩写
 
-`v-` 前缀在模板中是作为一个标示 Vue 特殊属性的明显标识。当你使用 Vue.js 为现有的标记添加动态行为时，它会很有用，但对于一些经常使用的指令来说有点繁琐。同时，当搭建 Vue.js 管理所有模板的 [SPA](https://en.wikipedia.org/wiki/Single-page_application) 时，`v-` 前缀也变得没那么重要了。因此，Vue.js 为两个最为常用的指令提供了特别的缩写：
+`v-` 前缀作为一种视觉提示，用来识别模板中 Vue 特定的特性。当你在使用 Vue.js 为现有标签添加动态行为(dynamic behavior)时，`v-` 前缀很有帮助，然而，对于一些频繁用到的指令来说，就会感到使用繁琐。同时，在构建由 Vue.js 管理所有模板的[单页面应用程序(SPA - single page application)](https://en.wikipedia.org/wiki/Single-page_application)时，`v-` 前缀也变得没那么重要了。因此，Vue.js 为 `v-bind` 和 `v-on` 这两个最常用的指令，提供了特定简写：
 
 ### `v-bind` 缩写
 
@@ -188,10 +188,10 @@ new Vue({
 <a @click="doSomething"></a>
 ```
 
-它们看起来可能与普通的 HTML 略有不同，但 `:` 与 `@` 对于属性名来说都是合法字符，在所有支持 Vue.js 的浏览器都能被正确地解析。而且，它们不会出现在最终渲染的标记。缩写语法是完全可选的，但随着你更深入地了解它们的作用，你会庆幸拥有它们。
+它们看起来可能与普通的 HTML 略有不同，但 `:` 与 `@` 对于特性名来说都是合法字符，在所有支持 Vue.js 的浏览器都能被正确地解析。而且，它们不会出现在最终渲染的标记中。缩写语法是完全可选的，但随着你更深入地了解它们的作用，你会庆幸拥有它们。
 
 ***
 
-> 原文： http://vuejs.org/guide/syntax.html
+> 原文：http://vuejs.org/v2/guide/syntax.html
 
 ***
