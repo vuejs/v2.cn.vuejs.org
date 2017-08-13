@@ -66,7 +66,7 @@ var vm = new Vue({
 {% endraw %}
 
 
-这里我们声明了一个计算属性 `reversedMessage` 。我们提供的函数将用作属性 `vm.reversedMessage` 的 getter函数：
+这里我们声明了一个计算属性 `reversedMessage` 。我们提供的函数将用作属性 `vm.reversedMessage` 的 getter 函数：
 
 ``` js
 console.log(vm.reversedMessage) // -> 'olleH'
