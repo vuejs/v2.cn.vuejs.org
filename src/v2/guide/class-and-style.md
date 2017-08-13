@@ -10,7 +10,7 @@ order: 6
 
 ### 对象语法
 
-我们可以传给 `v-bind:class` 一个对象，以动态地切换 class ：
+我们可以传给 `v-bind:class` 一个对象，以动态地切换 class：
 
 ``` html
 <div v-bind:class="{ active: isActive }"></div>
