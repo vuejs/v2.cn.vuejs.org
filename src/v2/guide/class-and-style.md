@@ -10,14 +10,14 @@ order: 6
 
 ### 对象语法
 
-我们可以传给 `v-bind:class` 一个对象，以动态地切换 class 。
+我们可以传给 `v-bind:class` 一个对象，以动态地切换 class：
 
 ``` html
 <div v-bind:class="{ active: isActive }"></div>
 ```
 上面的语法表示 class`active` 的更新将取决于数据属性 `isActive` 是否为[真值](https://developer.mozilla.org/en-US/docs/Glossary/Truthy) 。
 
-我们也可以在对象中传入更多属性用来动态切换多个 class 。此外， `v-bind:class` 指令可以与普通的 class 属性共存。如下模板:
+你可以在对象中传入更多属性用来动态切换多个 class。此外， `v-bind:class` 指令也可以与普通的 class 属性共存。如下模板：
 
 ``` html
 <div class="static"
@@ -25,7 +25,7 @@ order: 6
 </div>
 ```
 
-如下 data:
+如下 data ：
 
 ``` js
 data: {
@@ -34,13 +34,13 @@ data: {
 }
 ```
 
-渲染为:
+渲染为：
 
 ``` html
 <div class="static active"></div>
 ```
 
-当 `isActive` 或者 `hasError` 变化时，class 列表将相应地更新。例如，如果 `hasError` 的值为 `true` ， class列表将变为 `"static active text-danger"`。
+当 `isActive` 或者 `hasError` 变化时，class 列表将相应地更新。例如，如果 `hasError` 的值为 `true` ， class列表将变为 `"static active text-danger"` 。
 
 你也可以直接绑定数据里的一个对象：
 
@@ -78,7 +78,7 @@ computed: {
 
 ### 数组语法
 
-我们可以把一个数组传给  `v-bind:class` ，以应用一个 class 列表：
+我们可以把一个数组传给  `v-bind:class`，以应用一个 class 列表：
 
 ``` html
 <div v-bind:class="[activeClass, errorClass]">
@@ -90,18 +90,18 @@ data: {
 }
 ```
 
-渲染为:
+渲染为：
 
 ``` html
 <div class="active text-danger"></div>
 ```
 
-如果你也想根据条件切换列表中的 class ，可以用三元表达式：
+如果你也想根据条件切换列表中的 class，可以用三元表达式：
 
 ``` html
 <div v-bind:class="[isActive ? activeClass : '', errorClass]">
 ```
-此例始终添加 `errorClass` ，但是只有在 `isActive` 是 true 时添加 `activeClass` 。
+此例始终添加 `errorClass` ，但是只有在 `isActive` 是 `true` 时添加 `activeClass`。
 
 不过，当有多个条件 class 时这样写有些繁琐。可以在数组语法中使用对象语法：
 
@@ -111,11 +111,11 @@ data: {
 
 ### 用在组件上
 
-> 这个章节假设你已经对 [Vue 组件](components.html) 有一定的了解。当然你也可以跳过这里，稍后再回过头来看。
+> 这个章节假设你已经对 [Vue 组件](components.html)有一定的了解。当然你也可以跳过这里，稍后再回过头来看。
 
 当你在一个定制的组件上用到 `class` 属性的时候，这些类将被添加到根元素上面，这个元素上已经存在的类不会被覆盖。
 
-例如，如果你声明了这个组件:
+例如，如果你声明了这个组件：
 
 ``` js
 Vue.component('my-component', {
@@ -129,19 +129,19 @@ Vue.component('my-component', {
 <my-component class="baz boo"></my-component>
 ```
 
-HTML 最终将被渲染成为:
+HTML 最终将被渲染成为：
 
 ``` html
 <p class="foo bar baz boo">Hi</p>
 ```
 
-同样的适用于绑定 HTML class :
+同样的适用于绑定 HTML class:
 
 ``` html
 <my-component v-bind:class="{ active: isActive }"></my-component>
 ```
 
-当 `isActive` 为 true 的时候，HTML 将被渲染成为:
+当 `isActive` 为 truthy 的时候，HTML 将被渲染成为：
 
 ``` html
 <p class="foo bar active">Hi</p>
@@ -151,7 +151,7 @@ HTML 最终将被渲染成为:
 
 ### 对象语法
 
-`v-bind:style` 的对象语法十分直观——看着非常像 CSS ，其实它是一个 JavaScript 对象。 CSS 属性名可以用驼峰式 (camelCase) 或 (配合引号的) 短横分隔命名 (kebab-case)：
+`v-bind:style` 的对象语法十分直观——看着非常像 CSS，其实它是一个 JavaScript 对象。 CSS 属性名可以用驼峰式 (camelCase) 或 (配合引号的) 短横分隔命名 (kebab-case)：
 
 ``` html
 <div v-bind:style="{ color: activeColor, fontSize: fontSize + 'px' }"></div>
@@ -189,13 +189,13 @@ data: {
 
 ### 自动添加前缀
 
-当 `v-bind:style` 使用需要[特定前缀](https://developer.mozilla.org/en-US/docs/Glossary/Vendor_Prefix)的 CSS 属性时，如 `transform` ，Vue.js 会自动侦测并添加相应的前缀。
+当 `v-bind:style` 使用需要[特定前缀](https://developer.mozilla.org/en-US/docs/Glossary/Vendor_Prefix)的 CSS 属性时，如 `transform`，Vue.js 会自动侦测并添加相应的前缀。
 
 ### 多重值
 
 > 2.3.0+
 
-从 2.3.0 起你可以为 `style` 绑定中的属性提供一个包含多个值的数组，常用于提供多个带前缀的值：
+从 2.3.0 起你可以为 `style` 绑定中的属性提供一个包含多个值的数组，常用于提供多个带前缀的值，例如：
 
 ``` html
 <div :style="{ display: ['-webkit-box', '-ms-flexbox', 'flex'] }">
