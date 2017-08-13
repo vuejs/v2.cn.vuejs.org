@@ -66,7 +66,7 @@ var vm = new Vue({
 {% endraw %}
 
 
-这里我们声明了一个计算属性 `reversedMessage` 。我们提供的函数将用作属性 `vm.reversedMessage` 的 getter 函数：
+这里我们声明了一个计算属性 `reversedMessage`。我们提供的函数将用作属性 `vm.reversedMessage` 的 getter 函数：
 
 ``` js
 console.log(vm.reversedMessage) // -> 'olleH'
@@ -74,9 +74,9 @@ vm.message = 'Goodbye'
 console.log(vm.reversedMessage) // -> 'eybdooG'
 ```
 
-你可以打开浏览器的控制台，自行修改例子中的 vm 。 `vm.reversedMessage` 的值始终取决于 `vm.message` 的值。
+你可以打开浏览器的控制台，自行修改例子中的 vm。`vm.reversedMessage` 的值始终取决于 `vm.message` 的值。
 
-你可以像绑定普通属性一样在模板中绑定计算属性。 Vue 知道 `vm.reversedMessage` 依赖于 `vm.message` ，因此当 `vm.message` 发生改变时，所有依赖于 `vm.reversedMessage` 的绑定也会更新。而且最妙的是我们已经以声明的方式创建了这种依赖关系：计算属性的 getter 函数是没有副作用，这使得它易于测试和推理。
+你可以像绑定普通属性一样在模板中绑定计算属性。Vue 知道 `vm.reversedMessage` 依赖于 `vm.message`，因此当 `vm.message` 发生改变时，所有依赖于 `vm.reversedMessage` 的绑定也会更新。而且最妙的是我们已经以声明的方式创建了这种依赖关系：计算属性的 getter 函数是没有副作用，这使得它易于测试和推理。
 
 ### 计算属性 vs Methods
 
@@ -109,9 +109,10 @@ computed: {
 
 相比而言，只要发生重新渲染，method 调用**总会**执行该函数。
 
-我们为什么需要缓存？假设我们有一个性能开销比较大的的计算属性 **A** ，它需要遍历一个极大的数组和做大量的计算。然后我们可能有其他的计算属性依赖于 **A** 。如果没有缓存，我们将不可避免的多次执行 **A** 的 getter！如果你不希望有缓存，请用 method 替代。
+我们为什么需要缓存？假设我们有一个性能开销比较大的的计算属性 **A**，它需要遍历一个极大的数组和做大量的计算。然后我们可能有其他的计算属性依赖于 **A** 。如果没有缓存，我们将不可避免的多次执行 **A** 的 getter！如果你不希望有缓存，请用 method 替代。
 
 ### 计算属性 vs Watched 属性
+
 Vue 确实提供了一种更通用的方式来观察和响应 Vue 实例上的数据变动：**watch 属性**。当你有一些数据需要随着其它数据变动而变动时，你很容易滥用 `watch`——特别是如果你之前使用过 AngularJS。然而，通常更好的想法是使用 computed 属性而不是命令式的 `watch` 回调。细想一下这个例子：
 
 ``` html
@@ -179,11 +180,11 @@ computed: {
 // ...
 ```
 
-现在再运行 `vm.fullName = 'John Doe'` 时， setter 会被调用， `vm.firstName` 和 `vm.lastName` 也相应地会被更新。
+现在再运行 `vm.fullName = 'John Doe'` 时，setter 会被调用，`vm.firstName` 和 `vm.lastName` 也相应地会被更新。
 
 ## 观察 Watchers
 
-虽然计算属性在大多数情况下更合适，但有时也需要一个自定义的 watcher 。这是为什么 Vue 通过 `watch` 选项提供一个更通用的方法，来响应数据的变化。当你想要在数据变化响应时，执行异步操作或开销较大的操作，这是很有用的。
+虽然计算属性在大多数情况下更合适，但有时也需要一个自定义的 watcher。这是为什么 Vue 通过 `watch` 选项提供一个更通用的方法，来响应数据的变化。当你想要在数据变化响应时，执行异步操作或开销较大的操作，这是很有用的。
 
 例如：
 
@@ -220,8 +221,8 @@ var watchExampleVM = new Vue({
   },
   methods: {
     // _.debounce 是一个通过 lodash 限制操作频率的函数。
-    // 在这个例子中，我们希望限制访问yesno.wtf/api的频率
-    // ajax请求直到用户输入完毕才会发出
+    // 在这个例子中，我们希望限制访问 yesno.wtf/api 的频率
+    // ajax 请求直到用户输入完毕才会发出
     // 学习更多关于 _.debounce function (and its cousin
     // _.throttle), 参考: https://lodash.com/docs#debounce
     getAnswer: _.debounce(
@@ -298,7 +299,7 @@ var watchExampleVM = new Vue({
 </script>
 {% endraw %}
 
-在这个示例中，使用 `watch` 选项允许我们执行异步操作（访问一个 API），限制我们执行该操作的频率，并在我们得到最终结果前，设置中间状态。这是计算属性无法做到的。
+在这个示例中，使用 `watch` 选项允许我们执行异步操作 (访问一个 API)，限制我们执行该操作的频率，并在我们得到最终结果前，设置中间状态。这是计算属性无法做到的。
 
 除了 `watch` 选项之外，您还可以使用 [vm.$watch API](../api/#vm-watch) 命令。
 
