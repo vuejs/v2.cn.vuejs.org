@@ -371,7 +371,7 @@ new Vue({
 </li>
 ```
 
-上面的代码只传递了未complete的todos。
+上面的代码只传递了未 complete 的 todos。
 
 而如果你的目的是有条件地跳过循环的执行，那么将 `v-if` 置于包装元素 (或 [`<template>`](conditional.html#Conditional-Groups-with-v-if-on-lt-template-gt))上。如:
 
