@@ -122,7 +122,7 @@ createElement(
 ``` js
 {
   // 和`v-bind:class`一样的 API
-  'class': {
+  class: {
     foo: true,
     bar: false
   },
