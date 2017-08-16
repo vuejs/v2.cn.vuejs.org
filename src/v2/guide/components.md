@@ -1249,7 +1249,7 @@ template: '<div><stack-overflow></stack-overflow></div>'
 
 ### 组件间的循环引用
 
-假设你正在构建一个文件目录树，像在Finder或文件资源管理器中。你可能有一个 `tree-folder`组件:
+假设你正在构建一个文件目录树，像在Finder或文件资源管理器中。你可能有一个 `tree-folder-contents`组件:
 
 ``` html
 <p>
@@ -1258,7 +1258,7 @@ template: '<div><stack-overflow></stack-overflow></div>'
 </p>
 ```
 
-然后 一个`tree-folder-contents`组件：
+然后 一个`tree-folder`组件：
 
 ``` html
 <ul>
