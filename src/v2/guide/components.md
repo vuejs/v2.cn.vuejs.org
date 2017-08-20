@@ -430,7 +430,7 @@ Vue.component('example', {
 
 `type` 也可以是一个自定义构造器函数，使用 `instanceof` 检测。
 
-当 prop 验证失败，Vue 会在抛出警告 (如果使用的是开发版本)。注意 props 会在组件实例创建__之前__进行校验，所以在 `default` 或 `validator` 函数里，诸如 `data`、`computed` 或 `methods` 等实例属性还无法使用。
+当 prop 验证失败，Vue 会抛出警告 (如果使用的是开发版本)。注意 props 会在组件实例创建__之前__进行校验，所以在 `default` 或 `validator` 函数里，诸如 `data`、`computed` 或 `methods` 等实例属性还无法使用。
 
 ## 非 Prop 属性
 
