@@ -275,11 +275,11 @@ new Vue({
     todos: [
       {
         id: 1,
-        title: 'Do the dishes',
+        title: 'Do the dishes'
       },
       {
         id: 2,
-        title: 'Take out the trash',
+        title: 'Take out the trash'
       },
       {
         id: 3,
