@@ -2018,7 +2018,7 @@ if (version === 2) {
 
   当 `v-for` 用于元素或组件的时候，引用信息将是包含 DOM 节点或组件实例的数组。
 
-  关于ref注册时间的重要说明: 因为ref本身是作为渲染结果被创建的，在初始渲染的时候你不能访问它们 - 它们还不存在！`$refs` 也不是响应式的，因此你不应该试图用它在模版中做数据绑定。
+  关于ref注册时间的重要说明: 因为ref本身是作为渲染结果被创建的，在初始渲染的时候你不能访问它们 - 它们还不存在！`$refs` 也不是响应式的，因此你不应该试图用它在模板中做数据绑定。
 
 - **参考**：[子组件 Refs](../guide/components.html#子组件索引)
 
@@ -2036,7 +2036,7 @@ if (version === 2) {
 
 - **预期**：`string`
 
-  用于[动态组件](../guide/components.html#动态组件)且基于[DOM 内模板到限制](../guide/components.html#DOM 模版解析说明)来工作。
+  用于[动态组件](../guide/components.html#动态组件)且基于[DOM 内模板到限制](../guide/components.html#DOM 模板解析说明)来工作。
 
   示例：
 
@@ -2055,7 +2055,7 @@ if (version === 2) {
 
 - **See also**：
   - [动态组件](../guide/components.html#动态组件)
-  - [DOM 模版解析说明](../guide/components.html#DOM 模版解析说明)
+  - [DOM 模板解析说明](../guide/components.html#DOM 模板解析说明)
 
 ## 内置的组件
 
