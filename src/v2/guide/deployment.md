@@ -14,7 +14,7 @@ order: 20
 
 ### 用打包工具
 
-如果用 Webpack 或 Browserify 类似的打包工具时，生产状态会在 Vue 源码中由 `process.env.NODE_ENV` 决定，默认在开发状态。Webpack 与 Browserify 两个打包工具都提供方法来覆盖此变量并使用生产状态，警告语句也会被精简掉。每一个 `vue-cli` 模版有预先配置好的打包工具，但了解怎样配置会更好。
+如果用 Webpack 或 Browserify 类似的打包工具时，生产状态会在 Vue 源码中由 `process.env.NODE_ENV` 决定，默认在开发状态。Webpack 与 Browserify 两个打包工具都提供方法来覆盖此变量并使用生产状态，警告语句也会被精简掉。每一个 `vue-cli` 模板有预先配置好的打包工具，但了解怎样配置会更好。
 
 #### Webpack
 
