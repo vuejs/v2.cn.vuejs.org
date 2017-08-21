@@ -438,7 +438,7 @@ Vue.component('example', {
 
 明确给组件定义 `prop` 是传参的推荐方式，但组件的作者并不总能预见到组件被使用的场景。所以，组件可以接收任意传入的属性，这些属性都会被添加到组件的根元素上。
 
-例如，第三方组件 `bs-date-input`，当它要和一个 Bootstrap 插件互操作时，需要在这个第三方组件的 input 上添加 `data-3d-date-picker` 属性，这时可以把属性直接添加到组件上 (不需要事先定义 `prop`)：
+例如，第三方组件 `bs-date-input`，当它要和一个 Bootstrap 插件相互操作时，需要在这个第三方组件的 input 上添加 `data-3d-date-picker` 属性，这时可以把属性直接添加到组件上 (不需要事先定义 `prop`)：
 
 ``` html
 <bs-date-input data-3d-date-picker="true"></bs-date-input>
