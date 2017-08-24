@@ -76,9 +76,9 @@ console.log(vm.reversedMessage) // -> 'eybdooG'
 
 你可以打开浏览器的控制台，自行修改例子中的 vm。`vm.reversedMessage` 的值始终取决于 `vm.message` 的值。
 
-你可以像绑定普通属性一样在模板中绑定计算属性。Vue 知道 `vm.reversedMessage` 依赖于 `vm.message`，因此当 `vm.message` 发生改变时，所有依赖于 `vm.reversedMessage` 的绑定也会更新。而且最妙的是我们已经以声明的方式创建了这种依赖关系：计算属性的 getter 函数是没有连带影响(side effect)，这使得它易于测试和推理。
+你可以像绑定普通属性一样在模板中绑定计算属性。Vue 知道 `vm.reversedMessage` 依赖于 `vm.message`，因此当 `vm.message` 发生改变时，所有依赖于 `vm.reversedMessage` 的绑定也会更新。而且最妙的是我们已经以声明的方式创建了这种依赖关系：计算属性的 getter 函数是没有连带影响 (side effect)，这使得它易于测试和推理。
 
-### 计算属性的缓存 vs method 方法(Computed Caching vs Methods)
+### 计算属性的缓存 vs method 方法
 
 你可能已经注意到我们可以通过调用表达式中的 method 来达到同样的效果：
 
@@ -107,7 +107,7 @@ computed: {
 }
 ```
 
-相比之下，每当触发重新渲染(re-render)时，method 调用方式将**总是**再次执行函数。
+相比之下，每当触发重新渲染时，method 调用方式将**总是**再次执行函数。
 
 我们为什么需要缓存？假设我们有一个性能开销比较大的的计算属性 **A**，它需要遍历一个极大的数组和做大量的计算。然后我们可能有其他的计算属性依赖于 **A** 。如果没有缓存，我们将不可避免的多次执行 **A** 的 getter！如果你不希望有缓存，请用 method 替代。
 
