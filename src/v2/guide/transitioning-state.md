@@ -19,7 +19,7 @@ Vue 的过渡系统提供了非常多简单的方法设置进入、离开和列�
 通过 watcher 我们能监听到任何数值属性的数值更新。可能听起来很抽象，所以让我们先来看看使用 [Tweenjs](https://github.com/tweenjs/tween.js) 一个例子：
 
 ``` html
-<script src="https://unpkg.com/tween.js@16.3.4"></script>
+<script src="https://cdn.jsdelivr.net/npm/tween.js@16.3.4"></script>
 
 <div id="animated-number-demo">
   <input v-model.number="number" type="number" step="20">
@@ -58,7 +58,7 @@ new Vue({
 ```
 
 {% raw %}
-<script src="https://unpkg.com/tween.js@16.3.4"></script>
+<script src="https://cdn.jsdelivr.net/npm/tween.js@16.3.4"></script>
 <div id="animated-number-demo" class="demo">
   <input v-model.number="number" type="number" step="20">
   <p>{{ animatedNumber }}</p>
@@ -98,8 +98,8 @@ new Vue({
 
 
 ``` html
-<script src="https://unpkg.com/tween.js@16.3.4"></script>
-<script src="https://unpkg.com/color-js@1.0.3/color.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tween.js@16.3.4"></script>
+<script src="https://cdn.jsdelivr.net/npm/color-js@1.0.3"></script>
 
 <div id="example-7">
   <input
@@ -178,8 +178,8 @@ new Vue({
 ```
 
 {% raw %}
-<script src="https://unpkg.com/tween.js@16.3.4"></script>
-<script src="https://unpkg.com/color-js@1.0.3/color.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tween.js@16.3.4"></script>
+<script src="https://cdn.jsdelivr.net/npm/color-js@1.0.3"></script>
 <div id="example-7" class="demo">
   <input
     v-model="colorQuery"
@@ -255,7 +255,7 @@ new Vue({
 
 ## 动态状态转换
 
-就像 Vue 的过渡组件一样，数据背后状态转换会实时更新，这对于原型设计十分有用。当你修改一些变量，即使是一个简单的 SVG 多边形也可是实现很多难以想象的效果。
+就像 Vue 的过渡组件一样，数据背后状态转换会实时更新，这对于原型设计十分有用。当你修改一些变量，即使是一个简单的 SVG 多边形也可实现很多难以想象的效果。
 
 
 {% raw %}
@@ -397,7 +397,7 @@ See [this fiddle](https://jsfiddle.net/chrisvfritz/65gLu2b6/) for the complete c
 我们来将之前的示例改写一下：
 
 ``` html
-<script src="https://unpkg.com/tween.js@16.3.4"></script>
+<script src="https://cdn.jsdelivr.net/npm/tween.js@16.3.4"></script>
 
 <div id="example-8">
   <input v-model.number="firstNumber" type="number" step="20"> +
@@ -475,7 +475,7 @@ new Vue({
 ```
 
 {% raw %}
-<script src="https://unpkg.com/tween.js@16.3.4"></script>
+<script src="https://cdn.jsdelivr.net/npm/tween.js@16.3.4"></script>
 <div id="example-8" class="demo">
   <input v-model.number="firstNumber" type="number" step="20"> +
   <input v-model.number="secondNumber" type="number" step="20"> =
@@ -547,7 +547,7 @@ new Vue({
 
 ## 赋予设计以生命
 
-只要一个动画，就可以带来生命。不幸的事，当设计师创建图标、logo 和吉祥物的时候，他们通常交付的都是图片或静态的 SVG。所以虽然 GitHub 的章鱼猫、Twitter 的小鸟以及其它本身有生命特征的动物 logo 都看上去并不是活着的。
+只要一个动画，就可以带来生命。不幸的是，当设计师创建图标、logo 和吉祥物的时候，他们交付的通常都是图片或静态的 SVG。所以，虽然 GitHub 的章鱼猫、Twitter 的小鸟以及其它许多 logo 类似于生灵，它们看上去实际上并不是活着的。
 
 Vue 可以帮到你。因为 SVG 的本质是数据，我们只需要这些动物兴奋、思考或境界的样例。然后 Vue 就可以辅助完成这几种状态之间的过渡动画，来制作你的欢迎页面、加载指示、以及更加带有情感的提示。
 

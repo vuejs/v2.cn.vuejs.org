@@ -91,9 +91,9 @@ new Vue({
 
 这种封装也适用于其它可注册的 Vue 功能，如指令。
 
-### DOM 模版解析说明
+### DOM 模板解析说明
 
-当使用 DOM 作为模版时 (例如，将 `el` 选项挂载到一个已存在的元素上), 你会受到 HTML 的一些限制，因为 Vue 只有在浏览器解析和标准化 HTML 后才能获取模版内容。尤其像这些元素 `<ul>`，`<ol>`，`<table>`，`<select>` 限制了能被它包裹的元素，而一些像 `<option>` 这样的元素只能出现在某些其它元素内部。
+当使用 DOM 作为模板时 (例如，将 `el` 选项挂载到一个已存在的元素上), 你会受到 HTML 的一些限制，因为 Vue 只有在浏览器解析和标准化 HTML 后才能获取模板内容。尤其像这些元素 `<ul>`，`<ol>`，`<table>`，`<select>` 限制了能被它包裹的元素，而一些像 `<option>` 这样的元素只能出现在某些其它元素内部。
 
 在自定义组件中使用这些受限制的元素时会导致一些问题，例如：
 
@@ -114,10 +114,10 @@ new Vue({
 **应当注意，如果您使用来自以下来源之一的字符串模板，这些限制将不适用：**
 
 - `<script type="text/x-template">`
-- JavaScript 内联模版字符串
+- JavaScript 内联模板字符串
 - `.vue` 组件
 
-因此，有必要的话请使用字符串模版。
+因此，有必要的话请使用字符串模板。
 
 ### `data` 必须是函数
 
@@ -148,7 +148,7 @@ var data = { counter: 0 }
 Vue.component('simple-counter', {
   template: '<button v-on:click="counter += 1">{{ counter }}</button>',
   // 技术上 data 的确是一个函数了，因此 Vue 不会警告，
-  // 但是我们返回给每个组件的实例的却引用了同一个data对象
+  // 但是我们返回给每个组件的实例却引用了同一个 data 对象
   data: function () {
     return data
   }
@@ -214,7 +214,7 @@ new Vue({
 
 ### 构成组件
 
-组件意味着协同工作，通常父子组件会是这样的关系：组件 A 在它的模版中使用了组件 B。它们之间必然需要相互通信：父组件要给子组件传递数据，子组件需要将它内部发生的事情告知给父组件。然而，在一个良好定义的接口中尽可能将父子组件解耦是很重要的。这保证了每个组件可以在相对隔离的环境中书写和理解，也大幅提高了组件的可维护性和可重用性。
+组件意味着协同工作，通常父子组件会是这样的关系：组件 A 在它的模板中使用了组件 B。它们之间必然需要相互通信：父组件要给子组件传递数据，子组件需要将它内部发生的事情告知给父组件。然而，在一个良好定义的接口中尽可能将父子组件解耦是很重要的。这保证了每个组件可以在相对隔离的环境中书写和理解，也大幅提高了组件的可维护性和可重用性。
 
 在 Vue 中，父子组件的关系可以总结为 **props down, events up**。父组件通过 **props** 向下传递数据给子组件，子组件通过 **events** 给父组件发送消息。看看它们是怎么工作的。
 
@@ -267,7 +267,7 @@ new Vue({
 
 ### camelCase vs. kebab-case
 
-HTML 特性是不区分大小写的。所以，当使用的不是字符串模版，camelCased (驼峰式) 命名的 prop 需要转换为相对应的 kebab-case (短横线隔开式) 命名：
+HTML 特性是不区分大小写的。所以，当使用的不是字符串模板，camelCased (驼峰式) 命名的 prop 需要转换为相对应的 kebab-case (短横线隔开式) 命名：
 
 ``` js
 Vue.component('child', {
@@ -282,7 +282,7 @@ Vue.component('child', {
 <child my-message="hello!"></child>
 ```
 
-如果你使用字符串模版，则没有这些限制。
+如果你使用字符串模板，则没有这些限制。
 
 ### 动态 Prop
 
@@ -430,7 +430,7 @@ Vue.component('example', {
 
 `type` 也可以是一个自定义构造器函数，使用 `instanceof` 检测。
 
-当 prop 验证失败，Vue 会在抛出警告 (如果使用的是开发版本)。注意 props 会在组件实例创建__之前__进行校验，所以在 `default` 或 `validator` 函数里，诸如 `data`、`computed` 或 `methods` 等实例属性还无法使用。
+当 prop 验证失败，Vue 会抛出警告 (如果使用的是开发版本)。注意 props 会在组件实例创建__之前__进行校验，所以在 `default` 或 `validator` 函数里，诸如 `data`、`computed` 或 `methods` 等实例属性还无法使用。
 
 ## 非 Prop 属性
 
@@ -438,7 +438,7 @@ Vue.component('example', {
 
 明确给组件定义 `prop` 是传参的推荐方式，但组件的作者并不总能预见到组件被使用的场景。所以，组件可以接收任意传入的属性，这些属性都会被添加到组件的根元素上。
 
-例如，第三方组件 `bs-date-input`，当它要和一个 Bootstrap 插件互操作时，需要在这个第三方组件的 input 上添加 `data-3d-date-picker` 属性，这时可以把属性直接添加到组件上 (不需要事先定义 `prop`)：
+例如，第三方组件 `bs-date-input`，当它要和一个 Bootstrap 插件相互操作时，需要在这个第三方组件的 input 上添加 `data-3d-date-picker` 属性，这时可以把属性直接添加到组件上 (不需要事先定义 `prop`)：
 
 ``` html
 <bs-date-input data-3d-date-picker="true"></bs-date-input>
@@ -468,7 +468,7 @@ Vue.component('example', {
 - `form-control`，来自组件的模板
 - `date-picker-theme-dark`，从父组件传进来的
 
-对于多数特性来说，传递给组件的值会覆盖组件本身设定的值。即例如传递 `type="large"` 将会覆盖 `type="date"` 且有可能破坏该组件！索性我们对待 `class` 和 `style` 特性会更聪明一些，这两个特性的值都会做合并 (merge) 操作，让最终生成的值为：`form-control date-picker-theme-dark`。
+对于多数特性来说，传递给组件的值会覆盖组件本身设定的值。即例如传递 `type="large"` 将会覆盖 `type="date"` 且有可能破坏该组件！所幸我们对待 `class` 和 `style` 特性会更聪明一些，这两个特性的值都会做合并 (merge) 操作，让最终生成的值为：`form-control date-picker-theme-dark`。
 
 ## 自定义事件
 
@@ -789,7 +789,7 @@ bus.$on('id-selected', function (id) {
 
 1. `<app>` 组件不知道它会收到什么内容。这是由使用 `<app>` 的父组件决定的。
 
-2. `<app>` 组件很可能有它自己的模版。
+2. `<app>` 组件很可能有它自己的模板。
 
 为了让组件可以组合，我们需要一种方式来混合父组件的内容与子组件自己的模板。这个过程被称为 **内容分发** (或 "transclusion" 如果你熟悉 Angular)。Vue.js 实现了一个内容分发 API，参照了当前 [Web 组件规范草案](https://github.com/w3c/webcomponents/blob/gh-pages/proposals/Slots-Proposal.md)，使用特殊的 `<slot>` 元素作为原始内容的插槽。
 
@@ -849,7 +849,7 @@ Vue.component('child-component', {
 </div>
 ```
 
-父组件模版：
+父组件模板：
 
 ``` html
 <div>
@@ -896,7 +896,7 @@ Vue.component('child-component', {
 </div>
 ```
 
-父组件模版：
+父组件模板：
 
 ``` html
 <app-layout>
@@ -1088,7 +1088,7 @@ var child = parent.$refs.profile
 
 当 `ref` 和 `v-for` 一起使用时，ref 是一个数组，包含相应的子组件。
 
-<p class="tip">`$refs` 只在组件渲染完成后才填充，并且它是非响应式的。它仅仅作为一个直接访问子组件的应急方案——应当避免在模版或计算属性中使用 `$refs`。</p>
+<p class="tip">`$refs` 只在组件渲染完成后才填充，并且它是非响应式的。它仅仅作为一个直接访问子组件的应急方案——应当避免在模板或计算属性中使用 `$refs`。</p>
 
 ### 异步组件
 
@@ -1177,16 +1177,16 @@ components: {
 }
 ```
 
-在 HTML 模版中，请使用 kebab-case 形式：
+在 HTML 模板中，请使用 kebab-case 形式：
 
 ``` html
-<!-- 在HTML模版中始终使用 kebab-case -->
+<!-- 在HTML模板中始终使用 kebab-case -->
 <kebab-cased-component></kebab-cased-component>
 <camel-cased-component></camel-cased-component>
 <pascal-cased-component></pascal-cased-component>
 ```
 
-当使用字符串模式时，可以不受 HTML 的 case-insensitive 限制。这意味实际上在模版中，你可以使用下面的方式来引用你的组件：
+当使用字符串模式时，可以不受 HTML 的 case-insensitive 限制。这意味实际上在模板中，你可以使用下面的方式来引用你的组件：
 
 - kebab-case
 - camelCase 或 kebab-case 如果组件已经被定义为 camelCase
@@ -1219,7 +1219,7 @@ components: {
 <my-component/>
 ```
 
-当然，这只在字符串模版中有效。因为自闭的自定义元素是无效的 HTML，浏览器原生的解析器也无法识别它。
+当然，这只在字符串模板中有效。因为自闭的自定义元素是无效的 HTML，浏览器原生的解析器也无法识别它。
 
 ### 递归组件
 
@@ -1288,7 +1288,7 @@ beforeCreate: function () {
 
 问题解决了。
 
-### 内联模版
+### 内联模板
 
 如果子组件有 `inline-template` 特性，组件将把它的内容当作它的模板，而不是把它当作分发内容。这让模板更灵活。
 
@@ -1305,7 +1305,7 @@ beforeCreate: function () {
 
 ### X-Templates
 
-另一种定义模版的方式是在 JavaScript 标签里使用 `text/x-template` 类型，并且指定一个 id。例如：
+另一种定义模板的方式是在 JavaScript 标签里使用 `text/x-template` 类型，并且指定一个 id。例如：
 
 ``` html
 <script type="text/x-template" id="hello-world-template">
@@ -1319,7 +1319,7 @@ Vue.component('hello-world', {
 })
 ```
 
-这在有很多模版或者小的应用中有用，否则应该避免使用，因为它将模版和组件的其他定义隔离了。
+这在有很多模板或者小的应用中有用，否则应该避免使用，因为它将模板和组件的其他定义隔离了。
 
 ### 对低开销的静态组件使用 `v-once`
 

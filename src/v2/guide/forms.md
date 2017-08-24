@@ -60,7 +60,7 @@ new Vue({
 </script>
 {% endraw %}
 
-<p class="tip">在文本区域插值( `<textarea>{{text}}</textarea>` ) 并不会生效，应用 `v-model` 来代替</p>
+<p class="tip">在文本区域插值( `<textarea>{{text}}</textarea>` ) 并不会生效，应用 `v-model` 来代替。</p>
 
 ### 复选框
 
@@ -174,7 +174,7 @@ new Vue({
 
 ### 选择列表
 
-单选列表:
+单选列表：
 
 ``` html
 <div id="example-5">
@@ -410,7 +410,7 @@ vm.selected.number // -> 123
 
 > 如果你还不熟悉Vue的组件，跳过这里即可。
 
-HTML 内建的 input 类型有时不能满足你的需求。还好，Vue 的组件系统允许你创建一个具有自定义行为可复用的 input 类型，这些 input 类型甚至可以和 `v-model` 一起使用！要了解更多，请参阅[自定义 input 类型](components.html#使用自定义事件的表单输入组件)
+HTML 内建的 input 类型有时不能满足你的需求。还好，Vue 的组件系统允许你创建一个具有自定义行为可复用的 input 类型，这些 input 类型甚至可以和 `v-model` 一起使用！要了解更多，请参阅[自定义 input 类型](components.html#使用自定义事件的表单输入组件)。
 
 ***
 
