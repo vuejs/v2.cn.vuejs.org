@@ -66,8 +66,8 @@ var example2 = new Vue({
     greet: function (event) {
       // `this` 在方法里指当前 Vue 实例
       alert('Hello ' + this.name + '!')
-      // `event` 是原生 DOM 事件
-      if (event) {
+      // `event` 是原生 DOM 事件对象
+      if (event) {
         alert(event.target.tagName)
       }
     }
