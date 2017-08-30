@@ -88,19 +88,21 @@ new Vue({
 多个勾选框，绑定到同一个数组：
 
 ``` html
-<input type="checkbox" id="jack" value="Jack" v-model="checkedNames">
-<label for="jack">Jack</label>
-<input type="checkbox" id="john" value="John" v-model="checkedNames">
-<label for="john">John</label>
-<input type="checkbox" id="mike" value="Mike" v-model="checkedNames">
-<label for="mike">Mike</label>
-<br>
-<span>Checked names: {{ checkedNames }}</span>
+<div id='example-3'>
+  <input type="checkbox" id="jack" value="Jack" v-model="checkedNames">
+  <label for="jack">Jack</label>
+  <input type="checkbox" id="john" value="John" v-model="checkedNames">
+  <label for="john">John</label>
+  <input type="checkbox" id="mike" value="Mike" v-model="checkedNames">
+  <label for="mike">Mike</label>
+  <br>
+  <span>Checked names: {{ checkedNames }}</span>
+</div>
 ```
 
 ``` js
 new Vue({
-  el: '...',
+  el: '#example-3',
   data: {
     checkedNames: []
   }
@@ -129,7 +131,6 @@ new Vue({
 {% endraw %}
 
 ### 单选按钮
-
 
 ``` html
 <div id="example-4">
@@ -311,7 +312,6 @@ new Vue({
 </script>
 {% endraw %}
 
-
 ## 绑定 value
 
 对于单选按钮，勾选框及选择列表选项， `v-model` 绑定的 value 通常是静态字符串（对于勾选框是逻辑值）：
@@ -386,7 +386,6 @@ vm.selected.number // -> 123
 <input v-model.lazy="msg" >
 ```
 
-
 ### `.number`
 
 如果想自动将用户的输入值转为 Number 类型（如果原值的转换结果为 NaN 则返回原值），可以添加一个修饰符 `number` 给 `v-model` 来处理输入值：
@@ -396,7 +395,6 @@ vm.selected.number // -> 123
 ```
 
 这通常很有用，因为在 `type="number"` 时 HTML 中输入的值也总是会返回字符串类型。
-
 
 ### `.trim`
 
@@ -417,5 +415,3 @@ HTML 内建的 input 类型有时不能满足你的需求。还好，Vue 的组�
 > 原文：http://vuejs.org/guide/forms.html
 
 ***
-
-
