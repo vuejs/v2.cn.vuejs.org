@@ -69,9 +69,9 @@ var vm = new Vue({
 这里我们声明了一个计算属性 `reversedMessage`。我们提供的函数将用作属性 `vm.reversedMessage` 的 getter 函数：
 
 ``` js
-console.log(vm.reversedMessage) // -> 'olleH'
+console.log(vm.reversedMessage) // => 'olleH'
 vm.message = 'Goodbye'
-console.log(vm.reversedMessage) // -> 'eybdooG'
+console.log(vm.reversedMessage) // => 'eybdooG'
 ```
 
 你可以打开浏览器的控制台，自行修改例子中的 vm。`vm.reversedMessage` 的值始终取决于 `vm.message` 的值。

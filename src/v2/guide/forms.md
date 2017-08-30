@@ -371,8 +371,8 @@ vm.pick === vm.a
 
 ``` js
 // 当选中时
-typeof vm.selected // -> 'object'
-vm.selected.number // -> 123
+typeof vm.selected // => 'object'
+vm.selected.number // => 123
 ```
 
 ## 修饰符

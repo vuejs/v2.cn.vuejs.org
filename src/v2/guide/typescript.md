@@ -1,7 +1,7 @@
 ---
 title: TypeScript 支持
 type: guide
-order: 25
+order: 404
 ---
 
 ## 从 2.2.0 起针对 TS + Webpack 2 用户的重要改动

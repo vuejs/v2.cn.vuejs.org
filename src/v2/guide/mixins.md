@@ -1,7 +1,7 @@
 ---
 title: 混合
 type: guide
-order: 17
+order: 301
 ---
 
 ## 基础
@@ -28,7 +28,7 @@ var Component = Vue.extend({
   mixins: [myMixin]
 })
 
-var component = new Component() // -> "hello from mixin!"
+var component = new Component() // => "hello from mixin!"
 ```
 
 ## 选项合并
@@ -49,8 +49,8 @@ new Vue({
   }
 })
 
-// -> "混合对象的钩子被调用"
-// -> "组件钩子被调用"
+// => "混合对象的钩子被调用"
+// => "组件钩子被调用"
 ```
 
 值为对象的选项，例如 `methods`, `components` 和 `directives`，将被混合为同一个对象。 两个对象键名冲突时，取组件对象的键值对。
@@ -79,9 +79,9 @@ var vm = new Vue({
   }
 })
 
-vm.foo() // -> "foo"
-vm.bar() // -> "bar"
-vm.conflicting() // -> "from self"
+vm.foo() // => "foo"
+vm.bar() // => "bar"
+vm.conflicting() // => "from self"
 ```
 
 注意： `Vue.extend()` 也使用同样的策略进行合并。
@@ -104,7 +104,7 @@ Vue.mixin({
 new Vue({
   myOption: 'hello!'
 })
-// -> "hello!"
+// => "hello!"
 ```
 
 <p class="tip">谨慎使用全局混合对象，因为会影响到每个单独创建的 Vue 实例（包括第三方模板）。大多数情况下，只应当应用于自定义选项，就像上面示例一样。 也可以将其用作 [Plugins](plugins.html) 以避免产生重复应用</p>

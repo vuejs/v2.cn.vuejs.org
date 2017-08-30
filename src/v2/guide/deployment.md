@@ -1,5 +1,5 @@
 ---
-title: 生产环境部署提示
+title: 生产环境部署
 type: guide
 order: 20
 ---
