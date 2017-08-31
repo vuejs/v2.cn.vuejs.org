@@ -129,7 +129,6 @@ return createElement('h1', this.blogTitle)
 
 What is `createElement` actually returning? It's not _exactly_ a real DOM element. It could perhaps more accurately be named `createNodeDescription`, as it contains information describing to Vue what kind of node it should render on the page, including descriptions of any child nodes. We call this node description a "virtual node", usually abbreviated to **VNode**. "Virtual DOM" is what we call the entire tree of VNodes, built by a tree of Vue components.
 
-
 ## `createElement` 参数
 
 接下来你需要熟悉的是如何在 `createElement` 函数中生成模板。这里是 `createElement` 接受的参数：

@@ -1,5 +1,5 @@
 ---
-title: 表单控件绑定
+title: 表单输入绑定
 type: guide
 order: 10
 ---

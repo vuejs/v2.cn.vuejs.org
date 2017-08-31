@@ -1,5 +1,5 @@
 ---
-title: 事件处理器
+title: 事件处理
 type: guide
 order: 9
 ---

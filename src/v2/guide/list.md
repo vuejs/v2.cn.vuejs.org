@@ -4,11 +4,9 @@ type: guide
 order: 8
 ---
 
-## `v-for`
+## 用 `v-for` 把一个数组对应为一组元素
 
 我们用 `v-for` 指令根据一组数组的选项列表进行渲染。 `v-for` 指令需要以 `item in items` 形式的特殊语法， `items` 是源数据数组并且 `item` 是数组元素迭代的别名。
-
-### 基本用法
 
 ``` html
 <ul id="example-1">
@@ -112,25 +110,12 @@ var example2 = new Vue({
 <div v-for="item of items"></div>
 ```
 
-### Template `v-for`
-
-如同 `v-if` 模板，你也可以用带有 `v-for` 的 `<template>` 标签来渲染多个元素块。例如： 
-
-``` html
-<ul>
-  <template v-for="item in items">
-    <li>{{ item.msg }}</li>
-    <li class="divider"></li>
-  </template>
-</ul>
-```
-
-### 对象迭代 `v-for`
+### 一个对象的 `v-for`
 
 你也可以用 `v-for` 通过一个对象的属性来迭代。
 
 ``` html
-<ul id="repeat-object" class="demo">
+<ul id="v-for-object" class="demo">
   <li v-for="value in object">
     {{ value }}
   </li>
@@ -139,7 +124,7 @@ var example2 = new Vue({
 
 ``` js
 new Vue({
-  el: '#repeat-object',
+  el: '#v-for-object',
   data: {
     object: {
       firstName: 'John',
@@ -153,14 +138,14 @@ new Vue({
 结果：
 
 {% raw %}
-<ul id="repeat-object" class="demo">
+<ul id="v-for-object" class="demo">
   <li v-for="value in object">
     {{ value }}
   </li>
 </ul>
 <script>
 new Vue({
-  el: '#repeat-object',
+  el: '#v-for-object',
   data: {
     object: {
       firstName: 'John',
@@ -176,21 +161,231 @@ new Vue({
 
 ``` html
 <div v-for="(value, key) in object">
-  {{ key }} : {{ value }}
+  {{ key }}: {{ value }}
 </div>
 ```
+
+{% raw %}
+<div id="v-for-object-value-key" class="demo">
+  <div v-for="(value, key) in object">
+    {{ key }}: {{ value }}
+  </div>
+</div>
+<script>
+new Vue({
+  el: '#v-for-object-value-key',
+  data: {
+    object: {
+      firstName: 'John',
+      lastName: 'Doe',
+      age: 30
+    }
+  }
+})
+</script>
+{% endraw %}
 
 第三个参数为索引：
 
 ``` html
 <div v-for="(value, key, index) in object">
-  {{ index }}. {{ key }} : {{ value }}
+  {{ index }}. {{ key }}: {{ value }}
 </div>
 ```
 
+{% raw %}
+<div id="v-for-object-value-key-index" class="demo">
+  <div v-for="(value, key, index) in object">
+    {{ index }}. {{ key }}: {{ value }}
+  </div>
+</div>
+<script>
+new Vue({
+  el: '#v-for-object-value-key-index',
+  data: {
+    object: {
+      firstName: 'John',
+      lastName: 'Doe',
+      age: 30
+    }
+  }
+})
+</script>
+{% endraw %}
+
 <p class="tip">在遍历对象时，是按 `Object.keys()` 的结果遍历，但是不能保证它的结果在不同的 JavaScript 引擎下是一致的。</p>
 
-### 整数迭代 `v-for`
+## `key`
+
+当 Vue.js 用 `v-for` 正在更新已渲染过的元素列表时，它默认用 “就地复用” 策略。如果数据项的顺序被改变，Vue将不是移动 DOM 元素来匹配数据项的顺序，  而是简单复用此处每个元素，并且确保它在特定索引下显示已被渲染过的每个元素。这个类似 Vue 1.x 的 `track-by="$index"` 。
+
+这个默认的模式是高效的，但是只适用于**不依赖子组件状态或临时 DOM 状态（例如：表单输入值）的列表渲染输出**。
+
+为了给 Vue 一个提示，以便它能跟踪每个节点的身份，从而重用和重新排序现有元素，你需要为每项提供一个唯一 `key` 属性。理想的 `key` 值是每项都有的且唯一的 id。这个特殊的属性相当于 Vue 1.x 的 `track-by` ，但它的工作方式类似于一个属性，所以你需要用 `v-bind` 来绑定动态值（在这里使用简写）：
+
+``` html
+<div v-for="item in items" :key="item.id">
+  <!-- 内容 -->
+</div>
+```
+
+建议尽可能使用 `v-for` 来提供 `key` ，除非 DOM 内容遍历起来非常简单，或者你是有意识的要依赖于默认行为以便获得性能提升。
+
+因为它是 Vue 识别节点的一个通用机制， `key` 并不特别与 `v-for` 关联，key 还具有其他用途，我们将在后面的指南中看到其他用途。
+
+## 数组更新检测
+
+### 变异方法
+
+Vue 包含一组观察数组的变异方法，所以它们也将会触发视图更新。这些方法如下：
+
+- `push()`
+- `pop()`
+- `shift()`
+- `unshift()`
+- `splice()`
+- `sort()`
+- `reverse()`
+
+你打开控制台，然后用前面例子的 `items` 数组调用变异方法：`example1.items.push({ message: 'Baz' })` 。
+
+### 重塑数组
+
+变异方法(mutation method)，顾名思义，会改变被这些方法调用的原始数组。相比之下，也有非变异(non-mutating method)方法，例如： `filter()`, `concat()` 和 `slice()` 。这些不会改变原始数组，但**总是返回一个新数组**。当使用非变异方法时，可以用新数组替换旧数组：
+
+``` js
+example1.items = example1.items.filter(function (item) {
+  return item.message.match(/Foo/)
+})
+```
+
+你可能认为这将导致 Vue 丢弃现有 DOM 并重新渲染整个列表。幸运的是，事实并非如此。 Vue 为了使得 DOM 元素得到最大范围的重用而实现了一些智能的、启发式的方法，所以用一个含有相同元素的数组去替换原来的数组是非常高效的操作。
+
+### 注意事项
+
+由于 JavaScript 的限制， Vue 不能检测以下变动的数组：
+
+1. 当你利用索引直接设置一个项时，例如： `vm.items[indexOfItem] = newValue`
+2. 当你修改数组的长度时，例如： `vm.items.length = newLength`
+
+为了解决第一类问题，以下两种方式都可以实现和 `vm.items[indexOfItem] = newValue` 相同的效果， 同时也将触发状态更新：
+
+``` js
+// Vue.set
+Vue.set(example1.items, indexOfItem, newValue)
+```
+``` js
+// Array.prototype.splice
+example1.items.splice(indexOfItem, 1, newValue)
+```
+
+为了解决第二类问题，你可以使用 `splice`：
+
+``` js
+example1.items.splice(newLength)
+```
+
+## Object Change Detection Caveats
+
+<!-- todo translation -->Again due to limitations of modern JavaScript, **Vue cannot detect property addition or deletion**. For example:
+
+``` js
+var vm = new Vue({
+  data: {
+    a: 1
+  }
+})
+// `vm.a` is now reactive
+
+vm.b = 2
+// `vm.b` is NOT reactive
+```
+
+Vue does not allow dynamically adding new root-level reactive properties to an already created instance. However, it's possible to add reactive properties to a nested object using the `Vue.set(object, key, value)` method. For example, given:
+
+``` js
+var vm = new Vue({
+  data: {
+    userProfile: {
+      name: 'Anika'
+    }
+  }
+})
+```
+
+You could add a new `age` property to the nested `userProfile` object with:
+
+``` js
+Vue.set(vm.userProfile, 'age', 27)
+```
+
+You can also use the `vm.$set` instance method, which is just an alias for the global `Vue.set`:
+
+``` js
+this.$set(this.userProfile, 'age', 27)
+```
+
+Sometimes you may want to assign a number of new properties to an existing object, for example using `Object.assign()` or `_.extend()`. In such cases, you should create a fresh object with properties from both objects. So instead of:
+
+``` js
+Object.assign(this.userProfile, {
+  age: 27,
+  favoriteColor: 'Vue Green'
+})
+```
+
+You would add new, reactive properties with:
+
+``` js
+this.userProfile = Object.assign({}, this.userProfile, {
+  age: 27,
+  favoriteColor: 'Vue Green'
+})
+```
+
+## 显示过滤/排序结果
+
+有时，我们想要显示一个数组的过滤或排序副本，而不实际改变或重置原始数据。在这种情况下，可以创建返回过滤或排序数组的计算属性。
+
+例如：
+
+``` html
+<li v-for="n in evenNumbers">{{ n }}</li>
+```
+
+``` js
+data: {
+  numbers: [ 1, 2, 3, 4, 5 ]
+},
+computed: {
+  evenNumbers: function () {
+    return this.numbers.filter(function (number) {
+      return number % 2 === 0
+    })
+  }
+}
+```
+
+在计算属性不适用的情况下 (例如，在嵌套 `v-for` 循环中) 你可以使用一个 method 方法：
+
+``` html
+<li v-for="n in even(numbers)">{{ n }}</li>
+```
+
+``` js
+data: {
+  numbers: [ 1, 2, 3, 4, 5 ]
+},
+methods: {
+  even: function (numbers) {
+    return numbers.filter(function (number) {
+      return number % 2 === 0
+    })
+  }
+}
+```
+
+### 一段取值范围的 `v-for`
 
 `v-for` 也可以取整数。在这种情况下，它将重复多次模板。
 
@@ -207,11 +402,47 @@ new Vue({
   <span v-for="n in 10">{{ n }} </span>
 </div>
 <script>
-new Vue({ el: '#range' })
+  new Vue({ el: '#range' })
 </script>
 {% endraw %}
 
-### 组件 和 `v-for`
+## `v-for` on a `<template>`
+
+<!-- todo translation -->Similar to template `v-if`, you can also use a `<template>` tag with `v-for` to render a block of multiple elements. For example:
+
+``` html
+<ul>
+  <template v-for="item in items">
+    <li>{{ item.msg }}</li>
+    <li class="divider"></li>
+  </template>
+</ul>
+```
+
+### `v-for` with `v-if`
+
+当它们处于同一节点， `v-for` 的优先级比 `v-if` 更高，这意味着 `v-if` 将分别重复运行于每个 `v-for` 循环中。当你想为仅有的 _一些_ 项渲染节点时，这种优先级的机制会十分有用，如下：
+
+``` html
+<li v-for="todo in todos" v-if="!todo.isComplete">
+  {{ todo }}
+</li>
+```
+
+上面的代码只传递了未 complete 的 todos。
+
+而如果你的目的是有条件地跳过循环的执行，那么可以将 `v-if` 置于外层元素 (或 [`<template>`](conditional.html#Conditional-Groups-with-v-if-on-lt-template-gt))上。如:
+
+``` html
+<ul v-if="todos.length">
+  <li v-for="todo in todos">
+    {{ todo }}
+  </li>
+</ul>
+<p v-else>No todos left!</p>
+```
+
+### 一个组件的 `v-for`
 
 > 了解组件相关知识，查看 [组件](components.html) 。完全可以先跳过它，以后再回来查看。
 
@@ -360,140 +591,6 @@ new Vue({
 })
 </script>
 {% endraw %}
-
-### `v-for` with `v-if`
-
-当它们处于同一节点， `v-for` 的优先级比 `v-if` 更高，这意味着 `v-if` 将分别重复运行于每个 `v-for` 循环中。当你想为仅有的 _一些_ 项渲染节点时，这种优先级的机制会十分有用，如下：
-
-``` html
-<li v-for="todo in todos" v-if="!todo.isComplete">
-  {{ todo }}
-</li>
-```
-
-上面的代码只传递了未 complete 的 todos。
-
-而如果你的目的是有条件地跳过循环的执行，那么可以将 `v-if` 置于外层元素 (或 [`<template>`](conditional.html#Conditional-Groups-with-v-if-on-lt-template-gt))上。如:
-
-``` html
-<ul v-if="shouldRenderTodos">
-  <li v-for="todo in todos">
-    {{ todo }}
-  </li>
-</ul>
-```
-
-## `key`
-
-当 Vue.js 用 `v-for` 正在更新已渲染过的元素列表时，它默认用 “就地复用” 策略。如果数据项的顺序被改变，Vue将不是移动 DOM 元素来匹配数据项的顺序，  而是简单复用此处每个元素，并且确保它在特定索引下显示已被渲染过的每个元素。这个类似 Vue 1.x 的 `track-by="$index"` 。
-
-这个默认的模式是高效的，但是只适用于**不依赖子组件状态或临时 DOM 状态（例如：表单输入值）的列表渲染输出**。
-
-为了给 Vue 一个提示，以便它能跟踪每个节点的身份，从而重用和重新排序现有元素，你需要为每项提供一个唯一 `key` 属性。理想的 `key` 值是每项都有的且唯一的 id。这个特殊的属性相当于 Vue 1.x 的 `track-by` ，但它的工作方式类似于一个属性，所以你需要用 `v-bind` 来绑定动态值（在这里使用简写）：
-
-``` html
-<div v-for="item in items" :key="item.id">
-  <!-- 内容 -->
-</div>
-```
-
-建议尽可能使用 `v-for` 来提供 `key` ，除非 DOM 内容遍历起来非常简单，或者你是有意识的要依赖于默认行为以便获得性能提升。
-
-因为它是 Vue 识别节点的一个通用机制， `key` 并不特别与 `v-for` 关联，key 还具有其他用途，我们将在后面的指南中看到其他用途。
-
-## 数组更新检测
-
-### 变异方法
-
-Vue 包含一组观察数组的变异方法，所以它们也将会触发视图更新。这些方法如下：
-
-- `push()`
-- `pop()`
-- `shift()`
-- `unshift()`
-- `splice()`
-- `sort()`
-- `reverse()`
-
-你打开控制台，然后用前面例子的 `items` 数组调用变异方法：`example1.items.push({ message: 'Baz' })` 。
-
-### 重塑数组
-
-变异方法(mutation method)，顾名思义，会改变被这些方法调用的原始数组。相比之下，也有非变异(non-mutating method)方法，例如： `filter()`, `concat()` 和 `slice()` 。这些不会改变原始数组，但**总是返回一个新数组**。当使用非变异方法时，可以用新数组替换旧数组：
-
-``` js
-example1.items = example1.items.filter(function (item) {
-  return item.message.match(/Foo/)
-})
-```
-
-你可能认为这将导致 Vue 丢弃现有 DOM 并重新渲染整个列表。幸运的是，事实并非如此。 Vue 为了使得 DOM 元素得到最大范围的重用而实现了一些智能的、启发式的方法，所以用一个含有相同元素的数组去替换原来的数组是非常高效的操作。
-
-### 注意事项
-
-由于 JavaScript 的限制， Vue 不能检测以下变动的数组：
-
-1. 当你利用索引直接设置一个项时，例如： `vm.items[indexOfItem] = newValue`
-2. 当你修改数组的长度时，例如： `vm.items.length = newLength`
-
-为了解决第一类问题，以下两种方式都可以实现和 `vm.items[indexOfItem] = newValue` 相同的效果， 同时也将触发状态更新：
-
-``` js
-// Vue.set
-Vue.set(example1.items, indexOfItem, newValue)
-```
-``` js
-// Array.prototype.splice
-example1.items.splice(indexOfItem, 1, newValue)
-```
-
-为了解决第二类问题，你可以使用 `splice`：
-
-``` js
-example1.items.splice(newLength)
-```
-
-## 显示过滤/排序结果
-
-有时，我们想要显示一个数组的过滤或排序副本，而不实际改变或重置原始数据。在这种情况下，可以创建返回过滤或排序数组的计算属性。
-
-例如：
-
-``` html
-<li v-for="n in evenNumbers">{{ n }}</li>
-```
-
-``` js
-data: {
-  numbers: [ 1, 2, 3, 4, 5 ]
-},
-computed: {
-  evenNumbers: function () {
-    return this.numbers.filter(function (number) {
-      return number % 2 === 0
-    })
-  }
-}
-```
-
-在计算属性不适用的情况下 (例如，在嵌套 `v-for` 循环中) 你可以使用一个 method 方法：
-
-``` html
-<li v-for="n in even(numbers)">{{ n }}</li>
-```
-
-``` js
-data: {
-  numbers: [ 1, 2, 3, 4, 5 ]
-},
-methods: {
-  even: function (numbers) {
-    return numbers.filter(function (number) {
-      return number % 2 === 0
-    })
-  }
-}
-```
 
 ***
 

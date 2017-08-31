@@ -1,5 +1,5 @@
 ---
-title: 计算属性
+title: 计算属性和观察者
 type: guide
 order: 5
 ---
@@ -64,7 +64,6 @@ var vm = new Vue({
 })
 </script>
 {% endraw %}
-
 
 这里我们声明了一个计算属性 `reversedMessage`。我们提供的函数将用作属性 `vm.reversedMessage` 的 getter 函数：
 
@@ -182,7 +181,7 @@ computed: {
 
 现在再运行 `vm.fullName = 'John Doe'` 时，setter 会被调用，`vm.firstName` 和 `vm.lastName` 也相应地会被更新。
 
-## 观察 Watchers
+## 观察者
 
 虽然计算属性在大多数情况下更合适，但有时也需要一个自定义的 watcher。这是为什么 Vue 通过 `watch` 选项提供一个更通用的方法，来响应数据的变化。当你想要在数据变化响应时，执行异步操作或开销较大的操作，这是很有用的。
 
@@ -248,7 +247,6 @@ var watchExampleVM = new Vue({
 })
 </script>
 ```
-
 
 结果：
 
