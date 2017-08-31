@@ -1,5 +1,5 @@
 ---
-title: 表单控件绑定
+title: 表单输入绑定
 type: guide
 order: 10
 ---
@@ -371,8 +371,8 @@ vm.pick === vm.a
 
 ``` js
 // 当选中时
-typeof vm.selected // -> 'object'
-vm.selected.number // -> 123
+typeof vm.selected // => 'object'
+vm.selected.number // => 123
 ```
 
 ## 修饰符

@@ -1,7 +1,7 @@
 ---
 title: 插件
 type: guide
-order: 18
+order: 304
 ---
 
 ## 开发插件

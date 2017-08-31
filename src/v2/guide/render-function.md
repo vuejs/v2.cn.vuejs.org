@@ -1,7 +1,7 @@
 ---
-title: Render 函数
+title: Render 函数 & JSX
 type: guide
-order: 15
+order: 303
 ---
 
 ## 基础
@@ -83,9 +83,55 @@ Vue.component('anchored-heading', {
 
 简单清晰很多！简单来说，这样代码精简很多，但是需要非常熟悉 Vue 的实例属性。在这个例子中，你需要知道当你不使用 `slot`  属性向组件中传递内容时，比如 `anchored-heading` 中的 `Hello world!`, 这些子元素被存储在组件实例中的 `$slots.default`中。如果你还不了解，** 在深入 render 函数之前推荐阅读 [实例属性API](../api/#实例属性)。**
 
+## Nodes, Trees, and the Virtual DOM
+
+<!-- todo translation -->Before we dive into render functions, it’s important to know a little about how browsers work. Take this HTML for example:
+
+```html
+<div>
+  <h1>My title</h1>
+  Some text content
+  <!-- TODO: Add tagline  -->
+</div>
+```
+
+When a browser reads this code, it builds a [tree of "DOM nodes"](https://javascript.info/dom-nodes) to help it keep track of everything, just as you might build a family tree to keep track of your extended family.
+
+The tree of DOM nodes for the HTML above looks like this:
+
+![DOM Tree Visualization](/images/dom-tree.png)
+
+Every element is a node. Every piece of text is a node. Even comments are nodes! A node is just a piece of the page. And just as in a family tree, each node can have children (i.e. each piece can contain other pieces).
+
+Updating all these nodes efficiently can be difficult, but thankfully, you never have to do it manually. You just tell Vue what HTML you want on the page, in a template:
+
+```html
+<h1>{{ blogTitle }}</h1>
+```
+
+Or a render function:
+
+``` js
+render: function (createElement) {
+  return createElement('h1', this.blogTitle)
+}
+```
+
+And in both cases, Vue automatically keeps the page updated, even when `blogTitle` changes.
+
+### The Virtual DOM
+
+Vue accomplishes this by building a **virtual DOM** to keep track of the changes it needs to make to the real DOM. Taking a closer look at this line:
+
+``` js
+return createElement('h1', this.blogTitle)
+```
+
+What is `createElement` actually returning? It's not _exactly_ a real DOM element. It could perhaps more accurately be named `createNodeDescription`, as it contains information describing to Vue what kind of node it should render on the page, including descriptions of any child nodes. We call this node description a "virtual node", usually abbreviated to **VNode**. "Virtual DOM" is what we call the entire tree of VNodes, built by a tree of Vue components.
+
 ## `createElement` 参数
 
-第二件你需要熟悉的是如何在 `createElement` 函数中生成模板。这里是 `createElement` 接受的参数：
+接下来你需要熟悉的是如何在 `createElement` 函数中生成模板。这里是 `createElement` 接受的参数：
 
 ``` js
 // @returns {VNode}

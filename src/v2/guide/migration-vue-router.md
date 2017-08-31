@@ -1,7 +1,7 @@
 ---
 title: 从 Vue Router 0.7.x 迁移
 type: guide
-order: 27
+order: 602
 ---
 
 > 只有 Vue Router 2 是与 Vue 2 相互兼容的，所以如果你更新了 Vue ，你也需要更新 Vue Router 。这也是我们在主文档中将迁移路径的详情添加进来的原因。
@@ -128,6 +128,30 @@ router.match = createMatcher(
   <p>运行 <a href="https://github.com/vuejs/vue-migration-helper">迁移助手</a> 找到 <code>router.on</code> 被调用的示例。</p>
 </div>
 {% endraw %}
+
+### `router.beforeEach` <sup>changed</sup>
+
+<!-- todo translation -->`router.beforeEach` now works asynchronously and takes a `next` function as its third argument.
+
+``` js
+router.beforeEach(function (transition) {
+  if (transition.to.path === '/forbidden') {
+    transition.abort()
+  } else {
+    transition.next()
+  }
+})
+```
+
+``` js
+router.beforeEach(function (to, from, next) {
+  if (to.path === '/forbidden') {
+    next(false)
+  } else {
+    next()
+  }
+})
+```
 
 ### `subRoutes` <sup>换名</sup>
 

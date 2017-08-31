@@ -17,6 +17,10 @@ Vue.js 不支持 IE8 及其以下版本，因为 Vue.js 使用了 IE8 不能模�
 
 每个版本的更新日志见 [GitHub](https://github.com/vuejs/vue/releases)。
 
+## Vue Devtools
+
+<!-- todo translation -->When using Vue, we recommend also installing the [Vue Devtools](https://github.com/vuejs/vue-devtools#vue-devtools) in your browser, allowing you to inspect and debug your Vue applications in a more user-friendly interface.
+
 ## 直接 `<script>` 引入
 
 直接下载并用 `<script>` 标签引入，`Vue` 会被注册为一个全局变量。**重要提示：在开发时请用开发版本，遇到常见错误它会给出友好的警告。**

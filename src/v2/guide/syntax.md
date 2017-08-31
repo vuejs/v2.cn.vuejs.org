@@ -119,51 +119,6 @@ mustache 语法不能作用在 HTML 特性上，遇到这种情况应该使用 [
 
 之后当我们更深入地了解 `v-on` 与 `v-model`时，会看到更多修饰符的使用。
 
-## 过滤器
-
-Vue.js 允许你自定义过滤器，可被用作一些常见的文本格式化。过滤器可以用在两个地方：**mustache 插值和 `v-bind` 表达式**。过滤器应该被添加在 JavaScript 表达式的尾部，由“管道”符指示：
-
-``` html
-<!-- in mustaches -->
-{{ message | capitalize }}
-
-<!-- in v-bind -->
-<div v-bind:id="rawId | formatId"></div>
-```
-
-<p class="tip">由于最初计划过滤器的使用场景，是用于文本转换，所以 Vue 2.x 过滤器只能用于双花括号插值(mustache interpolation)和 `v-bind` 表达式中（后者在 2.1.0+ 版本支持）。对于复杂数据的转换，应该使用[计算属性](computed.html)。</p>
-
-过滤器函数总接收表达式的值 (之前的操作链的结果) 作为第一个参数。在这个例子中，`capitalize` 过滤器函数将会收到 `message` 的值作为第一个参数。
-
-``` js
-new Vue({
-  // ...
-  filters: {
-    capitalize: function (value) {
-      if (!value) return ''
-      value = value.toString()
-      return value.charAt(0).toUpperCase() + value.slice(1)
-    }
-  }
-})
-```
-
-过滤器可以串联：
-
-``` html
-{{ message | filterA | filterB }}
-```
-
-在这个例子中，`filterA` 被定义为接收单个参数的过滤器函数，表达式 `message` 的值将作为参数传入到函数中，然后继续调用同样被定义为接收单个参数的过滤器函数 `filterB`，将 `filterA` 的结果传递到 `filterB` 中。
-
-过滤器是 JavaScript 函数，因此可以接收参数：
-
-``` html
-{{ message | filterA('arg1', arg2) }}
-```
-
-这里，`filterA` 被定义为接收三个参数的过滤器函数。其中 `message` 的值作为第一个参数，普通字符串 `'arg1'` 作为第二个参数，表达式 `arg2` 取值后的值作为第三个参数。
-
 ## 缩写
 
 `v-` 前缀作为一种视觉提示，用来识别模板中 Vue 特定的特性。当你在使用 Vue.js 为现有标签添加动态行为(dynamic behavior)时，`v-` 前缀很有帮助，然而，对于一些频繁用到的指令来说，就会感到使用繁琐。同时，在构建由 Vue.js 管理所有模板的[单页面应用程序(SPA - single page application)](https://en.wikipedia.org/wiki/Single-page_application)时，`v-` 前缀也变得没那么重要了。因此，Vue.js 为 `v-bind` 和 `v-on` 这两个最常用的指令，提供了特定简写：

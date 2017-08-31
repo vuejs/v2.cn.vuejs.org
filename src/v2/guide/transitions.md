@@ -1,7 +1,7 @@
 ---
-title: 过渡效果
+title: 进入/离开 & 列表过渡
 type: guide
-order: 13
+order: 201
 ---
 
 ## 概述
