@@ -285,9 +285,9 @@ example1.items.splice(indexOfItem, 1, newValue)
 example1.items.splice(newLength)
 ```
 
-## Object Change Detection Caveats
+## 对象更改检测注意事项
 
-<!-- todo translation -->Again due to limitations of modern JavaScript, **Vue cannot detect property addition or deletion**. For example:
+还是由于JavaScript的限制， **Vue不能检测对象属性的添加或删除**：
 
 ``` js
 var vm = new Vue({
@@ -295,13 +295,13 @@ var vm = new Vue({
     a: 1
   }
 })
-// `vm.a` is now reactive
+// `vm.a` 现在是响应式的
 
 vm.b = 2
-// `vm.b` is NOT reactive
+// `vm.b` 不是响应式的
 ```
 
-Vue does not allow dynamically adding new root-level reactive properties to an already created instance. However, it's possible to add reactive properties to a nested object using the `Vue.set(object, key, value)` method. For example, given:
+对于已经创建的实例，Vue不能动态添加根级别的响应式属性。 但是，可以使用 `Vue.set(object, key, value)` 方法向嵌套对象添加响应式属性。例如，对于：
 
 ``` js
 var vm = new Vue({
@@ -313,19 +313,19 @@ var vm = new Vue({
 })
 ```
 
-You could add a new `age` property to the nested `userProfile` object with:
+你可以添加一个新的 `age` 属性到嵌套的 `userProfile` 对象:
 
 ``` js
 Vue.set(vm.userProfile, 'age', 27)
 ```
 
-You can also use the `vm.$set` instance method, which is just an alias for the global `Vue.set`:
+你还可以使用 `vm.$set` 实例方法，它只是全局 `Vue.set` 的别名:
 
 ``` js
 this.$set(this.userProfile, 'age', 27)
 ```
 
-Sometimes you may want to assign a number of new properties to an existing object, for example using `Object.assign()` or `_.extend()`. In such cases, you should create a fresh object with properties from both objects. So instead of:
+有时你可能需要为已有对象赋予多个新属性，比如使用 `Object.assign()` 或 `_.extend()`。在这种情况下，你应该用两个对象的属性创建一个新的对象。所以，如果你想添加新的响应式属性，不要像这样：
 
 ``` js
 Object.assign(this.userProfile, {
@@ -334,7 +334,7 @@ Object.assign(this.userProfile, {
 })
 ```
 
-You would add new, reactive properties with:
+你应该这样做：
 
 ``` js
 this.userProfile = Object.assign({}, this.userProfile, {
@@ -408,7 +408,7 @@ methods: {
 
 ## `v-for` on a `<template>`
 
-<!-- todo translation -->Similar to template `v-if`, you can also use a `<template>` tag with `v-for` to render a block of multiple elements. For example:
+类似于 `v-if`，你也可以利用带有 `v-for` 的 `<template>` 渲染多个元素。比如：
 
 ``` html
 <ul>
