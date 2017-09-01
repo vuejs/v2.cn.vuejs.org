@@ -251,7 +251,7 @@ Vue 包含一组观察数组的变异方法，所以它们也将会触发视图�
 
 ### 重塑数组
 
-变异方法(mutation method)，顾名思义，会改变被这些方法调用的原始数组。相比之下，也有非变异(non-mutating method)方法，例如： `filter()`, `concat()` 和 `slice()` 。这些不会改变原始数组，但**总是返回一个新数组**。当使用非变异方法时，可以用新数组替换旧数组：
+变异方法 (mutation method)，顾名思义，会改变被这些方法调用的原始数组。相比之下，也有非变异 (non-mutating method) 方法，例如：`filter()`, `concat()` 和 `slice()` 。这些不会改变原始数组，但**总是返回一个新数组**。当使用非变异方法时，可以用新数组替换旧数组：
 
 ``` js
 example1.items = example1.items.filter(function (item) {
@@ -263,7 +263,7 @@ example1.items = example1.items.filter(function (item) {
 
 ### 注意事项
 
-由于 JavaScript 的限制， Vue 不能检测以下变动的数组：
+由于 JavaScript 的限制，Vue 不能检测以下变动的数组：
 
 1. 当你利用索引直接设置一个项时，例如： `vm.items[indexOfItem] = newValue`
 2. 当你修改数组的长度时，例如： `vm.items.length = newLength`
@@ -285,9 +285,9 @@ example1.items.splice(indexOfItem, 1, newValue)
 example1.items.splice(newLength)
 ```
 
-## Object Change Detection Caveats
+## 对象更改检测注意事项
 
-<!-- todo translation -->Again due to limitations of modern JavaScript, **Vue cannot detect property addition or deletion**. For example:
+还是由于 JavaScript 的限制，**Vue 不能检测对象属性的添加或删除**：
 
 ``` js
 var vm = new Vue({
@@ -295,13 +295,13 @@ var vm = new Vue({
     a: 1
   }
 })
-// `vm.a` is now reactive
+// `vm.a` 现在是响应式的
 
 vm.b = 2
-// `vm.b` is NOT reactive
+// `vm.b` 不是响应式的
 ```
 
-Vue does not allow dynamically adding new root-level reactive properties to an already created instance. However, it's possible to add reactive properties to a nested object using the `Vue.set(object, key, value)` method. For example, given:
+对于已经创建的实例，Vue 不能动态添加根级别的响应式属性。但是，可以使用 `Vue.set(object, key, value)` 方法向嵌套对象添加响应式属性。例如，对于：
 
 ``` js
 var vm = new Vue({
@@ -313,19 +313,19 @@ var vm = new Vue({
 })
 ```
 
-You could add a new `age` property to the nested `userProfile` object with:
+你可以添加一个新的 `age` 属性到嵌套的 `userProfile` 对象:
 
 ``` js
 Vue.set(vm.userProfile, 'age', 27)
 ```
 
-You can also use the `vm.$set` instance method, which is just an alias for the global `Vue.set`:
+你还可以使用 `vm.$set` 实例方法，它只是全局 `Vue.set` 的别名:
 
 ``` js
 this.$set(this.userProfile, 'age', 27)
 ```
 
-Sometimes you may want to assign a number of new properties to an existing object, for example using `Object.assign()` or `_.extend()`. In such cases, you should create a fresh object with properties from both objects. So instead of:
+有时你可能需要为已有对象赋予多个新属性，比如使用 `Object.assign()` 或 `_.extend()`。在这种情况下，你应该用两个对象的属性创建一个新的对象。所以，如果你想添加新的响应式属性，不要像这样：
 
 ``` js
 Object.assign(this.userProfile, {
@@ -334,7 +334,7 @@ Object.assign(this.userProfile, {
 })
 ```
 
-You would add new, reactive properties with:
+你应该这样做：
 
 ``` js
 this.userProfile = Object.assign({}, this.userProfile, {
@@ -408,7 +408,7 @@ methods: {
 
 ## `v-for` on a `<template>`
 
-<!-- todo translation -->Similar to template `v-if`, you can also use a `<template>` tag with `v-for` to render a block of multiple elements. For example:
+类似于 `v-if`，你也可以利用带有 `v-for` 的 `<template>` 渲染多个元素。比如：
 
 ``` html
 <ul>
@@ -421,7 +421,7 @@ methods: {
 
 ### `v-for` with `v-if`
 
-当它们处于同一节点， `v-for` 的优先级比 `v-if` 更高，这意味着 `v-if` 将分别重复运行于每个 `v-for` 循环中。当你想为仅有的 _一些_ 项渲染节点时，这种优先级的机制会十分有用，如下：
+当它们处于同一节点，`v-for` 的优先级比 `v-if` 更高，这意味着 `v-if` 将分别重复运行于每个 `v-for` 循环中。当你想为仅有的_一些_项渲染节点时，这种优先级的机制会十分有用，如下：
 
 ``` html
 <li v-for="todo in todos" v-if="!todo.isComplete">
