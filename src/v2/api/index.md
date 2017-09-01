@@ -231,8 +231,6 @@ type: api
 
   > 2.1.0 起新增：如果没有提供回调且支持 promise 的环境中返回 promise。
 
-- **参考**：[异步更新队列](../guide/reactivity.html#异步更新队列)
-
 ### Vue.set( target, key, value )
 
 - **参数**：
@@ -246,9 +244,7 @@ type: api
 
   设置对象的属性。如果对象是响应式的，确保属性被创建后也是响应式的，同时触发视图更新。这个方法主要用于避开 Vue 不能检测属性被添加的限制。
 
-  **注意对象不能是 Vue 实例，或者 Vue 实例的根数据对象**
-
-- **参考**：[深入响应式原理](../guide/reactivity.html)
+  <p class="tip">注意对象不能是 Vue 实例，或者 Vue 实例的根数据对象。</p>
 
 ### Vue.delete( target, key )
 
@@ -265,8 +261,6 @@ type: api
   > 在 2.2.0+ 中同样支持在数组上工作。
 
   <p class="tip">目标对象不能是一个 Vue 示例或 Vue 示例的根数据对象。</p>
-
-- **参考**：[深入响应式原理](../guide/reactivity.html)
 
 ### Vue.directive( id, [definition] )
 
@@ -450,8 +444,6 @@ if (version === 2) {
   ```
 
   <p class="tip">注意，__不应该对 `data` 属性使用箭头函数__ (例如`data: () => { return { a: this.myProp }}`)。理由是箭头函数绑定了父级作用域的上下文，所以 this 将不会按照期望指向 Vue 实例，`this.myProp` 将是 undefined。</p>
-
-- **参考**：[深入响应式原理](../guide/reactivity.html)
 
 ### props
 
@@ -1579,9 +1571,7 @@ if (version === 2) {
   })
   ```
 
-- **参考**：
-  - [Vue.nextTick](#Vue-nextTick)
-  - [异步更新队列](../guide/reactivity.html#异步更新队列)
+- **参考**：[Vue.nextTick](#Vue-nextTick)
 
 ### vm.$destroy()
 
