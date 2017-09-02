@@ -361,7 +361,7 @@ var app7 = new Vue({
 </div>
 ```
 
-## 与自定义元素的关系
+### 与自定义元素的关系
 
 你可能已经注意到 Vue 组件非常类似于**自定义元素**——它是 [Web 组件规范](//www.w3.org/wiki/WebComponents/)的一部分，这是因为 Vue 的组件语法部分参考了该规范。例如 Vue 组件实现了 [Slot API](//github.com/w3c/webcomponents/blob/gh-pages/proposals/Slots-Proposal.md) 与 `is` 特性。但是，还是有几个关键差别：
 

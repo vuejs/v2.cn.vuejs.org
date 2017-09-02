@@ -110,7 +110,7 @@ var example2 = new Vue({
 <div v-for="item of items"></div>
 ```
 
-### 一个对象的 `v-for`
+## 一个对象的 `v-for`
 
 你也可以用 `v-for` 通过一个对象的属性来迭代。
 
@@ -385,7 +385,7 @@ methods: {
 }
 ```
 
-### 一段取值范围的 `v-for`
+## 一段取值范围的 `v-for`
 
 `v-for` 也可以取整数。在这种情况下，它将重复多次模板。
 
@@ -419,7 +419,7 @@ methods: {
 </ul>
 ```
 
-### `v-for` with `v-if`
+## `v-for` with `v-if`
 
 当它们处于同一节点，`v-for` 的优先级比 `v-if` 更高，这意味着 `v-if` 将分别重复运行于每个 `v-for` 循环中。当你想为仅有的_一些_项渲染节点时，这种优先级的机制会十分有用，如下：
 
@@ -442,7 +442,7 @@ methods: {
 <p v-else>No todos left!</p>
 ```
 
-### 一个组件的 `v-for`
+## 一个组件的 `v-for`
 
 > 了解组件相关知识，查看 [组件](components.html) 。完全可以先跳过它，以后再回来查看。
 
