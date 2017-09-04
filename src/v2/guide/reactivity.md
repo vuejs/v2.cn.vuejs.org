@@ -1,67 +1,16 @@
 ---
 title: 深入响应式原理
 type: guide
-order: -1
+order: 601
 ---
 
-!!!!!!!!!!!!!!!!!!!!!!!!!!
-!! NOTE FOR TRANSLATORS !!
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-!! Don't bother translating changes to this page yet, !!
-!! as it's not visible on the frontend and will     !!
-!! eventually be adapted into a page - or perhaps   !!
-!! a completely separate guide - for potential      !!
-!! contributors to Vue.                             !!
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-<!-- todo translation -->One of Vue's most distinct features is the unobtrusive reactivity system. Models are just plain JavaScript objects. When you modify them, the view updates. It makes state management very simple and intuitive, but it's also important to understand how it works to avoid some common gotchas. In this section, we are going to dig into some of the lower-level details of Vue's reactivity system.
+<!-- todo translation -->Now it's time to take a deep dive! One of Vue's most distinct features is the unobtrusive reactivity system. Models are just plain JavaScript objects. When you modify them, the view updates. It makes state management very simple and intuitive, but it's also important to understand how it works to avoid some common gotchas. In this section, we are going to dig into some of the lower-level details of Vue's reactivity system.
 
 ## 如何追踪变化
 
-<!-- todo translation -->When Vue initializes, it walks through all of its data properties and proxies them with getters and setters. That means:
+<!-- todo translation -->When you pass a plain JavaScript object to a Vue instance as its `data` option, Vue will walk through all of its properties and convert them to getter/setters using [Object.defineProperty](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty). This is an ES5-only and un-shimmable feature, which is why Vue doesn't support IE8 and below.
 
-``` js
-data: {
-  greeting: 'Hi'
-}
-```
-
-``` js
-Object.defineProperty(vm.$data, 'greeting', {
-  get () {
-    // ...
-    // Notify that getter was called,
-    // for dependency tracking
-    // ...
-    return vm._data.greeting
-  },
-  set (newValue) {
-    // ...
-    // Notify that setter was called,
-    // for change notification
-    // ...
-    vm._data.greeting = newValue
-  }
-})
-```
-
-These proxies are invisible to the user, but under the hood they enable Vue to perform dependency-tracking and change-notification when properties are accessed or modified. One caveat is that browser consoles format these proxied properties differently. That means when you log them:
-
-``` js
-var vm = new Vue({
-  data: {
-    greeting: 'Hi'
-  }
-})
-
-console.log(vm.$data)
-```
-
-What you see may be more difficult to browse:
-
-![](/images/logged-proxied-data.png)
-
-Fortunately, installing the [vue-devtools](https://github.com/vuejs/vue-devtools) will provide you a browsable tree of components, where you can inspect their data in a more user-friendly interface.
+The getter/setters are invisible to the user, but under the hood they enable Vue to perform dependency-tracking and change-notification when properties are accessed or modified. One caveat is that browser consoles format getter/setters differently when converted data objects are logged, so you may want to install [vue-devtools](https://github.com/vuejs/vue-devtools) for a more inspection-friendly interface.
 
 每个组件实例都有相应的 **watcher** 实例对象，它会在组件渲染的过程中把属性记录为依赖，之后当依赖项的 `setter` 被调用时，会通知 `watcher` 重新计算，从而致使它关联的组件得以更新。
 
@@ -117,10 +66,10 @@ var vm = new Vue({
   },
   template: '<div>{{ message }}</div>'
 })
-// 之后设置 `message` 
+// 之后设置 `message`
 vm.message = 'Hello!'
 ```
-  
+
 如果你在 data 选项中未声明 `message`，Vue 将警告你渲染函数在试图访问的属性不存在。
 
 这样的限制在背后是有其技术原因的，它消除了在依赖项跟踪系统中的一类边界情况，也使 Vue 实例在类型检查系统的帮助下运行的更高效。而且在代码可维护性方面也有一点重要的考虑：`data` 对象就像组件状态的概要，提前声明所有的响应式属性，可以让组件代码在以后重新阅读或其他开发人员阅读时更易于被理解。
