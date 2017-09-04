@@ -295,7 +295,7 @@ var vm = new Vue({
     a: 1
   }
 })
-// `vm.a` 现在是响应式的
+// `vm.a` 现在是响应式的
 
 vm.b = 2
 // `vm.b` 不是响应式的
@@ -325,7 +325,7 @@ Vue.set(vm.userProfile, 'age', 27)
 this.$set(this.userProfile, 'age', 27)
 ```
 
-有时你可能需要为已有对象赋予多个新属性，比如使用 `Object.assign()` 或 `_.extend()`。在这种情况下，你应该用两个对象的属性创建一个新的对象。所以，如果你想添加新的响应式属性，不要像这样：
+有时你可能需要为已有对象赋予多个新属性，比如使用 `Object.assign()` 或 `_.extend()`。在这种情况下，你应该用两个对象的属性创建一个新的对象。所以，如果你想添加新的响应式属性，不要像这样：
 
 ``` js
 Object.assign(this.userProfile, {
