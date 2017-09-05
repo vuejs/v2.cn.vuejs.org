@@ -1335,9 +1335,3 @@ Vue.component('terms-of-service', {
   '
 })
 ```
-
-***
-
-> 原文：http://vuejs.org/guide/components.html
-
-***

@@ -80,9 +80,3 @@ Vue.use(VueRouter)
 ```
 
 [awesome-vue](https://github.com/vuejs/awesome-vue#components--libraries) 集合了来自社区贡献的数以千计的插件和库。
-
-***
-
-> 原文： http://vuejs.org/v2/guide/plugins.html
-
-***

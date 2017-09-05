@@ -1582,9 +1582,3 @@ Partials 已被移除,取而代之的是更明确的组件之间的数据流--pr
   <p>运行<a href="https://github.com/vuejs/vue-migration-helper">迁移工具</a>找到包含 <code>Vue.partial</code>的实例</p>
 </div>
 {% endraw %}
-
-***
-
-> 原文： http:/   /vuejs.org/guide/migration.html
-
-***

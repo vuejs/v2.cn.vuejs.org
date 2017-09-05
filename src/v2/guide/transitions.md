@@ -1674,11 +1674,3 @@ new Vue({
 {% endraw %}
 
 最后，创建动态过渡的最终方案是组件通过接受 props 来动态修改之前的过渡。一句老话，唯一的限制是你的想象力。
-
-***
-
-> 原文：http://vuejs.org/guide/transitions.html
-
-***
-
-

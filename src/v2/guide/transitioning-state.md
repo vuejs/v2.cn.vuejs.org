@@ -555,10 +555,3 @@ Sarah Drasner 展示了下面这个 demo，这个 demo 结合了时间和交互�
 
 <p data-height="265" data-theme-id="light" data-slug-hash="YZBGNp" data-default-tab="result" data-user="sdras" data-embed-version="2" data-pen-title="Vue-controlled Wall-E" class="codepen">See the Pen <a href="https://codepen.io/sdras/pen/YZBGNp/">Vue-controlled Wall-E</a> by Sarah Drasner (<a href="https://codepen.io/sdras">@sdras</a>) on <a href="https://codepen.io">CodePen</a>.</p>
 <script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
-
-***
-
-> 原文： http://vuejs.org/guide/transitioning-state.html
-
-***
-

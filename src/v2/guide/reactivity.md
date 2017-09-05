@@ -116,9 +116,3 @@ Vue.component('example', {
   }
 })
 ```
-
-***
-
-> 原文： http://vuejs.org/guide/reactivity.html
-
-***

@@ -594,10 +594,3 @@ methods: {
   }
 }
 ```
-
-
-***
-
-> 原文： http://vuejs.org/guide/migration-vue-router.html
-
-***

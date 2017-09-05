@@ -240,9 +240,3 @@ $ bower install vue
 ## AMD 模块加载器
 
 所有 UMD 构建都可以直接用作 AMD 模块。
-
-***
-
-> 原文：http://vuejs.org/guide/installation.html
-
-***

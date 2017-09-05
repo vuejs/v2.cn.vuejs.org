@@ -124,9 +124,3 @@ new Vue({
 下图说明了实例的生命周期。你不需要立马弄明白所有的东西，不过随着你的不断学习和使用，它的参考价值会越来越高。
 
 ![Vue 实例生命周期](/images/lifecycle.png)
-
-***
-
-> 原文： http://vuejs.org/guide/instance.html
-
-***

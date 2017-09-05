@@ -70,9 +70,3 @@ order: 402
 无论你更钟情 Webpack 或是 Browserify，我们为简单的和更复杂的项目都提供了一些文档模板。我们建议浏览 [github.com/vuejs-templates](https://github.com/vuejs-templates)，找到你需要的部分，然后参考 README 中的说明，使用 [vue-cli](https://github.com/vuejs/vue-cli) 工具生成新的项目。
 
 模板中使用 [Webpack](https://webpack.js.org/) ，一个模块加载器加载多个模块然后构建成最终应用。为了进一步了解 Webpack, 可以看 [官方介绍视频](https://www.youtube.com/watch?v=WQue1AN93YU)。如果你有基础，可以看 [在 Egghead.io 上的 Webpack 进阶教程](https://egghead.io/courses/using-webpack-for-production-javascript-applications)。
-
-***
-
-> 原文： http://vuejs.org/guide/single-file-components.html
-
-***
