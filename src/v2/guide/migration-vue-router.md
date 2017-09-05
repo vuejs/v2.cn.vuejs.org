@@ -131,7 +131,7 @@ router.match = createMatcher(
 
 ### `router.beforeEach` <sup>changed</sup>
 
-<!-- todo translation -->`router.beforeEach` now works asynchronously and takes a `next` function as its third argument.
+`router.beforeEach` 现在是异步工作的，并且携带一个 `next` 函数作为其第三个参数。
 
 ``` js
 router.beforeEach(function (transition) {
