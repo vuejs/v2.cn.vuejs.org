@@ -48,7 +48,7 @@ mustache 语法不能作用在 HTML 特性上，遇到这种情况应该使用 [
 <div v-bind:id="dynamicId"></div>
 ```
 
-这同样适用于布尔类特性，如果求值结果是 falsy 的值，则该特性将会被删除：
+这同样适用于布尔类特性，如果求值结果是 false 的值，则该特性将会被删除：
 
 ``` html
 <button v-bind:disabled="isButtonDisabled">Button</button>
