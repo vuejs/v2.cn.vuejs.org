@@ -568,9 +568,9 @@ Vue.component('smart-list', {
 })
 ```
 
-### `slots()` 和 `children` 对比
+### `$slots` 和 `children` 对比
 
-你可能想知道为什么同时需要 `slots()` 和 `children`。`slots().default` 不是和 `children` 类似的吗？在一些场景中，是这样，但是如果是函数式组件和下面这样的 children 呢？
+你可能想知道为什么同时需要 `$slots` 和 `children`。`$slots.default` 不是和 `children` 类似的吗？在一些场景中，是这样，但是如果是函数式组件和下面这样的 children 呢？
 
 ``` html
 <my-functional-component>
@@ -581,7 +581,7 @@ Vue.component('smart-list', {
 </my-functional-component>
 ```
 
-对于这个组件，`children` 会给你两个段落标签，而 `slots().default` 只会传递第二个匿名段落标签，`slots().foo` 会传递第一个具名段落标签。同时拥有 `children` 和 `slots()` ，因此你可以选择让组件通过 `slot()` 系统分发或者简单的通过 `children` 接收，让其他组件去处理。
+对于这个组件，`children` 会给你两个段落标签，而 `$slots.default` 只会传递第二个匿名段落标签，`$slots.foo` 会传递第一个具名段落标签。同时拥有 `children` 和 `$slots` ，因此你可以选择让组件通过 `$slots` 系统分发或者简单的通过 `children` 接收，让其他组件去处理。
 
 ## 模板编译
 
