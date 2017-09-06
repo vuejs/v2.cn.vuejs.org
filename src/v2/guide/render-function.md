@@ -1,5 +1,5 @@
 ---
-title: Render 函数 & JSX
+title: 渲染函数 & JSX
 type: guide
 order: 303
 ---
@@ -83,9 +83,9 @@ Vue.component('anchored-heading', {
 
 简单清晰很多！简单来说，这样代码精简很多，但是需要非常熟悉 Vue 的实例属性。在这个例子中，你需要知道当你不使用 `slot`  属性向组件中传递内容时，比如 `anchored-heading` 中的 `Hello world!`, 这些子元素被存储在组件实例中的 `$slots.default`中。如果你还不了解，** 在深入 render 函数之前推荐阅读 [实例属性API](../api/#实例属性)。**
 
-## Nodes, Trees, and the Virtual DOM
+## 结点、树以及虚拟 DOM
 
-<!-- todo translation -->Before we dive into render functions, it’s important to know a little about how browsers work. Take this HTML for example:
+在深入渲染函数之前，了解一些浏览器的工作原理是很重要的。以下面这段 HTML 为例：
 
 ```html
 <div>
@@ -95,21 +95,21 @@ Vue.component('anchored-heading', {
 </div>
 ```
 
-When a browser reads this code, it builds a [tree of "DOM nodes"](https://javascript.info/dom-nodes) to help it keep track of everything, just as you might build a family tree to keep track of your extended family.
+当浏览器读到这些代码时，它会建立一个[“DOM 结点”树](https://javascript.info/dom-nodes)来保持追踪，如同你会画一张家谱树来追踪家庭成员的发展一样。
 
-The tree of DOM nodes for the HTML above looks like this:
+HTML 的 DOM 结点树如下图所示：
 
 ![DOM Tree Visualization](/images/dom-tree.png)
 
-Every element is a node. Every piece of text is a node. Even comments are nodes! A node is just a piece of the page. And just as in a family tree, each node can have children (i.e. each piece can contain other pieces).
+每个元素都是一个结点。每片文字也是一个结点。甚至注释也都是结点。一个结点就是页面的一个部分。就像家谱树一样，每个结点都可以有孩子结点 (也就是说每个部分可以包含其它的一些部分)。
 
-Updating all these nodes efficiently can be difficult, but thankfully, you never have to do it manually. You just tell Vue what HTML you want on the page, in a template:
+高效的更新所有这些结点会是比较困难的，不过所幸你不必再手动完成这个工作了。你只需要告诉 Vue 你希望页面上的 HTML 是什么，这可以是在一个模板里：
 
 ```html
 <h1>{{ blogTitle }}</h1>
 ```
 
-Or a render function:
+或者一个渲染函数里：
 
 ``` js
 render: function (createElement) {
@@ -117,17 +117,17 @@ render: function (createElement) {
 }
 ```
 
-And in both cases, Vue automatically keeps the page updated, even when `blogTitle` changes.
+在这两种情况下，Vue 都会自动保持页面的更新，即便 `blogTitle` 发生了改变。
 
-### The Virtual DOM
+### 虚拟 DOM
 
-Vue accomplishes this by building a **virtual DOM** to keep track of the changes it needs to make to the real DOM. Taking a closer look at this line:
+Vue 通过建立一个**虚拟 DOM** 对真实 DOM 发生的变化保持追踪。请近距离看一下这行代码：
 
 ``` js
 return createElement('h1', this.blogTitle)
 ```
 
-What is `createElement` actually returning? It's not _exactly_ a real DOM element. It could perhaps more accurately be named `createNodeDescription`, as it contains information describing to Vue what kind of node it should render on the page, including descriptions of any child nodes. We call this node description a "virtual node", usually abbreviated to **VNode**. "Virtual DOM" is what we call the entire tree of VNodes, built by a tree of Vue components.
+`createElement` 到底会返回什么呢？其实不是一个_实际的_ DOM 元素。它更准确的名字可能是 `createNodeDescription`，因为它所包含的信息会告诉 Vue 页面上需要渲染什么样的结点，及其子结点。我们把这样的结点描述为“虚拟结点 (Virtual DOM)”，也常简写它为“VNode”。“虚拟 DOM”是我们对由 Vue 组件树建立起来的整个 VNode 树的称呼。
 
 ## `createElement` 参数
 
