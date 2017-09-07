@@ -688,7 +688,7 @@ strings.map(function (str) {
 显要的改变有如下几点：
 
 - 指令不再拥有实例。意思是，在指令的钩子函数中不再拥有实例的 `this` 。替代的是，你可以在参数中接受你需要的任何数据。如果确实需要，可以通过 `el` 来访问实例。
-- 类似 `acceptStatement` ，`deep` ， `priority` 等都已被弃用。为了替换`双向`指令，见 [示例](#Two-Way-Filters-deprecated)。
+- 类似 `acceptStatement` ，`deep` ， `priority` 等都已被弃用。为了替换`双向`指令，见 [示例](#双向过滤器-替换)。
 - 现在有些钩子的意义和以前不一样了，并且多了两个钩子函数。
 
 幸运的是，新钩子更加简单，更加容易掌握。详见 [自定义指令指南](custom-directive.html)。
@@ -749,7 +749,7 @@ Vue 的过渡系统有了彻底的改变，现在通过使用 `<transition>` 和
 
 ### 过渡的 `stagger` 参数 <sup>移除</sup>
 
-如果希望在列表渲染中使用渐近过渡，可以通过设置元素的 `data-index` （或类似属性）来控制时间。 请参考[这个例子](transitions.html#Staggering-List-Transitions)。
+如果希望在列表渲染中使用渐近过渡，可以通过设置元素的 `data-index` （或类似属性）来控制时间。 请参考[这个例子](transitions.html#列表的渐进过渡)。
 
 {% raw %}
 <div class="upgrade-path">
@@ -762,7 +762,7 @@ Vue 的过渡系统有了彻底的改变，现在通过使用 `<transition>` 和
 
 ### `events` 选项 <sup>移除</sup>
 
-`events` 选项被弃用。事件处理器现在在 `created` 钩子中被注册。参考详细示例 [`$dispatch` and `$broadcast` 迁移指南](#dispatch-and-broadcast-deprecated)
+`events` 选项被弃用。事件处理器现在在 `created` 钩子中被注册。参考详细示例 [`$dispatch` and `$broadcast` 迁移指南](#dispatch-和-broadcast-替换)
 
 ### `Vue.directive('on').keyCodes` <sup>替换</sup>
 
@@ -787,7 +787,7 @@ Vue.config.keyCodes.f1 = 112
 
 对于`$dispatch` 和 `$broadcast`最简单的升级方式就是：通过使用事件中心，允许组件自由交流，无论组件处于组件树的哪一层。由于 Vue 实例实现了一个事件分发接口，你可以通过实例化一个空的 Vue 实例来实现这个目的。
 
-这些方法的最常见用途之一是父子组件的相互通信。在这些情况下，你可以使用 [`v-on`监听子组件上 $emit 的变化](components.html#Form-Input-Components-using-Custom-Events)。这可以允许你很方便的添加事件显性。
+这些方法的最常见用途之一是父子组件的相互通信。在这些情况下，你可以使用 [`v-on`监听子组件上 $emit 的变化](components.html#使用自定义事件的表单输入组件)。这可以允许你很方便的添加事件显性。
 
 然而，如果是跨多层父子组件通信的话， `$emit` 并没有什么用。相反，用集中式的事件中间件可以做到简单的升级。这会让组件之间的通信非常顺利，即使是兄弟组件。因为 Vue 通过事件发射器接口执行实例，实际上你可以使用一个空的 Vue 实例。
 
@@ -903,7 +903,7 @@ methods: {
 }
 ```
 
-这种写法的更多优点详见： [`v-model` 示例](#debounce-Param-Attribute-for-v-model-removed).
+这种写法的更多优点详见：[`v-model` 示例](#带有-debounce-的-v-model移除)。
 
 #### 替换 `limitBy` 过滤器
 
@@ -1533,7 +1533,7 @@ new Vue({
 
 ### `Vue.config.unsafeDelimiters` <sup>移除</sup>
 
-HTML 插入 [替换为 `v-html`](#HTML-Interpolation-removed).
+HTML 插值[替换为 `v-html`](#HTML-计算插值-移除)。
 
 {% raw %}
 <div class="upgrade-path">
@@ -1568,10 +1568,10 @@ el 选项不再在 `Vue.extend`中使用。仅在实例创建参数中可用。
 
 ### `Vue.partial` <sup>移除</sup>
 
-Partials 已被移除,取而代之的是更明确的组件之间的数据流--props。除非你正在使用一个部分性能关键型区域，否则建议只使用一个[normal component](components.html)来代替。如果你是动态绑定部分的`name`,您可以使用[dynamic component](components.html#Dynamic-Components)。
+Partials 已被移除,取而代之的是更明确的组件之间的数据流--props。除非你正在使用一个部分性能关键型区域，否则建议只使用一个[normal component](components.html)来代替。如果你是动态绑定部分的`name`,您可以使用[dynamic component](components.html#动态组件)。
 
 
-如果你碰巧在你的应用程序的性能关键部分使用`partials`，那么你应该升级到[functional components](render-function.html#Functional-Components)。它们必须在纯JS / JSX文件中（而不是在`.vue`文件中），并且是无状态的和无实例的，就像`partials`。这使得渲染极快。
+如果你碰巧在你的应用程序的性能关键部分使用`partials`，那么你应该升级到[functional components](render-function.html#函数化组件)。它们必须在纯JS / JSX文件中（而不是在`.vue`文件中），并且是无状态的和无实例的，就像`partials`。这使得渲染极快。
 
 `functional components`相对于`partials`一个好处是它们可以更具动态性，因为它们允许您访问JavaScript的全部功能。然而，这是有成本的。如果你从来没有使用过渲染式的组件框架，你可能需要花费更长的时间来学习它们。
 

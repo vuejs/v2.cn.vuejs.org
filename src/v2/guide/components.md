@@ -222,9 +222,9 @@ new Vue({
   <img style="width:300px" src="/images/props-events.png" alt="props down, events up">
 </p>
 
-## Prop
+## Props
 
-### 使用 Prop 传递数据
+### 使用 Props 传递数据
 
 组件实例的作用域是**孤立的**。这意味着不能 (也不应该) 在子组件的模板内直接引用父组件的数据。要让子组件使用父组件的数据，我们需要通过子组件的 **props** 选项。
 
@@ -284,7 +284,7 @@ Vue.component('child', {
 
 如果你使用字符串模板，则没有这些限制。
 
-### 动态 Prop
+### 动态 Props
 
 在模板中，要动态地绑定父组件的数据到子模板的 props，与绑定到任何普通的HTML特性相类似，就是用 `v-bind`。每当父组件的数据变化时，该变化也会传导给子组件：
 
@@ -774,7 +774,7 @@ bus.$on('id-selected', function (id) {
 
 在复杂的情况下，我们应该考虑使用专门的[状态管理模式](state-management.html).
 
-## 使用 Slot 分发内容
+## 使用 Slots 分发内容
 
 在使用组件时，我们常常要像这样组合它们：
 

@@ -10,7 +10,7 @@ order: 401
 
 ### 不用打包工具
 
-如果用 Vue 完整独立版本（直接用 `<script>` 元素引入 Vue），生产时应该用精简版本（`vue.min.js`)。请查看[安装指导](installation.html#独立版本)，附有开发与精简版本。
+如果用 Vue 完整独立版本（直接用 `<script>` 元素引入 Vue），生产时应该用精简版本（`vue.min.js`)。请查看[安装指导](installation.html#直接-lt-script-gt-引入)，附有开发与精简版本。
 
 ### 用打包工具
 

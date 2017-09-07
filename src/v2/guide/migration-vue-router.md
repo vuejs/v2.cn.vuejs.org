@@ -50,7 +50,7 @@ new Vue({
 
 ### `router.map` <sup>替换</sup>
 
-路由现在被定义为一个在 router 实例里的一个[`routes` 选项](http://router.vuejs.org/en/essentials/getting-started.html#javascript)数组。所以这些路由：
+路由现在被定义为一个在 router 实例里的一个[`routes` 选项](https://router.vuejs.org/zh-cn/essentials/getting-started.html#javascript)数组。所以这些路由：
 
 ``` js
 router.map({
@@ -350,7 +350,7 @@ export default {
 
 ### `router.go` <sup>改变</sup>
 
-为了与 [HTML5 History API](https://developer.mozilla.org/en-US/docs/Web/API/History_API) 保持一致性，`router.go` 已经被用来作为 [后退/前进导航](https://router.vuejs.org/en/essentials/navigation.html#routergon)，[`router.push` ](http://router.vuejs.org/en/essentials/navigation.html#routerpushlocation) 用来导向特殊页面。
+为了与 [HTML5 History API](https://developer.mozilla.org/en-US/docs/Web/API/History_API) 保持一致性，`router.go` 已经被用来作为 [后退/前进导航](https://router.vuejs.org/zh-cn/essentials/navigation.html#routergon)，[`router.push` ](https://router.vuejs.org/zh-cn/essentials/navigation.html#routerpushlocation) 用来导向特殊页面。
 
 {% raw %}
 <div class="upgrade-path">
@@ -374,7 +374,7 @@ Hashbangs 将不再为谷歌需要去爬去一个网址，所以他们将不再�
 
 ### `history: true` <sup>替换</sup>
 
-所有路由模型选项将被简化成一个单个的[`mode` 选项](http://router.vuejs.org/en/api/options.html#mode)。 你需要更新：
+所有路由模型选项将被简化成一个单个的[`mode` 选项](https://router.vuejs.org/zh-cn/api/options.html#mode)。 你需要更新：
 
 ``` js
 var router = new VueRouter({
@@ -399,7 +399,7 @@ var router = new VueRouter({
 
 ### `abstract: true` <sup>替换</sup>
 
-所有路由模型选项将被简化成一个单个的[`mode` 选项](http://router.vuejs.org/en/api/options.html#mode)。 你需要更新：
+所有路由模型选项将被简化成一个单个的[`mode` 选项](https://router.vuejs.org/zh-cn/api/options.html#mode)。 你需要更新：
 
 ``` js
 var router = new VueRouter({
@@ -460,7 +460,7 @@ scrollBehavior: function (to, from, savedPosition) {
 
 ### `transitionOnLoad` <sup>移除</sup>
 
-由于 Vue 的过渡系统[`appear` transition control](transitions.html#Transitions-on-Initial-Render)的存在，这个选项将不再需要。
+由于 Vue 的过渡系统[`appear` transition control](transitions.html#初始渲染的过渡)的存在，这个选项将不再需要。
 
 {% raw %}
 <div class="upgrade-path">
@@ -484,7 +484,7 @@ scrollBehavior: function (to, from, savedPosition) {
 
 ### `activate` <sup>替换</sup>
 
-使用[`beforeRouteEnter`](http://router.vuejs.org/en/advanced/navigation-guards.html#incomponent-guards)这一组件进行替代。
+使用[`beforeRouteEnter`](https://router.vuejs.org/zh-cn/advanced/navigation-guards.html#组件内的钩子)这一组件进行替代。
 
 {% raw %}
 <div class="upgrade-path">
@@ -495,7 +495,7 @@ scrollBehavior: function (to, from, savedPosition) {
 
 ### `canActivate` <sup>替换</sup>
 
-使用[`beforeEnter`](http://router.vuejs.org/en/advanced/navigation-guards.html#perroute-guard) 在路由中作为替代。
+使用[`beforeEnter`](http://router.vuejs.org/en/advanced/navigation-guards.html#perroute-guard) 在路由中作为替代。<!-- todo translation -->
 
 {% raw %}
 <div class="upgrade-path">
@@ -517,7 +517,7 @@ scrollBehavior: function (to, from, savedPosition) {
 
 ### `canDeactivate` <sup>替换</sup>
 
-在组件中使用[`beforeRouteLeave`](http://router.vuejs.org/en/advanced/navigation-guards.html#incomponent-guards) 作为替代。
+在组件中使用[`beforeRouteLeave`](https://router.vuejs.org/zh-cn/advanced/navigation-guards.html#组件内的钩子) 作为替代。
 
 {% raw %}
 <div class="upgrade-path">
