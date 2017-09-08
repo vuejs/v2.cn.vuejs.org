@@ -80,7 +80,7 @@ rollup({
 
 可查阅相关构建工具文档：
 
-- [Webpack + vue-loader](https://vue-loader.vuejs.org/en/configurations/extract-css.html) (the `vue-cli` webpack template has this pre-configured
+- [Webpack + vue-loader](https://vue-loader.vuejs.org/zh-cn/configurations/extract-css.html) (the `vue-cli` webpack template has this pre-configured
 - [Browserify + vueify](https://github.com/vuejs/vueify#css-extraction)
 - [Rollup + rollup-plugin-vue](https://vuejs.github.io/rollup-plugin-vue/#/en/2.3/?id=custom-handler)
 

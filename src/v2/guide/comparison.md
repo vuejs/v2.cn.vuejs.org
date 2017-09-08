@@ -86,7 +86,7 @@ JSX 说是手写的渲染函数有下面这些优势：
 
 这个可选 `scoped` 属性会自动添加一个唯一的属性（比如 `data-v-21e5b78`）为组件内 CSS 指定作用域，编译的时候 `.list-container:hover` 会被编译成类似 `.list-container[data-v-21e5b78]:hover`。
 
-如果你已经熟悉 CSS Modules，Vue 单文件组件也有 [first-class 支持它](http://vue-loader.vuejs.org/en/features/css-modules.html)。
+如果你已经熟悉 CSS Modules，Vue 单文件组件也有 [first-class 支持它](https://vue-loader.vuejs.org/zh-cn/features/css-modules.html)。
 
 最后，就像 HTML 一样，你可以选择自己偏爱的 CSS 预处理器（或后处理器）编写 CSS，这些生态系统允许您利用现有的库。这可以让你围绕设计为中心展开工作，比如您的构建过程中颜色操作，而不是引入专门的库来增加你应用的体积和复杂度。
 
