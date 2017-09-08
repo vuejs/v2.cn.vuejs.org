@@ -171,7 +171,7 @@ type: api
 
 ## 全局 API
 
-### Vue.extend( options )
+<h3 id="Vue-extend">Vue.extend( options )</h3>
 
 - **参数**：
   - `{Object} options`
@@ -210,7 +210,7 @@ type: api
 
 - **参考**：[组件](../guide/components.html)
 
-### Vue.nextTick( [callback, context] )
+<h3 id="Vue-nextTick">Vue.nextTick( [callback, context] )</h3>
 
 - **参数**：
   - `{Function} [callback]`
@@ -231,7 +231,7 @@ type: api
 
   > 2.1.0 起新增：如果没有提供回调且支持 promise 的环境中返回 promise。
 
-### Vue.set( target, key, value )
+<h3 id="Vue-set">Vue.set( target, key, value )</h3>
 
 - **参数**：
   - `{Object | Array} target`
@@ -246,7 +246,7 @@ type: api
 
   <p class="tip">注意对象不能是 Vue 实例，或者 Vue 实例的根数据对象。</p>
 
-### Vue.delete( target, key )
+<h3 id="Vue-delete">Vue.delete( target, key )</h3>
 
 - **参数**：
   - `{Object | Array} target`
@@ -262,7 +262,7 @@ type: api
 
   <p class="tip">目标对象不能是一个 Vue 示例或 Vue 示例的根数据对象。</p>
 
-### Vue.directive( id, [definition] )
+<h3 id="Vue-directive">Vue.directive( id, [definition] )</h3>
 
 - **参数**：
   - `{string} id`
@@ -293,7 +293,7 @@ type: api
 
 - **参考**：[自定义指令](../guide/custom-directive.html)
 
-### Vue.filter( id, [definition] )
+<h3 id="Vue-filter">Vue.filter( id, [definition] )</h3>
 
 - **参数**：
   - `{string} id`
@@ -313,7 +313,7 @@ type: api
   var myFilter = Vue.filter('my-filter')
   ```
 
-### Vue.component( id, [definition] )
+<h3 id="Vue-component">Vue.component( id, [definition] )</h3>
 
 - **参数**：
   - `{string} id`
@@ -336,7 +336,7 @@ type: api
 
 - **参考**：[组件](../guide/components.html)
 
-### Vue.use( plugin )
+<h3 id="Vue-use">Vue.use( plugin )</h3>
 
 - **参数**：
   - `{Object | Function} plugin`
@@ -349,7 +349,7 @@ type: api
 
 - **参考**：[插件](../guide/plugins.html)
 
-### Vue.mixin( mixin )
+<h3 id="Vue-mixin">Vue.mixin( mixin )</h3>
 
 - **参数**：
   - `{Object} mixin`
@@ -360,7 +360,7 @@ type: api
 
 - **参考**：[全局混合](../guide/mixins.html#全局混合)
 
-### Vue.compile( template )
+<h3 id="Vue-compile">Vue.compile( template )</h3>
 
 - **参数**：
   - `{string} template`
@@ -383,7 +383,7 @@ type: api
 
 - **参考**：[渲染函数](../guide/render-function.html)
 
-### Vue.version
+<h3 id="Vue-version">Vue.version</h3>
 
 - **细节**：提供字符串形式的 Vue 安装版本号。这对社区的插件和组件来说非常有用，你可以根据不同的版本号采取不同的策略。
 
@@ -634,7 +634,7 @@ if (version === 2) {
 
 - **参考**：
   - [生命周期图示](../guide/instance.html#生命周期图示)
-  - [独立构建-vs-运行时构建](../guide/installation.html#独立构建-vs-运行时构建)
+  - [运行时 + 编译器 vs. 只包含运行时](../guide/installation.html#运行时-编译器-vs-只包含运行时)
 
 ### template
 
@@ -652,7 +652,7 @@ if (version === 2) {
 
 - **参考**：
   - [生命周期图示](../guide/instance.html#生命周期图示)
-  - [用 Slots 分发内容](../guide/components.html#使用-Slot-分发内容)
+  - [用 Slots 分发内容](../guide/components.html#使用-Slots-分发内容)
 
 ### render
 
@@ -1233,7 +1233,7 @@ if (version === 2) {
 
 - **详细**：
 
-  用来访问被 [slot 分发](../guide/components.html#使用-Slot-分发内容)的内容。每个[具名 slot](../guide/components.html#具名-Slot) 有其相应的属性（例如：`slot="foo"` 中的内容将会在 `vm.$slots.foo` 中被找到）。`default` 属性包括了所有没有被包含在具名 slot 中的节点。
+  用来访问被 [slot 分发](../guide/components.html#使用-Slots-分发内容)的内容。每个[具名 slot](../guide/components.html#具名-Slot) 有其相应的属性（例如：`slot="foo"` 中的内容将会在 `vm.$slots.foo` 中被找到）。`default` 属性包括了所有没有被包含在具名 slot 中的节点。
 
   在使用[渲染函数](../guide/render-function.html)书写一个组件时，访问 `vm.$slots` 最有帮助。
 
@@ -1272,7 +1272,7 @@ if (version === 2) {
 
 - **参考**：
   - [`<slot>` 组件](#slot-1)
-  - [使用 Slots 分发内容](../guide/components.html#使用-Slot-分发内容)
+  - [使用 Slots 分发内容](../guide/components.html#使用-Slots-分发内容)
   - [渲染函数 - Slots](../guide/render-function.html#Slots)
 
 ### vm.$scopedSlots
@@ -1285,13 +1285,13 @@ if (version === 2) {
 
 - **详细**：
 
-  用来访问 [scoped slots](../guide/components.html#Scoped-Slots)。对于包括 `默认 slot` 在内的每一个 slot，该对象都包含一个返回相应 VNode 的函数。
+  用来访问 [scoped slots](../guide/components.html#作用域插槽)。对于包括 `默认 slot` 在内的每一个 slot，该对象都包含一个返回相应 VNode 的函数。
 
   在使用 [`render` 函数](../guide/render-function.html) 书写一个组件时，访问 `vm.$scopedSlots` 最有帮助。
 
 - **参考**：
   - [`<slot>` 组件](#slot-1)
-  - [Scoped Slots](../guide/components.html#Scoped-Slots)
+  - [Scoped Slots](../guide/components.html#作用域插槽)
   - [渲染函数 - Slots](../guide/render-function.html#Slots)
 
 
@@ -1343,7 +1343,7 @@ if (version === 2) {
 
 ## 实例方法 / 数据
 
-### vm.$watch( expOrFn, callback, [options] )
+<h3 id="vm-watch">vm.$watch( expOrFn, callback, [options] )</h3>
 
 - **参数**：
   - `{string | Function} expOrFn`
@@ -1410,7 +1410,7 @@ if (version === 2) {
   // 立即以 `a` 的当前值触发回调
   ```
 
-### vm.$set( target, key, value )
+<h3 id="vm-set">vm.$set( target, key, value )</h3>
 
 - **参数**：
   - `{Object | Array} target`
@@ -1425,7 +1425,7 @@ if (version === 2) {
 
 - **参考**：[Vue.set](#Vue-set)
 
-### vm.$delete( target, key )
+<h3 id="vm-delete">vm.$delete( target, key )</h3>
 
 - **参数**：
   - `{Object | Array} target`
@@ -1439,7 +1439,7 @@ if (version === 2) {
 
 ## 实例方法/事件
 
-### vm.$on( event, callback )
+<h3 id="vm-on">vm.$on( event, callback )</h3>
 
 - **参数**：
   - `{string | Array<string>} event` (数组只在 2.2.0+ 中支持)
@@ -1459,7 +1459,7 @@ if (version === 2) {
   // => "hi"
   ```
 
-### vm.$once( event, callback )
+<h3 id="vm-once">vm.$once( event, callback )</h3>
 
 - **参数**：
   - `{string} event`
@@ -1469,7 +1469,7 @@ if (version === 2) {
 
   监听一个自定义事件，但是只触发一次，在第一次触发之后移除监听器。
 
-### vm.$off( [event, callback] )
+<h3 id="vm-off">vm.$off( [event, callback] )</h3>
 
 - **参数**：
   - `{string | Array<string>} event` (只在 2.2.2+ 支持数组)
@@ -1485,7 +1485,7 @@ if (version === 2) {
 
   - 如果同时提供了事件与回调，则只移除这个回调的监听器。
 
-### vm.$emit( event, [...args] )
+<h3 id="vm-emit">vm.$emit( event, [...args] )</h3>
 
 - **参数**：
   - `{string} event`
@@ -1495,7 +1495,7 @@ if (version === 2) {
 
 ## 实例方法 / 生命周期
 
-### vm.$mount( [elementOrSelector] )
+<h3 id="vm-mount">vm.$mount( [elementOrSelector] )</h3>
 
 - **参数**：
   - `{Element | string} [elementOrSelector]`
@@ -1533,13 +1533,13 @@ if (version === 2) {
   - [生命周期图示](../guide/instance.html#生命周期图示)
   - [服务端渲染](../guide/ssr.html)
 
-### vm.$forceUpdate()
+<h3 id="vm-forceUpdate">vm.$forceUpdate()</h3>
 
 - **示例**：
 
   迫使 Vue 实例重新渲染。注意它仅仅影响实例本身和插入插槽内容的子组件，而不是所有子组件。
 
-### vm.$nextTick( [callback] )
+<h3 id="vm-nextTick">vm.$nextTick( [callback] )</h3>
 
 - **参数**：
   - `{Function} [callback]`
@@ -1573,7 +1573,7 @@ if (version === 2) {
 
 - **参考**：[Vue.nextTick](#Vue-nextTick)
 
-### vm.$destroy()
+<h3 id="vm-destroy">vm.$destroy()</h3>
 
 - **用法**：
 
@@ -1621,7 +1621,7 @@ if (version === 2) {
   <div v-html="html"></div>
   ```
 
-- **参考**：[数据绑定语法 - 插值](../guide/syntax.html#Raw-HTML)
+- **参考**：[数据绑定语法 - 插值](../guide/syntax.html#纯-HTML)
 
 ### v-show
 
@@ -1979,7 +1979,7 @@ if (version === 2) {
 
 - **参考**：
   - [数据绑定语法- 插值](../guide/syntax.html#插值)
-  - [组件 - 使用 `v-once` 实现轻量的静态组件](../guide/components.html#使用-v-once-的低级静态组件-Cheap-Static-Component)
+  - [组件 - 对低开销的静态组件使用 `v-once`](../guide/components.html#对低开销的静态组件使用-v-once)
 
 ## 特殊特性
 
@@ -2048,7 +2048,7 @@ if (version === 2) {
 
 - **预期**：`string`
 
-  用于[动态组件](../guide/components.html#动态组件)且基于[DOM 内模板到限制](../guide/components.html#DOM 模板解析说明)来工作。
+  用于[动态组件](../guide/components.html#动态组件)且基于 [DOM 内模板到限制](../guide/components.html#DOM-模板解析说明)来工作。
 
   示例：
 
@@ -2067,7 +2067,7 @@ if (version === 2) {
 
 - **See also**：
   - [动态组件](../guide/components.html#动态组件)
-  - [DOM 模板解析说明](../guide/components.html#DOM 模板解析说明)
+  - [DOM 模板解析说明](../guide/components.html#DOM-模板解析说明)
 
 ## 内置的组件
 
@@ -2266,7 +2266,7 @@ if (version === 2) {
 
   详细用法，请参考下面教程的链接。
 
-- **参考**：[使用Slots分发内容](../guide/components.html#使用Slots分发内容)
+- **参考**：[使用Slots分发内容](../guide/components.html#使用-Slots-分发内容)
 
 ## VNode接口
 

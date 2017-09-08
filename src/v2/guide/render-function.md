@@ -162,7 +162,7 @@ createElement(
 )
 ```
 
-### 深入data object参数
+### 深入 data object 参数
 
 有一件事要注意：正如在模板语法中，`v-bind:class` 和  `v-bind:style` ，会被特别对待一样，在 VNode 数据对象中，下列属性名是级别最高的字段。该对象也允许你绑定普通的 HTML 特性，就像 DOM 属性一样，比如 `innerHTML` (这会取代 `v-html` 指令)。
 
@@ -396,7 +396,7 @@ on: {
 }
 ```
 
-### slots
+### Slots
 
 你可以从[`this.$slots`](../api/#vm-slots)获取VNodes列表中的静态内容:
 
@@ -484,13 +484,11 @@ new Vue({
 
 更多关于 JSX 映射到 JavaScript，阅读 [使用文档](https://github.com/vuejs/babel-plugin-transform-vue-jsx#usage)。
 
-
 ## 函数化组件
 
 之前创建的锚点标题组件是比较简单，没有管理或者监听任何传递给他的状态，也没有生命周期方法。它只是一个接收参数的函数。
 在这个例子中，我们标记组件为 `functional`， 这意味它是无状态（没有 `data`），无实例（没有 `this` 上下文）。
 一个 **函数化组件** 就像这样：
-
 
 ``` js
 Vue.component('my-component', {
@@ -519,7 +517,6 @@ Vue.component('my-component', {
 - `listeners`: (2.3.0+) 一个包含了组件上所注册的 `v-on` 侦听器的对象。这只是一个指向 `data.on` 的别名。
 - `injections`: (2.3.0+) 如果使用了 [`inject`](../api/#provide-inject) 选项, 则该对象包含了应当被注入的属性。
 
-
 在添加 `functional: true` 之后，锚点标题组件的 render 函数之间简单更新增加 `context` 参数，`this.$slots.default` 更新为 `context.children`，之后`this.level` 更新为 `context.props.level`。
 
 因为函数化组件只是一个函数，所以渲染开销也低很多。然而，对持久化实例的缺乏也意味着函数化组件不会出现在 [Vue devtools](https://github.com/vuejs/vue-devtools) 的组件树里。
@@ -529,9 +526,7 @@ Vue.component('my-component', {
 - 程序化地在多个组件中选择一个
 - 在将 children, props, data 传递给子组件之前操作它们。
 
-
 下面是一个依赖传入 props 的值的 `smart-list` 组件例子，它能代表更多具体的组件：
-
 
 ``` js
 var EmptyList = { /* ... */ }
