@@ -1437,7 +1437,7 @@ if (version === 2) {
 
 - **参考**：[Vue.delete](#Vue-delete)
 
-## 实例方法/事件
+## 实例方法 / 事件
 
 <h3 id="vm-on">vm.$on( event, callback )</h3>
 
@@ -2268,9 +2268,9 @@ if (version === 2) {
 
 - **参考**：[使用Slots分发内容](../guide/components.html#使用-Slots-分发内容)
 
-## VNode接口
+## VNode 接口
 
-- 请参考[VNode class declaration](https://github.com/vuejs/vue/blob/dev/src/core/vdom/vnode.js).
+- 请参考 [VNode class declaration](https://github.com/vuejs/vue/blob/dev/src/core/vdom/vnode.js).
 
 ## 服务端渲染
 

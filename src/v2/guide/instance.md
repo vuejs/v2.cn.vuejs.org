@@ -94,7 +94,7 @@ vm.$watch('a', function (newValue, oldValue) {
 })
 ```
 
-在未来，你可以在 [API 参考](../api/#Instance-Properties)查阅到完整的实例属性和方法的列表。
+在未来，你可以在 [API 参考](../api/#实例属性)查阅到完整的实例属性和方法的列表。
 
 ## 实例生命周期
 
