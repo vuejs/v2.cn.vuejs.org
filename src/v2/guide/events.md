@@ -102,7 +102,7 @@ var example2 = new Vue({
 </script>
 {% endraw %}
 
-## 内联处理器方法
+## 内联处理器里的方法
 
 除了直接绑定到一个方法，也可以用内联 JavaScript 语句：
 

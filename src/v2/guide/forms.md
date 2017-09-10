@@ -312,7 +312,7 @@ new Vue({
 </script>
 {% endraw %}
 
-## 绑定 value
+## 值绑定
 
 对于单选按钮，勾选框及选择列表选项， `v-model` 绑定的 value 通常是静态字符串（对于勾选框是逻辑值）：
 
@@ -360,7 +360,7 @@ vm.toggle === vm.b
 vm.pick === vm.a
 ```
 
-### 选择列表设置
+### 选择列表的选项
 
 ``` html
 <select v-model="selected">

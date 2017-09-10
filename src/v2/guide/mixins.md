@@ -109,9 +109,9 @@ new Vue({
 
 <p class="tip">谨慎使用全局混合对象，因为会影响到每个单独创建的 Vue 实例（包括第三方模板）。大多数情况下，只应当应用于自定义选项，就像上面示例一样。 也可以将其用作 [Plugins](plugins.html) 以避免产生重复应用</p>
 
-## 自定义选项混合策略
+## 自定义选项合并策略
 
-自定义选项将使用默认策略，即简单地覆盖已有值。 如果想让自定义选项以自定义逻辑混合，可以向 `Vue.config.optionMergeStrategies` 添加一个函数：
+自定义选项将使用默认策略，即简单地覆盖已有值。 如果想让自定义选项以自定义逻辑合并，可以向 `Vue.config.optionMergeStrategies` 添加一个函数：
 
 ``` js
 Vue.config.optionMergeStrategies.myOption = function (toVal, fromVal) {
@@ -126,7 +126,7 @@ var strategies = Vue.config.optionMergeStrategies
 strategies.myOption = strategies.methods
 ```
 
-更多高级的例子可以在 [Vuex](https://github.com/vuejs/vuex) 1.x的混合策略里找到:
+更多高级的例子可以在 [Vuex](https://github.com/vuejs/vuex) 的 1.x 混合策略里找到:
 
 ``` js
 const merge = Vue.config.optionMergeStrategies.computed

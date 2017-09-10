@@ -162,9 +162,9 @@ createElement(
 )
 ```
 
-### 深入 data object 参数
+### 深入 data 对象
 
-有一件事要注意：正如在模板语法中，`v-bind:class` 和  `v-bind:style` ，会被特别对待一样，在 VNode 数据对象中，下列属性名是级别最高的字段。该对象也允许你绑定普通的 HTML 特性，就像 DOM 属性一样，比如 `innerHTML` (这会取代 `v-html` 指令)。
+有一件事要注意：正如在模板语法中，`v-bind:class` 和 `v-bind:style` ，会被特别对待一样，在 VNode 数据对象中，下列属性名是级别最高的字段。该对象也允许你绑定普通的 HTML 特性，就像 DOM 属性一样，比如 `innerHTML` (这会取代 `v-html` 指令)。
 
 ``` js
 {
@@ -218,7 +218,7 @@ createElement(
   scopedSlots: {
     default: props => createElement('span', props.text)
   },
-  // 如果组件是其他组件的子组件，需为 slot 指定名称
+  // 如果组件是其他组件的子组件，需为插槽指定名称
   slot: 'name-of-slot',
   // 其他特殊顶层属性
   key: 'myKey',
@@ -298,7 +298,7 @@ render: function (createElement) {
 
 ## 使用 JavaScript 代替模板功能
 
-### `v-if` and `v-for`
+### `v-if` 和 `v-for`
 
 由于使用原生的 JavaScript 来实现某些东西很简单，Vue 的 render 函数没有提供专用的 API。比如， template 中的 `v-if` 和 `v-for`:
 
@@ -396,9 +396,9 @@ on: {
 }
 ```
 
-### Slots
+### 插槽
 
-你可以从[`this.$slots`](../api/#vm-slots)获取VNodes列表中的静态内容:
+你可以从 [`this.$slots`](../api/#vm-slots) 获取 VNodes 列表中的静态内容:
 
 ``` js
 render: function (createElement) {
@@ -407,7 +407,7 @@ render: function (createElement) {
 }
 ```
 
-还可以从[`this.$scopedSlots`](../api/#vm-scopedSlots) 中获得能用作函数的作用域插槽，这个函数返回 VNodes:
+还可以从 [`this.$scopedSlots`](../api/#vm-scopedSlots) 中获得能用作函数的作用域插槽，这个函数返回 VNodes:
 
 ``` js
 render: function (createElement) {
@@ -420,7 +420,7 @@ render: function (createElement) {
 }
 ```
 
-如果要用 render 函数向子组件中传递作用域插槽，可以利用VNode数据中的 `scopedSlots`域：
+如果要用渲染函数向子组件中传递作用域插槽，可以利用 VNode 数据中的 `scopedSlots` 域：
 
 ``` js
 render (createElement) {
@@ -440,7 +440,7 @@ render (createElement) {
 
 ## JSX
 
-如果你写了很多 `render`  函数，可能会觉得痛苦：
+如果你写了很多 `render` 函数，可能会觉得痛苦：
 
 ``` js
 createElement(
@@ -484,11 +484,11 @@ new Vue({
 
 更多关于 JSX 映射到 JavaScript，阅读 [使用文档](https://github.com/vuejs/babel-plugin-transform-vue-jsx#usage)。
 
-## 函数化组件
+## 函数式组件
 
 之前创建的锚点标题组件是比较简单，没有管理或者监听任何传递给他的状态，也没有生命周期方法。它只是一个接收参数的函数。
 在这个例子中，我们标记组件为 `functional`， 这意味它是无状态（没有 `data`），无实例（没有 `this` 上下文）。
-一个 **函数化组件** 就像这样：
+一个 **函数式组件** 就像这样：
 
 ``` js
 Vue.component('my-component', {
@@ -509,7 +509,7 @@ Vue.component('my-component', {
 
 组件需要的一切都是通过上下文传递，包括：
 
-- `props`: 提供props 的对象
+- `props`: 提供 props 的对象
 - `children`: VNode 子节点的数组
 - `slots`: slots 对象
 - `data`: 传递给组件的 data 对象
@@ -519,7 +519,7 @@ Vue.component('my-component', {
 
 在添加 `functional: true` 之后，锚点标题组件的 render 函数之间简单更新增加 `context` 参数，`this.$slots.default` 更新为 `context.children`，之后`this.level` 更新为 `context.props.level`。
 
-因为函数化组件只是一个函数，所以渲染开销也低很多。然而，对持久化实例的缺乏也意味着函数化组件不会出现在 [Vue devtools](https://github.com/vuejs/vue-devtools) 的组件树里。
+因为函数式组件只是一个函数，所以渲染开销也低很多。然而，对持久化实例的缺乏也意味着函数式组件不会出现在 [Vue devtools](https://github.com/vuejs/vue-devtools) 的组件树里。
 
 在作为包装组件时它们也同样非常有用，比如，当你需要做这些时：
 

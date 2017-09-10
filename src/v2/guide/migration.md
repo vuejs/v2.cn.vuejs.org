@@ -1124,11 +1124,11 @@ function pluralizeKnife (count) {
 </div>
 {% endraw %}
 
-## Slots
+## 插槽
 
-### 重名的 Slots <sup>移除</sup>
+### 重名的插槽 <sup>移除</sup>
 
-同一模板中的重名 `<slot>` 已经弃用。当一个 slot 已经被渲染过了，那么就不能在同一模板其它地方被再次渲染了。如果要在不同位置渲染同一内容，可以用prop来传递。
+同一模板中的重名 `<slot>` 已经弃用。当一个插槽已经被渲染过了，那么就不能在同一模板其它地方被再次渲染了。如果要在不同位置渲染同一内容，可以用 prop 来传递。
 
 {% raw %}
 <div class="upgrade-path">
@@ -1144,7 +1144,7 @@ function pluralizeKnife (count) {
 {% raw %}
 <div class="upgrade-path">
   <h4>升级方式</h4>
-  <p>运行<a href="https://github.com/vuejs/vue-migration-helper">迁移工具</a>找到选择slots标签CSS选择器(例如： <code>[slot="my-slot-name"]</code>) 。</p>
+  <p>运行<a href="https://github.com/vuejs/vue-migration-helper">迁移工具</a>找到选择 slots 标签 CSS 选择器(例如：<code>[slot="my-slot-name"]</code>) 。</p>
 </div>
 {% endraw %}
 
@@ -1570,11 +1570,9 @@ el 选项不再在 `Vue.extend`中使用。仅在实例创建参数中可用。
 
 Partials 已被移除,取而代之的是更明确的组件之间的数据流--props。除非你正在使用一个部分性能关键型区域，否则建议只使用一个[normal component](components.html)来代替。如果你是动态绑定部分的`name`,您可以使用[dynamic component](components.html#动态组件)。
 
+如果你碰巧在你的应用程序的性能关键部分使用 partials，那么你应该升级到[函数式组件](render-function.html#函数式组件)。它们必须在纯 JS / JSX 文件中（而不是在 `.vue` 文件中），并且是无状态的和无实例的，就像 partials。这使得渲染极快。
 
-如果你碰巧在你的应用程序的性能关键部分使用`partials`，那么你应该升级到[functional components](render-function.html#函数化组件)。它们必须在纯JS / JSX文件中（而不是在`.vue`文件中），并且是无状态的和无实例的，就像`partials`。这使得渲染极快。
-
-`functional components`相对于`partials`一个好处是它们可以更具动态性，因为它们允许您访问JavaScript的全部功能。然而，这是有成本的。如果你从来没有使用过渲染式的组件框架，你可能需要花费更长的时间来学习它们。
-
+函数式组件相对于 partials 一个好处是它们可以更具动态性，因为它们允许您访问 JavaScript 的全部功能。然而，这是有成本的。如果你从来没有使用过渲染式的组件框架，你可能需要花费更长的时间来学习它们。
 
 {% raw %}
 <div class="upgrade-path">

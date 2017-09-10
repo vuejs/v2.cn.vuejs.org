@@ -642,7 +642,7 @@ if (version === 2) {
 
 - **详细**：
 
-  一个字符串模板作为 Vue 实例的标识使用。模板将会 **替换** 挂载的元素。挂载元素的内容都将被忽略，除非模板的内容有分发 slot。
+  一个字符串模板作为 Vue 实例的标识使用。模板将会 **替换** 挂载的元素。挂载元素的内容都将被忽略，除非模板的内容有分发插槽。
 
   如果值以 `#` 开始，则它用作选项符，将使用匹配元素的 innerHTML 作为模板。常用的技巧是用 `<script type="x-template">` 包含模板。
 
@@ -652,7 +652,7 @@ if (version === 2) {
 
 - **参考**：
   - [生命周期图示](../guide/instance.html#生命周期图示)
-  - [用 Slots 分发内容](../guide/components.html#使用-Slots-分发内容)
+  - [用插槽分发内容](../guide/components.html#使用插槽分发内容)
 
 ### render
 
@@ -1069,7 +1069,7 @@ if (version === 2) {
 
   使组件无状态（没有 `data` ）和无实例（没有 `this` 上下文）。他们用一个简单的 `render` 函数返回虚拟节点使他们更容易渲染。
 
-- **参考**：[函数式组件](../guide/render-function.html#函数化组件)
+- **参考**：[函数式组件](../guide/render-function.html#函数式组件)
 
 ### model
 
@@ -1233,7 +1233,7 @@ if (version === 2) {
 
 - **详细**：
 
-  用来访问被 [slot 分发](../guide/components.html#使用-Slots-分发内容)的内容。每个[具名 slot](../guide/components.html#具名-Slot) 有其相应的属性（例如：`slot="foo"` 中的内容将会在 `vm.$slots.foo` 中被找到）。`default` 属性包括了所有没有被包含在具名 slot 中的节点。
+  用来访问被[插槽分发](../guide/components.html#使用插槽分发内容)的内容。每个[具名插槽](../guide/components.html#具名插槽) 有其相应的属性（例如：`slot="foo"` 中的内容将会在 `vm.$slots.foo` 中被找到）。`default` 属性包括了所有没有被包含在具名插槽中的节点。
 
   在使用[渲染函数](../guide/render-function.html)书写一个组件时，访问 `vm.$slots` 最有帮助。
 
@@ -1272,8 +1272,8 @@ if (version === 2) {
 
 - **参考**：
   - [`<slot>` 组件](#slot-1)
-  - [使用 Slots 分发内容](../guide/components.html#使用-Slots-分发内容)
-  - [渲染函数 - Slots](../guide/render-function.html#Slots)
+  - [使用插槽分发内容](../guide/components.html#使用插槽分发内容)
+  - [渲染函数 - 插槽](../guide/render-function.html#插槽)
 
 ### vm.$scopedSlots
 
@@ -1285,14 +1285,14 @@ if (version === 2) {
 
 - **详细**：
 
-  用来访问 [scoped slots](../guide/components.html#作用域插槽)。对于包括 `默认 slot` 在内的每一个 slot，该对象都包含一个返回相应 VNode 的函数。
+  用来访问[作用域插槽](../guide/components.html#作用域插槽)。对于包括 `默认 slot` 在内的每一个插槽，该对象都包含一个返回相应 VNode 的函数。
 
   在使用 [`render` 函数](../guide/render-function.html) 书写一个组件时，访问 `vm.$scopedSlots` 最有帮助。
 
 - **参考**：
   - [`<slot>` 组件](#slot-1)
-  - [Scoped Slots](../guide/components.html#作用域插槽)
-  - [渲染函数 - Slots](../guide/render-function.html#Slots)
+  - [作用域插槽](../guide/components.html#作用域插槽)
+  - [渲染函数 - 插槽](../guide/render-function.html#插槽)
 
 
 ### vm.$refs
@@ -2038,11 +2038,11 @@ if (version === 2) {
 
 - **预期**：`string`
 
-  用于标记往哪个slot中插入子组件内容。
+  用于标记往哪个具名插槽中插入子组件内容。
 
   详细用法，请参考下面指南部分的链接。
 
-- **参考**：[具名 Slots](../guide/components.html#具名-Slot)
+- **参考**：[具名插槽](../guide/components.html#具名插槽)
 
 ### is
 
@@ -2266,7 +2266,7 @@ if (version === 2) {
 
   详细用法，请参考下面教程的链接。
 
-- **参考**：[使用Slots分发内容](../guide/components.html#使用-Slots-分发内容)
+- **参考**：[使用插槽分发内容](../guide/components.html#使用插槽分发内容)
 
 ## VNode 接口
 

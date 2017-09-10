@@ -28,9 +28,9 @@ Mustache 标签将会被替代为对应数据对象上 `msg` 属性的值。无�
 <span v-once>这个将不会改变: {{ msg }}</span>
 ```
 
-### 纯 HTML
+### 原始 HTML
 
-双大括号会将数据解释为纯文本，而非 HTML 。为了输出真正的 HTML ，你需要使用 `v-html` 指令：
+双大括号会将数据解释为普通文本，而非 HTML 代码。为了输出真正的 HTML ，你需要使用 `v-html` 指令：
 
 ``` html
 <div v-html="rawHtml"></div>
