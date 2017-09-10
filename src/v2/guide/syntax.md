@@ -40,15 +40,15 @@ Mustache 标签将会被替代为对应数据对象上 `msg` 属性的值。无�
 
 <p class="tip">你的站点上动态渲染的任意 HTML 可能会非常危险，因为它很容易导致 [XSS 攻击](https://en.wikipedia.org/wiki/Cross-site_scripting)。请只对可信内容使用 HTML 插值，**绝不要**对用户提供的内容插值。</p>
 
-### 特性
+### 属性
 
-mustache 语法不能作用在 HTML 特性上，遇到这种情况应该使用 [v-bind 指令](../api/#v-bind)：
+Mustache 语法不能作用在 HTML 属性上，遇到这种情况应该使用 [v-bind 指令](../api/#v-bind)：
 
 ``` html
 <div v-bind:id="dynamicId"></div>
 ```
 
-这同样适用于布尔类特性，如果求值结果是 falsy 的值，则该特性将会被删除：
+这同样适用于值为布尔类型的属性，如果求值结果是 falsy （[类假值](https://developer.mozilla.org/zh-CN/docs/Glossary/Falsy)），则该特性将会被删除：
 
 ``` html
 <button v-bind:disabled="isButtonDisabled">Button</button>
@@ -143,4 +143,4 @@ mustache 语法不能作用在 HTML 特性上，遇到这种情况应该使用 [
 <a @click="doSomething"></a>
 ```
 
-它们看起来可能与普通的 HTML 略有不同，但 `:` 与 `@` 对于特性名来说都是合法字符，在所有支持 Vue.js 的浏览器都能被正确地解析。而且，它们不会出现在最终渲染的标记中。缩写语法是完全可选的，但随着你更深入地了解它们的作用，你会庆幸拥有它们。
+它们看起来可能与普通的 HTML 略有不同，但 `:` 与 `@` 对于属性名来说都是合法字符，在所有支持 Vue.js 的浏览器都能被正确地解析。而且，它们不会出现在最终渲染的 HTML 中。是否选择缩写语法完全取决于你，但随着你更深入地了解它们的作用，你会庆幸拥有它们。
