@@ -2048,7 +2048,7 @@ if (version === 2) {
 
 - **预期**：`string`
 
-  用于[动态组件](../guide/components.html#动态组件)且基于 [DOM 内模板到限制](../guide/components.html#DOM-模板解析说明)来工作。
+  用于[动态组件](../guide/components.html#动态组件)且基于 [DOM 内模板的限制](../guide/components.html#DOM-模板解析说明)来工作。
 
   示例：
 
