@@ -6,7 +6,7 @@ order: 4
 
 Vue.js 使用了基于 HTML 的模板语法，允许开发者声明式地将 DOM 绑定至底层 Vue 实例的数据。所有 Vue.js 的模板都是合法的 HTML ，所以能被遵循规范的浏览器和 HTML 解析器解析。
 
-在底层的实现上， Vue 将模板编译成虚拟 DOM 渲染函数。结合响应系统，在应用状态改变时， Vue 能够智能地计算出重新渲染组件的最小代价并应用到 DOM 操作上。
+在底层的实现上，Vue 将模板编译成虚拟 DOM 渲染函数。结合响应系统，在应用状态改变时，Vue 能够智能地计算出重新渲染组件的最小代价并应用到 DOM 操作上。
 
 如果你熟悉虚拟 DOM 并且偏爱 JavaScript 的原始力量，你也可以不用模板，[直接写渲染 (render) 函数](render-function.html)，使用可选的 JSX 语法。
 
@@ -14,7 +14,7 @@ Vue.js 使用了基于 HTML 的模板语法，允许开发者声明式地将 DOM
 
 ### 文本
 
-数据绑定最常见的形式就是使用 “Mustache” 语法 (双大括号) 的文本插值：
+数据绑定最常见的形式就是使用“Mustache”语法 (双大括号) 的文本插值：
 
 ``` html
 <span>Message: {{ msg }}</span>
@@ -36,7 +36,7 @@ Mustache 标签将会被替代为对应数据对象上 `msg` 属性的值。无�
 <div v-html="rawHtml"></div>
 ```
 
-这个 `div` 的内容将会被替换成为属性值 `rawHtml`，直接作为 HTML —— 会忽略解析属性值中的数据绑定。注意，你不能使用 `v-html` 来复合局部模板，因为 Vue 不是基于字符串的模板引擎。反之，对于用户界面(UI)，组件更适合作为可重用和可组合的基本单位。
+这个 `div` 的内容将会被替换成为属性值 `rawHtml`，直接作为 HTML —— 会忽略解析属性值中的数据绑定。注意，你不能使用 `v-html` 来复合局部模板，因为 Vue 不是基于字符串的模板引擎。反之，对于用户界面 (UI)，组件更适合作为可重用和可组合的基本单位。
 
 <p class="tip">你的站点上动态渲染的任意 HTML 可能会非常危险，因为它很容易导致 [XSS 攻击](https://en.wikipedia.org/wiki/Cross-site_scripting)。请只对可信内容使用 HTML 插值，**绝不要**对用户提供的内容插值。</p>
 
@@ -56,7 +56,7 @@ mustache 语法不能作用在 HTML 特性上，遇到这种情况应该使用 [
 
 ### 使用 JavaScript 表达式
 
-迄今为止，在我们的模板中，我们一直都只绑定简单的属性键值。但实际上，对于所有的数据绑定， Vue.js 都提供了完全的 JavaScript 表达式支持。
+迄今为止，在我们的模板中，我们一直都只绑定简单的属性键值。但实际上，对于所有的数据绑定，Vue.js 都提供了完全的 JavaScript 表达式支持。
 
 ``` html
 {{ number + 1 }}
@@ -88,7 +88,7 @@ mustache 语法不能作用在 HTML 特性上，遇到这种情况应该使用 [
 <p v-if="seen">现在你看到我了</p>
 ```
 
-这里， `v-if` 指令将根据表达式 `seen` 的值的真假来插入/移除 `<p>` 元素。
+这里，`v-if` 指令将根据表达式 `seen` 的值的真假来插入/移除 `<p>` 元素。
 
 ### 参数
 
@@ -120,7 +120,7 @@ mustache 语法不能作用在 HTML 特性上，遇到这种情况应该使用 [
 
 ## 缩写
 
-`v-` 前缀作为一种视觉提示，用来识别模板中 Vue 特定的特性。当你在使用 Vue.js 为现有标签添加动态行为(dynamic behavior)时，`v-` 前缀很有帮助，然而，对于一些频繁用到的指令来说，就会感到使用繁琐。同时，在构建由 Vue.js 管理所有模板的[单页面应用程序(SPA - single page application)](https://en.wikipedia.org/wiki/Single-page_application)时，`v-` 前缀也变得没那么重要了。因此，Vue.js 为 `v-bind` 和 `v-on` 这两个最常用的指令，提供了特定简写：
+`v-` 前缀作为一种视觉提示，用来识别模板中 Vue 特定的特性。当你在使用 Vue.js 为现有标签添加动态行为 (dynamic behavior) 时，`v-` 前缀很有帮助，然而，对于一些频繁用到的指令来说，就会感到使用繁琐。同时，在构建由 Vue.js 管理所有模板的[单页面应用程序 (SPA - single page application)](https://en.wikipedia.org/wiki/Single-page_application) 时，`v-` 前缀也变得没那么重要了。因此，Vue.js 为 `v-bind` 和 `v-on` 这两个最常用的指令，提供了特定简写：
 
 ### `v-bind` 缩写
 

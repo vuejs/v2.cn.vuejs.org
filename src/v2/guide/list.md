@@ -6,7 +6,7 @@ order: 8
 
 ## 用 `v-for` 把一个数组对应为一组元素
 
-我们用 `v-for` 指令根据一组数组的选项列表进行渲染。 `v-for` 指令需要以 `item in items` 形式的特殊语法， `items` 是源数据数组并且 `item` 是数组元素迭代的别名。
+我们用 `v-for` 指令根据一组数组的选项列表进行渲染。`v-for` 指令需要以 `item in items` 形式的特殊语法，`items` 是源数据数组并且 `item` 是数组元素迭代的别名。
 
 ``` html
 <ul id="example-1">
@@ -54,7 +54,7 @@ var example1 = new Vue({
 </script>
 {% endraw %}
 
-在 `v-for` 块中，我们拥有对父作用域属性的完全访问权限。 `v-for` 还支持一个可选的第二个参数为当前项的索引。
+在 `v-for` 块中，我们拥有对父作用域属性的完全访问权限。`v-for` 还支持一个可选的第二个参数为当前项的索引。
 
 ``` html
 <ul id="example-2">
@@ -217,7 +217,7 @@ new Vue({
 
 ## `key`
 
-当 Vue.js 用 `v-for` 正在更新已渲染过的元素列表时，它默认用 “就地复用” 策略。如果数据项的顺序被改变，Vue将不是移动 DOM 元素来匹配数据项的顺序，  而是简单复用此处每个元素，并且确保它在特定索引下显示已被渲染过的每个元素。这个类似 Vue 1.x 的 `track-by="$index"` 。
+当 Vue.js 用 `v-for` 正在更新已渲染过的元素列表时，它默认用“就地复用”策略。如果数据项的顺序被改变，Vue 将不是移动 DOM 元素来匹配数据项的顺序， 而是简单复用此处每个元素，并且确保它在特定索引下显示已被渲染过的每个元素。这个类似 Vue 1.x 的 `track-by="$index"` 。
 
 这个默认的模式是高效的，但是只适用于**不依赖子组件状态或临时 DOM 状态 (例如：表单输入值) 的列表渲染输出**。
 
@@ -231,7 +231,7 @@ new Vue({
 
 建议尽可能使用 `v-for` 来提供 `key` ，除非 DOM 内容遍历起来非常简单，或者你是有意识的要依赖于默认行为以便获得性能提升。
 
-因为它是 Vue 识别节点的一个通用机制， `key` 并不特别与 `v-for` 关联，key 还具有其他用途，我们将在后面的指南中看到其他用途。
+因为它是 Vue 识别节点的一个通用机制，`key` 并不特别与 `v-for` 关联，key 还具有其他用途，我们将在后面的指南中看到其他用途。
 
 ## 数组更新检测
 
@@ -259,16 +259,16 @@ example1.items = example1.items.filter(function (item) {
 })
 ```
 
-你可能认为这将导致 Vue 丢弃现有 DOM 并重新渲染整个列表。幸运的是，事实并非如此。 Vue 为了使得 DOM 元素得到最大范围的重用而实现了一些智能的、启发式的方法，所以用一个含有相同元素的数组去替换原来的数组是非常高效的操作。
+你可能认为这将导致 Vue 丢弃现有 DOM 并重新渲染整个列表。幸运的是，事实并非如此。Vue 为了使得 DOM 元素得到最大范围的重用而实现了一些智能的、启发式的方法，所以用一个含有相同元素的数组去替换原来的数组是非常高效的操作。
 
 ### 注意事项
 
 由于 JavaScript 的限制，Vue 不能检测以下变动的数组：
 
-1. 当你利用索引直接设置一个项时，例如： `vm.items[indexOfItem] = newValue`
-2. 当你修改数组的长度时，例如： `vm.items.length = newLength`
+1. 当你利用索引直接设置一个项时，例如：`vm.items[indexOfItem] = newValue`
+2. 当你修改数组的长度时，例如：`vm.items.length = newLength`
 
-为了解决第一类问题，以下两种方式都可以实现和 `vm.items[indexOfItem] = newValue` 相同的效果， 同时也将触发状态更新：
+为了解决第一类问题，以下两种方式都可以实现和 `vm.items[indexOfItem] = newValue` 相同的效果，同时也将触发状态更新：
 
 ``` js
 // Vue.set
@@ -313,13 +313,13 @@ var vm = new Vue({
 })
 ```
 
-你可以添加一个新的 `age` 属性到嵌套的 `userProfile` 对象:
+你可以添加一个新的 `age` 属性到嵌套的 `userProfile` 对象：
 
 ``` js
 Vue.set(vm.userProfile, 'age', 27)
 ```
 
-你还可以使用 `vm.$set` 实例方法，它只是全局 `Vue.set` 的别名:
+你还可以使用 `vm.$set` 实例方法，它只是全局 `Vue.set` 的别名：
 
 ``` js
 this.$set(this.userProfile, 'age', 27)
@@ -431,7 +431,7 @@ methods: {
 
 上面的代码只传递了未 complete 的 todos。
 
-而如果你的目的是有条件地跳过循环的执行，那么可以将 `v-if` 置于外层元素 (或 [`<template>`](conditional.html#在-lt-template-gt-中配合-v-if-条件渲染一整组))上。如:
+而如果你的目的是有条件地跳过循环的执行，那么可以将 `v-if` 置于外层元素 (或 [`<template>`](conditional.html#在-lt-template-gt-中配合-v-if-条件渲染一整组))上。如：
 
 ``` html
 <ul v-if="todos.length">

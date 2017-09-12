@@ -165,7 +165,7 @@ methods: {
 
 在事件处理程序中调用 `event.preventDefault()` 或 `event.stopPropagation()` 是非常常见的需求。尽管我们可以在 methods 中轻松实现这点，但更好的方式是：methods 只有纯粹的数据逻辑，而不是去处理 DOM 事件细节。
 
-为了解决这个问题， Vue.js 为 `v-on` 提供了 **事件修饰符**。通过由点(.)表示的指令后缀来调用修饰符。
+为了解决这个问题，Vue.js 为 `v-on` 提供了 **事件修饰符**。通过由点 (.) 表示的指令后缀来调用修饰符。
 
 - `.stop`
 - `.prevent`
@@ -180,7 +180,7 @@ methods: {
 <!-- 提交事件不再重载页面 -->
 <form v-on:submit.prevent="onSubmit"></form>
 
-<!-- 修饰符可以串联  -->
+<!-- 修饰符可以串联 -->
 <a v-on:click.stop.prevent="doThat"></a>
 
 <!-- 只有修饰符 -->
@@ -201,11 +201,11 @@ methods: {
 <!-- 点击事件将只会触发一次 -->
 <a v-on:click.once="doThis"></a>
 ```
-不像其它只能对原生的 DOM 事件起作用的修饰符，`.once` 修饰符还能被用到自定义的[组件事件](components.html#使用-v-on-绑定自定义事件)上. 如果你还没有阅读关于组件的文档，现在大可不必担心。
+不像其它只能对原生的 DOM 事件起作用的修饰符，`.once` 修饰符还能被用到自定义的[组件事件](components.html#使用-v-on-绑定自定义事件)上。如果你还没有阅读关于组件的文档，现在大可不必担心。
 
 ## 键值修饰符
 
-在监听键盘事件时，我们经常需要监测常见的键值。 Vue 允许为 `v-on` 在监听键盘事件时添加关键修饰符：
+在监听键盘事件时，我们经常需要监测常见的键值。Vue 允许为 `v-on` 在监听键盘事件时添加关键修饰符：
 
 ``` html
 <!-- 只有在 keyCode 是 13 时调用 vm.submit() -->
@@ -226,7 +226,7 @@ methods: {
 
 - `.enter`
 - `.tab`
-- `.delete` (捕获 “删除” 和 “退格” 键)
+- `.delete` (捕获“删除”和“退格”键)
 - `.esc`
 - `.space`
 - `.up`
@@ -252,7 +252,7 @@ Vue.config.keyCodes.f1 = 112
 - `.shift`
 - `.meta`
 
-> 注意：在Mac系统键盘上，meta对应命令键 (⌘)。在Windows系统键盘meta对应windows徽标键(⊞)。在Sun操作系统键盘上，meta对应实心宝石键 (◆)。在其他特定键盘上，尤其在MIT和Lisp键盘及其后续，比如Knight键盘，space-cadet键盘，meta被标记为“META”。在Symbolics键盘上，meta被标记为“META” 或者 “Meta”。
+> 注意：在 Mac 系统键盘上，meta 对应命令键 (⌘)。在 Windows 系统键盘 meta 对应 windows 徽标键 (⊞)。在 Sun 操作系统键盘上，meta 对应实心宝石键 (◆)。在其他特定键盘上，尤其在 MIT 和 Lisp 键盘及其后续，比如 Knight 键盘，space-cadet 键盘，meta 被标记为“META”。在 Symbolics 键盘上，meta 被标记为“META”或者“Meta”。
 
 例如：
 

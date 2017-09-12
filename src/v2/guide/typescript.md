@@ -6,13 +6,13 @@ order: 404
 
 ## 从 2.2.0 起针对 TS + Webpack 2 用户的重要改动
 
-在 Vue 2.2 里，我们引入了新机制，把 dist 文件都作为 ES 模块发布。这在 webpack 2 中属于默认行为。遗憾的是，这个改动会引入一个会破坏兼容性的意外改动。在 TypeScript + webpack 2 里， `import Vue = require('vue')` 现在会返回一个综合的 ES 模块对象，而不是 Vue 对象本身了。
+在 Vue 2.2 里，我们引入了新机制，把 dist 文件都作为 ES 模块发布。这在 webpack 2 中属于默认行为。遗憾的是，这个改动会引入一个会破坏兼容性的意外改动。在 TypeScript + webpack 2 里，`import Vue = require('vue')` 现在会返回一个综合的 ES 模块对象，而不是 Vue 对象本身了。
 
 我们计划在未来把所有的官方类型声明都改成 ES-风格的导出方式 (译注：`export`)。请参阅下面的[推荐配置](#推荐配置)板块，配置一个不易过时的编码方案。
 
 ## 发布为 NPM 包的官方声明文件
 
-静态类型系统能帮助你有效防止N多潜在的运行时错误，而且随着你的应用日渐丰满会更加显著。这就是为什么 Vue 不仅仅为 Vue core 提供了针对 [TypeScript](https://www.typescriptlang.org/) 的[官方类型声明](https://github.com/vuejs/vue/tree/dev/types)，还为 [Vue Router](https://github.com/vuejs/vue-router/tree/dev/types) 和 [Vuex](https://github.com/vuejs/vuex/tree/dev/types) 也提供了相应的声明文件。
+静态类型系统能帮助你有效防止 N 多潜在的运行时错误，而且随着你的应用日渐丰满会更加显著。这就是为什么 Vue 不仅仅为 Vue core 提供了针对 [TypeScript](https://www.typescriptlang.org/) 的[官方类型声明](https://github.com/vuejs/vue/tree/dev/types)，还为 [Vue Router](https://github.com/vuejs/vue-router/tree/dev/types) 和 [Vuex](https://github.com/vuejs/vuex/tree/dev/types) 也提供了相应的声明文件。
 
 而且，我们已经把他们[发布于 NPM](https://unpkg.com/vue/types/)，最新版本的 TypeScript 也知道该如何自己从 NPM 包里解析类型声明。这意味着只要你成功地通过 NPM 安装了，就不再需要任何额外的工具辅助，即可在 Vue 中使用 TypeScript 了。
 
@@ -65,7 +65,7 @@ import Vue = require('vue') // 注：老语法
 
 ## 使用 Vue 的类型声明
 
-Vue 的类型声明导出了很多有效的[类型声明](https://github.com/vuejs/vue/blob/dev/types/index.d.ts)。比如，标记一个导出的组件选项对象(e.g. 在 `.vue` 文件中)：
+Vue 的类型声明导出了很多有效的[类型声明](https://github.com/vuejs/vue/blob/dev/types/index.d.ts)。比如，标记一个导出的组件选项对象 (e.g. 在 `.vue` 文件中)：
 
 ``` ts
 import Vue, { ComponentOptions } from 'vue'
@@ -113,7 +113,7 @@ export default {
 
 - 因为第一条的局限, __如上的类型注释可能会很罗嗦__。TypeScript 不能正确推导 `message` 的类型，是唯一迫使我们手动声明它是 string 的原因。
 
-好消息是，[vue-class-component](https://github.com/vuejs/vue-class-component) 能解决以上的两个问题。这是一个官方的姐妹库，它能允许你把组件声明为一个原生的 JavaScript 类，外加一个 `@Component` 的修饰符。为了举例说明，我们把上面的例子重写一下吧:
+好消息是，[vue-class-component](https://github.com/vuejs/vue-class-component) 能解决以上的两个问题。这是一个官方的姐妹库，它能允许你把组件声明为一个原生的 JavaScript 类，外加一个 `@Component` 的修饰符。为了举例说明，我们把上面的例子重写一下吧：
 
 ``` ts
 import Vue from 'vue'

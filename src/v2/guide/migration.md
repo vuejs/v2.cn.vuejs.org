@@ -26,15 +26,15 @@ order: 701
 
 - 取决于你应用程序的规模 (中小型的基本上一天内就可以搞定)。
 
-- 取决于你分心和开始 2.0 最酷的新功能的次数。 😉 &nbsp;无法判断时间，我们构建 2.0 应用的时候也经常发生这种事！
+- 取决于你分心和开始 2.0 最酷的新功能的次数。😉 &nbsp;无法判断时间，我们构建 2.0 应用的时候也经常发生这种事！
 
-- 取决于你使用了哪些旧有的特性。大部分可以通过查找和替换(find-and-replace)来实现升级，但有一些可能还是要花点时间。如果你没有遵循最佳实践，Vue 2.0 会尽力强迫你去遵循。这有利于项目的长期运行，但也可能意味着重大重构 (尽管有些需要重构的部分可能已经过时)。
+- 取决于你使用了哪些旧有的特性。大部分可以通过查找和替换 (find-and-replace) 来实现升级，但有一些可能还是要花点时间。如果你没有遵循最佳实践，Vue 2.0 会尽力强迫你去遵循。这有利于项目的长期运行，但也可能意味着重大重构 (尽管有些需要重构的部分可能已经过时)。
 
 > 如果我升级到到 Vue 2 ，我还必须同时升级 Vuex 和 Vue-Router？
 
-只有 Vue-Router 2 与 Vue 2 保持兼容，所以 Vue-Router 是需要升级的，你必须遵循 [Vue-Router 迁移方式](migration-vue-router.html)来处理。幸运的是， 大多数应用没有很多 router 相关代码，所以迁移可能不会超过一个小时。
+只有 Vue-Router 2 与 Vue 2 保持兼容，所以 Vue-Router 是需要升级的，你必须遵循 [Vue-Router 迁移方式](migration-vue-router.html)来处理。幸运的是，大多数应用没有很多 router 相关代码，所以迁移可能不会超过一个小时。
 
-对于 Vuex ，版本 0.8+ 与 Vue 2 保持兼容，所以部分不必强制升级。可以促使你立即升级的唯一理由，是你想要使用那些 Vuex 2 中新的高级特性，比如模块(modules)和减少的样板文件(reduced boilerplate)。
+对于 Vuex ，版本 0.8+ 与 Vue 2 保持兼容，所以部分不必强制升级。可以促使你立即升级的唯一理由，是你想要使用那些 Vuex 2 中新的高级特性，比如模块 (modules) 和减少的样板文件 (reduced boilerplate)。
 
 ## 模板
 
@@ -59,7 +59,7 @@ order: 701
 {% raw %}
 <div class="upgrade-path">
   <h4>升级方式</h4>
-  <p>升级后运行端到端测试套件(end-to-end test suite)或运行应用程序，并查看<strong>控制台警告(console warnings)</strong>来找出那些模板中有多个根元素的地方。
+  <p>升级后运行端到端测试套件 (end-to-end test suite) 或运行应用程序，并查看<strong>控制台警告 (console warnings)</strong> 来找出那些模板中有多个根元素的地方。
 </div>
 {% endraw %}
 
@@ -89,7 +89,7 @@ order: 701
 
 ### `attached` <sup>移除</sup>
 
-使用其他钩子函数内置的 DOM 检测(DOM check)方法。例如，替换如下：
+使用其他钩子函数内置的 DOM 检测 (DOM check) 方法。例如，替换如下：
 
 ``` js
 attached: function () {
@@ -116,7 +116,7 @@ mounted: function () {
 
 ### `detached` <sup>移除</sup>
 
-使用其他钩子函数内的 DOM 检测(DOM check)方法。例如，替换如下：
+使用其他钩子函数内的 DOM 检测 (DOM check) 方法。例如，替换如下：
 
 ``` js
 detached: function () {
@@ -207,7 +207,7 @@ mounted: function () {
 
 ### `track-by` <sup>替换</sup>
 
-`track-by` 已经替换为 `key`，它的工作方式与其他属性一样，没有 `v-bind` 或者 `:` 前缀，它会被作为一个字符串处理。多数情况下，你需要使用具有完整表达式的动态绑定(dynamic binding)来替换静态的 key。例如，替换：
+`track-by` 已经替换为 `key`，它的工作方式与其他属性一样，没有 `v-bind` 或者 `:` 前缀，它会被作为一个字符串处理。多数情况下，你需要使用具有完整表达式的动态绑定 (dynamic binding) 来替换静态的 key。例如，替换：
 
 ``` html
 <div v-for="item in items" track-by="id">
@@ -239,7 +239,7 @@ mounted: function () {
 
 ## Props
 
-### `coerce` Prop的参数 <sup>移除</sup>
+### `coerce` Prop 的参数 <sup>移除</sup>
 
 如果需要检查 prop 的值，创建一个内部的 computed 值，而不再在 props 内部去定义，例如：
 
@@ -319,7 +319,7 @@ Props 现在只能单向传递。为了对父组件产生反向影响，子组�
 
 大多数情况下，改变 prop 值可以用以下选项替代：
 
-- 通过 data 属性，用prop去设置一个data属性的默认值。
+- 通过 data 属性，用 prop 去设置一个 data 属性的默认值。
 - 通过 computed 属性。
 
 {% raw %}
@@ -382,16 +382,16 @@ methods: {
 
 ### `v-bind` 真/假值 <sup>变更</sup>
 
-在2.0中使用 `v-bind` 时，只有 `null`, `undefined` , 和 `false` 被看作是假。这意味着，`0` 和空字符串将被作为真值渲染。比如 `v-bind:draggable="''"` 将被渲染为 `draggable="true"`。
+在2.0中使用 `v-bind` 时，只有 `null`, `undefined`，和 `false` 被看作是假。这意味着，`0` 和空字符串将被作为真值渲染。比如 `v-bind:draggable="''"` 将被渲染为 `draggable="true"`。
 
 对于枚举属性，除了以上假值之外，字符串 `"false"` 也会被渲染为 `attr="false"`。
 
-<p class="tip">注意，对于其它钩子函数 (如 `v-if` 和 `v-show`)， 他们依然遵循 js 对真假值判断的一般规则。</p>
+<p class="tip">注意，对于其它钩子函数 (如 `v-if` 和 `v-show`)，他们依然遵循 js 对真假值判断的一般规则。</p>
 
 {% raw %}
 <div class="upgrade-path">
   <h4>升级方式</h4>
-  <p>运行端到端测试，如果你app的任何部分有可能被这个升级影响到，将会弹出<strong>failed tests</strong></p>
+  <p>运行端到端测试，如果你 app 的任何部分有可能被这个升级影响到，将会弹出<strong>failed tests</strong></p>
 </div>
 {% endraw %}
 
@@ -406,13 +406,13 @@ methods: {
 {% raw %}
 <div class="upgrade-path">
   <h4>升级方式</h4>
-  <p>运行端对端测试，如果你app的任何部分有可能被这个升级影响到，将会弹出<strong>failed tests</strong> </p>
+  <p>运行端对端测试，如果你 app 的任何部分有可能被这个升级影响到，将会弹出<strong>failed tests</strong> </p>
 </div>
 {% endraw %}
 
 ### 带有 `debounce` 的 `v-model`<sup>移除</sup>
 
-Debouncing 曾经被用来控制 Ajax 请求及其它高耗任务的频率。 Vue 中`v-model`的 `debounce` 属性参数使得在一些简单情况下非常容易实现这种控制。但实际上，这是控制了 __状态更新__ 的频率，而不是控制高耗时任务本身。这是个微小的差别，但是会随着应用增长而显现出局限性。
+Debouncing 曾经被用来控制 Ajax 请求及其它高耗任务的频率。Vue 中`v-model`的 `debounce` 属性参数使得在一些简单情况下非常容易实现这种控制。但实际上，这是控制了 __状态更新__ 的频率，而不是控制高耗时任务本身。这是个微小的差别，但是会随着应用增长而显现出局限性。
 
 例如在设计一个搜索提示时的局限性：
 
@@ -464,7 +464,7 @@ new Vue({
 
 ``` html
 <!--
-通过使用lodash或者其它库的debounce函数，
+通过使用 lodash 或者其它库的 debounce 函数，
 我们相信 debounce 实现是一流的，
 并且可以随处使用它，不仅仅是在模板中。
 -->
@@ -522,7 +522,7 @@ new Vue({
 </div>
 {% endraw %}
 
-### 使用 `lazy` 或者 `number` 参数的 `v-model` 。 <sup>替换</sup>
+### 使用 `lazy` 或者 `number` 参数的 `v-model` 。<sup>替换</sup>
 
 `lazy` 和 `number` 参数现在以修饰符的形式使用，这样看起来更加清晰，而不是这样：
 
@@ -555,7 +555,7 @@ new Vue({
 <input v-model="text" value="foo">
 ```
 
-在data选项中有下面写法的：
+在 data 选项中有下面写法的：
 
 ``` js
 data: {
@@ -628,26 +628,26 @@ strings.map(function (str) {
 {% raw %}
 <div class="upgrade-path">
   <h4>升级方式</h4>
-  <p>运行 <a href="https://github.com/vuejs/vue-migration-helper"> 迁移帮助工具。</a>找到含有 <code>!important</code> 的style绑定对象。</p>
+  <p>运行 <a href="https://github.com/vuejs/vue-migration-helper"> 迁移帮助工具。</a>找到含有 <code>!important</code> 的 style 绑定对象。</p>
 </div>
 {% endraw %}
 
 ### `v-el` 和`v-ref` <sup>替换</sup>
 
-简单起见， `v-el` 和 `v-ref` 合并为一个 `ref` 属性了，可以在组件实例中通过 `$refs` 来调用。这意味着 `v-el:my-element` 将写成这样： `ref="myElement"`， `v-ref:my-component` 变成了这样： `ref="myComponent"`。绑定在一般元素上时，`ref` 指DOM元素，绑定在组件上时，`ref` 为一组件实例。
+简单起见，`v-el` 和 `v-ref` 合并为一个 `ref` 属性了，可以在组件实例中通过 `$refs` 来调用。这意味着 `v-el:my-element` 将写成这样：`ref="myElement"`，`v-ref:my-component` 变成了这样：`ref="myComponent"`。绑定在一般元素上时，`ref` 指 DOM 元素，绑定在组件上时，`ref` 为一组件实例。
 因为 `v-ref` 不再是一个指令了而是一个特殊的属性，它也可以被动态定义了。这样在和`v-for` 结合的时候是很有用的：
 
 ``` html
 <p v-for="item in items" v-bind:ref="'item' + item.id"></p>
 ```
 
-以前 `v-el`/`v-ref` 和 `v-for` 一起使用将产生一个DOM数组或者组件数组，因为没法给每个元素一个特定名字。现在你还仍然可以这样做，给每个元素一个同样的`ref`：
+以前 `v-el`/`v-ref` 和 `v-for` 一起使用将产生一个 DOM 数组或者组件数组，因为没法给每个元素一个特定名字。现在你还仍然可以这样做，给每个元素一个同样的`ref`：
 
 ``` html
 <p v-for="item in items" ref="items"></p>
 ```
 
-和 1.x 中不同， `$refs` 不是响应的，因为它们在渲染过程中注册/更新。只有监听变化并重复渲染才能使它们响应。
+和 1.x 中不同，`$refs` 不是响应的，因为它们在渲染过程中注册/更新。只有监听变化并重复渲染才能使它们响应。
 
 另一方面，设计`$refs`主要是提供给 js 程序访问的，并不建议在模板中过度依赖使用它。因为这意味着在实例之外去访问实例状态，违背了 Vue 数据驱动的思想。
 
@@ -688,7 +688,7 @@ strings.map(function (str) {
 显要的改变有如下几点：
 
 - 指令不再拥有实例。意思是，在指令的钩子函数中不再拥有实例的 `this` 。替代的是，你可以在参数中接受你需要的任何数据。如果确实需要，可以通过 `el` 来访问实例。
-- 类似 `acceptStatement` ，`deep` ， `priority` 等都已被弃用。为了替换`双向`指令，见 [示例](#双向过滤器-替换)。
+- 类似 `acceptStatement` ，`deep` ，`priority` 等都已被弃用。为了替换`双向`指令，见 [示例](#双向过滤器-替换)。
 - 现在有些钩子的意义和以前不一样了，并且多了两个钩子函数。
 
 幸运的是，新钩子更加简单，更加容易掌握。详见 [自定义指令指南](custom-directive.html)。
@@ -749,7 +749,7 @@ Vue 的过渡系统有了彻底的改变，现在通过使用 `<transition>` 和
 
 ### 过渡的 `stagger` 参数 <sup>移除</sup>
 
-如果希望在列表渲染中使用渐近过渡，可以通过设置元素的 `data-index`  (或类似属性) 来控制时间。 请参考[这个例子](transitions.html#列表的渐进过渡)。
+如果希望在列表渲染中使用渐近过渡，可以通过设置元素的 `data-index`  (或类似属性) 来控制时间。请参考[这个例子](transitions.html#列表的渐进过渡)。
 
 {% raw %}
 <div class="upgrade-path">
@@ -781,7 +781,7 @@ Vue.config.keyCodes.f1 = 112
 
 ### `$dispatch` 和 `$broadcast` <sup>替换</sup>
 
-`$dispatch` 和 `$broadcast` 已经被弃用。请使用更多简明清晰的组件间通信和更好的状态管理方案，如：[Vuex](https://github.com/vuejs/vuex).
+`$dispatch` 和 `$broadcast` 已经被弃用。请使用更多简明清晰的组件间通信和更好的状态管理方案，如：[Vuex](https://github.com/vuejs/vuex)。
 
 因为基于组件树结构的事件流方式实在是让人难以理解，并且在组件结构扩展的过程中会变得越来越脆弱。这种事件方式确实不太好，我们也不希望在以后让开发者们太痛苦。并且`$dispatch` 和 `$broadcast` 也没有解决兄弟组件间的通信问题。
 
@@ -789,7 +789,7 @@ Vue.config.keyCodes.f1 = 112
 
 这些方法的最常见用途之一是父子组件的相互通信。在这些情况下，你可以使用 [`v-on`监听子组件上 $emit 的变化](components.html#使用自定义事件的表单输入组件)。这可以允许你很方便的添加事件显性。
 
-然而，如果是跨多层父子组件通信的话， `$emit` 并没有什么用。相反，用集中式的事件中间件可以做到简单的升级。这会让组件之间的通信非常顺利，即使是兄弟组件。因为 Vue 通过事件发射器接口执行实例，实际上你可以使用一个空的 Vue 实例。
+然而，如果是跨多层父子组件通信的话，`$emit` 并没有什么用。相反，用集中式的事件中间件可以做到简单的升级。这会让组件之间的通信非常顺利，即使是兄弟组件。因为 Vue 通过事件发射器接口执行实例，实际上你可以使用一个空的 Vue 实例。
 
 比如，假设我们有个 todo 的应用结构如下：
 
@@ -869,9 +869,9 @@ methods: {
 
 ### 插入文本之外的过滤器 <sup>移除</sup>
 
-现在过滤器只能用在插入文本中 (`{% raw %}{{ }}{% endraw %}` tags)。我们发现在指令 (如：`v-model`， `v-on`等) 中使用过滤器使事情变得更复杂。像`v-for` 这样的列表过滤器最好把处理逻辑作为一个计算属性放在js里面，这样就可以在整个模板中复用。
+现在过滤器只能用在插入文本中 (`{% raw %}{{ }}{% endraw %}` tags)。我们发现在指令 (如：`v-model`，`v-on`等) 中使用过滤器使事情变得更复杂。像`v-for` 这样的列表过滤器最好把处理逻辑作为一个计算属性放在 js 里面，这样就可以在整个模板中复用。
 
-总之，能在原生js中实现的东西，我们尽量避免引入一个新的符号去重复处理同样的问题。下面是如何替换 Vue 内置过滤器：
+总之，能在原生 js 中实现的东西，我们尽量避免引入一个新的符号去重复处理同样的问题。下面是如何替换 Vue 内置过滤器：
 
 #### 替换 `debounce` 过滤器
 
@@ -903,7 +903,7 @@ methods: {
 }
 ```
 
-这种写法的更多优点详见：[`v-model` 示例](#带有-debounce-的-v-model移除)。
+这种写法的更多优点详见：[`v-model` 示例](#带有-debounce-的-v-model 移除)。
 
 #### 替换 `limitBy` 过滤器
 
@@ -913,7 +913,7 @@ methods: {
 <p v-for="item in items | limitBy 10">{{ item }}</p>
 ```
 
-在 computed 属性中使用js内置方法： [`.slice` method](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/slice#Examples)：
+在 computed 属性中使用 js 内置方法：[`.slice` method](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/slice#Examples)：
 
 ``` html
 <p v-for="item in filteredItems">{{ item }}</p>
@@ -935,7 +935,7 @@ computed: {
 <p v-for="user in users | filterBy searchQuery in 'name'">{{ user.name }}</p>
 ```
 
-在 computed 属性中使用js内置方法 [`.filter` method](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter#Examples)：
+在 computed 属性中使用 js 内置方法 [`.filter` method](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter#Examples)：
 
 ``` html
 <p v-for="user in filteredUsers">{{ user.name }}</p>
@@ -952,7 +952,7 @@ computed: {
 }
 ```
 
-js原生的 `.filter` 同样能实现很多复杂的过滤器操作，因为可以在计算 computed 属性中使用所有js方法。比如，想要通过匹配用户名字和电子邮箱地址 (不区分大小写) 找到用户：
+js 原生的 `.filter` 同样能实现很多复杂的过滤器操作，因为可以在计算 computed 属性中使用所有 js 方法。比如，想要通过匹配用户名字和电子邮箱地址 (不区分大小写) 找到用户：
 
 ``` js
 var self = this
@@ -1002,7 +1002,7 @@ _.orderBy(this.users, ['name', 'last_login'], ['asc', 'desc'])
 
 ### 过滤器参数符号 <sup>变更</sup>
 
-现在过滤器参数形式可以更好地与js函数调用方式一致，因此不用再用空格分隔参数：
+现在过滤器参数形式可以更好地与 js 函数调用方式一致，因此不用再用空格分隔参数：
 
 ``` html
 <p>{{ date | formatDate 'YY-MM-DD' timeZone }}</p>
@@ -1029,7 +1029,7 @@ _.orderBy(this.users, ['name', 'last_login'], ['asc', 'desc'])
 
 #### 替换 `json` 过滤器
 
-不用一个个改，因为Vue已经帮你自动格式化好了，无论是字符串，数字还是数组，对象。如果想用js的 `JSON.stringify` 功能去实现，你也可以把它写在方法或者计算属性里面。
+不用一个个改，因为 Vue 已经帮你自动格式化好了，无论是字符串，数字还是数组，对象。如果想用 js 的 `JSON.stringify` 功能去实现，你也可以把它写在方法或者计算属性里面。
 
 #### 替换 `capitalize` 过滤器
 
@@ -1067,13 +1067,13 @@ function pluralizeKnife (count) {
 
 #### Replacing the `currency` Filter
 
-对于简单的问题,可以这样做：
+对于简单的问题，可以这样做：
 
 ``` js
 '$' + price.toFixed(2)
 ```
 
-大多数情况下，仍然会有奇怪的现象(比如 `0.035.toFixed(2)` 向上取舍得到 `0.04`,但是 `0.045` 向下取舍却也得到 `0.04`)。解决这些问题可以使用 [`accounting`](http://openexchangerates.github.io/accounting.js/) 库来实现更多可靠的货币格式化。
+大多数情况下，仍然会有奇怪的现象 (比如 `0.035.toFixed(2)` 向上取舍得到 `0.04`，但是 `0.045` 向下取舍却也得到 `0.04`)。解决这些问题可以使用 [`accounting`](http://openexchangerates.github.io/accounting.js/) 库来实现更多可靠的货币格式化。
 
 {% raw %}
 <div class="upgrade-path">
@@ -1144,7 +1144,7 @@ function pluralizeKnife (count) {
 {% raw %}
 <div class="upgrade-path">
   <h4>升级方式</h4>
-  <p>运行<a href="https://github.com/vuejs/vue-migration-helper">迁移工具</a>找到选择 slots 标签 CSS 选择器(例如：<code>[slot="my-slot-name"]</code>)。</p>
+  <p>运行<a href="https://github.com/vuejs/vue-migration-helper">迁移工具</a>找到选择 slots 标签 CSS 选择器 (例如：<code>[slot="my-slot-name"]</code>)。</p>
 </div>
 {% endraw %}
 
@@ -1152,7 +1152,7 @@ function pluralizeKnife (count) {
 
 ### `keep-alive` 属性 <sup>替换</sup>
 
-`keep-alive` 不再是一个特殊属性而是一个包裹组件，类似于  `<transition>`比如：
+`keep-alive` 不再是一个特殊属性而是一个包裹组件，类似于 `<transition>`比如：
 
 ``` html
 <keep-alive>
@@ -1188,7 +1188,7 @@ function pluralizeKnife (count) {
 </div>
 {% endraw %}
 
-## 计算插值todaymark
+## 计算插值 todaymark
 
 ### 属性内部的计算插值 <sup>移除</sup>
 
@@ -1227,7 +1227,7 @@ computed: {
 
 ### HTML 计算插值 <sup>移除</sup>
 
-HTML 的计算插值 (`{% raw %}{{{ foo }}}{% endraw %}`) 已经移除，取代的是 [`v-html` 指令](../api/#v-html).
+HTML 的计算插值 (`{% raw %}{{{ foo }}}{% endraw %}`) 已经移除，取代的是 [`v-html` 指令](../api/#v-html)。
 
 {% raw %}
 <div class="upgrade-path">
@@ -1251,7 +1251,7 @@ HTML 的计算插值 (`{% raw %}{{{ foo }}}{% endraw %}`) 已经移除，取代�
 
 ### `vm.$watch` <sup>changed</sup>
 
-通过 `vm.$watch`创建的观察器现在将在组件渲染时被激活。这样可以让你在组件渲染前更新状态，不用做不必要的更新。比如可以通过观察组件的prop变化来更新组件本身的值。
+通过 `vm.$watch`创建的观察器现在将在组件渲染时被激活。这样可以让你在组件渲染前更新状态，不用做不必要的更新。比如可以通过观察组件的 prop 变化来更新组件本身的值。
 
 如果以前通过 `vm.$watch` 在组件更新后与 DOM 交互，现在就可以通过`updated`生命周期钩子来做这些。
 
@@ -1275,7 +1275,7 @@ HTML 的计算插值 (`{% raw %}{{{ foo }}}{% endraw %}`) 已经移除，取代�
 
 ### `vm.$delete` <sup>变更</sup>
 
-`vm.$delete` 现在只是： [`Vue.delete`](../api/#Vue-delete) 别名。
+`vm.$delete` 现在只是：[`Vue.delete`](../api/#Vue-delete) 别名。
 
 {% raw %}
 <div class="upgrade-path">
@@ -1308,7 +1308,7 @@ methods: {
 }
 ```
 
-或者更好的方法，直接给除去的方法一个index参数：
+或者更好的方法，直接给除去的方法一个 index 参数：
 
 ``` js
 methods: {
@@ -1325,9 +1325,9 @@ methods: {
 </div>
 {% endraw %}
 
-### Vue实例上的`Vue.set` 和 `Vue.delete`<sup>移除</sup>
+### Vue 实例上的`Vue.set` 和 `Vue.delete`<sup>移除</sup>
 
-`Vue.set` 和 `Vue.delete` 在实例上将不再起作用。现在都强制在实例的data选项中声明所有顶级响应值。如果删除实例属性或实例`$data`上的某个值，直接将它设置为null即可。
+`Vue.set` 和 `Vue.delete` 在实例上将不再起作用。现在都强制在实例的 data 选项中声明所有顶级响应值。如果删除实例属性或实例`$data`上的某个值，直接将它设置为 null 即可。
 
 {% raw %}
 <div class="upgrade-path">
@@ -1362,7 +1362,7 @@ methods: {
 
 ### `vm.$appendTo` <sup>移除</sup>
 
-使用 DOM 原生方法:
+使用 DOM 原生方法：
 
 ``` js
 myElement.appendChild(vm.$el)
@@ -1452,7 +1452,7 @@ vm.$el.remove()
 
 ### `vm.$log` <sup>移除</sup>
 
-请使用 [Vue Devtools](https://github.com/vuejs/vue-devtools) 感受最佳debug体验。
+请使用 [Vue Devtools](https://github.com/vuejs/vue-devtools) 感受最佳 debug 体验。
 
 {% raw %}
 <div class="upgrade-path">
@@ -1522,7 +1522,7 @@ new Vue({
 
 ### `Vue.config.delimiters` <sup>替换</sup>
 
-以 [模板选项](../api/#delimiters)的方式使用。这样可以在使用自定义分隔符时避免影响第三方模板。
+以[模板选项](../api/#delimiters)的方式使用。这样可以在使用自定义分隔符时避免影响第三方模板。
 
 {% raw %}
 <div class="upgrade-path">
@@ -1538,7 +1538,7 @@ HTML 插值[替换为 `v-html`](#HTML-计算插值-移除)。
 {% raw %}
 <div class="upgrade-path">
   <h4>升级方式</h4>
-  <p>运行<a href="https://github.com/vuejs/vue-migration-helper">迁移工具</a>找到 <code>Vue.config.unsafeDelimiters</code>。然后 helper 工具也会找到HTML插入的实例，可以用`v-html`来替换。</p>
+  <p>运行<a href="https://github.com/vuejs/vue-migration-helper">迁移工具</a>找到 <code>Vue.config.unsafeDelimiters</code>。然后 helper 工具也会找到 HTML 插入的实例，可以用`v-html`来替换。</p>
 </div>
 {% endraw %}
 
@@ -1568,7 +1568,7 @@ el 选项不再在 `Vue.extend`中使用。仅在实例创建参数中可用。
 
 ### `Vue.partial` <sup>移除</sup>
 
-Partials 已被移除,取而代之的是更明确的组件之间的数据流--props。除非你正在使用一个部分性能关键型区域，否则建议只使用一个[normal component](components.html)来代替。如果你是动态绑定部分的`name`,您可以使用[dynamic component](components.html#动态组件)。
+Partials 已被移除，取而代之的是更明确的组件之间的数据流--props。除非你正在使用一个部分性能关键型区域，否则建议只使用一个 [normal component](components.html) 来代替。如果你是动态绑定部分的 `name`，您可以使用 [dynamic component](components.html#动态组件)。
 
 如果你碰巧在你的应用程序的性能关键部分使用 partials，那么你应该升级到[函数式组件](render-function.html#函数式组件)。它们必须在纯 JS / JSX 文件中 (而不是在 `.vue` 文件中)，并且是无状态的和无实例的，就像 partials。这使得渲染极快。
 

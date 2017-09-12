@@ -53,7 +53,7 @@ new Vue({
 // => "组件钩子被调用"
 ```
 
-值为对象的选项，例如 `methods`, `components` 和 `directives`，将被混合为同一个对象。 两个对象键名冲突时，取组件对象的键值对。
+值为对象的选项，例如 `methods`, `components` 和 `directives`，将被混合为同一个对象。两个对象键名冲突时，取组件对象的键值对。
 
 ``` js
 var mixin = {
@@ -84,11 +84,11 @@ vm.bar() // => "bar"
 vm.conflicting() // => "from self"
 ```
 
-注意： `Vue.extend()` 也使用同样的策略进行合并。
+注意：`Vue.extend()` 也使用同样的策略进行合并。
 
 ## 全局混合
 
-也可以全局注册混合对象。 注意使用！ 一旦使用全局混合对象，将会影响到 **所有** 之后创建的 Vue 实例。使用恰当时，可以为自定义对象注入处理逻辑。
+也可以全局注册混合对象。注意使用！ 一旦使用全局混合对象，将会影响到 **所有** 之后创建的 Vue 实例。使用恰当时，可以为自定义对象注入处理逻辑。
 
 ``` js
 // 为自定义的选项 'myOption' 注入一个处理器。
@@ -107,11 +107,11 @@ new Vue({
 // => "hello!"
 ```
 
-<p class="tip">谨慎使用全局混合对象，因为会影响到每个单独创建的 Vue 实例 (包括第三方模板)。大多数情况下，只应当应用于自定义选项，就像上面示例一样。 也可以将其用作 [Plugins](plugins.html) 以避免产生重复应用</p>
+<p class="tip">谨慎使用全局混合对象，因为会影响到每个单独创建的 Vue 实例 (包括第三方模板)。大多数情况下，只应当应用于自定义选项，就像上面示例一样。也可以将其用作 [Plugins](plugins.html) 以避免产生重复应用</p>
 
 ## 自定义选项合并策略
 
-自定义选项将使用默认策略，即简单地覆盖已有值。 如果想让自定义选项以自定义逻辑合并，可以向 `Vue.config.optionMergeStrategies` 添加一个函数：
+自定义选项将使用默认策略，即简单地覆盖已有值。如果想让自定义选项以自定义逻辑合并，可以向 `Vue.config.optionMergeStrategies` 添加一个函数：
 
 ``` js
 Vue.config.optionMergeStrategies.myOption = function (toVal, fromVal) {
@@ -119,14 +119,14 @@ Vue.config.optionMergeStrategies.myOption = function (toVal, fromVal) {
 }
 ```
 
-对于大多数对象选项，可以使用 `methods` 的合并策略:
+对于大多数对象选项，可以使用 `methods` 的合并策略：
 
 ``` js
 var strategies = Vue.config.optionMergeStrategies
 strategies.myOption = strategies.methods
 ```
 
-更多高级的例子可以在 [Vuex](https://github.com/vuejs/vuex) 的 1.x 混合策略里找到:
+更多高级的例子可以在 [Vuex](https://github.com/vuejs/vuex) 的 1.x 混合策略里找到：
 
 ``` js
 const merge = Vue.config.optionMergeStrategies.computed

@@ -11,7 +11,7 @@ ro_gz_size: "20.18"
 
 ### 兼容性
 
-Vue.js 不支持 IE8 及其以下版本，因为 Vue.js 使用了 IE8 不能模拟的 ECMAScript 5 特性。 Vue.js 支持所有[兼容 ECMAScript 5 的浏览器](http://caniuse.com/#feat=es5)。
+Vue.js 不支持 IE8 及其以下版本，因为 Vue.js 使用了 IE8 不能模拟的 ECMAScript 5 特性。Vue.js 支持所有[兼容 ECMAScript 5 的浏览器](http://caniuse.com/#feat=es5)。
 
 ### 更新日志
 
@@ -35,13 +35,13 @@ Vue.js 不支持 IE8 及其以下版本，因为 Vue.js 使用了 IE8 不能模�
 
 ### CDN
 
-推荐：[https://unpkg.com/vue](https://unpkg.com/vue), 会保持和 npm 发布的最新的版本一致。可以在 [https://unpkg.com/vue/](https://unpkg.com/vue/) 浏览 npm 包资源。
+推荐：[https://unpkg.com/vue](https://unpkg.com/vue)，会保持和 npm 发布的最新的版本一致。可以在 [https://unpkg.com/vue/](https://unpkg.com/vue/) 浏览 npm 包资源。
 
 也可以从 [jsDelivr](https://cdn.jsdelivr.net/npm/vue/dist/vue.js) 或 [cdnjs](https://cdnjs.cloudflare.com/ajax/libs/vue/{{vue_version}}/vue.js) 获取，不过这两个服务版本更新可能略滞后。
 
 ## NPM
 
-在用 Vue.js 构建大型应用时推荐使用 NPM 安装， NPM 能很好地和诸如 [Webpack](https://webpack.js.org/) 或 [Browserify](http://browserify.org/) 模块打包器配合使用。 Vue.js 也提供配套工具来开发[单文件组件](single-file-components.html)。
+在用 Vue.js 构建大型应用时推荐使用 NPM 安装，NPM 能很好地和诸如 [Webpack](https://webpack.js.org/) 或 [Browserify](http://browserify.org/) 模块打包器配合使用。Vue.js 也提供配套工具来开发[单文件组件](single-file-components.html)。
 
 ``` bash
 # 最新稳定版
@@ -144,7 +144,7 @@ rollup({
 
 #### Browserify
 
-添加到你项目的 `package.json`:
+添加到你项目的 `package.json`：
 
 ``` js
 {
@@ -165,7 +165,7 @@ CommonJS 和 ES Module 构建同时保留原始的 `process.env.NODE_ENV` 检测
 
 #### Webpack
 
-使用 Webpack 的 [DefinePlugin](https://webpack.js.org/plugins/define-plugin/):
+使用 Webpack 的 [DefinePlugin](https://webpack.js.org/plugins/define-plugin/)：
 
 ``` js
 var webpack = require('webpack')
@@ -185,7 +185,7 @@ module.exports = {
 
 #### Rollup
 
-使用 [rollup-plugin-replace](https://github.com/rollup/rollup-plugin-replace):
+使用 [rollup-plugin-replace](https://github.com/rollup/rollup-plugin-replace)：
 
 ``` js
 const replace = require('rollup-plugin-replace')

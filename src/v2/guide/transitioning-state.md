@@ -386,7 +386,7 @@ function generatePoints (stats) {
 </style>
 {% endraw %}
 
-See [this fiddle](https://jsfiddle.net/chrisvfritz/65gLu2b6/) for the complete code behind the above demo.
+上述 demo 背后的代码可以通过[这个 fiddle](https://jsfiddle.net/chrisvfritz/65gLu2b6/) 进行详阅。
 
 ## 把过渡放到组件里
 

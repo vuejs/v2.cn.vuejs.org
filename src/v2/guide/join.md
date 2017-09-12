@@ -29,9 +29,9 @@ Vue.js 的社区正在急速增长中，如果你正在阅读本文，这是你�
 
 阅读之后，你应该已经准备好向 Vue 的核心仓库贡献代码了：
 
-- [vue](https://github.com/vuejs/vue): 核心库
-- [vuex](https://github.com/vuejs/vuex): 类 Flux 的状态管理架构
-- [vue-router](https://github.com/vuejs/vue-router): 为单页面应用提供的路由系统
+- [vue](https://github.com/vuejs/vue)：核心库
+- [vuex](https://github.com/vuejs/vuex)：类 Flux 的状态管理架构
+- [vue-router](https://github.com/vuejs/vue-router)：为单页面应用提供的路由系统
 
 ...还有许多小型的官方[同伴库](https://github.com/vuejs)。
 

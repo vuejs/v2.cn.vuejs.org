@@ -6,7 +6,7 @@ order: 304
 
 ## 开发插件
 
-插件通常会为Vue添加全局功能。插件的范围没有限制——一般有下面几种：
+插件通常会为 Vue 添加全局功能。插件的范围没有限制——一般有下面几种：
 
 1. 添加全局方法或者属性，如: [vue-custom-element](https://github.com/karol-f/vue-custom-element)
 
@@ -18,7 +18,7 @@ order: 304
 
 5. 一个库，提供自己的 API，同时提供上面提到的一个或多个功能，如 [vue-router](https://github.com/vuejs/vue-router)
 
-Vue.js 的插件应当有一个公开方法 `install` 。这个方法的第一个参数是 `Vue` 构造器 , 第二个参数是一个可选的选项对象:
+Vue.js 的插件应当有一个公开方法 `install` 。这个方法的第一个参数是 `Vue` 构造器，第二个参数是一个可选的选项对象：
 
 ``` js
 MyPlugin.install = function (Vue, options) {
@@ -52,14 +52,14 @@ MyPlugin.install = function (Vue, options) {
 
 ## 使用插件
 
-通过全局方法 Vue.use() 使用插件:
+通过全局方法 Vue.use() 使用插件：
 
 ``` js
 // 调用 `MyPlugin.install(Vue)`
 Vue.use(MyPlugin)
 ```
 
-也可以传入一个选项对象:
+也可以传入一个选项对象：
 
 ``` js
 Vue.use(MyPlugin, { someOption: true })

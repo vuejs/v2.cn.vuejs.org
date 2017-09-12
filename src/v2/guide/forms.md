@@ -10,7 +10,7 @@ order: 10
 
 <p class="tip"> `v-model` 会忽略所有表单元素的 `value`、`checked`、`selected` 特性的初始值。因为它会选择 Vue 实例数据来作为具体的值。你应该通过 JavaScript 在组件的 `data` 选项中声明初始值。</p>
 
-<p class="tip" id="vmodel-ime-tip">对于要求 [IME](https://en.wikipedia.org/wiki/Input_method) (如中文、 日语、 韩语等) (IME意为'输入法’)的语言，你会发现`v-model`不会在 ime 输入中得到更新。如果你也想实现更新，请使用 `input`事件。</p>
+<p class="tip" id="vmodel-ime-tip">对于要求 [IME](https://en.wikipedia.org/wiki/Input_method) (如中文、日语、韩语等) (IME 意为“输入法”)的语言，你会发现 `v-model` 不会在 ime 输入中得到更新。如果你也想实现更新，请使用 `input` 事件。</p>
 
 ### 文本
 
@@ -60,7 +60,7 @@ new Vue({
 </script>
 {% endraw %}
 
-<p class="tip">在文本区域插值( `<textarea>{{text}}</textarea>` ) 并不会生效，应用 `v-model` 来代替。</p>
+<p class="tip">在文本区域插值 (`<textarea>{{text}}</textarea>`) 并不会生效，应用 `v-model` 来代替。</p>
 
 ### 复选框
 
@@ -314,7 +314,7 @@ new Vue({
 
 ## 值绑定
 
-对于单选按钮，勾选框及选择列表选项， `v-model` 绑定的 value 通常是静态字符串 (对于勾选框是逻辑值)：
+对于单选按钮，勾选框及选择列表选项，`v-model` 绑定的 value 通常是静态字符串 (对于勾选框是逻辑值)：
 
 ``` html
 <!-- 当选中时，`picked` 为字符串 "a" -->
@@ -379,7 +379,7 @@ vm.selected.number // => 123
 
 ### `.lazy`
 
-在默认情况下， `v-model` 在 `input` 事件中同步输入框的值与数据 (除了 [上述](#vmodel-ime-tip) IME 部分)，但你可以添加一个修饰符 `lazy` ，从而转变为在 `change` 事件中同步：
+在默认情况下，`v-model` 在 `input` 事件中同步输入框的值与数据 (除了 [上述](#vmodel-ime-tip) IME 部分)，但你可以添加一个修饰符 `lazy` ，从而转变为在 `change` 事件中同步：
 
 ``` html
 <!-- 在 "change" 而不是 "input" 事件中更新 -->
@@ -406,6 +406,6 @@ vm.selected.number // => 123
 
 ## `v-model` 与组件
 
-> 如果你还不熟悉Vue的组件，跳过这里即可。
+> 如果你还不熟悉 Vue 的组件，跳过这里即可。
 
 HTML 内建的 input 类型有时不能满足你的需求。还好，Vue 的组件系统允许你创建一个具有自定义行为可复用的 input 类型，这些 input 类型甚至可以和 `v-model` 一起使用！要了解更多，请参阅[自定义 input 类型](components.html#使用自定义事件的表单输入组件)。

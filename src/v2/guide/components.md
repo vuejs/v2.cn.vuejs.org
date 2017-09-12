@@ -93,7 +93,7 @@ new Vue({
 
 ### DOM 模板解析说明
 
-当使用 DOM 作为模板时 (例如，将 `el` 选项挂载到一个已存在的元素上), 你会受到 HTML 的一些限制，因为 Vue 只有在浏览器解析和标准化 HTML 后才能获取模板内容。尤其像这些元素 `<ul>`，`<ol>`，`<table>`，`<select>` 限制了能被它包裹的元素，而一些像 `<option>` 这样的元素只能出现在某些其它元素内部。
+当使用 DOM 作为模板时 (例如，将 `el` 选项挂载到一个已存在的元素上)，你会受到 HTML 的一些限制，因为 Vue 只有在浏览器解析和标准化 HTML 后才能获取模板内容。尤其像这些元素 `<ul>`，`<ol>`，`<table>`，`<select>` 限制了能被它包裹的元素，而一些像 `<option>` 这样的元素只能出现在某些其它元素内部。
 
 在自定义组件中使用这些受限制的元素时会导致一些问题，例如：
 
@@ -286,7 +286,7 @@ Vue.component('child', {
 
 ### 动态 Props
 
-在模板中，要动态地绑定父组件的数据到子模板的 props，与绑定到任何普通的HTML特性相类似，就是用 `v-bind`。每当父组件的数据变化时，该变化也会传导给子组件：
+在模板中，要动态地绑定父组件的数据到子模板的 props，与绑定到任何普通的 HTML 特性相类似，就是用 `v-bind`。每当父组件的数据变化时，该变化也会传导给子组件：
 
 ``` html
 <div>
@@ -772,7 +772,7 @@ bus.$on('id-selected', function (id) {
 })
 ```
 
-在复杂的情况下，我们应该考虑使用专门的[状态管理模式](state-management.html).
+在复杂的情况下，我们应该考虑使用专门的[状态管理模式](state-management.html)。
 
 ## 使用插槽分发内容
 
@@ -1039,7 +1039,7 @@ var vm = new Vue({
 </keep-alive>
 ```
 
-在[API 参考](../api/#keep-alive)查看更多 `<keep-alive>` 的细节。
+在 [API 参考](../api/#keep-alive)查看更多 `<keep-alive>` 的细节。
 
 ## 杂项
 
@@ -1145,13 +1145,13 @@ new Vue({
 
 ``` js
 const AsyncComp = () => ({
-  // 需要加载的组件. 应当是一个 Promise
+  // 需要加载的组件。应当是一个 Promise
   component: import('./MyComp.vue'),
   // loading 时应当渲染的组件
   loading: LoadingComp,
   // 出错时渲染的组件
   error: ErrorComp,
-  // 渲染 loading 组件前的等待时间。默认：200ms.
+  // 渲染 loading 组件前的等待时间。默认：200ms。
   delay: 200,
   // 最长等待时间。超出此时间则渲染 error 组件。默认：Infinity
   timeout: 3000
@@ -1179,7 +1179,7 @@ components: {
 在 HTML 模板中，请使用 kebab-case 形式：
 
 ``` html
-<!-- 在HTML模板中始终使用 kebab-case -->
+<!-- 在 HTML 模板中始终使用 kebab-case -->
 <kebab-cased-component></kebab-cased-component>
 <camel-cased-component></camel-cased-component>
 <pascal-cased-component></pascal-cased-component>
@@ -1228,7 +1228,7 @@ components: {
 name: 'unique-name-of-my-component'
 ```
 
-当你利用`Vue.component`全局注册了一个组件, 全局的ID作为组件的 `name` 选项，被自动设置.
+当你利用`Vue.component`全局注册了一个组件，全局的 ID 作为组件的 `name` 选项，被自动设置.
 
 ``` js
 Vue.component('unique-name-of-my-component', {
@@ -1236,18 +1236,18 @@ Vue.component('unique-name-of-my-component', {
 })
 ```
 
-如果你不谨慎, 递归组件可能导致死循环:
+如果你不谨慎，递归组件可能导致死循环：
 
 ``` js
 name: 'stack-overflow',
 template: '<div><stack-overflow></stack-overflow></div>'
 ```
 
-上面组件会导致一个错误“max stack size exceeded”，所以要确保递归调用有终止条件 (比如递归调用时使用 `v-if` 并让他最终返回 `false` )。
+上面组件会导致一个错误“max stack size exceeded”，所以要确保递归调用有终止条件 (比如递归调用时使用 `v-if` 并让他最终返回 `false`)。
 
 ### 组件间的循环引用
 
-假设你正在构建一个文件目录树，像在Finder或文件资源管理器中。你可能有一个 `tree-folder`组件:
+假设你正在构建一个文件目录树，像在 Finder 或文件资源管理器中。你可能有一个 `tree-folder` 组件：
 
 ``` html
 <p>
@@ -1268,7 +1268,7 @@ template: '<div><stack-overflow></stack-overflow></div>'
 ```
 
 当你仔细看时，会发现在渲染树上这两个组件同时为对方的父节点和子节点--这点是矛盾的。当使用`Vue.component`将这两个组件注册为全局组件的时候，框架会自动为你解决这个矛盾，如果你是这样做的，就不用继续往下看了。
-然而，如果你使用诸如Webpack或者Browserify之类的模块化管理工具来requiring/importing组件的话，就会报错了：
+然而，如果你使用诸如 Webpack 或者 Browserify 之类的模块化管理工具来 requiring/importing 组件的话，就会报错了：
 
 ```
 Failed to mount component: template or render function not defined.

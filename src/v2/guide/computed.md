@@ -223,7 +223,7 @@ var watchExampleVM = new Vue({
     // 在这个例子中，我们希望限制访问 yesno.wtf/api 的频率
     // ajax 请求直到用户输入完毕才会发出
     // 学习更多关于 _.debounce function (and its cousin
-    // _.throttle), 参考: https://lodash.com/docs#debounce
+    // _.throttle)，参考：https://lodash.com/docs#debounce
     getAnswer: _.debounce(
       function () {
         if (this.question.indexOf('?') === -1) {

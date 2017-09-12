@@ -33,7 +33,7 @@ vm.b = 2
 // `vm.b` 是非响应的
 ```
 
-Vue 不允许在已经创建的实例上动态添加新的根级响应式属性(root-level reactive property)。然而它可以使用 `Vue.set(object, key, value)` 方法将响应属性添加到嵌套的对象上：
+Vue 不允许在已经创建的实例上动态添加新的根级响应式属性 (root-level reactive property)。然而它可以使用 `Vue.set(object, key, value)` 方法将响应属性添加到嵌套的对象上：
 
 ``` js
 Vue.set(vm.someObject, 'b', 2)
@@ -56,7 +56,7 @@ this.someObject = Object.assign({}, this.someObject, { a: 1, b: 2 })
 
 ## 声明响应式属性
 
-由于 Vue 不允许动态添加根级响应式属性，所以你必须在初始化实例前声明根级响应式属性，哪怕只是一个空值:
+由于 Vue 不允许动态添加根级响应式属性，所以你必须在初始化实例前声明根级响应式属性，哪怕只是一个空值：
 
 ``` js
 var vm = new Vue({
