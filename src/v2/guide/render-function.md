@@ -82,7 +82,7 @@ Vue.component('anchored-heading', {
 
 简单清晰很多！简单来说，这样代码精简很多，但是需要非常熟悉 Vue 的实例属性。在这个例子中，你需要知道当你不使用 `slot` 属性向组件中传递内容时，比如 `anchored-heading` 中的 `Hello world!`，这些子元素被存储在组件实例中的 `$slots.default`中。如果你还不了解，** 在深入 render 函数之前推荐阅读 [实例属性 API](../api/#实例属性)。**
 
-## 结点、树以及虚拟 DOM
+## 节点、树以及虚拟 DOM
 
 在深入渲染函数之前，了解一些浏览器的工作原理是很重要的。以下面这段 HTML 为例：
 
@@ -94,15 +94,15 @@ Vue.component('anchored-heading', {
 </div>
 ```
 
-当浏览器读到这些代码时，它会建立一个[“DOM 结点”树](https://javascript.info/dom-nodes)来保持追踪，如同你会画一张家谱树来追踪家庭成员的发展一样。
+当浏览器读到这些代码时，它会建立一个[“DOM 节点”树](https://javascript.info/dom-nodes)来保持追踪，如同你会画一张家谱树来追踪家庭成员的发展一样。
 
-HTML 的 DOM 结点树如下图所示：
+HTML 的 DOM 节点树如下图所示：
 
 ![DOM Tree Visualization](/images/dom-tree.png)
 
-每个元素都是一个结点。每片文字也是一个结点。甚至注释也都是结点。一个结点就是页面的一个部分。就像家谱树一样，每个结点都可以有孩子结点 (也就是说每个部分可以包含其它的一些部分)。
+每个元素都是一个节点。每片文字也是一个节点。甚至注释也都是节点。一个节点就是页面的一个部分。就像家谱树一样，每个节点都可以有孩子节点 (也就是说每个部分可以包含其它的一些部分)。
 
-高效的更新所有这些结点会是比较困难的，不过所幸你不必再手动完成这个工作了。你只需要告诉 Vue 你希望页面上的 HTML 是什么，这可以是在一个模板里：
+高效的更新所有这些节点会是比较困难的，不过所幸你不必再手动完成这个工作了。你只需要告诉 Vue 你希望页面上的 HTML 是什么，这可以是在一个模板里：
 
 ```html
 <h1>{{ blogTitle }}</h1>
@@ -126,7 +126,7 @@ Vue 通过建立一个**虚拟 DOM** 对真实 DOM 发生的变化保持追踪�
 return createElement('h1', this.blogTitle)
 ```
 
-`createElement` 到底会返回什么呢？其实不是一个_实际的_ DOM 元素。它更准确的名字可能是 `createNodeDescription`，因为它所包含的信息会告诉 Vue 页面上需要渲染什么样的结点，及其子结点。我们把这样的结点描述为“虚拟结点 (Virtual DOM)”，也常简写它为“VNode”。“虚拟 DOM”是我们对由 Vue 组件树建立起来的整个 VNode 树的称呼。
+`createElement` 到底会返回什么呢？其实不是一个_实际的_ DOM 元素。它更准确的名字可能是 `createNodeDescription`，因为它所包含的信息会告诉 Vue 页面上需要渲染什么样的节点，及其子节点。我们把这样的节点描述为“虚拟节点 (Virtual DOM)”，也常简写它为“VNode”。“虚拟 DOM”是我们对由 Vue 组件树建立起来的整个 VNode 树的称呼。
 
 ## `createElement` 参数
 
@@ -148,7 +148,7 @@ createElement(
 
   // {String | Array}
   // 子节点 (VNodes)，由 `createElement()` 构建而成，
-  // 或简单的使用字符串来生成“文本结点”。可选参数。
+  // 或简单的使用字符串来生成“文本节点”。可选参数。
   [
     '先写一些文字',
     createElement('h1', '一则头条'),
