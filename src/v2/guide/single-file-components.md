@@ -58,7 +58,7 @@ order: 402
 
 - **Modern JavaScript with ES2015/16**: 阅读 Babel 的 [Learn ES2015 guide](https://babeljs.io/docs/learn-es2015/). 你不需要立刻记住每一个方法，但是你可以保留这个页面以便后期参考。
 
-在你花一些时日了解这些资源之后，我们建议你参考 [webpack-simple](https://github.com/vuejs-templates/webpack-simple) 。只要遵循指示，你就能很快地运行一个用到 `.vue` 组件，ES2015 和  热重载( hot-reloading ) 的 Vue 项目!
+在你花一些时日了解这些资源之后，我们建议你参考 [webpack-simple](https://github.com/vuejs-templates/webpack-simple)。只要遵循指示，你就能很快地运行一个用到 `.vue` 组件，ES2015 和  热重载( hot-reloading ) 的 Vue 项目!
 
 这个模板使用 [Webpack](https://webpack.github.io/)，一个能将多个模块打包成最终应用的模块打包工具。想学习更多 Webpack 的知识，请移步[它们的官方文档](https://webpack.js.org/configuration/)以及 [Webpack Academy](https://webpack.academy/p/the-core-concepts)。
 
@@ -68,4 +68,4 @@ order: 402
 
 无论你更钟情 Webpack 或是 Browserify，我们为简单的和更复杂的项目都提供了一些文档模板。我们建议浏览 [github.com/vuejs-templates](https://github.com/vuejs-templates)，找到你需要的部分，然后参考 README 中的说明，使用 [vue-cli](https://github.com/vuejs/vue-cli) 工具生成新的项目。
 
-模板中使用 [Webpack](https://webpack.js.org/) ，一个模块加载器加载多个模块然后构建成最终应用。为了进一步了解 Webpack, 可以看 [官方介绍视频](https://www.youtube.com/watch?v=WQue1AN93YU)。如果你有基础，可以看 [在 Egghead.io 上的 Webpack 进阶教程](https://egghead.io/courses/using-webpack-for-production-javascript-applications)。
+模板中使用 [Webpack](https://webpack.js.org/)，一个模块加载器加载多个模块然后构建成最终应用。为了进一步了解 Webpack, 可以看 [官方介绍视频](https://www.youtube.com/watch?v=WQue1AN93YU)。如果你有基础，可以看 [在 Egghead.io 上的 Webpack 进阶教程](https://egghead.io/courses/using-webpack-for-production-javascript-applications)。

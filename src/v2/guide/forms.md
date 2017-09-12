@@ -220,7 +220,7 @@ new Vue({
 
 <p class="tip">如果 `v-model` 表达初始的值不匹配任何的选项，`<select>` 元素就会以"未选中"的状态渲染。在 iOS 中，这会使用户无法选择第一个选项，因为这样的情况下，iOS 不会引发 change 事件。因此，像以上提供 disabled 选项是建议的做法。</p>
 
-多选列表（绑定到一个数组）：
+多选列表 (绑定到一个数组)：
 
 ``` html
 <div id="example-6">
@@ -314,7 +314,7 @@ new Vue({
 
 ## 值绑定
 
-对于单选按钮，勾选框及选择列表选项， `v-model` 绑定的 value 通常是静态字符串（对于勾选框是逻辑值）：
+对于单选按钮，勾选框及选择列表选项， `v-model` 绑定的 value 通常是静态字符串 (对于勾选框是逻辑值)：
 
 ``` html
 <!-- 当选中时，`picked` 为字符串 "a" -->
@@ -388,7 +388,7 @@ vm.selected.number // => 123
 
 ### `.number`
 
-如果想自动将用户的输入值转为 Number 类型（如果原值的转换结果为 NaN 则返回原值），可以添加一个修饰符 `number` 给 `v-model` 来处理输入值：
+如果想自动将用户的输入值转为 Number 类型 (如果原值的转换结果为 NaN 则返回原值)，可以添加一个修饰符 `number` 给 `v-model` 来处理输入值：
 
 ``` html
 <input v-model.number="age" type="number">

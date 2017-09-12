@@ -8,13 +8,13 @@ Vue.js 使用了基于 HTML 的模板语法，允许开发者声明式地将 DOM
 
 在底层的实现上， Vue 将模板编译成虚拟 DOM 渲染函数。结合响应系统，在应用状态改变时， Vue 能够智能地计算出重新渲染组件的最小代价并应用到 DOM 操作上。
 
-如果你熟悉虚拟 DOM 并且偏爱 JavaScript 的原始力量，你也可以不用模板，[直接写渲染（render）函数](render-function.html)，使用可选的 JSX 语法。
+如果你熟悉虚拟 DOM 并且偏爱 JavaScript 的原始力量，你也可以不用模板，[直接写渲染 (render) 函数](render-function.html)，使用可选的 JSX 语法。
 
 ## 插值
 
 ### 文本
 
-数据绑定最常见的形式就是使用 “Mustache” 语法（双大括号）的文本插值：
+数据绑定最常见的形式就是使用 “Mustache” 语法 (双大括号) 的文本插值：
 
 ``` html
 <span>Message: {{ msg }}</span>
@@ -82,7 +82,7 @@ mustache 语法不能作用在 HTML 特性上，遇到这种情况应该使用 [
 
 ## 指令
 
-指令（Directives）是带有 `v-` 前缀的特殊属性。指令属性的值预期是**单个 JavaScript 表达式**（`v-for` 是例外情况，稍后我们再讨论）。指令的职责是，当表达式的值改变时，将其产生的连带影响，响应式地作用于 DOM。回顾我们在介绍中看到的例子：
+指令 (Directives) 是带有 `v-` 前缀的特殊属性。指令属性的值预期是**单个 JavaScript 表达式** (`v-for` 是例外情况，稍后我们再讨论)。指令的职责是，当表达式的值改变时，将其产生的连带影响，响应式地作用于 DOM。回顾我们在介绍中看到的例子：
 
 ``` html
 <p v-if="seen">现在你看到我了</p>
@@ -110,7 +110,7 @@ mustache 语法不能作用在 HTML 特性上，遇到这种情况应该使用 [
 
 ### 修饰符
 
-修饰符（Modifiers）是以半角句号 `.` 指明的特殊后缀，用于指出一个指令应该以特殊方式绑定。例如，`.prevent` 修饰符告诉 `v-on` 指令对于触发的事件调用 `event.preventDefault()`：
+修饰符 (Modifiers) 是以半角句号 `.` 指明的特殊后缀，用于指出一个指令应该以特殊方式绑定。例如，`.prevent` 修饰符告诉 `v-on` 指令对于触发的事件调用 `event.preventDefault()`：
 
 ``` html
 <form v-on:submit.prevent="onSubmit"></form>

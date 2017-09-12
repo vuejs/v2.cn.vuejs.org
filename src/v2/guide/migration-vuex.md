@@ -51,7 +51,7 @@ store.watch(
 
 store 实例不再暴露事件触发器(event emitter)接口(`on`, `off`, `emit`)。如果你之前使用 store 作为全局的 event bus，迁移说明相关内容请查阅[此章节](migration.html#dispatch-和-broadcast-替换)。
 
-为了替换正在使用观察 store 自身触发事件的这些接口，（例如：`store.on('mutation', callback)`），我们引入新的方法 `store.subscribe`。在插件中的典型使用方式如下：
+为了替换正在使用观察 store 自身触发事件的这些接口，(例如：`store.on('mutation', callback)`)，我们引入新的方法 `store.subscribe`。在插件中的典型使用方式如下：
 
 ``` js
 var myPlugin = store => {

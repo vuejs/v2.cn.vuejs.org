@@ -24,11 +24,11 @@ order: 701
 
 这取决于几个因素：
 
-- 取决于你应用程序的规模（中小型的基本上一天内就可以搞定）。
+- 取决于你应用程序的规模 (中小型的基本上一天内就可以搞定)。
 
 - 取决于你分心和开始 2.0 最酷的新功能的次数。 😉 &nbsp;无法判断时间，我们构建 2.0 应用的时候也经常发生这种事！
 
-- 取决于你使用了哪些旧有的特性。大部分可以通过查找和替换(find-and-replace)来实现升级，但有一些可能还是要花点时间。如果你没有遵循最佳实践，Vue 2.0 会尽力强迫你去遵循。这有利于项目的长期运行，但也可能意味着重大重构（尽管有些需要重构的部分可能已经过时）。
+- 取决于你使用了哪些旧有的特性。大部分可以通过查找和替换(find-and-replace)来实现升级，但有一些可能还是要花点时间。如果你没有遵循最佳实践，Vue 2.0 会尽力强迫你去遵循。这有利于项目的长期运行，但也可能意味着重大重构 (尽管有些需要重构的部分可能已经过时)。
 
 > 如果我升级到到 Vue 2 ，我还必须同时升级 Vuex 和 Vue-Router？
 
@@ -175,23 +175,23 @@ mounted: function () {
 
 ### `v-for` 遍历数组时的参数顺序 <sup>变更</sup>
 
-当包含 `index` 时，之前遍历数组时的参数顺序是 `(index, value)`。现在是 `(value, index)` ，来和 JavaScript 的原生数组方法（例如 `forEach` 和 `map`）保持一致。
+当包含 `index` 时，之前遍历数组时的参数顺序是 `(index, value)`。现在是 `(value, index)` ，来和 JavaScript 的原生数组方法 (例如 `forEach` 和 `map`) 保持一致。
 
 {% raw %}
 <div class="upgrade-path">
   <h4>升级方式</h4>
-  <p>在代码库中运行<a href="https://github.com/vuejs/vue-migration-helper">迁移工具</a>来找出那些使用旧有参数顺序的示例。注意，如果你将你的 index 参数命名为一些不通用的名字（例如 <code>position</code> 或 <code>num</code>），迁移工具将不会把它们标记出来。</p>
+  <p>在代码库中运行<a href="https://github.com/vuejs/vue-migration-helper">迁移工具</a>来找出那些使用旧有参数顺序的示例。注意，如果你将你的 index 参数命名为一些不通用的名字 (例如 <code>position</code> 或 <code>num</code>)，迁移工具将不会把它们标记出来。</p>
 </div>
 {% endraw %}
 
 ### `v-for` 遍历对象时的参数顺序 <sup>变更</sup>
 
-当包含 `key` 时，之前遍历对象的参数顺序是 `(key, value)`。现在是 `(value, key)`，来和常见的对象迭代器（例如 lodash）保持一致。
+当包含 `key` 时，之前遍历对象的参数顺序是 `(key, value)`。现在是 `(value, key)`，来和常见的对象迭代器 (例如 lodash) 保持一致。
 
 {% raw %}
 <div class="upgrade-path">
   <h4>升级方式</h4>
-  <p>在代码库中运行<a href="https://github.com/vuejs/vue-migration-helper">迁移工具</a>来找出那些使用旧有参数顺序的示例。注意，如果你将你的 key 参数命名为一些不通用的名字（例如 <code>name</code> 或 <code>property</code>），迁移工具将不会把它们标记出来。</p>
+  <p>在代码库中运行<a href="https://github.com/vuejs/vue-migration-helper">迁移工具</a>来找出那些使用旧有参数顺序的示例。注意，如果你将你的 key 参数命名为一些不通用的名字 (例如 <code>name</code> 或 <code>property</code>)，迁移工具将不会把它们标记出来。</p>
 </div>
 {% endraw %}
 
@@ -201,7 +201,7 @@ mounted: function () {
 {% raw %}
 <div class="upgrade-path">
   <h4>升级方式</h4>
-  <p>在代码库中运行<a href="https://github.com/vuejs/vue-migration-helper">迁移工具</a>来找出使用这些移除变量的示例。如果你没有找到，也可以在<strong>控制台错误</strong>中查找（例如 <code>Uncaught ReferenceError: $index is not defined</code>）。</p>
+  <p>在代码库中运行<a href="https://github.com/vuejs/vue-migration-helper">迁移工具</a>来找出使用这些移除变量的示例。如果你没有找到，也可以在<strong>控制台错误</strong>中查找 (例如 <code>Uncaught ReferenceError: $index is not defined</code>)。</p>
 </div>
 {% endraw %}
 
@@ -315,7 +315,7 @@ Props 现在只能单向传递。为了对父组件产生反向影响，子组�
 
 ### 修改 Props <sup>弃用</sup>
 
-组件内修改 prop 是反模式（不推荐的）的。比如，先声明一个 prop ，然后在组件中通过 `this.myProp = 'someOtherValue'` 改变 prop 的值。根据渲染机制，当父组件重新渲染时，子组件的内部 prop 值也将被覆盖。
+组件内修改 prop 是反模式 (不推荐的) 的。比如，先声明一个 prop ，然后在组件中通过 `this.myProp = 'someOtherValue'` 改变 prop 的值。根据渲染机制，当父组件重新渲染时，子组件的内部 prop 值也将被覆盖。
 
 大多数情况下，改变 prop 值可以用以下选项替代：
 
@@ -397,7 +397,7 @@ methods: {
 
 ### 用 `v-on` 监听原生事件 <sup>变更</sup>
 
-  现在在组件上使用 `v-on` 只会监听自定义事件（组件用 `$emit` 触发的事件）。如果要监听根元素的原生事件，可以使用 `.native` 修饰符，比如：
+  现在在组件上使用 `v-on` 只会监听自定义事件 (组件用 `$emit` 触发的事件)。如果要监听根元素的原生事件，可以使用 `.native` 修饰符，比如：
 
 ``` html
 <my-component v-on:click.native="doSomething"></my-component>
@@ -749,7 +749,7 @@ Vue 的过渡系统有了彻底的改变，现在通过使用 `<transition>` 和
 
 ### 过渡的 `stagger` 参数 <sup>移除</sup>
 
-如果希望在列表渲染中使用渐近过渡，可以通过设置元素的 `data-index` （或类似属性）来控制时间。 请参考[这个例子](transitions.html#列表的渐进过渡)。
+如果希望在列表渲染中使用渐近过渡，可以通过设置元素的 `data-index`  (或类似属性) 来控制时间。 请参考[这个例子](transitions.html#列表的渐进过渡)。
 
 {% raw %}
 <div class="upgrade-path">
@@ -856,7 +856,7 @@ methods: {
 }
 ```
 
-在简单的情况下这样做可以替代 `$dispatch` 和 `$broadcast`，但是对于大多数复杂情况，更推荐使用一个专用的状态管理层如：[Vuex](https://github.com/vuejs/vuex) 。
+在简单的情况下这样做可以替代 `$dispatch` 和 `$broadcast`，但是对于大多数复杂情况，更推荐使用一个专用的状态管理层如：[Vuex](https://github.com/vuejs/vuex)。
 
 {% raw %}
 <div class="upgrade-path">
@@ -869,7 +869,7 @@ methods: {
 
 ### 插入文本之外的过滤器 <sup>移除</sup>
 
-现在过滤器只能用在插入文本中 (`{% raw %}{{ }}{% endraw %}` tags)。我们发现在指令（如：`v-model`， `v-on`等）中使用过滤器使事情变得更复杂。像`v-for` 这样的列表过滤器最好把处理逻辑作为一个计算属性放在js里面，这样就可以在整个模板中复用。
+现在过滤器只能用在插入文本中 (`{% raw %}{{ }}{% endraw %}` tags)。我们发现在指令 (如：`v-model`， `v-on`等) 中使用过滤器使事情变得更复杂。像`v-for` 这样的列表过滤器最好把处理逻辑作为一个计算属性放在js里面，这样就可以在整个模板中复用。
 
 总之，能在原生js中实现的东西，我们尽量避免引入一个新的符号去重复处理同样的问题。下面是如何替换 Vue 内置过滤器：
 
@@ -952,7 +952,7 @@ computed: {
 }
 ```
 
-js原生的 `.filter` 同样能实现很多复杂的过滤器操作，因为可以在计算 computed 属性中使用所有js方法。比如，想要通过匹配用户名字和电子邮箱地址（不区分大小写）找到用户：
+js原生的 `.filter` 同样能实现很多复杂的过滤器操作，因为可以在计算 computed 属性中使用所有js方法。比如，想要通过匹配用户名字和电子邮箱地址 (不区分大小写) 找到用户：
 
 ``` js
 var self = this
@@ -1051,7 +1051,7 @@ text.toLowerCase()
 
 #### 替换 `pluralize` 过滤器
 
-NPM 上的 [pluralize](https://www.npmjs.com/package/pluralize) 库可以很好的实现这个功能。如果仅仅想将特定的词格式化成复数形式或者想给特定的值（'0'）指定特定的输出，也可以很容易地自定义复数格式化过滤器：
+NPM 上的 [pluralize](https://www.npmjs.com/package/pluralize) 库可以很好的实现这个功能。如果仅仅想将特定的词格式化成复数形式或者想给特定的值 ('0') 指定特定的输出，也可以很容易地自定义复数格式化过滤器：
 
 ``` js
 function pluralizeKnife (count) {
@@ -1139,12 +1139,12 @@ function pluralizeKnife (count) {
 
 ### `slot` 样式参数 <sup>移除</sup>
 
-通过具名 `<slot>` 插入的片段不再保持 `slot` 的参数。请用一个包裹元素来控制样式。或者用更高级方法：通过编程方式修改内容 ：[render functions](render-function.html) 。
+通过具名 `<slot>` 插入的片段不再保持 `slot` 的参数。请用一个包裹元素来控制样式。或者用更高级方法：通过编程方式修改内容 ：[render functions](render-function.html)。
 
 {% raw %}
 <div class="upgrade-path">
   <h4>升级方式</h4>
-  <p>运行<a href="https://github.com/vuejs/vue-migration-helper">迁移工具</a>找到选择 slots 标签 CSS 选择器(例如：<code>[slot="my-slot-name"]</code>) 。</p>
+  <p>运行<a href="https://github.com/vuejs/vue-migration-helper">迁移工具</a>找到选择 slots 标签 CSS 选择器(例如：<code>[slot="my-slot-name"]</code>)。</p>
 </div>
 {% endraw %}
 
@@ -1338,7 +1338,7 @@ methods: {
 
 ### 替换 `vm.$data` <sup>移除</sup>
 
-现在禁止替换实例的 $data。这样防止了响应系统的一些极端情况并且让组件状态更加可控可预测（特别是对于存在类型检查的系统）。
+现在禁止替换实例的 $data。这样防止了响应系统的一些极端情况并且让组件状态更加可控可预测 (特别是对于存在类型检查的系统)。
 
 {% raw %}
 <div class="upgrade-path">
@@ -1570,7 +1570,7 @@ el 选项不再在 `Vue.extend`中使用。仅在实例创建参数中可用。
 
 Partials 已被移除,取而代之的是更明确的组件之间的数据流--props。除非你正在使用一个部分性能关键型区域，否则建议只使用一个[normal component](components.html)来代替。如果你是动态绑定部分的`name`,您可以使用[dynamic component](components.html#动态组件)。
 
-如果你碰巧在你的应用程序的性能关键部分使用 partials，那么你应该升级到[函数式组件](render-function.html#函数式组件)。它们必须在纯 JS / JSX 文件中（而不是在 `.vue` 文件中），并且是无状态的和无实例的，就像 partials。这使得渲染极快。
+如果你碰巧在你的应用程序的性能关键部分使用 partials，那么你应该升级到[函数式组件](render-function.html#函数式组件)。它们必须在纯 JS / JSX 文件中 (而不是在 `.vue` 文件中)，并且是无状态的和无实例的，就像 partials。这使得渲染极快。
 
 函数式组件相对于 partials 一个好处是它们可以更具动态性，因为它们允许您访问 JavaScript 的全部功能。然而，这是有成本的。如果你从来没有使用过渲染式的组件框架，你可能需要花费更长的时间来学习它们。
 

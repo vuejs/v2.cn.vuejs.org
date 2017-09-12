@@ -282,7 +282,7 @@ type: api
     unbind: function () {}
   })
 
-  // 注册（传入一个简单的指令函数）
+  // 注册 (传入一个简单的指令函数)
   Vue.directive('my-directive', function () {
     // 这里将会被 `bind` 和 `update` 调用
   })
@@ -327,10 +327,10 @@ type: api
   // 注册组件，传入一个扩展过的构造器
   Vue.component('my-component', Vue.extend({ /* ... */ }))
 
-  // 注册组件，传入一个选项对象（自动调用 Vue.extend）
+  // 注册组件，传入一个选项对象 (自动调用 Vue.extend)
   Vue.component('my-component', { /* ... */ })
 
-  // 获取注册的组件（始终返回构造器）
+  // 获取注册的组件 (始终返回构造器)
   var MyComponent = Vue.component('my-component')
   ```
 
@@ -1066,7 +1066,7 @@ if (version === 2) {
 
 - **详细**：
 
-  使组件无状态（没有 `data` ）和无实例（没有 `this` 上下文）。他们用一个简单的 `render` 函数返回虚拟节点使他们更容易渲染。
+  使组件无状态 (没有 `data` ) 和无实例 (没有 `this` 上下文)。他们用一个简单的 `render` 函数返回虚拟节点使他们更容易渲染。
 
 - **参考**：[函数式组件](../guide/render-function.html#函数式组件)
 
@@ -1232,7 +1232,7 @@ if (version === 2) {
 
 - **详细**：
 
-  用来访问被[插槽分发](../guide/components.html#使用插槽分发内容)的内容。每个[具名插槽](../guide/components.html#具名插槽) 有其相应的属性（例如：`slot="foo"` 中的内容将会在 `vm.$slots.foo` 中被找到）。`default` 属性包括了所有没有被包含在具名插槽中的节点。
+  用来访问被[插槽分发](../guide/components.html#使用插槽分发内容)的内容。每个[具名插槽](../guide/components.html#具名插槽) 有其相应的属性 (例如：`slot="foo"` 中的内容将会在 `vm.$slots.foo` 中被找到)。`default` 属性包括了所有没有被包含在具名插槽中的节点。
 
   在使用[渲染函数](../guide/render-function.html)书写一个组件时，访问 `vm.$slots` 最有帮助。
 
@@ -1356,7 +1356,7 @@ if (version === 2) {
 
   观察 Vue 实例变化的一个表达式或计算属性函数。回调函数得到的参数为新值和旧值。表达式只接受监督的键路径。对于更复杂的表达式，用一个函数取代。
 
-  <p class="tip">注意：在变异（不是替换）对象或数组时，旧值将与新值相同，因为它们的引用指向同一个对象/数组。Vue 不会保留变异之前值的副本。</p>
+  <p class="tip">注意：在变异 (不是替换) 对象或数组时，旧值将与新值相同，因为它们的引用指向同一个对象/数组。Vue 不会保留变异之前值的副本。</p>
 
 - **示例**：
 
@@ -1711,7 +1711,7 @@ if (version === 2) {
   </div>
   ```
 
-  另外也可以为数组索引指定别名（或者用于对象的键）：
+  另外也可以为数组索引指定别名 (或者用于对象的键)：
 
   ``` html
   <div v-for="(item, index) in items"></div>
@@ -1801,7 +1801,7 @@ if (version === 2) {
   <button v-on:click.once="doThis"></button>
   ```
 
-  在子组件上监听自定义事件（当子组件触发“my-event”时将调用事件处理器）：
+  在子组件上监听自定义事件 (当子组件触发“my-event”时将调用事件处理器)：
 
   ```html
   <my-component @my-event="handleThis"></my-component>
@@ -2174,7 +2174,7 @@ if (version === 2) {
 
   注意，每个 `<transition-group>` 的子节点必须有 **独立的key** ，动画才能正常工作
 
-  `<transition-group>` 支持通过 CSS transform 过渡移动。当一个子节点被更新，从屏幕上的位置发生变化，它将会获取应用 CSS 移动类（通过 `name` 属性或配置 `move-class` 属性自动生成）。如果 CSS `transform` 属性是“可过渡”属性，当应用移动类时，将会使用 [FLIP 技术](https://aerotwist.com/blog/flip-your-animations/) 使元素流畅地到达动画终点。
+  `<transition-group>` 支持通过 CSS transform 过渡移动。当一个子节点被更新，从屏幕上的位置发生变化，它将会获取应用 CSS 移动类 (通过 `name` 属性或配置 `move-class` 属性自动生成)。如果 CSS `transform` 属性是“可过渡”属性，当应用移动类时，将会使用 [FLIP 技术](https://aerotwist.com/blog/flip-your-animations/) 使元素流畅地到达动画终点。
 
   ```html
   <transition-group tag="ul" name="slide">
@@ -2247,7 +2247,7 @@ if (version === 2) {
   </keep-alive>
   ```
 
-  匹配首先检查组件自身的 `name` 选项，如果 `name` 选项不可用，则匹配它的局部注册名称（父组件 `components` 选项的键值）。匿名组件不能被匹配。
+  匹配首先检查组件自身的 `name` 选项，如果 `name` 选项不可用，则匹配它的局部注册名称 (父组件 `components` 选项的键值)。匿名组件不能被匹配。
 
   <p class="tip">`<keep-alive>` 不会在函数式组件中正常工作，因为它们没有缓存实例。</p>
 

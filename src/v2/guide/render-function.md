@@ -462,7 +462,7 @@ createElement(
 </anchored-heading>
 ```
 
-这就是为什么会有一个 [Babel 插件](https://github.com/vuejs/babel-plugin-transform-vue-jsx) ，用于在 Vue 中使用 JSX 语法的原因，它可以让我们回到更接近于模板的语法上。
+这就是为什么会有一个 [Babel 插件](https://github.com/vuejs/babel-plugin-transform-vue-jsx)，用于在 Vue 中使用 JSX 语法的原因，它可以让我们回到更接近于模板的语法上。
 
 ``` js
 import AnchoredHeading from './AnchoredHeading.vue'
@@ -485,7 +485,7 @@ new Vue({
 ## 函数式组件
 
 之前创建的锚点标题组件是比较简单，没有管理或者监听任何传递给他的状态，也没有生命周期方法。它只是一个接收参数的函数。
-在这个例子中，我们标记组件为 `functional`， 这意味它是无状态（没有 `data`），无实例（没有 `this` 上下文）。
+在这个例子中，我们标记组件为 `functional`， 这意味它是无状态 (没有 `data`)，无实例 (没有 `this` 上下文)。
 一个 **函数式组件** 就像这样：
 
 ``` js

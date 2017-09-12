@@ -336,7 +336,7 @@ export default {
 </router-link>
 ```
 
- `<a>`标签将会成为真实的链接（并且可以获取到正确的跳转），但是激活的类将会被应用在外部的`<li>`标签上。
+ `<a>`标签将会成为真实的链接 (并且可以获取到正确的跳转)，但是激活的类将会被应用在外部的`<li>`标签上。
 
 {% raw %}
 <div class="upgrade-path">
@@ -560,7 +560,7 @@ methods: {
 
 ### `$loadingRouteData` <sup>移除</sup>
 
-定义你自己的属性（例如：`isLoading`），然后在路由上的 watcher 中更新加载状态。举个例子，如果使用[axios](https://github.com/mzabriskie/axios)获取数据：
+定义你自己的属性 (例如：`isLoading`)，然后在路由上的 watcher 中更新加载状态。举个例子，如果使用[axios](https://github.com/mzabriskie/axios)获取数据：
 
 ``` js
 data: function () {

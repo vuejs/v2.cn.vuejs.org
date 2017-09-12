@@ -15,7 +15,7 @@ order: 6
 ``` html
 <div v-bind:class="{ active: isActive }"></div>
 ```
-上面的语法表示 class`active` 的更新将取决于数据属性 `isActive` 是否为[真值](https://developer.mozilla.org/en-US/docs/Glossary/Truthy) 。
+上面的语法表示 class`active` 的更新将取决于数据属性 `isActive` 是否为[真值](https://developer.mozilla.org/en-US/docs/Glossary/Truthy)。
 
 你可以在对象中传入更多属性用来动态切换多个 class。此外， `v-bind:class` 指令也可以与普通的 class 属性共存。如下模板：
 
