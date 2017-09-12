@@ -246,7 +246,6 @@ alias: ['/manage', '/administer', '/administrate']
 }
 ```
 
-
 如果在一个路由上访问一个属性，你仍然会通过 meta 。举个例子：
 
 ``` js
@@ -540,7 +539,6 @@ scrollBehavior: function (to, from, savedPosition) {
 ### `data` <sup>替换</sup>
 
 `$route`属性是响应式的，所以你可以就使用一个 watcher 去响应路由的改变，就像这样：
-
 
 ``` js
 watch: {

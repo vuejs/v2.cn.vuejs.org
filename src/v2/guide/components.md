@@ -928,7 +928,6 @@ Vue.component('child-component', {
 
 在组合组件时，内容分发 API 是非常有用的机制。
 
-
 ### 作用域插槽
 
 > 2.1.0 新增
@@ -1245,7 +1244,6 @@ template: '<div><stack-overflow></stack-overflow></div>'
 ```
 
 上面组件会导致一个错误“max stack size exceeded”，所以要确保递归调用有终止条件 (比如递归调用时使用 `v-if` 并让他最终返回 `false` )。
-
 
 ### 组件间的循环引用
 

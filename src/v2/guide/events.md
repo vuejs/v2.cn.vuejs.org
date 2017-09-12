@@ -142,7 +142,6 @@ new Vue({
 </script>
 {% endraw %}
 
-
 有时也需要在内联语句处理器中访问原生 DOM 事件。可以用特殊变量 `$event` 把它传入方法：
 
 ``` html

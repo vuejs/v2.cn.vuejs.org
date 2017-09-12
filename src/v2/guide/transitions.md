@@ -107,7 +107,6 @@ new Vue({
 
 6. `v-leave-to`: **2.1.8版及以上** 定义离开过渡的结束状态。在离开过渡被触发一帧后生效（于此同时 `v-leave` 被删除），在 `transition/animation` 完成之后移除。
 
-
 ![Transition Diagram](/images/transition.png)
 
 对于这些在 `enter/leave` 过渡中切换的类名，`v-` 是这些类名的前缀。使用 `<transition name="my-transition">` 可以重置前缀，比如 `v-enter` 替换为 `my-transition-enter`。
@@ -187,9 +186,7 @@ new Vue({
 </style>
 {% endraw %}
 
-
 ### CSS 动画
-
 
 CSS 动画用法同 CSS 过渡，区别是在动画中 `v-enter` 类名在节点插入 DOM 后不会立即删除，而是在 `animationend` 事件触发时删除。
 
@@ -289,7 +286,6 @@ new Vue({
 </script>
 {% endraw %}
 
-
 ### 自定义过渡的类名
 
 我们可以通过以下特性来自定义过渡类名：
@@ -354,7 +350,6 @@ new Vue({
 })
 </script>
 {% endraw %}
-
 
 ### 同时使用过渡和动画
 
@@ -792,7 +787,6 @@ new Vue({
 
 同时生效的进入和离开的过渡不能满足所有要求，所以 Vue 提供了 **过渡模式**
 
-
 - `in-out`: 新元素先进行过渡，完成之后当前元素过渡离开。
 
 - `out-in`: 当前元素先进行过渡，完成之后新元素过渡进入。
@@ -838,7 +832,6 @@ new Vue({
 
 `in-out` 模式不是经常用到，但对于一些稍微不同的过渡效果还是有用的。
 将之前滑动淡出的例子结合：
-
 
 {% raw %}
 <div id="in-out-translate-demo" class="demo">
@@ -889,7 +882,6 @@ new Vue({
 ## 多个组件的过渡
 
 多个组件的过渡简单很多 - 我们不需要使用 `key` 特性。相反，我们只需要使用[动态组件](components.html#动态组件):
-
 
 ``` html
 <transition name="component-fade" mode="out-in">
@@ -1068,7 +1060,6 @@ new Vue({
 {% endraw %}
 
 这个例子有个问题，当添加和移除元素的时候，周围的元素会瞬间移动到他们的新布局的位置，而不是平滑的过渡，我们下面会解决这个问题。
-
 
 ### 列表的排序过渡
 

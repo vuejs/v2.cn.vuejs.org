@@ -793,7 +793,6 @@ if (version === 2) {
 
 - **参考**：[生命周期图示](../guide/instance.html#生命周期图示)
 
-
 ### activated
 
 - **类型**：`Function`
@@ -1293,7 +1292,6 @@ if (version === 2) {
   - [`<slot>` 组件](#slot-1)
   - [作用域插槽](../guide/components.html#作用域插槽)
   - [渲染函数 - 插槽](../guide/render-function.html#插槽)
-
 
 ### vm.$refs
 

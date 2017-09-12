@@ -57,7 +57,6 @@ data: {
 ```
 渲染的结果和上面一样。我们也可以在这里绑定返回对象的[计算属性](computed.html)。这是一个常用且强大的模式：
 
-
 ``` html
 <div v-bind:class="classObject"></div>
 ```

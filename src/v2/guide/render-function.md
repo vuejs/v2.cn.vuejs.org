@@ -8,7 +8,6 @@ order: 303
 
 Vue 推荐在绝大多数情况下使用 template 来创建你的 HTML。然而在一些场景中，你真的需要 JavaScript 的完全编程的能力，这就是 **render 函数**，它比 template 更接近编译器。
 
-
 ``` html
 <h1>
   <a name="hello-world" href="#hello-world">
@@ -464,7 +463,6 @@ createElement(
 ```
 
 这就是为什么会有一个 [Babel 插件](https://github.com/vuejs/babel-plugin-transform-vue-jsx) ，用于在 Vue 中使用 JSX 语法的原因，它可以让我们回到更接近于模板的语法上。
-
 
 ``` js
 import AnchoredHeading from './AnchoredHeading.vue'
