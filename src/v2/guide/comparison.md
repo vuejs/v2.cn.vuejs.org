@@ -68,11 +68,13 @@ JSX 说是手写的渲染函数有下面这些优势：
 
 更抽象一点来看，我们可以把组件区分为两类：一类是偏视图表现的 (presentational)，一类则是偏逻辑的 (logical)。我们推荐在前者中使用模板，在后者中使用 JSX 或渲染函数。这两类组件的比例会根据应用类型的不同有所变化，但整体来说我们发现表现类的组件远远多于逻辑类组件。
 
-#### CSS 的组件作用域
+#### 组件作用域内的 CSS
 
-除非你把组件分布在多个文件上 (例如 [CSS Modules](https://github.com/gajus/react-css-modules))，要不在 React 中作用域内的 CSS 就会产生警告。非常简单的 CSS 还可以工作，但是稍微复杂点的，比如悬停状态、媒体查询、伪类选择符等要么通过沉重的依赖来重做要么就直接不能用。
+除非你把组件分布在多个文件上 (例如 [CSS Modules](https://github.com/gajus/react-css-modules))，CSS 作用域在 React 中是通过 CSS-in-JS 的方案实现的 (比如 [styled-components](https://github.com/styled-components/styled-components)、[glamorous](https://github.com/paypal/glamorous) 和 [emotion](https://github.com/emotion-js/emotion))。这引入了一个新的面向组件的样式范例，它和普通的 CSS 撰写过程是有区别的。另外，虽然在构建时将 CSS 提取到一个单独的样式表是支持的，但 bundle 里通常还是需要一个运行时程序来让这些样式生效。当你能够利用 JavaScript 灵活处理样式的同时，也需要权衡 bundle 的尺寸和运行时的开销。
 
-而 Vue 可以让你在每个[单文件组件](single-file-components.html)中完全访问 CSS。
+如果你是一个 CSS-in-JS 的爱好者，许多主流的 CSS-in-JS 库也都支持 Vue (比如 [styled-components-vue](https://github.com/styled-components/vue-styled-components) 和 [vue-emotion](https://github.com/egoist/vue-emotion))。这里 React 和 Vue 主要的区别是，Vue 设置样式的默认方法是[单文件组件](single-file-components.html)里类似 `style` 的标签。
+
+[单文件组件](single-file-components.html)让你可以在同一个文件里完全控制 CSS，将其作为组件代码的一部分。
 
 ``` html
 <style scoped>
@@ -86,9 +88,7 @@ JSX 说是手写的渲染函数有下面这些优势：
 
 这个可选 `scoped` 属性会自动添加一个唯一的属性 (比如 `data-v-21e5b78`) 为组件内 CSS 指定作用域，编译的时候 `.list-container:hover` 会被编译成类似 `.list-container[data-v-21e5b78]:hover`。
 
-如果你已经熟悉 CSS Modules，Vue 单文件组件也有 [first-class 支持它](https://vue-loader.vuejs.org/zh-cn/features/css-modules.html)。
-
-最后，就像 HTML 一样，你可以选择自己偏爱的 CSS 预处理器 (或后处理器) 编写 CSS，这些生态系统允许您利用现有的库。这可以让你围绕设计为中心展开工作，比如您的构建过程中颜色操作，而不是引入专门的库来增加你应用的体积和复杂度。
+最后，Vue 的单文件组件里的样式设置是非常灵活的。通过 [vue-loader](https://github.com/vuejs/vue-loader)，你可以使用任意预处理器、后处理器，甚至深度集成 [CSS Modules](https://vue-loader.vuejs.org/en/features/css-modules.html)——全部都在 `<style>` 标签内。
 
 ### 规模
 
@@ -177,7 +177,7 @@ Angular 事实上必须用 TypeScript 来开发，因为它的文档和学习资
 
 在性能方面，这两个框架都非常的快，我们也没有足够的实际应用数据来下一个结论。如果你一定想看些数据的话，你可以参考这个[第三方跑分](http://stefankrause.net/js-frameworks-benchmark4/webdriver-ts/table.html)。单就这个跑分来看，Vue 似乎比 Angular 要更快一些。
 
-在大小方面，最近的 Angular 版本中在使用了 AOT 和 tree-shaking 技术后使得最终的代码体积减小了许多。但即使如此，一个包含了 vuex + vue-router 的 Vue 项目 (30kb gzipped) 相比使用了这些优化的 `angular-cli` 生成的默认项目尺寸 (~130kb) 还是要小的多。
+在大小方面，最近的 Angular 版本中在使用了 AOT 和 tree-shaking 技术后使得最终的代码体积减小了许多。但即使如此，一个包含了 Vuex + Vue Router 的 Vue 项目 (30kb gzipped) 相比使用了这些优化的 `angular-cli` 生成的默认项目尺寸 (~130kb) 还是要小的多。
 
 ### 灵活性
 

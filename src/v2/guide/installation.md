@@ -90,7 +90,7 @@ $ npm run dev
 
 - **[CommonJS](http://wiki.commonjs.org/wiki/Modules/1.1)**：CommonJS 构建用来配合老的打包工具比如 [browserify](http://browserify.org/) 或 [webpack 1](https://webpack.github.io)。这些打包工具的默认文件 (`pkg.main`) 是只包含运行时的 CommonJS 构建 (`vue.runtime.common.js`)。
 
-- **[ES Module](http://exploringjs.com/es6/ch_modules.html)**：ES module 构建用来配合现代打包工具比如 [webpack 2](https://webpack.js.org) 或 [rollup](http://rollupjs.org/)。这些打包工具的默认文件 (`pkg.module`) 是只包含运行时的 ES Module 构建 (`vue.runtime.esm.js`)。
+- **[ES Module](http://exploringjs.com/es6/ch_modules.html)**：ES module 构建用来配合现代打包工具比如 [webpack 2](https://webpack.js.org) 或 [rollup](https://rollupjs.org/)。这些打包工具的默认文件 (`pkg.module`) 是只包含运行时的 ES Module 构建 (`vue.runtime.esm.js`)。
 
 ### 运行时 + 编译器 vs. 只包含运行时
 
