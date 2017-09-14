@@ -28,8 +28,8 @@ Vue.js 是采用 MIT 许可的开源项目，使用完全免费。
 ### 中国区白金赞助商 (1000 美元/月)
 
 <p style="text-align: center;">
-  <a href="https://www.upyun.com/?utm_source=vue&utm_medium=ad&utm_content=index" target="_blank">
-    <img src="/images/upyun-large.png" style="width:300px">
+  <a href="https://xiaozhuanlan.com/" target="_blank">
+    <img src="/images/xiaozhuanlan.png" style="width:300px">
   </a>
 </p>
 
