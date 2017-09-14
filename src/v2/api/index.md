@@ -1286,7 +1286,7 @@ type: api
 
   用来访问[作用域插槽](../guide/components.html#作用域插槽)。对于包括 `默认 slot` 在内的每一个插槽，该对象都包含一个返回相应 VNode 的函数。
 
-  在使用 [`render` 函数](../guide/render-function.html) 书写一个组件时，访问 `vm.$scopedSlots` 最有帮助。
+  `vm.$scopedSlots` 在使用 [`render` 函数](../guide/render-function.html) 开发一个组件时特别有用。
 
 - **参考**：
   - [`<slot>` 组件](#slot-1)
@@ -1301,7 +1301,7 @@ type: api
 
 - **详细**：
 
-  一个对象，其中包含了所有拥有 `ref` 注册的子组件。
+  一个对象，其中包含定义了 `ref` 的子组件。
 
 - **参考**：
   - [子组件引用](../guide/components.html#子组件索引)
