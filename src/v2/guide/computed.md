@@ -28,14 +28,14 @@ order: 5
 ```
 
 ``` js
-var vm = new Vue({
+const vm = new Vue({
   el: '#example',
   data: {
     message: 'Hello'
   },
   computed: {
     // a computed getter
-    reversedMessage: function () {
+    reversedMessage() {
       // `this` points to the vm instance
       return this.message.split('').reverse().join('')
     }
@@ -88,7 +88,7 @@ console.log(vm.reversedMessage) // => 'eybdooG'
 ``` js
 // in component
 methods: {
-  reversedMessage: function () {
+  reversedMessage() {
     return this.message.split('').reverse().join('')
   }
 }
@@ -100,7 +100,7 @@ methods: {
 
 ``` js
 computed: {
-  now: function () {
+  now() {
     return Date.now()
   }
 }
@@ -119,7 +119,7 @@ Vue 确实提供了一种更通用的方式来观察和响应 Vue 实例上的�
 ```
 
 ``` js
-var vm = new Vue({
+const vm = new Vue({
   el: '#demo',
   data: {
     firstName: 'Foo',
@@ -127,10 +127,10 @@ var vm = new Vue({
     fullName: 'Foo Bar'
   },
   watch: {
-    firstName: function (val) {
+    firstName(val) {
       this.fullName = val + ' ' + this.lastName
     },
-    lastName: function (val) {
+    lastName(val) {
       this.fullName = this.firstName + ' ' + val
     }
   }
@@ -140,14 +140,14 @@ var vm = new Vue({
 上面代码是命令式的和重复的。将它与计算属性的版本进行比较：
 
 ``` js
-var vm = new Vue({
+const vm = new Vue({
   el: '#demo',
   data: {
     firstName: 'Foo',
     lastName: 'Bar'
   },
   computed: {
-    fullName: function () {
+    fullName() {
       return this.firstName + ' ' + this.lastName
     }
   }
@@ -165,11 +165,11 @@ var vm = new Vue({
 computed: {
   fullName: {
     // getter
-    get: function () {
+    get() {
       return this.firstName + ' ' + this.lastName
     },
     // setter
-    set: function (newValue) {
+    set(newValue) {
       var names = newValue.split(' ')
       this.firstName = names[0]
       this.lastName = names[names.length - 1]
@@ -205,7 +205,7 @@ computed: {
 <script src="https://cdn.jsdelivr.net/npm/axios@0.12.0/dist/axios.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/lodash@4.13.1/lodash.min.js"></script>
 <script>
-var watchExampleVM = new Vue({
+const watchExampleVM = new Vue({
   el: '#watch-example',
   data: {
     question: '',
@@ -213,7 +213,7 @@ var watchExampleVM = new Vue({
   },
   watch: {
     // 如果 question 发生改变，这个函数就会运行
-    question: function (newQuestion) {
+    question(newQuestion) {
       this.answer = 'Waiting for you to stop typing...'
       this.getAnswer()
     }
@@ -261,14 +261,14 @@ var watchExampleVM = new Vue({
 <script src="https://cdn.jsdelivr.net/npm/axios@0.12.0/dist/axios.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/lodash@4.13.1/lodash.min.js"></script>
 <script>
-var watchExampleVM = new Vue({
+const watchExampleVM = new Vue({
   el: '#watch-example',
   data: {
     question: '',
     answer: 'I cannot give you an answer until you ask a question!'
   },
   watch: {
-    question: function (newQuestion) {
+    question(newQuestion) {
       this.answer = 'Waiting for you to stop typing...'
       this.getAnswer()
     }

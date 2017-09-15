@@ -118,7 +118,7 @@ new Vue({
     loginType: 'username'
   },
   methods: {
-    toggleLoginType: function () {
+    toggleLoginType() {
       return this.loginType = this.loginType === 'username' ? 'email' : 'username'
     }
   }
@@ -162,7 +162,7 @@ new Vue({
     loginType: 'username'
   },
   methods: {
-    toggleLoginType: function () {
+    toggleLoginType() {
       return this.loginType = this.loginType === 'username' ? 'email' : 'username'
     }
   }

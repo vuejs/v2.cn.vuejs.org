@@ -66,7 +66,7 @@ data: {
   error: null
 },
 computed: {
-  classObject: function () {
+  classObject() {
     return {
       active: this.isActive && !this.error,
       'text-danger': this.error && this.error.type === 'fatal'

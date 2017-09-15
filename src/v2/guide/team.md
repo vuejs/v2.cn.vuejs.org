@@ -190,7 +190,7 @@ order: 803
 
 <script>
 (function () {
-  var cityCoordsFor = {
+  const cityCoordsFor = {
     'Annecy, France': [45.899247, 6.129384],
     'Alicante, Spain' : [38.346543, -0.483838],
     'Bangalore, India': [12.971599, 77.594563],
@@ -221,7 +221,7 @@ order: 803
     'Toronto, Canada': [43.653226, -79.383184],
     'Wrocław, Poland': [51.107885, 17.038538]
   }
-  var languageNameFor = {
+  const languageNameFor = {
     en: 'English',
     zh: '中文',
     vi: 'Tiếng Việt',
@@ -239,7 +239,7 @@ order: 803
     ro: 'Română'
   }
 
-  var team = [{
+  const team = [{
     name: 'Evan You',
     title: 'Benevolent Dictator For Life',
     city: 'Jersey City, NJ, USA',
@@ -556,7 +556,7 @@ order: 803
     }
   ]))
 
-  var partners = [
+  const partners = [
     {
       name: 'Sebastien Chopin',
       title: '#1 Nuxt Brother',
@@ -823,8 +823,8 @@ order: 803
     },
     computed: {
       workHtml: function () {
-        var work = this.profile.work
-        var html = ''
+        const work = this.profile.work
+        const html = ''
         if (work.orgUrl) {
           html += '<a href="' + work.orgUrl + '" target="_blank">'
           if (work.org) {
@@ -846,7 +846,7 @@ order: 803
         return html
       },
       textDistance: function () {
-        var distanceInKm = this.profile.distanceInKm || 0
+        const distanceInKm = this.profile.distanceInKm || 0
         if (this.$root.useMiles) {
           return roundDistance(kmToMi(distanceInKm)) + ' miles'
         } else {
@@ -854,10 +854,10 @@ order: 803
         }
       },
       languageListHtml: function () {
-        var vm = this
-        var nav = window.navigator
+        const vm = this
+        const nav = window.navigator
         if (!vm.profile.languages) return ''
-        var preferredLanguageCode = nav.languages
+        const preferredLanguageCode = nav.languages
           // The preferred language set in the browser
           ? nav.languages[0]
           : (
@@ -892,7 +892,7 @@ order: 803
       }
     },
     methods: {
-      minimizeLink: function (link) {
+      minimizeLink(link) {
         return link
           .replace(/^https?:\/\/(www\.)?/, '')
           .replace(/\/$/, '')
@@ -901,7 +901,7 @@ order: 803
       /**
        * Generate a GitHub URL using a repo and a handle.
        */
-      githubUrl: function (handle, repo) {
+      githubUrl(handle, repo) {
         if (repo && repo.indexOf('/') !== -1) {
           // If the repo name has a slash, it must be an organization repo.
           // In such a case, we discard the (personal) handle.
@@ -931,21 +931,21 @@ order: 803
       }
     },
     computed: {
-      sortedTeam: function () {
+      sortedTeam() {
         return this.sortVuersByDistance(this.team)
       },
-      sortedPartners: function () {
+      sortedPartners() {
         return this.sortVuersByDistance(this.partners)
       },
-      titleVisible: function () {
+      titleVisible() {
         return this.konami.code.length === this.konami.position
       }
     },
-    created: function () {
-      var nav = window.navigator
+    created() {
+      const nav = window.navigator
       if ('geolocation' in nav) {
         this.geolocationSupported = true
-        var imperialLanguageCodes = [
+        const imperialLanguageCodes = [
           'en-US', 'en-MY', 'en-MM', 'en-BU', 'en-LR', 'my', 'bu'
         ]
         if (imperialLanguageCodes.indexOf(nav.language) !== -1) {
@@ -954,13 +954,13 @@ order: 803
       }
       document.addEventListener('keydown', this.konamiKeydown)
     },
-    beforeDestroy: function () {
+    beforeDestroy() {
       document.removeEventListener('keydown', this.konamiKeydown)
     },
     methods: {
-      getUserPosition: function () {
-        var vm = this
-        var nav = window.navigator
+      getUserPosition() {
+        const vm = this
+        const nav = window.navigator
         vm.isSorting = true
         nav.geolocation.getCurrentPosition(
           function (position) {
@@ -976,11 +976,11 @@ order: 803
           }
         )
       },
-      sortVuersByDistance: function (vuers) {
-        var vm = this
+      sortVuersByDistance(vuers) {
+        const vm = this
         if (!vm.userPosition) return vuers
-        var vuersWithDistances = vuers.map(function (vuer) {
-          var cityCoords = cityCoordsFor[vuer.city]
+        const vuersWithDistances = vuers.map(function (vuer) {
+          const cityCoords = cityCoordsFor[vuer.city]
           return Object.assign({}, vuer, {
             distanceInKm: getDistanceFromLatLonInKm(
               vm.userPosition.coords.latitude,
@@ -998,7 +998,7 @@ order: 803
         })
         return vuersWithDistances
       },
-      konamiKeydown: function (event) {
+      konamiKeydown(event) {
         if (this.titleVisible) {
           return
         }
@@ -1019,7 +1019,7 @@ order: 803
     if (window.location.hostname === 'localhost') {
       return a
     }
-    var j, x, i
+    const j, x, i
     for (i = a.length; i; i--) {
       j = Math.floor(Math.random() * i)
       x = a[i - 1]
@@ -1037,15 +1037,15 @@ order: 803
   * @param {Number} lon2 The longitute of the 2nd location.
   */
   function getDistanceFromLatLonInKm(lat1,lon1,lat2,lon2) {
-    var R = 6371 // Radius of the earth in km
-    var dLat = deg2rad(lat2-lat1)  // deg2rad below
-    var dLon = deg2rad(lon2-lon1)
-    var a =
+    const R = 6371 // Radius of the earth in km
+    const dLat = deg2rad(lat2-lat1)  // deg2rad below
+    const dLon = deg2rad(lon2-lon1)
+    const a =
       Math.sin(dLat/2) * Math.sin(dLat/2) +
       Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) *
       Math.sin(dLon/2) * Math.sin(dLon/2)
-    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a))
-    var d = R * c // Distance in km
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a))
+    const d = R * c // Distance in km
     return d
   }
 

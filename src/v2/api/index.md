@@ -188,9 +188,9 @@ type: api
 
   ``` js
   // 创建构造器
-  var Profile = Vue.extend({
+  const Profile = Vue.extend({
     template: '<p>{{firstName}} {{lastName}} aka {{alias}}</p>',
-    data: function () {
+    data() {
       return {
         firstName: 'Walter',
         lastName: 'White',
@@ -310,7 +310,7 @@ type: api
   })
 
   // getter，返回已注册的过滤器
-  var myFilter = Vue.filter('my-filter')
+  const myFilter = Vue.filter('my-filter')
   ```
 
 <h3 id="Vue-component">Vue.component( id, [definition] )</h3>
@@ -331,7 +331,7 @@ type: api
   Vue.component('my-component', { /* ... */ })
 
   // 获取注册的组件 (始终返回构造器)
-  var MyComponent = Vue.component('my-component')
+  const MyComponent = Vue.component('my-component')
   ```
 
 - **参考**：[组件](../guide/components.html)
@@ -426,10 +426,10 @@ type: api
 - **示例**：
 
   ``` js
-  var data = { a: 1 }
+  const data = { a: 1 }
 
   // 直接创建一个实例
-  var vm = new Vue({
+  const vm = new Vue({
     data: data
   })
   vm.a // => 1
@@ -437,7 +437,7 @@ type: api
 
   // Vue.extend() 中 data 必须是函数
   var Component = Vue.extend({
-    data: function () {
+    data() {
       return { a: 1 }
     }
   })
@@ -471,7 +471,7 @@ type: api
         type: Number,
         default: 0,
         required: true,
-        validator: function (value) {
+        validator(value) {
           return value >= 0
         }
       }
@@ -494,12 +494,12 @@ type: api
 - **示例**：
 
   ``` js
-  var Comp = Vue.extend({
+  const Comp = Vue.extend({
     props: ['msg'],
     template: '<div>{{ msg }}</div>'
   })
 
-  var vm = new Comp({
+  const vm = new Comp({
     propsData: {
       msg: 'hello'
     }
@@ -522,19 +522,19 @@ type: api
 - **示例**：
 
   ```js
-  var vm = new Vue({
+  const vm = new Vue({
     data: { a: 1 },
     computed: {
       // 仅读取，值只须为函数
-      aDouble: function () {
+      aDouble() {
         return this.a * 2
       },
       // 读取和设置
       aPlus: {
-        get: function () {
+        get() {
           return this.a + 1
         },
-        set: function (v) {
+        set(v) {
           this.a = v - 1
         }
       }
@@ -561,10 +561,10 @@ type: api
 - **示例**：
 
   ```js
-  var vm = new Vue({
+  const vm = new Vue({
     data: { a: 1 },
     methods: {
-      plus: function () {
+      plus() {
         this.a++
       }
     }
@@ -586,21 +586,21 @@ type: api
 - **示例**：
 
   ``` js
-  var vm = new Vue({
+  const vm = new Vue({
     data: {
       a: 1,
       b: 2,
       c: 3
     },
     watch: {
-      a: function (val, oldVal) {
+      a(val, oldVal) {
         console.log('new: %s, old: %s', val, oldVal)
       },
       // 方法名
       b: 'someMethod',
       // 深度 watcher
       c: {
-        handler: function (val, oldVal) { /* ... */ },
+        handler(val, oldVal) { /* ... */ },
         deep: true
       }
     }
@@ -742,7 +742,7 @@ type: api
   注意 `mounted` **不会**承诺所有的子组件也都一起被挂载。如果你希望等到整个视图都渲染完毕，可以用 [vm.$nextTick](#vm-nextTick) 替换掉 `mounted`：
 
   ``` js
-  mounted: function () {
+  mounted() {
     this.$nextTick(function () {
       // Code that will run only after the
       // entire view has been rendered
@@ -781,7 +781,7 @@ type: api
   注意 `updated` **不会**承诺所有的子组件也都一起被重绘。如果你希望等到整个视图都重绘完毕，可以用 [vm.$nextTick](#vm-nextTick) 替换掉 `updated`：
 
   ``` js
-  updated: function () {
+  updated() {
     this.$nextTick(function () {
       // Code that will run only after the
       // entire view has been re-rendered
@@ -901,10 +901,10 @@ type: api
 - **示例**：
 
   ``` js
-  var mixin = {
+  const mixin = {
     created: function () { console.log(1) }
   }
-  var vm = new Vue({
+  const vm = new Vue({
     created: function () { console.log(2) },
     mixins: [mixin]
   })
@@ -927,10 +927,10 @@ type: api
 - **示例**：
 
   ``` js
-  var CompA = { ... }
+  const CompA = { ... }
 
   // 在没有调用 `Vue.extend` 时候继承 CompA
-  var CompB = {
+  const CompB = {
     extends: CompA,
     ...
   }
@@ -959,14 +959,14 @@ type: api
 - **示例**：
 
   ``` js
-  var Provider = {
+  const Provider = {
     provide: {
       foo: 'bar'
     },
     // ...
   }
 
-  var Child = {
+  const Child = {
     inject: ['foo'],
     created () {
       console.log(this.foo) // => "bar"
@@ -1188,7 +1188,7 @@ type: api
   ``` js
   new Vue({
     customOption: 'foo',
-    created: function () {
+    created() {
       console.log(this.$options.customOption) // => 'foo'
     }
   })
@@ -1256,7 +1256,7 @@ type: api
 
   ```js
   Vue.component('blog-post', {
-    render: function (createElement) {
+    render(createElement) {
       var header = this.$slots.header
       var body   = this.$slots.default
       var footer = this.$slots.footer
@@ -1380,7 +1380,7 @@ type: api
   `vm.$watch` 返回一个取消观察函数，用来停止触发回调：
 
   ``` js
-  var unwatch = vm.$watch('a', cb)
+  const unwatch = vm.$watch('a', cb)
   // 之后取消观察
   unwatch()
   ```
@@ -1523,7 +1523,7 @@ type: api
   new MyComponent({ el: '#app' })
 
   // 或者，在文档之外渲染并且随后挂载
-  var component = new MyComponent().$mount()
+  const component = new MyComponent().$mount()
   document.getElementById('app').appendChild(component.$el)
   ```
 

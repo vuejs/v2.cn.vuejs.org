@@ -21,7 +21,7 @@ order: 601
 受现代 JavaScript 的限制 (以及废弃 `Object.observe`)，Vue **不能检测到对象属性的添加或删除**。由于 Vue 会在初始化实例时对属性执行 `getter/setter` 转化过程，所以属性必须在 `data` 对象上存在才能让 Vue 转换它，这样才能让它是响应的。例如：
 
 ``` js
-var vm = new Vue({
+const vm = new Vue({
   data:{
   a:1
   }
@@ -59,7 +59,7 @@ this.someObject = Object.assign({}, this.someObject, { a: 1, b: 2 })
 由于 Vue 不允许动态添加根级响应式属性，所以你必须在初始化实例前声明根级响应式属性，哪怕只是一个空值：
 
 ``` js
-var vm = new Vue({
+const vm = new Vue({
   data: {
     // 声明 message 为一个空值字符串
     message: ''
@@ -84,7 +84,7 @@ vm.message = 'Hello!'
 <div id="example">{{message}}</div>
 ```
 ``` js
-var vm = new Vue({
+const vm = new Vue({
   el: '#example',
   data: {
     message: '123'
@@ -100,13 +100,13 @@ Vue.nextTick(function () {
 ``` js
 Vue.component('example', {
   template: '<span>{{ message }}</span>',
-  data: function () {
+  data() {
     return {
       message: '没有更新'
     }
   },
   methods: {
-    updateMessage: function () {
+    updateMessage() {
       this.message = '更新完成'
       console.log(this.$el.textContent) // => '没有更新'
       this.$nextTick(function () {

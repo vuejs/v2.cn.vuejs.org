@@ -34,8 +34,8 @@ new Vue({
     animatedNumber: 0
   },
   watch: {
-    number: function(newValue, oldValue) {
-      var vm = this
+    number(newValue, oldValue) {
+      const vm = this
       function animate () {
         if (TWEEN.update()) {
           requestAnimationFrame(animate)
@@ -70,7 +70,7 @@ new Vue({
     animatedNumber: 0
   },
   watch: {
-    number: function(newValue, oldValue) {
+    number(newValue, oldValue) {
       var vm = this
       function animate () {
         if (TWEEN.update()) {
@@ -130,11 +130,11 @@ new Vue({
     },
     tweenedColor: {}
   },
-  created: function () {
+  created() {
     this.tweenedColor = Object.assign({}, this.color)
   },
   watch: {
-    color: function () {
+    color() {
       function animate () {
         if (TWEEN.update()) {
           requestAnimationFrame(animate)
@@ -149,7 +149,7 @@ new Vue({
     }
   },
   computed: {
-    tweenedCSSColor: function () {
+    tweenedCSSColor() {
       return new Color({
         red: this.tweenedColor.red,
         green: this.tweenedColor.green,
@@ -159,7 +159,7 @@ new Vue({
     }
   },
   methods: {
-    updateColor: function () {
+    updateColor() {
       this.color = new Color(this.colorQuery).toRGB()
       this.colorQuery = ''
     }
@@ -206,11 +206,11 @@ new Vue({
     },
     tweenedColor: {}
   },
-  created: function () {
+  created() {
     this.tweenedColor = Object.assign({}, this.color)
   },
   watch: {
-    color: function () {
+    color() {
       function animate () {
         if (TWEEN.update()) {
           requestAnimationFrame(animate)
@@ -225,7 +225,7 @@ new Vue({
     }
   },
   computed: {
-    tweenedCSSColor: function () {
+    tweenedCSSColor() {
       return new Color({
         red: this.tweenedColor.red,
         green: this.tweenedColor.green,
@@ -235,7 +235,7 @@ new Vue({
     }
   },
   methods: {
-    updateColor: function () {
+    updateColor() {
       this.color = new Color(this.colorQuery).toRGB()
       this.colorQuery = ''
     }
@@ -290,9 +290,9 @@ new Vue({
 <script>
 new Vue({
   el: '#svg-polygon-demo',
-  data: function () {
-    var defaultSides = 10
-    var stats = Array.apply(null, { length: defaultSides })
+  data() {
+    const defaultSides = 10
+    const stats = Array.apply(null, { length: defaultSides })
       .map(function () { return 100 })
     return {
       stats: stats,
@@ -304,45 +304,45 @@ new Vue({
     }
   },
   watch: {
-    sides: function (newSides, oldSides) {
-      var sidesDifference = newSides - oldSides
+    sides(newSides, oldSides) {
+      const sidesDifference = newSides - oldSides
       if (sidesDifference > 0) {
-        for (var i = 1; i <= sidesDifference; i++) {
+        for (let i = 1; i <= sidesDifference; i++) {
           this.stats.push(this.newRandomValue())
         }
       } else {
-        var absoluteSidesDifference = Math.abs(sidesDifference)
-        for (var i = 1; i <= absoluteSidesDifference; i++) {
+        const absoluteSidesDifference = Math.abs(sidesDifference)
+        for (let i = 1; i <= absoluteSidesDifference; i++) {
           this.stats.shift()
         }
       }
     },
-    stats: function (newStats) {
+    stats(newStats) {
       TweenLite.to(
         this.$data,
         this.updateInterval / 1000,
         { points: generatePoints(newStats) }
       )
     },
-    updateInterval: function () {
+    updateInterval() {
       this.resetInterval()
     }
   },
-  mounted: function () {
+  mounted() {
     this.resetInterval()
   },
   methods: {
-    randomizeStats: function () {
-      var vm = this
+    randomizeStats() {
+      const vm = this
       this.stats = this.stats.map(function () {
         return vm.newRandomValue()
       })
     },
-    newRandomValue: function () {
+    newRandomValue() {
       return Math.ceil(this.minRadius + Math.random() * (100 - this.minRadius))
     },
-    resetInterval: function () {
-      var vm = this
+    resetInterval() {
+      const vm = this
       clearInterval(this.interval)
       this.randomizeStats()
       this.interval = setInterval(function () {
@@ -353,20 +353,20 @@ new Vue({
 })
 
 function valueToPoint (value, index, total) {
-  var x     = 0
-  var y     = -value * 0.9
-  var angle = Math.PI * 2 / total * index
-  var cos   = Math.cos(angle)
-  var sin   = Math.sin(angle)
-  var tx    = x * cos - y * sin + 100
-  var ty    = x * sin + y * cos + 100
+  const x     = 0
+  const y     = -value * 0.9
+  const angle = Math.PI * 2 / total * index
+  const cos   = Math.cos(angle)
+  const sin   = Math.sin(angle)
+  const tx    = x * cos - y * sin + 100
+  const ty    = x * sin + y * cos + 100
   return { x: tx, y: ty }
 }
 
 function generatePoints (stats) {
-  var total = stats.length
+  const total = stats.length
   return stats.map(function (stat, index) {
-    var point = valueToPoint(stat, index, total)
+    const point = valueToPoint(stat, index, total)
     return point.x + ',' + point.y
   }).join(' ')
 }
@@ -422,22 +422,22 @@ Vue.component('animated-integer', {
       required: true
     }
   },
-  data: function () {
+  data() {
     return {
       tweeningValue: 0
     }
   },
   watch: {
-    value: function (newValue, oldValue) {
+    value(newValue, oldValue) {
       this.tween(oldValue, newValue)
     }
   },
-  mounted: function () {
+  mounted() {
     this.tween(0, this.value)
   },
   methods: {
-    tween: function (startValue, endValue) {
-      var vm = this
+    tween(startValue, endValue) {
+      const vm = this
       function animate () {
         if (TWEEN.update()) {
           requestAnimationFrame(animate)
@@ -464,7 +464,7 @@ new Vue({
     secondNumber: 40
   },
   computed: {
-    result: function () {
+    result() {
       return this.firstNumber + this.secondNumber
     }
   }
@@ -492,22 +492,22 @@ Vue.component('animated-integer', {
       required: true
     }
   },
-  data: function () {
+  data() {
     return {
       tweeningValue: 0
     }
   },
   watch: {
-    value: function (newValue, oldValue) {
+    value(newValue, oldValue) {
       this.tween(oldValue, newValue)
     }
   },
-  mounted: function () {
+  mounted() {
     this.tween(0, this.value)
   },
   methods: {
-    tween: function (startValue, endValue) {
-      var vm = this
+    tween(startValue, endValue) {
+      const vm = this
       function animate () {
         if (TWEEN.update()) {
           requestAnimationFrame(animate)
@@ -532,7 +532,7 @@ new Vue({
     secondNumber: 40
   },
   computed: {
-    result: function () {
+    result() {
       return this.firstNumber + this.secondNumber
     }
   }

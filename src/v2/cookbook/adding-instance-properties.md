@@ -16,7 +16,7 @@ Now `$appName` is available on all Vue instances, even before creation. If we ru
 
 ``` js
 new Vue({
-  beforeCreate: function () {
+  beforeCreate() {
     console.log(this.$appName)
   }
 })
@@ -49,10 +49,10 @@ new Vue({
     // instance property we just defined!
     appName: 'The name of some other app'
   },
-  beforeCreate: function () {
+  beforeCreate() {
     console.log(this.appName)
   },
-  created: function () {
+  created() {
     console.log(this.appName)
   }
 })
@@ -91,7 +91,7 @@ new Vue({
     users: []
   },
   created () {
-    var vm = this
+    const vm = this
     this.$http.get('https://jsonplaceholder.typicode.com/users')
       .then(function (response) {
         vm.users = response.data
@@ -115,7 +115,7 @@ new Vue({
   data: {
     message: 'Hello'
   },
-  created: function () {
+  created() {
     console.log(this.message)    // => "Hello"
     this.$reverseText('message')
     console.log(this.message)    // => "olleH"
@@ -156,13 +156,13 @@ In applications with __no__ module system (e.g. via Webpack or Browserify), ther
 If what you want to add has nothing to do with Vue specifically, this may be a good alternative to reach for. Here's an example:
 
 ``` js
-var App = Object.freeze({
+const App = Object.freeze({
   name: 'My App',
   description: '2.1.4',
   helpers: {
     // This is a purely functional version of
     // the $reverseText method we saw earlier
-    reverseText: function (text) {
+    reverseText(text) {
       return text.split('').reverse().join('')
     }
   }

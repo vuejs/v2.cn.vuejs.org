@@ -20,7 +20,7 @@ Vue.js 允许你自定义过滤器，可被用作一些常见的文本格式化�
 new Vue({
   // ...
   filters: {
-    capitalize: function (value) {
+    capitalize(value) {
       if (!value) return ''
       value = value.toString()
       return value.charAt(0).toUpperCase() + value.slice(1)

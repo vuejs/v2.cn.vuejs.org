@@ -14,7 +14,7 @@ order: 302
 </div>
 <script>
 Vue.directive('focus', {
-  inserted: function (el) {
+  inserted(el) {
     el.focus()
   }
 })
@@ -30,7 +30,7 @@ new Vue({
 // 注册一个全局自定义指令 v-focus
 Vue.directive('focus', {
   // 当绑定元素插入到 DOM 中。
-  inserted: function (el) {
+  inserted(el) {
     // 聚焦元素
     el.focus()
   }

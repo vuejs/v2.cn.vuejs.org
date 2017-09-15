@@ -37,7 +37,7 @@ var example1 = new Vue({
   </li>
 </ul>
 <script>
-var example1 = new Vue({
+const example1 = new Vue({
   el: '#example-1',
   data: {
     items: [
@@ -46,7 +46,7 @@ var example1 = new Vue({
     ]
   },
   watch: {
-    items: function () {
+    items() {
       smoothScroll.animateScroll(document.querySelector('#example-1'))
     }
   }
@@ -65,7 +65,7 @@ var example1 = new Vue({
 ```
 
 ``` js
-var example2 = new Vue({
+const example2 = new Vue({
   el: '#example-2',
   data: {
     parentMessage: 'Parent',
@@ -96,7 +96,7 @@ var example2 = new Vue({
     ]
   },
   watch: {
-    items: function () {
+    items() {
       smoothScroll.animateScroll(document.querySelector('#example-2'))
     }
   }
@@ -290,7 +290,7 @@ example1.items.splice(newLength)
 还是由于 JavaScript 的限制，**Vue 不能检测对象属性的添加或删除**：
 
 ``` js
-var vm = new Vue({
+const vm = new Vue({
   data: {
     a: 1
   }
@@ -304,7 +304,7 @@ vm.b = 2
 对于已经创建的实例，Vue 不能动态添加根级别的响应式属性。但是，可以使用 `Vue.set(object, key, value)` 方法向嵌套对象添加响应式属性。例如，对于：
 
 ``` js
-var vm = new Vue({
+const vm = new Vue({
   data: {
     userProfile: {
       name: 'Anika'
@@ -358,7 +358,7 @@ data: {
   numbers: [ 1, 2, 3, 4, 5 ]
 },
 computed: {
-  evenNumbers: function () {
+  evenNumbers() {
     return this.numbers.filter(function (number) {
       return number % 2 === 0
     })
@@ -377,7 +377,7 @@ data: {
   numbers: [ 1, 2, 3, 4, 5 ]
 },
 methods: {
-  even: function (numbers) {
+  even(numbers) {
     return numbers.filter(function (number) {
       return number % 2 === 0
     })
@@ -522,7 +522,7 @@ new Vue({
     nextTodoId: 4
   },
   methods: {
-    addNewTodo: function () {
+    addNewTodo() {
       this.todos.push({
         id: this.nextTodoId++,
         title: this.newTodoText
@@ -582,7 +582,7 @@ new Vue({
     nextTodoId: 4
   },
   methods: {
-    addNewTodo: function () {
+    addNewTodo() {
       this.todos.push({
         id: this.nextTodoId++,
         title: this.newTodoText

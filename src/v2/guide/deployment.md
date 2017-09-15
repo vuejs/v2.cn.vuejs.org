@@ -21,7 +21,7 @@ order: 401
 使用 Webpack 的 [DefinePlugin](https://webpack.github.io/docs/list-of-plugins.html#defineplugin) 来指定生产环境，以便在压缩时可以让 UglifyJS 自动删除代码块内的警告语句。例如配置：
 
 ``` js
-var webpack = require('webpack')
+const webpack = require('webpack')
 
 module.exports = {
   // ...

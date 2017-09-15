@@ -168,7 +168,7 @@ CommonJS 和 ES Module 构建同时保留原始的 `process.env.NODE_ENV` 检测
 使用 Webpack 的 [DefinePlugin](https://webpack.js.org/plugins/define-plugin/)：
 
 ``` js
-var webpack = require('webpack')
+const webpack = require('webpack')
 
 module.exports = {
   // ...

@@ -65,7 +65,7 @@ Vue.component('anchored-heading', {
 
 ``` js
 Vue.component('anchored-heading', {
-  render: function (createElement) {
+  render(createElement) {
     return createElement(
       'h' + this.level,   // tag name 标签名称
       this.$slots.default // 子组件中的阵列
@@ -111,7 +111,7 @@ HTML 的 DOM 节点树如下图所示：
 或者一个渲染函数里：
 
 ``` js
-render: function (createElement) {
+render(createElement) {
   return createElement('h1', this.blogTitle)
 }
 ```
@@ -230,7 +230,7 @@ createElement(
 有了这些知识，我们现在可以完成我们最开始想实现的组件：
 
 ``` js
-var getChildrenTextContent = function (children) {
+const getChildrenTextContent = function (children) {
   return children.map(function (node) {
     return node.children
       ? getChildrenTextContent(node.children)
@@ -239,9 +239,9 @@ var getChildrenTextContent = function (children) {
 }
 
 Vue.component('anchored-heading', {
-  render: function (createElement) {
+  render(createElement) {
     // create kebabCase id
-    var headingId = getChildrenTextContent(this.$slots.default)
+    const headingId = getChildrenTextContent(this.$slots.default)
       .toLowerCase()
       .replace(/\W+/g, '-')
       .replace(/(^\-|\-$)/g, '')
@@ -274,8 +274,8 @@ Vue.component('anchored-heading', {
 组件树中的所有 VNodes 必须是唯一的。这意味着，下面的 render function 是无效的：
 
 ``` js
-render: function (createElement) {
-  var myParagraphVNode = createElement('p', 'hi')
+render(createElement) {
+  const myParagraphVNode = createElement('p', 'hi')
   return createElement('div', [
     // 错误-重复的 VNodes
     myParagraphVNode, myParagraphVNode
@@ -286,7 +286,7 @@ render: function (createElement) {
 如果你真的需要重复很多次的元素/组件，你可以使用工厂函数来实现。例如，下面这个例子 render 函数完美有效地渲染了 20 个重复的段落：
 
 ``` js
-render: function (createElement) {
+render(createElement) {
   return createElement('div',
     Array.apply(null, { length: 20 }).map(function () {
       return createElement('p', 'hi')
@@ -310,7 +310,7 @@ render: function (createElement) {
 这些都会在 render 函数中被 JavaScript 的 `if`/`else` 和 `map` 重写：
 
 ``` js
-render: function (createElement) {
+render(createElement) {
   if (this.items.length) {
     return createElement('ul', this.items.map(function (item) {
       return createElement('li', item.name)
@@ -326,14 +326,14 @@ render: function (createElement) {
 render 函数中没有与 `v-model` 相应的 api - 你必须自己来实现相应的逻辑：
 
 ``` js
-render: function (createElement) {
-  var self = this
+render(createElement) {
+  const self = this
   return createElement('input', {
     domProps: {
       value: self.value
     },
     on: {
-      input: function (event) {
+      input(event) {
         self.value = event.target.value
         self.$emit('input', event.target.value)
       }
@@ -379,7 +379,7 @@ on: {
 
 ```javascript
 on: {
-  keyup: function (event) {
+  keyup(event) {
     // 如果触发事件的元素不是事件绑定的元素
     // 则返回
     if (event.target !== event.currentTarget) return
@@ -401,7 +401,7 @@ on: {
 你可以从 [`this.$slots`](../api/#vm-slots) 获取 VNodes 列表中的静态内容：
 
 ``` js
-render: function (createElement) {
+render(createElement) {
   // `<div><slot></slot></div>`
   return createElement('div', this.$slots.default)
 }
@@ -410,7 +410,7 @@ render: function (createElement) {
 还可以从 [`this.$scopedSlots`](../api/#vm-scopedSlots) 中获得能用作函数的作用域插槽，这个函数返回 VNodes：
 
 ``` js
-render: function (createElement) {
+render(createElement) {
   // `<div><slot :text="msg"></slot></div>`
   return createElement('div', [
     this.$scopedSlots.default({
@@ -494,7 +494,7 @@ Vue.component('my-component', {
   functional: true,
   // 为了弥补缺少的实例
   // 提供第二个参数作为上下文
-  render: function (createElement, context) {
+  render(createElement, context) {
     // ...
   },
   // Props 可选
@@ -615,12 +615,12 @@ new Vue({
     ',
   },
   computed: {
-    result: function () {
+    result() {
       if (!this.templateText) {
         return 'Enter a valid template above'
       }
       try {
-        var result = Vue.compile(this.templateText.replace(/\s{2,}/g, ''))
+        const result = Vue.compile(this.templateText.replace(/\s{2,}/g, ''))
         return {
           render: this.formatFunction(result.render),
           staticRenderFns: result.staticRenderFns.map(this.formatFunction)
@@ -631,7 +631,7 @@ new Vue({
     }
   },
   methods: {
-    formatFunction: function (fn) {
+    formatFunction(fn) {
       return fn.toString().replace(/(\{\n)(\S)/, '$1  $2')
     }
   }

@@ -402,19 +402,19 @@ methods: {
   // 进入中
   // --------
 
-  beforeEnter: function (el) {
+  beforeEnter(el) {
     // ...
   },
   // 此回调函数是可选项的设置
   // 与 CSS 结合时使用
-  enter: function (el, done) {
+  enter(el, done) {
     // ...
     done()
   },
-  afterEnter: function (el) {
+  afterEnter(el) {
     // ...
   },
-  enterCancelled: function (el) {
+  enterCancelled(el) {
     // ...
   },
 
@@ -422,20 +422,20 @@ methods: {
   // 离开时
   // --------
 
-  beforeLeave: function (el) {
+  beforeLeave(el) {
     // ...
   },
   // 此回调函数是可选项的设置
   // 与 CSS 结合时使用
-  leave: function (el, done) {
+  leave(el, done) {
     // ...
     done()
   },
-  afterLeave: function (el) {
+  afterLeave(el) {
     // ...
   },
   // leaveCancelled 只用于 v-show 中
-  leaveCancelled: function (el) {
+  leaveCancelled(el) {
     // ...
   }
 }
@@ -480,15 +480,15 @@ new Vue({
     show: false
   },
   methods: {
-    beforeEnter: function (el) {
+    beforeEnter(el) {
       el.style.opacity = 0
       el.style.transformOrigin = 'left'
     },
-    enter: function (el, done) {
+    enter(el, done) {
       Velocity(el, { opacity: 1, fontSize: '1.4em' }, { duration: 300 })
       Velocity(el, { fontSize: '1em' }, { complete: done })
     },
-    leave: function (el, done) {
+    leave(el, done) {
       Velocity(el, { translateX: '15px', rotateZ: '50deg' }, { duration: 600 })
       Velocity(el, { rotateZ: '100deg' }, { loop: 2 })
       Velocity(el, {
@@ -525,15 +525,15 @@ new Vue({
     show: false
   },
   methods: {
-    beforeEnter: function (el) {
+    beforeEnter(el) {
       el.style.opacity = 0
       el.style.transformOrigin = 'left'
     },
-    enter: function (el, done) {
+    enter(el, done) {
       Velocity(el, { opacity: 1, fontSize: '1.4em' }, { duration: 300 })
       Velocity(el, { fontSize: '1em' }, { complete: done })
     },
-    leave: function (el, done) {
+    leave(el, done) {
       Velocity(el, { translateX: '15px', rotateZ: '50deg' }, { duration: 600 })
       Velocity(el, { rotateZ: '100deg' }, { loop: 2 })
       Velocity(el, {
@@ -654,7 +654,7 @@ new Vue({
 ``` js
 // ...
 computed: {
-  buttonMessage: function () {
+  buttonMessage() {
     switch (this.docState) {
       case 'saved': return 'Edit'
       case 'edited': return 'Save'
@@ -986,13 +986,13 @@ new Vue({
     nextNum: 10
   },
   methods: {
-    randomIndex: function () {
+    randomIndex() {
       return Math.floor(Math.random() * this.items.length)
     },
-    add: function () {
+    add() {
       this.items.splice(this.randomIndex(), 0, this.nextNum++)
     },
-    remove: function () {
+    remove() {
       this.items.splice(this.randomIndex(), 1)
     },
   }
@@ -1032,13 +1032,13 @@ new Vue({
     nextNum: 10
   },
   methods: {
-    randomIndex: function () {
+    randomIndex() {
       return Math.floor(Math.random() * this.items.length)
     },
-    add: function () {
+    add() {
       this.items.splice(this.randomIndex(), 0, this.nextNum++)
     },
-    remove: function () {
+    remove() {
       this.items.splice(this.randomIndex(), 1)
     },
   }
@@ -1087,7 +1087,7 @@ new Vue({
     items: [1,2,3,4,5,6,7,8,9]
   },
   methods: {
-    shuffle: function () {
+    shuffle() {
       this.items = _.shuffle(this.items)
     }
   }
@@ -1117,7 +1117,7 @@ new Vue({
     items: [1,2,3,4,5,6,7,8,9]
   },
   methods: {
-    shuffle: function () {
+    shuffle() {
       this.items = _.shuffle(this.items)
     }
   }
@@ -1161,16 +1161,16 @@ new Vue({
     nextNum: 10
   },
   methods: {
-    randomIndex: function () {
+    randomIndex() {
       return Math.floor(Math.random() * this.items.length)
     },
-    add: function () {
+    add() {
       this.items.splice(this.randomIndex(), 0, this.nextNum++)
     },
-    remove: function () {
+    remove() {
       this.items.splice(this.randomIndex(), 1)
     },
-    shuffle: function () {
+    shuffle() {
       this.items = _.shuffle(this.items)
     }
   }
@@ -1213,16 +1213,16 @@ new Vue({
     nextNum: 10
   },
   methods: {
-    randomIndex: function () {
+    randomIndex() {
       return Math.floor(Math.random() * this.items.length)
     },
-    add: function () {
+    add() {
       this.items.splice(this.randomIndex(), 0, this.nextNum++)
     },
-    remove: function () {
+    remove() {
       this.items.splice(this.randomIndex(), 1)
     },
-    shuffle: function () {
+    shuffle() {
       this.items = _.shuffle(this.items)
     }
   }
@@ -1274,7 +1274,7 @@ new Vue({
       })
   },
   methods: {
-    shuffle: function () {
+    shuffle() {
       this.cells = _.shuffle(this.cells)
     }
   }
@@ -1349,20 +1349,20 @@ new Vue({
     ]
   },
   computed: {
-    computedList: function () {
-      var vm = this
+    computedList() {
+      const vm = this
       return this.list.filter(function (item) {
         return item.msg.toLowerCase().indexOf(vm.query.toLowerCase()) !== -1
       })
     }
   },
   methods: {
-    beforeEnter: function (el) {
+    beforeEnter(el) {
       el.style.opacity = 0
       el.style.height = 0
     },
-    enter: function (el, done) {
-      var delay = el.dataset.index * 150
+    enter(el, done) {
+      const delay = el.dataset.index * 150
       setTimeout(function () {
         Velocity(
           el,
@@ -1371,8 +1371,8 @@ new Vue({
         )
       }, delay)
     },
-    leave: function (el, done) {
-      var delay = el.dataset.index * 150
+    leave(el, done) {
+      const delay = el.dataset.index * 150
       setTimeout(function () {
         Velocity(
           el,
@@ -1418,20 +1418,20 @@ new Vue({
     ]
   },
   computed: {
-    computedList: function () {
-      var vm = this
+    computedList() {
+      const vm = this
       return this.list.filter(function (item) {
         return item.msg.toLowerCase().indexOf(vm.query.toLowerCase()) !== -1
       })
     }
   },
   methods: {
-    beforeEnter: function (el) {
+    beforeEnter(el) {
       el.style.opacity = 0
       el.style.height = 0
     },
-    enter: function (el, done) {
-      var delay = el.dataset.index * 150
+    enter(el, done) {
+      const delay = el.dataset.index * 150
       setTimeout(function () {
         Velocity(
           el,
@@ -1440,8 +1440,8 @@ new Vue({
         )
       }, delay)
     },
-    leave: function (el, done) {
-      var delay = el.dataset.index * 150
+    leave(el, done) {
+      const delay = el.dataset.index * 150
       setTimeout(function () {
         Velocity(
           el,
@@ -1474,10 +1474,10 @@ Vue.component('my-special-transition', {
     </transition>\
   ',
   methods: {
-    beforeEnter: function (el) {
+    beforeEnter(el) {
       // ...
     },
-    afterEnter: function (el) {
+    afterEnter(el) {
       // ...
     }
   }
@@ -1489,17 +1489,17 @@ Vue.component('my-special-transition', {
 ``` js
 Vue.component('my-special-transition', {
   functional: true,
-  render: function (createElement, context) {
+  render(createElement, context) {
     var data = {
       props: {
         name: 'very-special-transition',
         mode: 'out-in'
       },
       on: {
-        beforeEnter: function (el) {
+        beforeEnter(el) {
           // ...
         },
-        afterEnter: function (el) {
+        afterEnter(el) {
           // ...
         }
       }
@@ -1557,33 +1557,33 @@ new Vue({
     maxFadeDuration: 1500,
     stop: true
   },
-  mounted: function () {
+  mounted() {
     this.show = false
   },
   methods: {
-    beforeEnter: function (el) {
+    beforeEnter(el) {
       el.style.opacity = 0
     },
-    enter: function (el, done) {
-      var vm = this
+    enter(el, done) {
+      const vm = this
       Velocity(el,
         { opacity: 1 },
         {
           duration: this.fadeInDuration,
-          complete: function () {
+          complete() {
             done()
             if (!vm.stop) vm.show = false
           }
         }
       )
     },
-    leave: function (el, done) {
-      var vm = this
+    leave(el, done) {
+      const vm = this
       Velocity(el,
         { opacity: 0 },
         {
           duration: this.fadeOutDuration,
-          complete: function () {
+          complete() {
             done()
             vm.show = true
           }
@@ -1626,33 +1626,33 @@ new Vue({
     maxFadeDuration: 1500,
     stop: true
   },
-  mounted: function () {
+  mounted() {
     this.show = false
   },
   methods: {
-    beforeEnter: function (el) {
+    beforeEnter(el) {
       el.style.opacity = 0
     },
-    enter: function (el, done) {
-      var vm = this
+    enter(el, done) {
+      const vm = this
       Velocity(el,
         { opacity: 1 },
         {
           duration: this.fadeInDuration,
-          complete: function () {
+          complete() {
             done()
             if (!vm.stop) vm.show = false
           }
         }
       )
     },
-    leave: function (el, done) {
-      var vm = this
+    leave(el, done) {
+      const vm = this
       Velocity(el,
         { opacity: 0 },
         {
           duration: this.fadeOutDuration,
-          complete: function () {
+          complete() {
             done()
             vm.show = true
           }

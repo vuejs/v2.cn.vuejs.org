@@ -32,7 +32,7 @@ Vue.js 的核心是一个允许采用简洁的模板语法来声明式的将数�
 </div>
 ```
 ``` js
-var app = new Vue({
+const app = new Vue({
   el: '#app',
   data: {
     message: 'Hello Vue!'
@@ -44,7 +44,7 @@ var app = new Vue({
   {{ message }}
 </div>
 <script>
-var app = new Vue({
+const app = new Vue({
   el: '#app',
   data: {
     message: 'Hello Vue!'
@@ -65,7 +65,7 @@ var app = new Vue({
 </div>
 ```
 ``` js
-var app2 = new Vue({
+const app2 = new Vue({
   el: '#app-2',
   data: {
     message: '页面加载于 ' + new Date().toLocaleString()
@@ -79,7 +79,7 @@ var app2 = new Vue({
   </span>
 </div>
 <script>
-var app2 = new Vue({
+const app2 = new Vue({
   el: '#app-2',
   data: {
     message: '页面加载于 ' + new Date().toLocaleString()
@@ -102,7 +102,7 @@ var app2 = new Vue({
 </div>
 ```
 ``` js
-var app3 = new Vue({
+const app3 = new Vue({
   el: '#app-3',
   data: {
     seen: true
@@ -114,7 +114,7 @@ var app3 = new Vue({
   <span v-if="seen">现在你看到我了</span>
 </div>
 <script>
-var app3 = new Vue({
+const app3 = new Vue({
   el: '#app-3',
   data: {
     seen: true
@@ -139,7 +139,7 @@ var app3 = new Vue({
 </div>
 ```
 ``` js
-var app4 = new Vue({
+const app4 = new Vue({
   el: '#app-4',
   data: {
     todos: [
@@ -159,7 +159,7 @@ var app4 = new Vue({
   </ol>
 </div>
 <script>
-var app4 = new Vue({
+const app4 = new Vue({
   el: '#app-4',
   data: {
     todos: [
@@ -185,13 +185,13 @@ var app4 = new Vue({
 </div>
 ```
 ``` js
-var app5 = new Vue({
+const app5 = new Vue({
   el: '#app-5',
   data: {
     message: 'Hello Vue.js!'
   },
   methods: {
-    reverseMessage: function () {
+    reverseMessage() {
       this.message = this.message.split('').reverse().join('')
     }
   }
@@ -203,13 +203,13 @@ var app5 = new Vue({
   <button v-on:click="reverseMessage">逆转消息</button>
 </div>
 <script>
-var app5 = new Vue({
+const app5 = new Vue({
   el: '#app-5',
   data: {
     message: 'Hello Vue.js!'
   },
   methods: {
-    reverseMessage: function () {
+    reverseMessage() {
       this.message = this.message.split('').reverse().join('')
     }
   }
@@ -228,7 +228,7 @@ Vue 还提供了 `v-model` 指令，它能轻松实现表单输入和应用状�
 </div>
 ```
 ``` js
-var app6 = new Vue({
+const app6 = new Vue({
   el: '#app-6',
   data: {
     message: 'Hello Vue!'
@@ -333,7 +333,7 @@ Vue.component('todo-item', {
   props: ['todo'],
   template: '<li>{{ todo.text }}</li>'
 })
-var app7 = new Vue({
+const app7 = new Vue({
   el: '#app-7',
   data: {
     groceryList: [
