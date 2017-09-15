@@ -9,7 +9,7 @@ order: 3
 每个 Vue 应用都是通过 `Vue` 函数创建一个新的 **Vue 实例**开始的：
 
 ``` js
-var vm = new Vue({
+const vm = new Vue({
   // 选项
 })
 ```
@@ -39,10 +39,10 @@ Root Instance
 
 ``` js
 // 我们的数据对象
-var data = { a: 1 }
+const data = { a: 1 }
 
 // 该对象被加入到一个 Vue 实例中
-var vm = new Vue({
+const vm = new Vue({
   data: data
 })
 
@@ -79,8 +79,8 @@ data: {
 除了 data 属性，Vue 实例暴露了一些有用的实例属性与方法。它们都有前缀 `$`，以便与用户定义的属性区分开来。例如：
 
 ``` js
-var data = { a: 1 }
-var vm = new Vue({
+const data = { a: 1 }
+const vm = new Vue({
   el: '#example',
   data: data
 })
@@ -89,7 +89,7 @@ vm.$data === data // => true
 vm.$el === document.getElementById('example') // => true
 
 // $watch 是一个实例方法
-vm.$watch('a', function (newValue, oldValue) {
+vm.$watch('a', (newValue, oldValue) => {
   // 这个回调将在 `vm.a` 改变后调用
 })
 ```
@@ -107,7 +107,7 @@ new Vue({
   data: {
     a: 1
   },
-  created: function () {
+  created() {
     // `this` 指向 vm 实例
     console.log('a is: ' + this.a)
   }
