@@ -54,7 +54,7 @@ store 实例不再暴露事件触发器 (event emitter) 接口 (`on`, `off`, `em
 为了替换正在使用观察 store 自身触发事件的这些接口，(例如：`store.on('mutation', callback)`)，我们引入新的方法 `store.subscribe`。在插件中的典型使用方式如下：
 
 ``` js
-var myPlugin = store => {
+const myPlugin = store => {
   store.subscribe(function (mutation, state) {
     // Do something...
   })

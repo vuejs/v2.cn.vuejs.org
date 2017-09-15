@@ -17,7 +17,7 @@ order: 9
 </div>
 ```
 ``` js
-var example1 = new Vue({
+const example1 = new Vue({
   el: '#example-1',
   data: {
     counter: 0
@@ -33,7 +33,7 @@ var example1 = new Vue({
   <p>这个按钮被点击了 {{ counter }} 次。</p>
 </div>
 <script>
-var example1 = new Vue({
+const example1 = new Vue({
   el: '#example-1',
   data: {
     counter: 0
@@ -56,14 +56,14 @@ var example1 = new Vue({
 ```
 
 ``` js
-var example2 = new Vue({
+const example2 = new Vue({
   el: '#example-2',
   data: {
     name: 'Vue.js'
   },
   // 在 `methods` 对象中定义方法
   methods: {
-    greet: function (event) {
+    greet(event) {
       // `this` 在方法里指当前 Vue 实例
       alert('Hello ' + this.name + '!')
       // `event` 是原生 DOM 事件
@@ -91,7 +91,7 @@ var example2 = new Vue({
     name: 'Vue.js'
   },
   methods: {
-    greet: function (event) {
+    greet(event) {
       alert('Hello ' + this.name + '!')
       if (event) {
         alert(event.target.tagName)
@@ -116,7 +116,7 @@ var example2 = new Vue({
 new Vue({
   el: '#example-3',
   methods: {
-    say: function (message) {
+    say(message) {
       alert(message)
     }
   }
@@ -134,7 +134,7 @@ new Vue({
 new Vue({
   el: '#example-3',
   methods: {
-    say: function (message) {
+    say(message) {
       alert(message)
     }
   }
@@ -153,7 +153,7 @@ new Vue({
 ``` js
 // ...
 methods: {
-  warn: function (message, event) {
+  warn(message, event) {
     // 现在我们可以访问原生事件对象
     if (event) event.preventDefault()
     alert(message)

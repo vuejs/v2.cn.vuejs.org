@@ -66,7 +66,7 @@ router.map({
 会以这种方式定义：
 
 ``` js
-var router = new VueRouter({
+const router = new VueRouter({
   routes: [
     { path: '/foo', component: Foo },
     { path: '/bar', component: Bar }
@@ -89,7 +89,7 @@ var router = new VueRouter({
 
 ``` js
 // 普通的路由
-var routes = [
+const routes = [
   // ...
 ]
 
@@ -106,7 +106,7 @@ marketingPages.forEach(function (page) {
   })
 })
 
-var router = new Router({
+const router = new Router({
   routes: routes
 })
 ```
@@ -376,7 +376,7 @@ Hashbangs 将不再为谷歌需要去爬去一个网址，所以他们将不再�
 所有路由模型选项将被简化成一个单个的[`mode` 选项](https://router.vuejs.org/zh-cn/api/options.html#mode)。你需要更新：
 
 ``` js
-var router = new VueRouter({
+const router = new VueRouter({
   history: 'true'
 })
 ```
@@ -384,7 +384,7 @@ var router = new VueRouter({
 成这个写法：
 
 ``` js
-var router = new VueRouter({
+const router = new VueRouter({
   mode: 'history'
 })
 ```
@@ -401,7 +401,7 @@ var router = new VueRouter({
 所有路由模型选项将被简化成一个单个的[`mode` 选项](https://router.vuejs.org/zh-cn/api/options.html#mode)。你需要更新：
 
 ``` js
-var router = new VueRouter({
+const router = new VueRouter({
   abstract: 'true'
 })
 ```
@@ -409,7 +409,7 @@ var router = new VueRouter({
 成这个写法：
 
 ``` js
-var router = new VueRouter({
+const router = new VueRouter({
   mode: 'abstract'
 })
 ```
@@ -545,7 +545,7 @@ watch: {
   '$route': 'fetchData'
 },
 methods: {
-  fetchData: function () {
+  fetchData() {
     // ...
   }
 }
@@ -580,7 +580,7 @@ watch: {
   }
 },
 methods: {
-  fetchData: function () {
+  fetchData() {
     var self = this
     return axios.get('/api/posts')
       .then(function (response) {

@@ -37,7 +37,7 @@ MyPlugin.install = function (Vue, options) {
 
   // 3. 注入组件
   Vue.mixin({
-    created: function () {
+    created() {
       // 逻辑...
     }
     ...

@@ -12,23 +12,23 @@ order: 301
 
 ``` js
 // 定义一个混合对象
-var myMixin = {
-  created: function () {
+const myMixin = {
+  created() {
     this.hello()
   },
   methods: {
-    hello: function () {
+    hello() {
       console.log('hello from mixin!')
     }
   }
 }
 
 // 定义一个使用混合对象的组件
-var Component = Vue.extend({
+const Component = Vue.extend({
   mixins: [myMixin]
 })
 
-var component = new Component() // => "hello from mixin!"
+const component = new Component() // => "hello from mixin!"
 ```
 
 ## 选项合并
@@ -36,15 +36,15 @@ var component = new Component() // => "hello from mixin!"
 当组件和混合对象含有同名选项时，这些选项将以恰当的方式混合。比如，同名钩子函数将混合为一个数组，因此都将被调用。另外，混合对象的 钩子将在组件自身钩子 **之前** 调用 ：
 
 ``` js
-var mixin = {
-  created: function () {
+const mixin = {
+  created() {
     console.log('混合对象的钩子被调用')
   }
 }
 
 new Vue({
   mixins: [mixin],
-  created: function () {
+  created() {
     console.log('组件钩子被调用')
   }
 })
@@ -56,24 +56,24 @@ new Vue({
 值为对象的选项，例如 `methods`, `components` 和 `directives`，将被混合为同一个对象。两个对象键名冲突时，取组件对象的键值对。
 
 ``` js
-var mixin = {
+const mixin = {
   methods: {
-    foo: function () {
+    foo() {
       console.log('foo')
     },
-    conflicting: function () {
+    conflicting() {
       console.log('from mixin')
     }
   }
 }
 
-var vm = new Vue({
+const vm = new Vue({
   mixins: [mixin],
   methods: {
-    bar: function () {
+    bar() {
       console.log('bar')
     },
-    conflicting: function () {
+    conflicting() {
       console.log('from self')
     }
   }

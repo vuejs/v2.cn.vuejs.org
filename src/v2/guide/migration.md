@@ -247,7 +247,7 @@ mounted: function () {
 props: {
   username: {
     type: String,
-    coerce: function (value) {
+    coerce(value) {
       return value
         .toLowerCase()
         .replace(/\s+/, '-')
@@ -263,7 +263,7 @@ props: {
   username: String,
 },
 computed: {
-  normalizedUsername: function () {
+  normalizedUsername() {
     return this.username
       .toLowerCase()
       .replace(/\s+/, '-')
@@ -353,7 +353,7 @@ template: '<p>message: {{ timeMessage }}</p>',
 computed: {
   timeMessage: {
     cache: false,
-    get: function () {
+    get() {
       return Date.now() + this.message
     }
   }
@@ -365,7 +365,7 @@ computed: {
 ``` js
 template: '<p>message: {{ getTimeMessage }}</p>',
 methods: {
-  getTimeMessage: function () {
+  getTimeMessage() {
     return Date.now() + this.message
   }
 }
@@ -431,7 +431,7 @@ new Vue({
     isCalculating: false
   },
   computed: {
-    searchIndicator: function () {
+    searchIndicator() {
       if (this.isCalculating) {
         return '⟳ Fetching new results'
       } else if (this.searchQueryIsDirty) {
@@ -442,7 +442,7 @@ new Vue({
     }
   },
   watch: {
-    searchQuery: function () {
+    searchQuery() {
       this.searchQueryIsDirty = true
       this.expensiveOperation()
     }
@@ -484,7 +484,7 @@ new Vue({
     isCalculating: false
   },
   computed: {
-    searchIndicator: function () {
+    searchIndicator() {
       if (this.isCalculating) {
         return '⟳ Fetching new results'
       } else if (this.searchQueryIsDirty) {
@@ -495,7 +495,7 @@ new Vue({
     }
   },
   watch: {
-    searchQuery: function () {
+    searchQuery() {
       this.searchQueryIsDirty = true
       this.expensiveOperation()
     }
@@ -805,7 +805,7 @@ Todos
 ``` js
 // 将在各处使用该事件中心
 // 组件通过它来通信
-var eventHub = new Vue()
+const eventHub = new Vue()
 ```
 
 然后在组件中，可以使用 `$emit`, `$on`, `$off` 分别来分发、监听、取消监听事件：
@@ -814,7 +814,7 @@ var eventHub = new Vue()
 // NewTodoInput
 // ...
 methods: {
-  addTodo: function () {
+  addTodo() {
     eventHub.$emit('add-todo', { text: this.newTodoText })
     this.newTodoText = ''
   }
@@ -825,7 +825,7 @@ methods: {
 // DeleteTodoButton
 // ...
 methods: {
-  deleteTodo: function (id) {
+  deleteTodo(id) {
     eventHub.$emit('delete-todo', id)
   }
 }
@@ -834,21 +834,21 @@ methods: {
 ``` js
 // Todos
 // ...
-created: function () {
+created() {
   eventHub.$on('add-todo', this.addTodo)
   eventHub.$on('delete-todo', this.deleteTodo)
 },
 // 最好在组件销毁前
 // 清除事件监听
-beforeDestroy: function () {
+beforeDestroy() {
   eventHub.$off('add-todo', this.addTodo)
   eventHub.$off('delete-todo', this.deleteTodo)
 },
 methods: {
-  addTodo: function (newTodo) {
+  addTodo(newTodo) {
     this.todos.push(newTodo)
   },
-  deleteTodo: function (todoId) {
+  deleteTodo(todoId) {
     this.todos = this.todos.filter(function (todo) {
       return todo.id !== todoId
     })
@@ -883,7 +883,7 @@ methods: {
 
 ``` js
 methods: {
-  doStuff: function () {
+  doStuff() {
     // ...
   }
 }
@@ -921,7 +921,7 @@ methods: {
 
 ``` js
 computed: {
-  filteredItems: function () {
+  filteredItems() {
     return this.items.slice(0, 10)
   }
 }
@@ -943,8 +943,8 @@ computed: {
 
 ``` js
 computed: {
-  filteredUsers: function () {
-    var self = this
+  filteredUsers() {
+    const self = this
     return self.users.filter(function (user) {
       return user.name.indexOf(self.searchQuery) !== -1
     })
@@ -955,9 +955,9 @@ computed: {
 js 原生的 `.filter` 同样能实现很多复杂的过滤器操作，因为可以在计算 computed 属性中使用所有 js 方法。比如，想要通过匹配用户名字和电子邮箱地址 (不区分大小写) 找到用户：
 
 ``` js
-var self = this
+const self = this
 self.users.filter(function (user) {
-  var searchRegex = new RegExp(self.searchQuery, 'i')
+  const searchRegex = new RegExp(self.searchQuery, 'i')
   return user.isActive && (
     searchRegex.test(user.name) ||
     searchRegex.test(user.email)
@@ -981,7 +981,7 @@ self.users.filter(function (user) {
 
 ``` js
 computed: {
-  orderedUsers: function () {
+  orderedUsers() {
     return _.orderBy(this.users, 'name')
   }
 }
@@ -1212,7 +1212,7 @@ function pluralizeKnife (count) {
 
 ``` js
 computed: {
-  buttonClasses: function () {
+  buttonClasses() {
     return 'btn btn-' + size
   }
 }
@@ -1301,8 +1301,8 @@ HTML 的计算插值 (`{% raw %}{{{ foo }}}{% endraw %}`) 已经移除，取代�
 
 ``` js
 methods: {
-  removeTodo: function (todo) {
-    var index = this.todos.indexOf(todo)
+  removeTodo(todo) {
+    const index = this.todos.indexOf(todo)
     this.todos.splice(index, 1)
   }
 }
@@ -1312,7 +1312,7 @@ methods: {
 
 ``` js
 methods: {
-  removeTodo: function (index) {
+  removeTodo(index) {
     this.todos.splice(index, 1)
   }
 }
@@ -1479,7 +1479,7 @@ new Vue({
 ``` js
 new Vue({
   el: '#app',
-  render: function (h) {
+  render(h) {
     h('div', {
       attrs: {
         id: 'app',

@@ -149,7 +149,7 @@ Vue.component('simple-counter', {
   template: '<button v-on:click="counter += 1">{{ counter }}</button>',
   // 技术上 data 的确是一个函数了，因此 Vue 不会警告，
   // 但是我们返回给每个组件的实例却引用了同一个 data 对象
-  data: function () {
+  data() {
     return data
   }
 })
@@ -166,10 +166,10 @@ new Vue({
   <simple-counter></simple-counter>
 </div>
 <script>
-var data = { counter: 0 }
+const data = { counter: 0 }
 Vue.component('simple-counter', {
   template: '<button v-on:click="counter += 1">{{ counter }}</button>',
-  data: function () {
+  data() {
     return data
   }
 })
@@ -182,7 +182,7 @@ new Vue({
 由于这三个组件共享了同一个 `data`，因此增加一个 counter 会影响所有组件！这不对。我们可以通过为每个组件返回全新的 data 对象来解决这个问题：
 
 ``` js
-data: function () {
+data() {
   return {
     counter: 0
   }
@@ -200,7 +200,7 @@ data: function () {
 <script>
 Vue.component('my-component', {
   template: '<button v-on:click="counter += 1">{{ counter }}</button>',
-  data: function () {
+  data() {
     return {
       counter: 0
     }
@@ -428,13 +428,13 @@ Vue.component('example', {
     // 数组/对象的默认值应当由一个工厂函数返回
     propE: {
       type: Object,
-      default: function () {
+      default() {
         return { message: 'hello' }
       }
     },
     // 自定义验证函数
     propF: {
-      validator: function (value) {
+      validator(value) {
         return value > 10
       }
     }
@@ -524,13 +524,13 @@ Vue.component('example', {
 ``` js
 Vue.component('button-counter', {
   template: '<button v-on:click="incrementCounter">{{ counter }}</button>',
-  data: function () {
+  data() {
     return {
       counter: 0
     }
   },
   methods: {
-    incrementCounter: function () {
+    incrementCounter() {
       this.counter += 1
       this.$emit('increment')
     }
@@ -543,7 +543,7 @@ new Vue({
     total: 0
   },
   methods: {
-    incrementTotal: function () {
+    incrementTotal() {
       this.total += 1
     }
   }
@@ -559,13 +559,13 @@ new Vue({
 <script>
 Vue.component('button-counter', {
   template: '<button v-on:click="incrementCounter">{{ counter }}</button>',
-  data: function () {
+  data() {
     return {
       counter: 0
     }
   },
   methods: {
-    incrementCounter: function () {
+    incrementCounter() {
       this.counter += 1
       this.$emit('increment')
     }
@@ -577,7 +577,7 @@ new Vue({
     total: 0
   },
   methods: {
-    incrementTotal: function () {
+    incrementTotal() {
       this.total += 1
     }
   }
@@ -674,7 +674,7 @@ Vue.component('currency-input', {
   props: ['value'],
   methods: {
     // 不是直接更新值，而是使用此方法来对输入值进行格式化和位数限制
-    updateValue: function (value) {
+    updateValue(value) {
       var formattedValue = value
         // 删除两侧的空格符
         .trim()
@@ -714,7 +714,7 @@ Vue.component('currency-input', {
   ',
   props: ['value'],
   methods: {
-    updateValue: function (value) {
+    updateValue(value) {
       var formattedValue = value
         .trim()
         .slice(
@@ -846,7 +846,7 @@ bus.$on('id-selected', function (id) {
 Vue.component('child-component', {
   // 有效，因为是在正确的作用域内
   template: '<div v-show="someChildProperty">Child</div>',
-  data: function () {
+  data() {
     return {
       someChildProperty: true
     }
@@ -1017,7 +1017,7 @@ Vue.component('child-component', {
 
 通过使用保留的 `<component>` 元素，动态地绑定到它的 `is` 特性，我们让多个组件可以使用同一个挂载点，并动态切换：
 ``` js
-var vm = new Vue({
+const vm = new Vue({
   el: '#example',
   data: {
     currentView: 'home'
@@ -1039,11 +1039,11 @@ var vm = new Vue({
 也可以直接绑定到组件对象上：
 
 ``` js
-var Home = {
+const Home = {
   template: '<p>Welcome home!</p>'
 }
 
-var vm = new Vue({
+const vm = new Vue({
   el: '#example',
   data: {
     currentView: Home
@@ -1104,9 +1104,9 @@ Vue 组件的 API 来自三部分 - props, events 和 slots ：
 ```
 
 ``` js
-var parent = new Vue({ el: '#parent' })
+const parent = new Vue({ el: '#parent' })
 // 访问子组件
-var child = parent.$refs.profile
+const child = parent.$refs.profile
 ```
 
 当 `ref` 和 `v-for` 一起使用时，ref 是一个数组，包含相应的子组件。
@@ -1119,7 +1119,7 @@ var child = parent.$refs.profile
 
 ``` js
 Vue.component('async-example', function (resolve, reject) {
-  setTimeout(function () {
+  setTimeout( () => {
     // Pass the component definition to the resolve callback
     resolve({
       template: '<div>I am async!</div>'
@@ -1303,7 +1303,7 @@ Failed to mount component: template or render function not defined.
 在我们的例子中，我们选择在`tree-folder` 组件中来告诉模块化管理系统循环引用的组件间的处理优先级，我们知道引起矛盾的子组件是`tree-folder-contents`，所以我们在`beforeCreate` 生命周期钩子中去注册它：
 
 ``` js
-beforeCreate: function () {
+beforeCreate() {
   this.$options.components.TreeFolderContents = require('./tree-folder-contents.vue').default
 }
 ```
