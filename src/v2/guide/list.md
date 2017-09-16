@@ -6,7 +6,7 @@ order: 8
 
 ## 用 `v-for` 把一个数组对应为一组元素
 
-我们用 `v-for` 指令根据一组数组的选项列表进行渲染。`v-for` 指令需要以 `item in items` 形式的特殊语法，`items` 是源数据数组并且 `item` 是数组元素迭代的别名。
+我们用 `v-for` 指令根据一组数组的选项列表进行渲染。`v-for` 指令需要使用 `item in items` 形式的特殊语法，`items` 是源数据数组并且 `item` 是数组元素迭代的别名。
 
 ``` html
 <ul id="example-1">
