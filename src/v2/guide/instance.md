@@ -117,7 +117,7 @@ new Vue({
 
 也有一些其它的钩子，在实例生命周期的不同场景下调用，如 [`mounted`](../api/#mounted)、[`updated`](../api/#updated)、[`destroyed`](../api/#destroyed)。钩子的 `this` 指向调用它的 Vue 实例。
 
-<p class="tip">不要在选项属性或回调上使用[箭头函数](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/Arrow_functions)，比如 `created: () => console.log(this.a)` 或 `vm.$watch('a', newValue => this.myMethod())`。因为箭头函数是和父级上下文绑定在一起的，`this` 不会是如你做预期的 Vue 实例，且 `this.a` 或 `this.myMethod` 也会是未定义的。</p>
+<p class="tip">不要在选项属性或回调上使用[箭头函数](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/Arrow_functions)，比如 `created: () => console.log(this.a)` 或 `vm.$watch('a', newValue => this.myMethod())`。因为箭头函数是和父级上下文绑定在一起的，`this` 不会是如你所预期的 Vue 实例，且 `this.a` 或 `this.myMethod` 也会是未定义的。</p>
 
 ## 生命周期图示
 
