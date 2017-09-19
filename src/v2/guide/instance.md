@@ -53,7 +53,7 @@ vm.a === data.a // => true
 vm.a = 2
 data.a // => 2
 
-// ... and vice-versa
+// ... 反之亦然
 data.a = 3
 vm.a // => 3
 ```
