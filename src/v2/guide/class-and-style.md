@@ -140,7 +140,7 @@ HTML 最终将被渲染成为：
 <my-component v-bind:class="{ active: isActive }"></my-component>
 ```
 
-当 `isActive` 为 truthy 的时候，HTML 将被渲染成为：
+当 `isActive` 为 truthy 值 (译者注：truthy 不是 `true`，[参考这里](https://developer.mozilla.org/zh-CN/docs/Glossary/Truthy)) 的时候，HTML 将被渲染成为：
 
 ``` html
 <p class="foo bar active">Hi</p>
