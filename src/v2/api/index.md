@@ -648,7 +648,7 @@ type: api
 
   <p class="tip">出于安全考虑，您应该只使用您信任的 Vue 模板。避免使用其他人生成的内容作为您的模板。</p>
 
-  <p class="tip">如果 Vue 选项中包含 `render` 函数，template 选项将被忽略。</p>
+  <p class="tip">如果 Vue 选项中包含渲染函数，该模板将被忽略。</p>
 
 - **参考**：
   - [生命周期图示](../guide/instance.html#生命周期图示)
@@ -660,11 +660,11 @@ type: api
 
   - **详细**：
 
-    字符串模板的代替方案，允许你发挥 JavaScript 最大的编程能力。`render` 函数接收一个 `createElement` 方法作为第一个参数用来创建 `VNode`。
+    字符串模板的代替方案，允许你发挥 JavaScript 最大的编程能力。该渲染函数接收一个 `createElement` 方法作为第一个参数用来创建 `VNode`。
 
     如果组件是一个函数组件，渲染函数还会接收一个额外的 `context` 参数，为没有实例的函数组件提供上下文信息。
 
-    <p class="tip">Vue 选项中的 `render` 函数若存在，则 Vue 构造函数不会从 `template` 选项或通过 `el` 选项指定的挂载元素中提取出的 HTML 模板编译 `render` 函数。</p>
+    <p class="tip">Vue 选项中的 `render` 函数若存在，则 Vue 构造函数不会从 `template` 选项或通过 `el` 选项指定的挂载元素中提取出的 HTML 模板编译渲染函数。</p>
 
   - **参考**：[渲染函数](../guide/render-function.html)
 
@@ -1286,7 +1286,7 @@ type: api
 
   用来访问[作用域插槽](../guide/components.html#作用域插槽)。对于包括 `默认 slot` 在内的每一个插槽，该对象都包含一个返回相应 VNode 的函数。
 
-  在使用 [`render` 函数](../guide/render-function.html) 书写一个组件时，访问 `vm.$scopedSlots` 最有帮助。
+  `vm.$scopedSlots` 在使用[渲染函数](../guide/render-function.html)开发一个组件时特别有用。
 
 - **参考**：
   - [`<slot>` 组件](#slot-1)
@@ -1301,7 +1301,7 @@ type: api
 
 - **详细**：
 
-  一个对象，其中包含了所有拥有 `ref` 注册的子组件。
+  一个对象，持有已注册过 `ref` 的所有子组件。
 
 - **参考**：
   - [子组件引用](../guide/components.html#子组件索引)
