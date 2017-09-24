@@ -14,7 +14,7 @@ var vm = new Vue({
 })
 ```
 
-虽然没有完全遵循 [MVVM 模型](https://en.wikipedia.org/wiki/Model_View_ViewModel)， Vue 的设计无疑受到了它的启发。因此在文档中经常会使用 `vm` (ViewModel 的简称) 这个变量名表示 Vue 实例。
+虽然没有完全遵循 [MVVM 模型](https://en.wikipedia.org/wiki/Model_View_ViewModel)，Vue 的设计无疑受到了它的启发。因此在文档中经常会使用 `vm` (ViewModel 的简称) 这个变量名表示 Vue 实例。
 
 当你创建一个 Vue 实例时，你传入一个**选项对象**。这篇教程主要描述的就是如何使用这些选项来创建你想要的行为。作为参考，你也可以在 [API 文档](../api/#选项-数据)中浏览完整的选项列表。
 
@@ -53,7 +53,7 @@ vm.a === data.a // => true
 vm.a = 2
 data.a // => 2
 
-// ... and vice-versa
+// ... 反之亦然
 data.a = 3
 vm.a // => 3
 ```
@@ -76,7 +76,7 @@ data: {
 }
 ```
 
-除了 data 属性， Vue 实例暴露了一些有用的实例属性与方法。它们都有前缀 `$`，以便与用户定义的属性区分开来。例如：
+除了 data 属性，Vue 实例暴露了一些有用的实例属性与方法。它们都有前缀 `$`，以便与用户定义的属性区分开来。例如：
 
 ``` js
 var data = { a: 1 }
@@ -117,7 +117,7 @@ new Vue({
 
 也有一些其它的钩子，在实例生命周期的不同场景下调用，如 [`mounted`](../api/#mounted)、[`updated`](../api/#updated)、[`destroyed`](../api/#destroyed)。钩子的 `this` 指向调用它的 Vue 实例。
 
-<p class="tip">不要在选项属性或回调上使用[箭头函数](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/Arrow_functions)，比如 `created: () => console.log(this.a)` 或 `vm.$watch('a', newValue => this.myMethod())`。因为箭头函数是和父级上下文绑定在一起的，`this` 不会是你预期的 Vue 实例，且 `this.a` 或 `this.myMethod` 也会是未定义的。</p>
+<p class="tip">不要在选项属性或回调上使用[箭头函数](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/Arrow_functions)，比如 `created: () => console.log(this.a)` 或 `vm.$watch('a', newValue => this.myMethod())`。因为箭头函数是和父级上下文绑定在一起的，`this` 不会是如你所预期的 Vue 实例，且 `this.a` 或 `this.myMethod` 也会是未定义的。</p>
 
 ## 生命周期图示
 

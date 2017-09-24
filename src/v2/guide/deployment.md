@@ -10,7 +10,7 @@ order: 401
 
 ### 不用打包工具
 
-如果用 Vue 完整独立版本（直接用 `<script>` 元素引入 Vue），生产时应该用精简版本（`vue.min.js`)。请查看[安装指导](installation.html#直接-lt-script-gt-引入)，附有开发与精简版本。
+如果用 Vue 完整独立版本 (直接用 `<script>` 元素引入 Vue)，生产时应该用精简版本 (`vue.min.js`)。请查看[安装指导](installation.html#直接-lt-script-gt-引入)，附有开发与精简版本。
 
 ### 用打包工具
 
@@ -18,7 +18,7 @@ order: 401
 
 #### Webpack
 
-使用 Webpack 的 [DefinePlugin](http://webpack.github.io/docs/list-of-plugins.html#defineplugin) 来指定生产环境，以便在压缩时可以让 UglifyJS 自动删除代码块内的警告语句。例如配置：
+使用 Webpack 的 [DefinePlugin](https://webpack.github.io/docs/list-of-plugins.html#defineplugin) 来指定生产环境，以便在压缩时可以让 UglifyJS 自动删除代码块内的警告语句。例如配置：
 
 ``` js
 var webpack = require('webpack')
@@ -74,7 +74,7 @@ rollup({
 
 如果你使用 Webpack，并且喜欢分离 JavaScript 和模板文件，你可以使用 [vue-template-loader](https://github.com/ktsn/vue-template-loader)，它也可以在构建过程中把模板文件转换成为 JavaScript 渲染函数。
 
-## 提取 CSS
+## 提取组件的 CSS
 
 当使用单文件组件时，组件内的 CSS 会以 `<style>` 标签的方式通过 JavaScript 动态注入。这有一些小小的运行时开销，如果你使用服务端渲染，这会导致一段“无样式的内容瞬间 (fouc)”。横跨所有组件提取 CSS 到同一个文件回避这件事情，这也会更好的压缩和缓存 CSS。
 
@@ -86,4 +86,4 @@ rollup({
 
 ## 跟踪运行时错误
 
-如果在组件渲染时出现运行错误，错误将会被传递至全局 `Vue.config.errorHandler` 配置函数（如果已设置）。利用这个钩子函数和错误跟踪服务（如 [Sentry](https://sentry.io)，它为 Vue 提供[官方集成](https://sentry.io/for/vue/)），可能是个不错的主意。
+如果在组件渲染时出现运行错误，错误将会被传递至全局 `Vue.config.errorHandler` 配置函数 (如果已设置)。利用这个钩子函数和错误跟踪服务 (如 [Sentry](https://sentry.io)，它为 Vue 提供[官方集成](https://sentry.io/for/vue/))，可能是个不错的主意。

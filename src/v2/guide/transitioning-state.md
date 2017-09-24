@@ -13,10 +13,9 @@ Vue 的过渡系统提供了非常多简单的方法设置进入、离开和列�
 
 所有的原始数字都被事先存储起来，可以直接转换到数字。做到这一步，我们就可以结合 Vue 的响应式和组件系统，使用第三方库来实现切换元素的过渡状态。
 
+## 状态动画与观察者
 
-## 状态动画 与 watcher
-
-通过 watcher 我们能监听到任何数值属性的数值更新。可能听起来很抽象，所以让我们先来看看使用 [Tweenjs](https://github.com/tweenjs/tween.js) 一个例子：
+通过观察者我们能监听到任何数值属性的数值更新。可能听起来很抽象，所以让我们先来看看使用 [Tweenjs](https://github.com/tweenjs/tween.js) 一个例子：
 
 ``` html
 <script src="https://cdn.jsdelivr.net/npm/tween.js@16.3.4"></script>
@@ -95,7 +94,6 @@ new Vue({
 {% endraw %}
 
 当你把数值更新时，就会触发动画。这个是一个不错的演示，但是对于不能直接像数字一样存储的值，比如 CSS 中的 color 的值，通过下面的例子我们来通过 [Color.js](https://github.com/brehaut/color-js) 实现一个例子：
-
 
 ``` html
 <script src="https://cdn.jsdelivr.net/npm/tween.js@16.3.4"></script>
@@ -253,10 +251,9 @@ new Vue({
 </style>
 {% endraw %}
 
-## 动态状态转换
+## 动态状态过渡
 
-就像 Vue 的过渡组件一样，数据背后状态转换会实时更新，这对于原型设计十分有用。当你修改一些变量，即使是一个简单的 SVG 多边形也可实现很多难以想象的效果。
-
+就像 Vue 的过渡组件一样，数据背后状态过渡会实时更新，这对于原型设计十分有用。当你修改一些变量，即使是一个简单的 SVG 多边形也可实现很多难以想象的效果。
 
 {% raw %}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.5/TweenLite.min.js"></script>
@@ -389,11 +386,11 @@ function generatePoints (stats) {
 </style>
 {% endraw %}
 
-See [this fiddle](https://jsfiddle.net/chrisvfritz/65gLu2b6/) for the complete code behind the above demo.
+上述 demo 背后的代码可以通过[这个 fiddle](https://jsfiddle.net/chrisvfritz/65gLu2b6/) 进行详阅。
 
-## 通过组件组织过渡
+## 把过渡放到组件里
 
-管理太多的状态转换会很快的增加 Vue 实例或者组件的复杂性，幸好很多的动画可以提取到专用的子组件。
+管理太多的状态过渡会很快的增加 Vue 实例或者组件的复杂性，幸好很多的动画可以提取到专用的子组件。
 我们来将之前的示例改写一下：
 
 ``` html
@@ -416,7 +413,7 @@ See [this fiddle](https://jsfiddle.net/chrisvfritz/65gLu2b6/) for the complete c
 // 任何整数都可以执行动画
 // 组件化使我们的界面十分清晰
 // 可以支持更多更复杂的动态过渡
-// strategies.
+// 策略。
 Vue.component('animated-integer', {
   template: '<span>{{ tweeningValue }}</span>',
   props: {
@@ -459,7 +456,7 @@ Vue.component('animated-integer', {
   }
 })
 
-// All complexity has now been removed from the main Vue instance!
+// 所有的复杂度都已经从 Vue 的主实例中移除！
 new Vue({
   el: '#example-8',
   data: {

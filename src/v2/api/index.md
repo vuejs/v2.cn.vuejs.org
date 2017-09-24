@@ -42,7 +42,7 @@ type: api
 
   自定义合并策略的选项。
 
-  合并策略选项分别接受第一个参数作为父实例，第二个参数为子实例，Vue实例上下文被作为第三个参数传入。
+  合并策略选项分别接受第一个参数作为父实例，第二个参数为子实例，Vue 实例上下文被作为第三个参数传入。
 
 - **参考** [自定义选项的混合策略](../guide/mixins.html#自定义选项混合策略)
 
@@ -83,7 +83,7 @@ type: api
 
   > 从 2.4.0 起这个钩子也会捕获 Vue 自定义事件句柄内部的错误了。
 
-  > [Sentry](https://sentry.io), 一个错误追踪服务, 通过此选项提供[官方集成](https://sentry.io/for/vue/)。
+  > [Sentry](https://sentry.io)，一个错误追踪服务，通过此选项提供[官方集成](https://sentry.io/for/vue/)。
 
 ### warnHandler
 
@@ -117,7 +117,7 @@ type: api
   ]
   ```
 
-  须使 Vue 忽略在 Vue 之外的自定义元素 (e.g., 使用了 Web Components APIs)。否则，它会假设你忘记注册全局组件或者拼错了组件名称，从而抛出一个关于 `Unknown custom element` 的警告。
+  须使 Vue 忽略在 Vue 之外的自定义元素 (e.g. 使用了 Web Components APIs)。否则，它会假设你忘记注册全局组件或者拼错了组件名称，从而抛出一个关于 `Unknown custom element` 的警告。
 
 ### keyCodes
 
@@ -155,7 +155,7 @@ type: api
 
 - **用法**：
 
-  设置为 `true` 以在浏览器开发工具中启用对组件初始化，渲染和打补丁的性能追踪。只适用于开发模式和支持 [`performance.mark`](https://developer.mozilla.org/en-US/docs/Web/API/Performance/mark) API的浏览器上。
+  设置为 `true` 以在浏览器开发工具中启用对组件初始化，渲染和打补丁的性能追踪。只适用于开发模式和支持 [`performance.mark`](https://developer.mozilla.org/en-US/docs/Web/API/Performance/mark) API 的浏览器上。
   
 ### productionTip
 
@@ -238,7 +238,7 @@ type: api
   - `{string | number} key`
   - `{any} value`
 
-- **返回值**：设置的值.
+- **返回值**：设置的值。
 
 - **用法**：
 
@@ -282,7 +282,7 @@ type: api
     unbind: function () {}
   })
 
-  // 注册（传入一个简单的指令函数）
+  // 注册 (传入一个简单的指令函数)
   Vue.directive('my-directive', function () {
     // 这里将会被 `bind` 和 `update` 调用
   })
@@ -327,10 +327,10 @@ type: api
   // 注册组件，传入一个扩展过的构造器
   Vue.component('my-component', Vue.extend({ /* ... */ }))
 
-  // 注册组件，传入一个选项对象（自动调用 Vue.extend）
+  // 注册组件，传入一个选项对象 (自动调用 Vue.extend)
   Vue.component('my-component', { /* ... */ })
 
-  // 获取注册的组件（始终返回构造器）
+  // 获取注册的组件 (始终返回构造器)
   var MyComponent = Vue.component('my-component')
   ```
 
@@ -367,7 +367,7 @@ type: api
 
 - **用法**：
 
-  在render函数中编译模板字符串。**只在独立构建时有效**
+  在 render 函数中编译模板字符串。**只在独立构建时有效**
 
   ``` js
   var res = Vue.compile('<div><span>{{ msg }}</span></div>')
@@ -389,17 +389,17 @@ type: api
 
 - **用法**：
 
-```js
-var version = Number(Vue.version.split('.')[0])
+  ```js
+  var version = Number(Vue.version.split('.')[0])
 
-if (version === 2) {
-  // Vue v2.x.x
-} else if (version === 1) {
-  // Vue v1.x.x
-} else {
-  // Unsupported versions of Vue
-}
-```
+  if (version === 2) {
+    // Vue v2.x.x
+  } else if (version === 1) {
+    // Vue v1.x.x
+  } else {
+    // Unsupported versions of Vue
+  }
+  ```
 
 ## 选项 / 数据
 
@@ -411,13 +411,13 @@ if (version === 2) {
 
 - **详细**：
 
-  Vue 实例的数据对象。Vue 将会递归将 data 的属性转换为 getter/setter，从而让 data 的属性能够响应数据变化。**对象必须是纯粹的对象(含有零个或多个的key/value对)**：浏览器 API 创建的原生对象，原型上的属性会被忽略。大概来说，data 应该只能是数据 - 不推荐观察拥有状态行为的对象。
+  Vue 实例的数据对象。Vue 将会递归将 data 的属性转换为 getter/setter，从而让 data 的属性能够响应数据变化。**对象必须是纯粹的对象 (含有零个或多个的 key/value 对)**：浏览器 API 创建的原生对象，原型上的属性会被忽略。大概来说，data 应该只能是数据 - 不推荐观察拥有状态行为的对象。
 
   一旦观察过，不需要再次在数据对象上添加响应式属性。因此推荐在创建实例之前，就声明所有的根级响应式属性。
 
   实例创建之后，可以通过 `vm.$data` 访问原始数据对象。Vue 实例也代理了 data 对象上所有的属性，因此访问 `vm.a` 等价于访问 `vm.$data.a`。
 
-  以 `_` 或 `$` 开头的属性 **不会** 被 Vue 实例代理，因为它们可能和 Vue 内置的属性、 API 方法冲突。你可以使用例如 `vm.$data._property` 的方式访问这些属性。
+  以 `_` 或 `$` 开头的属性 **不会** 被 Vue 实例代理，因为它们可能和 Vue 内置的属性、API 方法冲突。你可以使用例如 `vm.$data._property` 的方式访问这些属性。
 
   当一个**组件**被定义，`data` 必须声明为返回一个初始数据对象的函数，因为组件可能被用来创建多个实例。如果 `data` 仍然是一个纯粹的对象，则所有的实例将**共享引用**同一个数据对象！通过提供 `data` 函数，每次创建一个新实例后，我们能够调用 `data` 函数，从而返回初始数据的一个全新副本数据对象。
 
@@ -628,7 +628,7 @@ if (version === 2) {
 
   如果这个选项在实例化时有作用，实例将立即进入编译过程，否则，需要显式调用 `vm.$mount()` 手动开启编译。
 
-  <p class="tip"> 提供的元素只能作为挂载点。不同于 Vue 1.x，所有的挂载元素会被 Vue 生成的 DOM 替换。因此不推荐挂载root实例到 `<html>` 或者 `<body>` 上。</p>
+  <p class="tip"> 提供的元素只能作为挂载点。不同于 Vue 1.x，所有的挂载元素会被 Vue 生成的 DOM 替换。因此不推荐挂载 root 实例到 `<html>` 或者 `<body>` 上。</p>
 
   <p class="tip">如果 `render` 函数和 `template` 属性都不存在，挂载 DOM 元素的 HTML 会被提取出来用作模板，此时，必须使用 Runtime + Compiler 构建的 Vue 库。</p>
 
@@ -642,17 +642,17 @@ if (version === 2) {
 
 - **详细**：
 
-  一个字符串模板作为 Vue 实例的标识使用。模板将会 **替换** 挂载的元素。挂载元素的内容都将被忽略，除非模板的内容有分发 slot。
+  一个字符串模板作为 Vue 实例的标识使用。模板将会 **替换** 挂载的元素。挂载元素的内容都将被忽略，除非模板的内容有分发插槽。
 
   如果值以 `#` 开始，则它用作选项符，将使用匹配元素的 innerHTML 作为模板。常用的技巧是用 `<script type="x-template">` 包含模板。
 
   <p class="tip">出于安全考虑，您应该只使用您信任的 Vue 模板。避免使用其他人生成的内容作为您的模板。</p>
 
-  <p class="tip">如果 Vue 选项中包含 `render` 函数，template 选项将被忽略。</p>
+  <p class="tip">如果 Vue 选项中包含渲染函数，该模板将被忽略。</p>
 
 - **参考**：
   - [生命周期图示](../guide/instance.html#生命周期图示)
-  - [用 Slots 分发内容](../guide/components.html#使用-Slots-分发内容)
+  - [用插槽分发内容](../guide/components.html#使用插槽分发内容)
 
 ### render
 
@@ -660,11 +660,11 @@ if (version === 2) {
 
   - **详细**：
 
-    字符串模板的代替方案，允许你发挥 JavaScript 最大的编程能力。`render` 函数接收一个 `createElement` 方法作为第一个参数用来创建 `VNode`。
+    字符串模板的代替方案，允许你发挥 JavaScript 最大的编程能力。该渲染函数接收一个 `createElement` 方法作为第一个参数用来创建 `VNode`。
 
     如果组件是一个函数组件，渲染函数还会接收一个额外的 `context` 参数，为没有实例的函数组件提供上下文信息。
 
-    <p class="tip">Vue 选项中的 `render` 函数若存在，则 Vue 构造函数不会从 `template` 选项或通过 `el` 选项指定的挂载元素中提取出的 HTML 模板编译 `render` 函数。</p>
+    <p class="tip">Vue 选项中的 `render` 函数若存在，则 Vue 构造函数不会从 `template` 选项或通过 `el` 选项指定的挂载元素中提取出的 HTML 模板编译渲染函数。</p>
 
   - **参考**：[渲染函数](../guide/render-function.html)
 
@@ -705,7 +705,7 @@ if (version === 2) {
 
 - **详细**：
 
-  在实例初始化之后，数据观测(data observer) 和 event/watcher 事件配置之前被调用。
+  在实例初始化之后，数据观测 (data observer) 和 event/watcher 事件配置之前被调用。
 
 - **参考**：[生命周期图示](../guide/instance.html#生命周期图示)
 
@@ -715,7 +715,7 @@ if (version === 2) {
 
 - **详细**：
 
-  实例已经创建完成之后被调用。在这一步，实例已完成以下的配置：数据观测(data observer)，属性和方法的运算，watch/event 事件回调。然而，挂载阶段还没开始，`$el` 属性目前不可见。
+  实例已经创建完成之后被调用。在这一步，实例已完成以下的配置：数据观测 (data observer)，属性和方法的运算，watch/event 事件回调。然而，挂载阶段还没开始，`$el` 属性目前不可见。
 
 - **参考**：[生命周期图示](../guide/instance.html#生命周期图示)
 
@@ -792,7 +792,6 @@ if (version === 2) {
   **该钩子在服务器端渲染期间不被调用。**
 
 - **参考**：[生命周期图示](../guide/instance.html#生命周期图示)
-
 
 ### activated
 
@@ -888,7 +887,7 @@ if (version === 2) {
 
   指定已创建的实例之父实例，在两者之间建立父子关系。子实例可以用 `this.$parent` 访问父实例，子实例被推入父实例的 `$children` 数组中。
 
-  <p class="tip">同时使用 `$parent` 和 `$children` 有冲突 - 他们作为同一个入口 。更推荐用 props 和 events 实现父子组件通信</p>
+  <p class="tip">节制地使用 `$parent` 和 `$children` - 它们的主要目的是作为访问组件的应急方法。更推荐用 props 和 events 实现父子组件通信</p>
 
 ### mixins
 
@@ -896,8 +895,8 @@ if (version === 2) {
 
 - **详细**：
 
-  `mixins` 选项接受一个混合对象的数组。这些混合实例对象可以像正常的实例对象一样包含选项,他们将在 `Vue.extend()` 里最终选择使用相同的选项合并逻辑合并。举例：如果你混合包含一个钩子而创建组件本身也有一个,两个函数将被调用。
-  Mixin钩子按照传入顺序依次调用,并在调用组件自身的钩子之前被调用。
+  `mixins` 选项接受一个混合对象的数组。这些混合实例对象可以像正常的实例对象一样包含选项，他们将在 `Vue.extend()` 里最终选择使用相同的选项合并逻辑合并。举例：如果你混合包含一个钩子而创建组件本身也有一个，两个函数将被调用。
+  Mixin 钩子按照传入顺序依次调用，并在调用组件自身的钩子之前被调用。
 
 - **示例**：
 
@@ -921,7 +920,7 @@ if (version === 2) {
 
 - **详细**：
 
-  允许声明扩展另一个组件(可以是一个简单的选项对象或构造函数),而无需使用 `Vue.extend`。这主要是为了便于扩展单文件组件。
+  允许声明扩展另一个组件(可以是一个简单的选项对象或构造函数)，而无需使用 `Vue.extend`。这主要是为了便于扩展单文件组件。
 
   这和 `mixins` 类似，区别在于，组件自身的选项会比要扩展的源组件具有更高的优先级。
 
@@ -1037,7 +1036,7 @@ if (version === 2) {
 
   允许组件模板递归地调用自身。注意，组件在全局用 `Vue.component()` 注册时，全局 ID 自动作为组件的 name。
 
-  指定 `name` 选项的另一个好处是便于调试。有名字的组件有更友好的警告信息。另外，当在有 [vue-devtools](https://github.com/vuejs/vue-devtools), 未命名组件将显示成 `<AnonymousComponent>`, 这很没有语义。通过提供 `name` 选项，可以获得更有语义信息的组件树。
+  指定 `name` 选项的另一个好处是便于调试。有名字的组件有更友好的警告信息。另外，当在有 [vue-devtools](https://github.com/vuejs/vue-devtools)，未命名组件将显示成 `<AnonymousComponent>`，这很没有语义。通过提供 `name` 选项，可以获得更有语义信息的组件树。
 
 ### delimiters
 
@@ -1067,9 +1066,9 @@ if (version === 2) {
 
 - **详细**：
 
-  使组件无状态（没有 `data` ）和无实例（没有 `this` 上下文）。他们用一个简单的 `render` 函数返回虚拟节点使他们更容易渲染。
+  使组件无状态 (没有 `data` ) 和无实例 (没有 `this` 上下文)。他们用一个简单的 `render` 函数返回虚拟节点使他们更容易渲染。
 
-- **参考**：[函数式组件](../guide/render-function.html#函数化组件)
+- **参考**：[函数式组件](../guide/render-function.html#函数式组件)
 
 ### model
 
@@ -1164,7 +1163,7 @@ if (version === 2) {
 
 - **详细**：
 
-一个对象，代表当前组件收到的 props。Vue 示例代理访问到这个 props 对象的属性们。
+  当前组件接收到的 props 对象。Vue 实例代理了对其 props 对象属性的访问。
 
 ### vm.$el
 
@@ -1233,7 +1232,7 @@ if (version === 2) {
 
 - **详细**：
 
-  用来访问被 [slot 分发](../guide/components.html#使用-Slots-分发内容)的内容。每个[具名 slot](../guide/components.html#具名-Slot) 有其相应的属性（例如：`slot="foo"` 中的内容将会在 `vm.$slots.foo` 中被找到）。`default` 属性包括了所有没有被包含在具名 slot 中的节点。
+  用来访问被[插槽分发](../guide/components.html#使用插槽分发内容)的内容。每个[具名插槽](../guide/components.html#具名插槽) 有其相应的属性 (例如：`slot="foo"` 中的内容将会在 `vm.$slots.foo` 中被找到)。`default` 属性包括了所有没有被包含在具名插槽中的节点。
 
   在使用[渲染函数](../guide/render-function.html)书写一个组件时，访问 `vm.$slots` 最有帮助。
 
@@ -1272,8 +1271,8 @@ if (version === 2) {
 
 - **参考**：
   - [`<slot>` 组件](#slot-1)
-  - [使用 Slots 分发内容](../guide/components.html#使用-Slots-分发内容)
-  - [渲染函数 - Slots](../guide/render-function.html#Slots)
+  - [使用插槽分发内容](../guide/components.html#使用插槽分发内容)
+  - [渲染函数 - 插槽](../guide/render-function.html#插槽)
 
 ### vm.$scopedSlots
 
@@ -1285,15 +1284,14 @@ if (version === 2) {
 
 - **详细**：
 
-  用来访问 [scoped slots](../guide/components.html#作用域插槽)。对于包括 `默认 slot` 在内的每一个 slot，该对象都包含一个返回相应 VNode 的函数。
+  用来访问[作用域插槽](../guide/components.html#作用域插槽)。对于包括 `默认 slot` 在内的每一个插槽，该对象都包含一个返回相应 VNode 的函数。
 
-  在使用 [`render` 函数](../guide/render-function.html) 书写一个组件时，访问 `vm.$scopedSlots` 最有帮助。
+  `vm.$scopedSlots` 在使用[渲染函数](../guide/render-function.html)开发一个组件时特别有用。
 
 - **参考**：
   - [`<slot>` 组件](#slot-1)
-  - [Scoped Slots](../guide/components.html#作用域插槽)
-  - [渲染函数 - Slots](../guide/render-function.html#Slots)
-
+  - [作用域插槽](../guide/components.html#作用域插槽)
+  - [渲染函数 - 插槽](../guide/render-function.html#插槽)
 
 ### vm.$refs
 
@@ -1303,7 +1301,7 @@ if (version === 2) {
 
 - **详细**：
 
-  一个对象，其中包含了所有拥有 `ref` 注册的子组件。
+  一个对象，持有已注册过 `ref` 的所有子组件。
 
 - **参考**：
   - [子组件引用](../guide/components.html#子组件索引)
@@ -1358,7 +1356,7 @@ if (version === 2) {
 
   观察 Vue 实例变化的一个表达式或计算属性函数。回调函数得到的参数为新值和旧值。表达式只接受监督的键路径。对于更复杂的表达式，用一个函数取代。
 
-  <p class="tip">注意：在变异（不是替换）对象或数组时，旧值将与新值相同，因为它们的引用指向同一个对象/数组。Vue 不会保留变异之前值的副本。</p>
+  <p class="tip">注意：在变异 (不是替换) 对象或数组时，旧值将与新值相同，因为它们的引用指向同一个对象/数组。Vue 不会保留变异之前值的副本。</p>
 
 - **示例**：
 
@@ -1417,7 +1415,7 @@ if (version === 2) {
   - `{string | number} key`
   - `{any} value`
 
-- **返回值**：设置的值.
+- **返回值**：设置的值。
 
 - **用法**：
 
@@ -1507,7 +1505,7 @@ if (version === 2) {
 
   如果 Vue 实例在实例化时没有收到 el 选项，则它处于“未挂载”状态，没有关联的 DOM 元素。可以使用 `vm.$mount()` 手动地挂载一个未挂载的实例。
 
-  如果没有提供 `elementOrSelector` 参数，模板将被渲染为文档之外的的元素，并且你必须使用原生DOM API把它插入文档中。
+  如果没有提供 `elementOrSelector` 参数，模板将被渲染为文档之外的的元素，并且你必须使用原生 DOM API 把它插入文档中。
 
   这个方法返回实例自身，因而可以链式调用其它实例方法。
 
@@ -1611,7 +1609,7 @@ if (version === 2) {
 
 - **详细**：
 
-  更新元素的 `innerHTML` 。**注意：内容按普通 HTML 插入 - 不会作为 Vue 模板进行编译** 。如果试图使用 `v-html` 组合模板,可以重新考虑是否通过使用组件来替代。
+  更新元素的 `innerHTML` 。**注意：内容按普通 HTML 插入 - 不会作为 Vue 模板进行编译** 。如果试图使用 `v-html` 组合模板，可以重新考虑是否通过使用组件来替代。
 
   <p class="tip">在网站上动态渲染任意 HTML 是非常危险的，因为容易导致 [XSS 攻击](https://en.wikipedia.org/wiki/Cross-site_scripting)。只在可信内容上使用 `v-html`，**永不**用在用户提交的内容上。</p>
 
@@ -1713,7 +1711,7 @@ if (version === 2) {
   </div>
   ```
 
-  另外也可以为数组索引指定别名（或者用于对象的键）：
+  另外也可以为数组索引指定别名 (或者用于对象的键)：
 
   ``` html
   <div v-for="(item, index) in items"></div>
@@ -1721,7 +1719,7 @@ if (version === 2) {
   <div v-for="(val, key, index) in object"></div>
   ```
 
-  `v-for` 默认行为试着不改变整体，而是替换元素。迫使其重新排序的元素,您需要提供一个 `key` 的特殊属性:
+  `v-for` 默认行为试着不改变整体，而是替换元素。迫使其重新排序的元素，您需要提供一个 `key` 的特殊属性：
 
   ``` html
   <div v-for="item in items" :key="item.id">
@@ -1803,7 +1801,7 @@ if (version === 2) {
   <button v-on:click.once="doThis"></button>
   ```
 
-  在子组件上监听自定义事件（当子组件触发“my-event”时将调用事件处理器）：
+  在子组件上监听自定义事件 (当子组件触发“my-event”时将调用事件处理器)：
 
   ```html
   <my-component @my-event="handleThis"></my-component>
@@ -1828,7 +1826,7 @@ if (version === 2) {
 - **参数**：`attrOrProp (optional)`
 
 - **修饰符**：
-  - `.prop` - 被用于绑定 DOM 属性。([what's the difference?](http://stackoverflow.com/questions/6003819/properties-and-attributes-in-html#answer-6004028))
+  - `.prop` - 被用于绑定 DOM 属性 (property)。([差别在哪里？](https://stackoverflow.com/questions/6003819/properties-and-attributes-in-html#answer-6004028))
   - `.camel` - (2.1.0+) 将 kebab-case 特性名转换为 camelCase. (从 2.1.0 开始支持)
   - `.sync` (2.3.0+) 语法糖，会扩展成一个更新父组件绑定值的 `v-on` 侦听器。
 
@@ -1959,7 +1957,7 @@ if (version === 2) {
 
 - **详细**：
 
-  只渲染元素和组件**一次**。随后的重新渲染,元素/组件及其所有的子节点将被视为静态内容并跳过。这可以用于优化更新性能。
+  只渲染元素和组件**一次**。随后的重新渲染，元素/组件及其所有的子节点将被视为静态内容并跳过。这可以用于优化更新性能。
 
   ```html
   <!-- 单个元素 -->
@@ -1987,11 +1985,11 @@ if (version === 2) {
 
 - **预期**：`number | string`
 
-  `key` 的特殊属性主要用在 Vue的虚拟DOM算法，在新旧nodes对比时辨识VNodes。如果不使用key，Vue会使用一种最大限度减少动态元素并且尽可能的尝试修复/再利用相同类型元素的算法。使用key，它会基于key的变化重新排列元素顺序，并且会移除key不存在的元素。
+  `key` 的特殊属性主要用在 Vue 的虚拟 DOM 算法，在新旧 nodes 对比时辨识 VNodes。如果不使用 key，Vue 会使用一种最大限度减少动态元素并且尽可能的尝试修复/再利用相同类型元素的算法。使用 key，它会基于 key 的变化重新排列元素顺序，并且会移除 key 不存在的元素。
 
-  有相同父元素的子元素必须有**独特的key**。重复的key会造成渲染错误。
+  有相同父元素的子元素必须有**独特的 key**。重复的 key 会造成渲染错误。
 
-  最常见的用例是结合 `v-for`:
+  最常见的用例是结合 `v-for`：
 
   ``` html
   <ul>
@@ -1999,12 +1997,12 @@ if (version === 2) {
   </ul>
   ```
 
-  它也可以用于强制替换元素/组件而不是重复使用它。当你遇到如下场景时它可能会很有用:
+  它也可以用于强制替换元素/组件而不是重复使用它。当你遇到如下场景时它可能会很有用：
 
   - 完整地触发组件的生命周期钩子
   - 触发过渡
 
-  例如:
+  例如：
 
   ``` html
   <transition>
@@ -2018,7 +2016,7 @@ if (version === 2) {
 
 - **预期**：`string`
 
-  `ref` 被用来给元素或子组件注册引用信息。引用信息将会注册在父组件的 `$refs` 对象上。如果在普通的 DOM 元素上使用，引用指向的就是 DOM 元素; 如果用在子组件上，引用就指向组件实例:
+  `ref` 被用来给元素或子组件注册引用信息。引用信息将会注册在父组件的 `$refs` 对象上。如果在普通的 DOM 元素上使用，引用指向的就是 DOM 元素；如果用在子组件上，引用就指向组件实例：
 
   ``` html
   <!-- vm.$refs.p will be the DOM node -->
@@ -2030,7 +2028,7 @@ if (version === 2) {
 
   当 `v-for` 用于元素或组件的时候，引用信息将是包含 DOM 节点或组件实例的数组。
 
-  关于ref注册时间的重要说明: 因为ref本身是作为渲染结果被创建的，在初始渲染的时候你不能访问它们 - 它们还不存在！`$refs` 也不是响应式的，因此你不应该试图用它在模板中做数据绑定。
+  关于 ref 注册时间的重要说明：因为 ref 本身是作为渲染结果被创建的，在初始渲染的时候你不能访问它们 - 它们还不存在！`$refs` 也不是响应式的，因此你不应该试图用它在模板中做数据绑定。
 
 - **参考**：[子组件 Refs](../guide/components.html#子组件索引)
 
@@ -2038,17 +2036,17 @@ if (version === 2) {
 
 - **预期**：`string`
 
-  用于标记往哪个slot中插入子组件内容。
+  用于标记往哪个具名插槽中插入子组件内容。
 
   详细用法，请参考下面指南部分的链接。
 
-- **参考**：[具名 Slots](../guide/components.html#具名-Slot)
+- **参考**：[具名插槽](../guide/components.html#具名插槽)
 
 ### is
 
 - **预期**：`string`
 
-  用于[动态组件](../guide/components.html#动态组件)且基于 [DOM 内模板到限制](../guide/components.html#DOM-模板解析说明)来工作。
+  用于[动态组件](../guide/components.html#动态组件)且基于 [DOM 内模板的限制](../guide/components.html#DOM-模板解析说明)来工作。
 
   示例：
 
@@ -2094,11 +2092,11 @@ if (version === 2) {
 ### transition
 
 - **Props**：
-  - `name` - string, 用于自动生成 CSS 过渡类名。例如：`name: 'fade'` 将自动拓展为`.fade-enter`，`.fade-enter-active`等。默认类名为 `"v"`
-  - `appear` - boolean, 是否在初始渲染时使用过渡。默认为 `false`。
-  - `css` - boolean, 是否使用 CSS 过渡类。默认为 `true`。如果设置为 `false`，将只通过组件事件触发注册的 JavaScript 钩子。
-  - `type` - string, 指定过渡事件类型，侦听过渡何时结束。有效值为 `"transition"` 和 `"animation"`。默认 Vue.js 将自动检测出持续时间长的为过渡事件类型。
-  - `mode` - string, 控制离开/进入的过渡时间序列。有效的模式有 `"out-in"` 和 `"in-out"`；默认同时生效。
+  - `name` - string，用于自动生成 CSS 过渡类名。例如：`name: 'fade'` 将自动拓展为`.fade-enter`，`.fade-enter-active`等。默认类名为 `"v"`
+  - `appear` - boolean，是否在初始渲染时使用过渡。默认为 `false`。
+  - `css` - boolean，是否使用 CSS 过渡类。默认为 `true`。如果设置为 `false`，将只通过组件事件触发注册的 JavaScript 钩子。
+  - `type` - string，指定过渡事件类型，侦听过渡何时结束。有效值为 `"transition"` 和 `"animation"`。默认 Vue.js 将自动检测出持续时间长的为过渡事件类型。
+  - `mode` - string，控制离开/进入的过渡时间序列。有效的模式有 `"out-in"` 和 `"in-out"`；默认同时生效。
   - `enter-class` - string
   - `leave-class` - string
   - `appear-class` - string
@@ -2163,20 +2161,20 @@ if (version === 2) {
 ### transition-group
 
 - **Props**：
-  - `tag` - string, 默认为 `span`
+  - `tag` - string，默认为 `span`
   - `move-class` - 覆盖移动过渡期间应用的 CSS 类。
   - 除了 `mode`，其他特性和 `<transition>` 相同。
 
 - **事件**：
-  - 事件和 `<transition>` 相同.
+  - 事件和 `<transition>` 相同。
 
 - **用法**：
 
   `<transition-group>` 元素作为多个元素/组件的过渡效果。`<transition-group>` 渲染一个真实的 DOM 元素。默认渲染 `<span>`，可以通过 `tag` 属性配置哪个元素应该被渲染。
 
-  注意，每个 `<transition-group>` 的子节点必须有 **独立的key** ，动画才能正常工作
+  注意，每个 `<transition-group>` 的子节点必须有 **独立的 key** ，动画才能正常工作
 
-  `<transition-group>` 支持通过 CSS transform 过渡移动。当一个子节点被更新，从屏幕上的位置发生变化，它将会获取应用 CSS 移动类（通过 `name` 属性或配置 `move-class` 属性自动生成）。如果 CSS `transform` 属性是“可过渡”属性，当应用移动类时，将会使用 [FLIP 技术](https://aerotwist.com/blog/flip-your-animations/) 使元素流畅地到达动画终点。
+  `<transition-group>` 支持通过 CSS transform 过渡移动。当一个子节点被更新，从屏幕上的位置发生变化，它将会获取应用 CSS 移动类 (通过 `name` 属性或配置 `move-class` 属性自动生成)。如果 CSS `transform` 属性是“可过渡”属性，当应用移动类时，将会使用 [FLIP 技术](https://aerotwist.com/blog/flip-your-animations/) 使元素流畅地到达动画终点。
 
   ```html
   <transition-group tag="ul" name="slide">
@@ -2230,7 +2228,7 @@ if (version === 2) {
 
   > 2.1.0 新增
 
-  `include` 和 `exclude` 属性允许组件有条件地缓存。二者都可以用逗号分隔字符串、正则表达式或一个数组来表示:
+  `include` 和 `exclude` 属性允许组件有条件地缓存。二者都可以用逗号分隔字符串、正则表达式或一个数组来表示：
 
   ``` html
   <!-- 逗号分隔字符串 -->
@@ -2249,7 +2247,7 @@ if (version === 2) {
   </keep-alive>
   ```
 
-  匹配首先检查组件自身的 `name` 选项，如果 `name` 选项不可用，则匹配它的局部注册名称（父组件 `components` 选项的键值）。匿名组件不能被匹配。
+  匹配首先检查组件自身的 `name` 选项，如果 `name` 选项不可用，则匹配它的局部注册名称 (父组件 `components` 选项的键值)。匿名组件不能被匹配。
 
   <p class="tip">`<keep-alive>` 不会在函数式组件中正常工作，因为它们没有缓存实例。</p>
 
@@ -2258,7 +2256,7 @@ if (version === 2) {
 ### slot
 
 - **Props**：
-  - `name` - string, 用于命名插槽。
+  - `name` - string，用于命名插槽。
 
 - **Usage**：
 
@@ -2266,12 +2264,12 @@ if (version === 2) {
 
   详细用法，请参考下面教程的链接。
 
-- **参考**：[使用Slots分发内容](../guide/components.html#使用-Slots-分发内容)
+- **参考**：[使用插槽分发内容](../guide/components.html#使用插槽分发内容)
 
 ## VNode 接口
 
-- 请参考 [VNode class declaration](https://github.com/vuejs/vue/blob/dev/src/core/vdom/vnode.js).
+- 请参考 [VNode class declaration](https://github.com/vuejs/vue/blob/dev/src/core/vdom/vnode.js)。
 
 ## 服务端渲染
 
-- 请参考[vue-server-renderer package documentation](https://github.com/vuejs/vue/tree/dev/packages/vue-server-renderer).
+- 请参考 [vue-server-renderer package documentation](https://github.com/vuejs/vue/tree/dev/packages/vue-server-renderer)。

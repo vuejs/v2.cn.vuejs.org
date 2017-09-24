@@ -30,8 +30,8 @@ order: 0
 13 |  transitioning-state.md | 过渡状态 | [awe](https://github.com/hilongjw) | [bhnddowinf](https://github.com/bhnddowinf)
 14 |  render-function.md |  Render 函数 | [awe](https://github.com/hilongjw) | [bhnddowinf](https://github.com/bhnddowinf)
 15 |  reactivity.md |  深入响应式原理 | [veaba](https://github.com/veaba) | [yangzj1992](https://github.com/yangzj1992)
-16 |  custom-directive.md |  自定义指令 | [harrytospring](https://github.com/harrytospring) | [yangzj1992](https://github.com/yangzj1992)
-17 |  mixins.md |  混合 | [harrytospring](https://github.com/harrytospring) | [bhnddowinf](https://github.com/bhnddowinf)
+16 |  custom-directive.md |  自定义指令 | [hurrytospring](https://github.com/hurrytospring) | [yangzj1992](https://github.com/yangzj1992)
+17 |  mixins.md |  混合 | [hurrytospring](https://github.com/hurrytospring) | [bhnddowinf](https://github.com/bhnddowinf)
 18 |  plugins.md |  插件 | [hgcoder](https://github.com/hgcoder) | [hgcoder](https://github.com/hgcoder)
 19 |  single-file-components.md |  单文件组件 | [ATLgo](https://github.com/ATLgo) | [zhouzihanntu](https://github.com/zhouzihanntu)
 20 |  routing.md | 路由 | [dingyiming](https://github.com/dingyiming) | [mlyknown](https://github.com/mlyknown)
@@ -43,7 +43,7 @@ order: 0
 
 序号 | 对应文档文件名 | 中文标题 | 翻译贡献者 | 校对主要贡献者
 ----- |  ------------- | --- | --- | --- | ---
-24 |  migration.md | 1.x迁移 | [harrytospring](https://github.com/harrytospring) | [yongbolv](https://github.com/yongbolv)
+24 |  migration.md | 1.x迁移 | [hurrytospring](https://github.com/hurrytospring) | [yongbolv](https://github.com/yongbolv)
 27 |  migration-vue-router.md | vue-router 0.7.x 迁移 | [forzajuve10](https://github.com/forzajuve10) | [yizhixiaolongxia](https://github.com/yizhixiaolongxia)
 
 ### Meta  更多

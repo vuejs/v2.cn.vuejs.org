@@ -93,7 +93,7 @@ new Vue({
 
 ### DOM 模板解析说明
 
-当使用 DOM 作为模板时 (例如，将 `el` 选项挂载到一个已存在的元素上), 你会受到 HTML 的一些限制，因为 Vue 只有在浏览器解析和标准化 HTML 后才能获取模板内容。尤其像这些元素 `<ul>`，`<ol>`，`<table>`，`<select>` 限制了能被它包裹的元素，而一些像 `<option>` 这样的元素只能出现在某些其它元素内部。
+当使用 DOM 作为模板时 (例如，将 `el` 选项挂载到一个已存在的元素上)，你会受到 HTML 的一些限制，因为 Vue 只有在浏览器解析和标准化 HTML 后才能获取模板内容。尤其像这些元素 `<ul>`，`<ol>`，`<table>`，`<select>` 限制了能被它包裹的元素，而一些像 `<option>` 这样的元素只能出现在某些其它元素内部。
 
 在自定义组件中使用这些受限制的元素时会导致一些问题，例如：
 
@@ -212,14 +212,14 @@ new Vue({
 </script>
 {% endraw %}
 
-### 构成组件
+### 组合组件
 
 组件意味着协同工作，通常父子组件会是这样的关系：组件 A 在它的模板中使用了组件 B。它们之间必然需要相互通信：父组件要给子组件传递数据，子组件需要将它内部发生的事情告知给父组件。然而，在一个良好定义的接口中尽可能将父子组件解耦是很重要的。这保证了每个组件可以在相对隔离的环境中书写和理解，也大幅提高了组件的可维护性和可重用性。
 
 在 Vue 中，父子组件的关系可以总结为 **props down, events up**。父组件通过 **props** 向下传递数据给子组件，子组件通过 **events** 给父组件发送消息。看看它们是怎么工作的。
 
-<p style="text-align: center">
-  <img style="width:300px" src="/images/props-events.png" alt="props down, events up">
+<p style="text-align: center;">
+  <img style="width: 300px;" src="/images/props-events.png" alt="props down, events up">
 </p>
 
 ## Props
@@ -286,7 +286,7 @@ Vue.component('child', {
 
 ### 动态 Props
 
-在模板中，要动态地绑定父组件的数据到子模板的 props，与绑定到任何普通的HTML特性相类似，就是用 `v-bind`。每当父组件的数据变化时，该变化也会传导给子组件：
+在模板中，要动态地绑定父组件的数据到子模板的 props，与绑定到任何普通的 HTML 特性相类似，就是用 `v-bind`。每当父组件的数据变化时，该变化也会传导给子组件：
 
 ``` html
 <div>
@@ -325,6 +325,30 @@ new Vue({
 })
 </script>
 {% endraw %}
+
+如果你想要用一个对象作为 props 传递所有的属性，你可以使用不带任何参数的 `v-bind` (即用 `v-bind` 替换掉 `v-bind:prop-name`)。例如，已知一个 `todo` 对象：
+
+``` js
+todo: {
+  text: 'Learn Vue',
+  isComplete: false
+}
+```
+
+然后：
+
+``` html
+<todo-item v-bind="todo"></todo-item>
+```
+
+将等价于：
+
+``` html
+<todo-item
+  v-bind:text="todo.text"
+  v-bind:is-complete="todo.isComplete"
+></todo-item>
+```
 
 ### 字面量语法 vs 动态语法
 
@@ -432,13 +456,13 @@ Vue.component('example', {
 
 当 prop 验证失败，Vue 会抛出警告 (如果使用的是开发版本)。注意 props 会在组件实例创建__之前__进行校验，所以在 `default` 或 `validator` 函数里，诸如 `data`、`computed` 或 `methods` 等实例属性还无法使用。
 
-## 非 Prop 属性
+## 非 Prop 特性
 
-所谓非 `prop` 属性，就是它可以直接传入组件，而不需要定义相应的 `prop`。
+所谓非 prop 特性，就是它可以直接传入组件，而不需要定义相应的 prop。
 
-明确给组件定义 `prop` 是传参的推荐方式，但组件的作者并不总能预见到组件被使用的场景。所以，组件可以接收任意传入的属性，这些属性都会被添加到组件的根元素上。
+明确给组件定义 props 是传参的推荐方式，但组件的作者并不总能预见到组件被使用的场景。所以，组件可以接收任意传入的特性，这些特性都会被添加到组件的根元素上。
 
-例如，第三方组件 `bs-date-input`，当它要和一个 Bootstrap 插件相互操作时，需要在这个第三方组件的 input 上添加 `data-3d-date-picker` 属性，这时可以把属性直接添加到组件上 (不需要事先定义 `prop`)：
+例如，第三方组件 `bs-date-input`，当它要和一个 Bootstrap 插件相互操作时，需要在这个第三方组件的 input 上添加 `data-3d-date-picker` 特性，这时可以把属性直接添加到组件上 (不需要事先定义 `prop`)：
 
 ``` html
 <bs-date-input data-3d-date-picker="true"></bs-date-input>
@@ -772,9 +796,9 @@ bus.$on('id-selected', function (id) {
 })
 ```
 
-在复杂的情况下，我们应该考虑使用专门的[状态管理模式](state-management.html).
+在复杂的情况下，我们应该考虑使用专门的[状态管理模式](state-management.html)。
 
-## 使用 Slots 分发内容
+## 使用插槽分发内容
 
 在使用组件时，我们常常要像这样组合它们：
 
@@ -791,7 +815,7 @@ bus.$on('id-selected', function (id) {
 
 2. `<app>` 组件很可能有它自己的模板。
 
-为了让组件可以组合，我们需要一种方式来混合父组件的内容与子组件自己的模板。这个过程被称为 **内容分发** (或 "transclusion" 如果你熟悉 Angular)。Vue.js 实现了一个内容分发 API，参照了当前 [Web 组件规范草案](https://github.com/w3c/webcomponents/blob/gh-pages/proposals/Slots-Proposal.md)，使用特殊的 `<slot>` 元素作为原始内容的插槽。
+为了让组件可以组合，我们需要一种方式来混合父组件的内容与子组件自己的模板。这个过程被称为**内容分发** (或“transclusion”如果你熟悉 Angular)。Vue.js 实现了一个内容分发 API，参照了当前 [Web 组件规范草案](https://github.com/w3c/webcomponents/blob/gh-pages/proposals/Slots-Proposal.md)，使用特殊的 `<slot>` 元素作为原始内容的插槽。
 
 ### 编译作用域
 
@@ -832,9 +856,9 @@ Vue.component('child-component', {
 
 类似地，分发内容是在父作用域内编译。
 
-### 单个 Slot
+### 单个插槽
 
-除非子组件模板包含至少一个 `<slot>` 插口，否则父组件的内容将会被**丢弃**。当子组件模板只有一个没有属性的 slot 时，父组件整个内容片段将插入到 slot 所在的 DOM 位置，并替换掉 slot 标签本身。
+除非子组件模板包含至少一个 `<slot>` 插口，否则父组件的内容将会被**丢弃**。当子组件模板只有一个没有属性的插槽时，父组件整个内容片段将插入到插槽所在的 DOM 位置，并替换掉插槽标签本身。
 
 最初在 `<slot>` 标签中的任何内容都被视为**备用内容**。备用内容在子组件的作用域内编译，并且只有在宿主元素为空，且没有要插入的内容时才显示备用内容。
 
@@ -874,11 +898,11 @@ Vue.component('child-component', {
 </div>
 ```
 
-### 具名 Slot
+### 具名插槽
 
-`<slot>` 元素可以用一个特殊的属性 `name` 来配置如何分发内容。多个 slot 可以有不同的名字。具名 slot 将匹配内容片段中有对应 `slot` 特性的元素。
+`<slot>` 元素可以用一个特殊的属性 `name` 来配置如何分发内容。多个插槽可以有不同的名字。具名插槽将匹配内容片段中有对应 `slot` 特性的元素。
 
-仍然可以有一个匿名 slot，它是**默认 slot**，作为找不到匹配的内容片段的备用插槽。如果没有默认的 slot，这些找不到匹配的内容片段将被抛弃。
+仍然可以有一个匿名插槽，它是**默认插槽**，作为找不到匹配的内容片段的备用插槽。如果没有默认插槽，这些找不到匹配的内容片段将被抛弃。
 
 例如，假定我们有一个 `app-layout` 组件，它的模板为：
 
@@ -928,12 +952,11 @@ Vue.component('child-component', {
 
 在组合组件时，内容分发 API 是非常有用的机制。
 
-
 ### 作用域插槽
 
 > 2.1.0 新增
 
-作用域插槽是一种特殊类型的插槽，用作使用一个 (能够传递数据到) 可重用模板替换已渲染元素。
+作用域插槽是一种特殊类型的插槽，用作一个替换已渲染元素的 (能被传递数据的) 可重用模板。
 
 在子组件中，只需将数据传递到插槽，就像你将 props 传递给组件一样：
 
@@ -1040,7 +1063,7 @@ var vm = new Vue({
 </keep-alive>
 ```
 
-在[API 参考](../api/#keep-alive)查看更多 `<keep-alive>` 的细节。
+在 [API 参考](../api/#keep-alive)查看更多 `<keep-alive>` 的细节。
 
 ## 杂项
 
@@ -1146,13 +1169,13 @@ new Vue({
 
 ``` js
 const AsyncComp = () => ({
-  // 需要加载的组件. 应当是一个 Promise
+  // 需要加载的组件。应当是一个 Promise
   component: import('./MyComp.vue'),
   // loading 时应当渲染的组件
   loading: LoadingComp,
   // 出错时渲染的组件
   error: ErrorComp,
-  // 渲染 loading 组件前的等待时间。默认：200ms.
+  // 渲染 loading 组件前的等待时间。默认：200ms。
   delay: 200,
   // 最长等待时间。超出此时间则渲染 error 组件。默认：Infinity
   timeout: 3000
@@ -1180,7 +1203,7 @@ components: {
 在 HTML 模板中，请使用 kebab-case 形式：
 
 ``` html
-<!-- 在HTML模板中始终使用 kebab-case -->
+<!-- 在 HTML 模板中始终使用 kebab-case -->
 <kebab-cased-component></kebab-cased-component>
 <camel-cased-component></camel-cased-component>
 <pascal-cased-component></pascal-cased-component>
@@ -1229,7 +1252,7 @@ components: {
 name: 'unique-name-of-my-component'
 ```
 
-当你利用`Vue.component`全局注册了一个组件, 全局的ID作为组件的 `name` 选项，被自动设置.
+当你利用`Vue.component`全局注册了一个组件，全局的 ID 作为组件的 `name` 选项，被自动设置.
 
 ``` js
 Vue.component('unique-name-of-my-component', {
@@ -1237,19 +1260,18 @@ Vue.component('unique-name-of-my-component', {
 })
 ```
 
-如果你不谨慎, 递归组件可能导致死循环:
+如果你不谨慎，递归组件可能导致死循环：
 
 ``` js
 name: 'stack-overflow',
 template: '<div><stack-overflow></stack-overflow></div>'
 ```
 
-上面组件会导致一个错误“max stack size exceeded”，所以要确保递归调用有终止条件 (比如递归调用时使用 `v-if` 并让他最终返回 `false` )。
-
+上面组件会导致一个错误“max stack size exceeded”，所以要确保递归调用有终止条件 (比如递归调用时使用 `v-if` 并让他最终返回 `false`)。
 
 ### 组件间的循环引用
 
-假设你正在构建一个文件目录树，像在Finder或文件资源管理器中。你可能有一个 `tree-folder`组件:
+假设你正在构建一个文件目录树，像在 Finder 或文件资源管理器中。你可能有一个 `tree-folder` 组件：
 
 ``` html
 <p>
@@ -1270,7 +1292,7 @@ template: '<div><stack-overflow></stack-overflow></div>'
 ```
 
 当你仔细看时，会发现在渲染树上这两个组件同时为对方的父节点和子节点--这点是矛盾的。当使用`Vue.component`将这两个组件注册为全局组件的时候，框架会自动为你解决这个矛盾，如果你是这样做的，就不用继续往下看了。
-然而，如果你使用诸如Webpack或者Browserify之类的模块化管理工具来requiring/importing组件的话，就会报错了：
+然而，如果你使用诸如 Webpack 或者 Browserify 之类的模块化管理工具来 requiring/importing 组件的话，就会报错了：
 
 ```
 Failed to mount component: template or render function not defined.

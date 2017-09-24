@@ -50,7 +50,7 @@ new Vue({
 
 ### `router.map` <sup>替换</sup>
 
-路由现在被定义为一个在 router 实例里的一个[`routes` 选项](https://router.vuejs.org/zh-cn/essentials/getting-started.html#javascript)数组。所以这些路由：
+路由现在被定义为一个在 router 实例里的一个 [`routes` 选项](https://router.vuejs.org/zh-cn/essentials/getting-started.html#javascript)数组。所以这些路由：
 
 ``` js
 router.map({
@@ -166,7 +166,7 @@ router.beforeEach(function (to, from, next) {
 
 ### `router.redirect` <sup>替换</sup>
 
-现在用一个[路由定义的选项](https://router.vuejs.org/zh-cn/essentials/redirect-and-alias.html)作为代替。 举个例子，你将会更新：
+现在用一个[路由定义的选项](https://router.vuejs.org/zh-cn/essentials/redirect-and-alias.html)作为代替。举个例子，你将会更新：
 
 ``` js
 router.redirect({
@@ -245,7 +245,6 @@ alias: ['/manage', '/administer', '/administrate']
   }
 }
 ```
-
 
 如果在一个路由上访问一个属性，你仍然会通过 meta 。举个例子：
 
@@ -329,7 +328,7 @@ export default {
 </li>
 ```
 
-成这个写法:
+成这个写法：
 
 ``` html
 <router-link tag="li" to="/about">
@@ -337,7 +336,7 @@ export default {
 </router-link>
 ```
 
- `<a>`标签将会成为真实的链接（并且可以获取到正确的跳转），但是激活的类将会被应用在外部的`<li>`标签上。
+ `<a>`标签将会成为真实的链接 (并且可以获取到正确的跳转)，但是激活的类将会被应用在外部的`<li>`标签上。
 
 {% raw %}
 <div class="upgrade-path">
@@ -374,7 +373,7 @@ Hashbangs 将不再为谷歌需要去爬去一个网址，所以他们将不再�
 
 ### `history: true` <sup>替换</sup>
 
-所有路由模型选项将被简化成一个单个的[`mode` 选项](https://router.vuejs.org/zh-cn/api/options.html#mode)。 你需要更新：
+所有路由模型选项将被简化成一个单个的[`mode` 选项](https://router.vuejs.org/zh-cn/api/options.html#mode)。你需要更新：
 
 ``` js
 var router = new VueRouter({
@@ -399,7 +398,7 @@ var router = new VueRouter({
 
 ### `abstract: true` <sup>替换</sup>
 
-所有路由模型选项将被简化成一个单个的[`mode` 选项](https://router.vuejs.org/zh-cn/api/options.html#mode)。 你需要更新：
+所有路由模型选项将被简化成一个单个的[`mode` 选项](https://router.vuejs.org/zh-cn/api/options.html#mode)。你需要更新：
 
 ``` js
 var router = new VueRouter({
@@ -426,13 +425,13 @@ var router = new VueRouter({
 
 ### `saveScrollPosition` <sup>替换</sup>
 
-它已经被替换为可以接受一个函数的 [`scrollBehavior` 选项](https://router.vuejs.org/zh-cn/advanced/scroll-behavior.html)，所以滑动行为可以完全的被定制化处理 - 甚至为每次路由进行定制也可以满足。这将会开启很多新的可能，但是简单的复制旧的行为:
+它已经被替换为可以接受一个函数的 [`scrollBehavior` 选项](https://router.vuejs.org/zh-cn/advanced/scroll-behavior.html)，所以滑动行为可以完全的被定制化处理 - 甚至为每次路由进行定制也可以满足。这将会开启很多新的可能，但是简单的复制旧的行为：
 
 ``` js
 saveScrollPosition: true
 ```
 
-你可以替换为:
+你可以替换为：
 
 ``` js
 scrollBehavior: function (to, from, savedPosition) {
@@ -449,7 +448,7 @@ scrollBehavior: function (to, from, savedPosition) {
 
 ### `root` <sup>换名</sup>
 
-为了与[HTML 的`<base>`标签](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base)保持一致性，重命名为`base`。
+为了与 [HTML 的`<base>` 标签](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base)保持一致性，重命名为 `base`。
 
 {% raw %}
 <div class="upgrade-path">
@@ -460,7 +459,7 @@ scrollBehavior: function (to, from, savedPosition) {
 
 ### `transitionOnLoad` <sup>移除</sup>
 
-由于 Vue 的过渡系统[`appear` transition control](transitions.html#初始渲染的过渡)的存在，这个选项将不再需要。
+由于 Vue 的过渡系统 [`appear` transition control](transitions.html#初始渲染的过渡) 的存在，这个选项将不再需要。
 
 {% raw %}
 <div class="upgrade-path">
@@ -471,7 +470,7 @@ scrollBehavior: function (to, from, savedPosition) {
 
 ### `suppressTransitionError` <sup>移除</sup>
 
-出于简化钩子的考虑被移除。如果你真的需要抑制过渡错误，你可以使用 [`try`...`catch`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/try...catch)作为替代。
+出于简化钩子的考虑被移除。如果你真的需要抑制过渡错误，你可以使用 [`try`...`catch`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/try...catch) 作为替代。
 
 {% raw %}
 <div class="upgrade-path">
@@ -484,7 +483,7 @@ scrollBehavior: function (to, from, savedPosition) {
 
 ### `activate` <sup>替换</sup>
 
-使用[`beforeRouteEnter`](https://router.vuejs.org/zh-cn/advanced/navigation-guards.html#组件内的钩子)这一组件进行替代。
+使用 [`beforeRouteEnter`](https://router.vuejs.org/zh-cn/advanced/navigation-guards.html#组件内的钩子) 这一组件进行替代。
 
 {% raw %}
 <div class="upgrade-path">
@@ -495,7 +494,7 @@ scrollBehavior: function (to, from, savedPosition) {
 
 ### `canActivate` <sup>替换</sup>
 
-使用[`beforeEnter`](http://router.vuejs.org/en/advanced/navigation-guards.html#perroute-guard) 在路由中作为替代。<!-- todo translation -->
+使用[`beforeEnter`](https://router.vuejs.org/en/advanced/navigation-guards.html#perroute-guard) 在路由中作为替代。<!-- todo translation -->
 
 {% raw %}
 <div class="upgrade-path">
@@ -541,7 +540,6 @@ scrollBehavior: function (to, from, savedPosition) {
 
 `$route`属性是响应式的，所以你可以就使用一个 watcher 去响应路由的改变，就像这样：
 
-
 ``` js
 watch: {
   '$route': 'fetchData'
@@ -562,7 +560,7 @@ methods: {
 
 ### `$loadingRouteData` <sup>移除</sup>
 
-定义你自己的属性（例如：`isLoading`），然后在路由上的 watcher 中更新加载状态。举个例子，如果使用[axios](https://github.com/mzabriskie/axios)获取数据：
+定义你自己的属性 (例如：`isLoading`)，然后在路由上的 watcher 中更新加载状态。举个例子，如果使用 [axios](https://github.com/mzabriskie/axios) 获取数据：
 
 ``` js
 data: function () {

@@ -1,5 +1,5 @@
 ---
-title: 加入Vue.js社区
+title: 加入 Vue.js 社区
 type: guide
 order: 802
 ---
@@ -8,21 +8,20 @@ Vue.js 的社区正在急速增长中，如果你正在阅读本文，这是你�
 
 现在我们来解答你能从社区中获得什么以及你能为社区做什么。
 
-## 你将享受的资源
+## 您将享有的资源
 
 ### 获取帮助
 
-- [论坛](http://forum.vuejs.org/)：询问与 Vue 及其生态的相关问题的最佳地点。
+- [论坛](https://forum.vuejs.org/)：询问与 Vue 及其生态的相关问题的最佳地点。
 - [聊天室](https://chat.vuejs.org/)：一个 Vue 开发者们相互认识和交流的实时聊天室。
 - [Github](https://github.com/vuejs)：如果你想报告 bug 或者提交请求，欢迎来 Github 提交 issues 。我们也非常欢迎 pull requests！
 
 ### 探索生态
 
 - [Awesome Vue](https://github.com/vuejs/awesome-vue)：一览其他牛人发布的优秀资源。
-- ["Show and Tell" 子论坛](http://forum.vuejs.org/c/show-and-tell)：又一个好地方，可以看看他人借助 Vue 生态完成的作品，以及他人为不断壮大的 Vue 生态的贡献。
+- ["Show and Tell" 子论坛](https://forum.vuejs.org/c/show-and-tell)：又一个好地方，可以看看他人借助 Vue 生态完成的作品，以及他人为不断壮大的 Vue 生态的贡献。
 
-
-## 你力所能及的
+## 您力所能及的
 
 ### 贡献代码
 
@@ -30,13 +29,13 @@ Vue.js 的社区正在急速增长中，如果你正在阅读本文，这是你�
 
 阅读之后，你应该已经准备好向 Vue 的核心仓库贡献代码了：
 
-- [vue](https://github.com/vuejs/vue): 核心库
-- [vuex](https://github.com/vuejs/vuex): 类 Flux 的状态管理架构
-- [vue-router](https://github.com/vuejs/vue-router): 为单页面应用提供的路由系统
+- [vue](https://github.com/vuejs/vue)：核心库
+- [vuex](https://github.com/vuejs/vuex)：类 Flux 的状态管理架构
+- [vue-router](https://github.com/vuejs/vue-router)：为单页面应用提供的路由系统
 
 ...还有许多小型的官方[同伴库](https://github.com/vuejs)。
 
-## 分享（并构筑）你的见识
+### 分享 (并构建) 您的经验
 
 除了在论坛或聊天室回答问题、分享资源外，还有一些更小众的方式可以分享并增长你的见识：
 
@@ -45,7 +44,7 @@ Vue.js 的社区正在急速增长中，如果你正在阅读本文，这是你�
 
 ### 翻译文档
 
-Vue 已经在全球范围内传播开来，核心团队成员甚至来自至少 6 个时区。[论坛](http://forum.vuejs.org/) 已有 7 种语言，数字还在持续增长。我们许多文档都有[积极维护的翻译](https://github.com/vuejs?utf8=%E2%9C%93&query=vuejs.org)。我们非常为 Vue 的国际影响力骄傲，但我们还能做得更好。
+Vue 已经在全球范围内传播开来，核心团队成员甚至来自至少 6 个时区。[论坛](https://forum.vuejs.org/) 已有 7 种语言，数字还在持续增长。我们许多文档都有[积极维护的翻译](https://github.com/vuejs?utf8=%E2%9C%93&query=vuejs.org)。我们非常为 Vue 的国际影响力骄傲，但我们还能做得更好。
 
 我希望现在你正在使用你的首选语言阅读这个句子。如果不是，你愿意帮我们实现它吗？
 
