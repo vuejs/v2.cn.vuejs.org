@@ -42,7 +42,7 @@ Mustache 标签将会被替代为对应数据对象上 `msg` 属性的值。无�
 
 ### 特性
 
-mustache 语法不能作用在 HTML 特性上，遇到这种情况应该使用 [v-bind 指令](../api/#v-bind)：
+Mustache 语法不能作用在 HTML 特性上，遇到这种情况应该使用 [v-bind 指令](../api/#v-bind)：
 
 ``` html
 <div v-bind:id="dynamicId"></div>
