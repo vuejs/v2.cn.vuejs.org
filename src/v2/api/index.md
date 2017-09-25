@@ -282,7 +282,7 @@ type: api
     unbind: function () {}
   })
 
-  // 注册 (传入一个简单的指令函数)
+  // 注册 (指令函数)
   Vue.directive('my-directive', function () {
     // 这里将会被 `bind` 和 `update` 调用
   })
@@ -464,7 +464,7 @@ type: api
   // 对象语法，提供校验
   Vue.component('props-demo-advanced', {
     props: {
-      // 只检测类型
+      // 检测类型
       height: Number,
       // 检测类型 + 其他验证
       age: {
@@ -525,7 +525,7 @@ type: api
   var vm = new Vue({
     data: { a: 1 },
     computed: {
-      // 仅读取，值只须为函数
+      // 仅读取
       aDouble: function () {
         return this.a * 2
       },
@@ -715,7 +715,7 @@ type: api
 
 - **详细**：
 
-  实例已经创建完成之后被调用。在这一步，实例已完成以下的配置：数据观测 (data observer)，属性和方法的运算，watch/event 事件回调。然而，挂载阶段还没开始，`$el` 属性目前不可见。
+  在实例创建完成后被立即调用。在这一步，实例已完成以下的配置：数据观测 (data observer)，属性和方法的运算，watch/event 事件回调。然而，挂载阶段还没开始，`$el` 属性目前不可见。
 
 - **参考**：[生命周期图示](../guide/instance.html#生命周期图示)
 
@@ -2123,7 +2123,7 @@ type: api
 
 - **用法**：
 
-  `<transition>` 元素作为单个元素/组件的过渡效果。`<transition>` 不会渲染额外的 DOM 元素，也不会出现在检测过的组件层级中。它只是将内容包裹在其中，简单的运用过渡行为。
+  `<transition>` 元素作为单个元素/组件的过渡效果。`<transition>` 只会把过渡效果应用到其包裹的内容上，而不会额外渲染 DOM 元素，也不会出现在检测过的组件层级中。
 
   ```html
   <!-- 简单元素 -->

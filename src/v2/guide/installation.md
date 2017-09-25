@@ -35,9 +35,9 @@ Vue.js 不支持 IE8 及其以下版本，因为 Vue.js 使用了 IE8 不能模�
 
 ### CDN
 
-推荐：[https://unpkg.com/vue](https://unpkg.com/vue)，会保持和 npm 发布的最新的版本一致。可以在 [https://unpkg.com/vue/](https://unpkg.com/vue/) 浏览 npm 包资源。
+推荐：[https://cdn.jsdelivr.net/npm/vue](https://cdn.jsdelivr.net/npm/vue)，会保持和 npm 发布的最新的版本一致。可以在 [https://cdn.jsdelivr.net/npm/vue/](https://cdn.jsdelivr.net/npm/vue/) 浏览 npm 包资源。
 
-也可以从 [jsDelivr](https://cdn.jsdelivr.net/npm/vue/dist/vue.js) 或 [cdnjs](https://cdnjs.cloudflare.com/ajax/libs/vue/{{vue_version}}/vue.js) 获取，不过这两个服务版本更新可能略滞后。
+也可以从 [unpkg](https://unpkg.com/vue) 和 [cdnjs](https://cdnjs.cloudflare.com/ajax/libs/vue/{{vue_version}}/vue.js) 获取 (cdnjs 的版本更新可能略滞后)。
 
 ## NPM
 
@@ -69,7 +69,7 @@ $ npm run dev
 
 ## 对不同构建版本的解释
 
-在 [NPM 包的 `dist/` 目录](https://unpkg.com/vue@latest/dist/)你将会找到很多不同的 Vue.js 构建。这里列出了他们之间的差别：
+在 [NPM 包的 `dist/` 目录](https://cdn.jsdelivr.net/npm/vue/dist/)你将会找到很多不同的 Vue.js 构建。这里列出了他们之间的差别：
 
 | | UMD | CommonJS | ES Module |
 | --- | --- | --- | --- |
@@ -86,7 +86,7 @@ $ npm run dev
 
 - **运行时**：用来创建 Vue 实例，渲染并处理 virtual DOM 等行为的代码。基本上就是除去编译器的其他一切。
 
-- **[UMD](https://github.com/umdjs/umd)**：UMD 构建可以直接通过 `<script>` 标签用在浏览器中。Unpkg CDN 的 [https://unpkg.com/vue](https://unpkg.com/vue) 默认文件就是运行时 + 编译器的 UMD 构建 (`vue.js`)。
+- **[UMD](https://github.com/umdjs/umd)**：UMD 构建可以直接通过 `<script>` 标签用在浏览器中。jsDelivr CDN 的 [https://cdn.jsdelivr.net/npm/vue](https://cdn.jsdelivr.net/npm/vue) 默认文件就是运行时 + 编译器的 UMD 构建 (`vue.js`)。
 
 - **[CommonJS](http://wiki.commonjs.org/wiki/Modules/1.1)**：CommonJS 构建用来配合老的打包工具比如 [browserify](http://browserify.org/) 或 [webpack 1](https://webpack.github.io)。这些打包工具的默认文件 (`pkg.main`) 是只包含运行时的 CommonJS 构建 (`vue.runtime.common.js`)。
 
