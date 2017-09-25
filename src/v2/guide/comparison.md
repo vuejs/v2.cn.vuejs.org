@@ -112,7 +112,7 @@ React 学习曲线陡峭，在你开始学 React 前，你需要知道 JSX 和 E
 
 就像 Vue 向上扩展好比 React 一样，Vue 向下扩展后就类似于 jQuery。你只要把如下标签放到页面就可以运行：
 
-`<script src="https://unpkg.com/vue"></script>`
+`<script src="https://cdn.jsdelivr.net/npm/vue"></script>`
 
 然后你就可以编写 Vue 代码并应用到生产中，你只要用 min 版 Vue 文件替换掉就不用担心其他的性能问题。
 
@@ -167,7 +167,7 @@ Vue 则根本没有这个问题，因为它使用基于依赖追踪的观察系�
 
 ### TypeScript
 
-Angular 事实上必须用 TypeScript 来开发，因为它的文档和学习资源几乎全部是面向 TS 的。TS 有很多显而易见的好处 —— 静态类型检查在大规模的应用中非常有用，同时对于 Java 和 C# 背景的开发者也是非常提升开发效率的。
+Angular 事实上必须用 TypeScript 来开发，因为它的文档和学习资源几乎全部是面向 TS 的。TS 有很多好处 —— 静态类型检查在大规模的应用中非常有用，同时对于 Java 和 C# 背景的开发者也是非常提升开发效率的。
 
 然而，并不是所有人都想用 TS —— 在中小型规模的项目中，引入 TS 可能并不会带来太多明显的优势。在这些情况下，用 Vue 会是更好的选择，因为在不用 TS 的情况下使用 Angular 会很有挑战性。
 

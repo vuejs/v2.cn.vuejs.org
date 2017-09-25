@@ -296,7 +296,7 @@ Vue.component('child', {
 </div>
 ```
 
-使用 `v-bind` 的缩写语法通常更简单：
+你也可以使用 `v-bind` 的缩写语法：
 
 ``` html
 <child :my-message="parentMsg"></child>
