@@ -37,7 +37,7 @@ Vue.js 不支持 IE8 及其以下版本，因为 Vue.js 使用了 IE8 不能模�
 
 推荐：[https://cdn.jsdelivr.net/npm/vue](https://cdn.jsdelivr.net/npm/vue)，会保持和 npm 发布的最新的版本一致。可以在 [https://cdn.jsdelivr.net/npm/vue/](https://cdn.jsdelivr.net/npm/vue/) 浏览 npm 包资源。
 
-也可以从 [unpkg](https://unpkg.com/vue) 和 [cdnjs](https://cdnjs.cloudflare.com/ajax/libs/vue/{{vue_version}}/vue.js) 获取，(cdnjs 的版本更新可能略滞后)。
+也可以从 [unpkg](https://unpkg.com/vue) 和 [cdnjs](https://cdnjs.cloudflare.com/ajax/libs/vue/{{vue_version}}/vue.js) 获取 (cdnjs 的版本更新可能略滞后)。
 
 ## NPM
 
