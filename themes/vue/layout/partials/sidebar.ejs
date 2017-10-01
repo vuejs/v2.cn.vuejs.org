@@ -34,11 +34,12 @@
         </script>
       </div>
       <a class="become-backer" href="<%- url_for("/support-vuejs") %>">
-        Become a Sponsor
+        成为赞助者
       </a>
       <h2>
-        <% titles = {api: 'API', examples: '示例', guide: '教程'} %>
-        <% if (type !== 'cookbook') { %>
+        <% titles = { api: 'API', examples: '示例', guide: '教程', 'style-guide': '风格指南 (beta)' } %>
+        <%- titles[type] %>
+        <% if (['cookbook', 'style-guide'].indexOf(type) === -1) { %>
           <select class="version-select">
             <option value="SELF" selected>2.x</option>
             <option value="v1">1.0</option>
