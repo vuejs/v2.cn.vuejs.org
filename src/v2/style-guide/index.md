@@ -24,9 +24,7 @@ These rules help prevent errors, so learn and abide by them at all costs. Except
 
 ### Priority B: Strongly Recommended
 
-These rules have been found to vastly improve readability in most projects. If you violate them, your code will still run, but other developers may give you the evil eye [at conferences](https://github.com/vuejs/roadmap#events).
-
-[![Fry from Futurama glaring](https://i.imgur.com/PcOnLxn.jpg)](http://futurama.wikia.com/wiki/Template:FOX_Image)
+These rules have been found to improve readability and/or developer experience in most projects. Your code will still run if you violate them, but violations should be rare and well-justified.
 
 ### Priority C: Recommended
 
@@ -39,8 +37,6 @@ Where multiple, equally good options exist, an arbitrary choice can be made to e
 ### Priority D: Use with Caution
 
 Some features of Vue exist to accommodate rare edge cases or smoother migrations from a legacy code base. When overused however, they can make your code more difficult to maintain or even become a source of bugs. These rules shine a light on potentially risky features, describing when and why they should be avoided.
-
-[![goto from xkcd.com](https://imgs.xkcd.com/comics/goto.png)](https://xkcd.com/292/)
 
 
 
@@ -855,7 +851,13 @@ Unfortunately, HTML doesn't allow custom elements to be self-closing - only [off
 
 **Component names should always be PascalCase in [single-file components](single-file-components.html) and string templates - but kebab-case in DOM templates.**
 
-PascalCase in templates improves readability, because it's easier to tell at a glance what's an element and what's a component. Unfortunately, PascalCase is invalid for a custom element in HTML, so a DOM template must still use kebab-case.
+PascalCase has a few advantages over kebab-case:
+
+- Editors can autocomplete component names in templates, because PascalCase is also used in JavaScript.
+- `<MyComponent>` is more visually distinct from a single-word HTML element than `<my-component>`, because there are two character differences (the two capitals), rather than just one (a hyphen).
+- If you use any non-Vue custom elements in your templates, such as a web component, PascalCase ensures that your Vue components remain distinctly visible.
+
+Unfortunately, due to HTML's case insensitivity, DOM templates must still use kebab-case.
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
 #### Bad

@@ -25,7 +25,7 @@ order: 402
 
 - [完整语法高亮](https://github.com/vuejs/awesome-vue#source-code-editing)
 - [CommonJS 模块](https://webpack.js.org/concepts/modules/#what-is-a-webpack-module)
-- [组件化的 CSS](https://github.com/vuejs/vue-loader/blob/master/docs/en/features/scoped-css.md)
+- [组件作用域的 CSS](https://vue-loader.vuejs.org/zh-cn/features/scoped-css.html)
 
 正如我们说过的，我们可以使用预处理器来构建简洁和功能更丰富的组件，比如 Pug，Babel (with ES2015 modules)，和 Stylus。
 
