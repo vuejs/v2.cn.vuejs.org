@@ -177,7 +177,7 @@ Angular 事实上必须用 TypeScript 来开发，因为它的文档和学习资
 
 在性能方面，这两个框架都非常的快，我们也没有足够的实际应用数据来下一个结论。如果你一定想看些数据的话，你可以参考这个[第三方跑分](http://stefankrause.net/js-frameworks-benchmark4/webdriver-ts/table.html)。单就这个跑分来看，Vue 似乎比 Angular 要更快一些。
 
-在大小方面，最近的 Angular 版本中在使用了 AOT 和 tree-shaking 技术后使得最终的代码体积减小了许多。但即使如此，一个包含了 Vuex + Vue Router 的 Vue 项目 (30kb gzipped) 相比使用了这些优化的 `angular-cli` 生成的默认项目尺寸 (~130kb) 还是要小的多。
+在大小方面，最近的 Angular 版本中在使用了 [AOT](https://en.wikipedia.org/wiki/Ahead-of-time_compilation) 和 [tree-shaking](https://en.wikipedia.org/wiki/Tree_shaking) 技术后使得最终的代码体积减小了许多。但即使如此，一个包含了 Vuex + Vue Router 的 Vue 项目 (30kB gzipped) 相比使用了这些优化的 `angular-cli` 生成的默认项目尺寸 (~130kB) 还是要小的多。
 
 ### 灵活性
 

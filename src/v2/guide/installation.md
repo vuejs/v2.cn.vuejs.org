@@ -2,11 +2,11 @@
 title: 安装
 type: guide
 order: 1
-vue_version: 2.4.0
-dev_size: "257.91"
-min_size: "79.71"
-gz_size: "28.96"
-ro_gz_size: "20.18"
+vue_version: 2.4.4
+dev_size: "262.63"
+min_size: "80.76"
+gz_size: "29.35"
+ro_gz_size: "20.60"
 ---
 
 ### 兼容性
@@ -30,7 +30,7 @@ Vue.js 不支持 IE8 及其以下版本，因为 Vue.js 使用了 IE8 不能模�
 <div id="downloads">
 <a class="button" href="https://vuejs.org/js/vue.js" download>开发版本</a><span class="light info">包含完整的警告和调试模式</span>
 
-<a class="button" href="https://vuejs.org/js/vue.min.js" download>生产版本</a><span class="light info">删除了警告，{{gz_size}}kb min+gzip</span>
+<a class="button" href="https://vuejs.org/js/vue.min.js" download>生产版本</a><span class="light info">删除了警告，{{gz_size}}kB min+gzip</span>
 </div>
 
 ### CDN
