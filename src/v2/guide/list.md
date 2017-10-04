@@ -488,7 +488,7 @@ methods: {
 </div>
 ```
 
-<p class="tip">注意这里的 `is="todo-item"` 属性。这种做法在使用 DOM 模板时是十分必要的，因为在 `<ul>` 元素内只有 `<li>` 元素会被看作有效内容。这样做实现的效果与 `<todo-item>` 相同，但是可以避开一些潜在的浏览器解析错误。查看 [ DOM 模板解析说明](components.html#DOM-模板解析说明) 来了解更多信息。</p>
+<p class="tip">注意这里的 `is="todo-item"` 属性。这种做法在使用 DOM 模板时是十分必要的，因为在 `<ul>` 元素内只有 `<li>` 元素会被看作有效内容。这样做实现的效果与 `<todo-item>` 相同，但是可以避开一些潜在的浏览器解析错误。查看 [DOM 模板解析说明](components.html#DOM-模板解析说明) 来了解更多信息。</p>
 
 ``` js
 Vue.component('todo-item', {
