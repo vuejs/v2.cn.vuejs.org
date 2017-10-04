@@ -116,7 +116,7 @@ Mustache 语法不能作用在 HTML 特性上，遇到这种情况应该使用 [
 <form v-on:submit.prevent="onSubmit"></form>
 ```
 
-之后当我们更深入地了解 `v-on` 与 `v-model`时，会看到更多修饰符的使用。
+在接下来对 [`v-on`](events.html#事件修饰符) 和 [`v-for`](forms.html#修饰符) 等功能的探索中，你会看到修饰符的其它例子。
 
 ## 缩写
 
