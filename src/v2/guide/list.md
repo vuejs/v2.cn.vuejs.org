@@ -454,7 +454,7 @@ methods: {
 
 > 2.2.0+ 的版本里，当在组件中使用 `v-for` 时，`key` 现在是必须的。
 
-然而他不能自动传递数据到组件里，因为组件有自己独立的作用域。为了传递迭代数据到组件里，我们要用 `props` ：
+然而，任何数据都不会被自动传递到组件里，因为组件有自己独立的作用域。为了传递迭代数据到组件里，我们要用 `props` ：
 
 ``` html
 <my-component
@@ -465,9 +465,9 @@ methods: {
 ></my-component>
 ```
 
-不自动注入 `item` 到组件里的原因是，因为这使得组件会与 `v-for` 的运作紧密耦合。在一些情况下，明确数据的来源可以使组件可重用。
+不自动将 `item` 注入到组件里的原因是，这会使得组件与 `v-for` 的运作紧密耦合。明确组件内数据的来源能够使组件在其他场合重复使用。
 
-下面是一个简单的 todo list 完整的例子：
+下面是一个简单的 todo list 的完整例子：
 
 ``` html
 <div id="todo-list-example">
@@ -488,7 +488,7 @@ methods: {
 </div>
 ```
 
-<p class="tip">Note the `is="todo-item"` attribute. This is necessary in DOM templates, because only an `<li>` element is valid inside a `<ul>`. It does the same thing as `<todo-item>`, but works around a potential browser parsing error. See [DOM Template Parsing Caveats](components.html#DOM-Template-Parsing-Caveats) to learn more.</p><!-- todo translation -->
+<p class="tip">注意这里的 `is="todo-item"` 属性。这种做法在使用DOM作为模板时是十分必要的，因为在 `<ul>` 元素内只有 `<li>` 元素会被看作有效内容。这样做实现的效果与 `<todo-item>` 相同，但是可以避开一些潜在的浏览器渲染错误。查看 [DOM模板解析说明](components.html#DOM-模板解析说明) 来了解更多信息。</p>
 
 ``` js
 Vue.component('todo-item', {
