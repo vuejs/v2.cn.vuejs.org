@@ -229,7 +229,7 @@ type: api
   })
   ```
 
-  > 2.1.0 起新增：如果没有提供回调且支持 promise 的环境中返回 promise。
+  > 2.1.0 起新增：如果没有提供回调且在支持 Promise 的环境中，则返回一个 Promise。请注意 Vue 不自带 Promise 的 polyfill，所以如果你的目标浏览器不原生支持 Promise (IE：你们都看我干嘛)，你得自行 polyfill。
 
 <h3 id="Vue-set">Vue.set( target, key, value )</h3>
 
@@ -1546,7 +1546,7 @@ type: api
 
   将回调延迟到下次 DOM 更新循环之后执行。在修改数据之后立即使用它，然后等待 DOM 更新。它跟全局方法 `Vue.nextTick` 一样，不同的是回调的 `this` 自动绑定到调用它的实例上。
 
- > 2.1.0 新增：如果没有提供回调且支持 Promise 的环境中返回 Promise。
+  > 2.1.0 起新增：如果没有提供回调且在支持 Promise 的环境中，则返回一个 Promise。请注意 Vue 不自带 Promise 的 polyfill，所以如果你的目标浏览器不是原生支持 Promise (IE：你们都看我干嘛)，你得自行 polyfill。
 
 - **示例**：
 
