@@ -190,7 +190,7 @@ In committed code, prop definitions should always be as detailed as possible, sp
 </summary>
 {% endraw %}
 
-细致的 [prop 定义](https://cn.vuejs.org/v2/guide/components.html#Prop-验证)有两个好处：
+细致的 [prop 定义](../guide/components.html#Prop-验证)有两个好处：
 
 - 它们写明了组件的 API，所以很容易看懂组件的用法。
 - 在开发环境下，如果向一个组件提供格式不正确的 prop，Vue 将会告警，以帮助你捕获潜在的错误来源。
@@ -1687,7 +1687,7 @@ Vue.component('TodoItem', {
 
 **[Vuex](https://github.com/vuejs/vuex) should be preferred for global state management, instead of `this.$root` or a global event bus.**
 
-Managing state on `this.$root` and/or using a [global event bus](https://vuejs.org/v2/guide/migration.html#dispatch-and-broadcast-replaced) can be convenient for very simple cases, but are not appropriate for most applications. Vuex offers not only a central place to manage state, but also tools for organizing, tracking, and debugging state changes.
+Managing state on `this.$root` and/or using a [global event bus](../guide/migration.html#dispatch-和-broadcast-替换) can be convenient for very simple cases, but are not appropriate for most applications. Vuex offers not only a central place to manage state, but also tools for organizing, tracking, and debugging state changes.
 
 {% raw %}</details>{% endraw %}
 
