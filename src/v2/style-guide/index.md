@@ -190,10 +190,10 @@ In committed code, prop definitions should always be as detailed as possible, sp
 </summary>
 {% endraw %}
 
-Detailed [prop definitions](https://vuejs.org/v2/guide/components.html#Prop-Validation) have two advantages:
+细致的 [prop 定义](https://cn.vuejs.org/v2/guide/components.html#Prop-验证)有两个好处：
 
-- They document the API of the component, so that it's easy to see how the component is meant to be used.
-- In development, Vue will warn you if a component is ever provided incorrectly formatted props, helping you catch potential sources of error.
+- 它们写明了组件的 API，所以很容易看懂组件的用法。
+- 在开发环境下，如果向一个组件提供格式不正确的 prop，Vue 将会告警，以帮助你捕获潜在的错误来源。
 
 {% raw %}</details>{% endraw %}
 
@@ -201,7 +201,7 @@ Detailed [prop definitions](https://vuejs.org/v2/guide/components.html#Prop-Vali
 #### 反例
 
 ``` js
-// This is only OK when prototyping
+// 这样做只有原型时可以接受
 props: ['status']
 ```
 {% raw %}</div>{% endraw %}
@@ -216,7 +216,7 @@ props: {
 ```
 
 ``` js
-// Even better!
+// 更好的做法！
 props: {
   status: {
     type: String,
@@ -236,11 +236,11 @@ props: {
 
 
 
-### Keyed `v-for` <sup data-p="a">必要</sup>
+### 为 `v-for` 设置键值 <sup data-p="a">必要</sup>
 
-**Always use `key` with `v-for`.**
+**总是用 `key` 配合 `v-for`。**
 
-`key` with `v-for` is _always_ required on components, in order to maintain internal component state down the subtree. Even for elements though, it's a good practice to maintain predictable behavior, such as [object constancy](https://bost.ocks.org/mike/constancy/) in animations.
+在组件上总是必须用 `key` 配合 `v-for`，以便维护内部组件及其子树的状态。甚至在元素上，对于维护诸如[对象固化 (object constancy)](https://bost.ocks.org/mike/constancy/) 等可预知的行为来说也是很好的习惯。
 
 {% raw %}
 <details>
@@ -249,7 +249,7 @@ props: {
 </summary>
 {% endraw %}
 
-Let's say you have a list of todos:
+假设你有一个待办事项列表：
 
 ``` js
 data: function () {
@@ -257,22 +257,22 @@ data: function () {
     todos: [
       {
         id: 1,
-        text: 'Learn to use v-for'
+        text: '学习使用 v-for'
       },
       {
         id: 2,
-        text: 'Learn to use key'
+        text: '学习使用 key'
       }
     ]
   }
 }
 ```
 
-Then you sort them alphabetically. When updating the DOM, Vue will optimize rendering to perform the cheapest DOM mutations possible. That might mean deleting the first todo element, then adding it again at the end of the list.
+然后你把它们按照字母顺序排序。在更新 DOM 的时候，Vue 将会优化渲染把可能的 DOM 变动降到最低。即可能删掉第一个待办事项元素，然后把它重新加回到列表的最末尾。
 
-The problem is, there are cases where it's important not to delete elements that will remain in the DOM. For example, you may want to use `<transition-group>` to animate list sorting, or maintain focus if the rendered element is an `<input>`. In these cases, adding a unique key for each item (e.g. `:key="todo.id"`) will tell Vue how to behave more predictably.
+这里的问题在于，不要删除仍然会留在 DOM 中的元素。比如你可能想使用 `<transition-group>` 给列表加过渡动画，或在被渲染元素是 `<input>` 时保持聚焦。在这些情况下，为每一个项目添加一个唯一的键值 (比如 `:key="todo.id"`) 将会让 Vue 知道如何更好的预知未来的行为。
 
-In our experience, it's better to _always_ add a unique key, so that you and your team simply never have to worry about these edge cases. Then in the rare, performance-critical scenarios where object constancy isn't necessary, you can make a conscious exception.
+根据我们的经验，最好_始终_添加一个唯一的键值，以便你和你的团队永远不必担心这些极端情况。也在少数对性能有严格要求的情况下，为了避免对象固化，你可以刻意做一些非常规的处理。
 
 {% raw %}</details>{% endraw %}
 
@@ -305,15 +305,16 @@ In our experience, it's better to _always_ add a unique key, so that you and you
 
 
 
-### Component style scoping <sup data-p="a">必要</sup>
+### 为组件样式设置作用域 <sup data-p="a">必要</sup>
 
-**For applications, styles in a top-level `App` component and in layout components may be global, but all other components should always be scoped.**
+**对于应用来说，顶级 `App` 组件和布局组件中的样式可以是全局的，但是其它所有组件都应该是有作用域的。**
 
-This is only relevant for [single-file components](../guide/single-file-components.html). It does _not_ require that the [`scoped` attribute](https://vue-loader.vuejs.org/en/features/scoped-css.html) be used. Scoping could be through [CSS modules](https://vue-loader.vuejs.org/en/features/css-modules.html), a class-based strategy such as [BEM](http://getbem.com/), or another library/convention.
+这条规则只和[单文件组件](../guide/single-file-components.html)有关。你_不一定_要使用 [`scoped` 特性](https://vue-loader.vuejs.org/zh-cn/features/scoped-css.html)。设置作用域也可以通过 [CSS modules](https://vue-loader.vuejs.org/zh-cn/features/css-modules.html)，那是一个基于 class 的类似 [BEM](http://getbem.com/) 的策略，当然你也可以使用其它的库或规约。
 
-**Component libraries, however, should prefer a class-based strategy instead of using the `scoped` attribute.**
 
-This makes overriding internal styles easier, with human-readable class names that don't have too high specificity, but are still very unlikely to result in a conflict.
+**不管怎样，对于组件库，我们应该更倾向于选用基于 class 的策略而不是 `scoped` 特性。**
+
+这让覆写内部样式更容易：使用了常人可理解的 class 名称且没有太高的 specificity (译者注：体现 CSS 选择器优先级的系数)，而且不太会导致冲突。
 
 {% raw %}
 <details>
@@ -322,9 +323,9 @@ This makes overriding internal styles easier, with human-readable class names th
 </summary>
 {% endraw %}
 
-If you are developing a large project, working with other developers, or sometimes include 3rd-party HTML/CSS (e.g. from Auth0), consistent scoping will ensure that your styles only apply to the components they are meant for.
+如果你在开发一个大型工程，和其他开发者工作在一起，或有时引入三方 HTML/CSS (比如来自 Auth0)，设置一致的作用域会确保你的样式只会运用在它们想要作用的组件上。
 
-Beyond the `scoped` attribute, using unique class names can help ensure that 3rd-party CSS does not apply to your own HTML. For example, many projects use the `button`, `btn`, or `icon` class names, so even if not using a strategy such as BEM, adding an app-specific and/or component-specific prefix (e.g. `ButtonClose-icon`) can provide some protection.
+不止要使用 `scoped` 特性，使用唯一的 class 名可以帮你确保那些三方库的 CSS 不会运用在你自己的 HTML 上。比如许多工程都使用了 `button`、`btn` 或 `icon` class 名，所以即便你不使用类似 BEM 的策略，添加一个 app 专属或组件专属的前缀 (比如 `ButtonClose-icon`) 也可以提供很多保护。
 
 {% raw %}</details>{% endraw %}
 
@@ -352,7 +353,7 @@ Beyond the `scoped` attribute, using unique class names can help ensure that 3rd
   <button class="button button-close">X</button>
 </template>
 
-<!-- Using the scoped attribute -->
+<!-- 使用 `scoped` 特性 -->
 <style scoped>
 .button {
   border: none;
@@ -370,7 +371,7 @@ Beyond the `scoped` attribute, using unique class names can help ensure that 3rd
   <button :class="[$style.button, $style.buttonClose]">X</button>
 </template>
 
-<!-- Using CSS modules -->
+<!-- 使用 CSS modules -->
 <style module>
 .button {
   border: none;
@@ -388,7 +389,7 @@ Beyond the `scoped` attribute, using unique class names can help ensure that 3rd
   <button class="c-Button c-Button--close">X</button>
 </template>
 
-<!-- Using the BEM convention -->
+<!-- 使用 BEM 规约 -->
 <style>
 .c-Button {
   border: none;
@@ -404,9 +405,9 @@ Beyond the `scoped` attribute, using unique class names can help ensure that 3rd
 
 
 
-### Private property names <sup data-p="a">必要</sup>
+### 私有属性名 <sup data-p="a">必要</sup>
 
-**Always use the `$_` prefix for custom private properties in a plugin, mixin, etc. Then to avoid conflicts with code by other authors, also include a named scope (e.g. `$_yourPluginName_`).**
+**在插件、混合等扩展中始终为自定义的私有属性使用 `$_` 前缀。并附带一个命名作用于以回避和其它作者的冲突 (比如 `$_yourPluginName_`)。**
 
 {% raw %}
 <details>
@@ -415,11 +416,11 @@ Beyond the `scoped` attribute, using unique class names can help ensure that 3rd
 </summary>
 {% endraw %}
 
-Vue uses the `_` prefix to define its own private properties, so using the same prefix (e.g. `_update`) risks overwriting an instance property. Even if you check and Vue is not currently using a particular property name, there is no guarantee a conflict won't arise in a later version.
+Vue 使用 `_` 前缀来定义其自身的私有属性，所以使用相同的前缀 (比如 `_update`) 有覆写实例属性的风险。即便你检查确认 Vue 当前版本没有用到这个属性名，也不能保证和将来的版本没有冲突。
 
-As for the `$` prefix, it's purpose within the Vue ecosystem is special instance properties that are exposed to the user, so using it for _private_ properties would not be appropriate.
+对于 `&` 前缀来说，其在 Vue 生态系统中的目的是暴露给用户的一个特殊的实例属性，所以把它用于_私有_属性并不合适。
 
-Instead, we recommend combining the two prefixes into `$_`, as a convention for user-defined private properties that guarantee no conflicts with Vue.
+不过，我们推荐把这两个前缀结合为 `&_`，作为一个用户定义的私有属性的规约，以确保不会和 Vue 自身相冲突。
 
 {% raw %}</details>{% endraw %}
 
