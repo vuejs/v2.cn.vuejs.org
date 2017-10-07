@@ -2,56 +2,54 @@
 type: style-guide
 ---
 
-# Style Guide <sup class="beta">beta</sup>
+# 风格指南 <sup class="beta">beta</sup>
 
-<!-- todo translation -->
+这里是官方的 Vue 特有代码的风格指南。如果在工程中使用 Vue，为了回避错误、小纠结和反模式，该指南是份不错的参考。不过我们也不确信风格指南的所有内容对于所有的团队或工程都是理想的。所以根据过去的经验、周围的技术栈、个人价值观做出有意义的偏差是可取的。
 
-This is the official style guide for Vue-specific code. If you use Vue in a project, it's a great reference to avoid errors, bikeshedding, and anti-patterns. However, we don't believe that any style guide is ideal for all teams or projects, so mindful deviations are encouraged based on past experience, the surrounding tech stack, and personal values.
+对于其绝大部分，我们也总体上避免就 JavaScript 或 HTML 的本身提出建议。我们不介意你是否使用分号或结尾的逗号。我们不介意你在 HTML 特性中使用单引号还是双引号。不过当我们发现在 Vue 的情景下有帮助的特定模式时，也会存在例外。
 
-For the most part, we also avoid suggestions about JavaScript or HTML in general. We don't mind whether you use semicolons or trailing commas. We don't mind whether your HTML uses single-quotes or double-quotes for attribute values. Some exceptions will exist however, where we've found that a particular pattern is helpful in the context of Vue.
+> **不久之后，我们还会提供操作层面的技巧。**有的时候你只需要遵守规则，而我们会尽可能向你展示如何使用 ESLint 及其它自动化程序把操作层面弄得更简单。
 
-> **Soon, we'll also provide tips for enforcement.** Sometimes you'll simply have to be disciplined, but wherever possible, we'll try to show you how to use ESLint and other automated processes to make enforcement simpler.
-
-Finally, we've split rules into four categories:
+最终，我们把所有的规则归为了四个大类：
 
 
 
-## Rule Categories
+## 规则归类
 
-### Priority A: Essential
+### 优先级 A：必要的
 
-These rules help prevent errors, so learn and abide by them at all costs. Exceptions may exist, but should be very rare and only be made by those with expert knowledge of both JavaScript and Vue.
+这些规则会帮你规避错误，所以学习并接受它们带来的全部代价吧。这里面可能存在例外，但应该非常少，且只有你同时精通 JavaScript 和 Vue 才可以这样做。
 
-### Priority B: Strongly Recommended
+### 优先级 B：强烈推荐
 
-These rules have been found to improve readability and/or developer experience in most projects. Your code will still run if you violate them, but violations should be rare and well-justified.
+这些规则能够在绝大多数工程中改善可读性和开发体验。即使你违反了，代码还是能照常运行，但例外应该尽可能少且有合理的理由。
 
-### Priority C: Recommended
+### 优先级 C：推荐
 
-Where multiple, equally good options exist, an arbitrary choice can be made to ensure consistency. In these rules, we describe each acceptable option and suggest a default choice. That means you can feel free to make a different choice in your own codebase, as long as you're consistent and have a good reason. Please do have a good reason though! By adapting to the community standard, you will:
+当存在多个同样好的选项，选任意一个都可以确保一致性。在这些规则里，我们描述了每个选项并建议一个默认的选择。也就是说只要保持一致且理由充分，你可以随意在你的代码库中做出不同的选择。请务必给出一个好的理由！通过接受社区的标准，你将会：
 
-1. train your brain to more easily parse most of the community code you encounter
-2. be able to copy and paste most community code examples without modification
-2. often find new hires are already accustomed to your preferred coding style, at least in regards to Vue
+1. 训练你的大脑，以便更容易的处理你在社区遇到的代码；
+2. 不做修改就可以直接复制粘贴社区的代码示例；
+3. 能够经常招聘到和你编码习惯相同的新人，至少跟 Vue 相关的东西是这样的。
 
-### Priority D: Use with Caution
+### 优先级 D：谨慎使用
 
-Some features of Vue exist to accommodate rare edge cases or smoother migrations from a legacy code base. When overused however, they can make your code more difficult to maintain or even become a source of bugs. These rules shine a light on potentially risky features, describing when and why they should be avoided.
-
-
-
-## Priority A Rules: Essential (Error Prevention)
+有些 Vue 特性的存在是为了照顾极端情况或帮助老代码的平稳迁移。当被过度使用时，这些特性会让你的代码难于维护甚至变成 bug 的来源。这些规则是为了给有潜在风险的特性敲个警钟，并说明它们什么时候不应该使用以及为什么。
 
 
 
-### Multi-word component names <sup data-p="a">essential</sup>
+## 优先级 A 的规则：必要的 (规避错误)
 
-**Component names should always be multi-word, except for root `App` components.**
 
-This [prevents conflicts](http://w3c.github.io/webcomponents/spec/custom/#valid-custom-element-name) with existing and future HTML elements, since all HTML elements are a single word.
+
+### 组件名为多个单词 <sup data-p="a">必要</sup>
+
+**组件名应该始终是多个单词的，根组件 `App` 除外。**
+
+这样做可以避免跟现有的以及未来的 HTML 元素[相冲突](http://w3c.github.io/webcomponents/spec/custom/#valid-custom-element-name)，因为所有的 HTML 元素名称都是单个单词的。
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
-#### Bad
+#### 反例
 
 ``` js
 Vue.component('todo', {
@@ -68,7 +66,7 @@ export default {
 {% raw %}</div>{% endraw %}
 
 {% raw %}<div class="style-example example-good">{% endraw %}
-#### Good
+#### 好例子
 
 ``` js
 Vue.component('todo-item', {
@@ -86,20 +84,20 @@ export default {
 
 
 
-### Component data <sup data-p="a">essential</sup>
+### 组件数据 <sup data-p="a">必要</sup>
 
-**Component `data` must be a function.**
+**组件的 `data` 必须是一个函数。**
 
-When using the `data` property on a component (i.e. anywhere except on `new Vue`), the value must be a function that returns an object.
+当在组件中使用 `data` 属性的时候 (除了 `new Vue` 外的任何地方)，它的值必须是返回一个对象的函数。
 
 {% raw %}
 <details>
 <summary>
-  <h4>Detailed Explanation</h4>
+  <h4>详解</h4>
 </summary>
 {% endraw %}
 
-When the value of `data` is an object, it's shared across all instances of a component. Imagine, for example, a `TodoList` component with this data:
+当 `data` 的值是一个对象时，它会在这个组件的所有实例之间共享。想象一下，假如一个 `TodoList` 组件的数据是这样的：
 
 ``` js
 data: {
@@ -108,9 +106,9 @@ data: {
 }
 ```
 
-We might want to reuse this component, allowing users to maintain multiple lists (e.g. for shopping, wishlists, daily chores, etc). There's a problem though. Since every instance of the component references the same data object, changing the title of one list will also change the title of every other list. The same is true for adding/editing/deleting a todo.
+我们可能希望重用这个组件，允许用户维护多个列表 (比如分为购物、心愿单、日常事务等)。这时就会产生问题。因为每个组件的实例都引用了相同的数据对象，更改其中一个列表的标题就会改变其它每一个列表的标题。增删改一个待办事项的时候也是如此。
 
-Instead, we want each component instance to only manage its own data. For that to happen, each instance must generate a unique data object. In JavaScript, this can be accomplished by returning the object in a function:
+取而代之的是，我们希望每个组件实例都管理其自己的数据。为了做到这一点，每个实例必须生成一个独立的数据对象。在 JavaScript 中，在一个函数中返回这个对象就可以了：
 
 ``` js
 data: function () {
@@ -123,7 +121,7 @@ data: function () {
 {% raw %}</details>{% endraw %}
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
-#### Bad
+#### 反例
 
 ``` js
 Vue.component('some-comp', {
@@ -143,7 +141,7 @@ export default {
 {% raw %}</div>{% endraw %}
 
 {% raw %}<div class="style-example example-good">{% endraw %}
-#### Good
+#### 好例子
 ``` js
 Vue.component('some-comp', {
   data: function () {
@@ -166,9 +164,8 @@ export default {
 ```
 
 ``` js
-// It's OK to use an object directly in a root
-// Vue instance, since only a single instance
-// will ever exist.
+// 在一个 Vue 的根实例上直接使用对象是可以的，
+// 因为只存在一个这样的实例。
 new Vue({
   data: {
     foo: 'bar'
@@ -179,37 +176,38 @@ new Vue({
 
 
 
-### Prop definitions <sup data-p="a">essential</sup>
+### Prop 定义 <sup data-p="a">必要</sup>
 
-**Prop definitions should be as detailed as possible.**
+**Prop 定义应该尽量详细。**
 
 In committed code, prop definitions should always be as detailed as possible, specifying at least type(s).
+
 
 {% raw %}
 <details>
 <summary>
-  <h4>Detailed Explanation</h4>
+  <h4>详解</h4>
 </summary>
 {% endraw %}
 
-Detailed [prop definitions](https://vuejs.org/v2/guide/components.html#Prop-Validation) have two advantages:
+细致的 [prop 定义](../guide/components.html#Prop-验证)有两个好处：
 
-- They document the API of the component, so that it's easy to see how the component is meant to be used.
-- In development, Vue will warn you if a component is ever provided incorrectly formatted props, helping you catch potential sources of error.
+- 它们写明了组件的 API，所以很容易看懂组件的用法；
+- 在开发环境下，如果向一个组件提供格式不正确的 prop，Vue 将会告警，以帮助你捕获潜在的错误来源。
 
 {% raw %}</details>{% endraw %}
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
-#### Bad
+#### 反例
 
 ``` js
-// This is only OK when prototyping
+// 这样做只有开发原型系统时可以接受
 props: ['status']
 ```
 {% raw %}</div>{% endraw %}
 
 {% raw %}<div class="style-example example-good">{% endraw %}
-#### Good
+#### 好例子
 
 ``` js
 props: {
@@ -218,7 +216,7 @@ props: {
 ```
 
 ``` js
-// Even better!
+// 更好的做法！
 props: {
   status: {
     type: String,
@@ -238,20 +236,20 @@ props: {
 
 
 
-### Keyed `v-for` <sup data-p="a">essential</sup>
+### 为 `v-for` 设置键值 <sup data-p="a">必要</sup>
 
-**Always use `key` with `v-for`.**
+**总是用 `key` 配合 `v-for`。**
 
-`key` with `v-for` is _always_ required on components, in order to maintain internal component state down the subtree. Even for elements though, it's a good practice to maintain predictable behavior, such as [object constancy](https://bost.ocks.org/mike/constancy/) in animations.
+在组件上_总是_必须用 `key` 配合 `v-for`，以便维护内部组件及其子树的状态。甚至在元素上维护可预测的行为，比如动画中的[对象固化 (object constancy)](https://bost.ocks.org/mike/constancy/)，也是一种好的做法。
 
 {% raw %}
 <details>
 <summary>
-  <h4>Detailed Explanation</h4>
+  <h4>详解</h4>
 </summary>
 {% endraw %}
 
-Let's say you have a list of todos:
+假设你有一个待办事项列表：
 
 ``` js
 data: function () {
@@ -259,27 +257,27 @@ data: function () {
     todos: [
       {
         id: 1,
-        text: 'Learn to use v-for'
+        text: '学习使用 v-for'
       },
       {
         id: 2,
-        text: 'Learn to use key'
+        text: '学习使用 key'
       }
     ]
   }
 }
 ```
 
-Then you sort them alphabetically. When updating the DOM, Vue will optimize rendering to perform the cheapest DOM mutations possible. That might mean deleting the first todo element, then adding it again at the end of the list.
+然后你把它们按照字母顺序排序。在更新 DOM 的时候，Vue 将会优化渲染把可能的 DOM 变动降到最低。即可能删掉第一个待办事项元素，然后把它重新加回到列表的最末尾。
 
-The problem is, there are cases where it's important not to delete elements that will remain in the DOM. For example, you may want to use `<transition-group>` to animate list sorting, or maintain focus if the rendered element is an `<input>`. In these cases, adding a unique key for each item (e.g. `:key="todo.id"`) will tell Vue how to behave more predictably.
+这里的问题在于，不要删除仍然会留在 DOM 中的元素。比如你想使用 `<transition-group>` 给列表加过渡动画，或想在被渲染元素是 `<input>` 时保持聚焦。在这些情况下，为每一个项目添加一个唯一的键值 (比如 `:key="todo.id"`) 将会让 Vue 知道如何使行为更容易预测。
 
-In our experience, it's better to _always_ add a unique key, so that you and your team simply never have to worry about these edge cases. Then in the rare, performance-critical scenarios where object constancy isn't necessary, you can make a conscious exception.
+根据我们的经验，最好_始终_添加一个唯一的键值，以便你和你的团队永远不必担心这些极端情况。也在少数对性能有严格要求的情况下，为了避免对象固化，你可以刻意做一些非常规的处理。
 
 {% raw %}</details>{% endraw %}
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
-#### Bad
+#### 反例
 
 ``` html
 <ul>
@@ -291,7 +289,7 @@ In our experience, it's better to _always_ add a unique key, so that you and you
 {% raw %}</div>{% endraw %}
 
 {% raw %}<div class="style-example example-good">{% endraw %}
-#### Good
+#### 好例子
 
 ``` html
 <ul>
@@ -307,31 +305,32 @@ In our experience, it's better to _always_ add a unique key, so that you and you
 
 
 
-### Component style scoping <sup data-p="a">essential</sup>
+### 为组件样式设置作用域 <sup data-p="a">必要</sup>
 
-**For applications, styles in a top-level `App` component and in layout components may be global, but all other components should always be scoped.**
+**对于应用来说，顶级 `App` 组件和布局组件中的样式可以是全局的，但是其它所有组件都应该是有作用域的。**
 
-This is only relevant for [single-file components](../guide/single-file-components.html). It does _not_ require that the [`scoped` attribute](https://vue-loader.vuejs.org/en/features/scoped-css.html) be used. Scoping could be through [CSS modules](https://vue-loader.vuejs.org/en/features/css-modules.html), a class-based strategy such as [BEM](http://getbem.com/), or another library/convention.
+这条规则只和[单文件组件](../guide/single-file-components.html)有关。你_不一定_要使用 [`scoped` 特性](https://vue-loader.vuejs.org/zh-cn/features/scoped-css.html)。设置作用域也可以通过 [CSS Modules](https://vue-loader.vuejs.org/zh-cn/features/css-modules.html)，那是一个基于 class 的类似 [BEM](http://getbem.com/) 的策略，当然你也可以使用其它的库或规约。
 
-**Component libraries, however, should prefer a class-based strategy instead of using the `scoped` attribute.**
 
-This makes overriding internal styles easier, with human-readable class names that don't have too high specificity, but are still very unlikely to result in a conflict.
+**不管怎样，对于组件库，我们应该更倾向于选用基于 class 的策略而不是 `scoped` 特性。**
+
+这让覆写内部样式更容易：使用了常人可理解的 class 名称且没有太高的选择器优先级，而且不太会导致冲突。
 
 {% raw %}
 <details>
 <summary>
-  <h4>Detailed Explanation</h4>
+  <h4>详解</h4>
 </summary>
 {% endraw %}
 
-If you are developing a large project, working with other developers, or sometimes include 3rd-party HTML/CSS (e.g. from Auth0), consistent scoping will ensure that your styles only apply to the components they are meant for.
+如果你和其他开发者一起开发一个大型工程，或有时引入三方 HTML/CSS (比如来自 Auth0)，设置一致的作用域会确保你的样式只会运用在它们想要作用的组件上。
 
-Beyond the `scoped` attribute, using unique class names can help ensure that 3rd-party CSS does not apply to your own HTML. For example, many projects use the `button`, `btn`, or `icon` class names, so even if not using a strategy such as BEM, adding an app-specific and/or component-specific prefix (e.g. `ButtonClose-icon`) can provide some protection.
+不止要使用 `scoped` 特性，使用唯一的 class 名可以帮你确保那些三方库的 CSS 不会运用在你自己的 HTML 上。比如许多工程都使用了 `button`、`btn` 或 `icon` class 名，所以即便你不使用类似 BEM 的策略，添加一个 app 专属或组件专属的前缀 (比如 `ButtonClose-icon`) 也可以提供很多保护。
 
 {% raw %}</details>{% endraw %}
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
-#### Bad
+#### 反例
 
 ``` html
 <template>
@@ -347,14 +346,14 @@ Beyond the `scoped` attribute, using unique class names can help ensure that 3rd
 {% raw %}</div>{% endraw %}
 
 {% raw %}<div class="style-example example-good">{% endraw %}
-#### Good
+#### 好例子
 
 ``` html
 <template>
   <button class="button button-close">X</button>
 </template>
 
-<!-- Using the scoped attribute -->
+<!-- 使用 `scoped` 特性 -->
 <style scoped>
 .button {
   border: none;
@@ -372,7 +371,7 @@ Beyond the `scoped` attribute, using unique class names can help ensure that 3rd
   <button :class="[$style.button, $style.buttonClose]">X</button>
 </template>
 
-<!-- Using CSS modules -->
+<!-- 使用 CSS Modules -->
 <style module>
 .button {
   border: none;
@@ -390,7 +389,7 @@ Beyond the `scoped` attribute, using unique class names can help ensure that 3rd
   <button class="c-Button c-Button--close">X</button>
 </template>
 
-<!-- Using the BEM convention -->
+<!-- 使用 BEM 规约 -->
 <style>
 .c-Button {
   border: none;
@@ -406,27 +405,27 @@ Beyond the `scoped` attribute, using unique class names can help ensure that 3rd
 
 
 
-### Private property names <sup data-p="a">essential</sup>
+### 私有属性名 <sup data-p="a">必要</sup>
 
-**Always use the `$_` prefix for custom private properties in a plugin, mixin, etc. Then to avoid conflicts with code by other authors, also include a named scope (e.g. `$_yourPluginName_`).**
+**在插件、混入等扩展中始终为自定义的私有属性使用 `$_` 前缀。并附带一个命名作用于以回避和其它作者的冲突 (比如 `$_yourPluginName_`)。**
 
 {% raw %}
 <details>
 <summary>
-  <h4>Detailed Explanation</h4>
+  <h4>详解</h4>
 </summary>
 {% endraw %}
 
-Vue uses the `_` prefix to define its own private properties, so using the same prefix (e.g. `_update`) risks overwriting an instance property. Even if you check and Vue is not currently using a particular property name, there is no guarantee a conflict won't arise in a later version.
+Vue 使用 `_` 前缀来定义其自身的私有属性，所以使用相同的前缀 (比如 `_update`) 有覆写实例属性的风险。即便你检查确认 Vue 当前版本没有用到这个属性名，也不能保证和将来的版本没有冲突。
 
-As for the `$` prefix, it's purpose within the Vue ecosystem is special instance properties that are exposed to the user, so using it for _private_ properties would not be appropriate.
+对于 `&` 前缀来说，其在 Vue 生态系统中的目的是暴露给用户的一个特殊的实例属性，所以把它用于_私有_属性并不合适。
 
-Instead, we recommend combining the two prefixes into `$_`, as a convention for user-defined private properties that guarantee no conflicts with Vue.
+不过，我们推荐把这两个前缀结合为 `&_`，作为一个用户定义的私有属性的规约，以确保不会和 Vue 自身相冲突。
 
 {% raw %}</details>{% endraw %}
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
-#### Bad
+#### 反例
 
 ``` js
 var myGreatMixin = {
@@ -475,7 +474,7 @@ var myGreatMixin = {
 {% raw %}</div>{% endraw %}
 
 {% raw %}<div class="style-example example-good">{% endraw %}
-#### Good
+#### 好例子
 
 ``` js
 var myGreatMixin = {
@@ -502,7 +501,7 @@ var myGreatMixin = {
 This helps you to more quickly find a component when you need to edit it or review how to use it.
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
-#### Bad
+#### 反例
 
 ``` js
 Vue.component('TodoList', {
@@ -516,7 +515,7 @@ Vue.component('TodoItem', {
 {% raw %}</div>{% endraw %}
 
 {% raw %}<div class="style-example example-good">{% endraw %}
-#### Good
+#### 好例子
 
 ```
 components/
@@ -540,7 +539,7 @@ components/
 PascalCase works best with autocompletion in code editors, as it's consistent with how we reference components in JS(X) and templates, wherever possible. However, mixed case filenames can sometimes create issues on case-insensitive filesystems, which is why kebab-case is also perfectly acceptable.
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
-#### Bad
+#### 反例
 
 ```
 components/
@@ -554,7 +553,7 @@ components/
 {% raw %}</div>{% endraw %}
 
 {% raw %}<div class="style-example example-good">{% endraw %}
-#### Good
+#### 好例子
 
 ```
 components/
@@ -576,7 +575,7 @@ components/
 {% raw %}
 <details>
 <summary>
-  <h4>Detailed Explanation</h4>
+  <h4>详解</h4>
 </summary>
 {% endraw %}
 
@@ -615,7 +614,7 @@ Some advantages of this convention:
 {% raw %}</details>{% endraw %}
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
-#### Bad
+#### 反例
 
 ```
 components/
@@ -626,7 +625,7 @@ components/
 {% raw %}</div>{% endraw %}
 
 {% raw %}<div class="style-example example-good">{% endraw %}
-#### Good
+#### 好例子
 
 ```
 components/
@@ -659,7 +658,7 @@ components/
 This does not mean the component is only used in a single page, but it will only be used once _per page_. These components never accept any props, since they are specific to your app, not their context within your app. If you find the need to add props, it's a good indication that this is actually a reusable component that is only used once per page _for now_.
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
-#### Bad
+#### 反例
 
 ```
 components/
@@ -669,7 +668,7 @@ components/
 {% raw %}</div>{% endraw %}
 
 {% raw %}<div class="style-example example-good">{% endraw %}
-#### Good
+#### 好例子
 
 ```
 components/
@@ -687,7 +686,7 @@ components/
 If a component only makes sense in the context of a single parent component, that relationship should be evident in its name. Since editors typically organize files alphabetically, this also keeps these related files next to each other.
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
-#### Bad
+#### 反例
 
 ```
 components/
@@ -704,7 +703,7 @@ components/
 {% raw %}</div>{% endraw %}
 
 {% raw %}<div class="style-example example-good">{% endraw %}
-#### Good
+#### 好例子
 
 ```
 components/
@@ -729,7 +728,7 @@ components/
 {% raw %}
 <details>
 <summary>
-  <h4>Detailed Explanation</h4>
+  <h4>详解</h4>
 </summary>
 {% endraw %}
 
@@ -780,7 +779,7 @@ You might be tempted to solve this problem differently, nesting all the search c
 {% raw %}</details>{% endraw %}
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
-#### Bad
+#### 反例
 
 ```
 components/
@@ -794,7 +793,7 @@ components/
 {% raw %}</div>{% endraw %}
 
 {% raw %}<div class="style-example example-good">{% endraw %}
-#### Good
+#### 好例子
 
 ```
 components/
@@ -818,7 +817,7 @@ Components that self-close communicate that they not only have no content, but a
 Unfortunately, HTML doesn't allow custom elements to be self-closing - only [official "void" elements](https://www.w3.org/TR/html/syntax.html#void-elements). That's why the strategy is only possible when Vue's template compiler can reach the template before the DOM, then serve the DOM spec-compliant HTML.
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
-#### Bad
+#### 反例
 
 ``` html
 <!-- In single-file components, string templates, and JSX -->
@@ -832,7 +831,7 @@ Unfortunately, HTML doesn't allow custom elements to be self-closing - only [off
 {% raw %}</div>{% endraw %}
 
 {% raw %}<div class="style-example example-good">{% endraw %}
-#### Good
+#### 好例子
 
 ``` html
 <!-- In single-file components, string templates, and JSX -->
@@ -860,7 +859,7 @@ PascalCase has a few advantages over kebab-case:
 Unfortunately, due to HTML's case insensitivity, DOM templates must still use kebab-case.
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
-#### Bad
+#### 反例
 
 ``` html
 <!-- In single-file components and string templates -->
@@ -884,7 +883,7 @@ Unfortunately, due to HTML's case insensitivity, DOM templates must still use ke
 {% raw %}</div>{% endraw %}
 
 {% raw %}<div class="style-example example-good">{% endraw %}
-#### Good
+#### 好例子
 
 ``` html
 <!-- In single-file components and string templates -->
@@ -906,7 +905,7 @@ Unfortunately, due to HTML's case insensitivity, DOM templates must still use ke
 {% raw %}
 <details>
 <summary>
-  <h4>Detailed Explanation</h4>
+  <h4>详解</h4>
 </summary>
 {% endraw %}
 
@@ -919,7 +918,7 @@ However, for applications that use **only** global component definitions via `Vu
 {% raw %}</details>{% endraw %}
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
-#### Bad
+#### 反例
 
 ``` js
 Vue.component('myComponent', {
@@ -947,7 +946,7 @@ export default {
 {% raw %}</div>{% endraw %}
 
 {% raw %}<div class="style-example example-good">{% endraw %}
-#### Good
+#### 好例子
 
 ``` js
 Vue.component('MyComponent', {
@@ -982,7 +981,7 @@ export default {
 The autocompletion in editors make the cost of writing longer names very low, while the clarity they provide is invaluable. Uncommon abbreviations, in particular, should always be avoided.
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
-#### Bad
+#### 反例
 
 ```
 components/
@@ -992,7 +991,7 @@ components/
 {% raw %}</div>{% endraw %}
 
 {% raw %}<div class="style-example example-good">{% endraw %}
-#### Good
+#### 好例子
 
 ```
 components/
@@ -1010,7 +1009,7 @@ components/
 We're simply following the conventions of each language. Within JavaScript, camelCase is more natural. Within HTML, kebab-case is.
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
-#### Bad
+#### 反例
 
 ``` js
 props: {
@@ -1024,7 +1023,7 @@ props: {
 {% raw %}</div>{% endraw %}
 
 {% raw %}<div class="style-example example-good">{% endraw %}
-#### Good
+#### 好例子
 
 ``` js
 props: {
@@ -1046,7 +1045,7 @@ props: {
 In JavaScript, splitting objects with multiple properties over multiple lines is widely considered a good convention, because it's much easier to read. Our templates and [JSX](../guide/render-function.html#JSX) deserve the same consideration.
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
-#### Bad
+#### 反例
 
 ``` html
 <img src="https://vuejs.org/images/logo.png" alt="Vue Logo">
@@ -1058,7 +1057,7 @@ In JavaScript, splitting objects with multiple properties over multiple lines is
 {% raw %}</div>{% endraw %}
 
 {% raw %}<div class="style-example example-good">{% endraw %}
-#### Good
+#### 好例子
 
 ``` html
 <img
@@ -1085,7 +1084,7 @@ In JavaScript, splitting objects with multiple properties over multiple lines is
 Complex expressions in your templates make them less declarative. We should strive to describe _what_ should appear, not _how_ we're computing that value. Computed properties and methods also allow the code to be reused.
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
-#### Bad
+#### 反例
 
 ``` html
 {{
@@ -1097,7 +1096,7 @@ Complex expressions in your templates make them less declarative. We should stri
 {% raw %}</div>{% endraw %}
 
 {% raw %}<div class="style-example example-good">{% endraw %}
-#### Good
+#### 好例子
 
 ``` html
 <!-- In a template -->
@@ -1125,7 +1124,7 @@ computed: {
 {% raw %}
 <details>
 <summary>
-  <h4>Detailed Explanation</h4>
+  <h4>详解</h4>
 </summary>
 {% endraw %}
 
@@ -1148,7 +1147,7 @@ Simpler, well-named computed properties are:
 {% raw %}</details>{% endraw %}
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
-#### Bad
+#### 反例
 
 ``` js
 computed: {
@@ -1164,7 +1163,7 @@ computed: {
 {% raw %}</div>{% endraw %}
 
 {% raw %}<div class="style-example example-good">{% endraw %}
-#### Good
+#### 好例子
 
 ``` js
 computed: {
@@ -1190,7 +1189,7 @@ computed: {
 While attribute values without any spaces are not required to have quotes in HTML, this practice often leads to _avoiding_ spaces, making attribute values less readable.
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
-#### Bad
+#### 反例
 
 ``` html
 <input type=text>
@@ -1202,7 +1201,7 @@ While attribute values without any spaces are not required to have quotes in HTM
 {% raw %}</div>{% endraw %}
 
 {% raw %}<div class="style-example example-good">{% endraw %}
-#### Good
+#### 好例子
 
 ``` html
 <input type="text">
@@ -1220,7 +1219,7 @@ While attribute values without any spaces are not required to have quotes in HTM
 **Directive shorthands (`:` for `v-bind:` and `@` for `v-on:`) should be used always or never.**
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
-#### Bad
+#### 反例
 
 ``` html
 <input
@@ -1238,7 +1237,7 @@ While attribute values without any spaces are not required to have quotes in HTM
 {% raw %}</div>{% endraw %}
 
 {% raw %}<div class="style-example example-good">{% endraw %}
-#### Good
+#### 好例子
 
 ``` html
 <input
@@ -1378,7 +1377,7 @@ This is the default order we recommend for component options. They're split into
 When components begin to feel cramped or difficult to read, adding spaces between multi-line properties can make them easier to skim again. In some editors, such as Vim, formatting options like this can also make them easier to navigate with the keyboard.
 
 {% raw %}<div class="style-example example-good">{% endraw %}
-#### Good
+#### 好例子
 
 ``` js
 props: {
@@ -1440,7 +1439,7 @@ computed: {
 **[Single-file components](../guide/single-file-components.html) should always order `template`, `script`, and `style` tags consistently, with `<style>` last, because at least one of the other two is always necessary.**
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
-#### Bad
+#### 反例
 
 ``` html
 <style>/* ... */</style>
@@ -1462,7 +1461,7 @@ computed: {
 {% raw %}</div>{% endraw %}
 
 {% raw %}<div class="style-example example-good">{% endraw %}
-#### Good
+#### 好例子
 
 ``` html
 <!-- ComponentA.vue -->
@@ -1502,7 +1501,7 @@ computed: {
 By default, Vue updates the DOM as efficiently as possible. That means when switching between elements of the same type, it simply patches the existing element, rather than removing it and adding a new one in its place. This can have [unintended side effects](https://jsfiddle.net/chrisvfritz/bh8fLeds/) if these elements should not actually be considered the same.
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
-#### Bad
+#### 反例
 
 ``` html
 <div v-if="error">
@@ -1515,7 +1514,7 @@ By default, Vue updates the DOM as efficiently as possible. That means when swit
 {% raw %}</div>{% endraw %}
 
 {% raw %}<div class="style-example example-good">{% endraw %}
-#### Good
+#### 好例子
 
 ``` html
 <div v-if="error" key="search-status">
@@ -1547,7 +1546,7 @@ Prefer class selectors over element selectors in `scoped` styles, because large 
 {% raw %}
 <details>
 <summary>
-  <h4>Detailed Explanation</h4>
+  <h4>详解</h4>
 </summary>
 {% endraw %}
 
@@ -1558,7 +1557,7 @@ The problem is that large numbers of [element-attribute selectors](http://steves
 {% raw %}</details>{% endraw %}
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
-#### Bad
+#### 反例
 
 ``` html
 <template>
@@ -1574,7 +1573,7 @@ button {
 {% raw %}</div>{% endraw %}
 
 {% raw %}<div class="style-example example-good">{% endraw %}
-#### Good
+#### 好例子
 
 ``` html
 <template>
@@ -1600,7 +1599,7 @@ An ideal Vue application is props down, events up. Sticking to this convention m
 The problem is, there are also many _simple_ cases where these patterns may offer convenience. Beware: do not be seduced into trading simplicity (being able to understand the flow of your state) for short-term convenience (writing less code).
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
-#### Bad
+#### 反例
 
 ``` js
 Vue.component('TodoItem', {
@@ -1643,7 +1642,7 @@ Vue.component('TodoItem', {
 {% raw %}</div>{% endraw %}
 
 {% raw %}<div class="style-example example-good">{% endraw %}
-#### Good
+#### 好例子
 
 ``` js
 Vue.component('TodoItem', {
@@ -1688,12 +1687,12 @@ Vue.component('TodoItem', {
 
 **[Vuex](https://github.com/vuejs/vuex) should be preferred for global state management, instead of `this.$root` or a global event bus.**
 
-Managing state on `this.$root` and/or using a [global event bus](https://vuejs.org/v2/guide/migration.html#dispatch-and-broadcast-replaced) can be convenient for very simple cases, but are not appropriate for most applications. Vuex offers not only a central place to manage state, but also tools for organizing, tracking, and debugging state changes.
+Managing state on `this.$root` and/or using a [global event bus](../guide/migration.html#dispatch-和-broadcast-替换) can be convenient for very simple cases, but are not appropriate for most applications. Vuex offers not only a central place to manage state, but also tools for organizing, tracking, and debugging state changes.
 
 {% raw %}</details>{% endraw %}
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
-#### Bad
+#### 反例
 
 ``` js
 // main.js
@@ -1717,7 +1716,7 @@ new Vue({
 {% raw %}</div>{% endraw %}
 
 {% raw %}<div class="style-example example-good">{% endraw %}
-#### Good
+#### 好例子
 
 ``` js
 // store/modules/todos.js
