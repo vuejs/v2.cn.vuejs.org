@@ -6,7 +6,7 @@ type: style-guide
 
 这里是官方的 Vue 特有代码的风格指南。如果在工程中使用 Vue，为了回避错误、小纠结和反模式，该指南是份不错的参考。不过我们也不确信风格指南的所有内容对于所有的团队或工程都是理想的。所以根据过去的经验、周围的技术栈、个人价值观做出有意义的偏差是可取的。
 
-对于其绝大部分，我们也回避关于 JavaScript 或 HTML 的普世建议。我们不介意你是否使用分号或结尾的逗号。我们不介意你在 HTML 特性中使用单引号还是双引号。不过当我们发现在 Vue 的情景下有帮助的特定模式时，也会存在例外。
+对于其绝大部分，我们也总体上避免就 JavaScript 或 HTML 的本身提出建议。我们不介意你是否使用分号或结尾的逗号。我们不介意你在 HTML 特性中使用单引号还是双引号。不过当我们发现在 Vue 的情景下有帮助的特定模式时，也会存在例外。
 
 > **不久之后，我们还会提供操作层面的技巧。**有的时候你只需要遵守规则，而我们会尽可能向你展示如何使用 ESLint 及其它自动化程序把操作层面弄得更简单。
 
@@ -18,23 +18,23 @@ type: style-guide
 
 ### 优先级 A：必要的
 
-这些规则会帮你规避错误，所以学习并接受它们带来的全部代价吧。这里面可能存在例外，但应该非常少，且只有你同时是 JavaScript 和 Vue 的专家才可以这样做。
+这些规则会帮你规避错误，所以学习并接受它们带来的全部代价吧。这里面可能存在例外，但应该非常少，且只有你同时精通 JavaScript 和 Vue 才可以这样做。
 
 ### 优先级 B：强烈推荐
 
-这些规则能够在绝大多数工程中改善可读性和开发体验。如果你违反了，代码还是照常运行的，但应该少违反且有合理的理由。
+这些规则能够在绝大多数工程中改善可读性和开发体验。即使你违反了，代码还是能照常运行，但例外应该尽可能少且有合理的理由。
 
 ### 优先级 C：推荐
 
-这些地方存在多个同样好的选项，选任意一个都可以确保一致性。在这些规则里，我们描述每个可接受的选项并建议一个默认的选择。也就是说只要保持一致且理由充分，你可以随意在你的代码库中做出不同的选择。请务必给出一个好的理由！通过接受社区的标准，你将会：
+当存在多个同样好的选项，选任意一个都可以确保一致性。在这些规则里，我们描述了每个选项并建议一个默认的选择。也就是说只要保持一致且理由充分，你可以随意在你的代码库中做出不同的选择。请务必给出一个好的理由！通过接受社区的标准，你将会：
 
-1. 训练你的大脑，以便更容易的处理你在社区遇到的代码
-2. 不做修改就可以直接复制粘贴社区的代码示例
+1. 训练你的大脑，以便更容易的处理你在社区遇到的代码。
+2. 不做修改就可以直接复制粘贴社区的代码示例。
 3. 能够经常招聘到和你编码习惯相同的新人，至少跟 Vue 相关的东西是这样的。
 
 ### 优先级 D：谨慎使用
 
-有些 Vue 特性的存在是为了照顾极端情况或从旧代码库平稳迁移。当被过度使用时，这些特性会让你的代码难于维护甚至变成 bug 的来源。这些规则为有潜在风险的特性敲个警钟，并说明它们什么时候不应该使用以及为什么。
+有些 Vue 特性的存在是为了照顾极端情况或帮助老代码的平稳迁移。当被过度使用时，这些特性会让你的代码难于维护甚至变成 bug 的来源。这些规则为有潜在风险的特性敲个警钟，并说明它们什么时候不应该使用以及为什么。
 
 
 
@@ -88,12 +88,12 @@ export default {
 
 **组件的 `data` 必须是一个函数。**
 
-当在组件中使用 `data` 属性的时候 (除了 `new Vue` 的其它地方)，它的值必须是返回一个对象的函数。
+当在组件中使用 `data` 属性的时候 (除了 `new Vue` 外的任何地方)，它的值必须是返回一个对象的函数。
 
 {% raw %}
 <details>
 <summary>
-  <h4>细节解释</h4>
+  <h4>详解</h4>
 </summary>
 {% endraw %}
 
@@ -186,7 +186,7 @@ In committed code, prop definitions should always be as detailed as possible, sp
 {% raw %}
 <details>
 <summary>
-  <h4>细节解释</h4>
+  <h4>详解</h4>
 </summary>
 {% endraw %}
 
@@ -201,7 +201,7 @@ In committed code, prop definitions should always be as detailed as possible, sp
 #### 反例
 
 ``` js
-// 这样做只有原型时可以接受
+// 这样做只有开发原型系统时可以接受
 props: ['status']
 ```
 {% raw %}</div>{% endraw %}
@@ -240,12 +240,12 @@ props: {
 
 **总是用 `key` 配合 `v-for`。**
 
-在组件上总是必须用 `key` 配合 `v-for`，以便维护内部组件及其子树的状态。甚至在元素上，对于维护诸如[对象固化 (object constancy)](https://bost.ocks.org/mike/constancy/) 等可预知的行为来说也是很好的习惯。
+在组件上_总是_必须用 `key` 配合 `v-for`，以便维护内部组件及其子树的状态。甚至在元素上维护可预测的行为，比如动画中的[对象固化 (object constancy)](https://bost.ocks.org/mike/constancy/)，也是一种好的做法。
 
 {% raw %}
 <details>
 <summary>
-  <h4>细节解释</h4>
+  <h4>详解</h4>
 </summary>
 {% endraw %}
 
@@ -270,7 +270,7 @@ data: function () {
 
 然后你把它们按照字母顺序排序。在更新 DOM 的时候，Vue 将会优化渲染把可能的 DOM 变动降到最低。即可能删掉第一个待办事项元素，然后把它重新加回到列表的最末尾。
 
-这里的问题在于，不要删除仍然会留在 DOM 中的元素。比如你可能想使用 `<transition-group>` 给列表加过渡动画，或在被渲染元素是 `<input>` 时保持聚焦。在这些情况下，为每一个项目添加一个唯一的键值 (比如 `:key="todo.id"`) 将会让 Vue 知道如何更好的预知未来的行为。
+这里的问题在于，不要删除仍然会留在 DOM 中的元素。比如你想使用 `<transition-group>` 给列表加过渡动画，或想在被渲染元素是 `<input>` 时保持聚焦。在这些情况下，为每一个项目添加一个唯一的键值 (比如 `:key="todo.id"`) 将会让 Vue 知道如何使行为更容易预测。
 
 根据我们的经验，最好_始终_添加一个唯一的键值，以便你和你的团队永远不必担心这些极端情况。也在少数对性能有严格要求的情况下，为了避免对象固化，你可以刻意做一些非常规的处理。
 
@@ -309,21 +309,21 @@ data: function () {
 
 **对于应用来说，顶级 `App` 组件和布局组件中的样式可以是全局的，但是其它所有组件都应该是有作用域的。**
 
-这条规则只和[单文件组件](../guide/single-file-components.html)有关。你_不一定_要使用 [`scoped` 特性](https://vue-loader.vuejs.org/zh-cn/features/scoped-css.html)。设置作用域也可以通过 [CSS modules](https://vue-loader.vuejs.org/zh-cn/features/css-modules.html)，那是一个基于 class 的类似 [BEM](http://getbem.com/) 的策略，当然你也可以使用其它的库或规约。
+这条规则只和[单文件组件](../guide/single-file-components.html)有关。你_不一定_要使用 [`scoped` 特性](https://vue-loader.vuejs.org/zh-cn/features/scoped-css.html)。设置作用域也可以通过 [CSS Modules](https://vue-loader.vuejs.org/zh-cn/features/css-modules.html)，那是一个基于 class 的类似 [BEM](http://getbem.com/) 的策略，当然你也可以使用其它的库或规约。
 
 
 **不管怎样，对于组件库，我们应该更倾向于选用基于 class 的策略而不是 `scoped` 特性。**
 
-这让覆写内部样式更容易：使用了常人可理解的 class 名称且没有太高的 specificity (译者注：体现 CSS 选择器优先级的系数)，而且不太会导致冲突。
+这让覆写内部样式更容易：使用了常人可理解的 class 名称且没有太高的选择器优先级，而且不太会导致冲突。
 
 {% raw %}
 <details>
 <summary>
-  <h4>细节解释</h4>
+  <h4>详解</h4>
 </summary>
 {% endraw %}
 
-如果你在开发一个大型工程，和其他开发者工作在一起，或有时引入三方 HTML/CSS (比如来自 Auth0)，设置一致的作用域会确保你的样式只会运用在它们想要作用的组件上。
+如果你和其他开发者一起开发一个大型工程，或有时引入三方 HTML/CSS (比如来自 Auth0)，设置一致的作用域会确保你的样式只会运用在它们想要作用的组件上。
 
 不止要使用 `scoped` 特性，使用唯一的 class 名可以帮你确保那些三方库的 CSS 不会运用在你自己的 HTML 上。比如许多工程都使用了 `button`、`btn` 或 `icon` class 名，所以即便你不使用类似 BEM 的策略，添加一个 app 专属或组件专属的前缀 (比如 `ButtonClose-icon`) 也可以提供很多保护。
 
@@ -371,7 +371,7 @@ data: function () {
   <button :class="[$style.button, $style.buttonClose]">X</button>
 </template>
 
-<!-- 使用 CSS modules -->
+<!-- 使用 CSS Modules -->
 <style module>
 .button {
   border: none;
@@ -407,12 +407,12 @@ data: function () {
 
 ### 私有属性名 <sup data-p="a">必要</sup>
 
-**在插件、混合等扩展中始终为自定义的私有属性使用 `$_` 前缀。并附带一个命名作用于以回避和其它作者的冲突 (比如 `$_yourPluginName_`)。**
+**在插件、混入等扩展中始终为自定义的私有属性使用 `$_` 前缀。并附带一个命名作用于以回避和其它作者的冲突 (比如 `$_yourPluginName_`)。**
 
 {% raw %}
 <details>
 <summary>
-  <h4>细节解释</h4>
+  <h4>详解</h4>
 </summary>
 {% endraw %}
 
@@ -575,7 +575,7 @@ components/
 {% raw %}
 <details>
 <summary>
-  <h4>细节解释</h4>
+  <h4>详解</h4>
 </summary>
 {% endraw %}
 
@@ -728,7 +728,7 @@ components/
 {% raw %}
 <details>
 <summary>
-  <h4>细节解释</h4>
+  <h4>详解</h4>
 </summary>
 {% endraw %}
 
@@ -905,7 +905,7 @@ Unfortunately, due to HTML's case insensitivity, DOM templates must still use ke
 {% raw %}
 <details>
 <summary>
-  <h4>细节解释</h4>
+  <h4>详解</h4>
 </summary>
 {% endraw %}
 
@@ -1124,7 +1124,7 @@ computed: {
 {% raw %}
 <details>
 <summary>
-  <h4>细节解释</h4>
+  <h4>详解</h4>
 </summary>
 {% endraw %}
 
@@ -1546,7 +1546,7 @@ Prefer class selectors over element selectors in `scoped` styles, because large 
 {% raw %}
 <details>
 <summary>
-  <h4>细节解释</h4>
+  <h4>详解</h4>
 </summary>
 {% endraw %}
 
