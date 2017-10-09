@@ -6,7 +6,7 @@ order: 404
 
 ## 从 2.2.0 起针对 TS + Webpack 2 用户的重要改动
 
-在 Vue 2.2 里，我们引入了新机制，把 dist 文件都作为 ES 模块发布。这在 webpack 2 中属于默认行为。遗憾的是，这个改动会引入一个会破坏兼容性的意外改动。在 TypeScript + webpack 2 里，`import Vue = require('vue')` 现在会返回一个综合的 ES 模块对象，而不是 Vue 对象本身了。
+在 Vue 2.2 里，我们引入了新机制，把 dist 文件都作为 ES 模块发布。这在 webpack 2 中属于默认行为。遗憾的是，这个改动会引入一个会破坏兼容性的意外改动。在 TypeScript + webpack 2 里，`import Vue from 'vue'` 现在会返回一个综合的 ES 模块对象，而不是 Vue 对象本身了。
 
 我们计划在未来把所有的官方类型声明都改成 ES-风格的导出方式 (译注：`export`)。请参阅下面的[推荐配置](#推荐配置)板块，配置一个不易过时的编码方案。
 
