@@ -191,7 +191,7 @@ new Vue({
 
 ``` js
 new Vue({
-  el: '...',
+  el: '#example-5',
   data: {
     selected: ''
   }
