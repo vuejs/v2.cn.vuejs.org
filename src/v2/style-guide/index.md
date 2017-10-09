@@ -490,15 +490,15 @@ var myGreatMixin = {
 
 
 
-## Priority B Rules: Strongly Recommended (Improving Readability)
+## 优先级 B 的规则：强烈推荐 (增强可读性)
 
 
 
-### Component files <sup data-p="b">strongly recommended</sup>
+### 组件文件 <sup data-p="b">强烈推荐</sup>
 
-**Whenever a build system is available to concatenate files, each component should be in its own file.**
+**只要有能够拼接文件的构建系统，就把每个组件单独分成文件。**
 
-This helps you to more quickly find a component when you need to edit it or review how to use it.
+当你需要编辑一个组件或查阅一个组件的用法时，可以更快速的找到它。
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
 #### 反例
@@ -532,11 +532,11 @@ components/
 
 
 
-### Single-file component filename casing <sup data-p="b">strongly recommended</sup>
+### 单文件组件文件的大小写 <sup data-p="b">强烈推荐</sup>
 
-**Filenames of [single-file components](../guide/single-file-components.html) should either be always PascalCase or always kebab-case.**
+**[单文件组件](../guide/single-file-components.html)的文件名应该要么始终是单词大写开头 (PascalCase)，要么始终是横线连接 (kebab-case)。**
 
-PascalCase works best with autocompletion in code editors, as it's consistent with how we reference components in JS(X) and templates, wherever possible. However, mixed case filenames can sometimes create issues on case-insensitive filesystems, which is why kebab-case is also perfectly acceptable.
+单词大写开头对于代码编辑器的自动补全最为友好，因为这使得我们在 JS(X) 和模板中引用组件的方式尽可能的一致。然而，混用文件命名方式有的时候会导致大小写不敏感的文件系统的问题，这也是横线连接命名同样完全可取的原因。
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
 #### 反例
@@ -568,9 +568,9 @@ components/
 
 
 
-### Base component names <sup data-p="b">strongly recommended</sup>
+### 基础组件名 <sup data-p="b">强烈推荐</sup>
 
-**Base components (a.k.a. presentational, dumb, or pure components) that apply app-specific styling and conventions should all begin with a specific prefix, such as `Base`, `App`, or `V`.**
+**应用特定样式和规约的基础组件 (也就是展示类的、无逻辑的或无状态的组件) 应该全部以一个特定的前缀开头，比如 `Base`、`App` 或 `V`。**
 
 {% raw %}
 <details>
@@ -579,23 +579,23 @@ components/
 </summary>
 {% endraw %}
 
-These components lay the foundation for consistent styling and behavior in your application. They may **only** contain:
+这些组件为你的应用铺设了一致的基础样式和行为。它们可能**只**包括：
 
-- HTML elements,
-- other `Base`-prefixed components, and
-- 3rd-party UI components.
+- HTML 元素
+- 其它带 `Base` 前缀带组件
+- 第三方 UI 组件库
 
-But they'll **never** contain global state (e.g. from a Vuex store).
+但是它们**绝不会**包括全局状态 (比如来自 Vuex store)。
 
-Their names often include the name of an element they wrap (e.g. `BaseButton`, `BaseTable`), unless no element exists for their specific purpose (e.g. `BaseIcon`). If you build similar components for a more specific context, they will almost always consume these components (e.g. `BaseButton` may be used in `ButtonSubmit`).
+它们的名字经常包含它们所包裹的元素的名字 (比如 `BaseButton`、`BaseTable`)，除非并没有这个特定目的现成的元素 (比如 `BaseIcon`)。如果你为特定的上下文构建类似的组件，那它们几乎总会消费这些组件 (比如 `BaseButton` 可能会用在 `ButtonSubmit` 上)。
 
-Some advantages of this convention:
+这样做的几个好处：
 
-- When organized alphabetically in editors, your app's base components are all listed together, making them easier to identify.
+- 当你在编辑器中以字母顺序排序时，你的应用的基础组件会全部列在一起，这样更容易识别。
 
-- Since component names should always be multi-word, this convention prevents you from having to choose an arbitrary prefix for simple component wrappers (e.g. `MyButton`, `VueButton`).
+- 因为组件名应该始终是多个单词，所以这样做可以避免你在包裹简单组件时随意选择前缀 (比如 `MyButton`、`VueButton`)。
 
-- Since these components are so frequently used, you may want to simply make them global instead of importing them everywhere. A prefix makes this possible with Webpack:
+- 因为这些组件会被频繁使用，所以你可能想把它们放到全局而不是在各处分别导入它们。使用相同的前缀可以让 webpack 这样工作：
 
   ``` js
   var requireComponent = require.context("./src", true, /^Base[A-Z]/)
@@ -651,11 +651,11 @@ components/
 
 
 
-### Single-instance component names <sup data-p="b">strongly recommended</sup>
+### 单例组件名 <sup data-p="b">强烈推荐</sup>
 
-**Components that should only ever have a single active instance should begin with the `The` prefix, to denote that there can be only one.**
+**只应该拥有单个活跃实例的组件应该以 `The` 前缀命名，以示其唯一性。**
 
-This does not mean the component is only used in a single page, but it will only be used once _per page_. These components never accept any props, since they are specific to your app, not their context within your app. If you find the need to add props, it's a good indication that this is actually a reusable component that is only used once per page _for now_.
+这不意味着组件只可用于一个单页面，而是_每个页面_只使用一次。这些组件永远不接受任何 prop，因为它们是为你的应用定制的，而不是它们在你的应用中的上下文。如果你发现有必要添加 prop，那就表明这实际上是一个可复用的组件，_只是目前_在每个页面里只使用一次。
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
 #### 反例
@@ -679,7 +679,7 @@ components/
 
 
 
-### Tightly coupled component names <sup data-p="b">strongly recommended</sup>
+### Tightly coupled component names <sup data-p="b">强烈推荐</sup>
 
 **Child components that are tightly coupled with their parent should include the parent component name as a prefix.**
 
@@ -721,7 +721,7 @@ components/
 
 
 
-### Order of words in component names <sup data-p="b">strongly recommended</sup>
+### Order of words in component names <sup data-p="b">强烈推荐</sup>
 
 **Component names should start with the highest-level (often most general) words and end with descriptive modifying words.**
 
@@ -808,7 +808,7 @@ components/
 
 
 
-### Self-closing components <sup data-p="b">strongly recommended</sup>
+### Self-closing components <sup data-p="b">强烈推荐</sup>
 
 **Components with no content should be self-closing in [single-file components](../guide/single-file-components.html), string templates, and [JSX](../guide/render-function.html#JSX) - but never in DOM templates.**
 
@@ -846,7 +846,7 @@ Unfortunately, HTML doesn't allow custom elements to be self-closing - only [off
 
 
 
-### Component name casing in templates <sup data-p="b">strongly recommended</sup>
+### Component name casing in templates <sup data-p="b">强烈推荐</sup>
 
 **Component names should always be PascalCase in [single-file components](../guide/single-file-components.html) and string templates - but kebab-case in DOM templates.**
 
@@ -898,7 +898,7 @@ Unfortunately, due to HTML's case insensitivity, DOM templates must still use ke
 
 
 
-### Component name casing in JS/JSX <sup data-p="b">strongly recommended</sup>
+### Component name casing in JS/JSX <sup data-p="b">强烈推荐</sup>
 
 **Component names in JS/[JSX](../guide/render-function.html#JSX) should always be PascalCase, though may be kebab-case inside strings for simpler applications that only use global component registration through `Vue.component`.**
 
@@ -974,7 +974,7 @@ export default {
 
 
 
-### Full-word component names <sup data-p="b">strongly recommended</sup>
+### Full-word component names <sup data-p="b">强烈推荐</sup>
 
 **Component names should prefer full words over abbreviations.**
 
@@ -1002,7 +1002,7 @@ components/
 
 
 
-### Prop name casing <sup data-p="b">strongly recommended</sup>
+### Prop name casing <sup data-p="b">强烈推荐</sup>
 
 **Prop names should always use camelCase during declaration, but kebab-case in templates and [JSX](../guide/render-function.html#JSX).**
 
@@ -1038,7 +1038,7 @@ props: {
 
 
 
-### Multi-attribute elements <sup data-p="b">strongly recommended</sup>
+### Multi-attribute elements <sup data-p="b">强烈推荐</sup>
 
 **Elements with multiple attributes should span multiple lines, with one attribute per line.**
 
@@ -1077,7 +1077,7 @@ In JavaScript, splitting objects with multiple properties over multiple lines is
 
 
 
-### Complex expressions in templates <sup data-p="b">strongly recommended</sup>
+### Complex expressions in templates <sup data-p="b">强烈推荐</sup>
 
 **Component templates should only include simple expressions, with more complex expressions refactored into computed properties or methods.**
 
@@ -1117,7 +1117,7 @@ computed: {
 
 
 
-### Complex computed properties <sup data-p="b">strongly recommended</sup>
+### Complex computed properties <sup data-p="b">强烈推荐</sup>
 
 **Complex computed properties should be split into as many simpler properties as possible.**
 
@@ -1182,7 +1182,7 @@ computed: {
 
 
 
-### Quoted attribute values <sup data-p="b">strongly recommended</sup>
+### Quoted attribute values <sup data-p="b">强烈推荐</sup>
 
 **Non-empty HTML attribute values should always be inside quotes (single or double, whichever is not used in JS).**
 
@@ -1214,7 +1214,7 @@ While attribute values without any spaces are not required to have quotes in HTM
 
 
 
-### Directive shorthands <sup data-p="b">strongly recommended</sup>
+### Directive shorthands <sup data-p="b">强烈推荐</sup>
 
 **Directive shorthands (`:` for `v-bind:` and `@` for `v-on:`) should be used always or never.**
 
