@@ -1142,7 +1142,7 @@ Vue.component('async-webpack-example', function (resolve) {
 })
 ```
 
-你可以在工厂函数中返回一个 `Promise`，所以当使用 webpack 2 + ES2015 的语法时可以这样 (译者注：`import` 函数将返回一个 `Promise`)：
+你可以在工厂函数中返回一个 `Promise`，所以当使用 webpack 2 + ES2015 的语法时可以这样：
 
 ``` js
 Vue.component(
