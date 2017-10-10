@@ -846,7 +846,7 @@ components/
 
 
 
-### 模板中的组件名大小写问题 <sup data-p="b">强烈推荐</sup>
+### 模板中的组件名大小写 <sup data-p="b">强烈推荐</sup>
 
 **在[单文件组件](../guide/single-file-components.html)和字符串模板中组件名应该总是 PascalCase 的。但是在 DOM 模板中总是 kebab-case 的。**
 
