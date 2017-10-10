@@ -309,7 +309,7 @@ data: function () {
 
 **对于应用来说，顶级 `App` 组件和布局组件中的样式可以是全局的，但是其它所有组件都应该是有作用域的。**
 
-这条规则只和[单文件组件](../guide/single-file-components.html)有关。你_不一定_要使用 [`scoped` 特性](https://vue-loader.vuejs.org/zh-cn/features/scoped-css.html)。设置作用域也可以通过 [CSS Modules](https://vue-loader.vuejs.org/zh-cn/features/css-modules.html)，那是一个基于 class 的类似 [BEM](http://getbem.com/) 的策略，当然你也可以使用其它的库或规约。
+这条规则只和[单文件组件](../guide/single-file-components.html)有关。你_不一定_要使用 [`scoped` 特性](https://vue-loader.vuejs.org/zh-cn/features/scoped-css.html)。设置作用域也可以通过 [CSS Modules](https://vue-loader.vuejs.org/zh-cn/features/css-modules.html)，那是一个基于 class 的类似 [BEM](http://getbem.com/) 的策略，当然你也可以使用其它的库或约定。
 
 
 **不管怎样，对于组件库，我们应该更倾向于选用基于 class 的策略而不是 `scoped` 特性。**
@@ -389,7 +389,7 @@ data: function () {
   <button class="c-Button c-Button--close">X</button>
 </template>
 
-<!-- 使用 BEM 规约 -->
+<!-- 使用 BEM 约定 -->
 <style>
 .c-Button {
   border: none;
@@ -420,7 +420,7 @@ Vue 使用 `_` 前缀来定义其自身的私有属性，所以使用相同的�
 
 对于 `&` 前缀来说，其在 Vue 生态系统中的目的是暴露给用户的一个特殊的实例属性，所以把它用于_私有_属性并不合适。
 
-不过，我们推荐把这两个前缀结合为 `&_`，作为一个用户定义的私有属性的规约，以确保不会和 Vue 自身相冲突。
+不过，我们推荐把这两个前缀结合为 `&_`，作为一个用户定义的私有属性的约定，以确保不会和 Vue 自身相冲突。
 
 {% raw %}</details>{% endraw %}
 
@@ -570,7 +570,7 @@ components/
 
 ### 基础组件名 <sup data-p="b">强烈推荐</sup>
 
-**应用特定样式和规约的基础组件 (也就是展示类的、无逻辑的或无状态的组件) 应该全部以一个特定的前缀开头，比如 `Base`、`App` 或 `V`。**
+**应用特定样式和约定的基础组件 (也就是展示类的、无逻辑的或无状态的组件) 应该全部以一个特定的前缀开头，比如 `Base`、`App` 或 `V`。**
 
 {% raw %}
 <details>
@@ -898,9 +898,9 @@ PascalCase 相比 kebab-case 有一些优势：
 
 
 
-### Component name casing in JS/JSX <sup data-p="b">强烈推荐</sup>
+### JS/JSX 中的组件名大小写 <sup data-p="b">强烈推荐</sup>
 
-**Component names in JS/[JSX](../guide/render-function.html#JSX) should always be PascalCase, though may be kebab-case inside strings for simpler applications that only use global component registration through `Vue.component`.**
+**JS/[JSX](../guide/render-function.html#JSX) 中的组件名应该始终是 PascalCase 的，尽管在较为简单的应用中只使用 `Vue.component` 进行全局组件注册时，可以使用 kebab-case 字符串。**
 
 {% raw %}
 <details>
@@ -909,12 +909,12 @@ PascalCase 相比 kebab-case 有一些优势：
 </summary>
 {% endraw %}
 
-In JavaScript, PascalCase is the convention for classes and prototype constructors - essentially, anything that can have distinct instances. Vue components also have instances, so it makes sense to also use PascalCase. As an added benefit, using PascalCase within JSX (and templates) allows readers of the code to more easily distinguish between components and HTML elements.
+在 JavaScript 中，PascalCase 是类和构造函数 (本质上任何可以产生多份不同实例的东西) 的命名约定。Vue 组件也有多份实例，所以同样使用 PascalCase 是有意义的。额外的好处是，在 JSX (和模板) 里使用 PascalCase 使得代码的读者更容易分辨 Vue 组件和 HTML 元素。
 
-However, for applications that use **only** global component definitions via `Vue.component`, we recommend kebab-case instead. The reasons are:
+然而，对于**只**通过 `Vue.component` 定义全局组件的应用来说，我们推荐 kebab-case 作为替代。原因是：
 
-- It's rare that global components are ever referenced in JavaScript, so following a convention for JavaScript makes less sense.
-- These applications always include many in-DOM components, where kebab-case [**must** be used](#Component-name-casing-in-templates).
+- 全局组件很少被 JavaScript 引用，所以遵守 JavaScript 的命名约定意义不大。
+- 这些应用往往包含许多 DOM 内的组件，这种情况下是[**必须**使用 kebab-case](#模板中的组件名大小写) 的。
 {% raw %}</details>{% endraw %}
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
@@ -974,11 +974,11 @@ export default {
 
 
 
-### Full-word component names <sup data-p="b">强烈推荐</sup>
+### 完整单词的组件名 <sup data-p="b">强烈推荐</sup>
 
-**Component names should prefer full words over abbreviations.**
+**组件名应该倾向于完整单词而不是缩写。**
 
-The autocompletion in editors make the cost of writing longer names very low, while the clarity they provide is invaluable. Uncommon abbreviations, in particular, should always be avoided.
+编辑器中的自动补全已经让书写长命名的代价非常之低了，而其带来的明确性却是非常宝贵的。不常用的缩写尤其应该避免。
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
 #### 反例
@@ -1002,11 +1002,11 @@ components/
 
 
 
-### Prop name casing <sup data-p="b">强烈推荐</sup>
+### Prop 名大小写 <sup data-p="b">强烈推荐</sup>
 
-**Prop names should always use camelCase during declaration, but kebab-case in templates and [JSX](../guide/render-function.html#JSX).**
+**在声明 prop 的时候，其命名应该始终使用 camelCase，而在模板和 [JSX](../guide/render-function.html#JSX) 中应该始终使用 kebab-case。**
 
-We're simply following the conventions of each language. Within JavaScript, camelCase is more natural. Within HTML, kebab-case is.
+我们单纯的遵循每个语言的约定。在 JavaScript 中更自然的是 camelCase。而在 HTML 中则是 kebab-case。
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
 #### 反例
@@ -1038,11 +1038,11 @@ props: {
 
 
 
-### Multi-attribute elements <sup data-p="b">强烈推荐</sup>
+### 多个特性的元素 <sup data-p="b">强烈推荐</sup>
 
-**Elements with multiple attributes should span multiple lines, with one attribute per line.**
+**多个特性的元素应该分多行撰写，每个特性一行。**
 
-In JavaScript, splitting objects with multiple properties over multiple lines is widely considered a good convention, because it's much easier to read. Our templates and [JSX](../guide/render-function.html#JSX) deserve the same consideration.
+在 JavaScript 中，用多行分隔对象的多个属性是很常见的最佳实践，因为这样更易读。模板和 [JSX](../guide/render-function.html#JSX) 值得我们做相同的考虑。
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
 #### 反例
