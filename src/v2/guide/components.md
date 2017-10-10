@@ -29,9 +29,9 @@ Vue.component('my-component', {
 })
 ```
 
-<p class="tip">请注意，对于自定义标签的命名 Vue.js 不强制要求遵循 [W3C 规则](https://www.w3.org/TR/custom-elements/#concepts) (小写，并且包含一个短杠)，尽管遵循约定会比较好。</p>
+<p class="tip">请注意，对于自定义标签的命名 Vue.js 不强制遵循 [W3C 规则](https://www.w3.org/TR/custom-elements/#concepts) (小写，并且包含一个短杠)，尽管这被认为是最佳实践。</p>
 
-组件在注册之后，便可以在 Vue 实例的模板中以自定义元素 `<my-component></my-component>` 的形式使用。注意确保在初始化根实例**之前**注册组件：
+组件在注册之后，便可以作为自定义元素 `<my-component></my-component>` 在一个实例的模板中使用。注意确保在初始化根实例**之前**注册组件：
 
 ``` html
 <div id="example">
@@ -73,7 +73,7 @@ new Vue({ el: '#example' })
 
 ### 局部注册
 
-你不必把每个组件都注册到全局。通过使用实例选项 `components` 进行注册，可以使组件仅在另一个 Vue 实例/组件的作用域中可用：
+你不必把每个组件都注册到全局。你可以通过某个 Vue 实例/组件的实例选项 `components` 注册仅在其作用域中可用的组件：
 
 ``` js
 var Child = {
@@ -93,7 +93,7 @@ new Vue({
 
 ### DOM 模板解析注意事项
 
-当使用 DOM 作为模板时 (例如，使用 `el` 选项来把 Vue 实例挂载到一个已有内容的元素上)，你会受到 HTML 本身的一些限制，因为 Vue 只有在浏览器解析、修正模板**之后**才能获取其内容。尤其要注意，像 `<ul>`、`<ol>`、`<table>`、`<select>` 这样的元素里允许包含的元素有限制，而另一些像 `<option>` 这样的元素只能出现在某些特定元素的内部。
+当使用 DOM 作为模板时 (例如，使用 `el` 选项来把 Vue 实例挂载到一个已有内容的元素上)，你会受到 HTML 本身的一些限制，因为 Vue 只有在浏览器解析、规范化模板**之后**才能获取其内容。尤其要注意，像 `<ul>`、`<ol>`、`<table>`、`<select>` 这样的元素里允许包含的元素有限制，而另一些像 `<option>` 这样的元素只能出现在某些特定元素的内部。
 
 在自定义组件中使用这些受限制的元素时会导致一些问题，例如：
 
@@ -103,7 +103,7 @@ new Vue({
 </table>
 ```
 
-自定义组件 `<my-row>` 会被当作无效的内容，因此在导致错误的渲染结果。变通的方案是使用特殊的 `is` 特性：
+自定义组件 `<my-row>` 会被当作无效的内容，因此会导致错误的渲染结果。变通的方案是使用特殊的 `is` 特性：
 
 ``` html
 <table>
@@ -132,7 +132,7 @@ Vue.component('my-component', {
 })
 ```
 
-那么 Vue 会停止运行，并在控制台发出警告，告诉你在组件实例中 `data` 必须是一个函数。但理解这种规则为何存在也是很有帮助的，所以让我们先作个弊：
+那么 Vue 会停止运行，并在控制台发出警告，告诉你在组件实例中 `data` 必须是一个函数。但理解这种规则为何存在也是很有益处的，所以让我们先作个弊：
 
 ``` html
 <div id="example-2">
@@ -372,7 +372,7 @@ Prop 是单向绑定的：当父组件的属性变化时，将传导给子组件
 
 另外，每次父组件更新时，子组件的所有 prop 都会更新为最新值。这意味着你**不应该**在子组件内部改变 prop。如果你这么做了，Vue 会在控制台给出警告。
 
-在两种情况下，我们很容易会想修改 prop 中数据：
+在两种情况下，我们很容易忍不住想去修改 prop 中数据：
 
 1. Prop 作为初始值传入后，子组件想把它当作局部数据来用；
 
@@ -460,7 +460,7 @@ Vue.component('example', {
 
 所谓非 prop 特性，就是指它可以直接传入组件，而不需要定义相应的 prop。
 
-尽管为组件定义明确的 prop 是推荐的传参方式，但组件的作者并不总能预见到组件被使用的场景。所以，组件可以接收任意传入的特性，这些特性都会被添加到组件的根元素上。
+尽管为组件定义明确的 prop 是推荐的传参方式，组件的作者却并不总能预见到组件被使用的场景。所以，组件可以接收任意传入的特性，这些特性都会被添加到组件的根元素上。
 
 例如，假设我们使用了第三方组件 `bs-date-input`，它包含一个 Bootstrap 插件，该插件需要在 `input` 上添加 `data-3d-date-picker` 这个特性。这时可以把特性直接添加到组件上 (不需要事先定义 `prop`)：
 
@@ -500,7 +500,7 @@ Vue.component('example', {
 
 ### 使用 `v-on` 绑定自定义事件
 
-每个 Vue 实例都实现了[事件接口 (events interface)](../api/#实例方法-事件)，即：
+每个 Vue 实例都实现了[事件接口](../api/#实例方法-事件)，即：
 
 - 使用 `$on(eventName)` 监听事件
 - 使用 `$emit(eventName)` 触发事件
@@ -817,7 +817,7 @@ bus.$on('id-selected', function (id) {
 
 2. `<app>` 组件很可能有它自己的模板。
 
-为了让组件可以组合，我们需要一种方式来混合父组件的内容与子组件自己的模板。这个过程被称为**内容分发** (或者叫“transclusion”，如果你熟悉 Angular 的话)。Vue.js 实现了一个内容分发 API，参照了当前 [Web Components 规范草案](https://github.com/w3c/webcomponents/blob/gh-pages/proposals/Slots-Proposal.md)，使用特殊的 `<slot>` 元素作为原始内容的插槽。
+为了让组件可以组合，我们需要一种方式来混合父组件的内容与子组件自己的模板。这个过程被称为**内容分发** (即 Angular 用户熟知的“transclusion”)。Vue.js 实现了一个内容分发 API，参照了当前 [Web Components 规范草案](https://github.com/w3c/webcomponents/blob/gh-pages/proposals/Slots-Proposal.md)，使用特殊的 `<slot>` 元素作为原始内容的插槽。
 
 ### 编译作用域
 
@@ -1162,7 +1162,7 @@ new Vue({
 })
 ```
 
-<p class="tip">如果你是 <strong>Browserify</strong> 用户，可能就无法使用异步组件了，它的作者已经[表明](https://github.com/substack/node-browserify/issues/58#issuecomment-21978224) Browserify 将“永远不会支持异步加载”。Browserify 社区发现 [一些解决方法](https://github.com/vuejs/vuejs.org/issues/620)，可能会有助于已存在的复杂应用。对于其他场景，我们推荐使用 webpack，因为它对异步加载进行了内置、全面的支持。</p>
+<p class="tip">如果你是 <strong>Browserify</strong> 用户，可能就无法使用异步组件了，它的作者已经[表明](https://github.com/substack/node-browserify/issues/58#issuecomment-21978224) Browserify 将“永远不会支持异步加载”。Browserify 社区发现了[一些解决方法](https://github.com/vuejs/vuejs.org/issues/620)，可能会有助于已存在的复杂应用。对于其他场景，我们推荐使用 webpack，因为它对异步加载进行了内置、全面的支持。</p>
 
 ### 高级异步组件
 
@@ -1316,7 +1316,7 @@ beforeCreate: function () {
 
 ### 内联模板
 
-如果子组件有 `inline-template` 特性，组件将把它的内容当作它的模板，而不是把它当作分发内容。这让编写模板变得更灵活。
+如果子组件有 `inline-template` 特性，组件将把它的内容当作它的模板，而不是把它当作分发内容。这让模板编写起来更灵活。
 
 ``` html
 <my-component inline-template>
