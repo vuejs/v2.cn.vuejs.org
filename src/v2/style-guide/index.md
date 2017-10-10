@@ -679,11 +679,11 @@ components/
 
 
 
-### Tightly coupled component names <sup data-p="b">强烈推荐</sup>
+### 紧密耦合的组件名 <sup data-p="b">强烈推荐</sup>
 
-**Child components that are tightly coupled with their parent should include the parent component name as a prefix.**
+**和父组件紧密耦合的子组件应该以父组件名作为前缀命名。**
 
-If a component only makes sense in the context of a single parent component, that relationship should be evident in its name. Since editors typically organize files alphabetically, this also keeps these related files next to each other.
+如果一个组件只在某个父组件的场景下有意义，这层关系应该体现在其名字上。因为编辑器通常会按字母顺序组织文件，所以这样做可以把相关联的文件排在一起。
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
 #### 反例
@@ -721,9 +721,9 @@ components/
 
 
 
-### Order of words in component names <sup data-p="b">强烈推荐</sup>
+### 组件名中的单词顺序 <sup data-p="b">强烈推荐</sup>
 
-**Component names should start with the highest-level (often most general) words and end with descriptive modifying words.**
+**组件名应该以高级别的 (通常是一般化描述的) 单词开头，以描述性的修饰词结尾。**
 
 {% raw %}
 <details>
@@ -732,19 +732,19 @@ components/
 </summary>
 {% endraw %}
 
-You may be wondering:
+你可能会疑惑：
 
-> "Why would we force component names to use less natural language?"
+> “为什么我们给组件命名时不多遵从自然语言呢？”
 
-In natural English, adjectives and other descriptors do typically appear before the nouns, while exceptions require connector words. For example:
+在自然的英文里，形容词和其它描述语通常都出现在名词之前，否则需要使用连接词。比如：
 
 - Coffee _with_ milk
 - Soup _of the_ day
 - Visitor _to the_ museum
 
-You can definitely include these connector words in component names if you'd like, but the order is still important.
+如果你愿意，你完全可以在组件名里包含这些连接词，但是单词的顺序很重要。
 
-Also note that **what's considered "highest-level" will be contextual to your app**. For example, imagine an app with a search form. It may include components like this one:
+同样要注意**在你的应用中所谓的“高级别”是跟语境有关的**。比如对于一个带搜索表单的应用来说，它可能包含这样的组件：
 
 ```
 components/
@@ -756,7 +756,7 @@ components/
 |- TermsCheckbox.vue
 ```
 
-As you might notice, it's quite difficult to see which components are specific to the search. Now let's rename the components according to the rule:
+你可能注意到了，我们很难看出来哪些组件是针对搜索的。现在我们来根据规则给组件重新命名：
 
 ```
 components/
@@ -768,13 +768,13 @@ components/
 |- SettingsCheckboxTerms.vue
 ```
 
-Since editors typically organize files alphabetically, all the important relationships between components are now evident at a glance.
+因为编辑器通常会按字母顺序组织文件，所以现在组件之间的重要关系一目了然。
 
-You might be tempted to solve this problem differently, nesting all the search components under a "search" directory, then all the settings components under a "settings" directory. We only recommend considering this approach in very large apps (e.g. 100+ components), for these reasons:
+你可能想换成多级目录的方式，把所有的搜索组件放到“search”目录，把所有的设置组件放到“settings”目录。我们只推荐在非常大型 (如有 100+ 个组件) 的应用下才考虑这么做，因为：
 
-- It generally takes more time to navigate through nested sub-directories, than scrolling through a single `components` directory.
-- Name conflicts (e.g. multiple `ButtonDelete.vue` components) make it more difficult to quickly navigate to a specific component in a code editor.
-- Refactoring becomes more difficult, because find-and-replace often isn't sufficient to update relative references to a moved component.
+- 在多级目录间找来找去，要比在单个 `components` 目录下滚动查找要花费更多的精力。
+- 存在组件重名 (比如存在多个 `ButtonDelete` 组件) 的时候在编辑器里更难快速定位。
+- 让重构变得更难，因为为一个移动了的组件更新相关引用时，查找/替换通常并不高效。
 
 {% raw %}</details>{% endraw %}
 
@@ -808,24 +808,24 @@ components/
 
 
 
-### Self-closing components <sup data-p="b">强烈推荐</sup>
+### 自闭合组件 <sup data-p="b">强烈推荐</sup>
 
-**Components with no content should be self-closing in [single-file components](../guide/single-file-components.html), string templates, and [JSX](../guide/render-function.html#JSX) - but never in DOM templates.**
+**在[单文件组件](../guide/single-file-components.html)、字符串模板和 [JSX](../guide/render-function.html#JSX) 中没有内容的组件应该是自闭合的——但在 DOM 模板里永远不要这样做。**
 
-Components that self-close communicate that they not only have no content, but are **meant** to have no content. It's the difference between a blank page in a book and one labeled "This page intentionally left blank." Your code is also cleaner without the unnecessary closing tag.
+自闭合组件表示它们不仅没有内容，而且**刻意**没有内容。其不同之处就好像书上的一页白纸对比贴有“本页有意留白”标签的白纸。而且没有了额外的闭合标签，你的代码也更简洁。
 
-Unfortunately, HTML doesn't allow custom elements to be self-closing - only [official "void" elements](https://www.w3.org/TR/html/syntax.html#void-elements). That's why the strategy is only possible when Vue's template compiler can reach the template before the DOM, then serve the DOM spec-compliant HTML.
+不幸的是，HTML 并不支持自闭合的自定义元素——只有[官方的“空”元素](https://www.w3.org/TR/html/syntax.html#void-elements)。所以上述策略仅适用于进入 DOM 之前 Vue 的模板编译器能够触达的地方，然后再产出符合 DOM 规范的 HTML。
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
 #### 反例
 
 ``` html
-<!-- In single-file components, string templates, and JSX -->
+<!-- 在单文件组件、字符串模板和 JSX 中 -->
 <MyComponent></MyComponent>
 ```
 
 ``` html
-<!-- In DOM templates -->
+<!-- 在 DOM 模板中 -->
 <my-component/>
 ```
 {% raw %}</div>{% endraw %}
@@ -834,50 +834,50 @@ Unfortunately, HTML doesn't allow custom elements to be self-closing - only [off
 #### 好例子
 
 ``` html
-<!-- In single-file components, string templates, and JSX -->
+<!-- 在单文件组件、字符串模板和 JSX 中 -->
 <MyComponent/>
 ```
 
 ``` html
-<!-- In DOM templates -->
+<!-- 在 DOM 模板中 -->
 <my-component></my-component>
 ```
 {% raw %}</div>{% endraw %}
 
 
 
-### Component name casing in templates <sup data-p="b">强烈推荐</sup>
+### 模板中的组件名大小写 <sup data-p="b">强烈推荐</sup>
 
-**Component names should always be PascalCase in [single-file components](../guide/single-file-components.html) and string templates - but kebab-case in DOM templates.**
+**在[单文件组件](../guide/single-file-components.html)和字符串模板中组件名应该总是 PascalCase 的。但是在 DOM 模板中总是 kebab-case 的。**
 
-PascalCase has a few advantages over kebab-case:
+PascalCase 相比 kebab-case 有一些优势：
 
-- Editors can autocomplete component names in templates, because PascalCase is also used in JavaScript.
-- `<MyComponent>` is more visually distinct from a single-word HTML element than `<my-component>`, because there are two character differences (the two capitals), rather than just one (a hyphen).
-- If you use any non-Vue custom elements in your templates, such as a web component, PascalCase ensures that your Vue components remain distinctly visible.
+- 编辑器可以在模板里自动补全组件名，因为 PascalCase 同样适用于 JavaScript。
+- `<MyComponent>` 视觉上比 `<my-component>` 更能够和单个单词的 HTML 元素区别开来，因为前者的不同之处有两个大写字母，后者只有一个横线。
+- 如果你在模板中使用任何非 Vue 的自定义元素，比如一个 Web Component，PascalCase 确保了你的 Vue 组件在视觉上仍然是易识别的。
 
-Unfortunately, due to HTML's case insensitivity, DOM templates must still use kebab-case.
+不幸的是，由于 HTML 是大小写不敏感的，在 DOM 模板中必须仍使用 kebab-case。
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
 #### 反例
 
 ``` html
-<!-- In single-file components and string templates -->
+<!-- 在单文件组件和字符串模板中 -->
 <mycomponent/>
 ```
 
 ``` html
-<!-- In single-file components and string templates -->
+<!-- 在单文件组件和字符串模板中 -->
 <my-component/>
 ```
 
 ``` html
-<!-- In single-file components and string templates -->
+<!-- 在单文件组件和字符串模板中 -->
 <myComponent/>
 ```
 
 ``` html
-<!-- In DOM templates -->
+<!-- 在 DOM 模板中 -->
 <MyComponent></MyComponent>
 ```
 {% raw %}</div>{% endraw %}
@@ -886,12 +886,12 @@ Unfortunately, due to HTML's case insensitivity, DOM templates must still use ke
 #### 好例子
 
 ``` html
-<!-- In single-file components and string templates -->
+<!-- 在单文件组件和字符串模板中 -->
 <MyComponent/>
 ```
 
 ``` html
-<!-- In DOM templates -->
+<!-- 在 DOM 模板中 -->
 <my-component></my-component>
 ```
 {% raw %}</div>{% endraw %}
