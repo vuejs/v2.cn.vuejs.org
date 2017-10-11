@@ -587,7 +587,7 @@ components/
 
 但是它们**绝不会**包括全局状态 (比如来自 Vuex store)。
 
-它们的名字经常包含它们所包裹的元素的名字 (比如 `BaseButton`、`BaseTable`)，除非并没有这个特定目的的现成的元素 (比如 `BaseIcon`)。如果你为特定的上下文构建类似的组件，那它们几乎总会消费这些组件 (比如 `BaseButton` 可能会用在 `ButtonSubmit` 上)。
+它们的名字通常包含所包裹元素的名字 (比如 `BaseButton`、`BaseTable`)，除非没有现成的对应功能的元素 (比如 `BaseIcon`)。如果你为特定的上下文构建类似的组件，那它们几乎总会消费这些组件 (比如 `BaseButton` 可能会用在 `ButtonSubmit` 上)。
 
 这样做的几个好处：
 
