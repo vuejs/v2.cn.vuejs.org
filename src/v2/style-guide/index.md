@@ -1077,11 +1077,11 @@ props: {
 
 
 
-### Complex expressions in templates <sup data-p="b">强烈推荐</sup>
+### 避免模板中的复杂表达式 <sup data-p="b">强烈推荐</sup>
 
-**Component templates should only include simple expressions, with more complex expressions refactored into computed properties or methods.**
+**组件模板应该只包含简单的表达式，复杂的表达式则应该重构为计算属性或方法。**
 
-Complex expressions in your templates make them less declarative. We should strive to describe _what_ should appear, not _how_ we're computing that value. Computed properties and methods also allow the code to be reused.
+复杂表达式会让你的模板变得不那么声明式。我们应该尽量描述应该出现的*是什么*，而非*如何*计算那个值。而且计算属性和方法使得代码可以重用。
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
 #### 反例
@@ -1099,12 +1099,12 @@ Complex expressions in your templates make them less declarative. We should stri
 #### 好例子
 
 ``` html
-<!-- In a template -->
+<!-- 在模板中 -->
 {{ normalizedFullName }}
 ```
 
 ``` js
-// The complex expression has been moved to a computed property
+// 复杂表达式已经移入一个计算属性
 computed: {
   normalizedFullName: function () {
     return this.fullName.split(' ').map(function (word) {
@@ -1117,9 +1117,9 @@ computed: {
 
 
 
-### Complex computed properties <sup data-p="b">强烈推荐</sup>
+### 避免复杂计算属性 <sup data-p="b">强烈推荐</sup>
 
-**Complex computed properties should be split into as many simpler properties as possible.**
+**应该把复杂计算属性分割为尽可能多的更简单的属性。**
 
 {% raw %}
 <details>
@@ -1128,21 +1128,21 @@ computed: {
 </summary>
 {% endraw %}
 
-Simpler, well-named computed properties are:
+更简单、命名得当的计算属性是这样的：
 
-- __Easier to test__
+- __易于测试__
 
-  When each computed property contains only a very simple expression, with very few dependencies, it's much easier to write tests confirming that it works correctly.
+  当每个计算属性都包含一个非常简单且很少依赖的表达式时，撰写测试以确保其正确工作就会更加容易。
 
-- __Easier to read__
+- __易于阅读__
 
-  Simplifying computed properties forces you to give each value a descriptive name, even if it's not reused. This makes it much easier for other developers (and future you) to focus in on the code they care about and figure out what's going on.
+  简化计算属性要求你为每一个值都起一个描述性的名称，即便它不可复用。这使得其他开发者 (以及未来的你) 更容易专注在他们关心的代码上并搞清楚发生了什么。
 
-- __More adaptable to changing requirements__
+- __更好的“拥抱变化”__
 
-  Any value that can be named might be useful to the view. For example, we might decide to display a message telling the user how much money they saved. We might also decide to calculate sales tax, but perhaps display it separately, rather than as part of the final price.
+  任何能够命名的值都可能用在视图上。举个例子，我们可能打算展示一个信息，告诉用户他们存了多少钱；也可能打算计算税费，但是可能会分开展现，而不是作为总价的一部分。
 
-  Small, focused computed properties make fewer assumptions about how information will be used, so require less refactoring as requirements change.
+  小的、专注的计算属性减少了信息使用时的假设性限制，所以需求变更时也用不着那么多重构了。
 
 {% raw %}</details>{% endraw %}
 
@@ -1182,11 +1182,11 @@ computed: {
 
 
 
-### Quoted attribute values <sup data-p="b">强烈推荐</sup>
+### 带引号的特性值 <sup data-p="b">强烈推荐</sup>
 
-**Non-empty HTML attribute values should always be inside quotes (single or double, whichever is not used in JS).**
+**非空 HTML 特性值应该始终带引号 (单引号或双引号，选你 JS 里不用的那个)。**
 
-While attribute values without any spaces are not required to have quotes in HTML, this practice often leads to _avoiding_ spaces, making attribute values less readable.
+在 HTML 中不带空格的特性值是可以没有引号的，但这样做常常导致_回避_带空格的特征值，让其可读性变差。
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
 #### 反例
@@ -1214,9 +1214,9 @@ While attribute values without any spaces are not required to have quotes in HTM
 
 
 
-### Directive shorthands <sup data-p="b">强烈推荐</sup>
+### 指令缩写 <sup data-p="b">强烈推荐</sup>
 
-**Directive shorthands (`:` for `v-bind:` and `@` for `v-on:`) should be used always or never.**
+**指令缩写 (用 `:` 表示 `v-bind:` 和用 `@` 表示 `v-on:`) 应该要么都用要么都不用。**
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
 #### 反例
