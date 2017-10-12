@@ -6,7 +6,7 @@ order: 5
 
 ## 计算属性
 
-模板内的表达式是非常便利的，但是它们实际上是用于简单运算的。在模板中放入太多的逻辑会让模板过重且难以维护。例如：
+模板内的表达式非常便利，但是设计它们的初衷是用于简单运算的。在模板中放入太多的逻辑会让模板过重且难以维护。例如：
 
 ```html
 <div id="example">
@@ -14,9 +14,9 @@ order: 5
 </div>
 ```
 
-在这个地方，模板不再简单和清晰。你必须看一段时间才能意识到，这里是想要显示变量 `message` 的翻转字符串。当你想要在模板中多次引用此处的翻转字符串时，就会更加难以处理。
+在这个地方，模板不再是简单的声明式逻辑。你必须看一段时间才能意识到，这里是想要显示变量 `message` 的翻转字符串。当你想要在模板中多次引用此处的翻转字符串时，就会更加难以处理。
 
-这就是对于任何复杂逻辑，你都应当使用**计算属性**的原因。
+所以，对于任何复杂逻辑，你都应当使用**计算属性**。
 
 ### 基础例子
 
@@ -34,9 +34,9 @@ var vm = new Vue({
     message: 'Hello'
   },
   computed: {
-    // a computed getter
+    // 计算属性的 getter
     reversedMessage: function () {
-      // `this` points to the vm instance
+      // `this` 指向 vm 实例
       return this.message.split('').reverse().join('')
     }
   }
@@ -75,9 +75,9 @@ console.log(vm.reversedMessage) // => 'eybdooG'
 
 你可以打开浏览器的控制台，自行修改例子中的 vm。`vm.reversedMessage` 的值始终取决于 `vm.message` 的值。
 
-你可以像绑定普通属性一样在模板中绑定计算属性。Vue 知道 `vm.reversedMessage` 依赖于 `vm.message`，因此当 `vm.message` 发生改变时，所有依赖于 `vm.reversedMessage` 的绑定也会更新。而且最妙的是我们已经以声明的方式创建了这种依赖关系：计算属性的 getter 函数是没有连带影响 (side effect)，这使得它易于测试和推理。
+你可以像绑定普通属性一样在模板中绑定计算属性。Vue 知道 `vm.reversedMessage` 依赖于 `vm.message`，因此当 `vm.message` 发生改变时，所有依赖 `vm.reversedMessage` 的绑定也会更新。而且最妙的是我们已经以声明的方式创建了这种依赖关系：计算属性的 getter 函数是没有副作用 (side effect) 的，这使它更易于测试和理解。
 
-### 计算属性的缓存 vs 方法
+### 计算属性缓存 vs 方法
 
 你可能已经注意到我们可以通过在表达式中调用方法来达到同样的效果：
 
@@ -86,7 +86,7 @@ console.log(vm.reversedMessage) // => 'eybdooG'
 ```
 
 ``` js
-// in component
+// 在组件中
 methods: {
   reversedMessage: function () {
     return this.message.split('').reverse().join('')
@@ -94,7 +94,7 @@ methods: {
 }
 ```
 
-我们可以将同一函数定义为一个方法而不是一个计算属性。对于最终的结果，两种方式确实是相同的。然而，不同的是**计算属性是基于它们的依赖进行缓存的**。计算属性只有在它的相关依赖发生改变时才会重新求值。这就意味着只要 `message` 还没有发生改变，多次访问 `reversedMessage` 计算属性会立即返回之前的计算结果，而不必再次执行函数。
+我们可以将同一函数定义为一个方法而不是一个计算属性。两种方式的最终结果确实是完全相同的。然而，不同的是**计算属性是基于它们的依赖进行缓存的**。计算属性只有在它的相关依赖发生改变时才会重新求值。这就意味着只要 `message` 还没有发生改变，多次访问 `reversedMessage` 计算属性会立即返回之前的计算结果，而不必再次执行函数。
 
 这也同样意味着下面的计算属性将不再更新，因为 `Date.now()` 不是响应式依赖：
 
@@ -106,13 +106,13 @@ computed: {
 }
 ```
 
-相比之下，每当触发重新渲染时，方法的调用方式将**总是**再次执行函数。
+相比之下，每当触发重新渲染时，调用方法将**总会**再次执行函数。
 
-我们为什么需要缓存？假设我们有一个性能开销比较大的的计算属性 **A**，它需要遍历一个极大的数组和做大量的计算。然后我们可能有其他的计算属性依赖于 **A** 。如果没有缓存，我们将不可避免的多次执行 **A** 的 getter！如果你不希望有缓存，请用方法来替代。
+我们为什么需要缓存？假设我们有一个性能开销比较大的的计算属性 **A**，它需要遍历一个巨大的数组并做大量的计算。然后我们可能有其他的计算属性依赖于 **A** 。如果没有缓存，我们将不可避免的多次执行 **A** 的 getter！如果你不希望有缓存，请用方法来替代。
 
-### 计算属性 vs 被观察的属性
+### 计算属性 vs 侦听属性
 
-Vue 确实提供了一种更通用的方式来观察和响应 Vue 实例上的数据变动：**watch 属性**。当你有一些数据需要随着其它数据变动而变动时，你很容易滥用 `watch`——特别是如果你之前使用过 AngularJS。然而，通常更好的想法是使用计算属性而不是命令式的 `watch` 回调。细想一下这个例子：
+Vue 提供了一种更通用的方式来观察和响应 Vue 实例上的数据变动：**侦听属性**。当你有一些数据需要随着其它数据变动而变动时，你很容易滥用 `watch`——特别是如果你之前使用过 AngularJS。然而，通常更好的做法是使用计算属性而不是命令式的 `watch` 回调。细想一下这个例子：
 
 ``` html
 <div id="demo">{{ fullName }}</div>
@@ -137,7 +137,7 @@ var vm = new Vue({
 })
 ```
 
-上面代码是命令式的和重复的。将它与计算属性的版本进行比较：
+上面代码是命令式且重复的。将它与计算属性的版本进行比较：
 
 ``` js
 var vm = new Vue({
@@ -179,11 +179,11 @@ computed: {
 // ...
 ```
 
-现在再运行 `vm.fullName = 'John Doe'` 时，setter 会被调用，`vm.firstName` 和 `vm.lastName` 也相应地会被更新。
+现在再运行 `vm.fullName = 'John Doe'` 时，setter 会被调用，`vm.firstName` 和 `vm.lastName` 也会相应地被更新。
 
-## 观察者
+## 侦听器
 
-虽然计算属性在大多数情况下更合适，但有时也需要一个自定义的 watcher。这是为什么 Vue 通过 `watch` 选项提供一个更通用的方法，来响应数据的变化。当你想要在数据变化响应时，执行异步操作或开销较大的操作，这是很有用的。
+虽然计算属性在大多数情况下更合适，但有时也需要一个自定义的侦听器。这就是为什么 Vue 通过 `watch` 选项提供了一个更通用的方法，来响应数据的变化。当需要在数据变化时执行异步或开销较大的操作时，这个方式是最有用的。
 
 例如：
 
@@ -198,10 +198,8 @@ computed: {
 ```
 
 ```html
-<!-- Since there is already a rich ecosystem of ajax libraries    -->
-<!-- and collections of general-purpose utility methods, Vue core -->
-<!-- is able to remain small by not reinventing them. This also   -->
-<!-- gives you the freedom to just use what you're familiar with. -->
+<!-- 因为 AJAX 库和通用工具的生态已经相当丰富，Vue 核心代码没有重复 -->
+<!-- 提供这些功能以保持精简。这也可以让你自由选择自己更熟悉的工具。 -->
 <script src="https://cdn.jsdelivr.net/npm/axios@0.12.0/dist/axios.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/lodash@4.13.1/lodash.min.js"></script>
 <script>
@@ -212,18 +210,18 @@ var watchExampleVM = new Vue({
     answer: 'I cannot give you an answer until you ask a question!'
   },
   watch: {
-    // 如果 question 发生改变，这个函数就会运行
+    // 如果 `question` 发生改变，这个函数就会运行
     question: function (newQuestion) {
       this.answer = 'Waiting for you to stop typing...'
       this.getAnswer()
     }
   },
   methods: {
-    // _.debounce 是一个通过 lodash 限制操作频率的函数。
+    // `_.debounce` 是一个通过 Lodash 限制操作频率的函数。
     // 在这个例子中，我们希望限制访问 yesno.wtf/api 的频率
-    // ajax 请求直到用户输入完毕才会发出
-    // 学习更多关于 _.debounce function (and its cousin
-    // _.throttle)，参考：https://lodash.com/docs#debounce
+    // AJAX 请求直到用户输入完毕才会发出。想要了解更多关于
+    // `_.debounce` 函数 (及其近亲 `_.throttle`) 的知识，
+    // 请参考：https://lodash.com/docs#debounce
     getAnswer: _.debounce(
       function () {
         if (this.question.indexOf('?') === -1) {
@@ -240,7 +238,7 @@ var watchExampleVM = new Vue({
             vm.answer = 'Error! Could not reach the API. ' + error
           })
       },
-      // 这是我们为用户停止输入等待的毫秒数
+      // 这是我们为判定用户停止输入等待的毫秒数
       500
     )
   }
@@ -297,6 +295,6 @@ var watchExampleVM = new Vue({
 </script>
 {% endraw %}
 
-在这个示例中，使用 `watch` 选项允许我们执行异步操作 (访问一个 API)，限制我们执行该操作的频率，并在我们得到最终结果前，设置中间状态。这是计算属性无法做到的。
+在这个示例中，使用 `watch` 选项允许我们执行异步操作 (访问一个 API)，限制我们执行该操作的频率，并在我们得到最终结果前，设置中间状态。这些都是计算属性无法做到的。
 
-除了 `watch` 选项之外，您还可以使用 [vm.$watch API](../api/#vm-watch) 命令。
+除了 `watch` 选项之外，您还可以使用命令式的 [vm.$watch API](../api/#vm-watch)。
