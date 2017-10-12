@@ -1104,7 +1104,7 @@ props: {
 ```
 
 ``` js
-// 复杂表达式已经移为一个计算属性
+// 复杂表达式已经移入一个计算属性
 computed: {
   normalizedFullName: function () {
     return this.fullName.split(' ').map(function (word) {
