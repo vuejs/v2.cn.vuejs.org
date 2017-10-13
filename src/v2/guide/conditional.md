@@ -6,7 +6,7 @@ order: 7
 
 ## `v-if`
 
-在比如 Handlebars 这样的字符串模板中，我们得像这样写一个条件块：
+在字符串模板中，比如 Handlebars，我们得像这样写一个条件块：
 
 ``` html
 <!-- Handlebars 模板 -->
