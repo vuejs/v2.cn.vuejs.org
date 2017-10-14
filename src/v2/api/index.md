@@ -2042,6 +2042,17 @@ type: api
 
 - **参考**：[具名插槽](../guide/components.html#具名插槽)
 
+### slot-scope
+- **预期**：`function argument expression`
+
+- **用法**：
+
+  用于将元素或组件表示为作用域。属性的值应该是可以出现在函数签名的参数位置的有效的 JavaScript 表达式。这意味着在支持的环境中，您还可以在表达式中使用 ES2015 解构。
+
+  此属性不支持动态绑定。
+
+- **参考**：[Scoped Slots](../guide/components.html#Scoped-Slots)
+
 ### is
 
 - **预期**：`string`
