@@ -39,7 +39,7 @@ order: 404
 
 要使用 TypeScript 开发 Vue 应用程序，我们强烈建议您使用 [Visual Studio Code](https://code.visualstudio.com/)，它为 TypeScript 提供了极好的“开箱即用”支持。
 
-如果你正在使用[单文件组件](./single-file-components.html) (SFCs), 可以安装提供 SFCs 支持以及其他更多实用功能的 [Vetur 插件](https://github.com/vuejs/vetur).
+如果你正在使用[单文件组件](./single-file-components.html) (SFC), 可以安装提供 SFC 支持以及其他更多实用功能的 [Vetur 插件](https://github.com/vuejs/vetur)。
 
 ## 基本用法
 
@@ -52,7 +52,7 @@ const Component = Vue.extend({
 
 const Component = {
 // 这里不会有类型推断,
-// 因为TypeScript不能确认这是Vue组件的选项.
+// 因为TypeScript不能确认这是Vue组件的选项
 }
 ```
 
