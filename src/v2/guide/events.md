@@ -292,7 +292,7 @@ Vue.config.keyCodes.f1 = 112
   <button @click.ctrl.exact="onCtrlClick">A</button>
 ```
 
-### 鼠标按钮
+### 鼠标按钮修饰符
 
 > 2.1.0 新增
 
