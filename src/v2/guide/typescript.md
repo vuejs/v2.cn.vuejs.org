@@ -125,7 +125,7 @@ console.log(vm.$myProperty) // 将会顺利编译通过
 import Vue from 'vue'
 
 declare module 'vue/types/vue' {
-  // 可以使用 `VueConstructor`接口
+  // 可以使用 `VueConstructor` 接口
   // 来声明全局属性
   interface VueConstructor {
     $myGlobal: string
