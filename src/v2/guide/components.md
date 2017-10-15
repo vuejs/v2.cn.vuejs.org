@@ -968,7 +968,7 @@ Vue.component('child-component', {
 </div>
 ```
 
-在父级中，具有特殊特性 `slot-scope` 的 `<template>` 元素必须存在，表示它是作用域插槽的模板。`slot-scope` 的值将被用作一个临时变量名，此变量接收从子组件中传递的 prop 对象：
+在父级中，具有特殊特性 `slot-scope` 的 `<template>` 元素必须存在，表示它是作用域插槽的模板。`slot-scope` 的值将被用作一个临时变量名，此变量接收从子组件传递过来的 prop 对象：
 
 ``` html
 <div class="parent">
@@ -992,14 +992,19 @@ Vue.component('child-component', {
 </div>
 ```
 
-> 在 2.5.0+,`slot-scope` 能被用在任意元素或组件中而不再局限于 `<template>` 。
+> 在 2.5.0+，`slot-scope` 能被用在任意元素或组件中而不再局限于 `<template>`。
 
 作用域插槽更典型的用例是在列表组件中，允许使用者自定义如何渲染列表的每一项：
 
 ``` html
 <my-awesome-list :items="items">
   <!-- 作用域插槽也可以是具名的 -->
-  <li slot="item" slot-scope="props" class="my-fancy-item">{{ props.text }}</li>
+  <li 
+    slot="item" 
+    slot-scope="props" 
+    class="my-fancy-item">
+    {{ props.text }}
+  </li>
 </my-awesome-list>
 ```
 
@@ -1016,7 +1021,7 @@ Vue.component('child-component', {
 ```
 
 #### 解构
-`scope-slot` 的值实际上是一个可以出现在函数签名参数位置的有效的 JavaScript 表达式。这意味着在受支持的环境（单文件组件或现代浏览器）中，您还可以在表达式中使用 ES2015 解构：
+`scope-slot` 的值实际上是一个可以出现在函数签名参数位置的合法的 JavaScript 表达式。这意味着在受支持的环境 (单文件组件或现代浏览器) 中，您还可以在表达式中使用 ES2015 解构：
 
 ``` html
 <child>
