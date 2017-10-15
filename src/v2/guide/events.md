@@ -240,17 +240,17 @@ methods: {
 // 可以使用 v-on:keyup.f1
 Vue.config.keyCodes.f1 = 112
 ```
-### 自动化键修饰
+### 自动匹配按键修饰符
 
 > 2.5.0 新增
 
-你也可以通过转换它们到 kebab-case 直接使用任意有效的键名称作为 [`KeyboardEvent.key`](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/key/Key_Values) 的修饰键：
+你也可以通过将它们转换到 kebab-case  来直接使用由 [`KeyboardEvent.key`](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/key/Key_Values) 暴露的任意有效按键名作为修饰符：
 
 ```html
 <input @keyup.page-down="onPageDown">
 ```
 
-在上面的例子中，拦截器仅在 `$event.key === 'PageDown'` 被调用。
+在上面的例子中，处理函数仅在 `$event.key === 'PageDown'` 时被调用。
 
 
 ## 系统修饰键
@@ -282,10 +282,10 @@ Vue.config.keyCodes.f1 = 112
 
 > 2.5.0 新增
 
-`.exact` 修饰符应与其他系统修饰符组合使用，以指示处理程序必须按照指定修饰符组合触发修改器。
+`.exact` 修饰符应与其他系统修饰符组合使用，以指示处理程序只在精确匹配该按键组合时触发。
 
 ``` html
-  <!-- 会在 Alt 或 Shift 同时按下的时候触发 -->
+  <!-- 即使 Alt 或 Shift 被一同按下时也会触发 -->
   <button @click.ctrl="onClick">A</button>
  
   <!-- 只有在 Ctrl 被按下的时候触发 -->
