@@ -1490,22 +1490,22 @@ computed: {
 
 
 
-## Priority D Rules: Use with Caution (Potentially Dangerous Patterns)
+## 优先级 D 的规则：谨慎使用 (有潜在危险的模式)
 
 
 
-### `v-if`/`v-if-else`/`v-else` without `key` <sup data-p="d">use with caution</sup>
+### 没有在 `v-if`/`v-if-else`/`v-else` 中使用 `key` <sup data-p="d">谨慎使用</sup>
 
-**It's usually best to use `key` with `v-if` + `v-else`, if they are the same element type (e.g. both `<div>` elements).**
+**如果一组 `v-if` + `v-else` 的元素类型相同，最好使用 `key` (比如两个 `<div>` 元素)。**
 
-By default, Vue updates the DOM as efficiently as possible. That means when switching between elements of the same type, it simply patches the existing element, rather than removing it and adding a new one in its place. This can have [unintended side effects](https://jsfiddle.net/chrisvfritz/bh8fLeds/) if these elements should not actually be considered the same.
+默认情况下，Vue 会尽可能高效的更新 DOM。这意味着其在相同类型的元素之间切换时，会修补以存在的元素，而不是将旧的元素移除然后在同一位置添加一个新元素。如果本不相同的元素被识别为相同，则会出现[意料之外的副作用](https://jsfiddle.net/chrisvfritz/bh8fLeds/)。
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
 #### 反例
 
 ``` html
 <div v-if="error">
-  Error: {{ error }}
+  错误：{{ error }}
 </div>
 <div v-else>
   {{ results }}
@@ -1518,7 +1518,7 @@ By default, Vue updates the DOM as efficiently as possible. That means when swit
 
 ``` html
 <div v-if="error" key="search-status">
-  Error: {{ error }}
+  错误：{{ error }}
 </div>
 <div v-else key="search-results">
   {{ results }}
@@ -1527,7 +1527,7 @@ By default, Vue updates the DOM as efficiently as possible. That means when swit
 
 ``` html
 <p v-if="error">
-  Error: {{ error }}
+  错误：{{ error }}
 </p>
 <div v-else>
   {{ results }}
@@ -1537,11 +1537,11 @@ By default, Vue updates the DOM as efficiently as possible. That means when swit
 
 
 
-### Element selectors with `scoped` <sup data-p="d">use with caution</sup>
+### `scoped` 中的元素选择器 <sup data-p="d">谨慎使用</sup>
 
-**Element selectors should be avoided with `scoped`.**
+**元素选择器应该避免在 `scoped` 中出现。**
 
-Prefer class selectors over element selectors in `scoped` styles, because large numbers of element selectors are slow.
+在 `scoped` 样式中，class 选择器比元素选择器更好，因为大量使用元素选择器是很慢的。
 
 {% raw %}
 <details>
@@ -1550,9 +1550,9 @@ Prefer class selectors over element selectors in `scoped` styles, because large 
 </summary>
 {% endraw %}
 
-To scope styles, Vue adds a unique attribute to component elements, such as `data-v-f3f3eg9`. Then selectors are modified so that only matching elements with this attribute are selected (e.g. `button[data-v-f3f3eg9]`).
+为了给样式设置作用域，Vue 会为元素添加一个独一无二的特性，例如 `data-v-f3f3eg9`。然后修改选择器，使得在匹配选择器的元素中，只有带这个特性才会真正生效 (比如 `button[data-v-f3f3eg9]`)。
 
-The problem is that large numbers of [element-attribute selectors](http://stevesouders.com/efws/css-selectors/csscreate.php?n=1000&sel=a%5Bhref%5D&body=background%3A+%23CFD&ne=1000) (e.g. `button[data-v-f3f3eg9]`) will be considerably slower than [class-attribute selectors](http://stevesouders.com/efws/css-selectors/csscreate.php?n=1000&sel=.class%5Bhref%5D&body=background%3A+%23CFD&ne=1000) (e.g. `.btn-close[data-v-f3f3eg9]`), so class selectors should be preferred whenever possible.
+问题在于大量的[元素和特性组合的选择器](http://stevesouders.com/efws/css-selectors/csscreate.php?n=1000&sel=a%5Bhref%5D&body=background%3A+%23CFD&ne=1000) (比如 `button[data-v-f3f3eg9]`) 会比[class 和特性组合的选择器](http://stevesouders.com/efws/css-selectors/csscreate.php?n=1000&sel=.class%5Bhref%5D&body=background%3A+%23CFD&ne=1000) 慢，所以应该尽可能选用 class 选择器。
 
 {% raw %}</details>{% endraw %}
 
@@ -1590,13 +1590,13 @@ button {
 
 
 
-### Parent-child communication <sup data-p="d">use with caution</sup>
+### 父子通信 <sup data-p="d">谨慎使用</sup>
 
-**Props and events should be preferred for parent-child component communication, instead of `this.$parent` or mutating props.**
+**应该优先通过 prop 和事件进行父子组件之间的通信，而不是 `this.$parent` 或改变 prop。**
 
-An ideal Vue application is props down, events up. Sticking to this convention makes your components much easier to understand. However, there are edge cases where prop mutation or `this.$parent` can simplify two components that are already deeply coupled.
+一个理想的 Vue 应用是 prop 下行，event 上行的。遵循这一约定会让你的组件更易于理解。然而，在一些边界情况下 prop 的变更或 `this.$parent` 能够简化两个深度耦合的组件。
 
-The problem is, there are also many _simple_ cases where these patterns may offer convenience. Beware: do not be seduced into trading simplicity (being able to understand the flow of your state) for short-term convenience (writing less code).
+问题在于，这种_简单_往往也会带来便利的。当心不要以牺牲简洁性 (理解你的状态流向) 为代价换取短期的便利 (少写代码)。
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
 #### 反例
@@ -1683,11 +1683,11 @@ Vue.component('TodoItem', {
 
 
 
-### Global state management <sup data-p="d">use with caution</sup>
+### 全局状态管理 <sup data-p="d">谨慎使用</sup>
 
-**[Vuex](https://github.com/vuejs/vuex) should be preferred for global state management, instead of `this.$root` or a global event bus.**
+**应该优先通过 [Vuex](https://github.com/vuejs/vuex) 管理全局状态，而不是通过 `this.$root` 或一个全局事件总线。**
 
-Managing state on `this.$root` and/or using a [global event bus](../guide/migration.html#dispatch-和-broadcast-替换) can be convenient for very simple cases, but are not appropriate for most applications. Vuex offers not only a central place to manage state, but also tools for organizing, tracking, and debugging state changes.
+通过 `this.$root` 和/或[全局事件总线](../guide/migration.html#dispatch-和-broadcast-替换)管理状态在很多简单的情况下都是很方便的，但是并不适用于绝大多数的应用。Vuex 提供的不仅是一个管理状态的中心区域，还是组织、追踪和调试状态变更的好工具。
 
 {% raw %}</details>{% endraw %}
 
@@ -1770,14 +1770,14 @@ export default {
 <script>
 (function () {
   var enforcementTypes = {
-    none: '<span title="There is unfortunately no way to automatically enforce this rule.">self-discipline</span>',
-    runtime: 'runtime error',
+    none: '<span title="这一规则无法强制执行">自律</span>',
+    runtime: '运行时错误',
     linter: '<a href="https://github.com/vuejs/eslint-plugin-vue#eslint-plugin-vue" target="_blank">plugin:vue/recommended</a>'
   }
   Vue.component('sg-enforcement', {
     template: '\
       <span>\
-        <strong>Enforcement</strong>:\
+        <strong>强制执行</strong>:\
         <span class="style-rule-tag" v-html="humanType"/>\
       </span>\
     ',
