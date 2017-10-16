@@ -70,6 +70,7 @@ const Component = {
 ```
 
 ## 基于类的 Vue 组件
+
 如果您在声明组件时更喜欢基于类的 API，则可以使用官方维护的 [vue-class-component](https://github.com/vuejs/vue-class-componen) 装饰器：
 ``` ts
 import Vue from 'vue'
