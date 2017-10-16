@@ -35,7 +35,13 @@ $style-guide-priority-d-color = white
   details, .style-enforcement
     background-color #eee
   details
+    display block // Add the correct display in IE and Edge.
     position relative
+    &:not([open]) summary
+      &::after
+        content "..."
+      &:hover
+        background rgba(255, 255, 255, .3)
   summary
     cursor pointer
     padding 1.6em
