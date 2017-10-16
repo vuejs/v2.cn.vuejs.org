@@ -240,6 +240,7 @@ methods: {
 // 可以使用 v-on:keyup.f1
 Vue.config.keyCodes.f1 = 112
 ```
+
 ### 自动匹配按键修饰符
 
 > 2.5.0 新增
@@ -252,6 +253,7 @@ Vue.config.keyCodes.f1 = 112
 
 在上面的例子中，处理函数仅在 `$event.key === 'PageDown'` 时被调用。
 
+<p class="tip">极少数的键 (`.esc` 以及所有的方向键) 在IE9中有不同的 `key` 值, 如果你想支持IE9，它们的内置别名应该是首选。</p>
 
 ## 系统修饰键
 
