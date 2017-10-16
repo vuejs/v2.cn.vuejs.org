@@ -105,7 +105,7 @@ data: {
 <div v-bind:class="[isActive ? activeClass : '', errorClass]"></div>
 ```
 
-这样写将始终添加 `errorClass`，但是只有在 `isActive` 是 truthy[^truthy] 时才添加 `activeClass`。
+这样写将始终添加 `errorClass`，但是只有在 `isActive` 是 truthy<sup>[[1]](#译者注)</sup> 时才添加 `activeClass`。
 
 不过，当有多个条件 class 时这样写有些繁琐。所以在数组语法中也可以使用对象语法：
 
@@ -145,7 +145,7 @@ HTML 将被渲染为:
 <my-component v-bind:class="{ active: isActive }"></my-component>
 ```
 
-当 `isActive` 为 truthy[^truthy] 时，HTML 将被渲染成为：
+当 `isActive` 为 truthy<sup>[[1]](#译者注)</sup> 时，HTML 将被渲染成为：
 
 ``` html
 <p class="foo bar active">Hi</p>
@@ -210,4 +210,7 @@ data: {
 
 这样写只会渲染数组中最后一个被浏览器支持的值。在本例中，如果浏览器支持不带浏览器前缀的 flexbox，那么就只会渲染 `display: flex`。
 
-[^truthy]: https://developer.mozilla.org/zh-CN/docs/Glossary/Truthy
+<small>
+<div id="译者注">__译者注__</div>
+[1] truthy 不是 `true`，详见 [MDN](https://developer.mozilla.org/zh-CN/docs/Glossary/Truthy) 的解释。
+</small>
