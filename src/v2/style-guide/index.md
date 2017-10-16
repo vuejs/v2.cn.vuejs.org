@@ -1541,7 +1541,7 @@ computed: {
 
 **元素选择器应该避免在 `scoped` 中出现。**
 
-在 `scoped` 样式中，class 选择器比元素选择器更好，因为大量使用元素选择器是很慢的。
+在 `scoped` 样式中，类选择器比元素选择器更好，因为大量使用元素选择器是很慢的。
 
 {% raw %}
 <details>
@@ -1552,7 +1552,7 @@ computed: {
 
 为了给样式设置作用域，Vue 会为元素添加一个独一无二的特性，例如 `data-v-f3f3eg9`。然后修改选择器，使得在匹配选择器的元素中，只有带这个特性才会真正生效 (比如 `button[data-v-f3f3eg9]`)。
 
-问题在于大量的[元素和特性组合的选择器](http://stevesouders.com/efws/css-selectors/csscreate.php?n=1000&sel=a%5Bhref%5D&body=background%3A+%23CFD&ne=1000) (比如 `button[data-v-f3f3eg9]`) 会比[class 和特性组合的选择器](http://stevesouders.com/efws/css-selectors/csscreate.php?n=1000&sel=.class%5Bhref%5D&body=background%3A+%23CFD&ne=1000) 慢，所以应该尽可能选用 class 选择器。
+问题在于大量的[元素和特性组合的选择器](http://stevesouders.com/efws/css-selectors/csscreate.php?n=1000&sel=a%5Bhref%5D&body=background%3A+%23CFD&ne=1000) (比如 `button[data-v-f3f3eg9]`) 会比[类和特性组合的选择器](http://stevesouders.com/efws/css-selectors/csscreate.php?n=1000&sel=.class%5Bhref%5D&body=background%3A+%23CFD&ne=1000) 慢，所以应该尽可能选用类选择器。
 
 {% raw %}</details>{% endraw %}
 
@@ -1590,13 +1590,13 @@ button {
 
 
 
-### 父子通信 <sup data-p="d">谨慎使用</sup>
+### 父子组件通信 <sup data-p="d">谨慎使用</sup>
 
 **应该优先通过 prop 和事件进行父子组件之间的通信，而不是 `this.$parent` 或改变 prop。**
 
-一个理想的 Vue 应用是 prop 下行，event 上行的。遵循这一约定会让你的组件更易于理解。然而，在一些边界情况下 prop 的变更或 `this.$parent` 能够简化两个深度耦合的组件。
+一个理想的 Vue 应用是 prop 向下传递，事件向上传递的。遵循这一约定会让你的组件更易于理解。然而，在一些边界情况下 prop 的变更或 `this.$parent` 能够简化两个深度耦合的组件。
 
-问题在于，这种_简单_往往也会带来便利的。当心不要以牺牲简洁性 (理解你的状态流向) 为代价换取短期的便利 (少写代码)。
+问题在于，这种做法在很多_简单_的场景下可能会更方便。但请当心，不要为了一时方便 (少写代码) 而牺牲数据流向的简洁性 (易于理解)。
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
 #### 反例
