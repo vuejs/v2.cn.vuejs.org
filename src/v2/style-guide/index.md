@@ -1270,111 +1270,111 @@ computed: {
 
 
 
-## Priority C Rules: Recommended (Minimizing Arbitrary Choices and Cognitive Overhead)
+## 优先级 C 的规则：推荐 (将选择和认知成本最小化)
 
 
 
-### Component/instance options order <sup data-p="c">recommended</sup>
+### 组件/实例的选项的顺序 <sup data-p="c">推荐</sup>
 
-**Component/instance options should be ordered consistently.**
+**组件/实例的选项应该有统一的顺序。**
 
-This is the default order we recommend for component options. They're split into categories, so you'll know where to add new properties from plugins.
+这是我们推荐的组件选项默认顺序。它们被划分为几大类，所以你也能知道从插件里添加的新属性应该放到哪里。
 
-1. **Side Effects** (triggers effects outside the component)
+1. **副作用** (触发组件外的影响)
   - `el`
 
-2. **Global Awareness** (requires knowledge beyond the component)
+2. **全局感知** (要求组件以外的知识)
   - `name`
   - `parent`
 
-3. **Component Type** (changes the type of the component)
+3. **组件类型** (更改组件的类型)
   - `functional`
 
-4. **Template Modifiers** (changes the way templates are compiled)
+4. **模板修改器** (改变模板的编译方式)
   - `delimiters`
   - `comments`
 
-5. **Template Dependencies** (assets used in the template)
+5. **模板依赖** (模板内使用的资源)
   - `components`
   - `directives`
   - `filters`
 
-6. **Composition** (merges properties into the options)
+6. **组合** (向选项里合并属性)
   - `extends`
   - `mixins`
 
-7. **Interface** (the interface to the component)
+7. **接口** (组件的接口)
   - `inheritAttrs`
   - `model`
   - `props`/`propsData`
 
-8. **Local State** (local reactive properties)
+8. **本地状态** (本地的响应式属性)
   - `data`
   - `computed`
 
-9. **Events** (callbacks triggered by reactive events)
+9. **事件** (通过响应式事件触发的回调)
   - `watch`
-  - Lifecycle Events (in the order they are called)
+  - 生命周期钩子 (按照它们被调用的顺序)
 
-10. **Non-Reactive Properties** (instance properties independent of the reactivity system)
+10. **非响应式的属性** (不依赖响应系统的实例属性)
   - `methods`
 
-11. **Rendering** (the declarative description of the component output)
+11. **渲染** (组件输出的声明式描述)
   - `template`/`render`
   - `renderError`
 
 
 
-### Element attribute order <sup data-p="c">recommended</sup>
+### 元素特性的顺序 <sup data-p="c">推荐</sup>
 
-**The attributes of elements (including components) should be ordered consistently.**
+**元素 (包括组件) 的特性应该有统一的顺序。**
 
-This is the default order we recommend for component options. They're split into categories, so you'll know where to add custom attributes and directives.
+这是我们为组件选项推荐的默认顺序。它们被划分为几大类，所以你也能知道新添加的自定义特性和指令应该放到哪里。
 
-1. **Definition** (provides the component options)
+1. **定义** (提供组件的选项)
   - `is`
 
-2. **List Rendering** (creates multiple variations of the same element)
+2. **列表渲染** (创建多个变化的相同元素)
   - `v-for`
 
-2. **Conditionals** (whether the element is rendered/shown)
+2. **条件渲染** (元素是否渲染/显示)
   - `v-if`
   - `v-else-if`
   - `v-else`
   - `v-show`
   - `v-cloak`
 
-3. **Render Modifiers** (changes the way the element renders)
+3. **渲染方式** (改变元素的渲染方式)
   - `v-pre`
   - `v-once`
 
-4. **Global Awareness** (requires knowledge beyond the component)
+4. **全局感知** (需要超越组件的知识)
   - `id`
 
-5. **Unique Attributes** (attributes that require unique values)
+5. **唯一的特性** (需要唯一值的特性)
   - `ref`
   - `key`
   - `slot`
 
-6. **Two-Way Binding** (combining binding and events)
+6. **双向绑定** (把绑定和事件结合起来)
   - `v-model`
 
-7. **Other Attributes** (all unspecified bound & unbound attributes)
+7. **其它特性** (所有普通的绑定或未绑定的特性)
 
-8. **Events** (component event listeners)
+8. **事件** (组件事件监听器)
   - `v-on`
 
-9. **Content** (overrides the content of the element)
+9. **内容** (复写元素的内容)
   - `v-html`
   - `v-text`
 
 
 
-### Empty lines in component/instance options <sup data-p="c">recommended</sup>
+### 组件/实例选项中的空行 <sup data-p="c">推荐</sup>
 
-**You may want to add one empty line between multi-line properties, particularly if the options can no longer fit on your screen without scrolling.**
+**你可能想在多个属性之间增加一个空行，特别是在这些选项一屏放不下，需要滚动才能都看到的时候。**
 
-When components begin to feel cramped or difficult to read, adding spaces between multi-line properties can make them easier to skim again. In some editors, such as Vim, formatting options like this can also make them easier to navigate with the keyboard.
+当你的组件开始觉得密集或难以阅读时，在多个属性之间添加空行可以让其变得容易。在一些诸如 Vim 的编辑器里，这样格式化后的选项还能通过键盘被快速导航。
 
 {% raw %}<div class="style-example example-good">{% endraw %}
 #### 好例子
@@ -1407,8 +1407,7 @@ computed: {
 ```
 
 ``` js
-// No spaces are also fine, as long as the component
-// is still easy to read and navigate.
+// 没有空行在组件易于阅读和导航时也没问题。
 props: {
   value: {
     type: String,
@@ -1434,9 +1433,9 @@ computed: {
 
 
 
-### Single-file component top-level element order <sup data-p="c">recommended</sup>
+### 单文件组件的顶级元素的顺序 <sup data-p="c">推荐</sup>
 
-**[Single-file components](../guide/single-file-components.html) should always order `template`, `script`, and `style` tags consistently, with `<style>` last, because at least one of the other two is always necessary.**
+**[单文件组件](../guide/single-file-components.html)应该总是让 `template`、`script` 和 `style` 标签的顺序保持一致。且 `<style>` 要放在最后，因为另外两个标签至少要有一个。**
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
 #### 反例
