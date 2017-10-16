@@ -10,7 +10,7 @@ order: 404
 
 静态类型系统能帮助你有效防止许多潜在的运行时错误，而且随着你的应用日渐丰满会更加显著。这就是为什么 Vue 不仅仅为 Vue core 提供了针对 [TypeScript](https://www.typescriptlang.org/) 的[官方类型声明](https://github.com/vuejs/vue/tree/dev/types)，还为 [Vue Router](https://github.com/vuejs/vue-router/tree/dev/types) 和 [Vuex](https://github.com/vuejs/vuex/tree/dev/types) 也提供了相应的声明文件。
 
-而且，我们已经把它们[!发布到了 NPM](https://cdn.jsdelivr.net/npm/vue/types/)，最新版本的 TypeScript 也知道该如何自己从 NPM 包里解析类型声明。这意味着只要你成功地通过 NPM 安装了，就不再需要任何额外的工具辅助，即可在 Vue 中使用 TypeScript 了。
+而且，我们已经把它们[发布到了 NPM](https://cdn.jsdelivr.net/npm/vue/types/)，最新版本的 TypeScript 也知道该如何自己从 NPM 包里解析类型声明。这意味着只要你成功地通过 NPM 安装了，就不再需要任何额外的工具辅助，即可在 Vue 中使用 TypeScript 了。
 
 我们还计划在近期为 vue-cli 提供一个选项，来初始化一个立即可投入开发的 Vue + TypeScript 项目脚手架。
 
@@ -22,9 +22,9 @@ order: 404
   "compilerOptions": {
     // 与 Vue 的浏览器支持保持一致
     "target": "es5",
-    // 这可以对`this`上的数据属性进行更严格的推断
+    // 这可以对 `this` 上的数据属性进行更严格的推断
     "strict": true,
-    // 如果使用 webpack 2+ 或更高的版本，可以利用 tree-shake:
+    // 如果使用 webpack 2+ 或 rollup，可以利用 tree-shake:
     "module": "es2015",
     "moduleResolution": "node"
   }
@@ -33,7 +33,7 @@ order: 404
 
 这句选项告诉 TypeScript 不要处理 ES 模块引入语句 (译注：import .. from ..)。这样 webpack 2 就可以充分利用其基于 ES 模块的 tree-shaking (译注一种在抽象语法树中减除未被使用的死代码的优化技术，简称`摇树优化`)。
 
-参阅 [TypeScript 编译器选项文档 (英) ](https://www.typescriptlang.org/docs/handbook/compiler-options.html) 了解更多。
+参阅 [TypeScript 编译器选项文档 (英)](https://www.typescriptlang.org/docs/handbook/compiler-options.html) 了解更多。
 
 ## 开发工具链
 
@@ -69,7 +69,7 @@ const Component = {
 </script>
 ```
 
-##基于类的 Vue 组件
+## 基于类的 Vue 组件
 如果您在声明组件时更喜欢基于类的 API，则可以使用官方维护的 [vue-class-component](https://github.com/vuejs/vue-class-componen) 装饰器：
 ``` ts
 import Vue from 'vue'
