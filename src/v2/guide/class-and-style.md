@@ -15,7 +15,7 @@ order: 6
 ``` html
 <div v-bind:class="{ active: isActive }"></div>
 ```
-上面的语法表示 `active` 这个 class 存在与否将取决于数据属性 `isActive` 是否为 [truthy](https://developer.mozilla.org/zh-CN/docs/Glossary/Truthy)。
+上面的语法表示 `active` 这个 class 存在与否将取决于数据属性 `isActive` 的 [truthiness](https://developer.mozilla.org/zh-CN/docs/Glossary/Truthy)。
 
 你可以在对象中传入更多属性来动态切换多个 class。此外，`v-bind:class` 指令也可以与普通的 class 属性共存。当有如下模板:
 
@@ -105,7 +105,7 @@ data: {
 <div v-bind:class="[isActive ? activeClass : '', errorClass]"></div>
 ```
 
-这样写将始终添加 `errorClass`，但是只有在 `isActive` 是 `true` 时才添加 `activeClass`。
+这样写将始终添加 `errorClass`，但是只有在 `isActive` 是 truthy[^truthy] 时才添加 `activeClass`。
 
 不过，当有多个条件 class 时这样写有些繁琐。所以在数组语法中也可以使用对象语法：
 
@@ -145,7 +145,7 @@ HTML 将被渲染为:
 <my-component v-bind:class="{ active: isActive }"></my-component>
 ```
 
-当 `isActive` 为真值 (译者注：truthy 不是 `true`，[参考这里](https://developer.mozilla.org/zh-CN/docs/Glossary/Truthy)) 时，HTML 将被渲染成为：
+当 `isActive` 为 truthy[^truthy] 时，HTML 将被渲染成为：
 
 ``` html
 <p class="foo bar active">Hi</p>
@@ -209,3 +209,5 @@ data: {
 ```
 
 这样写只会渲染数组中最后一个被浏览器支持的值。在本例中，如果浏览器支持不带浏览器前缀的 flexbox，那么就只会渲染 `display: flex`。
+
+[^truthy]: https://developer.mozilla.org/zh-CN/docs/Glossary/Truthy
