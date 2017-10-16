@@ -646,7 +646,7 @@ type: api
 
   如果值以 `#` 开始，则它用作选项符，将使用匹配元素的 innerHTML 作为模板。常用的技巧是用 `<script type="x-template">` 包含模板。
 
-  <p class="tip">出于安全考虑，您应该只使用您信任的 Vue 模板。避免使用其他人生成的内容作为您的模板。</p>
+  <p class="tip">出于安全考虑，你应该只使用你信任的 Vue 模板。避免使用其他人生成的内容作为你的模板。</p>
 
   <p class="tip">如果 Vue 选项中包含渲染函数，该模板将被忽略。</p>
 
@@ -1719,7 +1719,7 @@ type: api
   <div v-for="(val, key, index) in object"></div>
   ```
 
-  `v-for` 默认行为试着不改变整体，而是替换元素。迫使其重新排序的元素，您需要提供一个 `key` 的特殊属性：
+  `v-for` 默认行为试着不改变整体，而是替换元素。迫使其重新排序的元素，你需要提供一个 `key` 的特殊属性：
 
   ``` html
   <div v-for="item in items" :key="item.id">
@@ -2041,6 +2041,18 @@ type: api
   详细用法，请参考下面指南部分的链接。
 
 - **参考**：[具名插槽](../guide/components.html#具名插槽)
+
+### slot-scope
+
+- **预期**：`function argument expression`
+
+- **用法**：
+
+  用于将元素或组件表示为作用域插槽。特性的值应该是可以出现在函数签名的参数位置的合法的 JavaScript 表达式。这意味着在支持的环境中，你还可以在表达式中使用 ES2015 解构。
+
+  此属性不支持动态绑定。
+
+- **参考**：[Scoped Slots](../guide/components.html#作用域插槽)
 
 ### is
 
