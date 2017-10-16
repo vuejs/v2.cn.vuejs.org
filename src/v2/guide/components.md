@@ -1021,6 +1021,7 @@ Vue.component('child-component', {
 ```
 
 #### 解构
+
 `scope-slot` 的值实际上是一个可以出现在函数签名参数位置的合法的 JavaScript 表达式。这意味着在受支持的环境 (单文件组件或现代浏览器) 中，您还可以在表达式中使用 ES2015 解构：
 
 ``` html
