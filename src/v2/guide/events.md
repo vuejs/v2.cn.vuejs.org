@@ -241,7 +241,21 @@ methods: {
 Vue.config.keyCodes.f1 = 112
 ```
 
-## 修饰键
+### 自动匹配按键修饰符
+
+> 2.5.0 新增
+
+你也可以通过将它们转换到 kebab-case  来直接使用由 [`KeyboardEvent.key`](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/key/Key_Values) 暴露的任意有效按键名作为修饰符：
+
+```html
+<input @keyup.page-down="onPageDown">
+```
+
+在上面的例子中，处理函数仅在 `$event.key === 'PageDown'` 时被调用。
+
+<p class="tip">极少数的键 (`.esc` 以及所有的方向键) 在 IE9 中有不同的 `key` 值, 如果你想支持 IE9，它们的内置别名应该是首选。</p>
+
+## 系统修饰键
 
 > 2.1.0 新增
 
@@ -265,6 +279,20 @@ Vue.config.keyCodes.f1 = 112
 ```
 
 <p class="tip">修饰键比正常的按键不同；修饰键和 `keyup` 事件一起用时，事件引发时必须按下正常的按键。换一种说法：如果要引发 `keyup.ctrl`，必须按下 `ctrl` 时释放其他的按键；单单释放 `ctrl` 不会引发事件。</p>
+
+### `.exact` 修饰符
+
+> 2.5.0 新增
+
+`.exact` 修饰符应与其他系统修饰符组合使用，以指示处理程序只在精确匹配该按键组合时触发。
+
+``` html
+  <!-- 即使 Alt 或 Shift 被一同按下时也会触发 -->
+  <button @click.ctrl="onClick">A</button>
+ 
+  <!-- 只有在 Ctrl 被按下的时候触发 -->
+  <button @click.ctrl.exact="onCtrlClick">A</button>
+```
 
 ### 鼠标按钮修饰符
 
