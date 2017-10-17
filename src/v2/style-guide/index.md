@@ -894,7 +894,7 @@ PascalCase 相比 kebab-case 有一些优势：
 
 不幸的是，由于 HTML 是大小写不敏感的，在 DOM 模板中必须仍使用 kebab-case。
 
-还要注意的是，如果你已经打算深度投资 kebab-case，和 HTML 约定保持一致，且能够横跨你的所有项目使用相同的大小写规则，那么上述的优势就没那么重要了。在这些情况下，**在所有的地方都使用 kebab-case 同样是可以接受的。**
+还请注意，如果你已经是 kebab-case 的重度用户，那么与 HTML 保持一致的命名约定且在多个项目中保持相同的大小写规则就可能比上述优势更为重要了。在这些情况下，**在所有的地方都使用 kebab-case 同样是可以接受的。**
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
 #### 反例
