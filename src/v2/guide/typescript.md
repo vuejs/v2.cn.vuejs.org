@@ -63,9 +63,10 @@ const Component = {
   ...
 </template>
 <script lang="ts">
+import Vue, {ComponentOptions} from 'vue'
   export default {
     //类型推断已启用
-  }
+  } as ComponentOptions<Vue>
 </script>
 ```
 
