@@ -105,7 +105,7 @@ type: api
 
 ### ignoredElements
 
-- **类型**：`Array<string>`
+- **类型**：`Array<string | RegExp>`
 
 - **默认值**：`[]`
 
@@ -113,7 +113,11 @@ type: api
 
   ``` js
   Vue.config.ignoredElements = [
-    'my-custom-web-component', 'another-web-component'
+    'my-custom-web-component',
+    'another-web-component',
+    // 用一个 `RegExp` 忽略所有“ion-”开头的元素
+    // 仅在 2.5+ 支持
+    /^ion-/
   ]
   ```
 
@@ -590,7 +594,8 @@ type: api
     data: {
       a: 1,
       b: 2,
-      c: 3
+      c: 3,
+      d: 4
     },
     watch: {
       a: function (val, oldVal) {
@@ -602,6 +607,11 @@ type: api
       c: {
         handler: function (val, oldVal) { /* ... */ },
         deep: true
+      },
+      // 该回调将会在侦听开始之后被立即调用
+      d: {
+        handler: function (val, oldVal) { /* ... */ },
+        immediate: true
       }
     }
   })
@@ -845,6 +855,28 @@ type: api
 
 - **参考**：[生命周期图示](../guide/instance.html#生命周期图示)
 
+### errorCaptured
+
+> 2.5.0+ 新增
+
+- **类型**：`(err: Error, vm: Component, info: string) => ?boolean`
+
+- **详细**：
+
+  当捕获一个来自子孙组件的错误时被调用。此钩子会收到三个参数：错误对象、发生错误的组件实例以及一个包含错误来源信息的字符串。此钩子可以返回 `false` 以阻止该错误继续向上传播。
+
+  <p class="tip">你可以在此钩子中修改组件的状态。因此在模板或渲染函数中设置其它内容的短路条件非常重要，它可以防止当一个错误被捕获时该组件进入一个无限的渲染循环。</p>
+
+  **错误传播规则**
+
+  - 默认情况下，如果全局的 `config.errorHandler` 被定义，所有的错误仍会发送它，因此这些错误仍让会向单一的分析服务的地方进行汇报。
+
+  - 如果一个组件的继承或父级从属链路中存在多个 `errorCaptured` 钩子，则它们将会被相同的错误逐个唤起。
+
+  - 如果此 `errorCaptured` 钩子自身抛出了一个错误，则这个新错误和原本被捕获的错误都会发送给全局的 `config.errorHandler`。
+
+  - 一个 `errorCaptured` 钩子能够返回 `false` 以阻止错误继续向上传播。本质上是说“这个错误已经被搞定了且应该被忽略”。它会阻止其它任何会被这个错误唤起的 `errorCaptured` 钩子和全局的 `config.errorHandler`。
+
 ## 选项 / 资源
 
 ### directives
@@ -942,7 +974,7 @@ type: api
 
 - **类型**：
   - **provide**：`Object | () => Object`
-  - **inject**：`Array<string> | { [key: string]: string | Symbol }`
+  - **inject**：`Array<string> | { [key: string]: string | Symbol | Object }`
 
 - **详细**：
 
@@ -1019,6 +1051,42 @@ type: api
     data () {
       return {
         bar: this.foo
+      }
+    }
+  }
+  ```
+
+  > 在 2.5.0+ 的注入可以通过设置默认值使其变成可选项：
+
+  ``` js
+  const Child = {
+    inject: {
+      foo: { default: 'foo' }
+    }
+  }
+  ```
+
+  如果它需要从一个不同名字的属性注入，则使用 `from` 来表示其源属性：
+
+  ``` js
+  const Child = {
+    inject: {
+      foo: {
+        from: 'bar',
+        default: 'foo'
+      }
+    }
+  }
+  ```
+
+  对于 prop 的默认值来说是类似的，你需要对非原始值使用一个工厂方法：
+
+  ``` js
+  const Child = {
+    inject: {
+      foo: {
+        from: 'bar',
+        default: () => [1, 2, 3]
       }
     }
   }

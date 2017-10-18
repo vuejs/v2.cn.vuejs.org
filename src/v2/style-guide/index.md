@@ -685,6 +685,42 @@ components/
 
 如果一个组件只在某个父组件的场景下有意义，这层关系应该体现在其名字上。因为编辑器通常会按字母顺序组织文件，所以这样做可以把相关联的文件排在一起。
 
+{% raw %}
+<details>
+<summary>
+  <h4>详解</h4>
+</summary>
+{% endraw %}
+
+你可以试着通过在其父组件命名的目录中嵌套子组件以解决这个问题。比如：
+
+```
+components/
+|- TodoList/
+   |- Item/
+      |- index.vue
+      |- Button.vue
+   |- index.vue
+```
+
+或：
+
+```
+components/
+|- TodoList/
+   |- Item/
+      |- Button.vue
+   |- Item.vue
+|- TodoList.vue
+```
+
+但是这种方式并不推荐，因为这会导致：
+
+- 许多文件的名字相同，使得在编辑器中快速切换文件变得困难。
+- 过多嵌套的子目录增加了在编辑器侧边栏中浏览组件所花的时间。
+
+{% raw %}</details>{% endraw %}
+
 {% raw %}<div class="style-example example-bad">{% endraw %}
 #### 反例
 
@@ -848,7 +884,7 @@ components/
 
 ### 模板中的组件名大小写 <sup data-p="b">强烈推荐</sup>
 
-**在[单文件组件](../guide/single-file-components.html)和字符串模板中组件名应该总是 PascalCase 的。但是在 DOM 模板中总是 kebab-case 的。**
+**对于绝大多数项目来说，在[单文件组件](../guide/single-file-components.html)和字符串模板中组件名应该总是 PascalCase 的——但是在 DOM 模板中总是 kebab-case 的。**
 
 PascalCase 相比 kebab-case 有一些优势：
 
@@ -858,17 +894,14 @@ PascalCase 相比 kebab-case 有一些优势：
 
 不幸的是，由于 HTML 是大小写不敏感的，在 DOM 模板中必须仍使用 kebab-case。
 
+还请注意，如果你已经是 kebab-case 的重度用户，那么与 HTML 保持一致的命名约定且在多个项目中保持相同的大小写规则就可能比上述优势更为重要了。在这些情况下，**在所有的地方都使用 kebab-case 同样是可以接受的。**
+
 {% raw %}<div class="style-example example-bad">{% endraw %}
 #### 反例
 
 ``` html
 <!-- 在单文件组件和字符串模板中 -->
 <mycomponent/>
-```
-
-``` html
-<!-- 在单文件组件和字符串模板中 -->
-<my-component/>
 ```
 
 ``` html
@@ -894,6 +927,13 @@ PascalCase 相比 kebab-case 有一些优势：
 <!-- 在 DOM 模板中 -->
 <my-component></my-component>
 ```
+
+或者
+
+``` html
+<!-- 在所有地方 -->
+<my-component></my-component>
+```
 {% raw %}</div>{% endraw %}
 
 
@@ -914,7 +954,7 @@ PascalCase 相比 kebab-case 有一些优势：
 然而，对于**只**通过 `Vue.component` 定义全局组件的应用来说，我们推荐 kebab-case 作为替代。原因是：
 
 - 全局组件很少被 JavaScript 引用，所以遵守 JavaScript 的命名约定意义不大。
-- 这些应用往往包含许多 DOM 内的组件，这种情况下是[**必须**使用 kebab-case](#模板中的组件名大小写) 的。
+- 这些应用往往包含许多 DOM 内的模板，这种情况下是[**必须**使用 kebab-case](#模板中的组件名大小写-强烈推荐) 的。
 {% raw %}</details>{% endraw %}
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
@@ -1077,7 +1117,7 @@ props: {
 
 
 
-### 避免模板中的复杂表达式 <sup data-p="b">强烈推荐</sup>
+### 模板中简单的表达式 <sup data-p="b">强烈推荐</sup>
 
 **组件模板应该只包含简单的表达式，复杂的表达式则应该重构为计算属性或方法。**
 
@@ -1117,7 +1157,7 @@ computed: {
 
 
 
-### 避免复杂计算属性 <sup data-p="b">强烈推荐</sup>
+### 简单的计算属性 <sup data-p="b">强烈推荐</sup>
 
 **应该把复杂计算属性分割为尽可能多的更简单的属性。**
 
@@ -1589,7 +1629,7 @@ button {
 
 
 
-### 父子组件通信 <sup data-p="d">谨慎使用</sup>
+### 隐性的父子组件通信 <sup data-p="d">谨慎使用</sup>
 
 **应该优先通过 prop 和事件进行父子组件之间的通信，而不是 `this.$parent` 或改变 prop。**
 
@@ -1682,7 +1722,7 @@ Vue.component('TodoItem', {
 
 
 
-### 全局状态管理 <sup data-p="d">谨慎使用</sup>
+### 非 Flux 的全局状态管理 <sup data-p="d">谨慎使用</sup>
 
 **应该优先通过 [Vuex](https://github.com/vuejs/vuex) 管理全局状态，而不是通过 `this.$root` 或一个全局事件总线。**
 

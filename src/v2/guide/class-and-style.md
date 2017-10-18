@@ -105,7 +105,7 @@ data: {
 <div v-bind:class="[isActive ? activeClass : '', errorClass]"></div>
 ```
 
-这样写将始终添加 `errorClass`，但是只有在 `isActive` 是 `true` 时才添加 `activeClass`。
+这样写将始终添加 `errorClass`，但是只有在 `isActive` 是 [truthy](https://developer.mozilla.org/zh-CN/docs/Glossary/Truthy) 时才添加 `activeClass`。
 
 不过，当有多个条件 class 时这样写有些繁琐。所以在数组语法中也可以使用对象语法：
 

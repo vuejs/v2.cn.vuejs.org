@@ -999,9 +999,9 @@ Vue.component('child-component', {
 ``` html
 <my-awesome-list :items="items">
   <!-- 作用域插槽也可以是具名的 -->
-  <li 
-    slot="item" 
-    slot-scope="props" 
+  <li
+    slot="item"
+    slot-scope="props"
     class="my-fancy-item">
     {{ props.text }}
   </li>
@@ -1162,6 +1162,7 @@ Vue.component('async-webpack-example', function (resolve) {
 ``` js
 Vue.component(
   'async-webpack-example',
+  // 该 `import` 函数返回一个 `Promise` 对象。
   () => import('./my-async-component')
 )
 ```

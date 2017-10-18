@@ -15,7 +15,7 @@ order: 402
 - **不支持 CSS (No CSS support)** 意味着当 HTML 和 JavaScript 组件化时，CSS 明显被遗漏
 - **没有构建步骤 (No build step)** 限制只能使用 HTML 和 ES5 JavaScript,  而不能使用预处理器，如 Pug (formerly Jade) 和 Babel
 
-文件扩展名为 `.vue` 的 **single-file components(单文件组件)** 为以上所有问题提供了解决方法，并且还可以使用 Webpack 或 Browserify 等构建工具。
+文件扩展名为 `.vue` 的 **single-file components(单文件组件)** 为以上所有问题提供了解决方法，并且还可以使用 webpack 或 Browserify 等构建工具。
 
 这是一个文件名为 `Hello.vue` 的简单实例：
 
@@ -31,7 +31,7 @@ order: 402
 
 <img src="/images/vue-component-with-preprocessors.png" style="display: block; margin: 30px auto;">
 
-这些特定的语言只是例子，你可以只是简单地使用 Babel，TypeScript，SCSS，PostCSS - 或者其他任何能够帮助你提高生产力的预处理器。如果搭配 `vue-loader` 使用 Webpack，它也是把 CSS Modules 当作第一公民来对待的。
+这些特定的语言只是例子，你可以只是简单地使用 Babel，TypeScript，SCSS，PostCSS - 或者其他任何能够帮助你提高生产力的预处理器。如果搭配 `vue-loader` 使用 webpack，它也是把 CSS Modules 当作第一公民来对待的。
 
 ### 怎么看待关注点分离？
 
@@ -50,6 +50,10 @@ order: 402
 
 ## 起步
 
+### 例子沙箱
+
+如果你希望深入了解并开始使用单文件组件，请来 CodeSandbox [看看这个简单的 todo 应用](https://codesandbox.io/s/o29j95wx9)。
+
 ### 针对刚接触 JavaScript 模块开发系统的用户
 
 有了 `.vue` 组件，我们就进入了高级 JavaScript 应用领域。如果你没有准备好的话，意味着还需要学会使用一些附加的工具：
@@ -58,14 +62,12 @@ order: 402
 
 - **Modern JavaScript with ES2015/16**：阅读 Babel 的 [Learn ES2015 guide](https://babeljs.io/docs/learn-es2015/)。你不需要立刻记住每一个方法，但是你可以保留这个页面以便后期参考。
 
-在你花一些时日了解这些资源之后，我们建议你参考 [webpack-simple](https://github.com/vuejs-templates/webpack-simple)。只要遵循指示，你就能很快地运行一个用到 `.vue` 组件，ES2015 和 热重载 (hot-reloading) 的 Vue 项目!
+在你花一天时间了解这些资源之后，我们建议你参考 [webpack](https://github.com/vuejs-templates/webpack) 模板。只要遵循指示，你就能很快地运行一个用到 `.vue` 组件，ES2015 和热重载 (hot-reloading) 的 Vue 项目!
 
-这个模板使用 [Webpack](https://webpack.github.io/)，一个能将多个模块打包成最终应用的模块打包工具。想学习更多 Webpack 的知识，请移步[它们的官方文档](https://webpack.js.org/configuration/)以及 [Webpack Academy](https://webpack.academy/p/the-core-concepts)。
-
-在 Webpack 中，每个模块被打包到 bundle 之前都由一个相应的 "loader" 来转换，Vue 也提供 [vue-loader](https://github.com/vuejs/vue-loader) 插件来执行 `.vue` 单文件组件 的转换。这个 [webpack-simple](https://github.com/vuejs-templates/webpack-simple) 模板已经为你准备好了所有的东西，但是如果你想了解更多关于 `.vue` 组件和 Webpack 如何一起运转的信息，你可以阅读 [vue-loader 的文档](https://vue-loader.vuejs.org)。
+想学习更多 webpack 的知识，请移步[它们的官方文档](https://webpack.js.org/configuration/)以及 [webpack learning academy](https://webpack.academy/p/the-core-concepts)。在 webpack 中，每个模块被打包到 bundle 之前都由一个相应的“loader”来转换，Vue 也提供 [vue-loader](https://github.com/vuejs/vue-loader) 插件来执行 `.vue` 单文件组件 的转换。
 
 ### 针对高级用户
 
-无论你更钟情 Webpack 或是 Browserify，我们为简单的和更复杂的项目都提供了一些文档模板。我们建议浏览 [github.com/vuejs-templates](https://github.com/vuejs-templates)，找到你需要的部分，然后参考 README 中的说明，使用 [vue-cli](https://github.com/vuejs/vue-cli) 工具生成新的项目。
+无论你更钟情 webpack 或是 Browserify，我们为简单的和更复杂的项目都提供了一些文档模板。我们建议浏览 [github.com/vuejs-templates](https://github.com/vuejs-templates)，找到你需要的部分，然后参考 README 中的说明，使用 [vue-cli](https://github.com/vuejs/vue-cli) 工具生成新的项目。
 
-模板中使用 [Webpack](https://webpack.js.org/)，一个模块加载器加载多个模块然后构建成最终应用。为了进一步了解 Webpack，可以看 [官方介绍视频](https://www.youtube.com/watch?v=WQue1AN93YU)。如果你有基础，可以看 [在 Egghead.io 上的 Webpack 进阶教程](https://egghead.io/courses/using-webpack-for-production-javascript-applications)。
+模板中使用 [webpack](https://webpack.js.org/)，一个模块加载器加载多个模块然后构建成最终应用。为了进一步了解 webpack，可以看 [官方介绍视频](https://www.youtube.com/watch?v=WQue1AN93YU)。如果你有基础，可以看 [在 Egghead.io 上的 webpack 进阶教程](https://egghead.io/courses/using-webpack-for-production-javascript-applications)。
