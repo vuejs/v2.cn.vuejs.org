@@ -282,7 +282,7 @@ example1.items.splice(indexOfItem, 1, newValue)
 为了解决第二类问题，你可以使用 `splice`：
 
 ``` js
-example1.items.splice(newLength)
+example1.items.splice(0, newLength)
 ```
 
 ## 对象更改检测注意事项
