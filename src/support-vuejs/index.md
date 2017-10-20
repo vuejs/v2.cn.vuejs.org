@@ -9,6 +9,8 @@ Vue.js 是采用 MIT 许可的开源项目，使用完全免费。
 
 - [通过 PayPal 一次性捐助](https://www.paypal.me/evanyou)
 
+- [通过 StickerOverflow 赞助](https://stickeroverflow.org/blog/vue-donation/) (每购买一张 Vue 贴纸，会为 Vue 赞助 1 元人民币)
+
 ## 当前的顶级赞助商
 
 ### Patreon 全球白金赞助商 (2000 美元/月)
