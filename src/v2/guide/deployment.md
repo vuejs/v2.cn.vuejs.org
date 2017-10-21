@@ -50,6 +50,22 @@ module.exports = {
 NODE_ENV=production browserify -g envify -e main.js | uglifyjs -c -m > build.js
 ```
 
+- 或者在 Gulp 中使用 [envify](https://github.com/hughsk/envify)：
+
+  ``` js
+  // 使用 envify 自定义模块来定制环境变量
+  var envify = require('envify/custom')
+
+  browserify(browserifyOptions)
+    .transform(vueify),
+    .transform(
+      // 必填项，以处理 node_modules 里的文件
+      { global: true },
+      envify({ NODE_ENV: 'production' })
+    )
+    .bundle()
+  ```
+
 #### Rollup
 
 使用 [rollup-plugin-replace](https://github.com/rollup/rollup-plugin-replace)：

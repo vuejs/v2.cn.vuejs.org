@@ -95,7 +95,7 @@ Mustache 语法不能作用在 HTML 特性上，遇到这种情况应该使用 [
 一些指令能够接收一个“参数”，在指令名称之后以冒号表示。例如，`v-bind` 指令可以用于响应式地更新 HTML 属性：
 
 ``` html
-<a v-bind:href="url"></a>
+<a v-bind:href="url">...</a>
 ```
 
 在这里 `href` 是参数，告知 `v-bind` 指令将该元素的 `href` 属性与表达式 `url` 的值绑定。
@@ -103,7 +103,7 @@ Mustache 语法不能作用在 HTML 特性上，遇到这种情况应该使用 [
 另一个例子是 `v-on` 指令，它用于监听 DOM 事件：
 
 ``` html
-<a v-on:click="doSomething">
+<a v-on:click="doSomething">...</a>
 ```
 
 在这里参数是监听的事件名。我们也会更详细地讨论事件处理。
@@ -113,7 +113,7 @@ Mustache 语法不能作用在 HTML 特性上，遇到这种情况应该使用 [
 修饰符 (Modifiers) 是以半角句号 `.` 指明的特殊后缀，用于指出一个指令应该以特殊方式绑定。例如，`.prevent` 修饰符告诉 `v-on` 指令对于触发的事件调用 `event.preventDefault()`：
 
 ``` html
-<form v-on:submit.prevent="onSubmit"></form>
+<form v-on:submit.prevent="onSubmit">...</form>
 ```
 
 在接下来对 [`v-on`](events.html#事件修饰符) 和 [`v-for`](forms.html#修饰符) 等功能的探索中，你会看到修饰符的其它例子。
@@ -126,20 +126,20 @@ Mustache 语法不能作用在 HTML 特性上，遇到这种情况应该使用 [
 
 ``` html
 <!-- 完整语法 -->
-<a v-bind:href="url"></a>
+<a v-bind:href="url">...</a>
 
 <!-- 缩写 -->
-<a :href="url"></a>
+<a :href="url">...</a>
 ```
 
 ### `v-on` 缩写
 
 ``` html
 <!-- 完整语法 -->
-<a v-on:click="doSomething"></a>
+<a v-on:click="doSomething">...</a>
 
 <!-- 缩写 -->
-<a @click="doSomething"></a>
+<a @click="doSomething">...</a>
 ```
 
 它们看起来可能与普通的 HTML 略有不同，但 `:` 与 `@` 对于特性名来说都是合法字符，在所有支持 Vue.js 的浏览器都能被正确地解析。而且，它们不会出现在最终渲染的标记中。缩写语法是完全可选的，但随着你更深入地了解它们的作用，你会庆幸拥有它们。

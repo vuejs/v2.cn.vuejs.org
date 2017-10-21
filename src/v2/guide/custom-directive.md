@@ -42,8 +42,10 @@ Vue.directive('focus', {
 ``` js
 directives: {
   focus: {
-    // 指令的定义---
-    inserted: function (el) {}
+    // 指令的定义
+    inserted: function (el) {
+      el.focus()
+    }
   }
 }
 ```
