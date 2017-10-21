@@ -65,7 +65,7 @@ Vue.use(MyPlugin)
 Vue.use(MyPlugin, { someOption: true })
 ```
 
-`Vue.use` 会自动阻止注册相同插件多次，届时只会注册一次该插件。
+`Vue.use` 会自动阻止多次注册相同插件，届时只会注册一次该插件。
 
 Vue.js 官方提供的一些插件 (例如 `vue-router`) 在检测到 `Vue` 是可访问的全局变量时会自动调用 `Vue.use()`。然而在例如 CommonJS 的模块环境中，你应该始终显式地调用 `Vue.use()`：
 
