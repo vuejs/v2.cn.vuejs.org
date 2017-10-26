@@ -1576,11 +1576,11 @@ computed: {
 
 
 
-### `scoped` 中的元素选择器 <sup data-p="d">谨慎使用</sup>
+### `scoped` 样式中的元素选择器 <sup data-p="d">谨慎使用</sup>
 
-**元素选择器应该避免在 `scoped` 中出现。**
+**元素选择器应该避免在 `scoped` 样式中出现。**
 
-在 `scoped` 样式中，类选择器比元素选择器更好，因为大量使用元素选择器是很慢的。
+在 `scoped` 样式中，类选择器比元素选择器更好，因为大量使用元素选择器会拖慢选择器匹配。
 
 {% raw %}
 <details>
@@ -1589,9 +1589,9 @@ computed: {
 </summary>
 {% endraw %}
 
-为了给样式设置作用域，Vue 会为元素添加一个独一无二的特性，例如 `data-v-f3f3eg9`。然后修改选择器，使得在匹配选择器的元素中，只有带这个特性才会真正生效 (比如 `button[data-v-f3f3eg9]`)。
+对于[`scoped`](https://www.w3schools.com/tags/att_style_scoped.asp)样式来说，Vue 会为组件元素添加一个独一无二的特性，例如 `data-v-f3f3eg9`。同时还会修改样式中的选择器(比如 改为`button[data-v-f3f3eg9]`)，让该选择器只匹配拥有该特性的元素(<button data-v-f3f3eg9 value="edit />)
 
-问题在于大量的[元素和特性组合的选择器](http://stevesouders.com/efws/css-selectors/csscreate.php?n=1000&sel=a%5Bhref%5D&body=background%3A+%23CFD&ne=1000) (比如 `button[data-v-f3f3eg9]`) 会比[类和特性组合的选择器](http://stevesouders.com/efws/css-selectors/csscreate.php?n=1000&sel=.class%5Bhref%5D&body=background%3A+%23CFD&ne=1000) 慢，所以应该尽可能选用类选择器。
+问题在于大量的[特性元素选择器](http://stevesouders.com/efws/css-selectors/csscreate.php?n=1000&sel=a%5Bhref%5D&body=background%3A+%23CFD&ne=1000) (比如 `button[data-v-f3f3eg9]`) 会比[特性类选择器](http://stevesouders.com/efws/css-selectors/csscreate.php?n=1000&sel=.class%5Bhref%5D&body=background%3A+%23CFD&ne=1000) 慢，所以应该尽可能在`scoped`样式下使用类选择器。
 
 {% raw %}</details>{% endraw %}
 
