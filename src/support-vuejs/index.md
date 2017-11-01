@@ -17,14 +17,17 @@ Vue.js 是采用 MIT 许可的开源项目，使用完全免费。
 
 <p style="text-align: center;">
   <a href="https://stdlib.com">
-    <img style="width: 300px;" src="/images/stdlib.png">
+    <img src="/images/stdlib.png" style="width: 300px;">
+  </a>
+  <a href="http://tooltwist.com/" target="_blank">
+    <img src="/images/tooltwist.png" style="width: 300px;">
   </a>
 </p>
 
 ### OpenCollective 白金赞助商 (2000 美元/月)
 
 <p class="open-collective-sponsors sponsor-section">
-  <a href="https://opencollective.com/vuejs/platinumsponsor/0/website" target="_blank"><img src="https://opencollective.com/vuejs/platinumsponsor/0/avatar.svg"></a><a href="https://opencollective.com/vuejs/platinumsponsor/1/website" target="_blank"><img src="https://opencollective.com/vuejs/platinumsponsor/1/avatar.svg"></a><a href="https://opencollective.com/vuejs/platinumsponsor/2/website" target="_blank"><img src="https://opencollective.com/vuejs/platinumsponsor/2/avatar.svg"></a><a href="https://opencollective.com/vuejs/platinumsponsor/3/website" target="_blank"><img src="https://opencollective.com/vuejs/platinumsponsor/3/avatar.svg"></a><a href="https://opencollective.com/vuejs/platinumsponsor/4/website" target="_blank"><img src="https://opencollective.com/vuejs/platinumsponsor/4/avatar.svg"></a><a href="https://opencollective.com/vuejs/platinumsponsor/5/website" target="_blank"><img src="https://opencollective.com/vuejs/platinumsponsor/5/avatar.svg"></a>
+  <!-- <a href="https://opencollective.com/vuejs/platinumsponsor/0/website" target="_blank"><img src="https://opencollective.com/vuejs/platinumsponsor/0/avatar.svg"></a><a href="https://opencollective.com/vuejs/platinumsponsor/1/website" target="_blank"><img src="https://opencollective.com/vuejs/platinumsponsor/1/avatar.svg"></a><a href="https://opencollective.com/vuejs/platinumsponsor/2/website" target="_blank"><img src="https://opencollective.com/vuejs/platinumsponsor/2/avatar.svg"></a><a href="https://opencollective.com/vuejs/platinumsponsor/3/website" target="_blank"><img src="https://opencollective.com/vuejs/platinumsponsor/3/avatar.svg"></a><a href="https://opencollective.com/vuejs/platinumsponsor/4/website" target="_blank"><img src="https://opencollective.com/vuejs/platinumsponsor/4/avatar.svg"></a><a href="https://opencollective.com/vuejs/platinumsponsor/5/website" target="_blank"><img src="https://opencollective.com/vuejs/platinumsponsor/5/avatar.svg"></a> -->
 </p>
 
 ### 中国区白金赞助商 (1000 美元/月)
@@ -60,16 +63,14 @@ Vue.js 是采用 MIT 许可的开源项目，使用完全免费。
     <img src="/images/tmvuejs2.png">
   </a><a href="https://component.io" target="_blank" style="width: 140px;">
     <img src="/images/component_io.png" style="width: 140px;">
-  </a><a href="https://www.v2ex.com/t/379389" target="_blank" style="width: 120px;">
-    <img src="/images/v2exer.png" style="width: 120px;">
   </a><a href="https://www.xfive.co/" target="_blank" style="width: 80px;">
     <img src="/images/xfive.png" style="width: 80px;">
   </a><a href="http://www.frontenddevelopermeetups.com/" target="_blank" style="width: 120px;">
     <img src="/images/frontend-meetups.png" style="width: 120px;">
   </a><a href="https://onsen.io/vue/" target="_blank" style="width: 125px;">
     <img src="/images/onsen-ui.png" style="width: 125px;">
-  </a><a href="http://tooltwist.com/" target="_blank" style="width: 125px;">
-    <img src="/images/tooltwist.png" style="width: 125px;">
+  </a><a href="https://themeforest.net/item/clear-bootstrap-vuejs-admin-template/19339739?ref=jyostna&utm_source=vuejs&utm_campaign=vuejs_patreon&clickthrough_id=1113830525&redirect_back=true" target="_blank" style="width: 120px;">
+    <img src="/images/vuejsadmin.png" style="width: 120px;">
   </a>
 </p>
 
