@@ -264,7 +264,7 @@ type: api
 
   > 在 2.2.0+ 中同样支持在数组上工作。
 
-  <p class="tip">目标对象不能是一个 Vue 示例或 Vue 示例的根数据对象。</p>
+  <p class="tip">目标对象不能是一个 Vue 实例或 Vue 实例的根数据对象。</p>
 
 <h3 id="Vue-directive">Vue.directive( id, [definition] )</h3>
 
