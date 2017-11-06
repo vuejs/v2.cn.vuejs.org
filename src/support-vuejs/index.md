@@ -69,7 +69,7 @@ Vue.js 是采用 MIT 许可的开源项目，使用完全免费。
     <img src="/images/frontend-meetups.png" style="width: 120px;">
   </a><a href="https://onsen.io/vue/" target="_blank" style="width: 125px;">
     <img src="/images/onsen-ui.png" style="width: 125px;">
-  </a><a href="https://themeforest.net/item/clear-bootstrap-vuejs-admin-template/19339739?ref=jyostna&utm_source=vuejs&utm_campaign=vuejs_patreon&clickthrough_id=1113830525&redirect_back=true" target="_blank" style="width: 120px;">
+  </a><a href="https://themeforest.net/item/clear-bootstrap-vuejs-admin-template/19339739?ref=jyostna&utm_source=vuejs.org&utm_campaign=vuejs_patreon" target="_blank" style="width: 120px;">
     <img src="/images/vuejsadmin.png" style="width: 120px;">
   </a>
 </p>

@@ -144,8 +144,7 @@ var vm = new Vue({
 
 ## 注明返回值
 
-因为 Vue 的声明文件的循环的本源，TypeScript 可能在推断某个方法的类型的时候存在困难。
-因此，你可能需要在 `render` 或 `computed` 里的方法上注明返回值。
+因为 Vue 的声明文件的循环的本源，TypeScript 可能在推断某个方法的类型的时候存在困难。因此，你可能需要在 `render` 或 `computed` 里的方法上注明返回值。
 
 ```ts
 import Vue, { VNode } from 'vue'
@@ -175,5 +174,4 @@ const Component = Vue.extend({
 })
 ```
 
-如果你发现类型推导或成员补齐不工作了，注明某个方法也许可以帮助你解决这个问题。
-使用 `--noImplicityAny` 选项将会帮助你找到这些未注明的方法。
+如果你发现类型推导或成员补齐不工作了，注明某个方法也许可以帮助你解决这个问题。使用 `--noImplicityAny` 选项将会帮助你找到这些未注明的方法。
