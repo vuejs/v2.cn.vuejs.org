@@ -31,7 +31,7 @@ order: 404
 }
 ```
 
-这句选项告诉 TypeScript 不要处理 ES 模块引入语句 (译注：import .. from ..)。这样 webpack 2 就可以充分利用其基于 ES 模块的 tree-shaking (译注一种在抽象语法树中减除未被使用的死代码的优化技术，简称`摇树优化`)。
+注意你需要引入 `strict: true` (或者至少 `noImplicitThis: true`，这是 `strict` 模式的一部分) 以利用组件方法中 `this` 的类型检查，否则它会始终被看作 `any` 类型。
 
 参阅 [TypeScript 编译器选项文档 (英)](https://www.typescriptlang.org/docs/handbook/compiler-options.html) 了解更多。
 
@@ -41,37 +41,28 @@ order: 404
 
 如果你正在使用[单文件组件](./single-file-components.html) (SFC), 可以安装提供 SFC 支持以及其他更多实用功能的 [Vetur 插件](https://github.com/vuejs/vetur)。
 
+[WebStorm](https://www.jetbrains.com/webstorm/) 同样为 TypeScript 和 Vue.js 提供了“开箱即用”的支持。
+
 ## 基本用法
 
 要让 TypeScript 正确推断 Vue 组件选项中的类型，您需要使用 `Vue.component` 或 `Vue.extend` 定义组件：
+
 ``` ts
 import Vue from 'vue'
 const Component = Vue.extend({
-// 类型推断已启用
+  // 类型推断已启用
 })
 
 const Component = {
-// 这里不会有类型推断,
-// 因为TypeScript不能确认这是Vue组件的选项
+  // 这里不会有类型推断，
+  // 因为TypeScript不能确认这是Vue组件的选项
 }
-```
-
-请注意，当使用 Vetur 与 SFC 时，类型推断将自动应用于默认导出，因此不需要将其包装在 `Vue.extend` 中：
-
-``` html
-<template>
-  ...
-</template>
-<script lang="ts">
-  export default {
-    //类型推断已启用
-  }
-</script>
 ```
 
 ## 基于类的 Vue 组件
 
 如果您在声明组件时更喜欢基于类的 API，则可以使用官方维护的 [vue-class-component](https://github.com/vuejs/vue-class-component) 装饰器：
+
 ``` ts
 import Vue from 'vue'
 import Component from 'vue-class-component'
@@ -152,3 +143,37 @@ var vm = new Vue({
   myOption: 'Hello'
 })
 ```
+
+## 标注返回值
+
+因为 Vue 的声明文件天生就具有循环性，TypeScript 可能在推断某个方法的类型的时候存在困难。因此，你可能需要在 `render` 或 `computed` 里的方法上标注返回值。
+
+```ts
+import Vue, { VNode } from 'vue'
+
+const Component = Vue.extend({
+  data () {
+    return {
+      msg: 'Hello'
+    }
+  },
+  methods: {
+    // 需要标注有 `this` 参与运算的返回值类型
+    greet (): string {
+      return this.msg + ' world'
+    }
+  },
+  computed: {
+    // 需要标注
+    greeting(): string {
+      return this.greet() + '!'
+    }
+  },
+  // `createElement` 是可推导的，但是 `render` 需要返回值类型
+  render (createElement): VNode {
+    return createElement('div', this.greeting)
+  }
+})
+```
+
+如果你发现类型推导或成员补齐不工作了，标注某个方法也许可以帮助你解决这个问题。使用 `--noImplicityAny` 选项将会帮助你找到这些未标注的方法。
