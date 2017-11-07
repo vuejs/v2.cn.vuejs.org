@@ -31,7 +31,7 @@ order: 404
 }
 ```
 
-注意你需要引入 `strict: true` (或者至少 `noImplicitThis: true`，这是 `strict` 模式的一部分) 以影响组件方法中 `this` 的类型检查，否则它会始终被看作 `any` 类型。
+注意你需要引入 `strict: true` (或者至少 `noImplicitThis: true`，这是 `strict` 模式的一部分) 以利用组件方法中 `this` 的类型检查，否则它会始终被看作 `any` 类型。
 
 参阅 [TypeScript 编译器选项文档 (英)](https://www.typescriptlang.org/docs/handbook/compiler-options.html) 了解更多。
 
@@ -144,9 +144,9 @@ var vm = new Vue({
 })
 ```
 
-## 注明返回值
+## 标注返回值
 
-因为 Vue 的声明文件的循环的本源，TypeScript 可能在推断某个方法的类型的时候存在困难。因此，你可能需要在 `render` 或 `computed` 里的方法上注明返回值。
+因为 Vue 的声明文件天生就具有循环性，TypeScript 可能在推断某个方法的类型的时候存在困难。因此，你可能需要在 `render` 或 `computed` 里的方法上标注返回值。
 
 ```ts
 import Vue, { VNode } from 'vue'
@@ -158,13 +158,13 @@ const Component = Vue.extend({
     }
   },
   methods: {
-    // 需要注明有 `this` 参与运算的返回值类型
+    // 需要标注有 `this` 参与运算的返回值类型
     greet (): string {
       return this.msg + ' world'
     }
   },
   computed: {
-    // 需要注明
+    // 需要标注
     greeting(): string {
       return this.greet() + '!'
     }
@@ -176,4 +176,4 @@ const Component = Vue.extend({
 })
 ```
 
-如果你发现类型推导或成员补齐不工作了，注明某个方法也许可以帮助你解决这个问题。使用 `--noImplicityAny` 选项将会帮助你找到这些未注明的方法。
+如果你发现类型推导或成员补齐不工作了，标注某个方法也许可以帮助你解决这个问题。使用 `--noImplicityAny` 选项将会帮助你找到这些未标注的方法。
