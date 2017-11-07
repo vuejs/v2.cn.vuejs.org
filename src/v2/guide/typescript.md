@@ -41,6 +41,8 @@ order: 404
 
 如果你正在使用[单文件组件](./single-file-components.html) (SFC), 可以安装提供 SFC 支持以及其他更多实用功能的 [Vetur 插件](https://github.com/vuejs/vetur)。
 
+[WebStorm](https://www.jetbrains.com/webstorm/) 同样为 TypeScript 和 Vue.js 提供了“开箱即用”的支持。
+
 ## 基本用法
 
 要让 TypeScript 正确推断 Vue 组件选项中的类型，您需要使用 `Vue.component` 或 `Vue.extend` 定义组件：
