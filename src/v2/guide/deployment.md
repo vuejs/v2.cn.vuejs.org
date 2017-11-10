@@ -10,15 +10,15 @@ order: 401
 
 ### 不使用构建工具
 
-如果用 Vue 完整独立版本 (即直接用 `<script>` 元素引入 Vue 而不提前进行构建)，请记得在生产环境下使用压缩后的版本 (`vue.min.js`)。两种版本都可以在[安装指导](installation.html#直接-lt-script-gt-引入)中找到。
+如果用 Vue 完整独立版本，即直接用 `<script>` 元素引入 Vue 而不提前进行构建，请记得在生产环境下使用压缩后的版本 (`vue.min.js`)。两种版本都可以在[安装指导](installation.html#直接-lt-script-gt-引入)中找到。
 
 ### 使用构建工具
 
-当使用 webpack 或 Browserify 类似的构建工具时，Vue 源码会根据 `process.env.NODE_ENV` 决定是否启用生产模式，默认情况为开发模式。在 webpack 与 Browserify 中都有方法来覆盖此变量，以启用 Vue 的生产模式，同时在构建过程中警告语句也会被压缩器去除。这些所有 `vue-cli` 模板中都预先配置好了，但了解怎样配置会更好。
+当使用 webpack 或 Browserify 类似的构建工具时，Vue 源码会根据 `process.env.NODE_ENV` 决定是否启用生产环境模式，默认情况为开发环境模式。在 webpack 与 Browserify 中都有方法来覆盖此变量，以启用 Vue 的生产环境模式，同时在构建过程中警告语句也会被压缩工具去除。这些所有 `vue-cli` 模板中都预先配置好了，但了解一下怎样配置会更好。
 
 #### webpack
 
-使用 webpack 的 [DefinePlugin](https://webpack.github.io/docs/list-of-plugins.html#defineplugin) 来指定生产环境，以便在压缩时可以让 UglifyJS 自动删除代包含警告语句的码块内。例如配置：
+使用 webpack 的 [DefinePlugin](https://webpack.github.io/docs/list-of-plugins.html#defineplugin) 来指定生产环境，以便在压缩时可以让 UglifyJS 自动删除警告代码块。例如配置：
 
 ``` js
 var webpack = require('webpack')
@@ -44,7 +44,7 @@ module.exports = {
 #### Browserify
 
 - 在运行打包命令时将 `NODE_ENV` 设置为 `"production"`。这等于告诉 `vueify` 避免引入热重载和开发相关的代码。
-- 使用 [envify](https://github.com/hughsk/envify) 对打包后的文件进行一次全局转换。这可以清除 Vue 源码中所有包含在环境变量条件相关的代码块内的警告语句。例如：
+- 对打包后的文件进行一次全局的 [envify](https://github.com/hughsk/envify) 转换。这使得压缩工具能清除调 Vue 源码中所有用环境变量条件包裹起来的警告语句。例如：
 
 ``` bash
 NODE_ENV=production browserify -g envify -e main.js | uglifyjs -c -m > build.js
@@ -84,7 +84,7 @@ rollup({
 
 ## 模板预编译
 
-当使用 DOM 内模板或 JavaScript 内的字符串模板时，模板会在运行时被编译为渲染函数。通常情况下这个过程已经足够快了，但对于性能敏感型应用而言还是需要尽可能避免的。
+当使用 DOM 内模板或 JavaScript 内的字符串模板时，模板会在运行时被编译为渲染函数。通常情况下这个过程已经足够快了，但对性能敏感的应用还是最好避免这种用法。
 
 预编译模板最简单的方式就是使用[单文件组件](./single-file-components.html)——相关的构建设置会自动把预编译处理好，所以构建好的代码已经包含了编译出来的渲染函数而不是原始的模板字符串。
 
@@ -102,4 +102,4 @@ rollup({
 
 ## 跟踪运行时错误
 
-如果在组件渲染时出现运行错误，错误将会被传递至全局 `Vue.config.errorHandler` 配置函数 (如果已设置)。利用这个钩子函数来配合错误跟踪服务是个不错的注意。比如 [Sentry](https://sentry.io)，它为 Vue 提供了[官方集成](https://sentry.io/for/vue/)。
+如果在组件渲染时出现运行错误，错误将会被传递至全局 `Vue.config.errorHandler` 配置函数 (如果已设置)。利用这个钩子函数来配合错误跟踪服务是个不错的主意意。比如 [Sentry](https://sentry.io)，它为 Vue 提供了[官方集成](https://sentry.io/for/vue/)。
