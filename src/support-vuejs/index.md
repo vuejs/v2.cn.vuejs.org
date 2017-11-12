@@ -13,7 +13,7 @@ Vue.js 是采用 MIT 许可的开源项目，使用完全免费。
 
 ## 当前的顶级赞助商
 
-### Patreon 全球白金赞助商 (2000 美元/月)
+### Patreon 全球白金赞助商
 
 <p style="text-align: center;">
   <a href="https://stdlib.com">
@@ -24,13 +24,13 @@ Vue.js 是采用 MIT 许可的开源项目，使用完全免费。
   </a>
 </p>
 
-### OpenCollective 白金赞助商 (2000 美元/月)
+### OpenCollective 白金赞助商
 
 <p class="open-collective-sponsors sponsor-section">
   <!-- <a href="https://opencollective.com/vuejs/platinumsponsor/0/website" target="_blank"><img src="https://opencollective.com/vuejs/platinumsponsor/0/avatar.svg"></a><a href="https://opencollective.com/vuejs/platinumsponsor/1/website" target="_blank"><img src="https://opencollective.com/vuejs/platinumsponsor/1/avatar.svg"></a><a href="https://opencollective.com/vuejs/platinumsponsor/2/website" target="_blank"><img src="https://opencollective.com/vuejs/platinumsponsor/2/avatar.svg"></a><a href="https://opencollective.com/vuejs/platinumsponsor/3/website" target="_blank"><img src="https://opencollective.com/vuejs/platinumsponsor/3/avatar.svg"></a><a href="https://opencollective.com/vuejs/platinumsponsor/4/website" target="_blank"><img src="https://opencollective.com/vuejs/platinumsponsor/4/avatar.svg"></a><a href="https://opencollective.com/vuejs/platinumsponsor/5/website" target="_blank"><img src="https://opencollective.com/vuejs/platinumsponsor/5/avatar.svg"></a> -->
 </p>
 
-### 中国区白金赞助商 (1000 美元/月)
+### 中国区白金赞助商
 
 <p style="text-align: center;">
   <a href="https://xiaozhuanlan.com/" target="_blank">
@@ -38,7 +38,7 @@ Vue.js 是采用 MIT 许可的开源项目，使用完全免费。
   </a>
 </p>
 
-### Patreon 黄金赞助商 (500 美元/月)
+### Patreon 黄金赞助商
 
 <p class="patreon-sponsors sponsor-section">
   <a href="https://deepstreamhub.com" target="_blank" style="width: 140px; top: 1px;">
@@ -74,7 +74,7 @@ Vue.js 是采用 MIT 许可的开源项目，使用完全免费。
   </a>
 </p>
 
-### OpenCollective 黄金赞助商 (500 美元/月)
+### OpenCollective 黄金赞助商
 
 <p class="open-collective-sponsors sponsor-section">
   <a href="https://opencollective.com/vuejs/goldsponsor/0/website" target="_blank"><img src="https://opencollective.com/vuejs/goldsponsor/0/avatar.svg"></a><a href="https://opencollective.com/vuejs/goldsponsor/1/website" target="_blank"><img src="https://opencollective.com/vuejs/goldsponsor/1/avatar.svg"></a><a href="https://opencollective.com/vuejs/goldsponsor/2/website" target="_blank"><img src="https://opencollective.com/vuejs/goldsponsor/2/avatar.svg"></a><a href="https://opencollective.com/vuejs/goldsponsor/3/website" target="_blank"><img src="https://opencollective.com/vuejs/goldsponsor/3/avatar.svg"></a><a href="https://opencollective.com/vuejs/goldsponsor/4/website" target="_blank"><img src="https://opencollective.com/vuejs/goldsponsor/4/avatar.svg"></a><a href="https://opencollective.com/vuejs/goldsponsor/5/website" target="_blank"><img src="https://opencollective.com/vuejs/goldsponsor/5/avatar.svg"></a><a href="https://opencollective.com/vuejs/goldsponsor/6/website" target="_blank"><img src="https://opencollective.com/vuejs/goldsponsor/6/avatar.svg"></a><a href="https://opencollective.com/vuejs/goldsponsor/7/website" target="_blank"><img src="https://opencollective.com/vuejs/goldsponsor/7/avatar.svg"></a><a href="https://opencollective.com/vuejs/goldsponsor/8/website" target="_blank"><img src="https://opencollective.com/vuejs/goldsponsor/8/avatar.svg"></a><a href="https://opencollective.com/vuejs/goldsponsor/9/website" target="_blank"><img src="https://opencollective.com/vuejs/goldsponsor/9/avatar.svg"></a><a href="https://opencollective.com/vuejs/goldsponsor/10/website" target="_blank"><img src="https://opencollective.com/vuejs/goldsponsor/10/avatar.svg"></a><a href="https://opencollective.com/vuejs/goldsponsor/11/website" target="_blank"><img src="https://opencollective.com/vuejs/goldsponsor/11/avatar.svg"></a><a href="https://opencollective.com/vuejs/goldsponsor/12/website" target="_blank"><img src="https://opencollective.com/vuejs/goldsponsor/12/avatar.svg"></a><a href="https://opencollective.com/vuejs/goldsponsor/13/website" target="_blank"><img src="https://opencollective.com/vuejs/goldsponsor/13/avatar.svg"></a><a href="https://opencollective.com/vuejs/goldsponsor/14/website" target="_blank"><img src="https://opencollective.com/vuejs/goldsponsor/14/avatar.svg"></a><a href="https://opencollective.com/vuejs/goldsponsor/15/website" target="_blank"><img src="https://opencollective.com/vuejs/goldsponsor/15/avatar.svg"></a><a href="https://opencollective.com/vuejs/goldsponsor/16/website" target="_blank"><img src="https://opencollective.com/vuejs/goldsponsor/16/avatar.svg"></a><a href="https://opencollective.com/vuejs/goldsponsor/17/website" target="_blank"><img src="https://opencollective.com/vuejs/goldsponsor/17/avatar.svg"></a><a href="https://opencollective.com/vuejs/goldsponsor/18/website" target="_blank"><img src="https://opencollective.com/vuejs/goldsponsor/18/avatar.svg"></a><a href="https://opencollective.com/vuejs/goldsponsor/19/website" target="_blank"><img src="https://opencollective.com/vuejs/goldsponsor/19/avatar.svg"></a><a href="https://opencollective.com/vuejs/goldsponsor/20/website" target="_blank"><img src="https://opencollective.com/vuejs/goldsponsor/20/avatar.svg"></a><a href="https://opencollective.com/vuejs/goldsponsor/21/website" target="_blank"><img src="https://opencollective.com/vuejs/goldsponsor/21/avatar.svg"></a><a href="https://opencollective.com/vuejs/goldsponsor/22/website" target="_blank"><img src="https://opencollective.com/vuejs/goldsponsor/22/avatar.svg"></a><a href="https://opencollective.com/vuejs/goldsponsor/23/website" target="_blank"><img src="https://opencollective.com/vuejs/goldsponsor/23/avatar.svg"></a><a href="https://opencollective.com/vuejs/goldsponsor/24/website" target="_blank"><img src="https://opencollective.com/vuejs/goldsponsor/24/avatar.svg"></a><a href="https://opencollective.com/vuejs/goldsponsor/25/website" target="_blank"><img src="https://opencollective.com/vuejs/goldsponsor/25/avatar.svg"></a><a href="https://opencollective.com/vuejs/goldsponsor/26/website" target="_blank"><img src="https://opencollective.com/vuejs/goldsponsor/26/avatar.svg"></a><a href="https://opencollective.com/vuejs/goldsponsor/27/website" target="_blank"><img src="https://opencollective.com/vuejs/goldsponsor/27/avatar.svg"></a><a href="https://opencollective.com/vuejs/goldsponsor/28/website" target="_blank"><img src="https://opencollective.com/vuejs/goldsponsor/28/avatar.svg"></a><a href="https://opencollective.com/vuejs/goldsponsor/29/website" target="_blank"><img src="https://opencollective.com/vuejs/goldsponsor/29/avatar.svg"></a>
