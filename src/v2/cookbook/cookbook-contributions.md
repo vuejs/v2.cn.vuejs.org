@@ -1,63 +1,62 @@
 ---
-title: Cookbook Contributions
+title: 参与 cookbook 贡献
 type: cookbook
 order: 1000
 ---
 
-<!-- @todo: translation -->
+## 我们在找的人
 
-## What we're looking for
+Cookbook 为开发者提供了一些示例，涵盖常见的或有趣的用例，并逐步解释更复杂的细节。我们的目标是超越一个简单的示例介绍，展现更广泛适用的概念及其注意事项。
 
-The Cookbook gives developers examples to work off of that both cover common or interesting use cases, and also progressively explain more complex detail. Our goal is to move beyond a simple introductory example, and demonstrate concepts that are more widely applicable, as well as some caveats to the approach.
+如果你有兴趣参与贡献，请将您的想法填入 issue 并加上 **cookbook idea** 的标签作为起步，这样我就可以帮助并引导您完成一个 pull request。在你的想法被认同之后，请尽可能遵循以下模板。有些小节是必须的，有些是可选的。我们强烈建议您遵循其顺序，但这也不是必须的。
 
-If you're interested in contributing, please initiate collaboration by filing an issue under the tag **cookbook idea** with your concept so that we can help guide you to a successful pull request. After your idea has been approved, please follow the template below as much as possible. Some sections are required, and some are optional. Following the numerical order is strongly suggested, but not required.
+## 简单的示例
 
-## Simple Example
+_必须的_
 
-_required_
+1. 用一两句话来说明问题。
+2. 用一两句话解释最简单的可能的解决方案。
+3. 显示一个小代码示例。
+4. 用一句话解释它完成了什么。
 
-1. Articulate the problem in a sentence or two.
-2. Explain the simplest possible solution in a sentence or two.
-3. Show a small code sample.
-4. Explain what this accomplishes in a sentence.
+## 关于其价值的细节
 
-## Details about the Value
+_必须的_
 
-_required_
+1. 解决人们在看例子时可能遇到的常见问题。(这里最好有整段引用)
+2. 显示常见失误的例子，以及如何避免它们。
+3. 显示非常简单的好模式与坏模式的代码示例。
+4. 讨论为什么这可能是一个非常好的模式。参考链接不是必需的，但鼓励提供。
 
-1. Address common questions that one might have while looking at the example. (Blockquotes are great for this)
-2. Show examples of common missteps and how they can be avoided.
-3. Show very simple code samples of good and bad patterns.
-4. Discuss why this may be a compelling pattern. Links for reference are not required but encouraged.
+## 真实的例子
 
-## Real-World Example
+_必须的_
 
-_required_
+通过以下方式演示能够为常见或有趣的用例提供支持的代码：
 
-Demonstrate the code that would power a common or interesting use case, either by:
-1. Walking through a few terse examples of setup, or
-2. Embedding a codepen/jsfiddle example
+1. 通过几个简单的设置例子，或者
+2. 嵌入一个 codepen / jsfiddle 的例子
 
-If you choose to do the latter, you should still talk through what it is and does.
+如果你选择稍后再提供，那么你仍应该表述它是什么和做什么。
 
-## Additional Context
+## 额外的上下文
 
-_optional_
+_可选的_
 
-It's extremely helpful to write a bit about this pattern, where else it would apply, why it works well, and run through a bit of code as you do so or give people further reading materials here.
+为这个模式写点东西，描述在这个模式下，它会应用到什么地方，为什么它能正常工作；以及在此基础上运行一些代码、提供一些延伸阅读材料，都是非常有帮助的。
 
-## When To Avoid This Pattern
+## 何时回避使用这个模式
 
-_optional_
+_可选的_
 
-This section is not required, but heavily recommended. It won't make sense to write it for something very simple such as toggling classes based on state change, but for more advanced patterns like mixins it's vital. The answer to most questions about development is ["It depends!"](https://codepen.io/rachsmith/pen/YweZbG), this section embraces that. Here, we'll take an honest look at when the pattern is useful and when it should be avoided, or when something else makes more sense.
+本节不是必需的，但强烈建议。你没有必要写一些特别简单易懂的事项，比如根据状态的改变开关 class，但是对于 mixin 这样的更高阶的模式来说是非常重要的。大多数高阶的问题的答案都是[“要看情况！”](https://codepen.io/rachsmith/pen/YweZbG)，该部分就包含了这一点。在此，我们要诚实地看待模式何时有用，何时应该避免，什么时候更有意义。
 
-## Alternative Patterns
+## 替代模式
 
-_optional, except when the section above is provided_
+_可选的，除非这部分内容在之前已经提供过了_
 
-This section is required when you've provided the section above about avoidance. It's important to explore other methods so that people told that something is an antipattern in certain situations are not left wondering. In doing so, consider that the web is a big tent and that many people have different codebase structures and are solving different goals. Is the app large or small? Are they integrating Vue into an existing project, or are they building from scratch? Are their users only trying to achieve one goal or many? Is there a lot of asyncronous data? All of these concerns will impact alternative implementations. A good cookbook recipe gives developers this context.
+如果你已经在上一节提供了回避条件，那么这一节是必须的。探索其它方法非常重要，这样人们在遇到某些反模式的情形时不至于无所适从。这样做是因为考虑到 web 是一个不同人有着不同代码结构解决不同问题的大舞台。这个应用是大是小？它们要把 Vue 集成到一个现成的项目中还是从零起步构建新项目？它们的用户只是想达成一个目标还是多个？有很多异步数据吗？所有的这些担忧都会影响实现替代品。一本好的 cookbook 会为开发者提供这样的上下文。
 
-## Thank you
+## 致谢
 
-It takes time to contribute to documentation, and if you spend the time to submit a PR this section of our docs, you do so with our gratitude.
+文档贡献是需要很多时间都，如果您花时间提交这部分的文档，我将感激不尽。
