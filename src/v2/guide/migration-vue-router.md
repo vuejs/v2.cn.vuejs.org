@@ -494,7 +494,7 @@ scrollBehavior: function (to, from, savedPosition) {
 
 ### `canActivate` <sup>替换</sup>
 
-使用[`beforeEnter`](https://router.vuejs.org/en/advanced/navigation-guards.html#perroute-guard) 在路由中作为替代。<!-- todo translation -->
+使用[`beforeEnter`](https://router.vuejs.org/en/advanced/navigation-guards.html#perroute-guard) 在路由中作为替代。
 
 {% raw %}
 <div class="upgrade-path">

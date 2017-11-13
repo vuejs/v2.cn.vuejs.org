@@ -48,11 +48,13 @@ Mustache 语法不能作用在 HTML 特性上，遇到这种情况应该使用 [
 <div v-bind:id="dynamicId"></div>
 ```
 
-这同样适用于布尔类特性，如果求值结果是 falsy 的值 (译者注：falsy 不是 `false`，[参考这里](https://developer.mozilla.org/zh-CN/docs/Glossary/Falsy))，则该特性将会被删除：
+在布尔特性的情况下，它们的存在即暗示为 `true`，`v-bind` 工作起来略有不同，在这个例子中：
 
 ``` html
 <button v-bind:disabled="isButtonDisabled">Button</button>
 ```
+
+如果 `isButtonDisabled` 的值是 `null`、`undefined` 或 `false`，则 `disabled` 特性甚至不会被包含在渲染出来的 `<button>` 元素中。
 
 ### 使用 JavaScript 表达式
 
