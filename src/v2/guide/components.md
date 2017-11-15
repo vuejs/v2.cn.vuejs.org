@@ -1162,7 +1162,7 @@ Vue.component('async-webpack-example', function (resolve) {
 ``` js
 Vue.component(
   'async-webpack-example',
-  // 该 `import` 函数返回一个 `Promise` 对象。
+  // 该 import 函数返回一个 Promise 对象。
   () => import('./my-async-component')
 )
 ```
