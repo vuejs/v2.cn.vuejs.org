@@ -1475,15 +1475,15 @@ computed: {
 
 ### 单文件组件的顶级元素的顺序 <sup data-p="c">推荐</sup>
 
-**[单文件组件](../guide/single-file-components.html)应该总是让 `<template>`、`<script>` 和 `<style>` 标签的顺序保持一致。且 `<style>` 要放在最后，因为另外两个标签至少要有一个。**
+**[单文件组件](../guide/single-file-components.html)应该总是让 `<script>`、`<template>` 和 `<style>` 标签的顺序保持一致。且 `<style>` 要放在最后，因为另外两个标签至少要有一个。**
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
 #### 反例
 
 ``` html
 <style>/* ... */</style>
-<template>...</template>
 <script>/* ... */</script>
+<template>...</template>
 ```
 
 ``` html
@@ -1504,13 +1504,13 @@ computed: {
 
 ``` html
 <!-- ComponentA.vue -->
-<template>...</template>
 <script>/* ... */</script>
+<template>...</template>
 <style>/* ... */</style>
 
 <!-- ComponentB.vue -->
-<template>...</template>
 <script>/* ... */</script>
+<template>...</template>
 <style>/* ... */</style>
 ```
 

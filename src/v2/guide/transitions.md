@@ -196,7 +196,7 @@ CSS 动画用法同 CSS 过渡，区别是在动画中 `v-enter` 类名在节点
 <div id="example-2">
   <button @click="show = !show">Toggle show</button>
   <transition name="bounce">
-    <p v-if="show">Look at me!</p>
+    <p v-if="show">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris facilisis enim libero, at lacinia diam fermentum id. Pellentesque habitant morbi tristique senectus et netus.</p>
   </transition>
 </div>
 ```
@@ -234,7 +234,7 @@ new Vue({
 <div id="example-2" class="demo">
   <button @click="show = !show">Toggle show</button>
   <transition name="bounce">
-    <p v-show="show">Look at me!</p>
+    <p v-if="show">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris facilisis enim libero, at lacinia diam fermentum id. Pellentesque habitant morbi tristique senectus et netus.</p>
   </transition>
 </div>
 
