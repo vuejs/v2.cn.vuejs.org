@@ -22,13 +22,13 @@ var vm = new Vue({
 
 ``` js
 Root Instance
-|- TodoList
-   |- TodoItem
-      |- DeleteTodoButton
-      |- EditTodoButton
-   |- TodoListFooter
-      |- ClearTodosButton
-      |- TodoListStatistics
+└─ TodoList
+   ├─ TodoItem
+   │  ├─ DeleteTodoButton
+   │  └─ EditTodoButton
+   └─ TodoListFooter
+      ├─ ClearTodosButton
+      └─ TodoListStatistics
 ```
 
 我们会在稍后的[组件系统](components.html)章节具体展开。不过现在，你只需要明白所有的 Vue 组件都是 Vue 实例，并且接受相同的选项对象即可 (一些根实例特有的选项除外)。

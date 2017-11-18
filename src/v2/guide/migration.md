@@ -795,9 +795,9 @@ Vue.config.keyCodes.f1 = 112
 
 ```
 Todos
-|-- NewTodoInput
-|-- Todo
-    |-- DeleteTodoButton
+├─ NewTodoInput
+└─ Todo
+   └─ DeleteTodoButton
 ```
 
 可以通过单独的事件中心管理组件间的通信：
