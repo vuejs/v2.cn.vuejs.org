@@ -102,4 +102,4 @@ rollup({
 
 ## 跟踪运行时错误
 
-如果在组件渲染时出现运行错误，错误将会被传递至全局 `Vue.config.errorHandler` 配置函数 (如果已设置)。利用这个钩子函数来配合错误跟踪服务是个不错的主意意。比如 [Sentry](https://sentry.io)，它为 Vue 提供了[官方集成](https://sentry.io/for/vue/)。
+如果在组件渲染时出现运行错误，错误将会被传递至全局 `Vue.config.errorHandler` 配置函数 (如果已设置)。利用这个钩子函数来配合错误跟踪服务是个不错的主意。比如 [Sentry](https://sentry.io)，它为 Vue 提供了[官方集成](https://sentry.io/for/vue/)。
