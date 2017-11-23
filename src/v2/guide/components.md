@@ -973,7 +973,7 @@ Vue.component('child-component', {
 ``` html
 <div class="parent">
   <child>
-    <template slot-scope="props">
+    <template scope="props">
       <span>hello from parent</span>
       <span>{{ props.text }}</span>
     </template>
