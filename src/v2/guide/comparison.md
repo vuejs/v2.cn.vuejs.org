@@ -22,9 +22,9 @@ React 和 Vue 有许多相似之处，它们都有：
 
 React 社区为我们准确进行平衡的考量提供了[非常积极的帮助](https://github.com/vuejs/vuejs.org/issues/364)，特别感谢来自 React 团队的 Dan Abramov 。他非常慷慨的花费时间来贡献专业知识来帮助我们完善这篇文档。
 
-### 性能
+### 运行时性能
 
-React 和 Vue 在大部分常见场景下都能提供近似的性能。通常 Vue 会有少量优势，因为 Vue 的 Virtual DOM 实现相对更为轻量一些。如果你对数据感兴趣，可以参考这个专门测试渲染和更新性能的[第三方跑分](https://rawgit.com/krausest/js-framework-benchmark/master/webdriver-ts/table.html)。注意这个跑分并不包含针对大量复杂组件树的情况，因此只建议作为参考。
+React 和 Vue 都是非常快的，所以速度并不是在它们之中做选择的决定性因素。对于具体的数据表现，可以移步这个[第三方 benchmark](http://www.stefankrause.net/js-frameworks-benchmark7/table.html)，它专注于渲染/更新非常简单的组件树的真实性能。
 
 #### 优化
 
@@ -151,7 +151,7 @@ AngularJS 使用双向绑定，Vue 在不同组件间强制使用单向数据流
 
 在 Vue 中指令和组件分得更清晰。指令只封装 DOM 操作，而组件代表一个自给自足的独立单元——有自己的视图和数据逻辑。在 AngularJS 中两者有不少相混的地方。
 
-### 性能
+### 运行时性能
 
 Vue 有更好的性能，并且非常非常容易优化，因为它不使用脏检查。
 
@@ -173,11 +173,13 @@ Angular 事实上必须用 TypeScript 来开发，因为它的文档和学习资
 
 最后，虽然 Vue 和 TS 的整合可能不如 Angular 那么深入，我们也提供了官方的 [类型声明](https://github.com/vuejs/vue/tree/dev/types) 和 [组件装饰器](https://github.com/vuejs/vue-class-component)，并且知道有大量用户在生产环境中使用 Vue + TS 的组合。我们也和微软的 TS / VSCode 团队进行着积极的合作，目标是为 Vue + TS 用户提供更好的类型检查和 IDE 开发体验。
 
-### 大小和性能
+### 运行时性能
 
-在性能方面，这两个框架都非常的快，我们也没有足够的实际应用数据来下一个结论。如果你一定想看些数据的话，你可以参考这个[第三方跑分](http://stefankrause.net/js-frameworks-benchmark4/webdriver-ts/table.html)。单就这个跑分来看，Vue 似乎比 Angular 要更快一些。
+这两个框架都很快，有非常类似的 benchmark 数据。你可以[浏览具体的数据](http://www.stefankrause.net/js-frameworks-benchmark7/table.html)做更细粒度的对比，不过速度应该不是决定性的因素。
 
-在大小方面，最近的 Angular 版本中在使用了 [AOT](https://en.wikipedia.org/wiki/Ahead-of-time_compilation) 和 [tree-shaking](https://en.wikipedia.org/wiki/Tree_shaking) 技术后使得最终的代码体积减小了许多。但即使如此，一个包含了 Vuex + Vue Router 的 Vue 项目 (30kB gzipped) 相比使用了这些优化的 `angular-cli` 生成的默认项目尺寸 (~130kB) 还是要小的多。
+### 体积
+
+在体积方面，最近的 Angular 版本中在使用了 [AOT](https://en.wikipedia.org/wiki/Ahead-of-time_compilation) 和 [tree-shaking](https://en.wikipedia.org/wiki/Tree_shaking) 技术后使得最终的代码体积减小了许多。但即使如此，一个包含了 Vuex + Vue Router 的 Vue 项目 (30kB gzipped) 相比使用了这些优化的 `angular-cli` 生成的默认项目尺寸 (~130kB) 还是要小的多。
 
 ### 灵活性
 
@@ -199,7 +201,7 @@ Ember 是一个全能框架。它提供了大量的约定，一旦你熟悉了�
 
 * Vue 的模板语法可以用全功能的 JavaScript 表达式，而 Handlebars 的语法和帮助函数相比来说非常受限。
 
-* 在性能上，Vue 比 Ember [好很多](https://rawgit.com/krausest/js-framework-benchmark/master/webdriver-ts/table.html)，即使是 Ember 2.x 的最新 Glimmer 引擎。Vue 能够自动批量更新，而 Ember 在关键性能场景时需要手动管理。
+* 在性能上，Vue 比 Ember [好很多](http://www.stefankrause.net/js-frameworks-benchmark7/table.html)，即使是 Ember 2.x 的最新 Glimmer 引擎。Vue 能够自动批量更新，而 Ember 在关键性能场景时需要手动管理。
 
 ## Knockout
 
