@@ -231,6 +231,12 @@ type: api
   Vue.nextTick(function () {
     // DOM 更新了
   })
+
+  // 作为一个 Promise 使用 (2.1.0 起新增，详见接下来的提示)
+  Vue.nextTick()
+    .then(function () {
+      // DOM 更新了
+    })
   ```
 
   > 2.1.0 起新增：如果没有提供回调且在支持 Promise 的环境中，则返回一个 Promise。请注意 Vue 不自带 Promise 的 polyfill，所以如果你的目标浏览器不原生支持 Promise (IE：你们都看我干嘛)，你得自己提供 polyfill。
