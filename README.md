@@ -4,13 +4,25 @@
 
 英文原版仓库地址：https://github.com/vuejs/vuejs.org
 
-## 本地预览
+## 开发
 
-```
-$ npm install -g hexo-cli
+``` bash
 $ npm install
-$ hexo server
+$ npm start # 开发服务器地址为 http://localhost:4000
 ```
+
+## 部署
+
+该站点通过 GitHub pages 进行部署，因此你需要相关权限，通过部署脚本将网站内容推送到 cn.vuejs.org 仓库：
+
+``` bash
+$ npm run deploy
+ ```
+
+如果你在一个 fork 上工作且希望部署到另一个 URL，你需要更新以下内容：
+
+- `_config.yml` 中的 `url` 和 `deploy` 章节
+- `src/CNAME`
 
 ## 如何参与贡献
 
