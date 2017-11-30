@@ -36,6 +36,32 @@ Vue.filter('capitalize', function (value) {
 })
 ```
 
+下面这个例子用到了 `capitalize` 过滤器：
+
+{% raw %}
+<div id="example-1" class="demo">
+  <input type="text" v-model="message">
+  <p>{{ message | capitalize }}</p>
+</div>
+<script>
+  new Vue({
+    el: '#example-1',
+    data: function () {
+      return {
+        message: 'john'
+      }
+    },
+    filters: {
+      capitalize: function (value) {
+        if (!value) return ''
+        value = value.toString()
+        return value.charAt(0).toUpperCase() + value.slice(1)
+      }
+    }
+  })
+</script>
+{% endraw %}
+
 过滤器函数总接收表达式的值 (之前的操作链的结果) 作为第一个参数。在上述例子中，`capitalize` 过滤器函数将会收到 `message` 的值作为第一个参数。
 
 过滤器可以串联：
