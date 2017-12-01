@@ -2,11 +2,8 @@
 title: 安装
 type: guide
 order: 1
-vue_version: 2.5.1
-dev_size: "271.12"
-min_size: "83.13"
-gz_size: "30.33"
-ro_gz_size: "21.04"
+vue_version: 2.5.9
+gz_size: "30.95"
 ---
 
 ### 兼容性
@@ -14,6 +11,8 @@ ro_gz_size: "21.04"
 Vue.js 不支持 IE8 及其以下版本，因为 Vue.js 使用了 IE8 不能模拟的 ECMAScript 5 特性。Vue.js 支持所有[兼容 ECMAScript 5 的浏览器](http://caniuse.com/#feat=es5)。
 
 ### 更新日志
+
+最新稳定版本：{{vue_version}}
 
 每个版本的更新日志见 [GitHub](https://github.com/vuejs/vue/releases)。
 
