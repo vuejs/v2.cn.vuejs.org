@@ -294,8 +294,9 @@ Vue.component('todo-item', {
     <!--
       现在我们为每个 todo-item 提供 todo 对象
       todo 对象是变量，即其内容可以是动态的。
-      我们也需要为每个组件提供一个“key”，晚些时候我们会做个解释。
-    -->
+      我们也需要为每个组件提供一个“key”，晚些时候我们会做个解释,
+      注意这里的三个属性之间不需要用“，”来分割。
+    -->
     <todo-item
       v-for="item in groceryList"
       v-bind:todo="item"
