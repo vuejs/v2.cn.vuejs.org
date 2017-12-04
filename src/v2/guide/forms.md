@@ -6,11 +6,11 @@ order: 10
 
 ## 基础用法
 
-你可以用 `v-model` 指令在表单控件元素上创建双向数据绑定。它会根据控件类型自动选取正确的方法来更新元素。尽管有些神奇，但 `v-model` 本质上不过是语法糖，它负责监听用户的输入事件以更新数据，并特别处理一些极端的例子。
+你可以用 `v-model` 指令在表单 `<input>` 及 `<textarea>` 元素上创建双向数据绑定。它会根据控件类型自动选取正确的方法来更新元素。尽管有些神奇，但 `v-model` 本质上不过是语法糖。它负责监听用户的输入事件以更新数据，并对一些极端场景进行一些特殊处理。
 
-<p class="tip"> `v-model` 会忽略所有表单元素的 `value`、`checked`、`selected` 特性的初始值。因为它会选择 Vue 实例数据来作为具体的值。你应该通过 JavaScript 在组件的 `data` 选项中声明初始值。</p>
+<p class="tip">`v-model` 会忽略所有表单元素的 `value`、`checked`、`selected` 特性的初始值而总是将 Vue 实例的数据作为数据来源。你应该通过 JavaScript 在组件的 `data` 选项中声明初始值。</p>
 
-<p class="tip" id="vmodel-ime-tip">对于要求 [IME](https://en.wikipedia.org/wiki/Input_method) (如中文、日语、韩语等) (IME 意为“输入法”)的语言，你会发现 `v-model` 不会在 ime 输入中得到更新。如果你也想实现更新，请使用 `input` 事件。</p>
+<p class="tip" id="vmodel-ime-tip">对于需要使用[输入法](https://zh.wikipedia.org/wiki/%E8%BE%93%E5%85%A5%E6%B3%95) (如中文、日文、韩文等) 的语言，你会发现 `v-model` 不会在输入法组合文字过程中得到更新。如果你也想处理这个过程，请使用 `input` 事件。</p>
 
 ### 文本
 
@@ -64,7 +64,7 @@ new Vue({
 
 ### 复选框
 
-单个勾选框，逻辑值：
+单个复选框，绑定到布尔值：
 
 ``` html
 <input type="checkbox" id="checkbox" v-model="checked">
@@ -85,7 +85,7 @@ new Vue({
 </script>
 {% endraw %}
 
-多个勾选框，绑定到同一个数组：
+多个复选框，绑定到同一个数组：
 
 ``` html
 <div id='example-3'>
@@ -173,9 +173,9 @@ new Vue({
 </script>
 {% endraw %}
 
-### 选择列表
+### 选择框
 
-单选列表：
+单选时：
 
 ``` html
 <div id="example-5">
@@ -218,9 +218,9 @@ new Vue({
 </script>
 {% endraw %}
 
-<p class="tip">如果 `v-model` 表达初始的值不匹配任何的选项，`<select>` 元素就会以"未选中"的状态渲染。在 iOS 中，这会使用户无法选择第一个选项，因为这样的情况下，iOS 不会引发 change 事件。因此，像以上提供 disabled 选项是建议的做法。</p>
+<p class="tip">如果 `v-model` 表达式的初始值未能匹配任何选项，`<select>` 元素将被渲染为“未选中”状态。在 iOS 中，这会使用户无法选择第一个选项。因为这样的情况下，iOS 不会触发 change 事件。因此，更推荐像上面这样提供一个值为空的禁用选项。</p>
 
-多选列表 (绑定到一个数组)：
+多选时 (绑定到一个数组)：
 
 ``` html
 <div id="example-6">
@@ -263,7 +263,7 @@ new Vue({
 </script>
 {% endraw %}
 
-动态选项，用 `v-for` 渲染：
+用 `v-for` 渲染的动态选项：
 
 ``` html
 <select v-model="selected">
@@ -314,7 +314,7 @@ new Vue({
 
 ## 值绑定
 
-对于单选按钮，勾选框及选择列表选项，`v-model` 绑定的 value 通常是静态字符串 (对于勾选框是逻辑值)：
+对于单选按钮，复选框及选择框的选项，`v-model` 绑定的值通常是静态字符串 (对于复选框也可以是布尔值)：
 
 ``` html
 <!-- 当选中时，`picked` 为字符串 "a" -->
@@ -329,7 +329,7 @@ new Vue({
 </select>
 ```
 
-但是有时我们想绑定 value 到 Vue 实例的一个动态属性上，这时可以用 `v-bind` 实现，并且这个属性的值可以不是字符串。
+但是有时我们可能想把值绑定到 Vue 实例的一个动态属性上，这时可以用 `v-bind` 实现，并且这个属性的值可以不是字符串。
 
 ### 复选框
 
@@ -360,7 +360,7 @@ vm.toggle === vm.b
 vm.pick === vm.a
 ```
 
-### 选择列表的选项
+### 选择框的选项
 
 ``` html
 <select v-model="selected">
@@ -379,33 +379,33 @@ vm.selected.number // => 123
 
 ### `.lazy`
 
-在默认情况下，`v-model` 在 `input` 事件中同步输入框的值与数据 (除了 [上述](#vmodel-ime-tip) IME 部分)，但你可以添加一个修饰符 `lazy` ，从而转变为在 `change` 事件中同步：
+在默认情况下，`v-model` 在每次 `input` 事件触发后将输入框的值与数据进行同步 (除了[上述](#vmodel-ime-tip)输入法组合文字时)。你可以添加 `lazy` 修饰符，从而转变为使用 `change` 事件进行同步：
 
 ``` html
-<!-- 在 "change" 而不是 "input" 事件中更新 -->
+<!-- 在“change”时而非“input”时更新 -->
 <input v-model.lazy="msg" >
 ```
 
 ### `.number`
 
-如果想自动将用户的输入值转为 Number 类型 (如果原值的转换结果为 NaN 则返回原值)，可以添加一个修饰符 `number` 给 `v-model` 来处理输入值：
+如果想自动将用户的输入值转为数值类型，可以给 `v-model` 添加 `number` 修饰符：
 
 ``` html
 <input v-model.number="age" type="number">
 ```
 
-这通常很有用，因为在 `type="number"` 时 HTML 中输入的值也总是会返回字符串类型。
+这通常很有用，因为即使在 `type="number"` 时，HTML 输入元素的值也总会返回字符串。
 
 ### `.trim`
 
-如果要自动过滤用户输入的首尾空格，可以添加 `trim` 修饰符到 `v-model` 上过滤输入：
+如果要自动过滤用户输入的首尾空白字符，可以给 `v-model` 添加 `trim` 修饰符：
 
 ```html
 <input v-model.trim="msg">
 ```
 
-## `v-model` 与组件
+## 在组件上使用 `v-model`
 
-> 如果你还不熟悉 Vue 的组件，跳过这里即可。
+> 如果你还不熟悉 Vue 的组件，可以暂且跳过这里。
 
-HTML 内建的 input 类型有时不能满足你的需求。还好，Vue 的组件系统允许你创建一个具有自定义行为可复用的 input 类型，这些 input 类型甚至可以和 `v-model` 一起使用！要了解更多，请参阅[自定义 input 类型](components.html#使用自定义事件的表单输入组件)。
+HTML 原生的输入元素类型并不总能满足需求。幸好，Vue 的组件系统允许你创建具有完全自定义行为且可复用的输入组件。这些输入组件甚至可以和 `v-model` 一起使用！要了解更多，请参阅组件指南中的[自定义输入组件](components.html#使用自定义事件的表单输入组件)。
