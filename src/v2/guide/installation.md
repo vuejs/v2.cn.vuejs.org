@@ -42,7 +42,7 @@ Vue **不支持** IE8 及以下版本，因为 Vue 使用了 IE8 无法模拟的
 
 在用 Vue 构建大型应用时推荐使用 NPM 安装<sup>[[1]](#footnote-1)</sup>。NPM 能很好地和诸如 [webpack](https://webpack.js.org/) 或 [Browserify](http://browserify.org/) 模块打包器配合使用。同时 Vue 也提供配套工具来开发[单文件组件](single-file-components.html)。
 
-```bash
+``` bash
 # 最新稳定版
 $ npm install vue
 ```
@@ -51,7 +51,7 @@ $ npm install vue
 
 Vue 提供一个[官方命令行工具](https://github.com/vuejs/vue-cli)，可用于快速搭建大型单页应用。该工具为现代化的前端开发工作流提供了开箱即用的构建配置。只需几分钟即可创建并启动一个带热重载、保存时静态检查以及可用于生产环境的构建配置的项目：
 
-```bash
+``` bash
 # 全局安装 vue-cli
 $ npm install --global vue-cli
 # 创建一个基于 webpack 模板的新项目
@@ -93,7 +93,7 @@ $ npm run dev
 
 如果你需要在客户端编译模板 (比如传入一个字符串给 `template` 选项，或挂载到一个元素上并以其 DOM 内部的 HTML 作为模板)，就将需要加上编译器，即完整版：
 
-```js
+``` js
 // 需要编译器
 new Vue({
   template: '<div>{{ hi }}</div>'
@@ -113,7 +113,7 @@ new Vue({
 
 #### webpack
 
-```js
+``` js
 module.exports = {
   // ...
   resolve: {
@@ -126,7 +126,7 @@ module.exports = {
 
 #### Rollup
 
-```js
+``` js
 const alias = require('rollup-plugin-alias')
 
 rollup({
@@ -143,7 +143,7 @@ rollup({
 
 添加到你项目的 `package.json`：
 
-```js
+``` js
 {
   // ...
   "browser": {
@@ -164,7 +164,7 @@ CommonJS 和 ES Module 版本同时保留原始的 `process.env.NODE_ENV` 检测
 
 使用 webpack 的 [DefinePlugin](https://webpack.js.org/plugins/define-plugin/)：
 
-```js
+``` js
 var webpack = require('webpack')
 
 module.exports = {
@@ -184,7 +184,7 @@ module.exports = {
 
 使用 [rollup-plugin-replace](https://github.com/rollup/rollup-plugin-replace)：
 
-```js
+``` js
 const replace = require('rollup-plugin-replace')
 
 rollup({
@@ -201,7 +201,7 @@ rollup({
 
 为你的包应用一次全局的 [envify](https://github.com/hughsk/envify) 转换。
 
-```bash
+``` bash
 NODE_ENV=production browserify -g envify -e main.js | uglifyjs -c -m > build.js
 ```
 
@@ -217,7 +217,7 @@ NODE_ENV=production browserify -g envify -e main.js | uglifyjs -c -m > build.js
 
 **重要**: GitHub 仓库的 `/dist` 文件夹只有在新版本发布时才会提交。如果想要使用 GitHub 上 Vue 最新的源码，你需要自己构建！
 
-```bash
+``` bash
 git clone https://github.com/vuejs/vue.git node_modules/vue
 cd node_modules/vue
 npm install
@@ -228,7 +228,7 @@ npm run build
 
 Bower 只提供 UMD 版本。
 
-```bash
+``` bash
 # 最新稳定版本
 $ bower install vue
 ```
