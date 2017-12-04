@@ -239,5 +239,5 @@ $ bower install vue
 
 <small>
 __译者注__
-<a id="footnote-1"></a>[1] 对于中国大陆用户，建议将 NPM 源[设置为国内的镜像](http://riny.net/2014/cnpm/)，可以大幅提升安装速度。
+<a id="footnote-1"></a>[1] 对于中国大陆用户，建议将 NPM 源设置为[国内的镜像](https://npm.taobao.org/)，可以大幅提升安装速度。
 </small>
