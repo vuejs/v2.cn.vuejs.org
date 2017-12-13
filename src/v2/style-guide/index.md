@@ -1504,13 +1504,13 @@ computed: {
 
 ``` html
 <!-- ComponentA.vue -->
-<script>/* ... */</script>
 <template>...</template>
+<script>/* ... */</script>
 <style>/* ... */</style>
 
 <!-- ComponentB.vue -->
-<script>/* ... */</script>
 <template>...</template>
+<script>/* ... */</script>
 <style>/* ... */</style>
 ```
 
