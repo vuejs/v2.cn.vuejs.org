@@ -83,7 +83,7 @@ type: api
 
   > 从 2.4.0 起这个钩子也会捕获 Vue 自定义事件句柄内部的错误了。
 
-  > [Sentry](https://sentry.io)，一个错误追踪服务，通过此选项提供[官方集成](https://sentry.io/for/vue/)。
+  > 错误追踪服务 [Sentry](https://sentry.io) 和 [Bugsnag](https://docs.bugsnag.com/platforms/browsers/vue/) 都通过此选项提供了官方支持。
 
 ### warnHandler
 
