@@ -305,26 +305,25 @@ data: function () {
 
 
 
-### Avoid `v-if` with `v-for` <sup data-p="a">essential</sup>
+### 避免 `v-if` 和 `v-for` 用在一起 <sup data-p="a">必要</sup>
 
-<!-- @todo translation -->
-
-**Never use `v-if` on the same element as `v-for`.**
+**永远不要把 `v-if` 和 `v-for` 同时用在同一个元素上。**
 
 There are two common cases where this can be tempting:
+一般我们在两种常见的情况下会尝试这样做：
 
-- To filter items in a list (e.g. `v-for="user in users" v-if="user.isActive"`). In these cases, replace `users` with a new computed property that returns your filtered list (e.g. `activeUsers`).
+- 为了过滤一个列表中的项目 (比如 `v-for="user in users" v-if="user.isActive"`)。在这种情形下，请将 `users` 替换为一个计算属性 (比如 `activeUsers`)，让其返回过滤后的列表。
 
-- To avoid rendering a list if it should be hidden (e.g. `v-for="user in users" v-if="shouldShowUsers"`). In these cases, move the `v-if` to a container element (e.g. `ul`, `ol`).
+- 为了避免渲染本应该被隐藏的列表 (比如 `v-for="user in users" v-if="shouldShowUsers"`)。这种情形下，清将 `v-if` 移动至容器元素上 (比如 `ul`, `ol`)。
 
 {% raw %}
 <details>
 <summary>
-  <h4>Detailed Explanation</h4>
+  <h4>详解</h4>
 </summary>
 {% endraw %}
 
-When Vue processes directives, `v-for` has a higher priority than `v-if`, so that this template:
+当 Vue 处理指令时，`v-for` 比 `v-if` 具有更高的优先级，所以这个模板：
 
 ``` html
 <ul>
@@ -338,7 +337,7 @@ When Vue processes directives, `v-for` has a higher priority than `v-if`, so tha
 </ul>
 ```
 
-Will be evaluated similar to:
+将会经过如下运算：
 
 ``` js
 this.users.map(function (user) {
@@ -348,9 +347,9 @@ this.users.map(function (user) {
 })
 ```
 
-So even if we only render elements for a small fraction of users, we have to iterate over the entire list every time we re-render, whether or not the set of active users has changed.
+因此哪怕我们只渲染出一小部分用户的元素，也得在每次重渲染的时候遍历整个列表，不论活跃用户是否发生了变化。
 
-By iterating over a computed property instead, like this:
+通过将其更换为在如下的一个计算属性上遍历：
 
 ``` js
 computed: {
@@ -373,13 +372,13 @@ computed: {
 </ul>
 ```
 
-We get the following benefits:
+我们将会获得如下好处：
 
-- The filtered list will _only_ be re-evaluated if there are relevant changes to the `users` array, making filtering much more efficient.
-- Using `v-for="user in activeUsers"`, we _only_ iterate over active users during render, making rendering much more efficient.
-- Logic is now decoupled from the presentation layer, making maintenance (change/extension of logic) much easier.
+- 过滤后的列表_只_会在 `users` 数组发生相关变化时才被重新运算，过滤更高效。
+- 使用 `v-for="user in activeUsers"` 之后，我们在渲染的时候_只_遍历活跃用户，渲染更高效。
+- 解藕渲染层的逻辑，可维护性 (对逻辑的更改和扩展) 更强。
 
-We get similar benefits from updating:
+为了获得同样的好处，我们也可以把：
 
 ``` html
 <ul>
@@ -393,7 +392,7 @@ We get similar benefits from updating:
 </ul>
 ```
 
-to:
+更新为：
 
 ``` html
 <ul v-if="shouldShowUsers">
@@ -406,12 +405,12 @@ to:
 </ul>
 ```
 
-By moving the `v-if` to a container element, we're no longer checking `shouldShowUsers` for _every_ user in the list. Instead, we check it once and don't even evaluate the `v-for` if `shouldShowUsers` is false.
+通过将 `v-if` 移动到容器元素，我们不会再对列表中的_每个_用户检查 `shouldShowUsers`。取而代之的是，我们只检查它一次，且不会在 `shouldShowUsers` 为否的时候运算 `v-for`。
 
 {% raw %}</details>{% endraw %}
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
-#### Bad
+#### 反例
 
 ``` html
 <ul>
@@ -439,7 +438,7 @@ By moving the `v-if` to a container element, we're no longer checking `shouldSho
 {% raw %}</div>{% endraw %}
 
 {% raw %}<div class="style-example example-good">{% endraw %}
-#### Good
+#### 好例子
 
 ``` html
 <ul>
