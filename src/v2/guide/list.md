@@ -429,7 +429,7 @@ methods: {
 </li>
 ```
 
-上面的代码只传递了未 complete 的 todos。
+上面的代码只传递了未完成的 todos。
 
 而如果你的目的是有条件地跳过循环的执行，那么可以将 `v-if` 置于外层元素 (或 [`<template>`](conditional.html#在-lt-template-gt-中配合-v-if-条件渲染一整组))上。如：
 
