@@ -24,7 +24,7 @@ Vue **不支持** IE8 及以下版本，因为 Vue 使用了 IE8 无法模拟的
 
 直接下载并用 `<script>` 标签引入，`Vue` 会被注册为一个全局变量。
 
-<p class="tip">开发环境不要使用压缩版本，不然你就失去了所有常见错误相关的警告!</p>
+<p class="tip">在开发环境下不要使用压缩版本，不然你就失去了所有常见错误相关的警告!</p>
 
 <div id="downloads">
 <a class="button" href="https://vuejs.org/js/vue.js" download>开发版本</a><span class="light info">包含完整的警告和调试模式</span>
@@ -156,7 +156,7 @@ rollup({
 
 对于 UMD 版本来说，开发环境/生产环境模式是硬编码好的：开发环境下用未压缩的代码，生产环境下使用压缩后的代码。
 
-CommonJS 和 ES Module 版本是用于打包工具的，因此我们不提供压缩后的版本。在打包最后你需要自行进行压缩。
+CommonJS 和 ES Module 版本是用于打包工具的，因此我们不提供压缩后的版本。你需要自行将最终的包进行压缩。
 
 CommonJS 和 ES Module 版本同时保留原始的 `process.env.NODE_ENV` 检测，以决定它们应该运行在什么模式下。你应该使用适当的打包工具配置来替换这些环境变量以便控制 Vue 所运行的模式。把 `process.env.NODE_ENV` 替换为字符串字面量同时可以让 UglifyJS 之类的压缩工具完全丢掉仅供开发环境的代码块，以减少最终的文件尺寸。
 
