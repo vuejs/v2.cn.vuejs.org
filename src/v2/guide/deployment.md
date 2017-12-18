@@ -10,7 +10,7 @@ order: 401
 
 ### 不使用构建工具
 
-如果用 Vue 完整独立版本，即直接用 `<script>` 元素引入 Vue 而不提前进行构建，请记得在生产环境下使用压缩后的版本 (`vue.min.js`)。两种版本都可以在[安装指导](installation.html#直接-lt-script-gt-引入)中找到。
+如果用 Vue 完整独立版本，即直接用 `<script>` 元素引入 Vue 而不提前进行构建，请记得在生产环境下使用压缩后的版本 (`vue.min.js`)。两种版本都可以在[安装指导](installation.html#直接用-lt-script-gt-引入)中找到。
 
 ### 使用构建工具
 
