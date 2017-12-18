@@ -309,8 +309,7 @@ data: function () {
 
 **永远不要把 `v-if` 和 `v-for` 同时用在同一个元素上。**
 
-There are two common cases where this can be tempting:
-一般我们在两种常见的情况下会尝试这样做：
+一般我们在两种常见的情况下会倾向于这样做：
 
 - 为了过滤一个列表中的项目 (比如 `v-for="user in users" v-if="user.isActive"`)。在这种情形下，请将 `users` 替换为一个计算属性 (比如 `activeUsers`)，让其返回过滤后的列表。
 
