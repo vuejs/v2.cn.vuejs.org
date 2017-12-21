@@ -506,6 +506,13 @@ Vue.component('my-component', {
 
 > 注意：在 2.3.0 之前的版本中，如果一个函数式组件想要接受 props，则 `props` 选项是必须的。在 2.3.0 或以上的版本中，你可以省略 `props` 选项，所有组件上的属性都会被自动解析为 props。
 
+在 2.5.0 及以上版本中，如果你使用了[单文件组件](single-file-components.html)，那么基于模板的函数式组件可以这样声明：
+
+``` js
+<template functional>
+</template>
+```
+
 组件需要的一切都是通过上下文传递，包括：
 
 - `props`：提供 props 的对象

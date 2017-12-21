@@ -337,17 +337,19 @@ new Vue({
 <input
   type="checkbox"
   v-model="toggle"
-  v-bind:true-value="a"
-  v-bind:false-value="b"
+  true-value="yes"
+  false-value="no"
 >
 ```
 
 ``` js
 // 当选中时
-vm.toggle === vm.a
+vm.toggle === 'yes'
 // 当没有选中时
-vm.toggle === vm.b
+vm.toggle === 'no'
 ```
+
+<p class="tip">这里的 `true-value` 和 `false-value` 特性并不会影响输入控件的 `value` 特性，因为浏览器在提交表单时并不会包含未被选中的复选框。如果要确保表单中这两个值中的一个能够被提交，(比如“yes”或“no”)，请换用单选按钮。</p>
 
 ### 单选按钮
 
