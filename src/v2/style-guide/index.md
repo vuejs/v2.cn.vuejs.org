@@ -180,8 +180,7 @@ new Vue({
 
 **Prop 定义应该尽量详细。**
 
-In committed code, prop definitions should always be as detailed as possible, specifying at least type(s).
-
+在你提交的代码中，prop 的定义应该尽量详细，至少需要指定其类型。
 
 {% raw %}
 <details>
