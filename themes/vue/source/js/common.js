@@ -201,7 +201,6 @@
       } else {
         headers = content.querySelectorAll('h3')
         each.call(headers, function (h) {
-          console.log(h)
           sectionContainer.appendChild(makeLink(h))
           allHeaders.push(h)
         })
