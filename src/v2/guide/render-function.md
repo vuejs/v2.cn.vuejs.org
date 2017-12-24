@@ -199,7 +199,7 @@ createElement(
   nativeOn: {
     click: this.nativeClickHandler
   },
-  // 自定义指令。注意事项：不能对binding的oldValue设置值
+  // 自定义指令。注意，您无法对绑定中的 `oldValue` 赋值
   // Vue 会为您持续追踪
   directives: [
     {
