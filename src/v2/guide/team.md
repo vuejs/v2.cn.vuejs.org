@@ -365,7 +365,7 @@ order: 803
         'vuejs.org', 'jp.vuejs.org'
       ],
       reposPersonal: [
-        'vue-i18n', 'vue-i18n-loader', 'vue-validator'
+        'vue-i18n', 'vue-i18n-loader', 'vue-i18n-extensions'
       ],
       links: [
         'https://cuusoo.com', 'http://frapwings.jp'
