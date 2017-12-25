@@ -198,6 +198,7 @@ order: 803
     'Annecy, France': [45.899247, 6.129384],
     'Alicante, Spain' : [38.346543, -0.483838],
     'Bangalore, India': [12.971599, 77.594563],
+    'Beijing, China': [39.913818, 116.363625],
     'Bordeaux, France': [44.837789, -0.579180],
     'Bucharest, Romania': [44.426767, 26.102538],
     'Chengdu, China': [30.572815, 104.066801],
@@ -591,12 +592,25 @@ order: 803
       github: 'shentao',
       twitter: 'DamianDulisz',
       work: {
-        role: 'Senior Frontend Developer',
-        org: 'Monterail',
-        orgUrl: 'https://www.monterail.com/'
+        role: 'Consultant'
       },
       reposPersonal: [
-        'monterail/vue-multiselect', 'monterail/vue-newsletter'
+        'shentao/vue-multiselect'
+      ]
+    },
+    {
+      name: 'kingwl',
+      title: 'New Bee',
+      city: 'Beijing, China',
+      languages: ['zh'],
+      work: {
+        role: 'Software Development Engineer',
+        org: 'Chaitin',
+        orgUrl: 'https://chaitin.cn/'
+      },
+      github: 'kingwl',
+      reposOfficial: [
+        'vue'
       ]
     }
   ]))

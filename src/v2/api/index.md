@@ -175,7 +175,7 @@ type: api
 
 ## 全局 API
 
-<h3 id="Vue-extend">Vue.extend( options )</h3>
+### Vue.extend( options )
 
 - **参数**：
   - `{Object} options`
@@ -214,7 +214,7 @@ type: api
 
 - **参考**：[组件](../guide/components.html)
 
-<h3 id="Vue-nextTick">Vue.nextTick( [callback, context] )</h3>
+### Vue.nextTick( [callback, context] )
 
 - **参数**：
   - `{Function} [callback]`
@@ -241,7 +241,7 @@ type: api
 
   > 2.1.0 起新增：如果没有提供回调且在支持 Promise 的环境中，则返回一个 Promise。请注意 Vue 不自带 Promise 的 polyfill，所以如果你的目标浏览器不原生支持 Promise (IE：你们都看我干嘛)，你得自己提供 polyfill。
 
-<h3 id="Vue-set">Vue.set( target, key, value )</h3>
+### Vue.set( target, key, value )
 
 - **参数**：
   - `{Object | Array} target`
@@ -256,7 +256,7 @@ type: api
 
   <p class="tip">注意对象不能是 Vue 实例，或者 Vue 实例的根数据对象。</p>
 
-<h3 id="Vue-delete">Vue.delete( target, key )</h3>
+### Vue.delete( target, key )
 
 - **参数**：
   - `{Object | Array} target`
@@ -272,7 +272,7 @@ type: api
 
   <p class="tip">目标对象不能是一个 Vue 实例或 Vue 实例的根数据对象。</p>
 
-<h3 id="Vue-directive">Vue.directive( id, [definition] )</h3>
+### Vue.directive( id, [definition] )
 
 - **参数**：
   - `{string} id`
@@ -303,7 +303,7 @@ type: api
 
 - **参考**：[自定义指令](../guide/custom-directive.html)
 
-<h3 id="Vue-filter">Vue.filter( id, [definition] )</h3>
+### Vue.filter( id, [definition] )
 
 - **参数**：
   - `{string} id`
@@ -323,7 +323,7 @@ type: api
   var myFilter = Vue.filter('my-filter')
   ```
 
-<h3 id="Vue-component">Vue.component( id, [definition] )</h3>
+### Vue.component( id, [definition] )
 
 - **参数**：
   - `{string} id`
@@ -346,7 +346,7 @@ type: api
 
 - **参考**：[组件](../guide/components.html)
 
-<h3 id="Vue-use">Vue.use( plugin )</h3>
+### Vue.use( plugin )
 
 - **参数**：
   - `{Object | Function} plugin`
@@ -359,7 +359,7 @@ type: api
 
 - **参考**：[插件](../guide/plugins.html)
 
-<h3 id="Vue-mixin">Vue.mixin( mixin )</h3>
+### Vue.mixin( mixin )
 
 - **参数**：
   - `{Object} mixin`
@@ -370,7 +370,7 @@ type: api
 
 - **参考**：[全局混合](../guide/mixins.html#全局混合)
 
-<h3 id="Vue-compile">Vue.compile( template )</h3>
+### Vue.compile( template )
 
 - **参数**：
   - `{string} template`
@@ -393,7 +393,7 @@ type: api
 
 - **参考**：[渲染函数](../guide/render-function.html)
 
-<h3 id="Vue-version">Vue.version</h3>
+### Vue.version
 
 - **细节**：提供字符串形式的 Vue 安装版本号。这对社区的插件和组件来说非常有用，你可以根据不同的版本号采取不同的策略。
 
@@ -1415,7 +1415,7 @@ type: api
 
 ## 实例方法 / 数据
 
-<h3 id="vm-watch">vm.$watch( expOrFn, callback, [options] )</h3>
+### vm.$watch( expOrFn, callback, [options] )
 
 - **参数**：
   - `{string | Function} expOrFn`
@@ -1482,7 +1482,7 @@ type: api
   // 立即以 `a` 的当前值触发回调
   ```
 
-<h3 id="vm-set">vm.$set( target, key, value )</h3>
+### vm.$set( target, key, value )
 
 - **参数**：
   - `{Object | Array} target`
@@ -1497,7 +1497,7 @@ type: api
 
 - **参考**：[Vue.set](#Vue-set)
 
-<h3 id="vm-delete">vm.$delete( target, key )</h3>
+### vm.$delete( target, key )
 
 - **参数**：
   - `{Object | Array} target`
@@ -1511,7 +1511,7 @@ type: api
 
 ## 实例方法 / 事件
 
-<h3 id="vm-on">vm.$on( event, callback )</h3>
+### vm.$on( event, callback )
 
 - **参数**：
   - `{string | Array<string>} event` (数组只在 2.2.0+ 中支持)
@@ -1531,7 +1531,7 @@ type: api
   // => "hi"
   ```
 
-<h3 id="vm-once">vm.$once( event, callback )</h3>
+### vm.$once( event, callback )
 
 - **参数**：
   - `{string} event`
@@ -1541,7 +1541,7 @@ type: api
 
   监听一个自定义事件，但是只触发一次，在第一次触发之后移除监听器。
 
-<h3 id="vm-off">vm.$off( [event, callback] )</h3>
+### vm.$off( [event, callback] )
 
 - **参数**：
   - `{string | Array<string>} event` (只在 2.2.2+ 支持数组)
@@ -1557,7 +1557,7 @@ type: api
 
   - 如果同时提供了事件与回调，则只移除这个回调的监听器。
 
-<h3 id="vm-emit">vm.$emit( event, [...args] )</h3>
+### vm.$emit( event, [...args] )
 
 - **参数**：
   - `{string} event`
@@ -1567,7 +1567,7 @@ type: api
 
 ## 实例方法 / 生命周期
 
-<h3 id="vm-mount">vm.$mount( [elementOrSelector] )</h3>
+### vm.$mount( [elementOrSelector] )
 
 - **参数**：
   - `{Element | string} [elementOrSelector]`
@@ -1605,13 +1605,13 @@ type: api
   - [生命周期图示](../guide/instance.html#生命周期图示)
   - [服务端渲染](../guide/ssr.html)
 
-<h3 id="vm-forceUpdate">vm.$forceUpdate()</h3>
+### vm.$forceUpdate()
 
 - **示例**：
 
   迫使 Vue 实例重新渲染。注意它仅仅影响实例本身和插入插槽内容的子组件，而不是所有子组件。
 
-<h3 id="vm-nextTick">vm.$nextTick( [callback] )</h3>
+### vm.$nextTick( [callback] )
 
 - **参数**：
   - `{Function} [callback]`
@@ -1645,7 +1645,7 @@ type: api
 
 - **参考**：[Vue.nextTick](#Vue-nextTick)
 
-<h3 id="vm-destroy">vm.$destroy()</h3>
+### vm.$destroy()
 
 - **用法**：
 

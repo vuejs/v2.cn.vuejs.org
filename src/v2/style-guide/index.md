@@ -1714,7 +1714,10 @@ computed: {
 #### 好例子
 
 ``` html
-<div v-if="error" key="search-status">
+<div
+  v-if="error"
+  key="search-status"
+>
   错误：{{ error }}
 </div>
 <div v-else key="search-results">
