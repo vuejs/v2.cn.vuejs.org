@@ -343,6 +343,9 @@
 
     function makeHeaderClickable (header) {
       var link = header.querySelector('a')
+      if (!link) {
+        return
+      }
       link.setAttribute('data-scroll', '')
 
       // transform DOM structure from
