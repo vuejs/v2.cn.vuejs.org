@@ -13,8 +13,9 @@
       var apiTitles = [].slice.call(apiContent.querySelectorAll('h3'))
       apiTitles.forEach(function (titleNode) {
         var methodMatch = titleNode.textContent.match(/^([^(]+)\(/)
+        var idWithoutArguments = slugize(titleNode.textContent)
         if (methodMatch) {
-          var idWithoutArguments = slugize(methodMatch[1])
+          idWithoutArguments = slugize(methodMatch[1])
           titleNode.setAttribute('id', idWithoutArguments)
           titleNode.querySelector('a').setAttribute('href', '#' + idWithoutArguments)
         }
@@ -273,8 +274,14 @@
           return ''
         }
       }).join('').replace(/\(.*\)$/, '')
+      
+      var methodMatch = h.textContent.match(/^([^(]+)\(/)
+      var idWithoutArguments = slugize(h.textContent)
+      if (methodMatch) {
+        idWithoutArguments = slugize(methodMatch[1])
+      }
       link.innerHTML =
-        '<a class="section-link" data-scroll href="#' + h.id + '">' +
+        '<a class="section-link" data-scroll href="#' + idWithoutArguments + '">' +
           htmlEscape(text) +
         '</a>'
       return link
