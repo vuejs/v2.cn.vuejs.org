@@ -207,6 +207,19 @@ methods: {
 
 不像其它只能对原生的 DOM 事件起作用的修饰符，`.once` 修饰符还能被用到自定义的[组件事件](components.html#使用-v-on-绑定自定义事件)上。如果你还没有阅读关于组件的文档，现在大可不必担心。
 
+> 2.3.0 新增
+
+``` html
+<!-- the scroll event will not cancel the default scroll behavior -->
+<div v-on:scroll.passive="onScroll">...</div>
+```
+
+In addition to these modifiers, Vue provides `.passive` modifier to improve the performance on mobile especially.
+For example, when performing a scroll, the browser will scroll after the process has completed because the browser doesn’t know if the event is going to call `event.preventDefault()` within its handler.
+`.passive` modifier can be used to tell the browser that this event will not cancel the default event behavior in advance.
+
+<p class="tip">Don't use `.passive` and `.prevent` together. Passive handler can't prevent default event.</p>
+
 ## 按键修饰符
 
 在监听键盘事件时，我们经常需要检查常见的键值。Vue 允许为 `v-on` 在监听键盘事件时添加按键修饰符：
