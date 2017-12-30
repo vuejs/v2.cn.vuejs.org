@@ -136,7 +136,8 @@ return createElement('h1', this.blogTitle)
 // @returns {VNode}
 createElement(
   // {String | Object | Function}
-  // 一个 HTML 标签字符串，组件选项对象，或者一个返回值类型为 String/Object 的函数，必要参数
+  // 一个 HTML 标签字符串，组件选项对象，或者一个返回值
+  // 类型为 String/Object 的函数，必要参数
   'div',
 
   // {Object}
@@ -195,12 +196,13 @@ createElement(
   on: {
     click: this.clickHandler
   },
-  // 仅对于组件，用于监听原生事件，而不是组件内部使用 `vm.$emit` 触发的事件。
+  // 仅对于组件，用于监听原生事件，而不是组件内部使用
+  // `vm.$emit` 触发的事件。
   nativeOn: {
     click: this.nativeClickHandler
   },
-  // 自定义指令。注意，您无法对绑定中的 `oldValue` 赋值
-  // Vue 会为您持续追踪
+  // 自定义指令。注意，你无法对 `binding` 中的 `oldValue`
+  // 赋值，因为 Vue 已经自动为你进行了同步。
   directives: [
     {
       name: 'my-custom-directive',
