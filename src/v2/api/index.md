@@ -587,7 +587,7 @@ type: api
 
 ### watch
 
-- **类型**：`{ [key: string]: string | Function | Object }`
+- **类型**：`{ [key: string]: string | Function | Object | Array }`
 
 - **详细**：
 
@@ -601,7 +601,12 @@ type: api
       a: 1,
       b: 2,
       c: 3,
-      d: 4
+      d: 4,
+      e: {
+        f: {
+          g: 5
+        }
+      }
     },
     watch: {
       a: function (val, oldVal) {
@@ -618,7 +623,13 @@ type: api
       d: {
         handler: function (val, oldVal) { /* ... */ },
         immediate: true
-      }
+      },
+      e: [
+        function handle1 (val, oldVal) { /* ... */ },
+        function handle2 (val, oldVal) { /* ... */ }
+      ],
+      // watch vm.e.f's value: {g: 5}
+      'e.f': function (val, oldVal) { /* ... */ }
     }
   })
   vm.a = 2 // => new: 2, old: 1
