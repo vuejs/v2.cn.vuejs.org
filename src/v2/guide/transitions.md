@@ -558,7 +558,7 @@ new Vue({
 </transition>
 ```
 
-这里默认和进入和离开过渡一样，同样也可以自定义 CSS 类名。
+这里默认和进入/离开过渡一样，同样也可以自定义 CSS 类名。
 
 ``` html
 <transition
