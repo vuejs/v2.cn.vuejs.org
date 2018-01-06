@@ -1034,7 +1034,7 @@ Vue.component('child-component', {
 
 ## 动态组件
 
-通过使用保留的 `<component>` 元素，动态地绑定到它的 `is` 特性，我们让多个组件可以使用同一个挂载点，并动态切换：
+通过使用保留的 `<component>` 元素，并对其 `is` 特性进行动态绑定，你可以在同一个挂载点动态切换多个组件：
 
 ``` js
 var vm = new Vue({
