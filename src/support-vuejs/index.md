@@ -60,6 +60,10 @@ window.addEventListener('hashchange', function () {
 
 - [通过 OpenCollective 赞助](https://opencollective.com/vuejs) (加入一个基金会，通过透明的费用模型支持社区的工作和活动)
 
+## 额外的赞助方式
+
+- [通过 StickerOverflow 赞助](https://stickeroverflow.org/blog/vue-donation/) (每购买一张 Vue 贴纸，会为 Vue 赞助 1 元人民币)
+
 ## 当前的顶级赞助商
 
 ### Patreon 全球白金赞助商
