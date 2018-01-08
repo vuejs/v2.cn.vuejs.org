@@ -214,9 +214,9 @@ methods: {
 <div v-on:scroll.passive="onScroll">...</div>
 ```
 
-In addition to these modifiers, Vue provides `.passive` modifier to improve the performance on mobile especially. For example, when performing a scroll, the browser will scroll after the process has completed because the browser doesn’t know if the event is going to call `event.preventDefault()` within its handler. `.passive` modifier can be used to tell the browser that this event will not cancel the default event behavior in advance.
+Vue 为这些修饰符额外提供了 `.passive` 修饰符来提升移动端的性能。举个例子，在滚动的时候，浏览器会在整个事件处理完毕之后再触发滚动，因为浏览器并不知道这个事件是否在其处理函数中被调用了 `event.preventDefault()`。`.passive` 修饰符用来进一步告诉浏览器这个事件的默认行为不会被取消。
 
-<p class="tip">Don't use `.passive` and `.prevent` together. Passive handler can't prevent default event.</p>
+<p class="tip">不要把 `.passive` 和 `.prevent` 一起使用。被动处理函数无法阻止默认的事件行为。</p>
 
 ## 按键修饰符
 
