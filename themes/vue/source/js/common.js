@@ -1,6 +1,6 @@
 (function () {
   initMobileMenu()
-  initVideoModal()
+  // initVideoModal()
   if (PAGE_TYPE) {
     initVersionSelect()
     initApiSpecLinks()
