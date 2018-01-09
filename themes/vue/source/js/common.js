@@ -1,6 +1,6 @@
 (function () {
   initMobileMenu()
-  // initVideoModal()
+  initVideoModal()
   if (PAGE_TYPE) {
     initVersionSelect()
     initApiSpecLinks()
@@ -156,7 +156,7 @@
       videoModal.classList.toggle('open')
       document.body.classList.toggle('stop-scroll')
       document.body.appendChild(overlay)
-      videoWrapper.innerHTML = '<iframe style="height: 100%; left: 0; position: absolute; top: 0; width: 100%;" src="http://player.youku.com/embed/XMzMwMTYyODMyNA==" frameborder="0" allowfullscreen></iframe>'
+      videoWrapper.innerHTML = '<iframe style="height: 100%; left: 0; position: absolute; top: 0; width: 100%;" src="//player.youku.com/embed/XMzMwMTYyODMyNA==" frameborder="0" allowfullscreen></iframe>'
     })
 
     document.body.addEventListener('click', function(e) {
