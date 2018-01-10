@@ -146,7 +146,7 @@
   function initVideoModal () {
     var modalButton = document.getElementById('modal-player')
     var videoModal = document.getElementById('video-modal')
-    if (!modalButton || !videoWrapper) {
+    if (!modalButton || !videoModal) {
       return
     }
     var videoWrapper = videoModal.querySelector('.video-space')
