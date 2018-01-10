@@ -146,10 +146,10 @@
   function initVideoModal () {
     var modalButton = document.getElementById('modal-player')
     var videoModal = document.getElementById('video-modal')
+    var videoWrapper = videoModal.querySelector('.video-space')
     if (!modalButton || !videoWrapper) {
       return
     }
-    var videoWrapper = videoModal.querySelector('.video-space')
     var overlay = document.createElement('div')
         overlay.className = 'overlay'
 
