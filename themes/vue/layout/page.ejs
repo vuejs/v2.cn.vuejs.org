@@ -22,9 +22,12 @@
     <h1><%- page.title %><%- page.type === 'examples' ? ' Example' : '' %></h1>
   <% } %>
   <% if (page.type === 'about') { %>
-  <%- partial('partials/contributors') %>
+    <%- partial('partials/contributors') %>
+  <% } else if (page.sponsors) { %>
+    <%- partial('sponsors-page') %>
+  <% } else { %>
+    <%- page.content %>
   <% } %>
-  <%- page.content %>
   <% if (page.type === 'guide') { %>
     <div class="guide-links">
       <% site.pages.find({ type: page.type, order: page.order - 1 }).each(function (page) { %>
@@ -36,7 +39,9 @@
     </div>
   <% } %>
   <div class="footer">
-    <%- partial('partials/ad-text') %>
+    <%_ if (!page.sponsors) { _%>
+      <%- partial('partials/ad-text') %>
+    <%_ } _%>
     发现错误？想参与编辑？
     <a href="https://github.com/vuejs/cn.vuejs.org/blob/master/src/<%- page.path.replace(/\.html$/, '.md') %>" target="_blank">
       在 Github 上编辑此页！

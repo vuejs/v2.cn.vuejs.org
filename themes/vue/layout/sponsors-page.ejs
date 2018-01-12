@@ -1,0 +1,138 @@
+<h1>Sponsor Vue.js Development</h1>
+
+<p>
+Vue.js 是采用 MIT 许可的开源项目，使用完全免费。
+但是随着项目规模的增长，也需要有相应的资金支持才能持续项目的维护的开发。你可以通过下列的方法来赞助 Vue.js 的开发。
+</p>
+
+<h2 id="One-time-Donations">一次性赞助</h2>
+
+<p>我们通过以下方式接受赞助：</p>
+
+<div id="one-time-donations">
+  <a href="https://www.paypal.me/evanyou" target="_blank">
+    <img src="/images/paypal.png" style="width:100px">
+  </a>
+  <a href="#btc"><%- partial('icons/btc') %> BTC</a>
+  <a href="#bch"><%- partial('icons/bch') %> BCH</a>
+  <a href="#eth"><%- partial('icons/eth') %> ETH</a>
+  <a href="#ltc"><%- partial('icons/ltc') %> LTC
+  </a>
+</div>
+
+<div id="coin-details" v-if="type && coins[type]">
+  <p>{{ coins[type].name }} Address:<br>{{ coins[type].address }}</p>
+  <img :src="'/images/coin-' + type + '.png'">
+</div>
+<script>
+var coins = new Vue({
+  el: '#coin-details',
+  data: {
+    type: window.location.hash.slice(1),
+    coins: {
+      btc: {
+        name: 'Bitcoin',
+        address: '14MEpy5a9MwDZa9CUzrfDhTU8dy2KKJ5mU'
+      },
+      bch: {
+        name: 'Bitcoin Cash',
+        address: '15gftB3fwumFRWGWFhVzTgc4nhM5w1F2Tu'
+      },
+      eth: {
+        name: 'Ethereum',
+        address: '0x3411356C1f0Bf5D859464eD2AC54DD2C222519B7'
+      },
+      ltc: {
+        name: 'Litecoin',
+        address: 'LUcHis3B8SFtEeZtuCaZoqsyN9XFAKmbCP'
+      }
+    }
+  }
+})
+window.addEventListener('hashchange', function () {
+  coins.type = window.location.hash.slice(1)
+})
+</script>
+
+<h2 id="Recurring-Pledges">周期性赞助</h2>
+
+<p>
+周期性赞助可以获得额外的回报，比如你的名字会出现在 Vue 的 GitHub 仓库中，再比如你的公司 logo 会出现在我们的官网上。
+</p>
+
+<ul>
+  <li>
+    <a href="https://www.patreon.com/evanyou" target="_blank">通过 Patreon 赞助</a> (直接支持 Evan You 全职为 Vue 工作)
+  </li>
+  <li>
+    <a href="https://opencollective.com/vuejs">通过 OpenCollective 赞助</a> (加入一个基金会，通过透明的费用模型支持社区的工作和活动)
+  </li>
+</ul>
+
+<h2>额外的赞助方式</h2>
+
+<ul>
+  <li>
+    <a href="https://stickeroverflow.org/blog/vue-donation/" target="_blank">通过 StickerOverflow 赞助</a> (每购买一张 Vue 贴纸，会为 Vue 赞助 1 元人民币)
+  </li>
+</ul>
+
+<h2>当前的顶级赞助商</h2>
+
+<h3>Patreon 白金赞助商</h3>
+
+<p class="platinum">
+<%_ for (const sponsor of theme.platinum_sponsors) {_%>
+  <a href="<%- sponsor.url %>" target="_blank">
+    <img src="<%- url_for(`/images/${sponsor.img}`) %>">
+  </a>
+<%_ } _%>
+</p>
+
+<h3>中国区白金赞助商</h3>
+
+<p class="platinum">
+<%_ for (const sponsor of theme.platinum_sponsors_china) {_%>
+  <a href="<%- sponsor.url %>" target="_blank">
+    <img src="<%- url_for(`/images/${sponsor.img}`) %>">
+  </a>
+<%_ } _%>
+</p>
+
+<h3>OpenCollective 白金赞助商</h3>
+
+<p class="open-collective-sponsors sponsor-section">
+<%_ for (let i = 0; i < 3; i++) {_%>
+  <a href="https://opencollective.com/vuejs/tiers/platinum-sponsors/<%- i %>/website" target="_blank">
+    <img src="https://opencollective.com/vuejs/tiers/platinum-sponsors/<%- i %>/avatar.svg">
+  </a>
+<%_ } _%>
+</p>
+
+<h3>Patreon 黄金赞助商</h3>
+
+<p class="patreon-sponsors sponsor-section">
+<%_ for (const sponsor of theme.gold_sponsors) {_%>
+  <a href="<%- sponsor.url %>" target="_blank">
+    <img src="<%- url_for(`/images/${sponsor.img}`) %>">
+  </a>
+<%_ } _%>
+</p>
+
+<h3>OpenCollective 黄金赞助商</h3>
+
+<p class="open-collective-sponsors sponsor-section">
+<%_ for (let i = 0; i < 10; i++) {_%>
+  <a href="https://opencollective.com/vuejs/tiers/gold-sponsors/<%- i %>/website" target="_blank">
+    <img src="https://opencollective.com/vuejs/tiers/gold-sponsors/<%- i %>/avatar.svg">
+  </a>
+<%_ } _%>
+</p>
+
+<p>
+如果你是企业经营者并且将 Vue 用在商业产品中，那么赞助 Vue 有商业上的益处：<b>可以让你的产品所依赖的框架保持健康并得到积极的维护</b>，也能帮助你在 Vue 社区里获得更高的曝光度，从而更容易地吸引到 Vue 开发者。
+</p>
+
+<p>
+如果你是个人开发者并且享受 Vue 带来的高开发效率，可以用捐助来表示你的谢意 —— 就好像偶尔给我买杯咖啡 :)
+</p>
