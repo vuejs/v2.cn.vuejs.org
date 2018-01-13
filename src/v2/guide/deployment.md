@@ -57,13 +57,36 @@ NODE_ENV=production browserify -g envify -e main.js | uglifyjs -c -m > build.js
   var envify = require('envify/custom')
 
   browserify(browserifyOptions)
-    .transform(vueify),
+    .transform(vueify)
     .transform(
       // 必填项，以处理 node_modules 里的文件
       { global: true },
       envify({ NODE_ENV: 'production' })
     )
     .bundle()
+  ```
+
+- 或者配合 Grunt 和 [grunt-browserify](https://github.com/jmreidy/grunt-browserify) 使用 [envify](https://github.com/hughsk/envify)：
+
+  ``` js
+  // 使用 envify 自定义模块指定环境变量
+  var envify = require('envify/custom')
+  
+  browserify: {
+    dist: {
+      options: {
+        // Function to deviate from grunt-browserify's default order
+        configure: b => b
+          .transform('vueify')
+          .transform(
+            // Required in order to process node_modules files
+            { global: true },
+            envify({ NODE_ENV: 'production' })
+          )
+          .bundle()
+      }
+    }
+  }
   ```
 
 #### Rollup
