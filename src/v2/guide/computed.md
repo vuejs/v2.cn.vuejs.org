@@ -211,7 +211,7 @@ var watchExampleVM = new Vue({
   },
   watch: {
     // 如果 `question` 发生改变，这个函数就会运行
-    question: function (newQuestion) {
+    question: function (newQuestion, oldQuestion) {
       this.answer = 'Waiting for you to stop typing...'
       this.getAnswer()
     }
@@ -266,7 +266,7 @@ var watchExampleVM = new Vue({
     answer: 'I cannot give you an answer until you ask a question!'
   },
   watch: {
-    question: function (newQuestion) {
+    question: function (newQuestion, oldQuestion) {
       this.answer = 'Waiting for you to stop typing...'
       this.getAnswer()
     }
