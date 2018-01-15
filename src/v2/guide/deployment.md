@@ -75,11 +75,11 @@ NODE_ENV=production browserify -g envify -e main.js | uglifyjs -c -m > build.js
   browserify: {
     dist: {
       options: {
-        // Function to deviate from grunt-browserify's default order
-        configure: b => b
+        // 该函数用来调整 grunt-browserify 的默认指令
+        configure: b => b
           .transform('vueify')
           .transform(
-            // Required in order to process node_modules files
+            // 用来处理 `node_modules` 文件
             { global: true },
             envify({ NODE_ENV: 'production' })
           )
