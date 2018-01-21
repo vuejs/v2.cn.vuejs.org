@@ -26,13 +26,17 @@ filters: {
 }
 ```
 
-或者全局定义过滤器：
+或者在创建 Vue 实例之前全局定义过滤器：
 
 ``` js
 Vue.filter('capitalize', function (value) {
   if (!value) return ''
   value = value.toString()
   return value.charAt(0).toUpperCase() + value.slice(1)
+})
+
+new Vue({
+  // ...
 })
 ```
 
