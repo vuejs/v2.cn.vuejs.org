@@ -209,14 +209,18 @@ methods: {
 
 > 2.3.0 新增
 
+Vue 还对应 [`addEventListener` 中的 `passive` 选项](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener#Parameters)提供了 `.passive` 修饰符。
+
 ``` html
-<!-- the scroll event will not cancel the default scroll behavior -->
+<!-- 滚动事件的默认行为 (即滚动行为) 将会立即触发 -->
+<!-- 而不会等待 `onScroll` 完成  -->
+<!-- 这其中包含 `event.preventDefault()` 的情况 -->
 <div v-on:scroll.passive="onScroll">...</div>
 ```
 
-Vue 为这些修饰符额外提供了 `.passive` 修饰符来提升移动端的性能。举个例子，在滚动的时候，浏览器会在整个事件处理完毕之后再触发滚动，因为浏览器并不知道这个事件是否在其处理函数中被调用了 `event.preventDefault()`。`.passive` 修饰符用来进一步告诉浏览器这个事件的默认行为不会被取消。
+这个 `.passive` 修饰符尤其能够提升移动端的性能。
 
-<p class="tip">不要把 `.passive` 和 `.prevent` 一起使用。被动处理函数无法阻止默认的事件行为。</p>
+<p class="tip">不要把 `.passive` 和 `.prevent` 一起使用，因为 `.prevent` 将会被忽略，同时浏览器可能会向你展示一个警告。请记住，`.passive` 会告诉浏览器你_不_想阻止事件的默认行为。</p>
 
 ## 按键修饰符
 
