@@ -323,6 +323,8 @@ type: api
   var myFilter = Vue.filter('my-filter')
   ```
 
+- **See also:** [Filters](../guide/filters.html)
+
 ### Vue.component( id, [definition] )
 
 - **参数**：
