@@ -34,9 +34,17 @@ Vue **不支持** IE8 及以下版本，因为 Vue 使用了 IE8 无法模拟的
 
 ### CDN
 
-推荐：[https://cdn.jsdelivr.net/npm/vue](https://cdn.jsdelivr.net/npm/vue)，会保持和 npm 发布的最新的版本一致。可以在 [https://cdn.jsdelivr.net/npm/vue/](https://cdn.jsdelivr.net/npm/vue/) 浏览 npm 包资源。
+我们推荐链接到一个你可以手动更新的指定版本号：
 
-也可以从 [unpkg](https://unpkg.com/vue) 和 [cdnjs](https://cdnjs.cloudflare.com/ajax/libs/vue/{{vue_version}}/vue.js) 获取 (cdnjs 的版本更新可能略滞后)。
+``` html
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
+```
+
+你可以在 [cdn.jsdelivr.net/npm/vue](https://cdn.jsdelivr.net/npm/vue/) 浏览 NPM 包的源代码。
+
+Vue 也可以在 [unpkg](https://unpkg.com/vue@{{vue_version}}/dist/vue.js) 和 [cdnjs](https://cdnjs.cloudflare.com/ajax/libs/vue/{{vue_version}}/vue.js) 上获取 (cdnjs 的版本更新可能略滞后)。
+
+Make sure to read about [the different builds of Vue](#Explanation-of-Different-Builds) and use the **production version** in your published site, replacing `vue.js` with `vue.min.js`. This is a smaller build optimized for speed instead of development experience.
 
 ## NPM
 
