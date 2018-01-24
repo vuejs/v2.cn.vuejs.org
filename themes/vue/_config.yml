@@ -16,6 +16,8 @@ platinum_sponsors:
 platinum_sponsors_china:
   - url: https://xiaozhuanlan.com/
     img: xiaozhuanlan.png
+  - url: https://www.geekbang.org/
+    img: geekbang.png
 
 gold_sponsors:
   - url: https://laravel.com

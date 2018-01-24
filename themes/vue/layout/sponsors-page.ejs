@@ -79,20 +79,20 @@ window.addEventListener('hashchange', function () {
 
 <h2>当前的顶级赞助商</h2>
 
-<h3>Patreon 白金赞助商</h3>
+<h3>中国区特别赞助商</h3>
 
 <p class="platinum">
-<%_ for (const sponsor of theme.platinum_sponsors) {_%>
+<%_ for (const sponsor of theme.platinum_sponsors_china) {_%>
   <a href="<%- sponsor.url %>" target="_blank">
     <img src="<%- url_for(`/images/${sponsor.img}`) %>">
   </a>
 <%_ } _%>
 </p>
 
-<h3>中国区白金赞助商</h3>
+<h3>Patreon 白金赞助商</h3>
 
 <p class="platinum">
-<%_ for (const sponsor of theme.platinum_sponsors_china) {_%>
+<%_ for (const sponsor of theme.platinum_sponsors) {_%>
   <a href="<%- sponsor.url %>" target="_blank">
     <img src="<%- url_for(`/images/${sponsor.img}`) %>">
   </a>
