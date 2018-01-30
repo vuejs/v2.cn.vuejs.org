@@ -44,7 +44,7 @@ Vue **不支持** IE8 及以下版本，因为 Vue 使用了 IE8 无法模拟的
 
 Vue 也可以在 [unpkg](https://unpkg.com/vue@{{vue_version}}/dist/vue.js) 和 [cdnjs](https://cdnjs.cloudflare.com/ajax/libs/vue/{{vue_version}}/vue.js) 上获取 (cdnjs 的版本更新可能略滞后)。
 
-Make sure to read about [the different builds of Vue](#Explanation-of-Different-Builds) and use the **production version** in your published site, replacing `vue.js` with `vue.min.js`. This is a smaller build optimized for speed instead of development experience.
+请确认了解[不同构建版本](#对不同构建版本的解释)并在你发布的站点中使用**生产环境版本**，把 `vue.js` 换成 `vue.min.js`。这是一个更小的构建，可以带来比开发环境下更快的速度体验。
 
 ## NPM
 
