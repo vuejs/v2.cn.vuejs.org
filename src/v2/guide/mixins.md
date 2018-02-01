@@ -1,17 +1,17 @@
 ---
-title: 混合
+title: 混入
 type: guide
 order: 301
 ---
 
 ## 基础
 
-混合 (mixins) 是一种分发 Vue 组件中可复用功能的非常灵活的方式。混合对象可以包含任意组件选项。当组件使用混合对象时，所有混合对象的选项将被混入该组件本身的选项。
+混入 (mixins) 是一种分发 Vue 组件中可复用功能的非常灵活的方式。混入对象可以包含任意组件选项。当组件使用混入对象时，所有混入对象的选项将被混入该组件本身的选项。
 
 例子：
 
 ``` js
-// 定义一个混合对象
+// 定义一个混入对象
 var myMixin = {
   created: function () {
     this.hello()
@@ -23,7 +23,7 @@ var myMixin = {
   }
 }
 
-// 定义一个使用混合对象的组件
+// 定义一个使用混入对象的组件
 var Component = Vue.extend({
   mixins: [myMixin]
 })
@@ -33,7 +33,7 @@ var component = new Component() // => "hello from mixin!"
 
 ## 选项合并
 
-当组件和混合对象含有同名选项时，这些选项将以恰当的方式混合。
+当组件和混入对象含有同名选项时，这些选项将以恰当的方式混合。
 
 比如，数据对象在内部会进行浅合并 (一层属性深度)，在和组件的数据发生冲突时以组件数据优先。
 
@@ -62,12 +62,12 @@ new Vue({
 })
 ```
 
-同名钩子函数将混合为一个数组，因此都将被调用。另外，混合对象的钩子将在组件自身钩子**之前**调用。
+同名钩子函数将混合为一个数组，因此都将被调用。另外，混入对象的钩子将在组件自身钩子**之前**调用。
 
 ``` js
 var mixin = {
   created: function () {
-    console.log('混合对象的钩子被调用')
+    console.log('混入对象的钩子被调用')
   }
 }
 
@@ -78,7 +78,7 @@ new Vue({
   }
 })
 
-// => "混合对象的钩子被调用"
+// => "混入对象的钩子被调用"
 // => "组件钩子被调用"
 ```
 
@@ -115,9 +115,9 @@ vm.conflicting() // => "from self"
 
 注意：`Vue.extend()` 也使用同样的策略进行合并。
 
-## 全局混合
+## 全局混入
 
-也可以全局注册混合对象。注意使用！ 一旦使用全局混合对象，将会影响到 **所有** 之后创建的 Vue 实例。使用恰当时，可以为自定义对象注入处理逻辑。
+也可以全局注册混入对象。注意使用！ 一旦使用全局混入对象，将会影响到 **所有** 之后创建的 Vue 实例。使用恰当时，可以为自定义对象注入处理逻辑。
 
 ``` js
 // 为自定义的选项 'myOption' 注入一个处理器。
@@ -136,7 +136,7 @@ new Vue({
 // => "hello!"
 ```
 
-<p class="tip">谨慎使用全局混合对象，因为会影响到每个单独创建的 Vue 实例 (包括第三方模板)。大多数情况下，只应当应用于自定义选项，就像上面示例一样。也可以将其用作 [Plugins](plugins.html) 以避免产生重复应用</p>
+<p class="tip">谨慎使用全局混入对象，因为会影响到每个单独创建的 Vue 实例 (包括第三方模板)。大多数情况下，只应当应用于自定义选项，就像上面示例一样。也可以将其用作 [Plugins](plugins.html) 以避免产生重复应用</p>
 
 ## 自定义选项合并策略
 
@@ -155,7 +155,7 @@ var strategies = Vue.config.optionMergeStrategies
 strategies.myOption = strategies.methods
 ```
 
-更多高级的例子可以在 [Vuex](https://github.com/vuejs/vuex) 的 1.x 混合策略里找到：
+更多高级的例子可以在 [Vuex](https://github.com/vuejs/vuex) 的 1.x 混入策略里找到：
 
 ``` js
 const merge = Vue.config.optionMergeStrategies.computed
