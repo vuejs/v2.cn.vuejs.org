@@ -318,7 +318,7 @@ Vue.config.keyCodes.f1 = 112
 
 ### 鼠标按钮修饰符
 
-> 2.1.0 新增
+> 2.2.0 新增
 
 - `.left`
 - `.right`
