@@ -1,7 +1,7 @@
 ---
 title: 参与 cookbook 贡献
 type: cookbook
-order: 1000
+order: 1
 ---
 
 ## 我们的目标
