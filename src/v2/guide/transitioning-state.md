@@ -13,9 +13,9 @@ Vue 的过渡系统提供了非常多简单的方法设置进入、离开和列�
 
 所有的原始数字都被事先存储起来，可以直接转换到数字。做到这一步，我们就可以结合 Vue 的响应式和组件系统，使用第三方库来实现切换元素的过渡状态。
 
-## 状态动画与观察者
+## 状态动画与侦听器
 
-通过观察者我们能监听到任何数值属性的数值更新。可能听起来很抽象，所以让我们先来看看使用 [Tweenjs](https://github.com/tweenjs/tween.js) 一个例子：
+通过侦听器我们能监听到任何数值属性的数值更新。可能听起来很抽象，所以让我们先来看看使用 [Tweenjs](https://github.com/tweenjs/tween.js) 一个例子：
 
 ``` html
 <script src="https://cdn.jsdelivr.net/npm/tween.js@16.3.4"></script>

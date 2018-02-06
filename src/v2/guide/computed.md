@@ -1,5 +1,5 @@
 ---
-title: 计算属性和观察者
+title: 计算属性和侦听器
 type: guide
 order: 5
 ---
