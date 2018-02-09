@@ -84,12 +84,12 @@ window.addEventListener('hashchange', function () {
 <p class="platinum">
 <%_ for (const sponsor of theme.platinum_sponsors_china) {_%>
   <a href="<%- sponsor.url %>" target="_blank">
-    <img src="<%- url_for(`/images/${sponsor.img}`) %>">
+    <img src="<%- url_for(`/images/${sponsor.img}`) %>"<%- (sponsor.big_width || sponsor.big_height) ? ` style="${sponsor.big_width ? `width:${sponsor.big_width};`: ``}${sponsor.big_height ? `height:${sponsor.big_height};` : ``}"` : `` %>>
   </a>
 <%_ } _%>
 </p>
 
-<h3>Patreon 白金赞助商</h3>
+<h3>白金赞助商</h3>
 
 <p class="platinum">
 <%_ for (const sponsor of theme.platinum_sponsors) {_%>

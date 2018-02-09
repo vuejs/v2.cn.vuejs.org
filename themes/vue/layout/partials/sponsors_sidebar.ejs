@@ -1,0 +1,52 @@
+<!--
+<div id="sidebar-sponsors">
+  <div class="main-sponsor">
+    <span>Sponsors</span>
+    <div>
+    <%_ for (const sponsor of [...theme.special_sponsors, ...theme.platinum_sponsors]) {_%>
+    <a href="<%- sponsor.url %>" target="_blank" class="logo">
+      <img src="<%- url_for(`/images/${sponsor.img}`) %>"<%- (sponsor.width || sponsor.height) ? ` style="${sponsor.width ? `width:${sponsor.width};`: ``}${sponsor.height ? `height:${sponsor.height};` : ``}"` : `` %>>
+    </a>
+    <%_ } _%>
+    </div>
+  </div>
+  <a class="become-backer" href="<%- url_for("/support-vuejs") %>">
+    Become a Sponsor
+  </a>
+</div>
+-->
+
+<div class="sidebar-sponsors">
+  <div class="main-sponsor">
+    <span>赞助者</span><br>
+    <a id="main-sponsor-link" target="_blank" style="display: block; margin: 6px 0;">
+      <img id="main-sponsor-image" style="border-radius: 3px;">
+    </a>
+    <script>
+    (function () {
+      var API = 'https://xiaozhuanlan.com/example/baner_settings'
+      var req = new XMLHttpRequest()
+      var data = {
+        "link_url": "https://xiaozhuanlan.com",
+        "img_url": "https://diycode.b0.upaiyun.com/photo/2017/15ebaae7745e70876cf20c0ee93bdc9e.png"
+      }
+      req.onreadystatechange = function () {
+        if (req.readyState == 4) {
+        if (req.status >= 200 && req.status < 300) {
+          try {
+            data = JSON.parse(req.responseText)
+          } catch (e) {}
+        }
+        document.getElementById('main-sponsor-link').href = data.link_url
+        document.getElementById('main-sponsor-image').src = data.img_url
+        }
+      }
+      req.open('GET', API)
+      req.send()
+    })()
+    </script>
+  </div>
+  <a class="become-backer" href="<%- url_for("/support-vuejs") %>">
+    成为赞助者
+  </a>
+</div>
