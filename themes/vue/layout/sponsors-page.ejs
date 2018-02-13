@@ -79,6 +79,16 @@ window.addEventListener('hashchange', function () {
 
 <h2>当前的顶级赞助商</h2>
 
+<h3>特别赞助商</h3>
+
+<p class="platinum">
+<%_ for (const sponsor of theme.special_sponsors) {_%>
+  <a href="<%- sponsor.url %>" target="_blank">
+    <img src="<%- url_for(`/images/${sponsor.img}`) %>"<%- (sponsor.big_width || sponsor.big_height) ? ` style="${sponsor.big_width ? `width:${sponsor.big_width};`: ``}${sponsor.big_height ? `height:${sponsor.big_height};` : ``}"` : `` %>>
+  </a>
+<%_ } _%>
+</p>
+
 <h3>中国区特别赞助商</h3>
 
 <p class="platinum">
