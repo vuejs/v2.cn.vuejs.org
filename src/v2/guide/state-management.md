@@ -10,7 +10,7 @@ order: 502
 
 ### React 的开发者请参考以下信息
 
-如果你是来自 React 的开发者，你可能会对 Vuex 和 [Redux](https://github.com/reactjs/redux) 间的差异表示关注，Redux 是 React 生态环境中最流行的 Flux 实现。Redux 事实上无法感知视图层，所以它能够轻松的通过一些[简单绑定](https://github.com/egoist/revue)和 Vue 一起使用。Vuex 区别在于它是一个专门为 Vue 应用所设计。这使得它能够更好地和 Vue 进行整合，同时提供简洁的 API 和改善过的开发体验。
+如果你是来自 React 的开发者，你可能会对 Vuex 和 [Redux](https://github.com/reactjs/redux) 间的差异表示关注，Redux 是 React 生态环境中最流行的 Flux 实现。Redux 事实上无法感知视图层，所以它能够轻松的通过一些[简单绑定](https://yarnpkg.com/en/packages?q=redux%20vue&p=1)和 Vue 一起使用。Vuex 区别在于它是一个专门为 Vue 应用所设计。这使得它能够更好地和 Vue 进行整合，同时提供简洁的 API 和改善过的开发体验。
 
 ## 简单状态管理起步使用
 
