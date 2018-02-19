@@ -510,7 +510,7 @@ Vue.component('my-component', {
 
 在 2.5.0 及以上版本中，如果你使用了[单文件组件](single-file-components.html)，那么基于模板的函数式组件可以这样声明：
 
-``` js
+``` html
 <template functional>
 </template>
 ```
