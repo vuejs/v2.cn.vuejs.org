@@ -625,6 +625,14 @@ new Vue({
 this.$emit('update:foo', newValue)
 ```
 
+当使用一个对象一次性设置多个属性的时候，这个 `.sync` 修饰符也可以和 `v-bind` 一起使用：
+
+```html
+<comp v-bind.sync="{ foo: 1, bar: 2 }"></comp>
+```
+
+这个例子会为 `foo` 和 `bar` 同时添加用于更新的 `v-on` 监听器。
+
 ### 使用自定义事件的表单输入组件
 
 自定义事件可以用来创建自定义的表单输入组件，使用 `v-model` 来进行数据双向绑定。要牢记：
