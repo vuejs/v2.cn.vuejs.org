@@ -589,6 +589,20 @@ Vue.component('my-functional-button', {
 
 向 `createElement` 通过传入 `context.data` 作为第二个参数，我们就把 `my-functional-button` 上面所有的特性和事件监听器都传递下去了。事实上这是非常透明的，那些事件甚至并不要求 `.native` 修饰符。
 
+如果你使用基于模板的函数式组件，那么你还需要手动添加特性和监听器。因为我们可以访问到其独立的上下文内容，所以我们可以使用 `data.attrs` 传递任何 HTML 特性，也可以使用 `listeners` _(即 `data.on` 的别名)_ 传递任何事件监听器。
+
+```html
+<template functional>
+  <button
+    class="btn btn-primary"
+    v-bind="data.attrs" 
+    v-on="listeners"
+  >
+    <slot/>
+  </button>
+</template>
+```
+
 ### `slots()` 和 `children` 对比
 
 你可能想知道为什么同时需要 `slots()` 和 `children`。`slots().default` 不是和 `children` 类似的吗？在一些场景中，是这样，但是如果是函数式组件和下面这样的 children 呢？
