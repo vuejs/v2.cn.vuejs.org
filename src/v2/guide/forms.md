@@ -323,7 +323,7 @@ new Vue({
 <!-- `toggle` 为 true 或 false -->
 <input type="checkbox" v-model="toggle">
 
-<!-- 当选中时，`selected` 为字符串 "abc" -->
+<!-- 当选中第一个选项时，`selected` 为字符串 "abc" -->
 <select v-model="selected">
   <option value="abc">ABC</option>
 </select>
