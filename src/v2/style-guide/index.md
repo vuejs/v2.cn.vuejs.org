@@ -1,4 +1,5 @@
 ---
+title: Style Guide
 type: style-guide
 ---
 
@@ -1720,8 +1721,8 @@ computed: {
 >
   错误：{{ error }}
 </div>
-<div 
-  v-else 
+<div
+  v-else
   key="search-results"
 >
   {{ results }}
