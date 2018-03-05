@@ -1,5 +1,5 @@
 ---
-title: Style Guide
+title: 风格指南
 type: style-guide
 ---
 
