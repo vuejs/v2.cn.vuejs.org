@@ -674,7 +674,7 @@ new Vue({
 </script>
 {% endraw %}
 
-In this second example, it's important to note that the child component is still completely decoupled from what happens outside of it. All it does is report information about its own activity including a payload data into event emitter, just in case a parent component might care.
+第二个示例的重点在于子组件仍然是完全和外界解耦的。它做的事情全都是记录其自身的活动，活动记录是包括一份传入事件触发器的载荷数据在内的，只是为了展示父组件可以不关注的一个场景。
 
 ### 给组件绑定原生事件
 
