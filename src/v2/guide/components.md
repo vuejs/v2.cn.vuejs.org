@@ -85,7 +85,7 @@ var Child = {
 new Vue({
   // ...
   components: {
-    // <my-component> 将只在父组件模板中可用
+    // <my-component> 将只在父实例/组件的模板中可用
     'my-component': Child
   }
 })
