@@ -286,3 +286,4 @@ An alternative pattern to consider, especially if you prefer writing only in Mar
 ## Wrap up
 
 That's it! You now have a fully functional CMS-powered blog running in your app.  We hope this tutorial was helpful and made your development experience with Vue.js even more enjoyable :)
+
