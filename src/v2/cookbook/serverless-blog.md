@@ -4,8 +4,6 @@ type: cookbook
 order: 5
 ---
 
-# 用 Vue.js 创建一个基于 CMS 的博客
-
 恭喜你已经发布了你的 Vue.js 网站！现在你想要在网站上快速加入一个博客，但不想新起一台服务器去部署一个 Wordpress 实例 (或任何基于数据库的 CMS)。你只希望添加一些 Vue.js 的博客组件和一些路由就能搞定对吧？你想要的就是直接消费你的 Vue.js 应用中 API 来完全支撑起一个博客站。这份教程将会告诉你如何做到这一点，所以让我们来看看吧！
 
 我们将会使用 Vue.js 快速构建一个基于 CMS 的博客站。它使用了 [ButterCMS](https://buttercms.com/)，一个 API 优先的 CMS，让你使用 ButterCMS 仪表盘管理内容并将我们的内容 API 集成到你的 Vue.js 应用。你可以为一个新的项目或在一个已有的 Vue.js 项目使用 ButterCMS。
