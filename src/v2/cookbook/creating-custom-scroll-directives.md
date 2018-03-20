@@ -1,12 +1,12 @@
 ---
-title: Creating Custom Scroll Directives
+title: 创建自定义滚动指令
 type: cookbook
 order: 7
 ---
 
-## Simple Example
+## 简单的示例
 
-There are many times that we might want to add a bit of behavior, especially animation, to a scroll event on a site. There are many ways to do so, but the path with the least amount of code and dependencies is perhaps to use a [custom directive](https://vuejs.org/v2/guide/custom-directive.html) to create a hook for anything that fires off a particular scroll event.
+我们可能很多次想为网站的滚动事件添加一些行为，尤其是动画。已有的做法很多，但是代码和依赖最少的捷径可能就是使用一个[自定义指令](https://cn.vuejs.org/v2/guide/custom-directive.html)创建一个钩子，在特定的滚动事件之后作处理。
 
 ```js
 Vue.directive('scroll', {
@@ -46,9 +46,9 @@ new Vue({
 </div>
 ```
 
-<p class="tip">Remember! The directive must be registered before the Vue instance.</p>
+<p class="tip">记住！指令必须在 Vue 实例之前注册好。</p>
 
-We'd also need a style property that will transition the intermediary values here, in this case:
+我们可能还需要一个样式属性描述渐变的中间值，在这个例子中：
 
 ```
 .box {
@@ -59,7 +59,7 @@ We'd also need a style property that will transition the intermediary values her
 <p data-height="450" data-theme-id="5162" data-slug-hash="983220ed949ac670dff96bdcaf9d3338" data-default-tab="result" data-user="sdras" data-embed-version="2" data-pen-title="Custom Scroll Directive- CSS Transition" class="codepen">See the Pen <a href="https://codepen.io/sdras/pen/983220ed949ac670dff96bdcaf9d3338/">Custom Scroll Directive- CSS Transition</a> by Sarah Drasner (<a href="https://codepen.io/sdras">@sdras</a>) on <a href="https://codepen.io">CodePen</a>.</p>
 <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
 
-Or, with GreenSock(GSAP) or any other JavaScript animation library, the code becomes even more simple:
+或者使用 GreenSock (GSAP) 或任何其它 JavaScript 动画库，代码会变得更加简洁：
 
 ```js
 Vue.directive('scroll', {
@@ -91,28 +91,28 @@ new Vue({
 })
 ```
 
-Though we would remove the previous CSS transition from this implementation because it's now handled with JavaScript.
+而且我们会从实现中移除之前的 CSS 渐变，因为 JavaScript 已经搞定了这件事。
 
-## The Benefit of Using Custom Directives
+## 使用自定义指令的好处
 
-Vue is rich with options for directives, most of which cover very common use-cases, which can create a very productive developer experience. But even if you have an edge case not covered by the framework, it's got you covered in this case as well, because you can quite easily create a custom directive to fit your needs.
+Vue 为指令提供了丰富的选项，覆盖了绝大多数的常见用例，使得我们可以通过指令创建非常好的开发体验。即便遇到了一个框架本身覆盖不到的极端情况，你也可以通过这种方式将其覆盖到，因为你可以很轻松的创建一个自定义指令来满足你的需求。
 
-Attaching and removing scroll events to elements is a really good use case for this technique because just like other directives we use, they are necessarily tied to the element and otherwise, we'd have to find the reference for it in the DOM. This pattern avoids the need for traversal, and keeps the event logic paired with the node that it's in reference to.
+为元素附加或移除滚动事件是对于这项技术的一个很好的用例，因为就像其它我们使用的指令一样，它们有必要绑定在元素上，否则我们就需要寻找其 DOM 引用。这种模式避免了我们遍历 DOM 结点，保证事件的逻辑能够和需要引用的结点结对起来。
 
-## Real-World Example: Using a Custom Scroll Directive for Cascading Animations
+## 真实的示例：为级联动画使用一个自定义滚动指令
 
-In the course of creating a cohesive site, you may find that you're reusing the same type of animation logic in several areas. It seems simple, we would then create a very specific custom directive, right? Well, typically if you're reusing it, you will need to change it _just_ slightly for each use.
+在创建一个聚合类网站的时候，你可能会发现你在很多区域复用了相同类型的动画逻辑。看起来我们创建一个非常特殊的自定义指令很简单对吧？好，通常情况下如果你想复用它，那么你_只需_在每次使用的时候对其进行一些小的改动即可。
 
-To help keep our code concise and legible, we would want to pass in some predefined arguments such as the beginning point and ending of the animation as we scroll down the page.
+为了协助保持我们的代码精确清晰，我们会传递一些预设参数，诸如我们向下滚动页面时动画的起始点和终止点。
 
-**This example is better viewed in the [full screen version](https://s.codepen.io/sdras/debug/078c19f5b3ed7f7d28584da450296cd0).**
+**这个示例最好在[全屏模式](https://s.codepen.io/sdras/debug/078c19f5b3ed7f7d28584da450296cd0)下浏览。**
 
 <p data-height="500" data-theme-id="5162" data-slug-hash="c8c55e3e0bba997350551dd747119100" data-default-tab="result" data-user="sdras" data-embed-version="2" data-pen-title="Scrolling Example- Using Custom Directives in Vue" class="codepen">See the Pen <a href="https://codepen.io/sdras/pen/c8c55e3e0bba997350551dd747119100/">Scrolling Example- Using Custom Directives in Vue</a> by Sarah Drasner (<a href="https://codepen.io/sdras">@sdras</a>) on <a href="https://codepen.io">CodePen</a>.</p>
 <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
 
-In the demo above, each of the sections has two different types of animation triggered from the scroll: a morphing animation, and a drawing animation that animates the individual paths in the SVG. We reuse those two animations, so we can create a custom directive for each. The arguments we'll pass in will help keep everything simple and reusable.
+在上述 demo 中，每个章节都有两个由滚动触发的不同类型的动画开关：一个渐变动画和一个动态改变 SVG 独立路径的动画。我们想要复用这两种动画，因此我们可以为每种动画各创建一个自定义指令。我们传入的参数将会帮助我们让一切都简单可复用。
 
-To show how we do this, we'll take a look at the morphing shape example, where we'll need to state the start and finish, as well as pass in a path value that we'll create a morph to. These arguments are each defined as `binding.value.foo`:
+为了展示实现方式，我们将会看一下这个渐变图形的示例，这里我们需要明确起始状态和完成状态，同时传入一个我们将要创建的渐变的路径的值。这些参数就是每个被定义的 `binding.value.foo`：
 
 ```js
 Vue.directive('clipscroll', {
@@ -135,7 +135,7 @@ Vue.directive('clipscroll', {
 })
 ```
 
-We can then use this animation in our template, in this case we're attaching the directive to the `clipPath` element, and pass all of our arguments to the directives in an object.
+然后我们可以在我们的模板中使用这个动画，这时我们附加该指令到一个 `clipPath` 元素上，然后将我们所有的参数放入一个对象传递到这个指令中。
 
 ```html
 <clipPath id="clip-path">
@@ -147,8 +147,8 @@ We can then use this animation in our template, in this case we're attaching the
 </clipPath>
 ```
 
-## Alternative Patterns
+## 替代模式
 
-Custom directives are extremely useful, but you may find some situations where you need something very specific that already exists in scrolling libraries that you don't wish to rebuild from scratch yourself.
+自定义指令是非常有用的，但是你可能会发现有些情况下你需要更特别的东西，它们已经存在于一个滚动库里了，而你并不希望从零开始重构它。
 
-[Scrollmagic](http://scrollmagic.io/) has a very rich ecosystem of offerings to work with, as well as good documentation and demos to explore. This includes, but is not limited to things like [parallax](http://scrollmagic.io/examples/advanced/parallax_scrolling.html), [cascading pinning](http://scrollmagic.io/examples/expert/cascading_pins.html), [section wipes](http://scrollmagic.io/examples/basic/section_wipes_natural.html), and [responsive duration](http://scrollmagic.io/examples/basic/responsive_duration.html).
+[Scrollmagic](http://scrollmagic.io/) 拥有一个非常丰富的生态系统，同时附带了很好的文档和演示以便大家浏览。这些特效包括且不仅限于诸如[视觉差](http://scrollmagic.io/examples/advanced/parallax_scrolling.html)、[级联固定](http://scrollmagic.io/examples/expert/cascading_pins.html)、[章节切换](http://scrollmagic.io/examples/basic/section_wipes_natural.html)和[响应式持续时间](http://scrollmagic.io/examples/basic/responsive_duration.html)等。
