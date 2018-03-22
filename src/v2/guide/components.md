@@ -516,7 +516,7 @@ Vue.component('example', {
 - 使用 `$on(eventName)` 监听事件
 - 使用 `$emit(eventName, optionalPayload)` 触发事件
 
-<p class="tip">Vue 的事件系统与浏览器的 [EventTarget API](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget) 有所不同。尽管它们的运行起来类似，但是 `$on` 和 `$emit` __并不是__`addEventListener` 和 `dispatchEvent` 的别名。</p>
+<p class="tip">Vue 的事件系统与浏览器的 [EventTarget API](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget) 有所不同。尽管它们运行起来类似，但是 `$on` 和 `$emit` __并不是__`addEventListener` 和 `dispatchEvent` 的别名。</p>
 
 另外，父组件可以在使用子组件的地方直接用 `v-on` 来监听子组件触发的事件。
 
