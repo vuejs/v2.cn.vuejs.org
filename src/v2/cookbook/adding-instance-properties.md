@@ -34,7 +34,7 @@ new Vue({
 
 > “你指的冲突是什么意思？”
 
-另一个好问题！如果你只写成：
+另一个好问题！如果你写成：
 
 ``` js
 Vue.prototype.appName = 'My App'
