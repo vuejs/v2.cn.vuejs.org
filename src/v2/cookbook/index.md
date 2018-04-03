@@ -1,41 +1,41 @@
 ---
-title: Introduction
+title: 介绍
 type: cookbook
 order: 0
 ---
 
-## WORK IN PROGRESS
+## 这本 Cookbook 的仍在撰写中
 
-<p class="tip">This cookbook is still in its very early stages. At this point, we will not be linking to it from anywhere else. Pages may be removed or reorganized at any time. Even the goals and overall format are still in flux.</p>
+<p class="tip">这本 cookbook 仍然处于比较初期的阶段。所以我们暂时不会在别的地方放它的链接。页面随时有可能移除或重组。甚至目标和格式之类的东西也是在不断变化的。</p>
 
-## The Cookbook vs the Guide
+## Cookbook vs 指南
 
-How is the cookbook different from the guide? Why is this necessary?
+这份 cookbook 和指南的不同之处在哪里？存在的意义是什么？
 
-* **Greater Focus**: In the guide, we're essentially telling a story. Each section builds on and assumes knowledge from each previous section. In the cookbook, each recipe can and should stand on its own. This means recipes can focus on one specific aspect of Vue, rather than having to give a general overview.
+* **更专注**：在指南里，我们实际上是在讲一个故事。每个章节都以之前章节的知识进行构建和假设。而在 cookbook 里，每个 recipe 都有各自的代表性。也就是说每个 recipe 都专注于 Vue 的某个特定方面，而不是一个概览。
 
-* **Greater Depth**: To avoid making the guide too long, we try to include only the simplest possible examples to help you understand each feature. Then we move on. In the cookbook, we can include more complex examples, combining features in interesting ways. Each recipe can also be as long and detailed as it needs to be, in order to fully explore its niche.
+* **更有深度**：为了避免指南写得太长，我们试着只包含了尽可能简单的示例来帮助你理解每个功能，然后就奔下一个话题了。在 cookbook 里，我们以更生动的形式包含了更复杂的示例并结合特性。每个 recipe 都可以尽可能的翔实，以彻底探索这个领域。
 
-* **Teaching JavaScript**: In the guide, we assume at least intermediate familiarity with ES5 JavaScript. For example, we won't explain how `Array.prototype.filter` works in a computed property that filters a list. In the cookbook however, essential JavaScript features (including ES6/2015+) can be explored and explained in the context of how they help us build better Vue applications.
+* **传授 JavaScript**：在指南里，我们假设你至少具有 ES5 JavaScript 的中级水平。例如，我们不会解释 `Array.prototype.filter` 在计算属性中是如何过滤一个列表的。然而在 cookbook 里，我们将对一些必要的 JavaScript 特性 (包括 ES6/2015+) 进行探索和解释，以帮助我们构建更好的 Vue 应用。
 
-* **Exploring the Ecosystem**: For advanced features, we assume some ecosystem knowledge. For example, if you want to use single-file components in Webpack, we don't explain how to configure the non-Vue parts of the Webpack config. In the cookbook, we have the space to explore these ecosystem libraries in more depth - at least to the extent that is universally useful for Vue developers.
+* **探索生态系统**：对于高级特性，我们会假设你已经对生态系统有一定了解。例如，如果你想在 webpack 中使用单文件组件，我们不会解释如何在 webpack 中配置 Vue 以外的部分。在 cookbook 里，我们有空间去更深度探索这些生态系统中的库——至少能到对 Vue 开发者普遍使用的程度。
 
-## Guidelines for Recipes
+## Recipe 编写指南
 
-Recipes should generally:
+通常情况下 recipe 应该：
 
-> 1. Solve a specific, common problem
+> 1. 解决一个具体的普遍性问题
 
-> 2. Start with the simplest possible example
+> 2. 从尽可能简单的示例开始
 
-> 3. Introduce complexities one at a time
+> 3. 一次只介绍一个复杂的点
 
-> 4. Link to other docs, rather than re-explaining concepts
+> 4. 链接到其它文档，而不是在这里重新解释概念
 
-> 5. Describe the problem, rather than assuming familiarity
+> 5. 把问题描述清楚，而不是假设大家对这个问题很熟悉
 
-> 6. Explain the process, rather than just the end result
+> 6. 解释过程，而不是只告诉你最终结果
 
-> 7. Explain the pros and cons of your strategy, including when it is and isn't appropriate
+> 7. 解释策略的利弊，包括它不适用于什么场景
 
-> 8. Mention alternative solutions, if relevant, but leave in-depth explorations to a separate recipe
+> 8. 会提及相关的替代方案，但会放到一个单独的 recipe 中细讲
