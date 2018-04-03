@@ -59,11 +59,11 @@ new Vue({
 
 日志中会先出现 `"The name of some other app"`，然后出现 `"My App"`，因为 `this.appName` 在实例被创建之后被 `data` [覆写了](https://github.com/getify/You-Dont-Know-JS/blob/master/this%20%26%20object%20prototypes/ch5.md)。我们通过 `$` 为实例属性设置作用域来避免这种事情发生。你还可以根据你的喜好使用自己的约定，诸如 `$_appName` 或 `ΩappName`，来避免和插件或未来的插件相冲突。
 
-## 真实的示例：通过 Axios 替换 Vue Resource
+## 真实的示例：通过 axios 替换 Vue Resource
 
-比如你打算替换已经废弃的 [Vue Resource](https://medium.com/the-vue-point/retiring-vue-resource-871a82880af4) 库。你实在是很喜欢通过 `this.$http` 来访问请求方法，希望换成 Axios 以后还能继续这样用。
+比如你打算替换已经废弃的 [Vue Resource](https://medium.com/the-vue-point/retiring-vue-resource-871a82880af4) 库。你实在是很喜欢通过 `this.$http` 来访问请求方法，希望换成 axios 以后还能继续这样用。
 
-你需要做的事情是把 Axios 引入你的项目：
+你需要做的事情是把 axios 引入你的项目：
 
 ``` html
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.15.2/axios.js"></script>
@@ -140,7 +140,7 @@ Uncaught TypeError: Cannot read property 'split' of undefined
 
 只要你对原型属性的作用域保持警惕，那么使用这个模式就是安全的——保证了这一点，就不太会出 bug。
 
-然而，有的时候它会让其他开发者感到混乱。例如他们可能看到了 `this.$http`，然后会想“哦，我从来没见过这个 Vue 的功能”，然后他们来到另外一个项目又发现 `this.$http` 是未被定义的。或者你打算去搜索如何使用它，但是搜不到结果，因为他们并没有发现这是一个 Axios 的别名。
+然而，有的时候它会让其他开发者感到混乱。例如他们可能看到了 `this.$http`，然后会想“哦，我从来没见过这个 Vue 的功能”，然后他们来到另外一个项目又发现 `this.$http` 是未被定义的。或者你打算去搜索如何使用它，但是搜不到结果，因为他们并没有发现这是一个 axios 的别名。
 
 __这种便利是以显性表达为代价的。__当我们查阅一个组件的时候，要注意交代清楚 `$http` 是从哪来的：Vue 自身、一个插件、还是一个辅助库？
 
