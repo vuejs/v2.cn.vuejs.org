@@ -12,7 +12,7 @@ order: 2
 Vue.prototype.$appName = 'My App'
 ```
 
-这样 `$appName` 就在所有的 Vue 实例中可用来，甚至在实例被创建之前就可以。如果我们运行：
+这样 `$appName` 就在所有的 Vue 实例中可用了，甚至在实例被创建之前就可以。如果我们运行：
 
 ``` js
 new Vue({
@@ -45,7 +45,7 @@ Vue.prototype.appName = 'My App'
 ``` js
 new Vue({
   data: {
-    // 哦，`appName` *也*是一个我们定义的实例属性名！😯
+    // 啊哦，`appName` *也*是一个我们定义的实例属性名！😯
     appName: 'The name of some other app'
   },
   beforeCreate: function () {
@@ -59,11 +59,11 @@ new Vue({
 
 日志中会先出现 `"The name of some other app"`，然后出现 `"My App"`，因为 `this.appName` 在实例被创建之后被 `data` [覆写了](https://github.com/getify/You-Dont-Know-JS/blob/master/this%20%26%20object%20prototypes/ch5.md)。我们通过 `$` 为实例属性设置作用域来避免这种事情发生。你还可以根据你的喜好使用自己的约定，诸如 `$_appName` 或 `ΩappName`，来避免和插件或未来的插件相冲突。
 
-## 真实的示例：通过 Axios 替换 Vue 资源
+## 真实的示例：通过 Axios 替换 Vue Resource
 
-比如你需要替换已经废弃的 [Vue Resource](https://medium.com/the-vue-point/retiring-vue-resource-871a82880af4) 库。你实在是很喜欢通过 `this.$http` 来访问请求方法，希望还能这样使用 Axios。
+比如你打算替换已经废弃的 [Vue Resource](https://medium.com/the-vue-point/retiring-vue-resource-871a82880af4) 库。你实在是很喜欢通过 `this.$http` 来访问请求方法，希望换成 Axios 以后还能继续这样用。
 
-你需要做的事情是把 axios 引入你的项目：
+你需要做的事情是把 Axios 引入你的项目：
 
 ``` html
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.15.2/axios.js"></script>
@@ -101,9 +101,9 @@ new Vue({
 
 ## 原型方法的上下文
 
-在例子中你可能没有意识到，在 JavaScript 中一个原型的方法会获得该实例的上下文。也就是说它们可以使用 `this` 访问数据、计算属性、方法或其它任何定义在实例上的东西。
+你可能没有意识到，在 JavaScript 中一个原型的方法会获得该实例的上下文。也就是说它们可以使用 `this` 访问数据、计算属性、方法或其它任何定义在实例上的东西。
 
-我们用一个名为 `$reverseText` 的方法来看：
+让我们将其用在一个名为 `$reverseText` 的方法上：
 
 ``` js
 Vue.prototype.$reverseText = function (propertyName) {
@@ -122,7 +122,7 @@ new Vue({
 })
 ```
 
-注意如果你使用了 ES6/2015 的箭头函数，则其绑定的上下文__不会__正常工作，因为它们会隐形的绑定其父级作用域。也就是说箭头函数的版本：
+注意如果你使用了 ES6/2015 的箭头函数，则其绑定的上下文__不会__正常工作，因为它们会隐式的绑定其父级作用域。也就是说使用箭头函数的版本：
 
 ``` js
 Vue.prototype.$reverseText = propertyName => {
@@ -138,17 +138,17 @@ Uncaught TypeError: Cannot read property 'split' of undefined
 
 ## 何时避免使用这个模式
 
-只要你对原型属性的作用域保持警惕，那么使用这个模式就是安全的——因为它不太会导致发生错误。
+只要你对原型属性的作用域保持警惕，那么使用这个模式就是安全的——保证了这一点，就不太会出 bug。
 
 然而，有的时候它会让其他开发者感到混乱。例如他们可能看到了 `this.$http`，然后会想“哦，我从来没见过这个 Vue 的功能”，然后他们来到另外一个项目又发现 `this.$http` 是未被定义的。或者你打算去搜索如何使用它，但是搜不到结果，因为他们并没有发现这是一个 Axios 的别名。
 
-__这个约定带来了显性的成本。__当我们查阅一个组件的时候，要注意交代清楚 `$http` 是从哪来的：Vue 自身、一个插件、还是一个辅助库？
+__这种便利是以显性表达为代价的。__当我们查阅一个组件的时候，要注意交代清楚 `$http` 是从哪来的：Vue 自身、一个插件、还是一个辅助库？
 
 那么有别的替代方案吗？
 
 ## 替代方案
 
-### 什么时候不要使用模块系统
+### 当没有使用模块系统时
 
 在__没有__模块系统 (比如 webpack 或 Browserify) 的应用中，存在一种_任何_重 JS 前端应用都常用的模式：一个全局的 `App` 对象。
 
@@ -168,7 +168,7 @@ var App = Object.freeze({
 })
 ```
 
-<p class="tip">如果你在好奇 `Object.freeze`，它做的事情是阻止这个对象在未来被修改。它有效的保证了其属性的持久性，避免在未来出现状态的 bug。</p>
+<p class="tip">如果你在好奇 `Object.freeze`，它做的事情是阻止这个对象在未来被修改。这实质上是将它的属性都设为了常量，避免在未来出现状态的 bug。</p>
 
 现在这些被共享的属性的来源就更加明显了：在应用中的某个地方有一个被定义好的 `App` 对象。你只需在项目中搜索就可以找到它。
 
@@ -187,6 +187,6 @@ new Vue({
 
 ### 何时使用模块系统
 
-当你使用模块系统的时候，你可以在模块中轻松的将共享的代码组织起来，然后把那些模块 `require`/`import` 到任何你所需要的地方。这是一种显性的做法，因为在每个文件里你都能得到一份依赖清单。你可以_准确_的知道每个依赖的来历。
+当使用模块系统的时候，你可以轻松地把共享的代码组织成模块，然后把那些模块 `require`/`import` 到任何你所需要的地方。这是一个典型的显式做法，因为在每个文件里你都能得到一份依赖清单。你可以_准确地_知道每个依赖的来历。
 
 虽然更加明晰，但是这种做法确实是最好维护的，尤其是当和多人一起协作一个大型应用的时候。
