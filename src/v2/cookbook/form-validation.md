@@ -1,14 +1,14 @@
 ---
-title: 表单验证
+title: 表单校验
 type: cookbook
 order: 3
 ---
 
 ## 简单的示例
 
-表单验证是浏览器原生支持的，但是有的时候用不同的浏览器处理起来需要一些小技巧。甚至为了完美支持表单验证，你还可能需要一些自定义的认证。这时一个更加手动的基于 Vue 的解决方案可能会更适合。我们来看一个简单的示例。
+表单校验是浏览器原生支持的，但是有的时候用不同的浏览器处理起来需要一些小技巧。即使当表单校验已经被完美支持，你也还是有很多时候需要进行自定义的校验。这时一个更加手动的基于 Vue 的解决方案可能会更适合。我们来看一个简单的示例。
 
-给定一个表单，包含三个字端，其中两个是必填项。我们先来看看 HTML：
+给定一个表单，包含三个字段，其中两个是必填项。我们先来看看 HTML：
 
 ``` html
 <form id="app" @submit="checkForm" action="https://vuejs.org/" method="post">
@@ -46,11 +46,11 @@ order: 3
 </form>
 ```
 
-我们从头到尾看一遍，这个 `<form>` 标记上有一个我们将会用在 Vue 组件上 ID。有一个提交处理器，我们稍微看一下，它的`·action` 是一个临时的 URL 可能指向了某个真实的服务器 (当然你在服务端也要是有验证的)。
+我们从头到尾看一遍，这个 `<form>` 标记上有一个我们将会用在 Vue 组件上的 ID。这里有一个你稍后会看到的 `submit` 处理函数，而这里的 `action` 是一个可能指向了某个真实服务器的临时 URL (当然你在服务端也要是有校验的)。
 
-下面是一段话会根据错误状态展示或隐藏它自己。它将会在表单的最顶端渲染一个简单的错误列表。同时要注意我们会在提交的时候进行验证，而不是每个字端被修改的时候。
+下面有一段内容，会根据错误状态进行显示或隐藏。它将会在表单的最顶端渲染一个简单的错误列表。同时要注意我们会在提交的时候进行校验，而不是每个字段被修改的时候。
 
-最后一个注意事项就是这三个字端都有一个对应的 `v-model` 来连接它们的值，我们将会在 JavaScript 中使用它。现在我们就来看一下。
+最后值得注意的是这三个字段都有一个对应的 `v-model` 来连接它们的值，我们将会在 JavaScript 中使用它。现在我们就来看一下。
 
 ``` js
 const app = new Vue({
@@ -73,14 +73,14 @@ const app = new Vue({
 })
 ```
 
-非常短小精悍。我们定义了一个数组来放置错误，并将这三个表单字段的值设为 `null`。`checkForm` (记住它会在表单提交时运行) 的逻辑会检查姓名和年龄，因为电影时选填的。如果它们是空的，那么我们会检查每一个字段并设置相应的错误，差不多就是这样。你可以在下面运行这个 demo。不要忘记提交成功时它会 POST 到一个临时的 URL。
+非常短小精悍。我们定义了一个数组来放置错误，并将这三个表单字段的默认值设为 `null`。`checkForm` 的逻辑 (在表单提交时运行) 只会检查姓名和年龄，因为电影时选填的。如果它们是空的，那么我们会检查每一个字段并设置相应的错误，差不多就是这样。你可以在下面运行这个 demo。不要忘记提交成功时它会 POST 到一个临时的 URL。
 
-<p data-height="265" data-theme-id="0" data-slug-hash="GObpZM" data-default-tab="html,result" data-user="cfjedimaster" data-embed-version="2" data-pen-title="form validation 1" class="codepen">在 <a href="https://codepen.io">CodePen</a> 查看 Raymond Camden (<a href="https://codepen.io/cfjedimaster">@cfjedimaster</a>) 的 <a href="https://codepen.io/cfjedimaster/pen/GObpZM/">表单验证 1</a>。</p>
+<p data-height="265" data-theme-id="0" data-slug-hash="GObpZM" data-default-tab="html,result" data-user="cfjedimaster" data-embed-version="2" data-pen-title="form validation 1" class="codepen">在 <a href="https://codepen.io">CodePen</a> 查看 Raymond Camden (<a href="https://codepen.io/cfjedimaster">@cfjedimaster</a>) 的 <a href="https://codepen.io/cfjedimaster/pen/GObpZM/">表单校验 1</a>。</p>
 <script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
 
-## 使用自定义验证
+## 使用自定义校验
 
-对于第二个示例来说，第二个文本字段 (年龄) 变换成了电子邮件地址，它将会通过一些自定义的逻辑来验证。这部分代码参考自 StackOverflow 的问题：[如何在 JavaScript 中验证电子邮件地址](https://stackoverflow.com/questions/46155/how-to-validate-email-address-in-javascript)。这是一个很好的问题，因为它会让你最强烈的 Facebook 政治/宗教的争论在谁是最好的问题上产生小小的分歧。讲真的这很疯狂。我们来看 HTML，尽管它和第一个例子很接近。
+对于第二个示例来说，第二个文本字段 (年龄) 变换成了电子邮件地址，它将会通过一些自定义的逻辑来校验。这部分代码来自 StackOverflow 的问题：[如何在 JavaScript 中校验电子邮件地址](https://stackoverflow.com/questions/46155/how-to-validate-email-address-in-javascript)。这是一个很好的问题，因为它会让 Facebook 上最激烈的政治、宗教争论看上去都只是“哪家的啤酒最好喝”这样的小分歧了。讲真的这很疯狂。我们来看 HTML，尽管它和第一个例子很接近。
 
 ``` html
 <form id="app" @submit="checkForm" action="https://vuejs.org/" method="post" novalidate="true">
@@ -118,7 +118,7 @@ const app = new Vue({
 </form>
 ```
 
-变化就是电子邮件，注意顶端的 `novalidate="true"`。这很重要，因为浏览器会尝试在 `type="email"` 的字端验证邮件地址。坦白说在这个案例中浏览器的验证规则是值得信任的，不过我们想要创建一个自定义验证的例子，所以我们把它禁用了。以下是更新后的 JavaScript。
+尽管这里的不同点很小，注意顶端的 `novalidate="true"`。但是这很重要，因为浏览器会尝试在 `type="email"` 的字端校验邮件地址。坦白说在这个案例中浏览器的校验规则是值得信任的，不过我们想要创建一个自定义校验的例子，所以把它禁用了。以下是更新后的 JavaScript。
 
 ``` js
 const app = new Vue({
@@ -149,14 +149,14 @@ const app = new Vue({
 })
 ```
 
-如你看到的，我们添加了 `validEmail` 作为一个新的方法，并且它在 `checkForm` 中被调用了。我们现在可以这样运行示例：
+如你所见，我们添加了一个新方法 `validEmail`，它将会在 `checkForm` 中被调用了。我们现在可以这样运行示例：
 
-<p data-height="265" data-theme-id="0" data-slug-hash="vWqNXZ" data-default-tab="html,result" data-user="cfjedimaster" data-embed-version="2" data-pen-title="form validation 2" class="codepen">在 <a href="https://codepen.io">CodePen</a> 查看 Raymond Camden (<a href="https://codepen.io/cfjedimaster">@cfjedimaster</a>) 的 <a href="https://codepen.io/cfjedimaster/pen/vWqNXZ/">表单验证 2</a>。</p>
+<p data-height="265" data-theme-id="0" data-slug-hash="vWqNXZ" data-default-tab="html,result" data-user="cfjedimaster" data-embed-version="2" data-pen-title="form validation 2" class="codepen">在 <a href="https://codepen.io">CodePen</a> 查看 Raymond Camden (<a href="https://codepen.io/cfjedimaster">@cfjedimaster</a>) 的 <a href="https://codepen.io/cfjedimaster/pen/vWqNXZ/">表单校验 2</a>。</p>
 <script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
 
-## 另一个自定义验证的例子
+## 另一个自定义校验的例子
 
-在第三个示例中，我们已经构建了一些你可能在使用一些应用的时候见过的东西。用户需要花掉“预算”来为 Star Destroyer 模型装配一套部件。总价必须等于 100。先看 HTML。
+在第三个示例中，我们已经构建了一些你可能在一些调研类应用中见过的东西。用户需要花掉“预算”来为歼星舰模型装配一套部件。总价必须等于 100。先看 HTML。
 
 ``` html
 <form id="app" @submit="checkForm" action="https://vuejs.org/" method="post" novalidate="true">
@@ -231,9 +231,9 @@ const app = new Vue({
 <p data-height="265" data-theme-id="0" data-slug-hash="vWqGoy" data-default-tab="html,result" data-user="cfjedimaster" data-embed-version="2" data-pen-title="form validation 3" class="codepen">See the Pen <a href="https://codepen.io/cfjedimaster/pen/vWqGoy/">form validation 3</a> by Raymond Camden (<a href="https://codepen.io/cfjedimaster">@cfjedimaster</a>) on <a href="https://codepen.io">CodePen</a>.</p>
 <script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
 
-## 服务端验证
+## 服务端校验
 
-在我们最终的示例中，我们构建了一些用到 Ajax 的服务端验证的东西。这个表单将会问你为一个新产品起名字，并且将会确保这个名字是唯一的。我们快速写了一个 [OpenWhisk](http://openwhisk.apache.org/) 的 serverless action 来进行这个验证。虽然这不是非常重要，但其逻辑如下：
+在我们最终的示例中，我们构建了一些用到 Ajax 的服务端校验的东西。这个表单将会问你为一个新产品起名字，并且将会确保这个名字是唯一的。我们快速写了一个 [OpenWhisk](http://openwhisk.apache.org/) 的 serverless action 来进行这个校验。虽然这不是非常重要，但其逻辑如下：
 
 ``` js
 function main(args) {
@@ -308,14 +308,14 @@ const app = new Vue({
 })
 ```
 
-我们从一个运行在 OpenWhisk 的 API 的 URL 变量开始。现在注意 `checkForm`。在这个版本中，我们始终阻止了表单的提交 (当然，它也可以通过 Vue 在 HTML 中完成)。你可以看到一个基本的验证，即 `this.name` 是否为空，然后我们请求这个 API。如果名字是无效的，我们就添加一个错误。如果是有效的，我们就不做任何事 (只是一个 alert)，但是你可以引导用户去一个新页面，在 URL 中带上产品的名字，或者其它行为。接下来你可以体验这个 demo：
+我们从一个运行在 OpenWhisk 的 API 的 URL 变量开始。现在注意 `checkForm`。在这个版本中，我们始终阻止了表单的提交 (当然，它也可以通过 Vue 在 HTML 中完成)。你可以看到一个基本的校验，即 `this.name` 是否为空，然后我们请求这个 API。如果名字是无效的，我们就添加一个错误。如果是有效的，我们就不做任何事 (只是一个 alert)，但是你可以引导用户去一个新页面，在 URL 中带上产品的名字，或者其它行为。接下来你可以体验这个 demo：
 
 <p data-height="265" data-theme-id="0" data-slug-hash="BmgzeM" data-default-tab="js,result" data-user="cfjedimaster" data-embed-version="2" data-pen-title="form validation 4" class="codepen">See the Pen <a href="https://codepen.io/cfjedimaster/pen/BmgzeM/">form validation 4</a> by Raymond Camden (<a href="https://codepen.io/cfjedimaster">@cfjedimaster</a>) on <a href="https://codepen.io">CodePen</a>.</p>
 <script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
 
 ## 其它替代模式
 
-这份秘笈专注在“手动”验证表单，当然一些非常棒的 Vue 的库会为你搞定这些事情。使用一些预打包的库可能会影响你的应用最终的体积，但是好处是非常多的。这里有经过充分测试并且保持着维护的代码。其中包括以下 Vue 的表单验证库：
+这份秘笈专注在“手动”校验表单，当然一些非常棒的 Vue 的库会为你搞定这些事情。使用一些预打包的库可能会影响你的应用最终的体积，但是好处是非常多的。这里有经过充分测试且保持日常更新的代码。其中包括以下 Vue 的表单校验库：
 
 * [vuelidate](https://github.com/monterail/vuelidate)
 * [VeeValidate](http://vee-validate.logaretm.com/)
