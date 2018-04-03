@@ -1,18 +1,18 @@
 ---
-title: Adding Instance Properties
+title: 添加实例属性
 type: cookbook
 order: 2
 ---
 
-## Simple Example
+## 简单的示例
 
-There may be data/utilities you'd like to use in many components, but you don't want to [pollute the global scope](https://github.com/getify/You-Dont-Know-JS/blob/master/scope%20%26%20closures/ch3.md). In these cases, you can make them available to each Vue instance by defining them on the prototype:
+你可能会在很多组件里用到数据/实用工具，但是不想[污染全局作用域](https://github.com/getify/You-Dont-Know-JS/blob/master/scope%20%26%20closures/ch3.md)。这种情况下，你可以通过在原型上定义它们使其在每个 Vue 的实例中可用。
 
 ``` js
 Vue.prototype.$appName = 'My App'
 ```
 
-Now `$appName` is available on all Vue instances, even before creation. If we run:
+这样 `$appName` 就在所有的 Vue 实例中可用了，甚至在实例被创建之前就可以。如果我们运行：
 
 ``` js
 new Vue({
@@ -22,31 +22,30 @@ new Vue({
 })
 ```
 
-Then `"My App"` will be logged to the console!
+则控制台会打印出 `My App`。就这么简单！
 
-## The Importance of Scoping Instance Properties
+## 为实例属性设置作用域的重要性
 
-You may be wondering:
+你可能会好奇：
 
-> "Why does `appName` start with `$`? Is that important? What does it do?
+> “为什么 `appName` 要以 `$` 开头？这很重要吗？它会怎样？”
 
-No magic is happening here. `$` is a convention Vue uses for properties that are available to all instances. This avoids conflicts with any defined data, computed properties, or methods.
+这里没有什么魔法。`$` 是在 Vue 所有实例中都可用的属性的一个简单约定。这样做会避免和已被定义的数据、方法、计算属性产生冲突。
 
-> "Conflicts? What do you mean?"
+> “你指的冲突是什么意思？”
 
-Another great question! If you set:
+另一个好问题！如果你写成：
 
 ``` js
 Vue.prototype.appName = 'My App'
 ```
 
-Then what would you expect to be logged below?
+那么你希望下面的代码输出什么呢？
 
 ``` js
 new Vue({
   data: {
-    // Uh oh - appName is *also* the name of the
-    // instance property we defined!
+    // 啊哦，`appName` *也*是一个我们定义的实例属性名！😯
     appName: 'The name of some other app'
   },
   beforeCreate: function () {
@@ -58,13 +57,13 @@ new Vue({
 })
 ```
 
-It would be `"The name of some other app"`, then `"My App"`, because `this.appName` is overwritten ([sort of](https://github.com/getify/You-Dont-Know-JS/blob/master/this%20%26%20object%20prototypes/ch5.md)) by `data` when the instance is created. We scope instance properties with `$` to avoid this. You can even use your own convention if you'd like, such as `$_appName` or `ΩappName`, to prevent even conflicts with plugins or future features.
+日志中会先出现 `"The name of some other app"`，然后出现 `"My App"`，因为 `this.appName` 在实例被创建之后被 `data` [覆写了](https://github.com/getify/You-Dont-Know-JS/blob/master/this%20%26%20object%20prototypes/ch5.md)。我们通过 `$` 为实例属性设置作用域来避免这种事情发生。你还可以根据你的喜好使用自己的约定，诸如 `$_appName` 或 `ΩappName`，来避免和插件或未来的插件相冲突。
 
-## Real-World Example: Replacing Vue Resource with Axios
+## 真实的示例：通过 axios 替换 Vue Resource
 
-Let's say you're replacing the [now-retired Vue Resource](https://medium.com/the-vue-point/retiring-vue-resource-871a82880af4). You really enjoyed accessing request methods through `this.$http` and you want to do the same thing with Axios instead.
+比如你打算替换已经废弃的 [Vue Resource](https://medium.com/the-vue-point/retiring-vue-resource-871a82880af4) 库。你实在是很喜欢通过 `this.$http` 来访问请求方法，希望换成 axios 以后还能继续这样用。
 
-All you have to do is include axios in your project:
+你需要做的事情是把 axios 引入你的项目：
 
 ``` html
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.15.2/axios.js"></script>
@@ -76,13 +75,13 @@ All you have to do is include axios in your project:
 </div>
 ```
 
-Alias `axios` to `Vue.prototype.$http`:
+设置 `Vue.prototype.$http` 为 `axios` 的别名：
 
 ``` js
 Vue.prototype.$http = axios
 ```
 
-Then you'll be able to use methods like `this.$http.get` in any Vue instance:
+然后你就可以在任何 Vue 实例中使用类似 `this.$http.get` 的方法：
 
 ``` js
 new Vue({
@@ -100,11 +99,11 @@ new Vue({
 })
 ```
 
-## The Context of Prototype Methods
+## 原型方法的上下文
 
-In case you're not aware, methods added to a prototype in JavaScript gain the context of the instance. That means they can use `this` to access data, computed properties, methods, or anything else defined on the instance.
+你可能没有意识到，在 JavaScript 中一个原型的方法会获得该实例的上下文。也就是说它们可以使用 `this` 访问数据、计算属性、方法或其它任何定义在实例上的东西。
 
-Let's take advantage of this in a `$reverseText` method:
+让我们将其用在一个名为 `$reverseText` 的方法上：
 
 ``` js
 Vue.prototype.$reverseText = function (propertyName) {
@@ -123,7 +122,7 @@ new Vue({
 })
 ```
 
-Note that the context binding will __not__ work if you use an ES6/2015 arrow function, as they implicitly bind to their parent scope. That means the arrow function version:
+注意如果你使用了 ES6/2015 的箭头函数，则其绑定的上下文__不会__正常工作，因为它们会隐式地绑定其父级作用域。也就是说使用箭头函数的版本：
 
 ``` js
 Vue.prototype.$reverseText = propertyName => {
@@ -131,37 +130,37 @@ Vue.prototype.$reverseText = propertyName => {
 }
 ```
 
-Would throw an error:
+会抛出一个错误：
 
 ``` log
 Uncaught TypeError: Cannot read property 'split' of undefined
 ```
 
-## When To Avoid This Pattern
+## 何时避免使用这个模式
 
-As long as you're vigilant in scoping prototype properties, using this pattern is quite safe - as in, unlikely to produce bugs.
+只要你对原型属性的作用域保持警惕，那么使用这个模式就是安全的——保证了这一点，就不太会出 bug。
 
-However, it can sometimes cause confusion with other developers. They might see `this.$http`, for example, and think, "Oh, I didn't know about this Vue feature!" Then they move to a different project and are confused when `this.$http` is undefined. Or, maybe they want to Google how to do something, but can't find results because they don't realize they're actually using Axios under an alias.
+然而，有的时候它会让其他开发者感到混乱。例如他们可能看到了 `this.$http`，然后会想“哦，我从来没见过这个 Vue 的功能”，然后他们来到另外一个项目又发现 `this.$http` 是未被定义的。或者你打算去搜索如何使用它，但是搜不到结果，因为他们并没有发现这是一个 axios 的别名。
 
-__The convenience comes at the cost of explicitness.__ When looking at a component, it's impossible to tell where `$http` came from. Vue itself? A plugin? A coworker?
+__这种便利是以显性表达为代价的。__当我们查阅一个组件的时候，要注意交代清楚 `$http` 是从哪来的：Vue 自身、一个插件、还是一个辅助库？
 
-So what are the alternatives?
+那么有别的替代方案吗？
 
-## Alternative Patterns
+## 替代方案
 
-### When Not Using a Module System
+### 当没有使用模块系统时
 
-In applications with __no__ module system (e.g. via Webpack or Browserify), there's a pattern that's often used with _any_ JavaScript-enhanced frontend: a global `App` object.
+在__没有__模块系统 (比如 webpack 或 Browserify) 的应用中，存在一种_任何_重 JS 前端应用都常用的模式：一个全局的 `App` 对象。
 
-If what you want to add has nothing to do with Vue specifically, this may be a good alternative to reach for. Here's an example:
+如果你想要添加的东西跟 Vue 本身没有太多关系，那么这是一个不错的替代方案。举个例子：
 
 ``` js
 var App = Object.freeze({
   name: 'My App',
   description: '2.1.4',
   helpers: {
-    // This is a purely functional version of
-    // the $reverseText method we saw earlier
+    // 这我们之前见到过的 `$reverseText` 方法
+    // 的一个纯函数版本
     reverseText: function (text) {
       return text.split('').reverse().join('')
     }
@@ -169,11 +168,11 @@ var App = Object.freeze({
 })
 ```
 
-<p class="tip">If you raised an eyebrow at `Object.freeze`, what it does is prevent the object from being changed in the future. This essentially makes all its properties constants, protecting you from future state bugs.</p>
+<p class="tip">如果你在好奇 `Object.freeze`，它做的事情是阻止这个对象在未来被修改。这实质上是将它的属性都设为了常量，避免在未来出现状态的 bug。</p>
 
-Now the source of these shared properties is more obvious: there's an `App` object defined somewhere in the app. To find it, developers can run a project-wide search.
+现在这些被共享的属性的来源就更加明显了：在应用中的某个地方有一个被定义好的 `App` 对象。你只需在项目中搜索就可以找到它。
 
-Another advantage is that `App` can now be used _anywhere_ in your code, whether it's Vue-related or not. That includes attaching values directly to instance options, rather than having to enter a function to access properties on `this`:
+这样做的另一个好处是 `App` 可以在你代码的_任何地方_使用，不管它是否是 Vue 相关的。包括向实例选项直接附加一些值而不必进入一个函数去访问 `this` 上的属性来得到这些值：
 
 ``` js
 new Vue({
@@ -186,8 +185,8 @@ new Vue({
 })
 ```
 
-### When Using a Module System
+### 当使用模块系统时
 
-When you have access to a module system, you can easily organize shared code into modules, then `require`/`import` those modules wherever they're needed. This is the epitome of explicitness, because in each file you gain a list of dependencies. You know _exactly_ where each one came from.
+当使用模块系统的时候，你可以轻松地把共享的代码组织成模块，然后把那些模块 `require`/`import` 到任何你所需要的地方。这是一个典型的显式做法，因为在每个文件里你都能得到一份依赖清单。你可以_准确地_知道每个依赖的来历。
 
-While certainly more verbose, this approach is definitely the most maintainable, especially when working with other developers and/or building a large app.
+虽然显然更啰嗦，但是这种方法确实是最可维护的，尤其是当和多人一起协作一个大型应用的时候。
