@@ -1725,8 +1725,6 @@ type: api
 
   当条件变化时该指令触发过渡效果。
 
-  <p class="tip">当和 `v-if` 一起使用时，`v-for` 的优先级比 `v-if` 更高。详见[列表渲染教程](../guide/list.html#v-for-with-v-if)</p>
-
 - **参考**：[条件渲染 - v-show](../guide/conditional.html#v-show)
 
 ### v-if
@@ -1738,6 +1736,8 @@ type: api
   根据表达式的值的真假条件渲染元素。在切换时元素及它的数据绑定 / 组件被销毁并重建。如果元素是 `<template>` ，将提出它的内容作为条件块。
 
   当条件变化时该指令触发过渡效果。
+  
+  <p class="tip">当和 `v-if` 一起使用时，`v-for` 的优先级比 `v-if` 更高。详见[列表渲染教程](../guide/list.html#v-for-with-v-if)</p>
 
 - **参考**：[条件渲染 - v-if](../guide/conditional.html)
 
