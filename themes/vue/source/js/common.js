@@ -1,5 +1,5 @@
 (function () {
-  initHashLevelRedirects()
+  // initHashLevelRedirects()
   initMobileMenu()
   initVideoModal()
   if (PAGE_TYPE) {
