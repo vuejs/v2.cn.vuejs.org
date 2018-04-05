@@ -136,8 +136,8 @@ return createElement('h1', this.blogTitle)
 // @returns {VNode}
 createElement(
   // {String | Object | Function}
-  // 一个 HTML 标签字符串，组件选项对象，或者一个返回值
-  // 类型为 String/Object 的函数，必要参数
+  // 一个 HTML 标签字符串，组件选项对象，或者
+  // 解析上述任何一种的一个 async 异步函数，必要参数。
   'div',
 
   // {Object}
@@ -490,7 +490,7 @@ new Vue({
 ## 函数式组件
 
 之前创建的锚点标题组件是比较简单，没有管理或者监听任何传递给他的状态，也没有生命周期方法。它只是一个接收参数的函数。
-在这个例子中，我们标记组件为 `functional`，这意味它是无状态 (没有 `data`)，无实例 (没有 `this` 上下文)。
+在这个例子中，我们标记组件为 `functional`，这意味它是无状态 (没有[响应式数据](../api/#选项-数据))，无实例 (没有 `this` 上下文)。
 一个 **函数式组件** 就像这样：
 
 ``` js
@@ -519,10 +519,10 @@ Vue.component('my-component', {
 
 组件需要的一切都是通过上下文传递，包括：
 
-- `props`：提供 props 的对象
-- `children`: VNode 子节点的数组
-- `slots`: slots 对象
-- `data`：传递给组件的 data 对象
+- `props`：提供 `props` 的对象
+- `children`: `VNode` 子节点的数组
+- `slots`: `slots` 对象
+- `data`：传递给组件的 [`data` 对象](#深入-data-对象)，并将这个组件作为第二个参数传入 `createElement`
 - `parent`：对父组件的引用
 - `listeners`: (2.3.0+) 一个包含了组件上所注册的 `v-on` 侦听器的对象。这只是一个指向 `data.on` 的别名。
 - `injections`: (2.3.0+) 如果使用了 [`inject`](../api/#provide-inject) 选项，则该对象包含了应当被注入的属性。
@@ -597,7 +597,7 @@ Vue.component('my-functional-button', {
 <template functional>
   <button
     class="btn btn-primary"
-    v-bind="data.attrs" 
+    v-bind="data.attrs"
     v-on="listeners"
   >
     <slot/>
