@@ -519,12 +519,12 @@ Vue.component('my-component', {
 
 组件需要的一切都是通过上下文传递，包括：
 
-- `props`：提供 `props` 的对象
-- `children`: `VNode` 子节点的数组
-- `slots`: `slots` 对象
-- `data`：传递给组件的 [`data` 对象](#深入-data-对象)，并将这个组件作为第二个参数传入 `createElement`
+- `props`：提供所有 prop 的对象
+- `children`: VNode 子节点的数组
+- `slots`: 返回所有插槽的对象的函数
+- `data`：传递给组件的[数据对象](#深入-data-对象)，并将这个组件作为第二个参数传入 `createElement`
 - `parent`：对父组件的引用
-- `listeners`: (2.3.0+) 一个包含了组件上所注册的 `v-on` 侦听器的对象。这只是一个指向 `data.on` 的别名。
+- `listeners`: (2.3.0+) 一个包含了所有在父组件上注册的事件侦听器的对象。这只是一个指向 `data.on` 的别名。
 - `injections`: (2.3.0+) 如果使用了 [`inject`](../api/#provide-inject) 选项，则该对象包含了应当被注入的属性。
 
 在添加 `functional: true` 之后，锚点标题组件的 render 函数之间简单更新增加 `context` 参数，`this.$slots.default` 更新为 `context.children`，之后`this.level` 更新为 `context.props.level`。
