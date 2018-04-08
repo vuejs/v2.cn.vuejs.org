@@ -14,17 +14,23 @@ order: 5
 
 在你的命令行中运行：
 
-`npm install buttercms --save`
+```bash
+npm install buttercms --save
+```
 
 Butter 也可以通过 CDN 加载：
 
-`<script src="https://cdnjs.buttercms.com/buttercms-1.1.0.min.js"></script>`
+```html
+<script src="https://cdnjs.buttercms.com/buttercms-1.1.0.min.js"></script>
+```
 
 ## 快速开始
 
 设置你的 API token：
 
-`var butter = require('buttercms')('your_api_token');`
+```javascript
+var butter = require('buttercms')('your_api_token');
+```
 
 使用 ES6：
 
@@ -42,7 +48,7 @@ const butter = Butter('your_api_token');
 </script>
 ```
 
-将这个文件导入到任何你想使用 ButterCMS 的组件中。然后中命令行运行：
+将这个文件导入到任何你想使用 ButterCMS 的组件中。然后在浏览器的命令行中运行：
 
 ```javascript
 butter.post.list({page: 1, page_size: 10}).then(function(response) {
@@ -50,13 +56,13 @@ butter.post.list({page: 1, page_size: 10}).then(function(response) {
 })
 ```
 
-这个 API 请求会获取你的博客文章列表。你将会在请求的响应中看到你的账户的一个示例博文。
+这个 API 请求会获取你的博客文章列表。你将会在请求的响应中看到你的账户的一篇示例博文。
 
 ## 展示博文
 
 为了展示博文，我们在应用中创建了一个 `/blog` 路由 (使用 Vue Router) 并从 Butter API 获取博文列表，同样的还创建了一个 `/blog/:slug` 路由来处理单篇博文。
 
-你可以翻阅 ButterCMS [API reference](https://buttercms.com/docs/api/?javascript#blog-posts) 来获取更多的选项，比如按分类或作者过滤。请求的响应也会包含一些用在翻页导航上的元数据。
+你可以翻阅 ButterCMS [API 参考文档](https://buttercms.com/docs/api/?javascript#blog-posts) 来了解更多选项，比如按分类或作者过滤。请求的响应也会包含一些用在翻页导航上的元数据。
 
 `router/index.js:`
 
@@ -188,7 +194,7 @@ export default new Router({
 
 ![buttercms-blogdetail](https://user-images.githubusercontent.com/160873/36868506-218c86b6-1d5e-11e8-8691-0409d91366d6.png)
 
-现在我们的应用已经拉取了所有博文并且我们可以导航到每个独立的博文。但我们的上一篇博文/下一篇博文的链接还不工作。
+现在我们的应用已经拉取了所有博文并且可以导航到每个独立的博文。但上一篇博文/下一篇博文的链接还不工作。
 
 需要注意的一点是在通过参数控制路由时，比如当用户从 `/blog/foo` 导航至 `/blog/bar` 时，我们复用了相同的组件实例。因为这两个路由渲染了相同的组件，所以比销毁老实例再创建新实例的效率更高。
 
@@ -230,13 +236,13 @@ export default new Router({
 </script>
 ```
 
-现在你的应用就有了可工作的博客，你可以在 ButterCMS 仪表盘便捷的更新它。
+现在你的应用就有了可工作的博客，你可以在 ButterCMS 仪表盘便捷地更新它。
 
 ## 分类、标签和作者
 
 使用 Butter 关于分类、标签和作者的 API 来设置和过滤你的博客。
 
-你可以移步到 ButterCMS API reference 来对这些对象有更多的了解：
+你可以移步到 ButterCMS API 参考文档来进一步了解这些对象：
 
 * [Categories](https://buttercms.com/docs/api/?ruby#categories)
 * [Tags](https://buttercms.com/docs/api/?ruby#tags)
@@ -273,8 +279,8 @@ created() {
 
 ## 替代方案
 
-有一个替代方案，尤其在你只喜欢写 Markdown 时适用，就是使用诸如 [Nuxtent](https://nuxtent.now.sh/guide/writing#async-components) 的工具。Nextent 允许你在 Markdown 文件内部使用 `Vue Component`。它类似一个静态站点工具 (例如 Jekyll)，让你在 Markdown 文件中撰写你的博文。Nuxtent 将 Vue.js 和 Markdown 很好的集成了起来，允许你生活在 100% 的 Vue.js 世界中。
+有一个替代方案，尤其在你只喜欢写 Markdown 时适用，就是使用诸如 [Nuxtent](https://nuxtent.now.sh/guide/writing#async-components) 的工具。Nuxtent 允许你在 Markdown 文件内部使用 `Vue Component`。它类似一个静态站点工具 (例如 Jekyll)，让你在 Markdown 文件中撰写你的博文。Nuxtent 将 Vue.js 和 Markdown 很好地集成了起来，让你完全生活在 Vue.js 的世界里。
 
 ## 总结
 
-差不多就是这些了！现在你拥有了一个允许在自己应用中的完全函数式的 CMS 博客。我们希望这份教程可以帮助你，使你的 Vue.js 开发体验更有乐趣 :)
+差不多就是这些了！现在你已经在自己的应用中拥有了一个可以正常工作的 CMS 博客。我们希望这份教程可以帮助你，使你的 Vue.js 开发体验更有乐趣 :)
