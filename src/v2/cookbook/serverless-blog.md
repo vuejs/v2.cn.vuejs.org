@@ -1,50 +1,54 @@
 ---
-title: Create a CMS-Powered Blog
+title: 创建一个基于 CMS 的博客
 type: cookbook
 order: 5
 ---
 
-# Create a CMS-Powered Blog Using Vue.js
+恭喜你已经发布了你的 Vue.js 网站！现在你想要在网站上快速加入一个博客，但不想新起一台服务器去部署一个 WordPress 实例 (或任何基于数据库的 CMS)。你希望只添加一些 Vue.js 的博客组件和一些路由就能搞定对吧？你想要的就是直接消费你的 Vue.js 应用中 API 来完全支撑起一个博客站。这份教程将会告诉你如何做到这一点，所以让我们来看看吧！
 
-So you've just launched your Vue.js website, congrats! Now you want to add a blog that quickly plugs into your website and you don't want to have to spin up a whole server just to host a Wordpress instance (or any DB-powered CMS for that matter). You want to just be able to add a few Vue.js blog components and some routes and have it all just work, right? What you're looking for a blog that's powered entirely by API's you can consume directly from your Vue.js application. This tutorial will teach you how to do just that, let's dive in!
+我们将会使用 Vue.js 快速构建一个基于 CMS 的博客站。它使用了 [ButterCMS](https://buttercms.com/)，一个 API 优先的 CMS，让你使用 ButterCMS 仪表盘管理内容并将我们的内容 API 集成到你的 Vue.js 应用。你可以为一个新的项目或在一个已有的 Vue.js 项目使用 ButterCMS。
 
-We're going to quickly build a CMS-powered blog with Vue.js. It uses [ButterCMS](https://buttercms.com/), an API-first CMS that lets you manage content using the ButterCMS dashboard and integrate our content API into your Vue.js app. You can use ButterCMS for new or existing Vue.js projects.
+![Butter 仪表盘](https://user-images.githubusercontent.com/160873/36677285-648798e4-1ad3-11e8-9454-d22fca8280b7.png "Butter Dashboard")
 
-![Butter Dashboard](https://user-images.githubusercontent.com/160873/36677285-648798e4-1ad3-11e8-9454-d22fca8280b7.png "Butter Dashboard")
+## 安装
 
-## Install
+在你的命令行中运行：
 
-Run this in your commandline:
+```bash
+npm install buttercms --save
+```
 
-`npm install buttercms --save`
+Butter 也可以通过 CDN 加载：
 
-Butter can also be loaded using a CDN:
+```html
+<script src="https://cdnjs.buttercms.com/buttercms-1.1.0.min.js"></script>
+```
 
-`<script src="https://cdnjs.buttercms.com/buttercms-1.1.0.min.js"></script>`
+## 快速开始
 
-## Quickstart
+设置你的 API token：
 
-Set your API token:
+```javascript
+var butter = require('buttercms')('your_api_token');
+```
 
-`var butter = require('buttercms')('your_api_token');`
-
-Using ES6:
+使用 ES6：
 
 ```javascript
 import Butter from 'buttercms';
 const butter = Butter('your_api_token');
 ```
 
-Using CDN:
+使用 CDN:
 
-```javascript
+```html
 <script src="https://cdnjs.buttercms.com/buttercms-1.1.0.min.js"></script>
 <script>
   var butter = Butter('your_api_token');
 </script>
 ```
 
- Import this file into any component you want to use ButterCMS. Then from the console run:
+将这个文件导入到任何你想使用 ButterCMS 的组件中。然后在浏览器的命令行中运行：
 
 ```javascript
 butter.post.list({page: 1, page_size: 10}).then(function(response) {
@@ -52,12 +56,13 @@ butter.post.list({page: 1, page_size: 10}).then(function(response) {
 })
 ```
 
-This API request fetches your blog posts. Your account comes with one example post which you'll see in the response.
+这个 API 请求会获取你的博客文章列表。你将会在请求的响应中看到你的账户的一篇示例博文。
 
-## Display posts
-To display posts we create a `/blog` route (using vue-router) in our app and fetch blog posts from the Butter API, as well as a `/blog/:slug` route to handle individual posts.
+## 展示博文
 
-See the ButterCMS [API reference](https://buttercms.com/docs/api/?javascript#blog-posts) for additional options such as filtering by category or author. The response also includes some metadata we'll use for pagination.
+为了展示博文，我们在应用中创建了一个 `/blog` 路由 (使用 Vue Router) 并从 Butter API 获取博文列表，同样的还创建了一个 `/blog/:slug` 路由来处理单篇博文。
+
+你可以翻阅 ButterCMS [API 参考文档](https://buttercms.com/docs/api/?javascript#blog-posts) 来了解更多选项，比如按分类或作者过滤。请求的响应也会包含一些用在翻页导航上的元数据。
 
 `router/index.js:`
 
@@ -86,9 +91,9 @@ export default new Router({
 })
 ```
 
-Then create `components/BlogHome.vue` which will be your blog homepage that lists your most recent posts.
+然后创建 `components/BlogHome.vue` 作为你的博客首页，列出你最近的博文。
 
-```javascript
+```html
 <script>
   import { butter } from '@/buttercms'
   export default {
@@ -105,7 +110,6 @@ Then create `components/BlogHome.vue` which will be your blog homepage that list
           page: 1,
           page_size: 10
         }).then((res) => {
-          // console.log(res.data)
           this.posts = res.data.data
         })
       }
@@ -115,18 +119,17 @@ Then create `components/BlogHome.vue` which will be your blog homepage that list
     }
   }
 </script>
-Display the result
 
 <template>
   <div id="blog-home">
       <h1>{{ page_title }}</h1>
-      <!-- Create v-for and apply a key for Vue. Example is using a combination of the slug and index -->
+      <!-- 创建 `v-for` 并为 Vue 应用一个 `key`，该示例使用了 `slug` 和 `index` 的组合。 -->
       <div v-for="(post,index) in posts" :key="post.slug + '_' + index">
         <router-link :to="'/blog/' + post.slug">
           <article class="media">
             <figure>
-              <!-- Bind results using a ':' -->
-              <!-- Use a v-if/else if their is a featured_image -->
+              <!-- 使用 `:` 绑定结果 -->
+              <!-- 使用一组 `v-if`/`else` 判断它们是否是 `featured_image` -->
               <img v-if="post.featured_image" :src="post.featured_image" alt="">
               <img v-else src="http://via.placeholder.com/250x250" alt="">
             </figure>
@@ -139,14 +142,13 @@ Display the result
 </template>
 ```
 
-Here's what it looks like (note we added CSS from https://bulma.io/ for quick styling):
+这是它的样子 (注意为了快速设置样式，我们从 https://bulma.io/ 添加了 CSS)：
 
 ![buttercms-bloglist](https://user-images.githubusercontent.com/160873/36868500-1b22e374-1d5e-11e8-82a0-20c8dc312716.png)
 
+现在创建 `components/BlogPost.vue` 用来展示你的单篇博文页面。
 
-Now create `components/BlogPost.vue` which will be your Blog Post page to list a single post.
-
-```javascript
+```html
 <script>
   import { butter } from '@/buttercms'
   export default {
@@ -160,7 +162,6 @@ Now create `components/BlogPost.vue` which will be your Blog Post page to list a
       getPost() {
         butter.post.retrieve(this.$route.params.slug)
           .then((res) => {
-            // console.log(res.data)
             this.post = res.data
           }).catch((res) => {
             console.log(res)
@@ -172,7 +173,7 @@ Now create `components/BlogPost.vue` which will be your Blog Post page to list a
     }
   }
 </script>
-Display the results
+
 <template>
   <div id="blog-post">
     <h1>{{ post.data.title }}</h1>
@@ -189,22 +190,21 @@ Display the results
 </template>
 ```
 
-Here's a preview:
+预览效果如下：
 
 ![buttercms-blogdetail](https://user-images.githubusercontent.com/160873/36868506-218c86b6-1d5e-11e8-8691-0409d91366d6.png)
 
+现在我们的应用已经拉取了所有博文并且可以导航到每个独立的博文。但上一篇博文/下一篇博文的链接还不工作。
 
-Now our app is pulling all blog posts and we can navigate to individual posts. However, our next/previous post buttons are not working.
+需要注意的一点是在通过参数控制路由时，比如当用户从 `/blog/foo` 导航至 `/blog/bar` 时，我们复用了相同的组件实例。因为这两个路由渲染了相同的组件，所以比销毁老实例再创建新实例的效率更高。
 
-One thing to note when using routes with params is that when the user navigates from /blog/foo to /blog/bar, the same component instance will be reused. Since both routes render the same component, this is more efficient than destroying the old instance and then creating a new one.
+<p class="tip">注意，用这种方式使用组件意味着这个组件的生命周期钩子将不会被调用。请移步 Vue Router 的文档了解[动态路由匹配](https://router.vuejs.org/en/essentials/dynamic-matching.html)。</p>
 
-<p class="tip">Be aware, that using the component this way will mean that the lifecycle hooks of the component will not be called. Visit the Vue.js docs to learn more about [Dynamic Route Matching](https://router.vuejs.org/en/essentials/dynamic-matching.html)</p>
+为了解决这个问题，我们需要匹配 `$route` 对象并在路由发生变化的时候调用 `getPost()`。
 
-To fix this we need to watch the `$route` object and call `getPost()` when the route changes.
+更新 `components/BlogPost.vue` 中的 `<script>` 部分：
 
-Updated `script` section in `components/BlogPost.vue`:
-
-```javascript
+```html
 <script>
   import { butter } from '@/buttercms'
   export default {
@@ -218,7 +218,6 @@ Updated `script` section in `components/BlogPost.vue`:
       getPost() {
         butter.post.retrieve(this.$route.params.slug)
           .then((res) => {
-            // console.log(res.data)
             this.post = res.data
           }).catch((res) => {
             console.log(res)
@@ -237,21 +236,21 @@ Updated `script` section in `components/BlogPost.vue`:
 </script>
 ```
 
-Now your app has a working blog that can be updated easily in the ButterCMS dashboard.
+现在你的应用就有了可工作的博客，你可以在 ButterCMS 仪表盘便捷地更新它。
 
-## Categories, Tags, and Authors
+## 分类、标签和作者
 
-Use Butter's APIs for categories, tags, and authors to feature and filter content on your blog.
+使用 Butter 关于分类、标签和作者的 API 来设置和过滤你的博客。
 
-See the ButterCMS API reference for more information about these objects:
+你可以移步到 ButterCMS API 参考文档来进一步了解这些对象：
 
 * [Categories](https://buttercms.com/docs/api/?ruby#categories)
 * [Tags](https://buttercms.com/docs/api/?ruby#tags)
 * [Authors](https://buttercms.com/docs/api/?ruby#authors)
 
-Here's an example of listing all categories and getting posts by category. Call these methods on the `created()` lifecycle hook:
+这里有一个示例，列出所有分类并根据分类获取博文列表。在生命周期钩子 `created()` 中调用这些方法：
 
-```
+```javascript
 methods: {
   ...
   getCategories() {
@@ -278,12 +277,10 @@ created() {
 }
 ```
 
-## Alternative Patterns
+## 替代方案
 
-An alternative pattern to consider, especially if you prefer writing only in Markdown, is using something like [Nuxtent](https://nuxtent.now.sh/guide/writing#async-components). Nuxtent allows you to use `Vue Component` inside of Markdown files. This approach would be akin to a static site approach (i.e. Jekyll) where you compose your blog posts in Markdown files. Nuxtent adds a nice integration between Vue.js and Markdown allowing you to live in a 100% Vue.js world.
+有一个替代方案，尤其在你只喜欢写 Markdown 时适用，就是使用诸如 [Nuxtent](https://nuxtent.now.sh/guide/writing#async-components) 的工具。Nuxtent 允许你在 Markdown 文件内部使用 `Vue Component`。它类似一个静态站点工具 (例如 Jekyll)，让你在 Markdown 文件中撰写你的博文。Nuxtent 将 Vue.js 和 Markdown 很好地集成了起来，让你完全生活在 Vue.js 的世界里。
 
+## 总结
 
-## Wrap up
-
-That's it! You now have a fully functional CMS-powered blog running in your app.  We hope this tutorial was helpful and made your development experience with Vue.js even more enjoyable :)
-
+差不多就是这些了！现在你已经在自己的应用中拥有了一个可以正常工作的 CMS 博客。我们希望这份教程可以帮助你，使你的 Vue.js 开发体验更有乐趣 :)
