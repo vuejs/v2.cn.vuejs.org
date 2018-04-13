@@ -120,7 +120,7 @@ render: function (createElement) {
 
 ### 虚拟 DOM
 
-Vue 通过建立一个**虚拟 DOM** 对真实 DOM 发生的变化保持追踪。请近距离看一下这行代码：
+Vue 通过建立一个**虚拟 DOM** 对真实 DOM 发生的变化保持追踪。请仔细看这行代码：
 
 ``` js
 return createElement('h1', this.blogTitle)
