@@ -317,11 +317,11 @@ components: {
 
 这样问题就解决了！
 
-## Alternate Template Definitions
+## 模板定义的替代品
 
-### Inline Templates
+### 内联模板
 
-When the `inline-template` special attribute is present on a child component, the component will use its inner content as its template, rather than treating it as distributed content. This allows more flexible template-authoring.
+当 `inline-template` 这个特殊的特性出现在一个子组件上时，这个组件将会使用其里面的内容作为模板，而不是将其作为被分发的内容。这使得模板的撰写工作更加灵活。
 
 ``` html
 <my-component inline-template>
@@ -332,11 +332,11 @@ When the `inline-template` special attribute is present on a child component, th
 </my-component>
 ```
 
-<p class="tip">However, <code>inline-template</code> makes the scope of your templates harder to reason about. As a best practice, prefer defining templates inside the component using the <code>template</code> option or in a <code>&lt;template&gt;</code> element in a <code>.vue</code> file.</p>
+<p class="tip">不过，<code>inline-template</code> 会让你模板的作用域变得更加难以理解。所以作为最佳实践，请在组件内优先选择 <code>template</code> 选项或 <code>.vue</code> 文件里的一个 <code>&lt;template&gt;</code> 元素来定义模板。</p>
 
 ### X-Templates
 
-Another way to define templates is inside of a script element with the type `text/x-template`, then referencing the template by an id. For example:
+另一个定义模板的方式是在一个 `<script>` 元素中，并为其带上 `text/x-template` 的类型，然后通过一个 id 将模板引用过去。例如：
 
 ``` html
 <script type="text/x-template" id="hello-world-template">
@@ -350,7 +350,7 @@ Vue.component('hello-world', {
 })
 ```
 
-<p class="tip">These can be useful for demos with large templates or in extremely small applications, but should otherwise be avoided, because they separate templates from the rest of the component definition.</p>
+<p class="tip">这些可以用于模板特别大的 demo 或极小型的应用，但是其它情况下请避免使用，因为这会将模板和该组件的其它定义分离开。</p>
 
 ## Controlling Updates
 
