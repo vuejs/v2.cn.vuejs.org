@@ -16,13 +16,13 @@ Vue.component('my-component-name', { /* ... */ })
 
 该组件名就是 `Vue.component` 的第一个参数。
 
-你给予组件的名字可能依赖于你打算拿它来做什么。当直接在 DOM 中使用一个组件 (相对于在字符串模板或[单文件组件](single-file-components.html)) 的时候，我们强烈推荐遵循 [W3C 规范](https://www.w3.org/TR/custom-elements/#concepts)中的自定义组件名 (字母全小写且必须包含一个连字符)。这会帮助你避免和当前以及未来的 HTML 元素相冲突。
+你给予组件的名字可能依赖于你打算拿它来做什么。当直接在 DOM 中使用一个组件 (而不是在字符串模板或[单文件组件](single-file-components.html)) 的时候，我们强烈推荐遵循 [W3C 规范](https://www.w3.org/TR/custom-elements/#concepts)中的自定义组件名 (字母全小写且必须包含一个连字符)。这会帮助你避免和当前以及未来的 HTML 元素相冲突。
 
-你可以在[风格指南](../style-guide/#基础组件名-强烈推荐)查阅到关于组件名的其它建议。
+你可以在[风格指南](../style-guide/#基础组件名-强烈推荐)中查阅到关于组件名的其它建议。
 
 ### 组件名大小写
 
-你有两种选择来定义组件名：
+定义组件名的方式有两种：
 
 #### 使用 kebab-case
 
@@ -38,15 +38,15 @@ Vue.component('my-component-name', { /* ... */ })
 Vue.component('MyComponentName', { /* ... */ })
 ```
 
-当使用 PascalCase (驼峰式命名) 定义一个组件时，你在引用这个自定义元素时两种命名法都可以使用。也就是说 `<my-component-name>` 和 `<MyComponentName>` 都是可接受的。注意，尽管如此，直接在 DOM (比如非字符串的模板) 中使用时只有 kebab-case 是有效的。
+当使用 PascalCase (驼峰式命名) 定义一个组件时，你在引用这个自定义元素时两种命名法都可以使用。也就是说 `<my-component-name>` 和 `<MyComponentName>` 都是可接受的。注意，尽管如此，直接在 DOM (即非字符串的模板) 中使用时只有 kebab-case 是有效的。
 
 ## 全局注册
 
-现在，我们只是通过 `Vue.component` 创建来组件：
+现在，我们只用过 `Vue.component` 来创建组件：
 
 ```js
 Vue.component('my-component-name', {
-  // ... options ...
+  // ... 选项 ...
 })
 ```
 
@@ -68,13 +68,13 @@ new Vue({ el: '#app' })
 </div>
 ```
 
-同时它也运用到了所有的子组件中，也就是说这三个组件_在各自内部_也都可以相互使用。
+在所有子组件中也是如此，也就是说这三个组件_在各自内部_也都可以相互使用。
 
 ## 本地注册
 
-全局注册往往是不够理想的。比如，如果你使用一个像 webpack 这样的构件系统，全局注册所有的组件意味着即便你已经不再使用一个组件了，它仍然会被包含在你最终的构建中。这造成了用户下载的 JavaScript 的无谓的增加。
+全局注册往往是不够理想的。比如，如果你使用一个像 webpack 这样的构件系统，全局注册所有的组件意味着即便你已经不再使用一个组件了，它仍然会被包含在你最终的构建结果中。这造成了用户下载的 JavaScript 的无谓的增加。
 
-在这些情况下，你可以通过一个普通的 JavaScript 对象来定义你的组件：
+在这些情况下，你可以通过一个普通的 JavaScript 对象来定义组件：
 
 ```js
 var ComponentA = { /* ... */ }
@@ -82,7 +82,7 @@ var ComponentB = { /* ... */ }
 var ComponentC = { /* ... */ }
 ```
 
-然后在你想要使用的地方放入一个 `components` 选项完成组件定义：
+然后在 `components` 选项中定义你想要使用的组件：
 
 ```js
 new Vue({
@@ -94,9 +94,9 @@ new Vue({
 })
 ```
 
-对于 `components` 对象中的每个属性来说，其键就是自定义元素的名字，其值就是这个组件的选项对象。
+对于 `components` 对象中的每个属性来说，其属性名就是自定义元素的名字，其属性值就是这个组件的选项对象。
 
-注意**本地注册的组件_不会_在其子组件中可用**。例如，如果你希望 `ComponentA` 在 `ComponentB` 中可用，则你需要这样写：
+注意**本地注册的组件在其子组件中_不可用_**。例如，如果你希望 `ComponentA` 在 `ComponentB` 中可用，则你需要这样写：
 
 ```js
 var ComponentA = { /* ... */ }
@@ -109,7 +109,7 @@ var ComponentB = {
 }
 ```
 
-或者如果你通过 Babel 和 webpack 使用 ES2015 modules，那么代码看起来更像：
+或者如果你通过 Babel 和 webpack 使用 ES2015 模块，那么代码看起来更像：
 
 ```js
 import ComponentA from './ComponentA.vue'
@@ -129,7 +129,7 @@ export default {
 
 ## 模块系统
 
-如果你没有通过 `import`/`require` 使用一个模块系统，你现在可能可以跳过这个章节了。如果你使用了，那么我们会为你提供一些特殊的使用说明和注意事项。
+如果你没有通过 `import`/`require` 使用一个模块系统，也许可以暂且跳过这个章节。如果你使用了，那么我们会为你提供一些特殊的使用说明和注意事项。
 
 ### 在模块系统中本地注册
 
@@ -154,7 +154,7 @@ export default {
 
 ### 基础组件的自动化全局注册
 
-可能你的许多组件只是包裹了一个输入框或按钮之类的元素，是相对通用的。我们有的时候会把它们称为[基础组件](../style-guide/#基础组件名-强烈推荐)并且它们会频繁的被你的组件用到。
+可能你的许多组件只是包裹了一个输入框或按钮之类的元素，是相对通用的。我们有时候会把它们称为[基础组件](../style-guide/#基础组件名-强烈推荐)，它们会在各个组件中被频繁的用到。
 
 所以会导致很多组件里都会有一个包含基础组件的长列表：
 
@@ -172,7 +172,7 @@ export default {
 }
 ```
 
-来支持一个模板中相对小的标记：
+而只是用于模板中的一小部分：
 
 ```html
 <BaseInput
@@ -184,7 +184,7 @@ export default {
 </BaseButton>
 ```
 
-庆幸的是，如果你使用了 webpack (或内置了 webpack 的 [Vue CLI 3+](https://github.com/vuejs/vue-cli))，你就可以使用 `require.context` 只全局注册这些非常通用的基础组件。这里有一份可以让你在应用入口文件 (比如 `src/main.js`) 中全局导入基础组件的示例代码：
+幸好如果你使用了 webpack (或在内部使用了 webpack 的 [Vue CLI 3+](https://github.com/vuejs/vue-cli))，那么就可以使用 `require.context` 只全局注册这些非常通用的基础组件。这里有一份可以让你在应用入口文件 (比如 `src/main.js`) 中全局导入基础组件的示例代码：
 
 ```js
 import Vue from 'vue'
