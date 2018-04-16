@@ -42,7 +42,7 @@ Vue.component('MyComponentName', { /* ... */ })
 
 ## 全局注册
 
-现在，我们只用过 `Vue.component` 来创建组件：
+到目前为止，我们只用过 `Vue.component` 来创建组件：
 
 ```js
 Vue.component('my-component-name', {
