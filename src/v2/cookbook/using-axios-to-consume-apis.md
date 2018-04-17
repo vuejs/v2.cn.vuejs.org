@@ -1,16 +1,16 @@
 ---
-title: Using Axios to Consume APIs
+title: 使用 axios 访问 API
 type: cookbook
 order: 9
 ---
 
-## Simple Example
+## 简单的示例
 
-There are many times when building application for the web that you may want to consume and display data from an API. There are several ways to do so, but a very popular approach is to use [axios](https://github.com/axios/axios), a promise-based HTTP client.
+有很多时候你在构建应用时需要访问一个 API 并展示其数据。做这件事的方法有好几种，而使用基于 promise 的 HTTP 客户端 [axios](https://github.com/axios/axios) 则是其中非常流行的一种。
 
-In this exercise, we'll use the [CoinDesk API](https://www.coindesk.com/api/) to walk through displaying Bitcoin prices, updated every minute. First, we'd install axios with either npm/yarn or through a CDN link.
+在本次实践中，我们会使用 [CoinDesk API](https://www.coindesk.com/api/) 来完成展示比特币价格且每分钟更新的工作。首先，我们要通过 npm/Yarn 或一个 CDN 链接安装 axios。
 
-There are a number of ways we can request information from the API, but it's nice to first find out what the shape of the data looks like, in order to know what to display. In order to do so, we'll make a call to the API endpoint and output it so we can see it. We can see in the CoinDesk API documentation, that this call will be made to `https://api.coindesk.com/v1/bpi/currentprice.json`. So first, we'll create a data property that will eventually house our information, and we'll retrieve the data and assign it using the `mounted` lifecycle hook:
+我们有很多种方式可以从 API 请求信息，但是最好首先确认这些数据看起来长什么样，以便进一步确定如何展示它。为此，我们会调用一次这个 API 并输出结果，以便我们能够看清楚它。如 CoinDesk 的 API 文档所述，请求会发送到 `https://api.coindesk.com/v1/bpi/currentprice.json`。所以，我们首先创建一个 data 里的属性以最终放置信息，然后将会在 `mounted` 生命周期钩子中获取数据并赋值过去：
 
 ```js
 new Vue({
@@ -34,18 +34,18 @@ new Vue({
 </div>
 ```
 
-And what we get is this:
+我们得到的东西是这样的：
 
 <p data-height="350" data-theme-id="32763" data-slug-hash="80043dfdb7b90f138f5585ade1a5286f" data-default-tab="result" data-user="Vue" data-embed-version="2" data-pen-title="First Step Axios and Vue" class="codepen">See the Pen <a href="https://codepen.io/team/Vue/pen/80043dfdb7b90f138f5585ade1a5286f/">First Step Axios and Vue</a> by Vue (<a href="https://codepen.io/Vue">@Vue</a>) on <a href="https://codepen.io">CodePen</a>.</p>
 <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
 
-Excellent! We've got some data. But it looks pretty messy right now so let's display it properly and add some error handling in case things aren't working as expected or it takes longer than we thought to get the information.
+很好！我们已经得到了一些数据。但是它看起来还比较乱，所以我们会更好的展示它并添加一些错误处理，以防出现异常情况或请求超时。
 
-## Real-World Example: Working with the Data
+## 真实示例：和数据协同工作
 
-### Displaying Data from an API
+### 从一个 API 展示数据
 
-It's pretty typical that the information we'll need is within the response, and we'll have to traverse what we've just stored to access it properly. In our case, we can see that the price information we need lives in `response.data.bpi`. If we use this instead, our output is as follows:
+通常情况下，我们需要的信息已经包含在了响应中，只需要遍历我们保存下来的内容就能正确地获取。在这个例子中，我们可以看到我们需要的价格信息在 `response.data.bpi` 中。如果我们换用这个，则输出是下面这样的：
 
 ```js
 axios
@@ -56,7 +56,7 @@ axios
 <p data-height="200" data-theme-id="32763" data-slug-hash="6100b10f1b4ac2961208643560ba7d11" data-default-tab="result" data-user="Vue" data-embed-version="2" data-pen-title="Second Step Axios and Vue" class="codepen">See the Pen <a href="https://codepen.io/team/Vue/pen/6100b10f1b4ac2961208643560ba7d11/">Second Step Axios and Vue</a> by Vue (<a href="https://codepen.io/Vue">@Vue</a>) on <a href="https://codepen.io">CodePen</a>.</p>
 <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
 
-This is a lot easier for us to display, so we can now update our HTML to display only the information we need from the data we've received, and we'll create a [filter](../api/#Vue-filter) to make sure that the decimal is in the appropriate place as well.
+这让展示的工作变得容易了很多，所以我们可以更新 HTML 以从获取的数据中仅仅展示真正需要的信息。我们会创建一个[过滤器](../api/#Vue-filter)来确保小数部分的合理展示。
 
 ```html
 <div id="app">
@@ -81,15 +81,15 @@ filters: {
 <p data-height="300" data-theme-id="32763" data-slug-hash="9d59319c09eaccfaf35d9e9f11990f0f" data-default-tab="result" data-user="Vue" data-embed-version="2" data-pen-title="Third Step Axios and Vue" class="codepen">See the Pen <a href="https://codepen.io/team/Vue/pen/9d59319c09eaccfaf35d9e9f11990f0f/">Third Step Axios and Vue</a> by Vue (<a href="https://codepen.io/Vue">@Vue</a>) on <a href="https://codepen.io">CodePen</a>.</p>
 <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
 
-### Dealing with Errors
+### 错误处理
 
-There are times when we might not get the data we need from the API. There are several reasons that our axios call might fail, including but not limited to:
+很多时候我们可能并没有从 API 获取想要的数据。这可能是由于很多种因素引起的，比如 axios 调用可能由于多种原因而失败，包括但不限于：
 
-* The API is down.
-* The request was made incorrectly.
-* The API isn't giving us the information in the format that we anticipated.
+* API 不工作了；
+* 请求发错了；
+* API 没有按我们预期的格式返回信息。
 
-When making this request, we should be checking for just such circumstances, and giving ourselves information in every case so we know how to handle the problem. In an axios call, we'll do so by using `catch`.
+当发送这个请求的时候，我们应该检查一下这些情况，并在所有情况下都返回相应的信息以便处理这些问题。在 axios 中，我们会通过使用 `catch` 来做这件事。
 
 ```js
 axios
@@ -98,7 +98,7 @@ axios
   .catch(error => console.log(error))
 ```
 
-This will let us know if something failed during the API request, but what if the data is mangled or the API is down? Right now the user will just see nothing. We might want to build a loader for this case, and then tell the user if we're not able to get the data at all.
+这样我们就会知道在请求 API 的过程中是否有地方出错了，不过当数据长时间生成不出来或 API 不工作的时候会怎样呢？现在用户将会什么都看不到。我们可能想为这种情况构建一个加载效果，然后在根本无法获取数据时通知用户。
 
 ```js
 new Vue({
@@ -152,21 +152,21 @@ new Vue({
 </div>
 ```
 
-You can hit the rerun button on this pen to see the loading status briefly while we gather data from the API:
+你可以在下面的例子中点击 Rerun 按钮以便看到我们从 API 获取数据时的加载状态：
 
 <p data-height="300" data-theme-id="32763" data-slug-hash="6c01922c9af3883890fd7393e8147ec4" data-default-tab="result" data-user="Vue" data-embed-version="2" data-pen-title="Fourth Step Axios and Vue" class="codepen">See the Pen <a href="https://codepen.io/team/Vue/pen/6c01922c9af3883890fd7393e8147ec4/">Fourth Step Axios and Vue</a> by Vue (<a href="https://codepen.io/Vue">@Vue</a>) on <a href="https://codepen.io">CodePen</a>.</p>
 <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
 
-This can be even futher improved with the use of components for different sections and more distinct error reporting, depending on the API you're using and the complexity of your application.
+我们还可以做进一步优化，如用组件来实现不同部分、给出更明确的错误报告。这都取决于你使用的 API 以及应用的复杂度。
 
-## Alternative Patterns
+## 替代方案
 
 ### Fetch API
 
-The [Fetch API](https://developers.google.com/web/updates/2015/03/introduction-to-fetch) is a powerful native API for these types of requests. You may have heard that one of the benefits of the Fetch API is that you don't need to load an external resource in order to use it, which is true! Except... that it's not fully supported yet, so you will still need to use a polyfill. There are also some gotchas when working with this API, which is why many prefer to use axios for now. This may very well change in the future though.
+[Fetch API](https://developers.google.com/web/updates/2015/03/introduction-to-fetch) 是一个用于此类请求的强大的原生 API。你可能听说过 Fetch API 其中的一个好处，就是你不需要在使用它的时候额外加载一个外部资源。确实如此！但是……目前它还没有被浏览器完全支持，所以你仍然需要一个 polyfill。使用这个 API 还有很多别的注意事项，这也是为什么大家现阶段还是更喜欢 axios 多一些。当然这个事情在未来可能会发生改变。
 
-If you're interested in using the Fetch API, there are some [very good articles](https://scotch.io/@bedakb/lets-build-type-ahead-component-with-vuejs-2-and-fetch-api) explaining how to do so.
+如果你对使用 Fetch API 有兴趣，这里有一些[非常棒的文章](https://scotch.io/@bedakb/lets-build-type-ahead-component-with-vuejs-2-and-fetch-api)来解释如何使用它。
 
-## Wrapping Up
+## 总结
 
-There are many ways to work with Vue and axios beyond consuming and displaying an API. You can also communicate with Serverless Functions, post/edit/delete from an API where you have write access, and many other benefits. Due to the straightforward integration of these two libraries, it's become a very common choice for developers who need to integrate HTTP clients into their workflow.
+其实 Vue 和 axios 可以在一起配合的事情不只是访问和展示一个 API。你也可以和 Serverless Function 通信，向一个有写权限的 API 发送发布/编辑/删除请求等等。由于这两个库的集成很简单直接，它便成为了需要在工作流中集成 HTTP 客户端的开发者的常见选择。
