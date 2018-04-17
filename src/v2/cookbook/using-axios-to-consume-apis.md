@@ -169,4 +169,4 @@ new Vue({
 
 ## 总结
 
-其实 Vue 和 axios 可以在一起配合的事情不只是访问和展示一个 API。你也可以和 Serverless Function 通信，向一个有写权限的 API 发送 post/edit/delete 请求等等。由于这两个库的集成很简单直接，它便成为了需要在工作流中集成 HTTP 客户端的开发者的常见选择。
+其实 Vue 和 axios 可以在一起配合的事情不只是访问和展示一个 API。你也可以和 Serverless Function 通信，向一个有写权限的 API 发送发布/编辑/删除请求等等。由于这两个库的集成很简单直接，它便成为了需要在工作流中集成 HTTP 客户端的开发者的常见选择。
