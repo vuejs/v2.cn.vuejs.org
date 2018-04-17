@@ -58,21 +58,21 @@ new Vue({
 
 <p class="tip">你的站点上动态渲染的任意 HTML 可能会非常危险，因为它很容易导致 [XSS 攻击](https://en.wikipedia.org/wiki/Cross-site_scripting)。请只对可信内容使用 HTML 插值，**绝不要**对用户提供的内容使用插值。</p>
 
-### 特性
+### 属性
 
-Mustache 语法不能作用在 HTML 特性上，遇到这种情况应该使用 [v-bind 指令](../api/#v-bind)：
+Mustache 语法不能作用在 HTML 属性上，遇到这种情况应该使用 [v-bind 指令](../api/#v-bind)：
 
 ``` html
 <div v-bind:id="dynamicId"></div>
 ```
 
-在布尔特性的情况下，它们的存在即暗示为 `true`，`v-bind` 工作起来略有不同，在这个例子中：
+在布尔属性的情况下，它们的存在即暗示为 `true`，`v-bind` 工作起来略有不同，在这个例子中：
 
 ``` html
 <button v-bind:disabled="isButtonDisabled">Button</button>
 ```
 
-如果 `isButtonDisabled` 的值是 `null`、`undefined` 或 `false`，则 `disabled` 特性甚至不会被包含在渲染出来的 `<button>` 元素中。
+如果 `isButtonDisabled` 的值是 `null`、`undefined` 或 `false`，则 `disabled` 属性甚至不会被包含在渲染出来的 `<button>` 元素中。
 
 ### 使用 JavaScript 表达式
 
@@ -140,7 +140,7 @@ Mustache 语法不能作用在 HTML 特性上，遇到这种情况应该使用 [
 
 ## 缩写
 
-`v-` 前缀作为一种视觉提示，用来识别模板中 Vue 特定的特性。当你在使用 Vue.js 为现有标签添加动态行为 (dynamic behavior) 时，`v-` 前缀很有帮助，然而，对于一些频繁用到的指令来说，就会感到使用繁琐。同时，在构建由 Vue.js 管理所有模板的[单页面应用程序 (SPA - single page application)](https://en.wikipedia.org/wiki/Single-page_application) 时，`v-` 前缀也变得没那么重要了。因此，Vue.js 为 `v-bind` 和 `v-on` 这两个最常用的指令，提供了特定简写：
+`v-` 前缀作为一种视觉提示，用来识别模板中 Vue 特定的属性。当你在使用 Vue.js 为现有标签添加动态行为 (dynamic behavior) 时，`v-` 前缀很有帮助，然而，对于一些频繁用到的指令来说，就会感到使用繁琐。同时，在构建由 Vue.js 管理所有模板的[单页面应用程序 (SPA - single page application)](https://en.wikipedia.org/wiki/Single-page_application) 时，`v-` 前缀也变得没那么重要了。因此，Vue.js 为 `v-bind` 和 `v-on` 这两个最常用的指令，提供了特定简写：
 
 ### `v-bind` 缩写
 
@@ -162,4 +162,4 @@ Mustache 语法不能作用在 HTML 特性上，遇到这种情况应该使用 [
 <a @click="doSomething">...</a>
 ```
 
-它们看起来可能与普通的 HTML 略有不同，但 `:` 与 `@` 对于特性名来说都是合法字符，在所有支持 Vue.js 的浏览器都能被正确地解析。而且，它们不会出现在最终渲染的标记中。缩写语法是完全可选的，但随着你更深入地了解它们的作用，你会庆幸拥有它们。
+它们看起来可能与普通的 HTML 略有不同，但 `:` 与 `@` 对于属性名来说都是合法字符，在所有支持 Vue.js 的浏览器都能被正确地解析。而且，它们不会出现在最终渲染的标记中。缩写语法是完全可选的，但随着你更深入地了解它们的作用，你会庆幸拥有它们。
