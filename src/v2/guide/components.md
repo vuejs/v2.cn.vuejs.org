@@ -1,15 +1,15 @@
 ---
-title: Components Basics
+title: 组件基础
 type: guide
 order: 11
 ---
 
-## Base Example
+## 基本示例
 
-Here's an example of a Vue component:
+这里有一个 Vue 组件的示例：
 
 ``` js
-// Define a new component called button-counter
+// 定义一个名为 button-counter 的新组件
 Vue.component('button-counter', {
   data: function () {
     return {
@@ -20,7 +20,7 @@ Vue.component('button-counter', {
 })
 ```
 
-Components are reusable Vue instances with a name: in this case, `<button-counter>`. We can use this component as a custom element inside a root Vue instance created with `new Vue`:
+组件是可复用的 Vue 实例，且带有一个名字：在这个例子中是 `<button-counter>`。我们在一个通过 `new Vue` 创建的 Vue 根实例中可以作为一个自定义元素来使用这个组件：
 
 ```html
 <div id="components-demo">
@@ -49,11 +49,11 @@ new Vue({ el: '#components-demo' })
 </script>
 {% endraw %}
 
-Since components are reusable Vue instances, they accept the same options as `new Vue`, such as `data`, `computed`, `watch`, `methods`, and lifecycle hooks. The only exceptions are a few root-specific options like `el`.
+因为组件是可复用的 Vue 实例，它们接收和 `new Vue` 相同的选项，例如 `data`、`computed`、`watch`、`methods` 以及生命周期钩子等。也有少数 `el` 这样的根特有的例外选项。
 
-## Reusing Components
+## 复用组件
 
-Components can be reused as many times as you want:
+组件是你想复用多少次就可以复用多少次的：
 
 ```html
 <div id="components-demo">
@@ -74,11 +74,11 @@ new Vue({ el: '#components-demo2' })
 </script>
 {% endraw %}
 
-Notice that when clicking on the buttons, each one maintains its own, separate `count`. That's because each time you use a component, a new **instance** of it is created.
+注意当点击按钮时，每个组件都会各自独立维护它的 `count`。因为你每用一次组件，就会有一个它的新**实例**被创建。
 
-### `data` Must Be a Function
+### `data` 必须是一个函数
 
-When we defined the `<button-counter>` component, you may have noticed that `data` wasn't directly provided an object, like this:
+当我们定义这个 `<button-counter>` 组件时，你可能会发现它的 `data` 并不是像这样直接提供一个对象：
 
 ```js
 data: {
@@ -86,7 +86,7 @@ data: {
 }
 ```
 
-Instead, **a component's `data` option must be a function**, so that each instance can maintain an independent copy of the returned data object:
+取而代之的是，**一个组件的 `data` 选项必须是一个函数**，因此每个实例可以维护一份被返回对象的独立的拷贝：
 
 ```js
 data: function () {
@@ -96,7 +96,7 @@ data: function () {
 }
 ```
 
-If Vue didn't have this rule, clicking on one button would affect the data of _all other instances_, like below:
+如果 Vue 没有这条规则，点击一个按钮就可能会像如下代码一样影响到_其它所有实例_：
 
 {% raw %}
 <div id="components-demo3" class="demo">
@@ -118,15 +118,15 @@ new Vue({ el: '#components-demo3' })
 </script>
 {% endraw %}
 
-## Organizing Components
+## 组织组件
 
-It's common for an app to be organized into a tree of nested components:
+通常一个应用都会被组织成为一个嵌套到组件树：
 
 ![Component Tree](/images/components.png)
 
-For example, you might have components for a header, sidebar, and content area, each typically containing other components for navigation links, blog posts, etc.
+例如，你可能会有页头的组件、侧边栏的组件以及内容区的组件等，每个组件又包含了其它的像导航链接、博文之类的组件。
 
-To use these components in templates, they must be registered so that Vue knows about them. There are two types of component registration: **global** and **local**. So far, we've only registered components globally, using `Vue.component`:
+为了在模板中使用这些组件，它们必须被注册以便被 Vue 认出来。这里有两种组件的注册类型：**全局**和**局部**。至此，我们的组件都只是通过 `Vue.component` 全局注册的：
 
 ```js
 Vue.component('my-component-name', {
@@ -134,15 +134,15 @@ Vue.component('my-component-name', {
 })
 ```
 
-Globally registered components can be used in the template of any root Vue instance (`new Vue`) created afterwards -- and even inside all subcomponents of that Vue instance's component tree.
+全局注册的组件可以用在任何在此之后 (通过 `new Vue`) 创建的 Vue 根实例，也包括其组件树中的所有子组件的模板中。
 
-That's all you need to know about registration for now, but once you've finished reading this page and feel comfortable with its content, we recommend coming back later to read the full guide on [Component Registration](components-registration.html).
+到这里，你需要了解的注册方法大概就是这样了，如果你阅读完整篇文章并对它的内容感到满意，我们会推荐你晚些时候回来把[组件注册](components-registration.html)的部分读完。
 
-## Passing Data to Child Components with Props
+## 通过 Prop 向子组件传递数据
 
-Earlier, we mentioned creating a component for blog posts. The problem is, that component won't be useful unless you can pass data to it, such as the title and content of the specific post we want to display. That's where props come in.
+早些时候，我们提到了创建一个博文组件的事情。问题是如果你不能向这个组件传递某一篇博文的标题或内容之类的我们想展示的数据的话，它是没有办法使用的。这也正是 prop 的由来。
 
-Props are custom attributes you can register on a component. When a value is passed to a prop attribute, it becomes a property on that component instance. To pass a title to our blog post component, we can include it in the list of props this component accepts, using a `props` option:
+Prop 是你可以在组件上注册一些的自定义特性。当一个值传递给一个 prop 特性的时候，它就变成了那个组件实例的一个属性。为了给我们的博文组件传递一个标题，我们可以用一个 `props` 选项将其包含在该组件可接受的 prop 列表中：
 
 ```js
 Vue.component('blog-post', {
@@ -151,9 +151,9 @@ Vue.component('blog-post', {
 })
 ```
 
-A component can have as many props as you'd like and by default, any value can be passed to any prop. In the template above, you'll see that we can access this value on the component instance, just like with `data`.
+一个组件默认可以拥有你想拥有的任意数量的 prop，任何值都可以传递给任何 prop。在上述模板中，你会发现我们能够在组件实例中访问这个值，就像访问 `data` 中的值一样。
 
-Once a prop is registered, you can pass data to it as a custom attribute, like this:
+一个 prop 被注册之后，你就可以像这样把数据作为一个自定义特性传递进来：
 
 ```html
 <blog-post title="My journey with Vue"></blog-post>
@@ -176,7 +176,7 @@ new Vue({ el: '#blog-post-demo' })
 </script>
 {% endraw %}
 
-In a typical app, however, you'll likely have an array of posts in `data`:
+然而在一个典型的应用中，你可能在 `data` 里有一个博文的数组：
 
 ```js
 new Vue({
@@ -191,7 +191,7 @@ new Vue({
 })
 ```
 
-Then want to render a component for each one:
+并想要为每篇博文渲染一个组件：
 
 ```html
 <blog-post
@@ -201,26 +201,26 @@ Then want to render a component for each one:
 ></blog-post>
 ```
 
-Above, you'll see that we can use `v-bind` to dynamically pass props. This is especially useful when you don't know the exact content you're going to render ahead of time, like when [fetching posts from an API](https://jsfiddle.net/chrisvfritz/sbLgr0ad).
+如上所示，你会发现我们可以使用 `v-bind` 来动态传递 prop。这在你一开始不清楚要渲染的具体内容，比如[从一个 API 获取博文列表](https://jsfiddle.net/chrisvfritz/sbLgr0ad)的时候，是非常有用的。
 
-That's all you need to know about props for now, but once you've finished reading this page and feel comfortable with its content, we recommend coming back later to read the full guide on [Props](components-props.html).
+到这里，你需要了解的 prop 大概就是这样了，如果你阅读完整篇文章并对它的内容感到满意，我们会推荐你晚些时候回来把 [prop](components-props.html) 的部分读完。
 
-## A Single Root Element
+## 单个根元素
 
-When building out a `<blog-post>` component, your template will eventually contain more than just the title:
+当构建一个 `<blog-post>` 组件时，你的模板最终会包含的东西远不止一个标题：
 
 ```html
 <h3>{{ post.title }}</h3>
 ```
 
-At the very least, you'll want to include the post's content:
+最最起码，你会包含着篇博文的正文：
 
 ```html
 <h3>{{ post.title }}</h3>
 <div v-html="post.content"></div>
 ```
 
-If you try this in your template however, Vue will show an error, explaining that **every component must have a single root element**. You can fix this error by wrapping the template in a parent element, such as:
+然而如果你在你的模板中尝试这样写，Vue 会显示一个错误，并解释道 **every component must have a single root element (每个组件必须只有一个根元素)**。你可以将模板的内容包裹在一个父元素内，来修复这个问题，例如：
 
 ```html
 <div class="blog-post">
