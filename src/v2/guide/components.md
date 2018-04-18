@@ -432,9 +432,9 @@ Vue.component('custom-input', {
 
 到这里，你需要了解的组件自定义事件大概就是这样了，如果你阅读完整篇文章并对它的内容感到满意，我们会推荐你晚些时候回来把[自定义事件](components-custom-events.html)的部分读完。
 
-## Content Distribution with Slots
+## 通过插槽分发内容
 
-Just like with HTML elements, it's often useful to be able to pass content to a component, like this:
+和 HTML 元素一样，我们经常需要向一个组件传递内容，像这样：
 
 ``` html
 <alert-box>
@@ -442,7 +442,7 @@ Just like with HTML elements, it's often useful to be able to pass content to a 
 </alert-box>
 ```
 
-Which might render something like:
+可能会渲染出这样的东西：
 
 {% raw %}
 <div id="slots-demo" class="demo">
@@ -470,7 +470,7 @@ new Vue({ el: '#slots-demo' })
 </style>
 {% endraw %}
 
-Fortunately, this task is made very simple by Vue's custom `<slot>` element:
+幸好这件事可以通过 Vue 的自定义元素 `<slot>` 轻松解决：
 
 ```js
 Vue.component('alert-box', {
@@ -483,9 +483,9 @@ Vue.component('alert-box', {
 })
 ```
 
-As you'll see above, we just add the slot where we want it to go -- and that's it. We're done!
+如你在上面所看到的，我们只是在我们想要放置内容的地方添加了这个插槽——就这么简单。搞定！
 
-That's all you need to know about slots for now, but once you've finished reading this page and feel comfortable with its content, we recommend coming back later to read the full guide on [Slots](components-slots.html).
+到这里，你需要了解的插槽大概就是这样了，如果你阅读完整篇文章并对它的内容感到满意，我们会推荐你晚些时候回来把[插槽](components-slots.html)的部分读完。
 
 ## Dynamic Components
 
