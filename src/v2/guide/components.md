@@ -487,9 +487,9 @@ Vue.component('alert-box', {
 
 到这里，你需要了解的插槽大概就是这样了，如果你阅读完整篇文章并对它的内容感到满意，我们会推荐你晚些时候回来把[插槽](components-slots.html)的部分读完。
 
-## Dynamic Components
+## 动态组件
 
-Sometimes, it's useful to dynamically switch between components, like in a tabbed interface:
+有的时候，在不同组件之间进行动态切换是非常有用的，就像在一个多标签的界面里：
 
 {% raw %}
 <div id="dynamic-component-demo" class="demo">
@@ -548,21 +548,22 @@ new Vue({
 </style>
 {% endraw %}
 
-The above is made possible by Vue's `<component>` element with the `is` special attribute:
+上述内容可以通过 Vue 的 `<component>` 元素加一个特殊的 `is` 特性来实现：
 
 ```html
-<!-- Component changes when currentTabComponent changes -->
+<!-- 组件会在 `currentTabComponent` 改变时改变 -->
 <component v-bind:is="currentTabComponent"></component>
 ```
 
 In the example above, `currentTabComponent` can contain either:
+在上述示例中，`currentTabComponent` 可以包括
 
-- the name of a registered component, or
-- a component's options object
+- 已注册组件的名字，或
+- 一个组件的选项对象
 
-See [this fiddle](https://jsfiddle.net/chrisvfritz/o3nycadu/) to experiment with the full code, or [this version](https://jsfiddle.net/chrisvfritz/b2qj69o1/) for an example binding to a component's options object, instead of its registered name.
+你可以在[这里](https://jsfiddle.net/chrisvfritz/o3nycadu/)查阅并体验完整的代码，或在[这个版本](https://jsfiddle.net/chrisvfritz/b2qj69o1/)了解绑定组件选项对象，而不是已注册组件名的示例。
 
-That's all you need to know about dynamic components for now, but once you've finished reading this page and feel comfortable with its content, we recommend coming back later to read the full guide on [Dynamic & Async Components](components-dynamic-async.html).
+到这里，你需要了解的动态组件大概就是这样了，如果你阅读完整篇文章并对它的内容感到满意，我们会推荐你晚些时候回来把[动态和异步组件](components-dynamic-async.html)的部分读完。
 
 ## DOM Template Parsing Caveats
 
