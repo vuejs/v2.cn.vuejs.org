@@ -8,7 +8,7 @@ order: 103
 
 ## 事件名
 
-跟组件和 prop 不同，事件名不存在任何自动化的大小写转换。而是抛出的事件名需要完全匹配监听这个事件所用的名称。举个例子，如果抛出一个 camelCase 名字的事件：
+跟组件和 prop 不同，事件名不存在任何自动化的大小写转换。而是触发的事件名需要完全匹配监听这个事件所用的名称。举个例子，如果触发一个 camelCase 名字的事件：
 
 ```js
 this.$emit('myEvent')
@@ -55,7 +55,7 @@ Vue.component('base-checkbox', {
 <base-checkbox v-model="lovingVue"></base-checkbox>
 ```
 
-这里的 `lovingVue` 的值将会传入这个名为 `checked` 的 prop。同时当 `<base-checkbox>` 抛出一个 `change` 事件并附带一个新的值的时候，这个 `lovingVue` 的属性将会被更新。
+这里的 `lovingVue` 的值将会传入这个名为 `checked` 的 prop。同时当 `<base-checkbox>` 触发一个 `change` 事件并附带一个新的值的时候，这个 `lovingVue` 的属性将会被更新。
 
 <p class="tip">注意你仍然需要在组件的 <code>props</code> 选项里声明 <code>checked</code> 这个 prop。</p>
 
@@ -136,7 +136,7 @@ Vue.component('base-input', {
 
 在有些情况下，我们可能需要对一个 prop 进行“双向绑定”。不幸的是，真正的双向绑定会带来维护上的问题，因为子组件可以修改父组件，且在父组件和子组件都没有明显的改动来源。
 
-这也是为什么我们推荐以 `update:my-prop-name` 的模式抛出事件取而代之。举个例子，在一个包含 `title` prop 的假设的组件中，我们可以用以下方法表达对其赋新值的意图：
+这也是为什么我们推荐以 `update:my-prop-name` 的模式触发事件取而代之。举个例子，在一个包含 `title` prop 的假设的组件中，我们可以用以下方法表达对其赋新值的意图：
 
 ```js
 this.$emit('update:title', newTitle)
