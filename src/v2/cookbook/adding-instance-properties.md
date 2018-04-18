@@ -4,7 +4,7 @@ type: cookbook
 order: 2
 ---
 
-## 简单的示例
+## 基本的示例
 
 你可能会在很多组件里用到数据/实用工具，但是不想[污染全局作用域](https://github.com/getify/You-Dont-Know-JS/blob/master/scope%20%26%20closures/ch3.md)。这种情况下，你可以通过在原型上定义它们使其在每个 Vue 的实例中可用。
 
@@ -57,7 +57,7 @@ new Vue({
 })
 ```
 
-日志中会先出现 `"The name of some other app"`，然后出现 `"My App"`，因为 `this.appName` 在实例被创建之后被 `data` [覆写了](https://github.com/getify/You-Dont-Know-JS/blob/master/this%20%26%20object%20prototypes/ch5.md)。我们通过 `$` 为实例属性设置作用域来避免这种事情发生。你还可以根据你的喜好使用自己的约定，诸如 `$_appName` 或 `ΩappName`，来避免和插件或未来的插件相冲突。
+日志中会先出现 `"My App"`，然后出现 `"The name of some other app"`，因为 `this.appName` 在实例被创建之后被 `data` [覆写了](https://github.com/getify/You-Dont-Know-JS/blob/master/this%20%26%20object%20prototypes/ch5.md)。我们通过 `$` 为实例属性设置作用域来避免这种事情发生。你还可以根据你的喜好使用自己的约定，诸如 `$_appName` 或 `ΩappName`，来避免和插件或未来的插件相冲突。
 
 ## 真实的示例：通过 axios 替换 Vue Resource
 
@@ -91,7 +91,8 @@ new Vue({
   },
   created () {
     var vm = this
-    this.$http.get('https://jsonplaceholder.typicode.com/users')
+    this.$http
+      .get('https://jsonplaceholder.typicode.com/users')
       .then(function (response) {
         vm.users = response.data
       })
@@ -107,7 +108,10 @@ new Vue({
 
 ``` js
 Vue.prototype.$reverseText = function (propertyName) {
-  this[propertyName] = this[propertyName].split('').reverse().join('')
+  this[propertyName] = this[propertyName]
+    .split('')
+    .reverse()
+    .join('')
 }
 
 new Vue({
@@ -115,18 +119,21 @@ new Vue({
     message: 'Hello'
   },
   created: function () {
-    console.log(this.message)    // => "Hello"
+    console.log(this.message) // => "Hello"
     this.$reverseText('message')
-    console.log(this.message)    // => "olleH"
+    console.log(this.message) // => "olleH"
   }
 })
 ```
 
-注意如果你使用了 ES6/2015 的箭头函数，则其绑定的上下文__不会__正常工作，因为它们会隐式地绑定其父级作用域。也就是说使用箭头函数的版本：
+注意如果你使用了 ES6/2015 的箭头函数，则其绑定的上下文**不会**正常工作，因为它们会隐式地绑定其父级作用域。也就是说使用箭头函数的版本：
 
 ``` js
 Vue.prototype.$reverseText = propertyName => {
-  this[propertyName] = this[propertyName].split('').reverse().join('')
+  this[propertyName] = this[propertyName]
+    .split('')
+    .reverse()
+    .join('')
 }
 ```
 
@@ -142,7 +149,7 @@ Uncaught TypeError: Cannot read property 'split' of undefined
 
 然而，有的时候它会让其他开发者感到混乱。例如他们可能看到了 `this.$http`，然后会想“哦，我从来没见过这个 Vue 的功能”，然后他们来到另外一个项目又发现 `this.$http` 是未被定义的。或者你打算去搜索如何使用它，但是搜不到结果，因为他们并没有发现这是一个 axios 的别名。
 
-__这种便利是以显性表达为代价的。__当我们查阅一个组件的时候，要注意交代清楚 `$http` 是从哪来的：Vue 自身、一个插件、还是一个辅助库？
+**这种便利是以显性表达为代价的。**当我们查阅一个组件的时候，要注意交代清楚 `$http` 是从哪来的：Vue 自身、一个插件、还是一个辅助库？
 
 那么有别的替代方案吗？
 
@@ -150,19 +157,22 @@ __这种便利是以显性表达为代价的。__当我们查阅一个组件的�
 
 ### 当没有使用模块系统时
 
-在__没有__模块系统 (比如 webpack 或 Browserify) 的应用中，存在一种_任何_重 JS 前端应用都常用的模式：一个全局的 `App` 对象。
+在**没有**模块系统 (比如 webpack 或 Browserify) 的应用中，存在一种_任何_重 JS 前端应用都常用的模式：一个全局的 `App` 对象。
 
 如果你想要添加的东西跟 Vue 本身没有太多关系，那么这是一个不错的替代方案。举个例子：
 
 ``` js
 var App = Object.freeze({
   name: 'My App',
-  description: '2.1.4',
+  version: '2.1.4',
   helpers: {
     // 这我们之前见到过的 `$reverseText` 方法
     // 的一个纯函数版本
     reverseText: function (text) {
-      return text.split('').reverse().join('')
+      return text
+        .split('')
+        .reverse()
+        .join('')
     }
   }
 })
