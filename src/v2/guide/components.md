@@ -136,7 +136,7 @@ Vue.component('my-component-name', {
 
 全局注册的组件可以用在任何在此之后 (通过 `new Vue`) 创建的 Vue 根实例，也包括其组件树中的所有子组件的模板中。
 
-到这里，你需要了解的注册方法大概就是这样了，如果你阅读完整篇文章并对它的内容感到满意，我们会推荐你晚些时候回来把[组件注册](components-registration.html)的部分读完。
+到这里，你需要了解的注册方法大概就是这些了，如果你阅读完整篇文章并掌握了它的内容，我们会推荐你再回来把[组件注册](components-registration.html)读完。
 
 ## 通过 Prop 向子组件传递数据
 
@@ -203,7 +203,7 @@ new Vue({
 
 如上所示，你会发现我们可以使用 `v-bind` 来动态传递 prop。这在你一开始不清楚要渲染的具体内容，比如[从一个 API 获取博文列表](https://jsfiddle.net/chrisvfritz/sbLgr0ad)的时候，是非常有用的。
 
-到这里，你需要了解的 prop 大概就是这样了，如果你阅读完整篇文章并对它的内容感到满意，我们会推荐你晚些时候回来把 [prop](components-props.html) 的部分读完。
+到这里，你需要了解的 prop 大概就是这些了，如果你阅读完整篇文章并掌握了它的内容，我们会推荐你再回来把 [prop](components-props.html) 读完。
 
 ## 单个根元素
 
@@ -430,7 +430,7 @@ Vue.component('custom-input', {
 <custom-input v-model="searchText"></custom-input>
 ```
 
-到这里，你需要了解的组件自定义事件大概就是这样了，如果你阅读完整篇文章并对它的内容感到满意，我们会推荐你晚些时候回来把[自定义事件](components-custom-events.html)的部分读完。
+到这里，你需要了解的组件自定义事件大概就是这些了，如果你阅读完整篇文章并掌握了它的内容，我们会推荐你再回来把[自定义事件](components-custom-events.html)读完。
 
 ## 通过插槽分发内容
 
@@ -485,7 +485,7 @@ Vue.component('alert-box', {
 
 如你在上面所看到的，我们只是在我们想要放置内容的地方添加了这个插槽——就这么简单。搞定！
 
-到这里，你需要了解的插槽大概就是这样了，如果你阅读完整篇文章并对它的内容感到满意，我们会推荐你晚些时候回来把[插槽](components-slots.html)的部分读完。
+到这里，你需要了解的插槽大概就是这些了，如果你阅读完整篇文章并掌握了它的内容，我们会推荐你再回来把[插槽](components-slots.html)读完。
 
 ## 动态组件
 
@@ -563,13 +563,13 @@ In the example above, `currentTabComponent` can contain either:
 
 你可以在[这里](https://jsfiddle.net/chrisvfritz/o3nycadu/)查阅并体验完整的代码，或在[这个版本](https://jsfiddle.net/chrisvfritz/b2qj69o1/)了解绑定组件选项对象，而不是已注册组件名的示例。
 
-到这里，你需要了解的动态组件大概就是这样了，如果你阅读完整篇文章并对它的内容感到满意，我们会推荐你晚些时候回来把[动态和异步组件](components-dynamic-async.html)的部分读完。
+到这里，你需要了解的动态组件大概就是这些了，如果你阅读完整篇文章并掌握了它的内容，我们会推荐你再回来把[动态和异步组件](components-dynamic-async.html)读完。
 
-## DOM Template Parsing Caveats
+## 解析 DOM 模板时的注意事项
 
-Some HTML elements, such as `<ul>`, `<ol>`, `<table>` and `<select>` have restrictions on what elements can appear inside them, and some elements such as `<li>`, `<tr>`, and `<option>` can only appear inside certain other elements.
+有些 HTML 元素，诸如 `<ul>`、`<ol>`、`<table>` 和 `<select>`，对于哪些元素可以出现在其内部是有严格限制的，而有些元素，诸如 `<li>`、`<tr>` 和 `<option>`，只能出现在某些其它的元素内部。
 
-This will lead to issues when using components with elements that have such restrictions. For example:
+这会导致我们使用这些有约束条件的元素时遇到一些问题。例如：
 
 ``` html
 <table>
@@ -577,7 +577,7 @@ This will lead to issues when using components with elements that have such rest
 </table>
 ```
 
-The custom component `<blog-post-row>` will be hoisted out as invalid content, causing errors in the eventual rendered output. Fortunately, the `is` special attribute offers a workaround:
+这个自定义组件 `<blog-post-row>` 会被看作无效内容，并导致最终渲染结果出错。幸好这个特殊的 `is` 特性给了我们一个变通的办法：
 
 ``` html
 <table>
@@ -585,12 +585,12 @@ The custom component `<blog-post-row>` will be hoisted out as invalid content, c
 </table>
 ```
 
-It should be noted that **this limitation does _not_ apply if you are using string templates from one of the following sources**:
+我们应该注意到**如果我们从以下来源使用模板的话，这条限制是_不存在_的**：
 
-- String templates (e.g. `template: '...'`)
-- [Single-file (`.vue`) components](single-file-components.html)
+- 字符串 (例如：`template: '...'`)
+- [单文件组件 (`.vue`)](single-file-components.html)
 - [`<script type="text/x-template">`](components-edge-cases.html#X-Templates)
 
-That's all you need to know about dynamic components for now -- and actually, the end of Vue's _Essentials_. Congratulations! There's still more to learn, but first, we recommend taking a break to play with Vue yourself and build something fun.
+到这里，你需要了解的解析 DOM 模板时的注意事项——实际上也是 Vue 的全部_必要内容_，大概就是这些了。恭喜你！接下来还有很多东西要去学习，不过首先，我们推荐你先休息一下，试用一下 Vue，自己随意做些好玩的东西。
 
-Once you feel comfortable with the knowledge you've just digested, we recommend coming back to read the full guide on [Dynamic & Async Components](components-dynamic-async.html), as well as the other pages in the Components In-Depth section of the sidebar.
+如果你感觉已经掌握了这些知识，我们推荐你再回来把完整的组件指南，包括侧边栏中组件深入章节的所有页面读完，
