@@ -229,11 +229,11 @@ new Vue({
 </div>
 ```
 
-## Sending Messages to Parents with Events
+## 通过事件向父级组件发送消息
 
-As we develop our `<blog-post>` component, some features may require communicating back up to the parent. For example, we may decide to include an accessibility feature to enlarge the text of blog posts, while leaving the rest of the page its default size:
+在我们开发 `<blog-post>` 组件时，它的一些功能可能要求我们和父级组件进行沟通。例如我们可能会引入一个可访问性的功能来放大博文的字号，同时让页面的其它部分保持默认的字号。
 
-In the parent, we can support this feature by adding a `postFontSize` data property:
+在其父组件中，我们可以通过添加一个 `postFontSize` 数据属性来支持这个功能：
 
 ```js
 new Vue({
@@ -245,7 +245,7 @@ new Vue({
 })
 ```
 
-Which can be used in the template to control the font size of all blog posts:
+它可以在模板中用来控制所有博文的字号：
 
 ```html
 <div id="blog-posts-events-demo">
@@ -259,7 +259,7 @@ Which can be used in the template to control the font size of all blog posts:
 </div>
 ```
 
-Now let's add a button to enlarge the text right before the content of every post:
+现在我们在每篇博文正文之前添加一个按钮来放大字号：
 
 ```js
 Vue.component('blog-post', {
@@ -276,9 +276,9 @@ Vue.component('blog-post', {
 })
 ```
 
-<p class="tip">The above example and some future ones use JavaScript's [template literal](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals) to make multi-line templates more readable. These are not supported by Internet Explorer (IE), so if you must support IE and are not transpiling (e.g. with Babel or TypeScript), use [newline escapes](https://css-tricks.com/snippets/javascript/multiline-string-variables-in-javascript/) instead.</p>
+<p class="tip">上述的这个和一些接下来的示例使用了 JavaScript 的[模板字符串](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Template_literals)来让多行的模板更易读。它们在 IE 下并没有被支持，所以如果你需要在不 (经过 Babel 或 TypeScript 之类的工具) 编译的情况下支持 IE，请使用[折行转义字符](https://css-tricks.com/snippets/javascript/multiline-string-variables-in-javascript/)取而代之。</p>
 
-The problem is, this button doesn't do anything:
+问题是这个按钮不会做任何事：
 
 ```html
 <button>
@@ -286,7 +286,7 @@ The problem is, this button doesn't do anything:
 </button>
 ```
 
-When we click on the button, we need to communicate to the parent that it should enlarge the text of all posts. Fortunately, Vue instances provide a custom events system to solve this problem. To emit an event to the parent, we can call the built-in [**`$emit`** method](../api/#Instance-Methods-Events), passing the name of the event:
+当我们点击这个按钮时，我们需要告诉父级组件放大所有博文的文本。幸好 Vue 实例提供了一个自定义事件的系统来解决这个问题。我们可以调用内建的 [**$emit** 方法](../api/实例方法-事件)并传入事件的名字，来向父级组件触发一个事件：
 
 ```html
 <button v-on:click="$emit('enlarge-text')">
@@ -294,7 +294,7 @@ When we click on the button, we need to communicate to the parent that it should
 </button>
 ```
 
-Then on our blog post, we can listen for this event with `v-on`, just as we would with a native DOM event:
+然后在我们可以用 `v-on` 在博文组件上监听这个事件，就像我们监听一个原生 DOM 事件一样：
 
 ```html
 <blog-post
@@ -341,9 +341,9 @@ new Vue({
 </script>
 {% endraw %}
 
-### Emitting a Value With an Event
+### 在事件中抛出一个值
 
-It's sometimes useful to emit a specific value with an event. For example, we may want the `<blog-post>` component to be in charge of how much to enlarge the text by. In those cases, we can use `$emit`'s 2nd parameter to provide this value:
+有的时候在事件中抛出一个具体的值是非常有用的。例如我们可能想让 `<blog-post>` 组件决定他的文本要放大多少。这时我们可以使用 `$emit` 的第二个参数来提供这个值：
 
 ```html
 <button v-on:click="$emit('enlarge-text', 0.1)">
@@ -351,7 +351,7 @@ It's sometimes useful to emit a specific value with an event. For example, we ma
 </button>
 ```
 
-Then when we listen to the event in the parent, we can access the emitted event's value with `$event`:
+然后当我们在父级组件监听这个事件的时候，我们可以通过 `$event` 访问到被抛出的这个值：
 
 ```html
 <blog-post
@@ -360,7 +360,7 @@ Then when we listen to the event in the parent, we can access the emitted event'
 ></blog-post>
 ```
 
-Or, if the event handler is a method:
+或者，如果这个事件处理函数是一个方法：
 
 ```html
 <blog-post
@@ -369,7 +369,7 @@ Or, if the event handler is a method:
 ></blog-post>
 ```
 
-Then the value will be passed as the first parameter of that method:
+那么这个值将会作为第一个参数传入这个方法：
 
 ```js
 methods: {
@@ -379,15 +379,15 @@ methods: {
 }
 ```
 
-### Using `v-model` on Components
+### 在组件上使用 `v-model`
 
-Custom events can also be used to create custom inputs that work with `v-model`. Remember that:
+自定义事件也可以用于创建支持 `v-model` 的自定义控件。记住：
 
 ```html
 <input v-model="searchText">
 ```
 
-does the same thing as:
+等价于：
 
 ```html
 <input
@@ -396,7 +396,7 @@ does the same thing as:
 >
 ```
 
-When used on a component, `v-model` instead does this:
+当用在一个组件上时，`v-model` 会换做这个：
 
 ``` html
 <custom-input
@@ -405,12 +405,12 @@ When used on a component, `v-model` instead does this:
 ></custom-input>
 ```
 
-For this to actually work though, the `<input>` inside the component must:
+为了让它正常工作，这个组件内的 `<input>` 必须：
 
-- Bind the `value` attribute to a `value` prop
-- On `input`, emit its own custom `input` event with the new value
+- 将其 `value` 特性绑定到一个名叫 `value` 的 prop 上
+- 在其 `input` 事件被触发时，以新的值在该组件触发名为 `input` 的自定义事件
 
-Here's that in action:
+写成代码之后是这样的：
 
 ```js
 Vue.component('custom-input', {
@@ -424,13 +424,13 @@ Vue.component('custom-input', {
 })
 ```
 
-Now `v-model` should work perfectly with this component:
+现在 `v-model` 就应该可以在这个组件上完美工作起来了：
 
 ```html
 <custom-input v-model="searchText"></custom-input>
 ```
 
-That's all you need to know about custom component events for now, but once you've finished reading this page and feel comfortable with its content, we recommend coming back later to read the full guide on [Custom Events](components-custom-events.html).
+到这里，你需要了解的组件自定义事件大概就是这样了，如果你阅读完整篇文章并对它的内容感到满意，我们会推荐你晚些时候回来把[自定义事件](components-custom-events.html)的部分读完。
 
 ## Content Distribution with Slots
 
