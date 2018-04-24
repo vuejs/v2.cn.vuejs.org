@@ -18,33 +18,10 @@
 
 <div class="sidebar-sponsors">
   <div class="main-sponsor">
-    <span>赞助者</span><br>
-    <a id="main-sponsor-link" target="_blank" style="display: block; margin: 6px 0;">
-      <img id="main-sponsor-image" style="border-radius: 3px;">
+    <span>特别赞助</span><br>
+    <a id="main-sponsor-link" target="_blank" style="display: block; margin: 15px 0;" href="https://www.bmqb.com/jobs">
+      <img id="main-sponsor-image" src="<%- url_for(`/images/bmqb.png`) %>">
     </a>
-    <script>
-    (function () {
-      var API = 'https://xiaozhuanlan.com/example/baner_settings'
-      var req = new XMLHttpRequest()
-      var data = {
-        "link_url": "https://xiaozhuanlan.com",
-        "img_url": "https://diycode.b0.upaiyun.com/photo/2017/15ebaae7745e70876cf20c0ee93bdc9e.png"
-      }
-      req.onreadystatechange = function () {
-        if (req.readyState == 4) {
-        if (req.status >= 200 && req.status < 300) {
-          try {
-            data = JSON.parse(req.responseText)
-          } catch (e) {}
-        }
-        document.getElementById('main-sponsor-link').href = data.link_url
-        document.getElementById('main-sponsor-image').src = data.img_url
-        }
-      }
-      req.open('GET', API)
-      req.send()
-    })()
-    </script>
   </div>
   <a class="become-backer" href="<%- url_for("/support-vuejs") %>">
     成为赞助者
