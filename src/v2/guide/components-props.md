@@ -27,7 +27,7 @@ Vue.component('blog-post', {
 
 ## 静态的和动态的 Prop
 
-现在，你已经知道了可以想这样给 prop 传入一个静态的值：
+像这样，你已经知道了可以想这样给 prop 传入一个静态的值：
 
 ```html
 <blog-post title="My journey with Vue"></blog-post>
@@ -55,7 +55,7 @@ Vue.component('blog-post', {
 ### 传入一个布尔值
 
 ```html
-<!-- 包含该 prop 没有任何值的时候都意味着 `true`。-->
+<!-- 包含该 prop 没有值的情况在内，都意味着 `true`。-->
 <blog-post favorited></blog-post>
 
 <!-- 即便 `false` 是静态的，我们仍然需要 `v-bind` 来告诉 Vue -->
@@ -90,7 +90,7 @@ Vue.component('blog-post', {
 
 ### 传入一个对象的所有属性
 
-如果你想要讲一个对象的所有属性都作为 prop 传入，你可以使用不带参数的 `v-bind` (取代 `v-bind:prop-name`)。例如，对于一个给定的对象 `post`：
+如果你想要将一个对象的所有属性都作为 prop 传入，你可以使用不带参数的 `v-bind` (取代 `v-bind:prop-name`)。例如，对于一个给定的对象 `post`：
 
 ``` js
 post: {
@@ -118,7 +118,7 @@ post: {
 
 所有的 prop 都使得其父子 prop 之间形成了一个**单向下行绑定**：父级 prop 的更新会向下流动到子组件中，但是反过来则不行。这样会防止从子组件意外改变父级组件的状态，从而导致你的应用的数据流向难以理解。
 
-额外的，每次父级组件发生更新时，子组件中所有的 prop 都将会刷新为最新的值。这意味着你**不**应该在一个子组件内部改变 prop。如果你这样做了，Vue 会在命令行中发出警告。
+额外的，每次父级组件发生更新时，子组件中所有的 prop 都将会刷新为最新的值。这意味着你**不**应该在一个子组件内部改变 prop。如果你这样做了，Vue 会在浏览器的控制台中发出警告。
 
 这里有两种常见的试图改变一个 prop 的情形：
 
@@ -133,7 +133,7 @@ post: {
   }
   ```
 
-2. **这个 prop 以一种原始的值传入且需要做二次加工。**在这种情况下，最好使用这个 prop 的值来定义一个计算属性：
+2. **这个 prop 以一种原始的值传入且需要进行转换。**在这种情况下，最好使用这个 prop 的值来定义一个计算属性：
 
   ``` js
   props: ['size'],
@@ -148,9 +148,8 @@ post: {
 
 ## Prop 验证
 
-我们可以为组件的 prop 定制需求。如果有一个需求没有被满足，则 Vue 会在浏览器控制台中警告你。这尤其在开发一个会被别人用到的组件的时候非常有帮助。
+我们可以为组件的 prop 指定需求。如果有一个需求没有被满足，则 Vue 会在浏览器控制台中警告你。这在开发一个会被别人用到的组件时尤其有帮助。
 
-To specify prop validations, you can provide an object with validation requirements to the value of `props`, instead of an array of strings. For example:
 为了定制 prop 的验证方式，你可以为 `props` 中的值提供一个带有验证需求的对象，而不是一个字符串数组。例如：
 
 ``` js
@@ -189,9 +188,9 @@ Vue.component('my-component', {
 })
 ```
 
-当 prop 验证失败的时候，(开发环境构建版本的) Vue 将会产生一个命令后的警告。
+当 prop 验证失败的时候，(开发环境构建版本的) Vue 将会产生一个控制台的警告。
 
-<p class="tip">注意那些 prop 会在一个组件实例被创建**之前**进行验证，所以实例的属性 (如 `data`、`computed` 等) 在 `default` 或 `validator` 函数中是不可用的。</p>
+<p class="tip">注意那些 prop 会在一个组件实例创建**之前**进行验证，所以实例的属性 (如 `data`、`computed` 等) 在 `default` 或 `validator` 函数中是不可用的。</p>
 
 ### 类型检查
 
@@ -205,7 +204,7 @@ Vue.component('my-component', {
 - `Array`
 - `Symbol`
 
-额外的，`type` 还可以是一个自定义的构造函数，并且其验证方式内部是通过 `instanceof` 来断言的。例如，给定下列现成的构造函数：
+额外的，`type` 还可以是一个自定义的构造函数，并且通过 `instanceof` 来进行检查确认。例如，给定下列现成的构造函数：
 
 ```js
 function Person (firstName, lastName) {
@@ -230,7 +229,7 @@ Vue.component('blog-post', {
 
 一个非 prop 特性是指传向一个组件，但是该组件并没有相应 prop 定义的特性。
 
-因为显性定义的 prop 适用于向一个子组件传入信息，组件库的作者无法永远预见到组件使用时的上下文。这也是为什么组件可以接受任意的特性，而这些特性会被添加到这个组件的根元素上。
+因为显式定义的 prop 适用于向一个子组件传入信息，然而组件库的作者并不总能预见组件会被用于怎样的场景。这也是为什么组件可以接受任意的特性，而这些特性会被添加到这个组件的根元素上。
 
 例如，想象一下你通过一个 Bootstrap 插件使用了一个第三方的 `<bootstrap-data-input>` 组件，这个插件需要在其 `<input>` 上用到一个 `data-date-picker` 特性。我们可以将这个特性添加到你的组件实例上：
 
@@ -248,7 +247,7 @@ Vue.component('blog-post', {
 <input type="date" class="form-control">
 ```
 
-为了给我们的日期选择器插件定制一个主题，我们可能需要像这样添加一个特别的 class：
+为了给我们的日期选择器插件定制一个主题，我们可能需要像这样添加一个特别的类名：
 
 ``` html
 <bootstrap-date-input
@@ -275,7 +274,7 @@ Vue.component('my-component', {
 })
 ```
 
-尤其是它可以和实例的 `$attrs` 属性结合使用，该属性包含了传递给一个组件的特性名和特性值，例如：
+这尤其适合配合实例的 `$attrs` 属性使用，该属性包含了传递给一个组件的特性名和特性值，例如：
 
 ```js
 {
@@ -303,7 +302,7 @@ Vue.component('base-input', {
 })
 ```
 
-这个模式运行你在使用基础组件的时候更像是使用原始的 HTML 元素，而不会担心哪个元素是真正的根元素：
+这个模式允许你在使用基础组件的时候更像是使用原始的 HTML 元素，而不会担心哪个元素是真正的根元素：
 
 ```html
 <base-input
