@@ -220,7 +220,7 @@ Vue 还对应 [`addEventListener` 中的 `passive` 选项](https://developer.moz
 
 这个 `.passive` 修饰符尤其能够提升移动端的性能。
 
-<p class="tip">不要把 `.passive` 和 `.prevent` 一起使用，因为 `.prevent` 将会被忽略，同时浏览器可能会向你展示一个警告。请记住，`.passive` 会告诉浏览器你不想阻止事件的默认行为。</p>
+<p class="tip">不要把 `.passive` 和 `.prevent` 一起使用，因为 `.prevent` 将会被忽略，同时浏览器可能会向你展示一个警告。请记住，`.passive` 会告诉浏览器你*不*想阻止事件的默认行为。</p>
 
 ## 按键修饰符
 
