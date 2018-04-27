@@ -39,7 +39,7 @@ Vue.component('blog-post', {
 <blog-post v-bind:title="post.title"></blog-post>
 ```
 
-在上述两个示例中，我们传入的值都是字符串类型的，但实际上_任何_类型的值都可以传给一个 prop。
+在上述两个示例中，我们传入的值都是字符串类型的，但实际上*任何*类型的值都可以传给一个 prop。
 
 ### 传入一个数字
 
