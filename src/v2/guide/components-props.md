@@ -27,7 +27,7 @@ Vue.component('blog-post', {
 
 ## 静态的和动态的 Prop
 
-像这样，你已经知道了可以想这样给 prop 传入一个静态的值：
+像这样，你已经知道了可以像这样给 prop 传入一个静态的值：
 
 ```html
 <blog-post title="My journey with Vue"></blog-post>
