@@ -28,7 +28,7 @@ this.$emit('myEvent')
 
 > 2.2.0+ 新增
 
-一个组件上的 `v-model` 默认会利用名为 `value` 的 prop 和名为 `input` 的事件，但是像单选框、复选框等一些输入类型可能会将 `value` 特性用于[不同的目的](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox#Value)。`model` 选项可以用来避免这样的冲突：
+一个组件上的 `v-model` 默认会利用名为 `value` 的 prop 和名为 `input` 的事件，但是像单选框、复选框等类型的输入控件可能会将 `value` 特性用于[不同的目的](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox#Value)。`model` 选项可以用来避免这样的冲突：
 
 ```js
 Vue.component('base-checkbox', {
@@ -80,7 +80,7 @@ Vue.component('base-checkbox', {
 </label>
 ```
 
-这时，父级的 `.native` 监听器将会被默默的破坏。它不会产生任何报错，但是 `onFocus` 处理函数不会如你预期的被调用。
+这时，父级的 `.native` 监听器将静默失败。它不会产生任何报错，但是 `onFocus` 处理函数不会如你预期地被调用。
 
 为了解决这个问题，Vue 提供了一个 `$listeners` 属性，它是一个对象，里面包含了作用在这个组件上的所有监听器。例如：
 
@@ -163,6 +163,6 @@ this.$emit('update:title', newTitle)
 <text-document v-bind.sync="doc"></text-document>
 ```
 
-这样会把 `doc` 对象中的每一个属性 (如 `title`) 都作为一个独立的 prop 传进去，然后各自添加用作更新的 `v-on` 监听器。
+这样会把 `doc` 对象中的每一个属性 (如 `title`) 都作为一个独立的 prop 传进去，然后各自添加用于更新的 `v-on` 监听器。
 
 <p class="tip">将 <code>v-bind.sync</code> 用在一个字面量的对象上，例如 <code>v-bind.sync="{ title: doc.title }"</code>，是无法正常工作的，因为在解析一个像这样的复杂表达式的时候，有很多边缘情况需要考虑。</p>
