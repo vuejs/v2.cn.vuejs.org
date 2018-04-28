@@ -29,7 +29,7 @@ Vue 实现了一套内容分发的 API，这套 API 基于当前的 [Web Compone
 </a>
 ```
 
-当组件渲染的时候，这个 `<slot>` 元素将会替换掉“Your Profile”。插槽内可以包含任何代码，包括 HTML：
+当组件渲染的时候，这个 `<slot>` 元素将会被替换为“Your Profile”。插槽内可以包含任何模板代码，包括 HTML：
 
 ``` html
 <navigation-link url="/profile">
@@ -51,7 +51,7 @@ Vue 实现了一套内容分发的 API，这套 API 基于当前的 [Web Compone
 
 如果 `<navigation-link>` **没有**包含一个 `<slot>` 元素，则任何传入它的内容都会被抛弃。
 
-## 具名的插槽
+## 具名插槽
 
 有些时候我们需要多个插槽。例如，一个假设的 `<base-layout>` 组件多模板如下：
 
@@ -115,7 +115,7 @@ Vue 实现了一套内容分发的 API，这套 API 基于当前的 [Web Compone
 </base-layout>
 ```
 
-我们还是可以保留一个没有命名插槽，这个插槽是**默认插槽**，也就是说它作为一个抓住全部的出口承载了所有没有命名的内容。上述两个示例渲染出来的 HTML 都将会是：
+我们还是可以保留一个未命名插槽，这个插槽是**默认插槽**，也就是说它会作为所有未匹配到插槽的内容的统一出口。上述两个示例渲染出来的 HTML 都将会是：
 
 ``` html
 <div class="container">
@@ -132,7 +132,7 @@ Vue 实现了一套内容分发的 API，这套 API 基于当前的 [Web Compone
 </div>
 ```
 
-## 默认的插槽内容
+## 默认插槽的内容
 
 有的时候为插槽提供默认的内容是很有用的。例如，一个 `<submit-button>` 组件可能希望这个按钮的默认内容是“Submit”，但是同时允许用户覆写为“Save”、“Upload”或别的内容。
 
@@ -160,7 +160,7 @@ Vue 实现了一套内容分发的 API，这套 API 基于当前的 [Web Compone
 
 > 父组件模板的所有东西都会在父级作用域内编译；子组件模板的所有东西都会在子级作用域内编译。
 
-## 带作用域的插槽
+## 作用域插槽
 
 > 2.1.0+ 新增
 
@@ -177,7 +177,7 @@ Vue 实现了一套内容分发的 API，这套 API 基于当前的 [Web Compone
 </ul>
 ```
 
-但是在我们应用的某些部分，我们希望每个独立的待办项渲染出和 `todo.text` 不太一样的东西。这也是带作用域的插槽的用武之地。
+但是在我们应用的某些部分，我们希望每个独立的待办项渲染出和 `todo.text` 不太一样的东西。这也是作用域插槽的用武之地。
 
 为了让这个特性成为可能，你需要做的全部事情就是将待办项内容包裹在一个 `<slot>` 元素上，然后将所有和其上下文相关的数据传递给这个插槽：在这个例子中，这个数据是 `todo` 对象：
 
@@ -215,8 +215,7 @@ Vue 实现了一套内容分发的 API，这套 API 基于当前的 [Web Compone
 
 ### 解构 `slot-scope`
 
-The value of `slot-scope` can actually accept any valid JavaScript expression that can appear in the argument position of a function definition. This means in supported environments ([single-file components](single-file-components.html) or [modern browsers](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment#Browser_compatibility)) you can also use [ES2015 destructuring](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment#Object_destructuring) in the expression, like so:
-如果一个 JavaScript 表达式在一个函数定义的参数位置有效，那么这个表达式实际上就可以被 `slot-scope` 接受。也就是说你可以在这些被支持的环境下 ([单文件组件](single-file-components.html)或[现代浏览器](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment#浏览器兼容))，在这些表达式中使用 [ES2015 解构语法](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment#解构对象)。例如：
+如果一个 JavaScript 表达式在一个函数定义的参数位置有效，那么这个表达式实际上就可以被 `slot-scope` 接受。也就是说你可以在支持的环境下 ([单文件组件](single-file-components.html)或[现代浏览器](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment#浏览器兼容))，在这些表达式中使用 [ES2015 解构语法](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment#解构对象)。例如：
 
 ```html
 <todo-list v-bind:todos="todos">
@@ -227,4 +226,4 @@ The value of `slot-scope` can actually accept any valid JavaScript expression th
 </todo-list>
 ```
 
-这会使带作用域的插槽变得更干净一些。
+这会使作用域插槽变得更干净一些。
