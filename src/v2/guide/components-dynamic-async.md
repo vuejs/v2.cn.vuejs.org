@@ -6,16 +6,15 @@ order: 105
 
 > 该页面假设你已经阅读过了[组件基础](components.html)。如果你还对组件不太了解，推荐你先阅读它。
 
-## 带 `keep-alive` 的动态组件
+## 在动态组件上使用 `keep-alive`
 
-我们之前曾经在一个多标签的接口中使用 `is` 特性来切换不同的组件：
+我们之前曾经在一个多标签的界面中使用 `is` 特性来切换不同的组件：
 
 ```html
 <component v-bind:is="currentTabComponent"></component>
 ```
 
-When switching between these components though, you'll sometimes want to maintain their state or avoid re-rendering for performance reasons. For example, when expanding our tabbed interface a little:
-当在这些组件之间切换的时候，你有时会想保持这些组件的状态，以避免反复重渲染导致的性能问题。例如，我们将多标签接口展开一些：
+当在这些组件之间切换的时候，你有时会想保持这些组件的状态，以避免反复重渲染导致的性能问题。例如我们来展开说一说这个多标签界面：
 
 {% raw %}
 <div id="dynamic-component-demo" class="demo">
@@ -196,13 +195,13 @@ new Vue({
 
 现在这个 _Posts_ 标签保持了它的状态 (被选中的文章) 甚至当它未被渲染时也是如此。你可以在[这个 fiddle](https://jsfiddle.net/chrisvfritz/Lp20op9o/) 查阅到完整的代码。
 
-<p class="tip">注意这个 `<keep-alive>` 要求被切换到的组件都有自己的名字，不论是通过组件的 `name` 选项还是本地/全局注册。</p>
+<p class="tip">注意这个 `<keep-alive>` 要求被切换到的组件都有自己的名字，不论是通过组件的 `name` 选项还是局部/全局注册。</p>
 
 你可以在 [API 参考文档](../api/#keep-alive) 查阅更多关于 `<keep-alive>` 的细节。
 
 ## 异步组件
 
-在大型应用中，我们可能需要将应用分割成小一些的代码块，并且只在需要的时候才向服务器加载一个模块。为了让这件事变得更简单，Vue 允许你以一个工厂函数的方式定义你的组件，这个工厂函数会异步解析你的组件定义。Vue 只有在这个组件需要被渲染的时候才会被触发，且会把结果缓存起来供未来重渲染。例如：
+在大型应用中，我们可能需要将应用分割成小一些的代码块，并且只在需要的时候才从服务器加载一个模块。为了简化，Vue 允许你以一个工厂函数的方式定义你的组件，这个工厂函数会异步解析你的组件定义。Vue 只有在这个组件需要被渲染的时候才会被触发，且会把结果缓存起来供未来重渲染。例如：
 
 ``` js
 Vue.component('async-example', function (resolve, reject) {
@@ -215,18 +214,18 @@ Vue.component('async-example', function (resolve, reject) {
 })
 ```
 
-如你看到的，这个工厂函数会收到一个 `resolve` 回调，这个回调函数会在你从服务器得到组件定义的时候被调用。你也可以调用 `reject(reason)` 来表示加载失败。这里的 `setTimeout` 是为了演示用的，如何获取组件取决于你自己。一个推荐的做法是将异步组件和 [Webpack 的 code-splitting 功能](https://webpack.js.org/guides/code-splitting/)一起配合使用：
+如你所见，这个工厂函数会收到一个 `resolve` 回调，这个回调函数会在你从服务器得到组件定义的时候被调用。你也可以调用 `reject(reason)` 来表示加载失败。这里的 `setTimeout` 是为了演示用的，如何获取组件取决于你自己。一个推荐的做法是将异步组件和 [webpack 的 code-splitting 功能](https://webpack.js.org/guides/code-splitting/)一起配合使用：
 
 ``` js
 Vue.component('async-webpack-example', function (resolve) {
-  // 这个特殊的 `require` 语法将会告诉 Webpack
+  // 这个特殊的 `require` 语法将会告诉 webpack
   // 自动将你的构建代码切割成多个包，这些包
   // 会通过 Ajax 请求加载
   require(['./my-async-component'], resolve)
 })
 ```
 
-你也可以在工厂函数中返回一个 `Promise`，所以把 Webpack 2 和 ES2015 语法加在一起，我们可以写成这样：
+你也可以在工厂函数中返回一个 `Promise`，所以把 webpack 2 和 ES2015 语法加在一起，我们可以写成这样：
 
 ``` js
 Vue.component(
@@ -236,7 +235,7 @@ Vue.component(
 )
 ```
 
-当使用[本地注册](components.html#本地注册)当时候，你也可以直接提供一个返回 `Promise` 的函数：
+当使用[局部注册](components.html#本地注册)当时候，你也可以直接提供一个返回 `Promise` 的函数：
 
 ``` js
 new Vue({
@@ -247,7 +246,7 @@ new Vue({
 })
 ```
 
-<p class="tip">如果你是一个 <strong>Browserify</strong> 用户同时喜欢使用异步组件，很不幸这个工具的作者[明确表示](https://github.com/substack/node-browserify/issues/58#issuecomment-21978224)异步加载“并不会被 Browserify 支持”，至少官方不会。Browserify 社区已经找到了[一些变通方案](https://github.com/vuejs/vuejs.org/issues/620)，这些方案可能会对已存在的复杂应用有帮助。对于其它的场景，我们推荐直接使用 Webpack，以拥有内建的被作为第一公民的异步支持。</p> 
+<p class="tip">如果你是一个 <strong>Browserify</strong> 用户同时喜欢使用异步组件，很不幸这个工具的作者[明确表示](https://github.com/substack/node-browserify/issues/58#issuecomment-21978224)异步加载“并不会被 Browserify 支持”，至少官方不会。Browserify 社区已经找到了[一些变通方案](https://github.com/vuejs/vuejs.org/issues/620)，这些方案可能会对已存在的复杂应用有帮助。对于其它的场景，我们推荐直接使用 webpack，以拥有内建的被作为第一公民的异步支持。</p> 
 
 ### 处理加载状态
 
