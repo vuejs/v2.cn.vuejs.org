@@ -4,7 +4,7 @@ type: cookbook
 order: 6
 ---
 
-## 简单的示例
+## 基本的示例
 
 单元测试是软件开发非常基础的一部分。单元测试会封闭执行最小化单元的代码，使得添加新功能和追踪问题更容易。Vue 的[单文件组件](../guide/single-file-components.html)使得为组件撰写隔离的单元测试这件事更加直接。它会让你更有信心地开发新特性而不破坏现有的实现，并帮助其他开发者理解你的组件的作用。
 
@@ -58,9 +58,7 @@ test('Foo', () => {
 
   // 将名字更新至足够长
   wrapper.setData({
-    username: {
-      'Lachlan'
-    }
+    username: 'Lachlan'
   })
 
   // 断言错误信息不再显示了
