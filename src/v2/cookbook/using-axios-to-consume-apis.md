@@ -4,7 +4,7 @@ type: cookbook
 order: 9
 ---
 
-## 简单的示例
+## 基本的示例
 
 有很多时候你在构建应用时需要访问一个 API 并展示其数据。做这件事的方法有好几种，而使用基于 promise 的 HTTP 客户端 [axios](https://github.com/axios/axios) 则是其中非常流行的一种。
 
@@ -124,7 +124,7 @@ new Vue({
       .catch(error => {
         console.log(error)
         this.errored = true
-      }).
+      })
       .finally(() => this.loading = false)
   }
 })
