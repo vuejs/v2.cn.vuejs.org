@@ -12,11 +12,11 @@ order: 8
 
 你必须安装好 Chrome 和 VS Code。同时请确保自己在 VS Code 中安装了 [Debugger for Chrome](https://marketplace.visualstudio.com/items?itemName=msjsdiag.debugger-for-chrome) 扩展的最新版本。
 
-请通过 [Vue CLI](https://github.com/vuejs/vue-cli)，遵循它的 README 中的安装文档安装和创建一个项目。然后进入这个新创建的应用的目录，打开 VS Code。
+请通过 [Vue CLI](https://github.com/vuejs/vue-cli)，遵循它的 README 中的安装文档安装并创建一个项目。然后进入这个新创建的应用的目录，打开 VS Code。
 
 ### 在 Chrome Devtools 中展示源代码
 
-在你可以从 VS Code 调试你的 Vue 组件之前，你需要更新 webpack 配置以构建 source map。我们做了这件事之后，我们的调试器就有机会将一个被压缩的文件中的代码对应回其源文件相应的位置。这会确保你可以在一个应用中调试，即便你的资源已经被 webpack 优化过了也没关系。
+在可以从 VS Code 调试你的 Vue 组件之前，你需要更新 webpack 配置以构建 source map。做了这件事之后，我们的调试器就有机会将一个被压缩的文件中的代码对应回其源文件相应的位置。这会确保你可以在一个应用中调试，即便你的资源已经被 webpack 优化过了也没关系。
 
 打开 `config/index.js` 并找到 `devtool` 属性。将其更新为：
 
@@ -57,9 +57,9 @@ devtool: 'source-map',
 
 2. 在根目录打开你惯用的终端并使用 Vue CLI 开启这个应用：
 
-```
-npm start
-```
+  ```
+  npm start
+  ```
 
 3. 来到 Debug 视图，选择 **'vuejs: chrome'** 配置，然后按 <kbd>F5</kbd> 或点击那个绿色的 play 按钮。
 
@@ -85,7 +85,7 @@ npm start
 * 订阅你的应用的某个具体部分的状态，以便快速调试
 * 组件依赖可视化，且允许你收起/展开某个具体的依赖树视图
 
-![Vuetron Heirarchy](/images/vuetron-heirarchy.gif)
+![Vuetron 层级结构](/images/vuetron-heirarchy.gif)
 
 ### 简单的 debugger 语句
 
