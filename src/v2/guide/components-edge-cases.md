@@ -174,7 +174,7 @@ inject: ['getMap']
 - 通过 `$off(eventName, eventHandler)` 停止侦听一个事件
 
 You normally won't have to use these, but they're available for cases when you need to manually listen for events on a component instance. They can also be useful as a code organization tool. For example, you may often see this pattern for integrating a 3rd-party library:
-你通常不会用到这些，但是当你需要在一个组件实例上手动侦听事件时，它们是排得上用场的。它们也可以用于代码组织工具。例如，你可能经常看到这种集成一个第三方库的模式：
+你通常不会用到这些，但是当你需要在一个组件实例上手动侦听事件时，它们是派得上用场的。它们也可以用于代码组织工具。例如，你可能经常看到这种集成一个第三方库的模式：
 
 ```js
 // 一次性将这个日期选择器附加到一个输入框上
