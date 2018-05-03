@@ -157,7 +157,7 @@ Uncaught TypeError: Cannot read property 'split' of undefined
 
 ### 当没有使用模块系统时
 
-在**没有**模块系统 (比如 webpack 或 Browserify) 的应用中，存在一种_任何_重 JS 前端应用都常用的模式：一个全局的 `App` 对象。
+在**没有**模块系统 (比如 webpack 或 Browserify) 的应用中，存在一种*任何*重 JS 前端应用都常用的模式：一个全局的 `App` 对象。
 
 如果你想要添加的东西跟 Vue 本身没有太多关系，那么这是一个不错的替代方案。举个例子：
 
