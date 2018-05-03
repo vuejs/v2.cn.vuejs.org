@@ -290,7 +290,7 @@ template: '<div><stack-overflow></stack-overflow></div>'
 
 当你仔细观察的时候，你会发现这些组件在渲染树中互为对方的后代*和*祖先——一个悖论！当通过 `Vue.component` 全局注册组件的时候，这个悖论会被自动解开。如果你是这样做的，那么你可以跳过这里。
 
-然而，如果你使用一个_模块系统_依赖/导入组件，例如通过 webpack 或 Browserify，你会遇到一个错误：
+然而，如果你使用一个*模块系统*依赖/导入组件，例如通过 webpack 或 Browserify，你会遇到一个错误：
 
 ```
 Failed to mount component: template or render function not defined.

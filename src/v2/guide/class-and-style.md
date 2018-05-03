@@ -211,6 +211,6 @@ data: {
 这样写只会渲染数组中最后一个被浏览器支持的值。在本例中，如果浏览器支持不带浏览器前缀的 flexbox，那么就只会渲染 `display: flex`。
 
 <small>
-__译者注__
+**译者注**
 <a id="footnote-1"></a>[1] truthy 不是 `true`，详见 [MDN](https://developer.mozilla.org/zh-CN/docs/Glossary/Truthy) 的解释。
 </small>

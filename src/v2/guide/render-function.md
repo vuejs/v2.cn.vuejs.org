@@ -126,7 +126,7 @@ Vue 通过建立一个**虚拟 DOM** 对真实 DOM 发生的变化保持追踪�
 return createElement('h1', this.blogTitle)
 ```
 
-`createElement` 到底会返回什么呢？其实不是一个_实际的_ DOM 元素。它更准确的名字可能是 `createNodeDescription`，因为它所包含的信息会告诉 Vue 页面上需要渲染什么样的节点，及其子节点。我们把这样的节点描述为“虚拟节点 (Virtual Node)”，也常简写它为“VNode”。“虚拟 DOM”是我们对由 Vue 组件树建立起来的整个 VNode 树的称呼。
+`createElement` 到底会返回什么呢？其实不是一个*实际的* DOM 元素。它更准确的名字可能是 `createNodeDescription`，因为它所包含的信息会告诉 Vue 页面上需要渲染什么样的节点，及其子节点。我们把这样的节点描述为“虚拟节点 (Virtual Node)”，也常简写它为“VNode”。“虚拟 DOM”是我们对由 Vue 组件树建立起来的整个 VNode 树的称呼。
 
 ## `createElement` 参数
 
@@ -593,7 +593,7 @@ Vue.component('my-functional-button', {
 
 向 `createElement` 通过传入 `context.data` 作为第二个参数，我们就把 `my-functional-button` 上面所有的特性和事件监听器都传递下去了。事实上这是非常透明的，那些事件甚至并不要求 `.native` 修饰符。
 
-如果你使用基于模板的函数式组件，那么你还需要手动添加特性和监听器。因为我们可以访问到其独立的上下文内容，所以我们可以使用 `data.attrs` 传递任何 HTML 特性，也可以使用 `listeners` _(即 `data.on` 的别名)_ 传递任何事件监听器。
+如果你使用基于模板的函数式组件，那么你还需要手动添加特性和监听器。因为我们可以访问到其独立的上下文内容，所以我们可以使用 `data.attrs` 传递任何 HTML 特性，也可以使用 `listeners` *(即 `data.on` 的别名)* 传递任何事件监听器。
 
 ```html
 <template functional>

@@ -256,6 +256,6 @@ $ bower install vue
 所有 UMD 版本都可以直接用作 AMD 模块。
 
 <small>
-__译者注__
+**译者注**
 <a id="footnote-1"></a>[1] 对于中国大陆用户，建议将 NPM 源设置为[国内的镜像](https://npm.taobao.org/)，可以大幅提升安装速度。
 </small>

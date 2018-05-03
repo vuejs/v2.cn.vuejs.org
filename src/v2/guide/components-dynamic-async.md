@@ -149,7 +149,7 @@ new Vue({
 </style>
 {% endraw %}
 
-你会注意到，如果你选择了一篇文章，切换到 _Archive_ 标签，然后再切换回 _Posts_，是不会继续展示你之前选择的文章的。这是因为你每次切换新标签的时候，Vue 都创建了一个新的 `currentTabComponent` 实例。
+你会注意到，如果你选择了一篇文章，切换到 *Archive* 标签，然后再切换回 *Posts*，是不会继续展示你之前选择的文章的。这是因为你每次切换新标签的时候，Vue 都创建了一个新的 `currentTabComponent` 实例。
 
 重新创建动态组件的行为通常是非常有用的，但是在这个案例中，我们更希望那些标签的组件实例能够被在它们第一次被创建的时候缓存下来。为了解决这个问题，我们可以用一个 `<keep-alive>` 元素将其动态组件包裹起来。
 
@@ -193,7 +193,7 @@ new Vue({
 </script>
 {% endraw %}
 
-现在这个 _Posts_ 标签保持了它的状态 (被选中的文章) 甚至当它未被渲染时也是如此。你可以在[这个 fiddle](https://jsfiddle.net/chrisvfritz/Lp20op9o/) 查阅到完整的代码。
+现在这个 *Posts* 标签保持了它的状态 (被选中的文章) 甚至当它未被渲染时也是如此。你可以在[这个 fiddle](https://jsfiddle.net/chrisvfritz/Lp20op9o/) 查阅到完整的代码。
 
 <p class="tip">注意这个 `<keep-alive>` 要求被切换到的组件都有自己的名字，不论是通过组件的 `name` 选项还是局部/全局注册。</p>
 
