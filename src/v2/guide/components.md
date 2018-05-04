@@ -555,7 +555,6 @@ new Vue({
 <component v-bind:is="currentTabComponent"></component>
 ```
 
-In the example above, `currentTabComponent` can contain either:
 在上述示例中，`currentTabComponent` 可以包括
 
 - 已注册组件的名字，或
