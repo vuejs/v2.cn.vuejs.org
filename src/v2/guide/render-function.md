@@ -577,7 +577,7 @@ Vue.component('smart-list', {
 
 在普通组件中，没有被定义为 prop 的特性会自动添加到组件的根元素上，将现有的同名特性替换或与其[智能合并](class-and-style.html)。
 
-然而函数式组件要求你显示定义该行为：
+然而函数式组件要求你显式定义该行为：
 
 ```js
 Vue.component('my-functional-button', {
