@@ -24,8 +24,8 @@
       '使用组件': '/v2/guide/components-registration.html',
       '全局注册': '/v2/guide/components-registration.html#全局注册',
       '局部注册': '/v2/guide/components-registration.html#局部注册',
-      // #DOM-模板解析注意事项
-      // #data-必须是函数
+      'DOM-模板解析注意事项': '/v2/guide/components.html#解析-DOM-模板时的注意事项',
+      'data-必须是函数': '/v2/guide/components.html#data-必须是一个函数',
       '组件组合': '/v2/guide/components.html#组件的组织',
       'Prop': '/v2/guide/components.html#通过-Prop-向子组件传递数据',
       '使用-Prop-传递数据': '/v2/guide/components.html#通过-Prop-向子组件传递数据',
@@ -43,7 +43,7 @@
       '使用自定义事件的表单输入组件': '/v2/guide/components-custom-events.html#将原生事件绑定到组件',
       '自定义组件的-v-model': '/v2/guide/components-custom-events.html#自定义组件的-v-model',
       '非父子组件的通信': '/v2/guide/state-management.html',
-      // #使用插槽分发内容
+      '使用插槽分发内容': '/v2/guide/components.html#通过插槽分发内容',
       '编译作用域': '/v2/guide/components-slots.html#编译作用域',
       '单个插槽': '/v2/guide/components-slots.html#插槽内容',
       '具名插槽': '/v2/guide/components-slots.html#具名插槽',
