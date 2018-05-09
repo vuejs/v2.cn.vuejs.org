@@ -1,5 +1,5 @@
 (function () {
-  // initHashLevelRedirects()
+  initHashLevelRedirects()
   initMobileMenu()
   initVideoModal()
   if (PAGE_TYPE) {
@@ -523,7 +523,7 @@
       .replace(rSpecial, separator)
       // Remove continuous separators
       .replace(new RegExp(escapedSep + '{2,}', 'g'), separator)
-      // Remove prefixing and trailing separtors
+      // Remove prefixing and trailing separators
       .replace(new RegExp('^' + escapedSep + '+|' + escapedSep + '+$', 'g'), '')
 
     switch (options.transform) {
