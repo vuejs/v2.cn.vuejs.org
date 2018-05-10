@@ -1,21 +1,3 @@
-<!--
-<div id="sidebar-sponsors">
-  <div class="main-sponsor">
-    <span>Sponsors</span>
-    <div>
-    <%_ for (const sponsor of [...theme.special_sponsors, ...theme.platinum_sponsors]) {_%>
-    <a href="<%- sponsor.url %>" target="_blank" class="logo">
-      <img src="<%- url_for(`/images/${sponsor.wide_img || sponsor.img}`) %>">
-    </a>
-    <%_ } _%>
-    </div>
-  </div>
-  <a class="become-backer" href="<%- url_for("/support-vuejs") %>">
-    Become a Sponsor
-  </a>
-</div>
--->
-
 <div class="sidebar-sponsors">
   <div class="main-sponsor">
     <span>特别赞助</span><br>
@@ -27,3 +9,38 @@
     成为赞助者
   </a>
 </div>
+
+<!--
+
+original version from vuejs.org
+
+<div id="sidebar-sponsors-special">
+  <div class="main-sponsor">
+    <span>特别赞助</span>
+    <div>
+    <%_ for (const sponsor of theme.special_sponsors) {_%>
+    <a href="<%- sponsor.url %>" target="_blank" class="logo">
+      <img src="<%- url_for(`/images/${sponsor.wide_img || sponsor.img}`) %>">
+    </a>
+    <%_ } _%>
+    </div>
+  </div>
+</div>
+
+<div id="sidebar-sponsors-platinum">
+  <div class="main-sponsor">
+    <span>Patreon 赞助</span>
+    <div>
+    <%_ for (const sponsor of theme.platinum_sponsors) {_%>
+    <a href="<%- sponsor.url %>" target="_blank" class="logo">
+      <img src="<%- url_for(`/images/${sponsor.wide_img || sponsor.img}`) %>">
+    </a>
+    <%_ } _%>
+    </div>
+  </div>
+  <a class="become-backer" href="<%- url_for("/support-vuejs") %>">
+    成为赞助者
+  </a>
+</div>
+
+-->

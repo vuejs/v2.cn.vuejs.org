@@ -21,10 +21,10 @@
   <% if (page.title.trim()) { %>
     <h1><%- page.title %><%- page.type === 'examples' ? ' Example' : '' %></h1>
   <% } %>
-  <% if (page.type === 'about') { %>
-    <%- partial('partials/contributors') %>
-  <% } else if (page.sponsors) { %>
+  <% if (page.sponsors) { %>
     <%- partial('sponsors-page') %>
+  <% } else if (page.search) { %>
+    <%- partial('search-page') %>
   <% } else { %>
     <%- page.content %>
   <% } %>
