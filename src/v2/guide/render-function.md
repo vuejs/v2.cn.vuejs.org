@@ -214,7 +214,7 @@ createElement(
       }
     }
   ],
-  // Scoped slots in the form of
+  // 作用域插槽格式
   // { name: props => VNode | Array<VNode> }
   scopedSlots: {
     default: props => createElement('span', props.text)
@@ -242,8 +242,8 @@ var getChildrenTextContent = function (children) {
 
 Vue.component('anchored-heading', {
   render: function (createElement) {
-    // create kebabCase id
-    var headingId = getChildrenTextContent(this.$slots.default)
+    // 创建 kebabCase 风格的ID
+    var headingId = getChildrenTextContent(this.$slots.default)
       .toLowerCase()
       .replace(/\W+/g, '-')
       .replace(/(^\-|\-$)/g, '')
