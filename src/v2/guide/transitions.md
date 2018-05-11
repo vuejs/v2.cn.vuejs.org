@@ -451,7 +451,7 @@ methods: {
 
 ``` html
 <!--
-Velocity和jQuery.animate的工作类似，是一个很棒的JavaScript动画选择
+Velocity 和 jQuery.animate 的工作方式类似，也是用来实现 JavaScript 动画的一个很棒的选择
 -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.3/velocity.min.js"></script>
 
