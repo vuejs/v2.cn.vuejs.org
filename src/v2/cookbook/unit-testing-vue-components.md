@@ -44,11 +44,11 @@ export default {
 ```
 
 ```js
-import { shallow } from '@vue/test-utils'
+import { shallowMount } from '@vue/test-utils'
 
 test('Foo', () => {
   // 渲染这个组件
-  const wrapper = shallow(Hello)
+  const wrapper = shallowMount(Hello)
 
   // `username` 在除去头尾空格之后不应该少于 7 个字符
   wrapper.setData({ username: ' '.repeat(7) })
@@ -145,11 +145,11 @@ export default {
 我们的第一次测试尝试：
 
 ```js
-import { shallow } from '@vue/test-utils'
+import { shallowMount } from '@vue/test-utils'
 
 describe('Foo', () => {
   it('renders a message and responds correctly to user input', () => {
-      const wrapper = shallow(Foo, {
+      const wrapper = shallowMount(Foo, {
     data: {
       message: 'Hello World',
       username: ''
@@ -184,11 +184,11 @@ describe('Foo', () => {
 *更新后的测试*：
 
 ```js
-import { shallow } from '@vue/test-utils'
+import { shallowMount } from '@vue/test-utils'
 import Foo from './Foo'
 
 const factory = (values = {}) => {
-  return shallow(Foo, {
+  return shallowMount(Foo, {
     data: { ...values  }
   })
 }
@@ -222,7 +222,7 @@ describe('Foo', () => {
 
 注意事项：
 
-在一开始，工厂函数将 `values` 对象合并到了 `data` 并返回了一个新的 `wrapper` 实例。这样，我们就不需要在每个测试中重复 `const wrapper = shallow(Foo)`。另一个好处是当你想为更复杂的组件在每个测试中伪造或存根一个方法或计算属性时，你只需要声明一次即可。
+在一开始，工厂函数将 `values` 对象合并到了 `data` 并返回了一个新的 `wrapper` 实例。这样，我们就不需要在每个测试中重复 `const wrapper = shallowMount(Foo)`。另一个好处是当你想为更复杂的组件在每个测试中伪造或存根一个方法或计算属性时，你只需要声明一次即可。
 
 ## 额外的上下文
 
