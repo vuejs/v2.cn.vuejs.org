@@ -13,7 +13,7 @@ Vue 实现了一套内容分发的 API，这套 API 基于当前的 [Web Compone
 它允许你像这样合成组件：
 
 ``` html
-<navigation-link url="/profile">
+<navigation-link href="/profile">
   Your Profile
 </navigation-link>
 ```
