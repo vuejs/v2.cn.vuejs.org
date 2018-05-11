@@ -163,7 +163,7 @@ inject: ['getMap']
 
 <p class="tip">然而，依赖注入还是有负面影响的。它将你的应用目前的组件组织方式耦合了起来，使重构变得更加困难。同时所提供的属性是非响应式的。这是出于设计的考虑，因为使用它们来创建一个中心化规模化的数据跟<a href="#访问根实例">使用 <code>$root</code></a>做这件事都是不够好的。如果你想要共享的这个属性是你的应用特有的，而不是通用化的，或者如果你想在祖先组件中更新所提供的数据，那么这意味着你可能需要换用一个像 <a href="https://github.com/vuejs/vuex">Vuex</a> 这样真正的状态管理方案了。</p>
 
-你可以在 [API 参考文档](https://vuejs.org/v2/api/#provide-inject)学习更多关于依赖注入的知识。
+你可以在 [API 参考文档](https://cn.vuejs.org/v2/api/#provide-inject)学习更多关于依赖注入的知识。
 
 ## 程序化的事件侦听器
 
@@ -179,7 +179,7 @@ inject: ['getMap']
 // 一次性将这个日期选择器附加到一个输入框上
 // 它会被挂载到 DOM 上。
 mounted: function () {
-  // Pikaday 是一个第三方日期选择器到库
+  // Pikaday 是一个第三方日期选择器的库
   this.picker = new Pikaday({
     field: this.$refs.input,
     format: 'YYYY-MM-DD'
