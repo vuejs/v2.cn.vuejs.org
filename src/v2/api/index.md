@@ -253,7 +253,7 @@ type: api
 
 - **用法**：
 
-  设置对象的属性。如果对象是响应式的，确保属性被创建后也是响应式的，同时触发视图更新。这个方法主要用于避开 Vue 不能检测属性被添加的限制。
+  向响应式对象中添加一个属性，并确保这个新属性同样是响应式的，且触发视图更新。它必须用于向响应式对象上添加新属性，因为 Vue 无法探测普通的新增属性 (比如 `this.myObject.newProperty = 'hi'`)
 
   <p class="tip">注意对象不能是 Vue 实例，或者 Vue 实例的根数据对象。</p>
 
@@ -1017,7 +1017,7 @@ type: api
   - 一个对象，对象的 key 是本地的绑定名，value 是：
     - 在可用的注入内容中搜索用的 key (字符串或 Symbol)，或
     - 一个对象，该对象的：
-      - `name` 属性是在可用的注入内容中搜索用的 key (字符串或 Symbol)
+      - `from` 属性是在可用的注入内容中搜索用的 key (字符串或 Symbol)
       - `default` 属性是降级情况下使用的 value
 
   > 提示：`provide` 和 `inject` 绑定并不是可响应的。这是刻意为之的。然而，如果你传入了一个可监听的对象，那么其对象的属性还是可响应的。
@@ -1025,6 +1025,7 @@ type: api
 - **示例**：
 
   ``` js
+  // 父级组件提供 'foo'
   var Provider = {
     provide: {
       foo: 'bar'
@@ -1032,6 +1033,7 @@ type: api
     // ...
   }
 
+  // 子组件注入 'foo'
   var Child = {
     inject: ['foo'],
     created () {
@@ -2170,18 +2172,18 @@ type: api
 
 ### is
 
-- **预期**：`string`
+- **预期**：`string | Object (组件的选项对象)`
 
   用于[动态组件](../guide/components.html#动态组件)且基于 [DOM 内模板的限制](../guide/components.html#DOM-模板解析说明)来工作。
 
   示例：
 
   ``` html
-  <!-- component changes when currentView changes -->
+  <!-- 当 `currentView` 改变时，组件也跟着改变 -->
   <component v-bind:is="currentView"></component>
 
-  <!-- necessary because `<my-row>` would be invalid inside -->
-  <!-- a `<table>` element and so would be hoisted out      -->
+  <!-- 这样做是有必要的，因为 `<my-row>` 放在一个 -->
+  <!-- `<table>` 内可能无效且被放置到外面 -->
   <table>
     <tr is="my-row"></tr>
   </table>

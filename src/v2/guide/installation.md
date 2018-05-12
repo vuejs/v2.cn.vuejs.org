@@ -57,17 +57,7 @@ $ npm install vue
 
 ## 命令行工具 (CLI)
 
-Vue 提供一个[官方命令行工具](https://github.com/vuejs/vue-cli)，可用于快速搭建大型单页应用。该工具为现代化的前端开发工作流提供了开箱即用的构建配置。只需几分钟即可创建并启动一个带热重载、保存时静态检查以及可用于生产环境的构建配置的项目：
-
-``` bash
-# 全局安装 vue-cli
-$ npm install --global vue-cli
-# 创建一个基于 webpack 模板的新项目
-$ vue init webpack my-project
-# 安装依赖，走你
-$ cd my-project
-$ npm run dev
-```
+Vue 提供了一个[官方的 CLI](https://github.com/vuejs/vue-cli)，为单页面应用快速搭建 (SPA) 繁杂的脚手架。它为现代前端工作流提供了 batteries-included 的构建设置。只需要几分钟的时间就可以运行起来并带有热重载、保存时 lint 校验，以及生产环境可用的构建版本。更多详情可查阅 [Vue CLI 的文档](https://github.com/vuejs/vue-docs-zh-cn/blob/master/vue-cli/README.md#介绍)
 
 <p class="tip">CLI 工具假定用户对 Node.js 和相关构建工具有一定程度的了解。如果你是新手，我们强烈建议先在不用构建工具的情况下通读<a href="./">指南</a>，在熟悉 Vue 本身之后再使用 CLI。</p>
 
@@ -159,6 +149,19 @@ rollup({
 }
 ```
 
+#### Parcel
+
+在你项目的 `package.json` 中添加：
+
+``` js
+{
+  // ...
+  "alias": {
+    "vue" : "./node_modules/vue/dist/vue.common.js"
+  }
+}
+```
+
 ### 开发环境 vs. 生产环境模式
 
 对于 UMD 版本来说，开发环境/生产环境模式是硬编码好的：开发环境下用未压缩的代码，生产环境下使用压缩后的代码。
@@ -169,7 +172,15 @@ CommonJS 和 ES Module 版本同时保留原始的 `process.env.NODE_ENV` 检测
 
 #### webpack
 
-使用 webpack 的 [DefinePlugin](https://webpack.js.org/plugins/define-plugin/)：
+在 webpack 4+ 中，你可以使用 `mode` 选项：
+
+``` js
+module.exports = {
+  mode: 'production'
+}
+```
+
+但是在 webpack 3 及其更低版本中，你需要使用 [DefinePlugin](https://webpack.js.org/plugins/define-plugin/)：
 
 ``` js
 var webpack = require('webpack')
