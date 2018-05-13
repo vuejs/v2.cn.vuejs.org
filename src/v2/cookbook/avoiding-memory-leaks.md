@@ -1,23 +1,24 @@
 ---
-title: Avoiding Memory Leaks
+title: 避免内存泄漏
 type: cookbook
 order: 10
 ---
-## Introduction
 
-If you are developing applications with Vue, then you need to watch out for memory leaks. This issue is especially important in Single Page Applications (SPAs) because by design, users should not have to refresh their browser when using an SPA, so it is up to the Javascript application to clean up components and make sure that garbage collection takes place as expected.
+## 简介
 
-Memory leaks in Vue applications do not typically come from Vue itself, rather they can happen when incorporating other libraries into an application.
+如果你在用 Vue 开发应用，那么就要当心内存泄漏的问题。这个问题在单页应用 (SPA) 中尤为重要，因为在 SPA 的设计中，用户使用它时是不需要刷新浏览器的，所以我们需要通过 JavaScript 程序来清除组件以确保垃圾回收如预期生效。
 
-## Simple Example
+内存泄漏在 Vue 应用中通常不是来自 Vue 自身的，而更多的发生于和其它库在同一个应用中一同协作的时候。
 
-The following example shows a memory leak caused by using the [Choices.js](https://github.com/jshjohnson/Choices) library in a Vue component and not properly cleaning it up. Later, we will show how to remove the Choices.js footprint and avoid the memory leak.
+## 基本的示例
 
-In the example below, we load up a select with a lot of options and then we use a show/hide button with a [v-if](/v2/guide/conditional.html) directive to add it and remove it from the virtual DOM. The problem with this example is that the `v-if` directive removes the parent element from the DOM, but we did not clean up the additional DOM pieces created by Choices.js, causing a memory leak. 
+接下来的示例展示了一个由于在一个 Vue 组件中使用 [Choices.js](https://github.com/jshjohnson/Choices) 库而没有将其及时清除导致的内存泄漏。晚些时候我们再交代如何移除这个 Choices.js 的足迹进而避免内存泄漏。
+
+下面的示例中，我们加载了一个带有非常多选项的选择框，然后我们用到了一个显示/隐藏按钮，通过一个 [v-if](/v2/guide/conditional.html) 指令从 virtual DOM 中添加或移除它。这个示例的问题在于这个 `v-if` 指令会从 DOM 中移除父级元素，但是我们并没有清除由 Choices.js 新添加的 DOM 块，从而导致了内存泄漏。
 
 ```html
-<link rel='stylesheet prefetch' href='https://joshuajohnson.co.uk/Choices/assets/styles/css/choices.min.css?version=3.0.3'>
-<script src='https://joshuajohnson.co.uk/Choices/assets/scripts/dist/choices.min.js?version=3.0.3'></script>
+<link rel="stylesheet prefetch" href="https://joshuajohnson.co.uk/Choices/assets/styles/css/choices.min.css?version=3.0.3">
+<script src="https://joshuajohnson.co.uk/Choices/assets/scripts/dist/choices.min.js?version=3.0.3"></script>
 
 <div id="app">
   <button v-if="showChoices" @click="hide">Hide</button>
@@ -41,8 +42,8 @@ new Vue({
   methods: {
     initializeChoices: function () {
       let list = []
-      // lets load up our select with many choices 
-      // so it will use a lot of memory
+      // 我们来为选择框载入很多选项
+      // 这样的话它会占用大量的内存
       for (let i = 0; i < 1000; i++) {
         list.push({
           label: "Item " + i,
@@ -67,15 +68,15 @@ new Vue({
   }
 })
 ```
-To see this memory leak in action, open this [CodePen example](https://codepen.io/freeman-g/pen/qobpxo) using Chrome and then open the Chrome Task Manager. To open the Chrome Task Manager on Mac, choose Chrome Top Navigation > Window > Task Manager or on Windows, use the Shift+Esc shortcut. Now, click the show/hide button 50 or so times. You should see the memory usage in the Chrome Task Manager increase and never be reclaimed.
+为了将这个内存泄漏体现出来，请使用 Chrome 打开这个 [CodePen 示例](https://codepen.io/freeman-g/pen/qobpxo)然后打开 Chrome 的任务管理器。Mac 下打开 Chrome Task Manager 的方式是选择 Chrome 顶部导航 > 窗口 > 任务管理；在 Windows 上则是 Shift+Esc 快捷键。现在点击展示/隐藏按钮 50 次左右。你应该在 Chrome 任务管理中发现内存的使用在增加并且从未被回收。
 
-![Memory Leak Example](/images/memory-leak-example.png)
+![内存泄漏示例](/images/memory-leak-example.png)
 
-## Resolving the Memory Leak
+## 解决这个内存泄漏问题
 
-In the above example, we can use our `hide()` method to do some clean up and solve the memory leak prior to removing the select from the DOM. To accomplish this, we will keep a property in our Vue instance’s data object and we will use the [Choices API’s](https://github.com/jshjohnson/Choices) `destroy()` method to perform the clean up.
+在上述的示例中，我们可以用 `hide()` 方法在将选择框从 DOM 中移除之前做一些清理工作，解决内存泄漏问题。为了做到这一点，我们会在 Vue 实例的数据对象中保留一个属性，并会使用 [Choices API 中的](https://github.com/jshjohnson/Choices) `destroy()` 方法将其清除。
 
-Check the memory usage again with this [updated CodePen example](https://codepen.io/freeman-g/pen/mxWMor).
+通过这个[更新之后的 CodePen 示例](https://codepen.io/freeman-g/pen/mxWMor)可以再重新看看内存的使用情况。
 
 ```js
 new Vue({
@@ -98,7 +99,7 @@ new Vue({
           value: i
         })
       }
-      // Set a reference to our choicesSelect in our Vue instance's data object
+      // 在我们的 Vue 实例的数据对象中设置一个 `choicesSelect` 的引用
       this.choicesSelect = new Choices("#choices-single-default", {
         searchEnabled: true,
         removeItemButton: true,
@@ -112,8 +113,8 @@ new Vue({
       })
     },
     hide: function () {
-      // now we can use the reference to Choices to perform clean up here 
-      // prior to removing the elements from the DOM
+      // 现在我们可以让 Choices 使用这个引用
+      // 在从 DOM 中移除这些元素之前进行清理工作
       this.choicesSelect.destroy()
       this.showChoices = false
     }
@@ -121,49 +122,50 @@ new Vue({
 })
 ```
 
-## Details about the Value
+## 这个价值的细节
 
-Memory management and performance testing can easily be neglected in the excitement of shipping quickly, however, keeping a small memory footprint is still important to your overall user experience. 
+内存管理和性能测试在快速交付的时候是很容易被忽视的，然而，保持小内存开销仍然是对你整体的用户体验很重要的事情。
 
-Consider the types of devices your users may be using and what their normal flow will be. Could they use memory constrained laptops or mobile devices? Do your users typically do lots of in-application navigation? If either of these are true, then good memory management practices can help you avoid the worst case scenario of crashing a user’s browser. Even if neither of these are true, you can still potentially have degradation of performance over extended usage of your app if you are not careful.
+考虑一下你的用户使用的设备类型，以及他们通常情况下的使用方式。他们使用的是内存很有限的上网本或移动设备吗？你的用户通常会做很多应用内的导航吗？如果其中之一是的话，那么良好的内存管理实践会帮助你避免糟糕的浏览器崩溃的场景。即便它们都不是，因为一个不小心，你的应用在经过持续的使用之后，仍然有潜在的性能恶化的问题。
 
-## Real-World Example
+## 实际的例子
 
-In the above example, we used a `v-if` directive to illustrate the memory leak, but a more common real-world scenario happens when using [vue-router](https://router.vuejs.org/en/) to route to components in a Single Page Application.
+在上述示例中，我们使用了一个 `v-if` 指令产生内存泄漏，但是一个更常见的实际的场景是使用 [Vue Router](https://router.vuejs.org/) 在一个单页应用中路由到不同的组件。
 
-Just like the `v-if` directive, `vue-router` removes elements from the virtual DOM and replaces those with new elements when a user navigates around your application. The Vue `beforeDestroy()` [lifecycle hook](/v2/guide/instance.html#Lifecycle-Diagram) is a good place to solve the same sort of issue in a `vue-router` based application.
+就像这个 `v-if` 指令一样，当一个用户在你的应用中导航时，Vue Router 从 virtual DOM 中移除了元素，并替换为了新的元素。Vue 的 `beforeDestroy()` [生命周期钩子](/v2/guide/instance.html#生命周期图示)是一个解决基于 Vue Router 的应用中的这类问题的好地方。
 
-We could move our clean up into the `beforeDestroy()` hook like this:
+我们可以将清理工作放入 `beforeDestroy()` 钩子，像这样：
 
 ```js
 beforeDestroy: function () {
-    this.choicesSelect.destroy()
+  this.choicesSelect.destroy()
 }
 ```
 
-## Alternative Patterns
+## 替代方案
 
-We have discussed managing memory when removing elements, but what if you intentionally want to preserve state and keep elements in memory? In this case, you can use the built-in component [keep-alive](/v2/api/#keep-alive).
+我们已经讨论了移除元素时的内存管理，但是如果你打算在内存中保留状态和元素该怎么做呢？这种情况下，你可以使用内建的 [keep-alive](/v2/api/#keep-alive) 组件。
 
-When you wrap a component with `keep-alive`, its state will be preserved and therefore kept in memory.
+当你用 `keep-alive` 包裹一个组件后，它的状态就会保留，因此就留在了内存里。
 
 ```html
 <button @click="show = false">Hide</button>
 <keep-alive>
-  <!-- my-component will be intentionally kept in memory even when removed -->
+  <!-- `<my-component>` 在被删除的时候会保留在内存里 -->
   <my-component v-if="show"></my-component>
 </keep-alive>
 ```
-This technique can be useful to improve user experience. For example, imagine a user starts entering comments into a text input and then decides to navigate away. If the user then navigated back, their comments would still be preserved.
 
-Once you use keep-alive, then you have access to two more lifecycle hooks: `activated` and `deactivated`. If you do want to clean up or change data when a keep-alive component is removed, you can do so in the `deactivated` hook.
+这个技术可以用来提升用户体验。例如，设想一个用户在一个文本框中输入了评论，之后决定导航离开。如果这个用户之后导航回来，那些评论应该还保留着。
+
+一旦你使用了 `keep-alive`，那么你就可以访问另外两个生命周期钩子：`activated` 和 `deactivated`。如果你想要在一个 `keep-alive` 组件被移除的时候进行清理或改变数据，可以使用 `deactivated` 钩子。
 
 ```js
 deactivated: function () {
-  // remove any data you do not want to keep alive
+  // 移除任何你不想保持存在的数据
 }
 ```
 
-## Wrapping Up
+## 总结
 
-Vue makes it very easy to develop amazing, reactive Javascript applications, but you still need to be careful about memory leaks. These leaks will often occur when using additional 3rd Party libraries that manipulate the DOM outside of Vue. Make sure to test your application for memory leaks and take appropriate steps to clean up components where necessary.
+Vue 让开发非常棒的响应式的 JavaScript 应用程序变得非常简单，但是你仍然需要警惕内存泄漏。这些内存泄漏往往会发生在使用 Vue 之外的其它封装 DOM 的三方库时。请确保测试应用的内存泄漏问题并采取适当的时机做必要的组件清理。
