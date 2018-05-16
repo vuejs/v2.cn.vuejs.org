@@ -1188,7 +1188,7 @@ function pluralizeKnife (count) {
 </div>
 {% endraw %}
 
-## 计算插值 todaymark
+## 计算插值
 
 ### 属性内部的计算插值 <sup>移除</sup>
 
