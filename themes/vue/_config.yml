@@ -23,7 +23,7 @@ platinum_sponsors:
 platinum_sponsors_china:
   - url: https://www.geekbang.org/
     img: geekbang.png
-  - url: https://www.bmqb.com/jobs
+  - url: https://www.bmqb.com/jobs?tracking_code=vue
     img: bmqb.png
 
 gold_sponsors:
