@@ -169,11 +169,13 @@ createElement(
 ``` js
 {
   // 和`v-bind:class`一样的 API
+  // 接收一个字符串、对象或字符串和对象组成的数组
   'class': {
     foo: true,
     bar: false
   },
   // 和`v-bind:style`一样的 API
+  // 接收一个字符串、对象或对象组成的数组
   style: {
     color: 'red',
     fontSize: '14px'
@@ -496,13 +498,13 @@ new Vue({
 ``` js
 Vue.component('my-component', {
   functional: true,
+  // Props 可选
+  props: {
+    // ...
+  },
   // 为了弥补缺少的实例
   // 提供第二个参数作为上下文
   render: function (createElement, context) {
-    // ...
-  },
-  // Props 可选
-  props: {
     // ...
   }
 })
@@ -546,6 +548,13 @@ var UnorderedList = { /* ... */ }
 
 Vue.component('smart-list', {
   functional: true,
+  props: {
+    items: {
+      type: Array,
+      required: true
+    },
+    isOrdered: Boolean
+  },
   render: function (createElement, context) {
     function appropriateListComponent () {
       var items = context.props.items
@@ -562,13 +571,6 @@ Vue.component('smart-list', {
       context.data,
       context.children
     )
-  },
-  props: {
-    items: {
-      type: Array,
-      required: true
-    },
-    isOrdered: Boolean
   }
 })
 ```

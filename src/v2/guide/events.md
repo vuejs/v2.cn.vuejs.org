@@ -173,6 +173,7 @@ methods: {
 - `.capture`
 - `.self`
 - `.once`
+- `.passive`
 
 ``` html
 <!-- 阻止单击事件继续传播 -->
