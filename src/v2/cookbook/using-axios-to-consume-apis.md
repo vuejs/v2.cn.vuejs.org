@@ -78,7 +78,7 @@ filters: {
 },
 ```
 
-<p data-height="300" data-theme-id="32763" data-slug-hash="9d59319c09eaccfaf35d9e9f11990f0f" data-default-tab="result" data-user="Vue" data-embed-version="2" data-pen-title="Third Step Axios and Vue" class="codepen">在 <a href="https://codepen.io">CodePen</a> 查看 Vue (<a href="https://codepen.io/Vue">@Vue</a>)的 <a href="https://codepen.io/team/Vue/pen/9d59319c09eaccfaf35d9e9f11990f0f/"> axios 和 Vue：第三步</a>。</p>
+<p data-height="300" data-theme-id="32763" data-slug-hash="9d59319c09eaccfaf35d9e9f11990f0f" data-default-tab="result" data-user="Vue" data-embed-version="2" data-pen-title="Third Step Axios and Vue" class="codepen">在 <a href="https://codepen.io">CodePen</a> 查看 Vue (<a href="https://codepen.io/Vue">@Vue</a>)的 <a href="https://codepen.io/team/Vue/pen/9d59319c09eaccfaf35d9e9f11990f0f/">axios 和 Vue：第三步</a>。</p>
 <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
 
 ### 错误处理
@@ -154,7 +154,7 @@ new Vue({
 
 你可以在下面的例子中点击 Rerun 按钮以便看到我们从 API 获取数据时的加载状态：
 
-<p data-height="300" data-theme-id="32763" data-slug-hash="6c01922c9af3883890fd7393e8147ec4" data-default-tab="result" data-user="Vue" data-embed-version="2" data-pen-title="Fourth Step Axios and Vue" class="codepen">在 <a href="https://codepen.io">CodePen</a> 查看 Vue (<a href="https://codepen.io/Vue">@Vue</a>)的 <a href="https://codepen.io/team/Vue/pen/6c01922c9af3883890fd7393e8147ec4/"> axios 和 Vue：第四步</a>。</p>
+<p data-height="300" data-theme-id="32763" data-slug-hash="6c01922c9af3883890fd7393e8147ec4" data-default-tab="result" data-user="Vue" data-embed-version="2" data-pen-title="Fourth Step Axios and Vue" class="codepen">在 <a href="https://codepen.io">CodePen</a> 查看 Vue (<a href="https://codepen.io/Vue">@Vue</a>)的 <a href="https://codepen.io/team/Vue/pen/6c01922c9af3883890fd7393e8147ec4/">axios 和 Vue：第四步</a>。</p>
 <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
 
 我们还可以做进一步优化，如用组件来实现不同部分、给出更明确的错误报告。这都取决于你使用的 API 以及应用的复杂度。
