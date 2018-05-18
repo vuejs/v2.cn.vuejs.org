@@ -36,7 +36,7 @@ new Vue({
 
 我们得到的东西是这样的：
 
-<p data-height="350" data-theme-id="32763" data-slug-hash="80043dfdb7b90f138f5585ade1a5286f" data-default-tab="result" data-user="Vue" data-embed-version="2" data-pen-title="First Step Axios and Vue" class="codepen">在 <a href="https://codepen.io">CodePen</a> 查看 Vue (<a href="https://codepen.io/Vue">@Vue</a>) 的 <a href="https://codepen.io/team/Vue/pen/80043dfdb7b90f138f5585ade1a5286f/">Axios 和 Vue ：第一步。</a> </p>
+<p data-height="350" data-theme-id="32763" data-slug-hash="80043dfdb7b90f138f5585ade1a5286f" data-default-tab="result" data-user="Vue" data-embed-version="2" data-pen-title="First Step Axios and Vue" class="codepen">在 <a href="https://codepen.io">CodePen</a> 查看 Vue (<a href="https://codepen.io/Vue">@Vue</a>)的 <a href="https://codepen.io/team/Vue/pen/80043dfdb7b90f138f5585ade1a5286f/">axios 和 Vue：第一步</a>。</p>
 <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
 
 很好！我们已经得到了一些数据。但是它看起来还比较乱，所以我们会更好的展示它并添加一些错误处理，以防出现异常情况或请求超时。
@@ -53,7 +53,7 @@ axios
   .then(response => (this.info = response.data.bpi))
 ```
 
-<p data-height="200" data-theme-id="32763" data-slug-hash="6100b10f1b4ac2961208643560ba7d11" data-default-tab="result" data-user="Vue" data-embed-version="2" data-pen-title="Second Step Axios and Vue" class="codepen">在 <a href="https://codepen.io">CodePen</a> 查看 Vue (<a href="https://codepen.io/Vue">@Vue</a>) 的 <a href="https://codepen.io/team/Vue/pen/6100b10f1b4ac2961208643560ba7d11/">Axios 和 Vue ：第二步。</a> </p>
+<p data-height="200" data-theme-id="32763" data-slug-hash="6100b10f1b4ac2961208643560ba7d11" data-default-tab="result" data-user="Vue" data-embed-version="2" data-pen-title="Second Step Axios and Vue" class="codepen">在 <a href="https://codepen.io">CodePen</a> 查看 Vue (<a href="https://codepen.io/Vue">@Vue</a>)的 <a href="https://codepen.io/team/Vue/pen/6100b10f1b4ac2961208643560ba7d11/">axios 和 Vue：第二步</a>。 </p>
 <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
 
 这让展示的工作变得容易了很多，所以我们可以更新 HTML 以从获取的数据中仅仅展示真正需要的信息。我们会创建一个[过滤器](../api/#Vue-filter)来确保小数部分的合理展示。
@@ -78,7 +78,7 @@ filters: {
 },
 ```
 
-<p data-height="300" data-theme-id="32763" data-slug-hash="9d59319c09eaccfaf35d9e9f11990f0f" data-default-tab="result" data-user="Vue" data-embed-version="2" data-pen-title="Third Step Axios and Vue" class="codepen">在 <a href="https://codepen.io">CodePen</a> 查看 Vue (<a href="https://codepen.io/Vue">@Vue</a>) 的 <a href="https://codepen.io/team/Vue/pen/9d59319c09eaccfaf35d9e9f11990f0f/"> Axios 和 Vue ：第三步。</a> </p>
+<p data-height="300" data-theme-id="32763" data-slug-hash="9d59319c09eaccfaf35d9e9f11990f0f" data-default-tab="result" data-user="Vue" data-embed-version="2" data-pen-title="Third Step Axios and Vue" class="codepen">在 <a href="https://codepen.io">CodePen</a> 查看 Vue (<a href="https://codepen.io/Vue">@Vue</a>)的 <a href="https://codepen.io/team/Vue/pen/9d59319c09eaccfaf35d9e9f11990f0f/"> axios 和 Vue：第三步</a>。</p>
 <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
 
 ### 错误处理
@@ -154,7 +154,7 @@ new Vue({
 
 你可以在下面的例子中点击 Rerun 按钮以便看到我们从 API 获取数据时的加载状态：
 
-<p data-height="300" data-theme-id="32763" data-slug-hash="6c01922c9af3883890fd7393e8147ec4" data-default-tab="result" data-user="Vue" data-embed-version="2" data-pen-title="Fourth Step Axios and Vue" class="codepen">在 <a href="https://codepen.io">CodePen</a> 查看 Vue (<a href="https://codepen.io/Vue">@Vue</a>) 的 <a href="https://codepen.io/team/Vue/pen/6c01922c9af3883890fd7393e8147ec4/"> Axios 和 Vue ：第四步。</a> </p>
+<p data-height="300" data-theme-id="32763" data-slug-hash="6c01922c9af3883890fd7393e8147ec4" data-default-tab="result" data-user="Vue" data-embed-version="2" data-pen-title="Fourth Step Axios and Vue" class="codepen">在 <a href="https://codepen.io">CodePen</a> 查看 Vue (<a href="https://codepen.io/Vue">@Vue</a>)的 <a href="https://codepen.io/team/Vue/pen/6c01922c9af3883890fd7393e8147ec4/"> axios 和 Vue：第四步</a>。</p>
 <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
 
 我们还可以做进一步优化，如用组件来实现不同部分、给出更明确的错误报告。这都取决于你使用的 API 以及应用的复杂度。
