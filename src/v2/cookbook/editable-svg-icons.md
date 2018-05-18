@@ -145,7 +145,8 @@ export default {
 
 我们通过 `ref` 将我们需要移动的路径做了分组，因为这把剪刀的两侧需要同时移动，所以我们会创建一个传入 `ref` 的可复用的函数。并使用 GreenSock 帮助我们完成动画并解决 `transform-origin` 的浏览器兼容性问题。
 
-<p data-height="300" data-theme-id="0" data-slug-hash="dJRpgY" data-default-tab="result" data-user="Vue" data-embed-version="2" data-pen-title="Editable SVG Icon System: Animated icon" class="codepen">See the Pen <a href="https://codepen.io/team/Vue/pen/dJRpgY/">Editable SVG Icon System: Animated icon</a> by Vue (<a href="https://codepen.io/Vue">@Vue</a>) on <a href="https://codepen.io">CodePen</a>.</p><script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
+<p data-height="300" data-theme-id="0" data-slug-hash="dJRpgY" data-default-tab="result" data-user="Vue" data-embed-version="2" data-pen-title="Editable SVG Icon System: Animated icon" class="codepen">在 <a href="https://codepen.io">CodePen</a> 查看 Vue (<a href="https://codepen.io/Vue">@Vue</a>) 的 <a href="https://codepen.io/team/Vue/pen/dJRpgY/">可编辑的 SVG 图标系统：带动画的图标</a>。</p>
+<script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
 
 <p style="margin-top:-30px">很容易做到吧！并且很容易实时更新。</p>
 
