@@ -56,7 +56,7 @@ new Vue({
 }
 ```
 
-<p data-height="450" data-theme-id="5162" data-slug-hash="983220ed949ac670dff96bdcaf9d3338" data-default-tab="result" data-user="sdras" data-embed-version="2" data-pen-title="Custom Scroll Directive- CSS Transition" class="codepen">在 <a href="https://codepen.io">CodePen</a> 查看 Sarah Drasner (<a href="https://codepen.io/sdras">@sdras</a>) 的<a href="https://codepen.io/sdras/pen/983220ed949ac670dff96bdcaf9d3338/">自定义滚动指令- CSS 过渡。</a> </p>
+<p data-height="450" data-theme-id="5162" data-slug-hash="983220ed949ac670dff96bdcaf9d3338" data-default-tab="result" data-user="sdras" data-embed-version="2" data-pen-title="Custom Scroll Directive- CSS Transition" class="codepen">在 <a href="https://codepen.io">CodePen</a> 查看 Sarah Drasner (<a href="https://codepen.io/sdras">@sdras</a>) 的<a href="https://codepen.io/sdras/pen/983220ed949ac670dff96bdcaf9d3338/">自定义滚动指令- CSS 过渡</a>。</p>
 
 <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
 
@@ -108,7 +108,7 @@ Vue 为指令提供了丰富的选项，覆盖了绝大多数的常见用例，�
 
 **这个示例最好在[全屏模式](https://s.codepen.io/sdras/debug/078c19f5b3ed7f7d28584da450296cd0)下浏览。**
 
-<p data-height="500" data-theme-id="5162" data-slug-hash="c8c55e3e0bba997350551dd747119100" data-default-tab="result" data-user="sdras" data-embed-version="2" data-pen-title="Scrolling Example- Using Custom Directives in Vue" class="codepen">在 <a href="https://codepen.io">CodePen</a> 查看 Sarah Drasner (<a href="https://codepen.io/sdras">@sdras</a>) 的 <a href="https://codepen.io/sdras/pen/c8c55e3e0bba997350551dd747119100/">滚动示例 - 在Vue中使用自定义指令</a></p>
+<p data-height="500" data-theme-id="5162" data-slug-hash="c8c55e3e0bba997350551dd747119100" data-default-tab="result" data-user="sdras" data-embed-version="2" data-pen-title="Scrolling Example- Using Custom Directives in Vue" class="codepen">在 <a href="https://codepen.io">CodePen</a> 查看 Sarah Drasner (<a href="https://codepen.io/sdras">@sdras</a>) 的 <a href="https://codepen.io/sdras/pen/c8c55e3e0bba997350551dd747119100/">滚动示例 - 在Vue中使用自定义指令</a。></p>
 <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
 
 在上述 demo 中，每个章节都有两个由滚动触发的不同类型的动画开关：一个渐变动画和一个动态改变 SVG 独立路径的动画。我们想要复用这两种动画，因此可以为每种动画各创建一个自定义指令。传入的参数将会帮助我们让一切都简单可复用。
