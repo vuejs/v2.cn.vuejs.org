@@ -235,7 +235,7 @@ Vue.component(
 )
 ```
 
-当使用[局部注册](components.html#本地注册)当时候，你也可以直接提供一个返回 `Promise` 的函数：
+当使用[局部注册](components.html#本地注册)的时候，你也可以直接提供一个返回 `Promise` 的函数：
 
 ``` js
 new Vue({
