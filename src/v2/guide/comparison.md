@@ -183,7 +183,7 @@ Angular 事实上必须用 TypeScript 来开发，因为它的文档和学习资
 
 ### 体积
 
-在体积方面，最近的 Angular 版本中在使用了 [AOT](https://en.wikipedia.org/wiki/Ahead-of-time_compilation) 和 [tree-shaking](https://en.wikipedia.org/wiki/Tree_shaking) 技术后使得最终的代码体积减小了许多。但即使如此，一个包含了 Vuex + Vue Router 的 Vue 项目 (gzip 之后 30kB) 相比使用了这些优化的 `angular-cli` 生成的默认项目尺寸 (~130kB) 还是要小得多。
+在体积方面，最近的 Angular 版本中在使用了 [AOT](https://en.wikipedia.org/wiki/Ahead-of-time_compilation) 和 [tree-shaking](https://en.wikipedia.org/wiki/Tree_shaking) 技术后使得最终的代码体积减小了许多。但即使如此，一个包含了 Vuex + Vue Router 的 Vue 项目 (gzip 之后 30kB) 相比使用了这些优化的 `angular-cli` 生成的默认项目尺寸 (~65KB) 还是要小得多。
 
 ### 灵活性
 
