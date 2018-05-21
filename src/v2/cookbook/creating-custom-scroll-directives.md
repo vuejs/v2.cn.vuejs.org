@@ -50,7 +50,7 @@ new Vue({
 
 我们可能还需要一个样式属性来对中间值做过渡，在这个例子中：
 
-```
+```css
 .box {
   transition: 1.5s all cubic-bezier(0.39, 0.575, 0.565, 1);
 }
