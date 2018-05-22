@@ -82,7 +82,7 @@ test('Foo', () => {
 
 #### 起步
 
-[Vue Test Utils](https://github.com/vuejs/vue-test-utils) 是 Vue 组件单元测试的官方库。[Vue CLI](https://github.com/vuejs/vue-cli) 的 `webpack` 模板对 Karma 和 Jest 这两个测试运行器都支持，并且在 Vue Test Utils 的文档中有一些[引导](https://vue-test-utils.vuejs.org/zh-cn/guides/)。
+[Vue Test Utils](https://github.com/vuejs/vue-test-utils) 是 Vue 组件单元测试的官方库。[Vue CLI](https://github.com/vuejs/vue-cli) 的 `webpack` 模板对 Karma 和 Jest 这两个测试运行器都支持，并且在 Vue Test Utils 的文档中有一些[引导](https://vue-test-utils.vuejs.org/zh/guides/)。
 
 ## 实际的例子
 
@@ -232,7 +232,7 @@ describe('Foo', () => {
 - 为 `Vuex` 的 store，commit 或 dispatch 一些 mutation 或 action
 - 测试用户交互
 
-我们在 Vue Test Utils 的[教程](https://vue-test-utils.vuejs.org/zh-cn/guides/)中提供了更完整的示例展示这些测试。
+我们在 Vue Test Utils 的[教程](https://vue-test-utils.vuejs.org/zh/guides/)中提供了更完整的示例展示这些测试。
 
 Vue Test Utils 及庞大的 JavaScript 生态系统提供了大量的工具促进 100% 的测试覆盖率。单元测试只是整个测试金字塔中的一部分。其它类型的测试还包括 e2e (端到端) 测试、快照比对测试等。单元测试是最小巧也是最简单的测试——它们通过隔离单个组件的每一个部分，来在最小工作单元上进行断言。
 
