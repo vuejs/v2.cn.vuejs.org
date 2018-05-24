@@ -139,6 +139,16 @@ window.addEventListener('hashchange', function () {
 <%_ } _%>
 </p>
 
+<h3>中国区视频托管赞助商</h3>
+
+<p class="sponsor-section">
+<%_ for (const sponsor of theme.video_sponsors_china) {_%>
+  <a href="<%- sponsor.url %>" target="_blank">
+    <img src="<%- url_for(`/images/${sponsor.img}`) %>">
+  </a>
+<%_ } _%>
+</p>
+
 <p>
 如果你是企业经营者并且将 Vue 用在商业产品中，那么赞助 Vue 有商业上的益处：<b>可以让你的产品所依赖的框架保持健康并得到积极的维护</b>，也能帮助你在 Vue 社区里获得更高的曝光度，从而更容易地吸引到 Vue 开发者。
 </p>
