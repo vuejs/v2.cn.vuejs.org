@@ -77,5 +77,5 @@ bronze_sponsors:
     img: https://i.imgur.com/hQHW6TB.png
 
 video_sponsors_china:
-  - url: https://www.youku.com/
+  - url: http://cloud.youku.com/index.php?source=vuejs
     img: youku.png
