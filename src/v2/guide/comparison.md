@@ -130,9 +130,9 @@ React Native 能使你用相同的组件模型编写有本地渲染能力的 APP
 
 Mobx 在 React 社区很流行，实际上在 Vue 也采用了几乎相同的反应系统。在有限程度上，React + Mobx 也可以被认为是更繁琐的 Vue，所以如果你习惯组合使用它们，那么选择 Vue 会更合理。
 
-### Preact and Other React-Like Libraries
+### Preact 和其它类 React 库
 
-React-like libraries usually try to share as much of their API and ecosystem with React as is feasible. For that reason, the vast majority of comparisons above will also apply to them. The main difference will typically be a reduced ecosystem, often significantly, compared to React. Since these libraries cannot be 100% compatible with everything in the React ecosystem, some tooling and companion libraries may not be usable. Or, even if they appear to work, they could break at any time unless your specific React-like library is officially supported on par with React.
+类 React 的库们往往尽可能的和 React 共享 API 和生态。因此，大多数比较对它们来说也是同样适用的。它们和 React 的不同往往在于缩小的生态。因为这些库无法 100% 兼容 React 生态中的全部，部分工具和辅助库也可能无法使用。它们工作可能随时会被打断，除非你使用的这个类 React 的库和 React 有同等的支持。
 
 ## AngularJS (Angular 1)
 

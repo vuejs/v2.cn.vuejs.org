@@ -27,13 +27,13 @@ Vue.component('blog-post', {
 
 ## Prop 类型
 
-So far, we've only seen props listed as an array of strings:
+到这里，我们只看到了以字符串数组形式列出的 prop：
 
 ```js
 props: ['title', 'likes', 'isPublished', 'commentIds', 'author']
 ```
 
-Usually though, you'll want every prop to be a specific type of value. In these cases, you can list props as an object, where the properties' names and values contain the prop names and types, respectively:
+通常，你希望每个 prop 都有指定的值类型。这时，你可以以对象形式列出 prop，这些属性的名称和值分别是 prop 各自的名称和类型：
 
 ```js
 props: {
@@ -45,9 +45,9 @@ props: {
 }
 ```
 
-This not only documents your component, but will also warn users in the browser's JavaScript console if they pass the wrong type. You'll learn much more about [type checks and other prop validations](#Prop-Validation) further down this page.
+这不仅为你的组件提供了文档，还会在它们遇到错误的类型时从浏览器的 JavaScript 控制台提示用户。你会在这个页面接下来的部分看到[类型检查和其它 prop 验证](#Prop-验证)。
 
-## Passing Static or Dynamic Props
+## 传递静态或动态 Prop
 
 像这样，你已经知道了可以像这样给 prop 传入一个静态的值：
 
@@ -58,10 +58,10 @@ This not only documents your component, but will also warn users in the browser'
 你也知道 prop 可以通过 `v-bind` 动态赋值，例如：
 
 ```html
-<!-- Dynamically assign the value of a variable -->
+<!-- 动态赋予一个变量的值 -->
 <blog-post v-bind:title="post.title"></blog-post>
 
-<!-- Dynamically assign the value of a complex expression -->
+<!-- 动态赋予一个复杂表达式的值 -->
 <blog-post v-bind:title="post.title + ' by ' + post.author.name"></blog-post>
 ```
 
@@ -174,7 +174,7 @@ post: {
 
 ## Prop 验证
 
-我们可以为组件的 prop 指定需求，例如你知道的这些类型。如果有一个需求没有被满足，则 Vue 会在浏览器控制台中警告你。这在开发一个会被别人用到的组件时尤其有帮助。
+我们可以为组件的 prop 指定验证要求，例如你知道的这些类型。如果有一个需求没有被满足，则 Vue 会在浏览器控制台中警告你。这在开发一个会被别人用到的组件时尤其有帮助。
 
 为了定制 prop 的验证方式，你可以为 `props` 中的值提供一个带有验证需求的对象，而不是一个字符串数组。例如：
 
