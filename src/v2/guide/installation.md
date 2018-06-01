@@ -2,8 +2,8 @@
 title: 安装
 type: guide
 order: 1
-vue_version: 2.5.13
-gz_size: "30.67"
+vue_version: 2.5.16
+gz_size: "30.90"
 ---
 
 ### 兼容性
@@ -37,7 +37,7 @@ Vue **不支持** IE8 及以下版本，因为 Vue 使用了 IE8 无法模拟的
 我们推荐链接到一个你可以手动更新的指定版本号：
 
 ``` html
-<script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
 ```
 
 你可以在 [cdn.jsdelivr.net/npm/vue](https://cdn.jsdelivr.net/npm/vue/) 浏览 NPM 包的源代码。
