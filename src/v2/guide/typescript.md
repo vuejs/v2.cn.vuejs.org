@@ -12,8 +12,6 @@ order: 404
 
 而且，我们已经把它们[发布到了 NPM](https://cdn.jsdelivr.net/npm/vue/types/)，最新版本的 TypeScript 也知道该如何自己从 NPM 包里解析类型声明。这意味着只要你成功地通过 NPM 安装了，就不再需要任何额外的工具辅助，即可在 Vue 中使用 TypeScript 了。
 
-我们还计划在近期为 vue-cli 提供一个选项，来初始化一个立即可投入开发的 Vue + TypeScript 项目脚手架。
-
 ## 推荐配置
 
 ``` js
@@ -37,11 +35,23 @@ order: 404
 
 ## 开发工具链
 
-要使用 TypeScript 开发 Vue 应用程序，我们强烈建议您使用 [Visual Studio Code](https://code.visualstudio.com/)，它为 TypeScript 提供了极好的“开箱即用”支持。
+## 工程创建
 
-如果你正在使用[单文件组件](./single-file-components.html) (SFC), 可以安装提供 SFC 支持以及其他更多实用功能的 [Vetur 插件](https://github.com/vuejs/vetur)。
+[Vue CLI 3](https://github.com/vuejs/vue-cli) 可以使用 TypeScript 生成新工程。创建方式：
 
-[WebStorm](https://www.jetbrains.com/webstorm/) 同样为 TypeScript 和 Vue.js 提供了“开箱即用”的支持。
+```bash
+# 1. 如果没有安装 Vue CLI 就先安装
+npm install --global @vue/cli
+
+# 2. 创建一个新工程，并选择 "Manually select features (手动选择特性)" 选项
+vue create my-project-name
+```
+
+## 编辑器支持
+
+要使用 TypeScript 开发 Vue 应用程序，我们强烈建议您使用 [Visual Studio Code](https://code.visualstudio.com/)，它为 TypeScript 提供了极好的“开箱即用”支持。如果你正在使用[单文件组件](./single-file-components.html) (SFC), 可以安装提供 SFC 支持以及其他更多实用功能的 [Vetur 插件](https://github.com/vuejs/vetur)。
+
+[WebStorm](https://www.jetbrains.com/webstorm/) 同样为 TypeScript 和 Vue 提供了“开箱即用”的支持。
 
 ## 基本用法
 
