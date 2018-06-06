@@ -25,7 +25,29 @@ Vue.component('blog-post', {
 
 重申一次，如果你使用字符串模板，那么这个限制就不存在了。
 
-## 静态的和动态的 Prop
+## Prop 类型
+
+到这里，我们只看到了以字符串数组形式列出的 prop：
+
+```js
+props: ['title', 'likes', 'isPublished', 'commentIds', 'author']
+```
+
+但是，通常你希望每个 prop 都有指定的值类型。这时，你可以以对象形式列出 prop，这些属性的名称和值分别是 prop 各自的名称和类型：
+
+```js
+props: {
+  title: String,
+  likes: Number,
+  isPublished: Boolean,
+  commentIds: Array,
+  author: Object
+}
+```
+
+这不仅为你的组件提供了文档，还会在它们遇到错误的类型时从浏览器的 JavaScript 控制台提示用户。你会在这个页面接下来的部分看到[类型检查和其它 prop 验证](#Prop-验证)。
+
+## 传递静态或动态 Prop
 
 像这样，你已经知道了可以像这样给 prop 传入一个静态的值：
 
@@ -36,7 +58,11 @@ Vue.component('blog-post', {
 你也知道 prop 可以通过 `v-bind` 动态赋值，例如：
 
 ```html
+<!-- 动态赋予一个变量的值 -->
 <blog-post v-bind:title="post.title"></blog-post>
+
+<!-- 动态赋予一个复杂表达式的值 -->
+<blog-post v-bind:title="post.title + ' by ' + post.author.name"></blog-post>
 ```
 
 在上述两个示例中，我们传入的值都是字符串类型的，但实际上*任何*类型的值都可以传给一个 prop。
@@ -56,14 +82,14 @@ Vue.component('blog-post', {
 
 ```html
 <!-- 包含该 prop 没有值的情况在内，都意味着 `true`。-->
-<blog-post favorited></blog-post>
+<blog-post is-published></blog-post>
 
 <!-- 即便 `false` 是静态的，我们仍然需要 `v-bind` 来告诉 Vue -->
 <!-- 这是一个 JavaScript 表达式而不是一个字符串。-->
-<base-input v-bind:favorited="false">
+<blog-post v-bind:is-published="false"></blog-post>
 
 <!-- 用一个变量进行动态赋值。-->
-<base-input v-bind:favorited="post.currentUserFavorited">
+<blog-post v-bind:is-published="post.isPublished"></blog-post>
 ```
 
 ### 传入一个数组
@@ -82,10 +108,10 @@ Vue.component('blog-post', {
 ```html
 <!-- 即便对象是静态的，我们仍然需要 `v-bind` 来告诉 Vue -->
 <!-- 这是一个 JavaScript 表达式而不是一个字符串。-->
-<blog-post v-bind:comments="{ id: 1, title: 'My Journey with Vue' }"></blog-post>
+<blog-post v-bind:author="{ name: 'Veronica', company: 'Veridian Dynamics' }"></blog-post>
 
 <!-- 用一个变量进行动态赋值。-->
-<blog-post v-bind:post="post"></blog-post>
+<blog-post v-bind:author="post.author"></blog-post>
 ```
 
 ### 传入一个对象的所有属性
@@ -148,7 +174,7 @@ post: {
 
 ## Prop 验证
 
-我们可以为组件的 prop 指定需求。如果有一个需求没有被满足，则 Vue 会在浏览器控制台中警告你。这在开发一个会被别人用到的组件时尤其有帮助。
+我们可以为组件的 prop 指定验证要求，例如你知道的这些类型。如果有一个需求没有被满足，则 Vue 会在浏览器控制台中警告你。这在开发一个会被别人用到的组件时尤其有帮助。
 
 为了定制 prop 的验证方式，你可以为 `props` 中的值提供一个带有验证需求的对象，而不是一个字符串数组。例如：
 
@@ -199,9 +225,10 @@ Vue.component('my-component', {
 - `String`
 - `Number`
 - `Boolean`
-- `Function`
-- `Object`
 - `Array`
+- `Object`
+- `Date`
+- `Function`
 - `Symbol`
 
 额外的，`type` 还可以是一个自定义的构造函数，并且通过 `instanceof` 来进行检查确认。例如，给定下列现成的构造函数：
