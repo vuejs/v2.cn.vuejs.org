@@ -33,7 +33,7 @@ Vue.component('blog-post', {
 props: ['title', 'likes', 'isPublished', 'commentIds', 'author']
 ```
 
-通常，你希望每个 prop 都有指定的值类型。这时，你可以以对象形式列出 prop，这些属性的名称和值分别是 prop 各自的名称和类型：
+但是，通常你希望每个 prop 都有指定的值类型。这时，你可以以对象形式列出 prop，这些属性的名称和值分别是 prop 各自的名称和类型：
 
 ```js
 props: {
