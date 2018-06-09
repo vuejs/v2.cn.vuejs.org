@@ -443,7 +443,7 @@ methods: {
 
 这些钩子函数可以结合 CSS `transitions/animations` 使用，也可以单独使用。
 
-<p class="tip">当只用 JavaScript 过渡的时候，** 在 `enter` 和 `leave` 中，回调函数 `done` 是必须的 **。否则，它们会被同步调用，过渡会立即完成。</p>
+<p class="tip">当只用 JavaScript 过渡的时候，** 在 `enter` 和 `leave` 中，回调函数 `done` 必须显式调用 **。否则，它们将同步调用，过渡会立即完成。</p>
 
 <p class="tip">推荐对于仅使用 JavaScript 过渡的元素添加 `v-bind:css="false"`，Vue 会跳过 CSS 的检测。这也可以避免过渡过程中 CSS 的影响。</p>
 
