@@ -32,7 +32,11 @@ Vue (读音 /vjuː/，类似于 **view**) 是一套用于构建用户界面的**
 
 [安装教程](/guide/installation.html)给出了更多安装 Vue 的方式。请注意我们**不推荐**新手直接使用 `vue-cli`，尤其是在你还不熟悉基于 Node.js 的构建工具时。
 
+如果你喜欢交互式的东西，你也可以查阅[这个 Scrimba 上的系列教程](https://scrimba.com/playlist/pXKqta)，它揉合了录屏和代码试验田，并允许你随时暂停和播放。
+
 ## 声明式渲染
+
+<div class="scrimba"><a href="https://scrimba.com/p/pXKqta/cQ3QVcr" target="_blank">在 Scrimba 上尝试这节课</a></div>
 
 Vue.js 的核心是一个允许采用简洁的模板语法来声明式地将数据渲染进 DOM 的系统：
 
@@ -103,6 +107,8 @@ var app2 = new Vue({
 如果你再次打开浏览器的 JavaScript 控制台，输入 `app2.message = '新消息'`，就会再一次看到这个绑定了 `title` 特性的 HTML 已经进行了更新。
 
 ## 条件与循环
+
+<div class="scrimba"><a href="https://scrimba.com/p/pXKqta/cEQe4SJ" target="_blank">在 Scrimba 上尝试这节课</a></div>
 
 控制切换一个元素是否显示也相当简单：
 
@@ -186,6 +192,8 @@ var app4 = new Vue({
 
 ## 处理用户输入
 
+<div class="scrimba"><a href="https://scrimba.com/p/pXKqta/czPNaUr" target="_blank">在 Scrimba 上尝试这节课</a></div>
+
 为了让用户和你的应用进行交互，我们可以用 `v-on` 指令添加一个事件监听器，通过它调用在 Vue 实例中定义的方法：
 
 ``` html
@@ -261,6 +269,8 @@ var app6 = new Vue({
 {% endraw %}
 
 ## 组件化应用构建
+
+<div class="scrimba"><a href="https://scrimba.com/p/pXKqta/cEQVkA3" target="_blank">在 Scrimba 上尝试这节课</a></div>
 
 组件系统是 Vue 的另一个重要概念，因为它是一种抽象，允许我们使用小型、独立和通常可复用的组件构建大型应用。仔细想想，几乎任意类型的应用界面都可以抽象为一个组件树：
 
