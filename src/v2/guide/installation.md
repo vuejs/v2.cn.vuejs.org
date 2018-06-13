@@ -2,8 +2,8 @@
 title: 安装
 type: guide
 order: 1
-vue_version: 2.5.13
-gz_size: "30.67"
+vue_version: 2.5.16
+gz_size: "30.90"
 ---
 
 ### 兼容性
@@ -37,7 +37,7 @@ Vue **不支持** IE8 及以下版本，因为 Vue 使用了 IE8 无法模拟的
 我们推荐链接到一个你可以手动更新的指定版本号：
 
 ``` html
-<script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
 ```
 
 你可以在 [cdn.jsdelivr.net/npm/vue](https://cdn.jsdelivr.net/npm/vue/) 浏览 NPM 包的源代码。
@@ -57,7 +57,7 @@ $ npm install vue
 
 ## 命令行工具 (CLI)
 
-Vue 提供了一个[官方的 CLI](https://github.com/vuejs/vue-cli)，为单页面应用快速搭建 (SPA) 繁杂的脚手架。它为现代前端工作流提供了 batteries-included 的构建设置。只需要几分钟的时间就可以运行起来并带有热重载、保存时 lint 校验，以及生产环境可用的构建版本。更多详情可查阅 [Vue CLI 的文档](https://github.com/vuejs/vue-docs-zh-cn/blob/master/vue-cli/README.md#介绍)
+Vue 提供了一个[官方的 CLI](https://github.com/vuejs/vue-cli)，为单页面应用快速搭建 (SPA) 繁杂的脚手架。它为现代前端工作流提供了 batteries-included 的构建设置。只需要几分钟的时间就可以运行起来并带有热重载、保存时 lint 校验，以及生产环境可用的构建版本。更多详情可查阅 [Vue CLI 的文档](https://cli.vuejs.org)。
 
 <p class="tip">CLI 工具假定用户对 Node.js 和相关构建工具有一定程度的了解。如果你是新手，我们强烈建议先在不用构建工具的情况下通读<a href="./">指南</a>，在熟悉 Vue 本身之后再使用 CLI。</p>
 

@@ -1512,6 +1512,16 @@ computed: {
 9. **事件** (通过响应式事件触发的回调)
   - `watch`
   - 生命周期钩子 (按照它们被调用的顺序)
+    - `beforeCreate`
+    - `created`
+    - `beforeMount`
+    - `mounted`
+    - `beforeUpdate`
+    - `updated`
+    - `activated`
+    - `deactivated`
+    - `beforeDestroy`
+    - `destroyed`
 
 10. **非响应式的属性** (不依赖响应系统的实例属性)
   - `methods`

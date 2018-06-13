@@ -14,6 +14,7 @@ Vue.js 的社区正在急速增长中，如果你正在阅读本文，这说明�
 
 - [论坛](https://forum.vuejs.org/)：咨询与 Vue 及其生态的相关问题的最佳地点。
 - [聊天室](https://chat.vuejs.org/)：一个 Vue 开发者们相互认识和交流的实时聊天室。
+- [Meetup](https://www.vuemeetups.org)：想在当地找到像你一样的 Vue.js 爱好者吗？有兴趣成为社区领袖吗？这里就有你所需要的支持和帮助！
 - [GitHub](https://github.com/vuejs)：如果你想报告 bug 或者提出新特性需求，欢迎来 GitHub 提交 issue。我们也非常欢迎 pull request！
 
 ### 探索生态
@@ -49,3 +50,13 @@ Vue 已经在全球范围内传播开来，核心团队成员甚至来自至少 
 我希望现在你正在使用你的首选语言阅读这篇文档，如果不是，你愿意帮助我们翻译它吗？
 
 如果你愿意的话，请随时 fork [这些文档](https://github.com/vuejs/vuejs.org/)或者官方维护的其他文档的仓库，然后开始翻译吧。只要你取得了进展，就请在主仓库开一个 issue 或者 pull request，我们将号召更多的贡献者来进行帮助。
+
+### 成为社区领袖
+
+在社区中，你可以做很多事情来帮助 Vue 的发展：
+
+- **参加当地的 meetup。**不论是准备一个话题还是组织一个 workshop，你都可以通过帮助新老 Vue 开发者的发展来为社区带来很多价值。
+- **自己组织 meetup。**如果你所在的地方没有人组织 meetup，你可以自己组织起来！要善用 [vuemeetups.org 的资源](https://www.vuemeetups.org/resources/#introduction)！
+- **帮助 meetup 组织者。**在举办活动时，帮助永远不嫌多，所以请帮助当地组织者让每个活动都能够成功举办。
+
+对于如何参与当地的 Vue 社区，如果你有任何问题，请联系 [hello@vuemeetups.org](mailto:hello@vuemeetups.org) 或 [@VueMeetups](https://www.twitter.com/vuemeetups)！
