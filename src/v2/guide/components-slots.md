@@ -49,7 +49,7 @@ Vue 实现了一套内容分发的 API，这套 API 基于当前的 [Web Compone
 </navigation-link>
 ```
 
-如果 `<navigation-link>` **没有**包含一个 `<slot>` 元素，则任何传入它的内容都会被抛弃。
+如果 `<navigation-link>` **没有**包含一个 `<slot>` 元素，则任何传入的其他内容都会被抛弃。
 
 ## 具名插槽
 
