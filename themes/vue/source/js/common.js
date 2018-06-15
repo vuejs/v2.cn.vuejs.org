@@ -66,7 +66,7 @@
       // Abort if the current page doesn't match the page regex
       if (!pageRegex.test(window.location.pathname)) return
 
-      var redirectPath = redirects[window.location.hash.slice(1)]
+      var redirectPath = decodeURIComponent(redirects[window.location.hash.slice(1)])
       if (redirectPath) {
         window.location.href = window.location.origin + redirectPath
       }
