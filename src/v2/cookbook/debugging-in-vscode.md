@@ -53,7 +53,7 @@ devtool: 'source-map',
 
 1. 在 **`src/components/HelloWorld.vue`** 的 `line90` 的地方设置一个断点，这里的 `data` 函数返回一个字符串。
 
-![断点渲染器](/images/breakpoint_set.png)
+  ![断点渲染器](/images/breakpoint_set.png)
 
 2. 在根目录打开你惯用的终端并使用 Vue CLI 开启这个应用：
 
@@ -65,7 +65,7 @@ devtool: 'source-map',
 
 4. 随着一个新的 Chrome 实例打开 `http://localhost:8080`，你的断点现在应该被命中了。
 
-![命中断点](/images/breakpoint_hit.png)
+  ![命中断点](/images/breakpoint_hit.png)
 
 ## 替代方案
 
