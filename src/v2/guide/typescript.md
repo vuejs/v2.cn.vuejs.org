@@ -35,7 +35,7 @@ order: 404
 
 ## 开发工具链
 
-## 工程创建
+### 工程创建
 
 [Vue CLI 3](https://github.com/vuejs/vue-cli) 可以使用 TypeScript 生成新工程。创建方式：
 
@@ -47,7 +47,7 @@ npm install --global @vue/cli
 vue create my-project-name
 ```
 
-## 编辑器支持
+### 编辑器支持
 
 要使用 TypeScript 开发 Vue 应用程序，我们强烈建议您使用 [Visual Studio Code](https://code.visualstudio.com/)，它为 TypeScript 提供了极好的“开箱即用”支持。如果你正在使用[单文件组件](./single-file-components.html) (SFC), 可以安装提供 SFC 支持以及其他更多实用功能的 [Vetur 插件](https://github.com/vuejs/vetur)。
 
