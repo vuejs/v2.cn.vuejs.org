@@ -24,6 +24,16 @@ order: 8
 devtool: 'source-map',
 ```
 
+如果使用 Vue CLI 3 你需要设置 `vue.config.js` 内的 `devtool` 属性：
+
+```js
+module.exports = {
+  configureWebpack: {
+    devtool: 'source-map'
+  }
+}
+```
+
 ### 从 VS Code 启动应用
 
 点击在 Activity Bar 里的 Debugger 图标来到 Debug 视图，然后点击那个齿轮图标来配置一个 `launch.json` 的文件，选择 **Chrome** 环境。然后将生成的 `launch.json` 的内容替换成为接下来的两段配置：
