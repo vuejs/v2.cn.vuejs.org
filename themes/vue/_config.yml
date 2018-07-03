@@ -28,6 +28,9 @@ platinum_sponsors_china:
     img: bmqb.png
 
 gold_sponsors:
+  - url: https://www.vuemastery.com/
+    img: vuemastery.png
+    name: vue mastery
   - url: https://laravel.com
     img: laravel.png
     name: laravel
@@ -73,9 +76,12 @@ gold_sponsors:
   - url: https://www.nsoft.com/careers/
     img: nsoft.png
     name: n soft
-  - url: https://www.vuemastery.com/
-    img: vuemastery.png
-    name: vue mastery
+  - url: https://coreui.io/?utm_source=vuejs&utm_medium=logo&utm_campaign=homepage
+    img: coreui.png
+    name: core ui
+  - url: https://piio.co/vuejs?ref=vuejs
+    img: piio.png
+    name: piio
 
 silver_sponsors:
   - url: https://dopamine.bg/
