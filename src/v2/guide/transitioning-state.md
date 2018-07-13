@@ -530,5 +530,5 @@ Vue 可以帮到你。因为 SVG 的本质是数据，我们只需要这些动�
 
 Sarah Drasner 展示了下面这个 demo，这个 demo 结合了时间和交互相关的状态改变：
 
-<p data-height="265" data-theme-id="light" data-slug-hash="YZBGNp" data-default-tab="result" data-user="sdras" data-embed-version="2" data-pen-title="Vue-controlled Wall-E" class="codepen">See the Pen <a href="https://codepen.io/sdras/pen/YZBGNp/">Vue-controlled Wall-E</a> by Sarah Drasner (<a href="https://codepen.io/sdras">@sdras</a>) on <a href="https://codepen.io">CodePen</a>.</p>
+<p data-height="265" data-theme-id="light" data-slug-hash="YZBGNp" data-default-tab="result" data-user="sdras" data-embed-version="2" data-pen-title="Vue-controlled Wall-E" class="codepen">查看 <a href="https://codepen.io">CodePen</a> 上 Sarah Drasner (<a href="https://codepen.io/sdras">@sdras</a>) 的例子 <a href="https://codepen.io/sdras/pen/YZBGNp/">Vue-controlled Wall-E</a>.</p>
 <script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
