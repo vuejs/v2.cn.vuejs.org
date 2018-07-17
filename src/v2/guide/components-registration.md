@@ -207,7 +207,7 @@ requireComponent.keys().forEach(fileName => {
   // 获取组件的 PascalCase 命名
   const componentName = upperFirst(
     camelCase(
-      // 剥去文件名开头的 `'./` 和结尾的扩展名
+      // 剥去文件名开头的 `./` 和结尾的扩展名
       fileName.replace(/^\.\/(.*)\.\w+$/, '$1')
     )
   )
