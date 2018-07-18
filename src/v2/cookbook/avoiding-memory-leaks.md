@@ -21,13 +21,20 @@ order: 10
 <script src="https://joshuajohnson.co.uk/Choices/assets/scripts/dist/choices.min.js?version=3.0.3"></script>
 
 <div id="app">
-  <button v-if="showChoices" @click="hide">Hide</button>
-  <button v-if="!showChoices" @click="show">Show</button>
+  <button
+    v-if="showChoices"
+    @click="hide"
+  >Hide</button>
+  <button
+    v-if="!showChoices"
+    @click="show"
+  >Show</button>
   <div v-if="showChoices">
     <select id="choices-single-default"></select>
   </div>
 </div>
 ```
+
 ```js
 new Vue({
   el: "#app",
@@ -68,6 +75,7 @@ new Vue({
   }
 })
 ```
+
 为了实际观察一下这个内存泄露，请使用 Chrome 打开这个 [CodePen 示例](https://codepen.io/freeman-g/pen/qobpxo)然后打开 Chrome 的任务管理器。Mac 下打开 Chrome 任务管理器的方式是选择 Chrome 顶部导航 > 窗口 > 任务管理；在 Windows 上则是 Shift+Esc 快捷键。现在点击展示/隐藏按钮 50 次左右。你应该在 Chrome 任务管理中发现内存的使用在增加并且从未被回收。
 
 ![内存泄漏示例](/images/memory-leak-example.png)

@@ -11,7 +11,12 @@ order: 3
 给定一个表单，包含三个字段，其中两个是必填项。我们先来看看 HTML：
 
 ``` html
-<form id="app" @submit="checkForm" action="https://vuejs.org/" method="post">
+<form
+  id="app"
+  @submit="checkForm"
+  action="https://vuejs.org/"
+  method="post"
+>
 
   <p v-if="errors.length">
     <b>Please correct the following error(s):</b>
@@ -22,17 +27,31 @@ order: 3
 
   <p>
     <label for="name">Name</label>
-    <input type="text" name="name" id="name" v-model="name">
+    <input
+      id="name"
+      v-model="name"
+      type="text"
+      name="name"
+    >
   </p>
 
   <p>
     <label for="age">Age</label>
-    <input type="number" name="age" id="age" v-model="age" min="0">
+    <input
+      id="age"
+      v-model="age"
+      type="number"
+      name="age"
+      min="0">
   </p>
 
   <p>
     <label for="movie">Favorite Movie</label>
-    <select name="movie" id="movie" v-model="movie">
+    <select
+      id="movie"
+      v-model="movie"
+      name="movie"
+    >
       <option>Star Wars</option>
       <option>Vanilla Sky</option>
       <option>Atomic Blonde</option>
@@ -66,16 +85,16 @@ const app = new Vue({
       if (this.name && this.age) {
         return true;
       }
-      
+
       this.errors = [];
-      
+
       if (!this.name) {
         this.errors.push('Name required.');
       }
       if (!this.age) {
         this.errors.push('Age required.');
       }
-      
+
       e.preventDefault();
     }
   }
@@ -92,7 +111,13 @@ const app = new Vue({
 对于第二个示例来说，第二个文本字段 (年龄) 变换成了电子邮件地址，它将会通过一些自定义的逻辑来校验。这部分代码来自 StackOverflow 的问题：[如何在 JavaScript 中校验电子邮件地址](https://stackoverflow.com/questions/46155/how-to-validate-email-address-in-javascript)。这是一个很好的问题，因为它会让 Facebook 上最激烈的政治、宗教争论看上去都只是“哪家的啤酒最好喝”这样的小分歧了。讲真的这很疯狂。我们来看 HTML，尽管它和第一个例子很接近。
 
 ``` html
-<form id="app" @submit="checkForm" action="https://vuejs.org/" method="post" novalidate="true">
+<form
+  id="app"
+  @submit="checkForm"
+  action="https://vuejs.org/"
+  method="post"
+  novalidate="true"
+>
 
   <p v-if="errors.length">
     <b>Please correct the following error(s):</b>
@@ -103,17 +128,31 @@ const app = new Vue({
 
   <p>
     <label for="name">Name</label>
-    <input type="text" name="name" id="name" v-model="name">
+    <input
+      id="name"
+      v-model="name"
+      type="text
+      name="name"
+    >
   </p>
 
   <p>
     <label for="email">Email</label>
-    <input type="email" name="email" id="email" v-model="email">
+    <input
+      id="email"
+      v-model="email"
+      type="email"
+      name="email"
+    >
   </p>
 
   <p>
     <label for="movie">Favorite Movie</label>
-    <select name="movie" id="movie" v-model="movie">
+    <select
+      id="movie"
+      v-model="movie"
+      name="movie"
+    >
       <option>Star Wars</option>
       <option>Vanilla Sky</option>
       <option>Atomic Blonde</option>
@@ -121,7 +160,10 @@ const app = new Vue({
   </p>
 
   <p>
-    <input type="submit" value="Submit">
+    <input
+      type="submit"
+      value="Submit"
+    >
   </p>
 
 </form>
@@ -141,20 +183,20 @@ const app = new Vue({
   methods: {
     checkForm: function (e) {
       this.errors = [];
-      
+
       if (!this.name) {
         this.errors.push("Name required.");
       }
       if (!this.email) {
         this.errors.push('Email required.');
       } else if (!this.validEmail(this.email)) {
-        this.errors.push('Valid email required.');        
+        this.errors.push('Valid email required.');
       }
-      
+
       if (!this.errors.length) {
         return true;
       }
-      
+
       e.preventDefault();
     },
     validEmail: function (email) {
@@ -175,7 +217,13 @@ const app = new Vue({
 在第三个示例中，我们已经构建了一些你可能在一些调研类应用中见过的东西。用户需要花掉“预算”来为歼星舰模型装配一套部件。总价必须等于 100。先看 HTML。
 
 ``` html
-<form id="app" @submit="checkForm" action="https://vuejs.org/" method="post" novalidate="true">
+<form
+  id="app"
+  @submit="checkForm"
+  action="https://vuejs.org/"
+  method="post"
+  novalidate="true"
+>
 
   <p v-if="errors.length">
     <b>Please correct the following error(s):</b>
@@ -191,11 +239,31 @@ const app = new Vue({
   </p>
 
   <p>
-    <input type="number" name="weapons" v-model.number="weapons"> Weapons <br/>
-    <input type="number" name="shields" v-model.number="shields"> Shields <br/>
-    <input type="number" name="coffee" v-model.number="coffee"> Coffee <br/>
-    <input type="number" name="ac" v-model.number="ac"> Air Conditioning <br/>
-    <input type="number" name="mousedroids" v-model.number="mousedroids"> Mouse Droids <br/>
+    <input
+      v-model.number="weapons"
+      type="number"
+      name="weapons"
+    > Weapons <br/>
+    <input
+      v-model.number="shields"
+      type="number"
+      name="shields"
+    > Shields <br/>
+    <input
+      v-model.number="coffee"
+      type="number"
+      name="coffee"
+    > Coffee <br/>
+    <input
+      v-model.number="ac"
+      type="number"
+      name="ac"
+    > Air Conditioning <br/>
+    <input
+      v-model.number="mousedroids"
+      type="number"
+      name="mousedroids"
+    > Mouse Droids <br/>
   </p>
 
   <p>
@@ -203,7 +271,10 @@ const app = new Vue({
   </p>
 
   <p>
-    <input type="submit" value="Submit">
+    <input
+      type="submit"
+      value="Submit"
+    >
   </p>
 
 </form>
@@ -234,15 +305,15 @@ const app = new Vue({
   methods:{
     checkForm: function (e) {
       this.errors = [];
-      
+
       if (this.total != 100) {
         this.errors.push('Total must be 100!');
       }
-      
+
       if (!this.errors.length) {
         return true;
       }
-      
+
       e.preventDefault();
     }
   }
@@ -276,7 +347,11 @@ function main(args) {
 基本上除了“vista”、“empire”和“mbp”的名字都是可以接受的。好，让我们来看看表单。
 
 ``` html
-<form id="app" @submit="checkForm" method="post">
+<form
+  id="app"
+  @submit="checkForm"
+  method="post"
+>
 
   <p v-if="errors.length">
     <b>Please correct the following error(s):</b>
@@ -287,11 +362,19 @@ function main(args) {
 
   <p>
     <label for="name">New Product Name: </label>
-    <input type="text" name="name" id="name" v-model="name">
+    <input
+      id="name"
+      v-model="name"
+      type="text"
+      name="name"
+    >
   </p>
 
   <p>
-    <input type="submit" value="Submit">
+    <input
+      type="submit"
+      value="Submit"
+    >
   </p>
 
 </form>
@@ -311,9 +394,9 @@ const app = new Vue({
   methods:{
     checkForm: function (e) {
       e.preventDefault();
-      
+
       this.errors = [];
-      
+
       if (this.name === '') {
         this.errors.push('Product name is required.');
       } else {

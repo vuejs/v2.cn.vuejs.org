@@ -35,7 +35,10 @@ order: 4
     :aria-labelledby="iconName"
     role="presentation"
   >
-    <title :id="iconName" lang="en">{{iconName}} icon</title>
+    <title
+      :id="iconName"
+      lang="en"
+    >{{ iconName }} icon</title>
     <g :fill="iconColor">
       <slot />
     </g>
@@ -83,11 +86,19 @@ export default {
 ```html
 <p>
   <!-- 你可以通过 prop 传递更小的 `width` 和 `height` -->
-  <icon-base width="12" height="12" icon-name="write"><icon-write /></icon-base>
+  <icon-base
+    width="12"
+    height="12"
+    icon-name="write"
+  ><icon-write /></icon-base>
   <!-- 或者你可以使用默认值，即 18 -->
   <icon-base icon-name="write"><icon-write /></icon-base>
   <!-- 或者让它更大一些 :) -->
-  <icon-base width="30" height="30" icon-name="write"><icon-write /></icon-base>
+  <icon-base
+    width="30"
+    height="30"
+    icon-name="write"
+  ><icon-write /></icon-base>
 </p>
 ```
 
@@ -99,16 +110,23 @@ export default {
 
 ```html
 <template>
-  <svg @click="startScissors"
+  <svg
+    @click="startScissors"
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 100 100"
     width="100"
     height="100"
     aria-labelledby="scissors"
     role="presentation"
-    >
-    <title id="scissors" lang="en">Scissors Animated Icon</title>
-    <path id="bk" fill="#fff" d="M0 0h100v100H0z"/>
+  >
+    <title
+      id="scissors"
+      lang="en"
+    >Scissors Animated Icon</title>
+    <path
+      id="bk"
+      fill="#fff"
+      d="M0 0h100v100H0z"/>
     <g ref="leftscissor">
       <path d="M..."/>
       ...
