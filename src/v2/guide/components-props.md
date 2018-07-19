@@ -258,7 +258,7 @@ Vue.component('blog-post', {
 
 因为显式定义的 prop 适用于向一个子组件传入信息，然而组件库的作者并不总能预见组件会被用于怎样的场景。这也是为什么组件可以接受任意的特性，而这些特性会被添加到这个组件的根元素上。
 
-例如，想象一下你通过一个 Bootstrap 插件使用了一个第三方的 `<bootstrap-data-input>` 组件，这个插件需要在其 `<input>` 上用到一个 `data-date-picker` 特性。我们可以将这个特性添加到你的组件实例上：
+例如，想象一下你通过一个 Bootstrap 插件使用了一个第三方的 `<bootstrap-date-input>` 组件，这个插件需要在其 `<input>` 上用到一个 `data-date-picker` 特性。我们可以将这个特性添加到你的组件实例上：
 
 ``` html
 <bootstrap-date-input data-date-picker="activated"></bootstrap-date-input>
