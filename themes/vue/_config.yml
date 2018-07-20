@@ -29,6 +29,12 @@ platinum_sponsors:
     img: vehikl.png
     name: vehikl
 
+platinum_sponsors_china:
+  - url: https://www.geekbang.org/
+    img: geekbang.png
+  - url: https://www.bmqb.com/a/jobs?tracking_code=vue
+    img: bmqb.png
+
 gold_sponsors:
   - url: https://www.vuemastery.com/
     img: vuemastery.png
@@ -106,3 +112,8 @@ bronze_sponsors:
   - url: https://pullstring.com
     img: https://i.imgur.com/hQHW6TB.png
     name: pull string
+
+video_sponsors_china:
+  - url: http://cloud.youku.com/index.php?source=vuejs
+    img: youku.png
+    name: 优酷

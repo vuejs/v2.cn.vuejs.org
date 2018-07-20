@@ -54,19 +54,28 @@ order: 3
 
 ``` js
 const app = new Vue({
-  el:'#app',
-  data:{
-    errors:[],
-    name:null,
-    age:null,
-    movie:null
+  el: '#app',
+  data: {
+    errors: [],
+    name: null,
+    age: null,
+    movie: null
   },
   methods:{
-    checkForm:function(e) {
-      if(this.name && this.age) return true;
+    checkForm: function (e) {
+      if (this.name && this.age) {
+        return true;
+      }
+      
       this.errors = [];
-      if(!this.name) this.errors.push("Name required.");
-      if(!this.age) this.errors.push("Age required.");
+      
+      if (!this.name) {
+        this.errors.push('Name required.');
+      }
+      if (!this.age) {
+        this.errors.push('Age required.');
+      }
+      
       e.preventDefault();
     }
   }
@@ -122,26 +131,33 @@ const app = new Vue({
 
 ``` js
 const app = new Vue({
-  el:'#app',
-  data:{
-    errors:[],
-    name:null,
-    email:null,
-    movie:null
+  el: '#app',
+  data: {
+    errors: [],
+    name: null,
+    email: null,
+    movie: null
   },
-  methods:{
-    checkForm:function(e) {
+  methods: {
+    checkForm: function (e) {
       this.errors = [];
-      if(!this.name) this.errors.push("Name required.");
-      if(!this.email) {
-        this.errors.push("Email required.");
-      } else if(!this.validEmail(this.email)) {
-        this.errors.push("Valid email required.");
+      
+      if (!this.name) {
+        this.errors.push("Name required.");
       }
-      if(!this.errors.length) return true;
+      if (!this.email) {
+        this.errors.push('Email required.');
+      } else if (!this.validEmail(this.email)) {
+        this.errors.push('Valid email required.');        
+      }
+      
+      if (!this.errors.length) {
+        return true;
+      }
+      
       e.preventDefault();
     },
-    validEmail:function(email) {
+    validEmail: function (email) {
       var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
       return re.test(email);
     }
@@ -197,29 +213,36 @@ const app = new Vue({
 
 ``` js
 const app = new Vue({
-  el:'#app',
+  el: '#app',
   data:{
-    errors:[],
-    weapons:0,
-    shields:0,
-    coffee:0,
-    ac:0,
-    mousedroids:0
+    errors: [],
+    weapons: 0,
+    shields: 0,
+    coffee: 0,
+    ac: 0,
+    mousedroids: 0
   },
-  computed:{
-     total:function() {
+  computed: {
+     total: function () {
        // 必须解析，因为 Vue 会将空值转换为字符串
-       return Number(this.weapons)+
-         Number(this.shields)+
-         Number(this.coffee)+
+       return Number(this.weapons) +
+         Number(this.shields) +
+         Number(this.coffee) +
          Number(this.ac+this.mousedroids);
      }
   },
   methods:{
-    checkForm:function(e) {
+    checkForm: function (e) {
       this.errors = [];
-      if(this.total != 100) this.errors.push("Total must be 100!");
-      if(!this.errors.length) return true;
+      
+      if (this.total != 100) {
+        this.errors.push('Total must be 100!');
+      }
+      
+      if (!this.errors.length) {
+        return true;
+      }
+      
       e.preventDefault();
     }
   }
@@ -237,16 +260,16 @@ const app = new Vue({
 
 ``` js
 function main(args) {
-
-    return new Promise((resolve, reject) => {
-
-        // 不好的产品名：vista, empire, mbp
-        let badNames = ['vista','empire','mbp'];
-        if(badNames.includes(args.name)) reject({error:'Existing product'});
-        resolve({status:'ok'});
-
-    });
-
+  return new Promise((resolve, reject) => {
+    // 不好的产品名：vista, empire, mbp
+    const badNames = ['vista', 'empire', 'mbp'];
+    
+    if (badNames.includes(args.name)) {
+      reject({error: 'Existing product'});
+    }
+    
+    resolve({status: 'ok'});
+  });
 }
 ```
 
@@ -280,22 +303,24 @@ function main(args) {
 const apiUrl = 'https://openwhisk.ng.bluemix.net/api/v1/web/rcamden%40us.ibm.com_My%20Space/safeToDelete/productName.json?name=';
 
 const app = new Vue({
-  el:'#app',
-  data:{
-    errors:[],
-    name:''
+  el: '#app',
+  data: {
+    errors: [],
+    name: ''
   },
   methods:{
-    checkForm:function(e) {
+    checkForm: function (e) {
       e.preventDefault();
+      
       this.errors = [];
-      if(this.name === '') {
-        this.errors.push("Product name is required.");
+      
+      if (this.name === '') {
+        this.errors.push('Product name is required.');
       } else {
-        fetch(apiUrl+encodeURIComponent(this.name))
+        fetch(apiUrl + encodeURIComponent(this.name))
         .then(res => res.json())
         .then(res => {
-          if(res.error) {
+          if (res.error) {
             this.errors.push(res.error);
           } else {
             // 在成功的时候重定向到一个新的 URL 或做一些别的事情

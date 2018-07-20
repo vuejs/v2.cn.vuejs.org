@@ -13,11 +13,11 @@ original version from vuejs.org
 
 <div id="sidebar-sponsors-special">
   <div class="main-sponsor">
-    <span>特别赞助</span>
+    <span>特别赞助商</span>
     <div>
     <%_ for (const sponsor of theme.special_sponsors) {_%>
     <a href="<%- sponsor.url %>" target="_blank" class="logo">
-      <img src="<%- url_for(`/images/${sponsor.wide_img || sponsor.img}`) %>">
+      <img src="<%- url_for(`/images/${sponsor.wide_img || sponsor.img}`) %>" alt="<%-sponsor.name-%>">
     </a>
     <%_ } _%>
     </div>
@@ -26,11 +26,11 @@ original version from vuejs.org
 
 <div id="sidebar-sponsors-platinum">
   <div class="main-sponsor">
-    <span>Patreon 赞助</span>
+    <span>白金赞助商</span>
     <div>
     <%_ for (const sponsor of theme.platinum_sponsors) {_%>
     <a href="<%- sponsor.url %>" target="_blank" class="logo">
-      <img src="<%- url_for(`/images/${sponsor.wide_img || sponsor.img}`) %>">
+      <img src="<%- url_for(`/images/${sponsor.wide_img || sponsor.img}`) %>" alt="<%-sponsor.name-%>">
     </a>
     <%_ } _%>
     </div>

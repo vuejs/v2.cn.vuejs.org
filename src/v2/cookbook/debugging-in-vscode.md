@@ -24,6 +24,16 @@ order: 8
 devtool: 'source-map',
 ```
 
+如果使用 Vue CLI 3 你需要设置 `vue.config.js` 内的 `devtool` 属性：
+
+```js
+module.exports = {
+  configureWebpack: {
+    devtool: 'source-map'
+  }
+}
+```
+
 ### 从 VS Code 启动应用
 
 点击在 Activity Bar 里的 Debugger 图标来到 Debug 视图，然后点击那个齿轮图标来配置一个 `launch.json` 的文件，选择 **Chrome** 环境。然后将生成的 `launch.json` 的内容替换成为接下来的两段配置：
@@ -53,7 +63,7 @@ devtool: 'source-map',
 
 1. 在 **`src/components/HelloWorld.vue`** 的 `line90` 的地方设置一个断点，这里的 `data` 函数返回一个字符串。
 
-![断点渲染器](/images/breakpoint_set.png)
+  ![断点渲染器](/images/breakpoint_set.png)
 
 2. 在根目录打开你惯用的终端并使用 Vue CLI 开启这个应用：
 
@@ -65,7 +75,7 @@ devtool: 'source-map',
 
 4. 随着一个新的 Chrome 实例打开 `http://localhost:8080`，你的断点现在应该被命中了。
 
-![命中断点](/images/breakpoint_hit.png)
+  ![命中断点](/images/breakpoint_hit.png)
 
 ## 替代方案
 
