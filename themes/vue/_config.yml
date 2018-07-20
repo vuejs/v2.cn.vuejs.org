@@ -3,6 +3,14 @@ google_analytics: UA-46852172-3
 root_domain: cn.vuejs.org
 vue_version: 2.5.16
 
+platinum_sponsors_china:
+  - url: https://www.geekbang.org/
+    img: geekbang.png
+
+video_sponsors_china:
+  - url: http://cloud.youku.com/index.php?source=vuejs
+    img: youku.png
+
 special_sponsors:
   - url: https://stdlib.com
     img: stdlib.png
