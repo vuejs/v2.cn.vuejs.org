@@ -29,12 +29,6 @@ platinum_sponsors:
     img: vehikl.png
     name: vehikl
 
-platinum_sponsors_china:
-  - url: https://www.geekbang.org/
-    img: geekbang.png
-  - url: https://www.bmqb.com/a/jobs?tracking_code=vue
-    img: bmqb.png
-
 gold_sponsors:
   - url: https://www.vuemastery.com/
     img: vuemastery.png
