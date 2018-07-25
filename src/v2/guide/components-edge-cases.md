@@ -97,7 +97,7 @@ var map = this.$parent.map || this.$parent.$parent.map
 this.$refs.usernameInput
 ```
 
-来访问这个 `<base-input>` 实例，以便不时之需。比如程序化的从一个父级组件聚焦这个输入框。在刚才那个例子中，该 `<base-input>` 组件也可以使用一个类似的 `ref` 提供对内部这个指定元素的访问，例如：
+来访问这个 `<base-input>` 实例，以便不时之需。比如程序化地从一个父级组件聚焦这个输入框。在刚才那个例子中，该 `<base-input>` 组件也可以使用一个类似的 `ref` 提供对内部这个指定元素的访问，例如：
 
 ```html
 <input ref="input">
