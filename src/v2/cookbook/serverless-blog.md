@@ -109,7 +109,7 @@ export default new Router({
         butter.post.list({
           page: 1,
           page_size: 10
-        }).then((res) => {
+        }).then(res => {
           this.posts = res.data.data
         })
       }
@@ -172,9 +172,9 @@ export default new Router({
     methods: {
       getPost() {
         butter.post.retrieve(this.$route.params.slug)
-          .then((res) => {
+          .then(res => {
             this.post = res.data
-          }).catch((res) => {
+          }).catch(res => {
             console.log(res)
           })
       }
@@ -230,15 +230,15 @@ export default new Router({
     name: 'blog-post',
     data() {
       return {
-        post: {}
+        post: null
       }
     },
     methods: {
       getPost() {
         butter.post.retrieve(this.$route.params.slug)
-          .then((res) => {
+          .then(res => {
             this.post = res.data
-          }).catch((res) => {
+          }).catch(res => {
             console.log(res)
           })
       }
@@ -271,10 +271,10 @@ export default new Router({
 
 ```javascript
 methods: {
-  ...
+  // ...
   getCategories() {
     butter.category.list()
-      .then((res) => {
+      .then(res => {
         console.log('List of Categories:')
         console.log(res.data.data)
       })
@@ -283,14 +283,14 @@ methods: {
     butter.category.retrieve('example-category', {
         include: 'recent_posts'
       })
-      .then((res) => {
+      .then(res => {
         console.log('Posts with specific category:')
         console.log(res)
       })
   }
 },
 created() {
-  ...
+  // ...
   this.getCategories()
   this.getPostsByCategory()
 }
