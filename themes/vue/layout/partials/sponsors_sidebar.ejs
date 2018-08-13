@@ -1,29 +1,15 @@
-<div class="sidebar-sponsors">
-  <div class="main-sponsor">
-    <span style="display: block; margin-bottom: 15px">特别赞助位空缺中</span>
-  </div>
-  <a class="become-backer" href="<%- url_for("/support-vuejs#Special-Sponsor") %>">
-    成为赞助者
-  </a>
-</div>
-
-<!--
-
-original version from vuejs.org
-
 <div id="sidebar-sponsors-special">
   <div class="main-sponsor">
     <span>特别赞助商</span>
     <div>
-    <%_ for (const sponsor of theme.special_sponsors) {_%>
+    <%_ var sponsor = theme.platinum_sponsors_china[1]; _%>
     <a href="<%- sponsor.url %>" target="_blank" class="logo">
       <img src="<%- url_for(`/images/${sponsor.wide_img || sponsor.img}`) %>" alt="<%-sponsor.name-%>">
     </a>
-    <%_ } _%>
     </div>
   </div>
 </div>
 
+<!--
 <%- partial('partials/platinum_sponsors', { context: 'left' }) %>
-
 -->

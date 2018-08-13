@@ -6,6 +6,8 @@ vue_version: 2.5.16
 platinum_sponsors_china:
   - url: https://www.geekbang.org/
     img: geekbang.png
+  - url: https://gitee.com/?from=vue
+    img: gitee.png
 
 video_sponsors_china:
   - url: http://cloud.youku.com/index.php?source=vuejs
