@@ -4,7 +4,7 @@
     <div>
     <%_ var sponsor = theme.platinum_sponsors_china[1]; _%>
     <a href="<%- sponsor.url %>" target="_blank" class="logo">
-      <img src="<%- url_for(`/images/${sponsor.wide_img || sponsor.img}`) %>" alt="<%-sponsor.name-%>">
+      <img src="<%- url_for(`/images/${sponsor.ad_img || sponsor.img}`) %>" alt="<%-sponsor.name-%>">
     </a>
     </div>
   </div>

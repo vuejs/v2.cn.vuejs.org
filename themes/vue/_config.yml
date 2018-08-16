@@ -8,6 +8,7 @@ platinum_sponsors_china:
     img: geekbang.png
   - url: https://gitee.com/?from=vue
     img: gitee.png
+    ad_img: gitee_ad.png
 
 video_sponsors_china:
   - url: http://cloud.youku.com/index.php?source=vuejs
