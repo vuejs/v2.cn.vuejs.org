@@ -86,7 +86,7 @@ var ComponentC = { /* ... */ }
 
 ```js
 new Vue({
-  el: '#app'
+  el: '#app',
   components: {
     'component-a': ComponentA,
     'component-b': ComponentB
