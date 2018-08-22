@@ -2135,7 +2135,7 @@ type: api
 
 - **修饰符**：
   - [`.lazy`](../guide/forms.html#lazy) - 取代 `input` 监听 `change` 事件
-  - [`.number`](../guide/forms.html#number) - 输入字符串转为数字
+  - [`.number`](../guide/forms.html#number) - 输入字符串转为有效的数字
   - [`.trim`](../guide/forms.html#trim) - 输入首尾空格过滤
 
 - **用法**：

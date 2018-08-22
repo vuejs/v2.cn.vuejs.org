@@ -396,7 +396,7 @@ vm.selected.number // => 123
 <input v-model.number="age" type="number">
 ```
 
-这通常很有用，因为即使在 `type="number"` 时，HTML 输入元素的值也总会返回字符串。
+这通常很有用，因为即使在 `type="number"` 时，HTML 输入元素的值也总会返回字符串。如果这个值无法被 `parseFloat()` 解析，则会返回原始的值。
 
 ### `.trim`
 
