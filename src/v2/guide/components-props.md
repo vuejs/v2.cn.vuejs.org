@@ -198,7 +198,7 @@ Vue.component('my-component', {
     // 带有默认值的对象
     propE: {
       type: Object,
-      // 对象或数组且一定会从一个工厂函数返回默认值
+      // 对象或数组默认值必须从一个工厂函数获取
       default: function () {
         return { message: 'hello' }
       }
