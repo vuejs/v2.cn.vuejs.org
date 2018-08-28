@@ -15,8 +15,9 @@ video_sponsors_china:
     img: youku.png
 
 special_sponsors:
-  - url: https://stdlib.com
-    img: stdlib.png
+  - url: https://code.xyz/
+    img: codexyz.png
+    description: Build APIs in Your Web Browser
 
 platinum_sponsors:
   - url: https://www.bitsrc.io/?utm_source=vue&utm_medium=vue&utm_campaign=vue&utm_term=vue&utm_content=vue
