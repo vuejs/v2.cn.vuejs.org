@@ -409,6 +409,8 @@ methods: {
   // 与 CSS 结合时使用
   enter: function (el, done) {
     // ...
+    // 需要注意添加一个刷新动画帧，设置在结束位置之前，整个动画只需要设置一次
+    el.offsetWidth // 或者 el.offsetHeight
     done()
   },
   afterEnter: function (el) {
