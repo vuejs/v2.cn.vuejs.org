@@ -307,7 +307,7 @@ Vue.config.keyCodes.f1 = 112
 `.exact` 修饰符允许你控制由精确的系统修饰符组合触发的事件。
 
 ``` html
-<!-- 即使 Alt 或 Shift 被一同按下时也会触发 -->
+<!-- 即使 ctrl 或 Shift 被一同按下时也会触发 -->
 <button @click.ctrl="onClick">A</button>
 
 <!-- 有且只有 Ctrl 被按下的时候才触发 -->
