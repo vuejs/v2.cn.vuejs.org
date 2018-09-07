@@ -405,8 +405,8 @@ methods: {
   beforeEnter: function (el) {
     // ...
   },
-  // 此回调函数是可选项的设置
-  // 与 CSS 结合时使用
+  // 当与 CSS 结合使用时
+  // 这个 done 回调函数是可选的
   enter: function (el, done) {
     // ...
     done()
@@ -425,8 +425,8 @@ methods: {
   beforeLeave: function (el) {
     // ...
   },
-  // 此回调函数是可选项的设置
-  // 与 CSS 结合时使用
+  // 当与 CSS 结合使用时
+  // 这个 done 回调函数是可选的
   leave: function (el, done) {
     // ...
     done()
