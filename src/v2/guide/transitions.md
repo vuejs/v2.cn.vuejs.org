@@ -406,7 +406,7 @@ methods: {
     // ...
   },
   // 当与 CSS 结合使用时
-  // 这个 done 回调函数是可选的
+  // 回调函数 done 是可选的
   enter: function (el, done) {
     // ...
     done()
@@ -426,7 +426,7 @@ methods: {
     // ...
   },
   // 当与 CSS 结合使用时
-  // 这个 done 回调函数是可选的
+  // 回调函数 done 是可选的
   leave: function (el, done) {
     // ...
     done()
