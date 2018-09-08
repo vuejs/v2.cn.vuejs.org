@@ -1700,7 +1700,7 @@ computed: {
 
 
 
-### 没有在 `v-if`/`v-if-else`/`v-else` 中使用 `key` <sup data-p="d">谨慎使用</sup>
+### 没有在 `v-if`/`v-else-if`/`v-else` 中使用 `key` <sup data-p="d">谨慎使用</sup>
 
 **如果一组 `v-if` + `v-else` 的元素类型相同，最好使用 `key` (比如两个 `<div>` 元素)。**
 
