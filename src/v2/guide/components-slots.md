@@ -53,7 +53,7 @@ Vue 实现了一套内容分发的 API，这套 API 基于当前的 [Web Compone
 
 ## 具名插槽
 
-有些时候我们需要多个插槽。例如，一个假设的 `<base-layout>` 组件多模板如下：
+有些时候我们需要多个插槽。例如，一个假设的 `<base-layout>` 组件的模板如下：
 
 ``` html
 <div class="container">
