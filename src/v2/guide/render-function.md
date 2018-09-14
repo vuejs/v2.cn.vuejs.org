@@ -18,13 +18,13 @@ Vue 推荐在绝大多数情况下使用 template 来创建你的 HTML。然而�
 </h1>
 ```
 
-在 HTML 层，我们决定这样定义组件接口：
+对于上面的 HTML，我们决定这样定义组件接口：
 
 ``` html
 <anchored-heading :level="1">Hello world!</anchored-heading>
 ```
 
-当我们开始写一个通过 `level` prop 动态生成 heading 标签的组件，你可能很快想到这样实现：
+当我们开始写一个只能通过 `level` prop 动态生成 heading 标签的组件时，你可能很快想到这样实现：
 
 ``` html
 <script type="text/x-template" id="anchored-heading-template">
@@ -69,8 +69,8 @@ Vue.component('anchored-heading', {
 Vue.component('anchored-heading', {
   render: function (createElement) {
     return createElement(
-      'h' + this.level,   // tag name 标签名称
-      this.$slots.default // 子组件中的阵列
+      'h' + this.level,   // 标签名称
+      this.$slots.default // 子元素数组
     )
   },
   props: {
