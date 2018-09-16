@@ -148,7 +148,9 @@ var app3 = new Vue({
 ``` html
 <div id="app-4">
   <ol>
-    <li v-for="todo in todos">
+    <li v-for="todo in todos"
+      :key="todo.id"
+    >
       {{ todo.text }}
     </li>
   </ol>
@@ -159,9 +161,9 @@ var app4 = new Vue({
   el: '#app-4',
   data: {
     todos: [
-      { text: '学习 JavaScript' },
-      { text: '学习 Vue' },
-      { text: '整个牛项目' }
+      { id: 1, text: '学习 JavaScript' },
+      { id: 2, text: '学习 Vue' },
+      { id: 3, text: '整个牛项目' }
     ]
   }
 })
