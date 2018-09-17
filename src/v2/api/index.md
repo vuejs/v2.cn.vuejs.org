@@ -2509,6 +2509,15 @@ type: api
 
 - **参考**：[动态组件 - keep-alive](../guide/components.html#keep-alive)
 
+>version ?
+`max` 设置最大允许缓存的组件数量(使用LRU算法处理缓存的组件)
+
+  ``` html
+  <!-- 示例代码 -->
+  <keep-alive max="10">
+    <component></component>
+  </keep-alive>
+
 ### slot
 
 - **Props**：
