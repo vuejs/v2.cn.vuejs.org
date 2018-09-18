@@ -6,7 +6,9 @@ order: 303
 
 ## 基础
 
-Vue 推荐在绝大多数情况下使用 template 来创建你的 HTML。然而在一些场景中，你真的需要 JavaScript 的完全编程的能力，这就是 **render 函数**，它比 template 更接近编译器。
+Vue 推荐在绝大多数情况下使用 template 来创建你的 HTML。然而在一些场景中，你真的需要 JavaScript 的完全编程的能力，这时你可以用 **render 函数**，它比 template 更接近编译器。
+
+让我们深入一个简单的例子，这个例子里 `render` 函数很实用。假设我们要生成锚点标题 (anchored headings)：
 
 ``` html
 <h1>
@@ -16,13 +18,13 @@ Vue 推荐在绝大多数情况下使用 template 来创建你的 HTML。然而�
 </h1>
 ```
 
-在 HTML 层，我们决定这样定义组件接口：
+对于上面的 HTML，我们决定这样定义组件接口：
 
 ``` html
 <anchored-heading :level="1">Hello world!</anchored-heading>
 ```
 
-当我们开始写一个通过 `level` prop 动态生成 heading 标签的组件，你可能很快想到这样实现：
+当我们开始写一个只能通过 `level` prop 动态生成 heading 标签的组件时，你可能很快想到这样实现：
 
 ``` html
 <script type="text/x-template" id="anchored-heading-template">
@@ -67,8 +69,8 @@ Vue.component('anchored-heading', {
 Vue.component('anchored-heading', {
   render: function (createElement) {
     return createElement(
-      'h' + this.level,   // tag name 标签名称
-      this.$slots.default // 子组件中的阵列
+      'h' + this.level,   // 标签名称
+      this.$slots.default // 子元素数组
     )
   },
   props: {
