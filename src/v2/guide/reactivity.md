@@ -18,7 +18,7 @@ order: 601
 
 ## 检测变化的注意事项
 
-受现代 JavaScript 的限制 (以及废弃 `Object.observe`)，Vue **不能检测到对象属性的添加或删除**。由于 Vue 会在初始化实例时对属性执行 `getter/setter` 转化过程，所以属性必须在 `data` 对象上存在才能让 Vue 转换它，这样才能让它是响应的。例如：
+受现代 JavaScript 的限制 (而且 `Object.observe` 也已经被废弃)，Vue **不能检测到对象属性的添加或删除**。由于 Vue 会在初始化实例时对属性执行 `getter/setter` 转化过程，所以属性必须在 `data` 对象上存在才能让 Vue 转换它，这样才能让它是响应的。例如：
 
 ``` js
 var vm = new Vue({
