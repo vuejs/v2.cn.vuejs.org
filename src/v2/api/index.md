@@ -496,7 +496,7 @@ type: api
   })
   ```
 
-- **参考**：[Props](../guide/components.html#Props)
+- **参考**：[Props](../guide/components.html#通过-Prop-向子组件传递数据)
 
 ### propsData
 
@@ -522,7 +522,6 @@ type: api
     }
   })
   ```
-- **参考**：[Props](../guide/components.html#通过-Prop-向子组件传递数据)
 
 ### computed
 
