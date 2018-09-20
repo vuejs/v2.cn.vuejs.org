@@ -82,7 +82,7 @@ Vue.component('anchored-heading', {
 })
 ```
 
-简单清晰很多！简单来说，这样代码精简很多，但是需要非常熟悉 Vue 的实例属性。在这个例子中，你需要知道当你不使用 `slot` 属性向组件中传递内容时，比如 `anchored-heading` 中的 `Hello world!`，这些子元素被存储在组件实例中的 `$slots.default`中。如果你还不了解，** 在深入 render 函数之前推荐阅读 [实例属性 API](../api/#实例属性)。**
+简单清晰很多！简单来说，这样代码精简很多，但是需要非常熟悉 Vue 的实例属性。在这个例子中，你需要知道当你不使用 `slot` 属性向组件中传递子元素时，比如 `anchored-heading` 中的 `Hello world!`，这些子元素被存储在组件实例中的 `$slots.default`中。如果你还不了解，** 在深入 render 函数之前推荐阅读 [实例属性 API](../api/#实例属性)。**
 
 ## 节点、树以及虚拟 DOM
 
@@ -92,7 +92,7 @@ Vue.component('anchored-heading', {
 <div>
   <h1>My title</h1>
   Some text content
-  <!-- TODO: Add tagline -->
+  <!-- TODO: 添加标签行 -->
 </div>
 ```
 
@@ -139,19 +139,19 @@ return createElement('h1', this.blogTitle)
 createElement(
   // {String | Object | Function}
   // 一个 HTML 标签字符串，组件选项对象，或者
-  // 解析上述任何一种的一个 async 异步函数，必要参数。
+  // 解析上述任何一种的一个 async 异步函数。必需参数。
   'div',
 
   // {Object}
   // 一个包含模板相关属性的数据对象
-  // 这样，您可以在 template 中使用这些属性。可选参数。
+  // 你可以在 template 中使用这些属性。可选参数。
   {
     // (详情见下一节)
   },
 
   // {String | Array}
-  // 子节点 (VNodes)，由 `createElement()` 构建而成，
-  // 或使用字符串来生成“文本节点”。可选参数。
+  // 子虚拟节点 (VNodes)，由 `createElement()` 构建而成，
+  // 也可以使用字符串来生成“文本虚拟节点”。可选参数。
   [
     '先写一些文字',
     createElement('h1', '一则头条'),
@@ -166,7 +166,7 @@ createElement(
 
 ### 深入 data 对象
 
-有一件事要注意：正如在模板语法中，`v-bind:class` 和 `v-bind:style` ，会被特别对待一样，在 VNode 数据对象中，下列属性名是级别最高的字段。该对象也允许你绑定普通的 HTML 特性，就像 DOM 属性一样，比如 `innerHTML` (这会取代 `v-html` 指令)。
+有一点要注意：正如在模板语法中，`v-bind:class` 和 `v-bind:style` ，会被特别对待一样，在 VNode 数据对象中，下列属性名是级别最高的字段。该对象也允许你绑定普通的 HTML 特性，就像 DOM 属性一样，比如 `innerHTML` (这会取代 `v-html` 指令)。
 
 ``` js
 {
@@ -182,7 +182,7 @@ createElement(
     color: 'red',
     fontSize: '14px'
   },
-  // 正常的 HTML 特性
+  // 普通的 HTML 特性
   attrs: {
     id: 'foo'
   },
@@ -200,7 +200,7 @@ createElement(
   on: {
     click: this.clickHandler
   },
-  // 仅对于组件，用于监听原生事件，而不是组件内部使用
+  // 仅用于组件，用于监听原生事件，而不是组件内部使用
   // `vm.$emit` 触发的事件。
   nativeOn: {
     click: this.nativeClickHandler
@@ -289,7 +289,7 @@ render: function (createElement) {
 }
 ```
 
-如果你真的需要重复很多次的元素/组件，你可以使用工厂函数来实现。例如，下面这个例子 render 函数完美有效地渲染了 20 个重复的段落：
+如果你真的需要重复很多次的元素/组件，你可以使用工厂函数来实现。例如，下面这个例子 render 函数完美有效地渲染了 20 个相同的段落：
 
 ``` js
 render: function (createElement) {
@@ -305,7 +305,7 @@ render: function (createElement) {
 
 ### `v-if` 和 `v-for`
 
-由于使用原生的 JavaScript 来实现某些东西很简单，Vue 的 render 函数没有提供专用的 API。比如，template 中的 `v-if` 和 `v-for`：
+只要在原生的 JavaScript 中可以轻松完成的操作，Vue 的 render 函数就不会提供专有的替代方法。比如，在 template 中使用的 `v-if` 和 `v-for`：
 
 ``` html
 <ul v-if="items.length">
@@ -330,7 +330,7 @@ render: function (createElement) {
 
 ### `v-model`
 
-render 函数中没有与 `v-model` 相应的 api - 你必须自己来实现相应的逻辑：
+render 函数中没有与 `v-model` 的直接对应 - 你必须自己实现相应的逻辑：
 
 ``` js
 props: ['value'],
@@ -349,7 +349,7 @@ render: function (createElement) {
 }
 ```
 
-这就是深入底层要付出的，尽管麻烦了一些，但相对于 `v-model` 来说，你可以更灵活地控制。
+这就是深入底层的代价，但与 `v-model` 相比，这可以让你更好地控制交互细节。
 
 ### 事件 & 按键修饰符
 
@@ -405,7 +405,7 @@ on: {
 
 ### 插槽
 
-你可以从 [`this.$slots`](../api/#vm-slots) 获取 VNodes 列表中的静态内容：
+你可以通过 [`this.$slots`](../api/#vm-slots) 访问静态插槽的内容，得到的是一个 VNodes 数组：
 
 ``` js
 render: function (createElement) {
@@ -414,7 +414,7 @@ render: function (createElement) {
 }
 ```
 
-还可以从 [`this.$scopedSlots`](../api/#vm-scopedSlots) 中获得能用作函数的作用域插槽，这个函数返回 VNodes：
+也可以通过 [`this.$scopedSlots`](../api/#vm-scopedSlots) 访问作用域插槽，得到的是一个返回 VNodes 的函数：
 
 ``` js
 props: ['message'],
@@ -428,14 +428,14 @@ render: function (createElement) {
 }
 ```
 
-如果要用渲染函数向子组件中传递作用域插槽，可以利用 VNode 数据中的 `scopedSlots` 域：
+如果要用渲染函数向子组件中传递作用域插槽，可以利用 VNode 数据对象中的 `scopedSlots` 域：
 
 ``` js
 render: function (createElement) {
   return createElement('div', [
     createElement('child', {
-      // pass `scopedSlots` in the data object
-      // in the form of { name: props => VNode | Array<VNode> }
+      // 在数据对象中传递 `scopedSlots`
+      // 格式：{ name: props => VNode | Array<VNode> }
       scopedSlots: {
         default: function (props) {
           return createElement('span', props.text)
@@ -448,7 +448,7 @@ render: function (createElement) {
 
 ## JSX
 
-如果你写了很多 `render` 函数，可能会觉得痛苦：
+如果你写了很多 `render` 函数，你可能会觉得去写类似下面这样的代码会很痛苦：
 
 ``` js
 createElement(
