@@ -372,7 +372,7 @@ order: 803
         'vue-i18n', 'vue-cli-plugin-i18n', 'vue-i18n-loader', 'vue-i18n-extensions'
       ],
       links: [
-        'https://cuusoo.com', 'http://frapwings.jp'
+        'https://www.patreon.com/kazupon', 'https://cuusoo.com', 'http://frapwings.jp'
       ]
     },
     {
@@ -391,7 +391,7 @@ order: 803
         'rollup-plugin-vue', 'vue-issue-helper'
       ],
       reposPersonal: [
-        'vue-keynote', 'bootstrap-for-vue', 'vue-interop'
+        'keynote', 'bootstrap-for-vue', 'vue-interop'
       ],
       links: [
         'https://znck.me', 'https://www.codementor.io/znck'
@@ -503,6 +503,9 @@ order: 803
       ],
       reposPersonal: [
         'vue-apollo', 'vue-meteor', 'vue-virtual-scroller', 'v-tooltip'
+      ],
+      links: [
+        'http://patreon.com/akryum'
       ]
     },
     {
@@ -600,6 +603,9 @@ order: 803
       work: {
         role: 'Consultant'
       },
+      reposOfficial: [
+        'news.vuejs.org'
+      ],
       reposPersonal: [
         'shentao/vue-multiselect'
       ]
@@ -671,6 +677,21 @@ order: 803
       ],
       reposPersonal: [
         'Justineo/vue-awesome', 'ecomfe/vue-echarts', 'ecomfe/veui'
+      ]
+    },
+    {
+      name: 'ULIVZ',
+      city: 'Hangzhou, China',
+      languages: ['zh', 'en'],
+      work: {
+        role: 'Senior Frontend Developer',
+        org: 'AntFinancial',
+        orgUrl: 'https://www.antfin.com'
+      },
+      github: 'ulivz',
+      twitter: '_ulivz',
+      reposOfficial: [
+        'vuepress'
       ]
     }
   ]))
