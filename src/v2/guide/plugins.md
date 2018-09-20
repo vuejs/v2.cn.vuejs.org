@@ -52,7 +52,7 @@ Vue.use(VueRouter)
 
 ## 开发插件
 
-Vue.js 的插件应该有一个公开方法 `install` 。这个方法的第一个参数是 `Vue` 构造器，第二个参数是一个可选的选项对象：
+Vue.js 的插件应该有一个公开方法 `install`。这个方法的第一个参数是 `Vue` 构造器，第二个参数是一个可选的选项对象：
 
 ``` js
 MyPlugin.install = function (Vue, options) {
