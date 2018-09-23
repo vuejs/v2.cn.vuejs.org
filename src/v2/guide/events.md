@@ -42,7 +42,7 @@ var example1 = new Vue({
 })
 </script>
 {% endraw %}
-
+完整例子 http://code.ymotel.cn/mweb/olview/olview/index.html?1F70KkC2D7g#/list
 ## 事件处理方法
 
 然而许多事件处理逻辑会更为复杂，所以直接把 JavaScript 代码写在 `v-on` 指令中是不可行的。因此 `v-on` 还可以接收一个需要调用的方法名称。
