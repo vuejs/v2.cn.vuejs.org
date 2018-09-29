@@ -16,7 +16,7 @@ Vue.component('my-component-name', { /* ... */ })
 
 该组件名就是 `Vue.component` 的第一个参数。
 
-你给予组件的名字可能依赖于你打算拿它来做什么。当直接在 DOM 中使用一个组件 (而不是在字符串模板或[单文件组件](single-file-components.html)) 的时候，我们强烈推荐遵循 [W3C 规范](https://www.w3.org/TR/custom-elements/#concepts)中的自定义组件名 (字母全小写且必须包含一个连字符)。这会帮助你避免和当前以及未来的 HTML 元素相冲突。
+你给予组件的名字可能依赖于你打算拿它来做什么。当直接在 DOM 中使用一个组件 (而不是在字符串模板或[单文件组件](single-file-components.html)) 的时候，我们强烈推荐遵循 [W3C 规范](https://html.spec.whatwg.org/multipage/custom-elements.html#valid-custom-element-name)中的自定义组件名 (字母全小写且必须包含一个连字符)。这会帮助你避免和当前以及未来的 HTML 元素相冲突。
 
 你可以在[风格指南](../style-guide/#基础组件名-强烈推荐)中查阅到关于组件名的其它建议。
 
