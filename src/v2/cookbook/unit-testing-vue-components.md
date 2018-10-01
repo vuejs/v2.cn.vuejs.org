@@ -57,9 +57,7 @@ test('Foo', () => {
   expect(wrapper.find('.error').exists()).toBe(true)
 
   // 将名字更新至足够长
-  wrapper.setData({
-    username: 'Lachlan'
-  })
+  wrapper.setData({ username: 'Lachlan' })
 
   // 断言错误信息不再显示了
   expect(wrapper.find('.error').exists()).toBe(false)
