@@ -95,7 +95,7 @@ module.exports = {
 * 订阅你的应用的某个具体部分的状态，以便快速调试
 * 组件依赖可视化，且允许你收起/展开某个具体的依赖树视图
 
-![Vuetron 层级结构](/images/vuetron-heirarchy.gif)
+![Vuetron 层级结构](/images/vuetron-hierarchy.gif)
 
 ### 简单的 debugger 语句
 
