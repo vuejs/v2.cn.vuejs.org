@@ -23,7 +23,7 @@ order: 601
 ``` js
 var vm = new Vue({
   data:{
-  a:1
+    a:1
   }
 })
 
