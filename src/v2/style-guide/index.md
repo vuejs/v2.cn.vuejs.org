@@ -1984,7 +1984,7 @@ export default {
   var enforcementTypes = {
     none: '<span title="这一规则无法强制执行">自律</span>',
     runtime: '运行时错误',
-    linter: '<a href="https://github.com/vuejs/eslint-plugin-vue#eslint-plugin-vue" target="_blank">plugin:vue/recommended</a>'
+    linter: '<a href="https://github.com/vuejs/eslint-plugin-vue#eslint-plugin-vue" target="_blank" rel="noopener noreferrer">plugin:vue/recommended</a>'
   }
   Vue.component('sg-enforcement', {
     template: '\
