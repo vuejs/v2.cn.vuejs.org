@@ -227,7 +227,10 @@ createElement(
   slot: 'name-of-slot',
   // 其他特殊顶层属性
   key: 'myKey',
-  ref: 'myRef'
+  ref: 'myRef',
+  // 如果你在渲染函数中向多个元素都应用了相同的 ref 名，
+  // 那么 `$refs.myRef` 会变成一个数组。
+  refInFor: true
 }
 ```
 
