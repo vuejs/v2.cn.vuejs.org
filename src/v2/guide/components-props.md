@@ -292,7 +292,7 @@ Vue.component('blog-post', {
 
 ### 禁用特性继承
 
-如果你**不**希望组件的根元素继承特性，你可以设置在组件的选项中设置 `inheritAttrs: false`。例如：
+如果你**不**希望组件的根元素继承特性，你可以在组件的选项中设置 `inheritAttrs: false`。例如：
 
 ```js
 Vue.component('my-component', {
