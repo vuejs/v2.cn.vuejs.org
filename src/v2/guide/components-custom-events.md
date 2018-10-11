@@ -157,6 +157,8 @@ this.$emit('update:title', newTitle)
 <text-document v-bind:title.sync="doc.title"></text-document>
 ```
 
+<p class="tip">注意带有 <code>.sync</code> 修饰符的 <code>v-bind</code> <strong>不会</strong>和表达式一起工作 (例如 <code>v-bind:title.sync="doc.title + '!'"</code> 是无效的)。取而代之的是，你只能提供你想要绑定的属性名，类似 <code>v-model</code>。</p>
+
 当我们用一个对象同时设置多个 prop 的时候，也可以将这个 `.sync` 修饰符和 `v-bind` 配合使用：
 
 ```html
