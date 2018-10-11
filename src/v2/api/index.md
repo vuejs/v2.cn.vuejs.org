@@ -2446,8 +2446,9 @@ type: api
 ### keep-alive
 
 - **Props**：
-  - `include` - 字符串或正则表达式。只有匹配的组件会被缓存。
-  - `exclude` - 字符串或正则表达式。任何匹配的组件都不会被缓存。
+  - `include` - 字符串或正则表达式。只有名称匹配的组件会被缓存。
+  - `exclude` - 字符串或正则表达式。任何名称匹配的组件都不会被缓存。
+  - `max` - 数字。最多可以缓存多少组件实例。
 
 - **用法**：
 
@@ -2506,7 +2507,19 @@ type: api
 
   匹配首先检查组件自身的 `name` 选项，如果 `name` 选项不可用，则匹配它的局部注册名称 (父组件 `components` 选项的键值)。匿名组件不能被匹配。
 
-  <p class="tip">`<keep-alive>` 不会在函数式组件中正常工作，因为它们没有缓存实例。</p>
+- **`max`**
+
+  > 2.5.0 新增
+
+  最多可以缓存多少组件实例。一旦这个数字达到了，在新实例被创建之前，最近访问最少的被缓存的组件实例会被销毁掉。
+
+  ``` html
+  <keep-alive :max="10">
+    <component :is="view"></component>
+  </keep-alive>
+  ```
+
+<p class="tip">`<keep-alive>` 不会在函数式组件中正常工作，因为它们没有缓存实例。</p>
 
 - **参考**：[动态组件 - keep-alive](../guide/components.html#keep-alive)
 
