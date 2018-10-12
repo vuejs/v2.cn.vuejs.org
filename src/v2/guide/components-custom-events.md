@@ -109,7 +109,7 @@ Vue.component('base-input', {
         {
           // 这里确保组件配合 `v-model` 的工作
           input: function (event) {
-            vm.$emit('input', event.target.value)
+            vm.$emit('input', event)
           }
         }
       )
