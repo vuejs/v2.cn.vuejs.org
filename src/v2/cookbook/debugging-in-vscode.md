@@ -19,7 +19,7 @@ order: 8
 * [Debugger for Chrome](https://marketplace.visualstudio.com/items?itemName=msjsdiag.debugger-for-chrome)
 * [Debugger for Firefox](https://marketplace.visualstudio.com/items?itemName=hbenl.vscode-firefox-debug)
 
-请通过 [Vue CLI](https://github.com/vuejs/vue-cli)，遵循它的 [Vue CLI Guide](https://cli.vuejs.org/) 并创建一个项目。然后进入这个新创建的应用的目录，打开 VS Code。
+请通过 [Vue CLI](https://github.com/vuejs/vue-cli)，遵循它的 [Vue CLI 教程](https://cli.vuejs.org/)并创建一个项目。然后进入这个新创建的应用的目录，打开 VS Code。
 
 ### 在浏览器中展示源代码
 
