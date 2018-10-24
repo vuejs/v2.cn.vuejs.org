@@ -101,7 +101,7 @@ const app = new Vue({
 })
 ```
 
-非常短小精悍。我们定义了一个数组来放置错误，并将这三个表单字段的默认值设为 `null`。`checkForm` 的逻辑 (在表单提交时运行) 只会检查姓名和年龄，因为电影时选填的。如果它们是空的，那么我们会检查每一个字段并设置相应的错误，差不多就是这样。你可以在下面运行这个 demo。不要忘记提交成功时它会 POST 到一个临时的 URL。
+非常短小精悍。我们定义了一个数组来放置错误，并将这三个表单字段的默认值设为 `null`。`checkForm` 的逻辑 (在表单提交时运行) 只会检查姓名和年龄，因为电影是选填的。如果它们是空的，那么我们会检查每一个字段并设置相应的错误，差不多就是这样。你可以在下面运行这个 demo。不要忘记提交成功时它会 POST 到一个临时的 URL。
 
 <p data-height="265" data-theme-id="0" data-slug-hash="GObpZM" data-default-tab="html,result" data-user="cfjedimaster" data-embed-version="2" data-pen-title="form validation 1" class="codepen">在 <a href="https://codepen.io">CodePen</a> 查看 Raymond Camden (<a href="https://codepen.io/cfjedimaster">@cfjedimaster</a>) 的 <a href="https://codepen.io/cfjedimaster/pen/GObpZM/">表单校验 1</a>。</p>
 <script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
