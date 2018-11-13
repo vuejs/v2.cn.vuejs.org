@@ -121,7 +121,7 @@ Vue.component('example', {
 
 ``` js
   methods: {
-    async updateMessage: function () {
+    async updateMessage() {
       this.message = 'updated'
       console.log(this.$el.textContent) // => '未更新'
       await this.$nextTick()
