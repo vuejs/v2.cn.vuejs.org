@@ -3,9 +3,9 @@ google_analytics: UA-46852172-3
 root_domain: cn.vuejs.org
 vue_version: 2.5.16
 
-platinum_sponsors_china:
-  - url: https://gitee.com/?from=vue
-    img: gitee.png
+platinum_sponsors_china: []
+#   - url: https://gitee.com/?from=vue
+#     img: gitee.png
 
 video_sponsors_china:
   - url: http://cloud.youku.com/index.php?source=vuejs
