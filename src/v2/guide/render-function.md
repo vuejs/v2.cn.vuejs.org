@@ -253,7 +253,7 @@ Vue.component('anchored-heading', {
     var headingId = getChildrenTextContent(this.$slots.default)
       .toLowerCase()
       .replace(/\W+/g, '-')
-      .replace(/(^\-|\-$)/g, '')
+      .replace(/(^-|-$)/g, '')
 
     return createElement(
       'h' + this.level,
