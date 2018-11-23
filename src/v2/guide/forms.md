@@ -266,17 +266,19 @@ new Vue({
 用 `v-for` 渲染的动态选项：
 
 ``` html
-<select v-model="selected">
-  <option v-for="option in options" v-bind:value="option.value">
-    {{ option.text }}
-  </option>
-</select>
-<span>Selected: {{ selected }}</span>
+<div id="example-7">
+  <select v-model="selected">
+    <option v-for="option in options" v-bind:value="option.value">
+      {{ option.text }}
+    </option>
+  </select>
+  <span>Selected: {{ selected }}</span>
+</div>
 ```
 
 ``` js
 new Vue({
-  el: '...',
+  el: '#example-7',
   data: {
     selected: 'A',
     options: [
