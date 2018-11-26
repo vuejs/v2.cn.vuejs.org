@@ -6,6 +6,8 @@ vue_version: 2.5.16
 platinum_sponsors_china:
   - url: https://studio.qcloud.coding.net/campaign/favorite-plugins/?utm_source=vue.js&utm_content=cs-logo
     img: cloudstudio.png
+  - url: http://www.dcloud.io/?hmsr=vuejsorg&hmpl=&hmcu=&hmkw=&hmci=
+    img: dcloud.gif
 
 video_sponsors_china:
   - url: http://cloud.youku.com/index.php?source=vuejs
