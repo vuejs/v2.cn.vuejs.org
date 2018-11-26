@@ -147,7 +147,7 @@ const app = new Vue({
   },
   methods: {
     addCat() {
-      // ensure they actually typed something
+      // 确保他们输入了一些东西
       if (!this.newCat) {
         return;
       }
