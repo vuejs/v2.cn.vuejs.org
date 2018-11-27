@@ -177,7 +177,7 @@ const app = new Vue({
 
 ## 替代方案
 
-尽管 Local Storage API 较为简单，但它缺少了一些在很多应用中都很有用的基本特性。下面的几个插件包装了对 Local Storage 的访问并让它变得简单易用，同时加入了诸如默认值等特性。
+尽管 Local Storage API 较为简单，但它缺少了一些在很多应用中都很有用的基本特性。下面的几个插件包装了对 Local Storage 的访问并让它变得简单易用，同时加入了诸如默认值等功能。
 
 * [vue-local-storage](https://github.com/pinguinjkeke/vue-local-storage)
 * [vue-reactive-storage](https://github.com/ropbla9/vue-reactive-storage)
