@@ -39,14 +39,14 @@ const app = new Vue({
 });
 ```
 
-请注意 `mounted` 和 `watch` 两个方法。我们使用 `mounted` 方法来从 Local Storage 中加载数据。为了将数据写入，我们侦听 `name` 的值的变化，并将数据实时写入。
+请注意 `mounted` 和 `watch` 两个方法。我们使用 `mounted` 方法来从 `localStorage` 中加载数据。为了将数据写入，我们侦听 `name` 的值的变化，并将数据实时写入。
 
 你可以在下面运行这个程序：
 
 <p data-height="265" data-theme-id="0" data-slug-hash="KodaKb" data-default-tab="js,result" data-user="cfjedimaster" data-embed-version="2" data-pen-title="testing localstorage" class="codepen">See the Pen <a href="https://codepen.io/cfjedimaster/pen/KodaKb/">testing localstorage</a> by Raymond Camden (<a href="https://codepen.io/cfjedimaster">@cfjedimaster</a>) on <a href="https://codepen.io">CodePen</a>.</p>
 <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
 
-在表单中输入一些东西，然后刷新页面。你会发现你之前输入的值自动的出现了。别忘了你的浏览器提供了好用的开发者工具来检查客户端存储的情况。这是一个使用 Firefox 的示例：
+在表单中输入一些东西，然后刷新页面。你会发现之前输入的值自动出现了。别忘了你的浏览器提供了好用的开发者工具来检查客户端存储的情况。这是一个使用 Firefox 的示例：
 
 ![Storage devtools in Firefox](/images/devtools-storage.png)
 
@@ -58,9 +58,9 @@ const app = new Vue({
 
 ![Storage devtools in Edge](/images/devtools-storage-edge.png)
 
-<p class="tip">除此之外，这些工具也提供给你了移除存储的数据的方法。这在进行测试时是非常有用的。</p>
+<p class="tip">除此之外，这些开发者工具也提供给你了移除存储的数据的方法。这在进行测试时是非常有用的。</p>
 
-立刻将变化的值进行写入或许是不被推荐的。让我们来考虑一个略微进阶的示例，首先是升级后的表单。
+将变化的值立即写入或许是不被推荐的。让我们来考虑一个略微进阶的示例，首先是升级后的表单。
 
 ``` html
 <div id="app">
@@ -74,7 +74,7 @@ const app = new Vue({
 </div>
 ```
 
-现在我们有了两个字段 (又一次绑定到了 Vue 的实例上)，但是多了一个可以运行 `persist` 方法的按钮。让我们来看 JavaScript 的代码：
+现在我们有了两个字段 (又一次绑定到了一个 Vue 的实例上)，但是多了一个可以运行 `persist` 方法的按钮。让我们来看 JavaScript 的代码。
 
 ``` js
 const app = new Vue({
@@ -101,14 +101,14 @@ const app = new Vue({
 })
 ```
 
-像之前一样，`mounted` 是用来加载持久化了的数据(如果存在的话)。这一次，数据只会在点击按钮后才被持久化。我们也可以在数据被存储之前，在这里对数据进行验证或转换的操作。你也可以将日期一并存储进去来记录这些数据是何时被存储的。有了这些元数据，`mounted` 方法就可以通过逻辑判断来决定是否再次对数据进行存储。你可以在下面对这个版本进行尝试。
+像之前一样，`mounted` 方法是用来加载持久化了的数据 (如果存在的话)。这一次，数据只会在点击按钮后才被持久化。我们也可以在数据被存储之前，对数据进行验证或转换的操作。你也可以将日期一并存储进去来记录这些数据是何时被存储的。有了这些元数据，`mounted` 方法就可以通过逻辑判断来决定是否再次对数据进行存储。你可以在下面对这个版本进行尝试。
 
 <p data-height="265" data-theme-id="0" data-slug-hash="rdOjLN" data-default-tab="js,result" data-user="cfjedimaster" data-embed-version="2" data-pen-title="testing localstorage 2" class="codepen">See the Pen <a href="https://codepen.io/cfjedimaster/pen/rdOjLN/">testing localstorage 2</a> by Raymond Camden (<a href="https://codepen.io/cfjedimaster">@cfjedimaster</a>) on <a href="https://codepen.io">CodePen</a>.</p>
 <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
 
 ## 处理复杂的数据
 
-就像在前文中提到的那样，Local Storage 只适合用于存储简单的数据。为了存储像对象和数组一样更复杂的数据，你必须使用 JSON 来对数据进行序列化和反序列化。下面是一个对一个数组的猫进行持久化的示例 (在可能的情况下，最好的一种数组)。
+就像在前文中提到的那样，Local Storage 只适合用于存储简单的值。为了存储像对象和数组一样更复杂的数据，你必须使用 JSON 来对数据进行序列化和反序列化。下面是一个对一个数组的猫进行持久化的示例 (在可能的情况下，最好的一种数组)。
 
 ``` html
 <div id="app">
@@ -127,7 +127,7 @@ const app = new Vue({
 </div>
 ```
 
-这个“app”的顶部有一个简单的列表 (还有一个可以移除一只猫的按钮)，在下方有一个可以添加一只新的猫的表单。现在我们来看 JavaScript 代码。
+这个“app”的顶部有一个简单的列表 (还有一个可以移除一只猫的按钮)，底部有一个添加一只新的猫的表单。现在我们来看 JavaScript 代码。
 
 ``` js
 const app = new Vue({
@@ -168,9 +168,9 @@ const app = new Vue({
 })
 ```
 
-在这个应用中，我们转而调用 Local Storage APIs 而不再"直接"访问 Local Storage。这两种方法都是有效的，但是调用 API 往往是更值得推荐的方法。`mounted`现在需要先获取数据然后对 JSON 格式的数据进行解析。如果这里出现了任何错误，我们就认为数据已经损坏了并将它删除。(请记住，如果你的网页应用使用了客户端存储技术，用户可以随意访问这些存储的数据，并对它们进行修改)
+在这个应用中，我们转而调用 Local Storage APIs 而不再“直接”访问 Local Storage。这两种方法都是有效的，但是调用 API 往往是更值得推荐的方法。`mounted` 方法现在需要先获取数据，然后对 JSON 格式的数据进行解析。如果这里出现了任何错误，我们就认为数据已经损坏了并将它删除 (请记住，如果你的网页应用使用了客户端存储技术，用户可以随意访问存储的数据，并对它们进行修改)。
 
-我们现在有三个方法可以对猫进行操作。`addCat` 和 `removeCat` 方法负责"实时"更新储存在 `this.cats` 中的 Vue 数据。在此之后，它们通过 `saveCats` 方法来序列化和持久化这些数据。 你可以在下面体验一下这个版本：
+我们现在有三种方法可以对猫进行操作。`addCat` 和 `removeCat` 方法负责更新储存在 `this.cats` 中的“实时” Vue 数据。在此之后，它们通过 `saveCats` 方法来序列化和持久化这些数据。你可以在下面体验一下这个版本：
 
 <p data-height="265" data-theme-id="0" data-slug-hash="qoYbyW" data-default-tab="js,result" data-user="cfjedimaster" data-embed-version="2" data-pen-title="localstorage, complex" class="codepen">See the Pen <a href="https://codepen.io/cfjedimaster/pen/qoYbyW/">localstorage, complex</a> by Raymond Camden (<a href="https://codepen.io/cfjedimaster">@cfjedimaster</a>) on <a href="https://codepen.io">CodePen</a>.</p>
 <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
