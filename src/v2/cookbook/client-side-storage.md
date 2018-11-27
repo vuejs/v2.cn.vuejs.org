@@ -18,7 +18,7 @@ order: 11
 </div>
 ```
 
-这个示例中的表单字段绑定了一个叫做 `name` 的值。下面是 JavaScript 的代码：
+这个示例中的表单字段绑定了一个叫做 `name` 的值。下面是 JavaScript 代码：
 
 ``` js
 const app = new Vue({
