@@ -74,7 +74,7 @@ const app = new Vue({
 </div>
 ```
 
-现在我们有了两个字段(又一次绑定到了 Vue 的实例上)，但是多了一个可以运行 `persist` 方法的按钮。 让我们来看 JavaScript 的代码：
+现在我们有了两个字段 (又一次绑定到了 Vue 的实例上)，但是多了一个可以运行 `persist` 方法的按钮。让我们来看 JavaScript 的代码：
 
 ``` js
 const app = new Vue({
