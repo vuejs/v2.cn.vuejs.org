@@ -56,7 +56,7 @@ const app = new Vue({
 
 最后，这是一个使用 Microsoft Edge 的示例。请注意，你可以在 Debugger tab 下找到应用存储的值。
 
-![Storage devtools in Edge](/images/devtools-storage-edge.png)
+![Edge 中的 Storage 开发工具](/images/devtools-storage-edge.png)
 
 <p class="tip">除此之外，这些开发者工具也提供给你了移除存储的数据的方法。这在进行测试时是非常有用的。</p>
 
