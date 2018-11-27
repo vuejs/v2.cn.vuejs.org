@@ -48,7 +48,7 @@ const app = new Vue({
 
 在表单中输入一些东西，然后刷新页面。你会发现之前输入的值自动出现了。别忘了你的浏览器提供了好用的开发者工具来检查客户端存储的情况。这是一个使用 Firefox 的示例：
 
-![Storage devtools in Firefox](/images/devtools-storage.png)
+![Firefox 中的 Storage 开发工具](/images/devtools-storage.png)
 
 这是一个使用 Chrome 的示例：
 
