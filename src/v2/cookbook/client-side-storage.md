@@ -8,7 +8,7 @@ order: 11
 
 客户端存储是快速为一个应用进行性能优化的绝佳方法。通过把数据存储在浏览器中，用户不必每次都向服务器请求获取同一个信息。在你离线时，使用本地存储的数据而不是向远端服务器上请求数据就显得非常有用，甚至在线用户也可以从中获益。 客户端存储可以通过这些技术来实现：[cookies](https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies)、[Local Storage](https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API) (更准确的说是 "Web Storage")、[IndexedDB](https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API) 和 [WebSQL](https://www.w3.org/TR/webdatabase/) (这项技术已经被废弃了，你不应该在新项目中使用它)。
 
-在这个 cookbook 的条目中，我们将专注于实现客户端存储的最简单的方法：Local Storage。Local Storage 使用键/值对系统来存储数据。你只能存储简单的数据，除非你愿意使用 JSON 来对复杂的数据进行编码和解码。总得来说，Local Storage 适合存储你希望进行持久化的较小的数据集，比如用户偏好设置或表单数据。更大规模和更复杂的数据则适合存储在 IndexedDB 中。
+在这个 cookbook 的条目中，我们将专注于实现客户端存储的最简单的方法：Local Storage。Local Storage 使用键/值对系统来存储数据。它仅支持存储简单的值，但也可以通过 JSON 编解码存储复杂的数据。总得来说，Local Storage 适合存储你希望进行持久化的较小的数据集，比如用户偏好设置或表单数据。更大规模和更复杂的数据则适合存储在 IndexedDB 中。
 
 让我们从一个表单的简单示例开始：
 
