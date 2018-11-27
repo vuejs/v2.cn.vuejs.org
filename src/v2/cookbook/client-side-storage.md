@@ -52,7 +52,7 @@ const app = new Vue({
 
 这是一个使用 Chrome 的示例：
 
-![Storage devtools in Chrome](/images/devtools-storage-chrome.png)
+![Chrome 中的 Storage 开发工具](/images/devtools-storage-chrome.png)
 
 最后，这是一个使用 Microsoft Edge 的示例。请注意，你可以在 Debugger tab 下找到应用存储的值。
 
