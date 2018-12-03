@@ -66,6 +66,8 @@ directives: {
 
 - `update`：所在组件的 VNode 更新时调用，**但是可能发生在其子 VNode 更新之前**。指令的值可能发生了改变，也可能没有。但是你可以通过比较更新前后的值来忽略不必要的模板更新 (详细的钩子函数参数见下)。
 
+<p class="tip">我们会在[稍后](./render-function.html#虚拟-DOM)讨论[渲染函数](./render-function.html)时介绍更多 VNodes 的细节。</p>
+
 - `componentUpdated`：指令所在组件的 VNode **及其子 VNode** 全部更新后调用。
 
 - `unbind`：只调用一次，指令与元素解绑时调用。
