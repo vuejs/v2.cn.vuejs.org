@@ -6,9 +6,9 @@ order: 303
 
 ## 基础
 
-Vue 推荐在绝大多数情况下使用 template 来创建你的 HTML。然而在一些场景中，你真的需要 JavaScript 的完全编程的能力，这时你可以用 **render 函数**，它比 template 更接近编译器。
+在绝大多数情况下，Vue 推荐使用 template 来创建你的 HTML。然而在一些场景中，你确实需要 JavaScript 的完全编程能力，这时你可以用 **render 函数**，它比 template 更接近编译器。
 
-让我们深入一个简单的例子，这个例子里 `render` 函数很实用。假设我们要生成锚点标题 (anchored headings)：
+让我们深入一个简单的例子，在这个例子中 `render` 函数就很实用。假设你要生成锚点标题 (anchored headings)：
 
 ``` html
 <h1>
@@ -18,13 +18,13 @@ Vue 推荐在绝大多数情况下使用 template 来创建你的 HTML。然而�
 </h1>
 ```
 
-对于上面的 HTML，我们决定这样定义组件接口：
+对于上面的 HTML，你决定这样定义组件接口：
 
 ``` html
 <anchored-heading :level="1">Hello world!</anchored-heading>
 ```
 
-当我们开始写一个只能通过 `level` prop 动态生成 heading 标签的组件时，你可能很快想到这样实现：
+当你开始写一个只能通过 `level` prop 动态生成 heading 标签的组件时，你可能很快地想到这样实现：
 
 ``` html
 <script type="text/x-template" id="anchored-heading-template">
@@ -61,9 +61,9 @@ Vue.component('anchored-heading', {
 })
 ```
 
-在这种场景中使用 template 并不是最好的选择：首先代码冗长，为了在不同级别的标题中插入锚点元素，我们需要重复地使用 `<slot></slot>`。
+在这种场景中使用 template 并不是最好的选择：不仅代码冗长，为了在不同级别的标题中插入锚点元素，我们还需要重复地使用 `<slot></slot>`。
 
-虽然模板在大多数组件中都非常好用，但是在这里它就不是很简洁的了。那么，我们来尝试使用 `render` 函数重写上面的例子：
+虽然 template 在大多数组件中都非常好用，但很明显在这里它并不是这样的。那么，让我们尝试使用 `render` 函数重写上面的例子：
 
 ``` js
 Vue.component('anchored-heading', {
@@ -82,7 +82,7 @@ Vue.component('anchored-heading', {
 })
 ```
 
-简单清晰很多！简单来说，这样代码精简很多，但是需要非常熟悉 Vue 的实例属性。在这个例子中，你需要知道，向组件中传递不带 `slot` 特性的子元素时，比如 `anchored-heading` 中的 `Hello world!`，这些子元素被存储在组件实例中的 `$slots.default` 中。如果你还不了解，**在深入 render 函数之前推荐阅读[实例属性 API](../api/#实例属性)。**
+简明很多！可以说，这样代码更加精简，但是也需要更加熟悉 Vue 的实例属性。在这个例子中，你需要知道，向组件中传递不带 `slot` 特性的子元素时，比如 `anchored-heading` 中的 `Hello world!`，这些子元素被存储在组件实例的 `$slots.default` 中。如果你还不了解，**在深入 render 函数之前推荐阅读[实例属性 API](../api/#实例属性)。**
 
 ## 节点、树以及虚拟 DOM
 
