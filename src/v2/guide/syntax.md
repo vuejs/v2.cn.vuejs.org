@@ -37,6 +37,14 @@ Mustache 标签将会被替代为对应数据对象上 `msg` 属性的值。无�
 <p>Using v-html directive: <span v-html="rawHtml"></span></p>
 ```
 
+```JS
+data() {
+   return {
+     rawHtml: '<span style="color: red">This should be red.</span>'
+   }
+  }
+```
+
 {% raw %}
 <div id="example1" class="demo">
   <p>Using mustaches: {{ rawHtml }}</p>
