@@ -21,6 +21,9 @@
   <% if (page.title.trim()) { %>
     <h1><%- page.title %><%- page.type === 'examples' ? ' Example' : '' %></h1>
   <% } %>
+
+  <%- partial('partials/ad-pagetop') %>
+
   <% if (page.sponsors) { %>
     <%- partial('sponsors-page') %>
   <% } else if (page.search) { %>
