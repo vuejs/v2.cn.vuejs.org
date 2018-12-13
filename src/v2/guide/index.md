@@ -317,7 +317,7 @@ Vue.component('todo-item', {
       我们也需要为每个组件提供一个“key”，稍后再
       作详细解释。
     -->
-    <todo-item
+    <todo-item>
       v-for="item in groceryList"
       v-bind:todo="item"
       v-bind:key="item.id">
