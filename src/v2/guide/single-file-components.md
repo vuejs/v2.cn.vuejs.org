@@ -62,7 +62,7 @@ order: 402
 
 - **Modern JavaScript with ES2015/16**：阅读 Babel 的 [Learn ES2015 guide](https://babeljs.io/docs/learn-es2015/)。你不需要立刻记住每一个方法，但是你可以保留这个页面以便后期参考。
 
-在你花一天时间了解这些资源之后，我们建议你参考 [webpack](https://github.com/vuejs-templates/webpack) 模板。只要遵循指示，你就能很快地运行一个用到 `.vue` 组件，ES2015 和热重载 (hot-reloading) 的 Vue 项目!
+在你花一天时间了解这些资源之后，我们建议你参考 [Vue CLI 3](https://cli.vuejs.org/)。只要遵循指示，你就能很快地运行一个带有 `.vue` 组件、ES2015、webpack 和热重载 (hot-reloading) 的 Vue 项目!
 
 想学习更多 webpack 的知识，请移步[它们的官方文档](https://webpack.js.org/configuration/)以及 [webpack learning academy](https://webpack.academy/p/the-core-concepts)。在 webpack 中，每个模块被打包到 bundle 之前都由一个相应的“loader”来转换，Vue 也提供 [vue-loader](https://github.com/vuejs/vue-loader) 插件来执行 `.vue` 单文件组件 的转换。
 
