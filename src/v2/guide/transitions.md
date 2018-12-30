@@ -1484,7 +1484,7 @@ Vue.component('my-special-transition', {
 })
 ```
 
-函数组件更适合完成这个任务：
+[函数式组件](render-function.html#函数式组件)更适合完成这个任务：
 
 ``` js
 Vue.component('my-special-transition', {
