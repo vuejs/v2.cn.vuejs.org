@@ -474,7 +474,7 @@ createElement(
 </anchored-heading>
 ```
 
-这就是为什么会有一个 [Babel 插件](https://github.com/vuejs/babel-plugin-transform-vue-jsx)，用于在 Vue 中使用 JSX 语法，它可以让我们回到更接近于模板的语法上。
+这就是为什么会有一个 [Babel 插件](https://github.com/vuejs/jsx)，用于在 Vue 中使用 JSX 语法，它可以让我们回到更接近于模板的语法上。
 
 ``` js
 import AnchoredHeading from './AnchoredHeading.vue'
@@ -492,7 +492,7 @@ new Vue({
 ```
 <p class="tip">将 `h` 作为 `createElement` 的别名是 Vue 生态系统中的一个通用惯例，实际上也是 JSX 所要求的，如果在作用域中 `h` 失去作用，在应用中会触发报错。</p>
 
-更多关于 JSX 映射到 JavaScript，阅读 [使用文档](https://github.com/vuejs/babel-plugin-transform-vue-jsx#usage)。
+更多关于 JSX 映射到 JavaScript，阅读 [使用文档](https://github.com/vuejs/jsx#installation)。
 
 ## 函数式组件
 
