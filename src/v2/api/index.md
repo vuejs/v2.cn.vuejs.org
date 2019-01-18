@@ -1482,6 +1482,9 @@ type: api
   // 函数
   vm.$watch(
     function () {
+      // everytime the expression `this.a + this.b` yields a different result,
+      // the handler will be called. It's as if we were watching a computed
+      // property without defining the computed property itself
       return this.a + this.b
     },
     function (newVal, oldVal) {
