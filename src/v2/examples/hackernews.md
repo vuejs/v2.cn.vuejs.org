@@ -14,7 +14,7 @@ order: 12
 </div>
 {% endraw %}
 
-> [Live Demo](https://vue-hn.now.sh/)
+> [Live Demo](https://vue-hn.herokuapp.com/)
 > 注：如果在一段时间内没有人访问过该网站，则需要一些加载时间。
 >
 > [[Source](https://github.com/vuejs/vue-hackernews-2.0)]
