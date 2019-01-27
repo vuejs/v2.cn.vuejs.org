@@ -268,7 +268,7 @@ Vue.component('blog-post', {
 
 现在，不论何时为 `post` 对象添加一个新的属性，它都会自动地在 `<blog-post>` 内可用。
 
-## 通过事件向父级组件发送消息
+## 监听子组件事件
 
 在我们开发 `<blog-post>` 组件时，它的一些功能可能要求我们和父级组件进行沟通。例如我们可能会引入一个可访问性的功能来放大博文的字号，同时让页面的其它部分保持默认的字号。
 
@@ -323,15 +323,7 @@ Vue.component('blog-post', {
 </button>
 ```
 
-当点击这个按钮时，我们需要告诉父级组件放大所有博文的文本。幸好 Vue 实例提供了一个自定义事件的系统来解决这个问题。我们可以调用内建的 [**`$emit`** 方法](../api/#vm-emit)并传入事件的名字，来向父级组件触发一个事件：
-
-```html
-<button v-on:click="$emit('enlarge-text')">
-  Enlarge text
-</button>
-```
-
-然后我们可以用 `v-on` 在博文组件上监听这个事件，就像监听一个原生 DOM 事件一样：
+当点击这个按钮时，我们需要告诉父级组件放大所有博文的文本。幸好 Vue 实例提供了一个自定义事件的系统来解决这个问题。父级组件可以像处理 native DOM 事件一样通过 `v-on` 监听子组件实例的任意事件：
 
 ```html
 <blog-post
@@ -339,6 +331,16 @@ Vue.component('blog-post', {
   v-on:enlarge-text="postFontSize += 0.1"
 ></blog-post>
 ```
+
+同时子组件可以通过调用内建的 [**`$emit`** method](../api/#vm-emit) 并传入事件名称来触发一个事件：
+
+```html
+<button v-on:click="$emit('enlarge-text')">
+  Enlarge text
+</button>
+```
+
+有了这个 `v-on:enlarge-text="postFontSize += 0.1"` 监听器，父级组件就会接收该事件并更新 `postFontSize` 的值。
 
 {% raw %}
 <div id="blog-posts-events-demo" class="demo">
