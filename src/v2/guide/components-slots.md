@@ -211,7 +211,7 @@ Vue 实现了一套内容分发的 API，这套 API 基于当前的 [Web Compone
 </todo-list>
 ```
 
-> 在 2.5.0+，`slot-scope` 不再限制在 `<template>` 元素上使用，而可以用在插槽内的任何元素或组件上。
+> 在 2.5.0 之前，`slot-scope` 被命名为 `scope` 且被限制只能在 `<template>` 元素上使用。从 2.5.0 开始，`slot-scope` 不再具有这些限制，而可以用在插槽内的任何元素或组件上。
 
 ### 解构 `slot-scope`
 
