@@ -225,24 +225,32 @@ Vue 还对应 [`addEventListener` 中的 `passive` 选项](https://developer.moz
 
 ## 按键修饰符
 
-在监听键盘事件时，我们经常需要检查常见的键值。Vue 允许为 `v-on` 在监听键盘事件时添加按键修饰符：
+在监听键盘事件时，我们经常需要检查详细的按键。Vue 允许为 `v-on` 在监听键盘事件时添加按键修饰符：
 
 ``` html
-<!-- 只有在 `keyCode` 是 13 时调用 `vm.submit()` -->
+<!-- 只有在 `key` 是 `Enter` 时调用 `vm.submit()` -->
+<input v-on:keyup.enter="submit">
+```
+
+你可以直接将 [`KeyboardEvent.key`](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/key/Key_Values) 暴露的任意有效按键名转换为 kebab-case 来作为修饰符。
+
+``` html
+<input v-on:keyup.page-down="onPageDown">
+```
+
+在上述示例中，处理函数只会在 `$event.key` 等于 `PageDown` 时被调用。
+
+### 按键码
+
+<p class="tip">`keyCode` 的事件用法[已经被废弃了](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/keyCode)并可能不会被最新的浏览器支持。</p>
+
+使用 `keyCode` 特性也是允许的：
+
+``` html
 <input v-on:keyup.13="submit">
 ```
 
-记住所有的 `keyCode` 比较困难，所以 Vue 为最常用的按键提供了别名：
-
-``` html
-<!-- 同上 -->
-<input v-on:keyup.enter="submit">
-
-<!-- 缩写语法 -->
-<input @keyup.enter="submit">
-```
-
-全部的按键别名：
+为了在必要的情况下支持旧浏览器，Vue 提供了绝大多数常用的按键码的别名：
 
 - `.enter`
 - `.tab`
@@ -254,26 +262,14 @@ Vue 还对应 [`addEventListener` 中的 `passive` 选项](https://developer.moz
 - `.left`
 - `.right`
 
-可以通过全局 `config.keyCodes` 对象[自定义按键修饰符别名](../api/#keyCodes)：
+<p class="tip">有一些按键 (`.esc` 以及所有的方向键) 在 IE9 中有不同的 `key` 值, 如果你想支持 IE9，这些内置的别名应该是首选。</p>
+
+你还可以通过全局 `config.keyCodes` 对象[自定义按键修饰符别名](../api/#keyCodes)：
 
 ``` js
 // 可以使用 `v-on:keyup.f1`
 Vue.config.keyCodes.f1 = 112
 ```
-
-### 自动匹配按键修饰符
-
-> 2.5.0 新增
-
-你也可直接将 [`KeyboardEvent.key`](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/key/Key_Values) 暴露的任意有效按键名转换为 kebab-case 来作为修饰符：
-
-```html
-<input @keyup.page-down="onPageDown">
-```
-
-在上面的例子中，处理函数仅在 `$event.key === 'PageDown'` 时被调用。
-
-<p class="tip">有一些按键 (`.esc` 以及所有的方向键) 在 IE9 中有不同的 `key` 值, 如果你想支持 IE9，它们的内置别名应该是首选。</p>
 
 ## 系统修饰键
 
