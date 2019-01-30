@@ -62,10 +62,10 @@ order: 401
 
 - **Modern JavaScript with ES2015/16**：阅读 Babel 的 [Learn ES2015 guide](https://babeljs.io/docs/learn-es2015/)。你不需要立刻记住每一个方法，但是你可以保留这个页面以便后期参考。
 
-在你花一天时间了解这些资源之后，我们建议你参考 [Vue CLI 3](https://cli.vuejs.org/)。只要遵循指示，你就能很快地运行一个带有 `.vue` 组件、ES2015、webpack 和热重载 (hot-reloading) 的 Vue 项目!
+在你花一天时间了解这些资源之后，我们建议你参考 [Vue CLI 3](https://cli.vuejs.org/zh/)。只要遵循指示，你就能很快地运行一个带有 `.vue` 组件、ES2015、webpack 和热重载 (hot-reloading) 的 Vue 项目!
 
 ### 针对高级用户
 
-CLI 会为你搞定大多数工具的配置问题，同时也支持细粒度自定义[配置项](https://cli.vuejs.org/config/)。
+CLI 会为你搞定大多数工具的配置问题，同时也支持细粒度自定义[配置项](https://cli.vuejs.org/zh/config/)。
 
-有时你会想从零搭建你自己的构建工具，这时你需要通过 [vue-loader](https://vue-loader.vuejs.org) 手动配置 webpack。关于学习更多 webpack 的内容，请查阅[其官方文档](https://webpack.js.org/configuration/) 和 [Webpack Academy](https://webpack.academy/p/the-core-concepts)。
+有时你会想从零搭建你自己的构建工具，这时你需要通过 [Vue Loader](https://vue-loader.vuejs.org/zh/) 手动配置 webpack。关于学习更多 webpack 的内容，请查阅[其官方文档](https://webpack.js.org/configuration/) 和 [Webpack Academy](https://webpack.academy/p/the-core-concepts)。
