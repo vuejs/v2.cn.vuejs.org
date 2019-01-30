@@ -332,7 +332,7 @@ Vue.component('blog-post', {
 ></blog-post>
 ```
 
-同时子组件可以通过调用内建的 [**`$emit`** method](../api/#vm-emit) 并传入事件名称来触发一个事件：
+同时子组件可以通过调用内建的 [**`$emit`** 方法](../api/#vm-emit) 并传入事件名称来触发一个事件：
 
 ```html
 <button v-on:click="$emit('enlarge-text')">
