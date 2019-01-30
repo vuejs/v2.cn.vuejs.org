@@ -312,7 +312,7 @@ Vue.component('my-component', {
 
 ```js
 {
-  class: 'username-input',
+  required: true,
   placeholder: 'Enter your username'
 }
 ```
@@ -336,12 +336,14 @@ Vue.component('base-input', {
 })
 ```
 
+<p class="tip">注意 `inheritAttrs: false` 选项**不会**影响 `style` 和 `class` 的绑定。</p>
+
 这个模式允许你在使用基础组件的时候更像是使用原始的 HTML 元素，而不会担心哪个元素是真正的根元素：
 
 ```html
 <base-input
   v-model="username"
-  class="username-input"
+  required
   placeholder="Enter your username"
 ></base-input>
 ```
