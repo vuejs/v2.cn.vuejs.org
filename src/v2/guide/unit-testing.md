@@ -4,7 +4,7 @@ type: guide
 order: 402
 ---
 
-> [Vue CLI](https://cli.vuejs.org/) 拥有开箱即用的通过 [Jest](https://github.com/facebook/jest) 或 [Mocha](https://mochajs.org/) 进行单元测试的内置选项。我们还有官方的 [vue-test-utils](https://vue-test-utils.vuejs.org/) 提供更多详细的指引和自定义设置。
+> [Vue CLI](https://cli.vuejs.org/) 拥有开箱即用的通过 [Jest](https://github.com/facebook/jest) 或 [Mocha](https://mochajs.org/) 进行单元测试的内置选项。我们还有官方的 [Vue Test Utils](https://vue-test-utils.vuejs.org/) 提供更多详细的指引和自定义设置。
 
 ## 简单的断言
 
