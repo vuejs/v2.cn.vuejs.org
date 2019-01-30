@@ -4,7 +4,7 @@ type: guide
 order: 403
 ---
 
-> [Vue CLI](https://cli.vuejs.org) 内置了 TypeScript 工具支持。在 Vue 的下一个大版本 (3.x) 中也计划了相当多的 TypeScript 支持改进，包括内置的基于 class 的组件 API 和 TSX 的支持。
+> [Vue CLI](https://cli.vuejs.org/zh/) 内置了 TypeScript 工具支持。在 Vue 的下一个大版本 (3.x) 中也计划了相当多的 TypeScript 支持改进，包括内置的基于 class 的组件 API 和 TSX 的支持。
 
 ## 发布为 NPM 包的官方声明文件
 
