@@ -4,8 +4,6 @@ root_domain: cn.vuejs.org
 vue_version: 2.5.16
 
 platinum_sponsors_china:
-  - url: https://e.coding.net/?utm_source=vue.js
-    img: coding.png
   - url: http://www.dcloud.io/?hmsr=vuejsorg&hmpl=&hmcu=&hmkw=&hmci=
     img: dcloud.gif
 
