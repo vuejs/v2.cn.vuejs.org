@@ -639,8 +639,12 @@ type: api
         immediate: true
       },
       e: [
-        function handle1 (val, oldVal) { /* ... */ },
-        function handle2 (val, oldVal) { /* ... */ }
+        'handle1',
+        function handle2 (val, oldVal) { /* ... */ },
+        {
+          handler: function handle3 (val, oldVal) { /* ... */ },
+          /* ... */
+        }
       ],
       // watch vm.e.f's value: {g: 5}
       'e.f': function (val, oldVal) { /* ... */ }
@@ -1426,6 +1430,8 @@ type: api
 
 ### vm.$attrs
 
+> 2.4.0 新增
+
 - **类型**：`{ [key: string]: string }`
 
 - **只读**
@@ -1435,6 +1441,8 @@ type: api
   包含了父作用域中不作为 prop 被识别 (且获取) 的特性绑定 (`class` 和 `style` 除外)。当一个组件没有声明任何 prop 时，这里会包含所有父作用域的绑定 (`class` 和 `style` 除外)，并且可以通过 `v-bind="$attrs"` 传入内部组件——在创建高级别的组件时非常有用。
 
 ### vm.$listeners
+
+> 2.4.0 新增
 
 - **类型**：`{ [key: string]: Function | Array<Function> }`
 
@@ -1474,6 +1482,8 @@ type: api
   // 函数
   vm.$watch(
     function () {
+      // 表达式 `this.a + this.b` 每次得出一个不同的结果时，处理函数都会被调用。
+      // 这就像监听一个未被定义的计算属性
       return this.a + this.b
     },
     function (newVal, oldVal) {

@@ -1,12 +1,10 @@
 ---
 title: 单元测试
 type: guide
-order: 403
+order: 402
 ---
 
-## 配置和工具
-
-任何兼容基于模块的构建系统都可以正常使用，但如果你需要一个具体的建议，可以使用 [Karma](https://karma-runner.github.io) 进行自动化测试。它有很多社区版的插件，包括对 [Webpack](https://github.com/webpack/karma-webpack) 和 [Browserify](https://github.com/Nikku/karma-browserify) 的支持。更多详细的安装步骤，请参考各项目的安装文档，通过这些 Karma 配置的例子可以快速帮助你上手 ([Webpack](https://github.com/vuejs-templates/webpack/blob/master/template/test/unit/karma.conf.js) 配置，[Browserify](https://github.com/vuejs-templates/browserify/blob/master/template/karma.conf.js) 配置)。
+> [Vue CLI](https://cli.vuejs.org/zh/) 拥有开箱即用的通过 [Jest](https://github.com/facebook/jest) 或 [Mocha](https://mochajs.org/) 进行单元测试的内置选项。我们还有官方的 [Vue Test Utils](https://vue-test-utils.vuejs.org/zh/) 提供更多详细的指引和自定义设置。
 
 ## 简单的断言
 
@@ -31,7 +29,7 @@ order: 403
 </script>
 ```
 
-然后随着 Vue 导入组件的选项，你可以使用许多常见的断言：
+然后随着 Vue 导入组件的选项，你可以使用许多常见的断言 (这里我们使用的是 Jasmine/Jest 风格的 `expect` 断言作为示例)：
 
 ``` js
 // 导入 Vue.js 和组件，进行测试
@@ -127,7 +125,5 @@ it('updates the rendered message when vm.message updates', done => {
   })
 })
 ```
-
-我们计划做一个通用的测试工具集，让不同策略的渲染输出 (例如忽略子组件的基本渲染) 和断言变得更简单。
 
 关于更深入的 Vue 单元测试的内容，请移步 [Vue Test Utils](https://vue-test-utils.vuejs.org/zh/) 以及我们关于 [Vue 组件的单元测试](../cookbook/unit-testing-vue-components.html)的 cookbook 文章。

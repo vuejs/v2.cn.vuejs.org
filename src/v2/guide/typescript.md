@@ -1,10 +1,10 @@
 ---
 title: TypeScript 支持
 type: guide
-order: 404
+order: 403
 ---
 
-在 Vue 2.5.0 中，我们大大改进了类型声明以更好地使用默认的基于对象的 API。同时此版本也引入了一些其它变化，需要开发者作出相应的升级。阅读[博客文章](https://medium.com/the-vue-point/upcoming-typescript-changes-in-vue-2-5-e9bd7e2ecf08)了解更多详情。
+> [Vue CLI](https://cli.vuejs.org/zh/) 内置了 TypeScript 工具支持。在 Vue 的下一个大版本 (3.x) 中也计划了相当多的 TypeScript 支持改进，包括内置的基于 class 的组件 API 和 TSX 的支持。
 
 ## 发布为 NPM 包的官方声明文件
 

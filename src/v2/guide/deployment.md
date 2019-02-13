@@ -1,8 +1,10 @@
 ---
 title: 生产环境部署
 type: guide
-order: 401
+order: 404
 ---
+
+> 以下大多数内容在你使用 [Vue CLI](https://cli.vuejs.org/zh/) 时都是默认开启的。该章节仅跟你自定义的构建设置有关。
 
 ## 开启生产环境模式
 
