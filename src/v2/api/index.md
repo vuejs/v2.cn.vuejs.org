@@ -2055,7 +2055,7 @@ type: api
   <!-- 方法处理器 -->
   <button v-on:click="doThis"></button>
 
-  <!-- 动态事件 (2.6.0 新增) -->
+  <!-- 动态事件 (2.6.0+) -->
   <button v-on:[event]="doThis"></button>
 
   <!-- 内联语句 -->
@@ -2064,7 +2064,7 @@ type: api
   <!-- 缩写 -->
   <button @click="doThis"></button>
 
-  <!-- 动态事件缩写 (2.6.0 新增) -->
+  <!-- 动态事件缩写 (2.6.0+) -->
   <button @[event]="doThis"></button>
 
   <!-- 停止冒泡 -->
@@ -2137,13 +2137,13 @@ type: api
   <!-- 绑定一个属性 -->
   <img v-bind:src="imageSrc">
 
-  <!-- 动态特性名 (2.6.0 新增) -->
+  <!-- 动态特性名 (2.6.0+) -->
   <button v-bind:[key]="value"></button>
 
   <!-- 缩写 -->
   <img :src="imageSrc">
 
-  <!-- 动态特性名缩写 (2.6.0 新增) -->
+  <!-- 动态特性名缩写 (2.6.0+) -->
   <button :[key]="value"></button>
 
   <!-- 内联字符串拼接 -->

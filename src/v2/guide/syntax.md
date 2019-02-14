@@ -189,8 +189,7 @@ The workaround is to either use expressions without spaces or quotes, or replace
 <a :href="url">...</a>
 ```
 
-<!-- todo: translation -->
-<!-- shorthand with dynamic argument (2.6.0+) -->
+<!-- 动态参数的缩写 (2.6.0+) -->
 <a :[key]="url"> ... </a>
 
 ### `v-on` 缩写
@@ -203,8 +202,7 @@ The workaround is to either use expressions without spaces or quotes, or replace
 <a @click="doSomething">...</a>
 ```
 
-<!-- todo: translation -->
-<!-- shorthand with dynamic argument (2.6.0+) -->
+<!-- 动态参数的缩写 (2.6.0+) -->
 <a @[event]="doSomething"> ... </a>
 
 它们看起来可能与普通的 HTML 略有不同，但 `:` 与 `@` 对于特性名来说都是合法字符，在所有支持 Vue 的浏览器都能被正确地解析。而且，它们不会出现在最终渲染的标记中。缩写语法是完全可选的，但随着你更深入地了解它们的作用，你会庆幸拥有它们。
