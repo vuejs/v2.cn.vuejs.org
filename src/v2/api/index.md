@@ -82,7 +82,10 @@ type: api
 
   > 从 2.2.0 起，这个钩子也会捕获组件生命周期钩子里的错误。同样的，当这个钩子是 `undefined` 时，被捕获的错误会通过 `console.error` 输出而避免应用崩溃。
 
-  > 从 2.4.0 起这个钩子也会捕获 Vue 自定义事件处理函数内部的错误了。
+  > 从 2.4.0 起，这个钩子也会捕获 Vue 自定义事件处理函数内部的错误了。
+
+  <!-- todo: translation -->
+  > In 2.6.0+, this hook also captures errors thrown inside `v-on` DOM listeners. In addition, if any of the covered hooks or handlers returns a Promise chain (e.g. async functions), the error from that Promise chain will also be handled.
 
   > 错误追踪服务 [Sentry](https://sentry.io) 和 [Bugsnag](https://docs.bugsnag.com/platforms/browsers/vue/) 都通过此选项提供了官方支持。
 
@@ -397,6 +400,35 @@ type: api
   ```
 
 - **参考**：[渲染函数](../guide/render-function.html)
+
+<!-- todo: translation -->
+### Vue.observable( object )
+
+> New in 2.6.0+
+
+- **Arguments:**
+  - `{Object} object`
+
+- **Usage:**
+
+  Make an object reactive. Internally, Vue uses this on the object returned by the `data` function.
+
+  The returned object can be used directly inside [render functions](../guide/render-function.html) and [computed properties](../guide/computed.html), and will trigger appropriate updates when mutated. It can also be used as a minimal, cross-component state store for simple scenarios:
+
+  ``` js
+  const state = Vue.observable({ count: 0 })
+  const Demo = {
+    render(h) {
+      return h('button', {
+        on: { click: () => { state.count++ }}
+      }, `count is: ${state.count}`)
+    }
+  }
+  ```
+
+  <p class="tip">In Vue 2.x, `Vue.observable` directly mutates the object passed to it, so that it is equivalent to the object returned, as [demonstrated here](../guide/instance.html#Data-and-Methods). In Vue 3.x, a reactive proxy will be returned instead, leaving the original object non-reactive if mutated directly. Therefore, for future compatibility, we recommend always working with the object returned by `Vue.observable`, rather than the object originally passed to it.</p>
+
+- **See also:** [Reactivity in Depth](../guide/reactivity.html)
 
 ### Vue.version
 
@@ -1387,7 +1419,7 @@ type: api
 
 > 2.1.0 新增
 
-- **类型**：`{ [name: string]: props => VNode | Array<VNode> }`
+- **类型**：`{ [name: string]: props => Array<VNode> | undefined }`
 
 - **只读**
 
@@ -1396,6 +1428,13 @@ type: api
   用来访问[作用域插槽](../guide/components.html#作用域插槽)。对于包括 `默认 slot` 在内的每一个插槽，该对象都包含一个返回相应 VNode 的函数。
 
   `vm.$scopedSlots` 在使用[渲染函数](../guide/render-function.html)开发一个组件时特别有用。
+
+  <!-- todo: translation -->
+  **Note:** since 2.6.0+, there are two notable changes to this property:
+
+  1. Scoped slot functions are now guaranteed to return an array of VNodes, unless the return value is invalid, in which case the function will return `undefined`.
+
+  2. All `$slots` are now also exposed on `$scopedSlots` as functions. If you work with render functions, it is now recommended to always access slots via `$scopedSlots`, whether they currently use a scope or not. This will not only make future refactors to add a scope simpler, but also ease your eventual migration to Vue 3, where all slots will be functions.
 
 - **参考**：
   - [`<slot>` 组件](#slot-1)
@@ -1944,7 +1983,7 @@ type: api
 
 ### v-for
 
-- **预期**：`Array | Object | number | string`
+- **预期**：`Array | Object | number | string | Iterable (2.6 新增)`
 
 - **用法**：
 
@@ -1971,6 +2010,11 @@ type: api
     {{ item.text }}
   </div>
   ```
+
+  <!-- todo: translation -->
+  In 2.6+, `v-for` can also work on values that implement the [Iterable Protocol](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterable_protocol), including native `Map` and `Set`. However, it should be noted that Vue 2.x currently does not support reactivity on `Map` and `Set` values, so cannot automatically detect changes.
+
+  <p class="tip">When used together with v-if, v-for has a higher priority than v-if. See the <a href="../guide/list.html#v-for-with-v-if">list rendering guide</a> for details.</p>
 
   `v-for` 的详细用法可以通过以下链接查看教程详细说明。
 
@@ -2015,11 +2059,19 @@ type: api
   <!-- 方法处理器 -->
   <button v-on:click="doThis"></button>
 
+  <!-- todo: translation -->
+  <!-- dynamic event (2.6.0+) -->
+  <button v-on:[event]="doThis"></button>
+
   <!-- 内联语句 -->
   <button v-on:click="doThat('hello', $event)"></button>
 
   <!-- 缩写 -->
   <button @click="doThis"></button>
+
+  <!-- todo: translation -->
+  <!-- shorthand dynamic event (2.6.0+) -->
+  <button @[event]="doThis"></button>
 
   <!-- 停止冒泡 -->
   <button @click.stop="doThis"></button>
@@ -2091,8 +2143,16 @@ type: api
   <!-- 绑定一个属性 -->
   <img v-bind:src="imageSrc">
 
+  <!-- todo: translation -->
+  <!-- dynamic attribute name (2.6.0+) -->
+  <button v-bind:[key]="value"></button>
+
   <!-- 缩写 -->
   <img :src="imageSrc">
+
+  <!-- todo: translation -->
+  <!-- shorthand dynamic attribute name (2.6.0+) -->
+  <button :[key]="value"></button>
 
   <!-- 内联字符串拼接 -->
   <img :src="'/path/to/images/' + fileName">
@@ -2157,6 +2217,60 @@ type: api
 - **参考**：
   - [表单控件绑定](../guide/forms.html)
   - [组件 - 在输入组件上使用自定义事件](../guide/components.html#使用自定义事件的表单输入组件)
+
+<!-- todo: translation -->
+### v-slot
+
+- **Shorthand:** `#`
+
+- **Expects:** JavaScript expression that is valid in a function argument position (supports destructuring in [supported environments](../guide/components-slots.html#Slot-Props-Destructuring)). Optional - only needed if expecting props to be passed to the slot.
+
+- **Argument:** slot name (optional, defaults to `default`)
+
+- **Limited to:**
+  - `<template>`
+  - [components](../guide/components-slots.html#Abbreviated-Syntax-for-Lone-Default-Slots) (for a lone default slot with props)
+
+- **Usage:**
+
+  Denote named slots or slots that expect to receive props.
+
+- **Example:**
+
+  ```html
+  <!-- Named slots -->
+  <base-layout>
+    <template v-slot:header>
+      Header content
+    </template>
+
+    Default slot content
+
+    <template v-slot:footer>
+      Footer content
+    </template>
+  </base-layout>
+
+  <!-- Named slot that receives props -->
+  <infinite-scroll>
+    <template v-slot:item="slotProps">
+      <div class="item">
+        {{ slotProps.item.text }}
+      </div>
+    </template>
+  </infinite-scroll>
+
+  <!-- Default slot that receive props, with destructuring -->
+  <mouse-position v-slot="{ x, y }">
+    Mouse position: {{ x }}, {{ y }}
+  </mouse-position>
+  ```
+
+  For more details, see the links below.
+
+- **See also:**
+  - [Components - Slots](../guide/components-slots.html)
+  - [RFC-0001](https://github.com/vuejs/rfcs/blob/master/active-rfcs/0001-new-slot-syntax.md)
 
 ### v-pre
 
@@ -2277,38 +2391,6 @@ type: api
 
 - **参考**：[子组件 Refs](../guide/components-edge-cases.html#访问子组件实例或子元素)
 
-### slot
-
-- **预期**：`string`
-
-  用于标记往哪个具名插槽中插入子组件内容。
-
-  详细用法，请参考下面指南部分的链接。
-
-- **参考**：[具名插槽](../guide/components.html#具名插槽)
-
-### slot-scope
-
-> 2.5.0 新增
-
-- **预期**：`function argument expression`
-
-- **用法**：
-
-  用于将元素或组件表示为作用域插槽。特性的值应该是可以出现在函数签名的参数位置的合法的 JavaScript 表达式。这意味着在支持的环境中，你还可以在表达式中使用 ES2015 解构。它在 2.5.0+ 中替代了 [`scope`](#scope-replaced)。
-
-  此属性不支持动态绑定。
-
-- **参考**：[Scoped Slots](../guide/components.html#作用域插槽)
-
-### scope <sup>replaced</sup>
-
-用于表示一个作为带作用域的插槽的 `<template>` 元素，它在 2.5.0+ 中被 [`slot-scope`](#slot-scope) 替代。
-
-- **用法：**
-
-  除了 `scope` 只可以用于 `<template>` 元素，其它和 [`slot-scope`](#slot-scope) 都相同。
-
 ### is
 
 - **预期**：`string | Object (组件的选项对象)`
@@ -2333,6 +2415,42 @@ type: api
 - **See also**：
   - [动态组件](../guide/components.html#动态组件)
   - [DOM 模板解析说明](../guide/components.html#DOM-模板解析说明)
+
+### slot <sup style="color:#c92222">废弃</sup>
+
+**推荐 2.6.0 新增的 [v-slot](#v-slot)。**
+
+- **预期**：`string`
+
+  用于标记往哪个具名插槽中插入子组件内容。
+
+<!-- todo: update link -->
+- **参考**：[具名插槽](../guide/components.html#具名插槽)
+
+### slot-scope <sup style="color:#c92222">废弃</sup>
+
+**推荐 2.6.0 新增的 [v-slot](#v-slot)。**
+
+- **预期**：`function argument expression`
+
+- **用法**：
+
+  用于将元素或组件表示为作用域插槽。特性的值应该是可以出现在函数签名的参数位置的合法的 JavaScript 表达式。这意味着在支持的环境中，你还可以在表达式中使用 ES2015 解构。它在 2.5.0+ 中替代了 [`scope`](#scope-replaced)。
+
+  此属性不支持动态绑定。
+
+<!-- todo: update link -->
+- **参考**：[Scoped Slots](../guide/components.html#作用域插槽)
+
+### scope <sup style="color:#c92222">移除</sup>
+
+**被 2.5.0 新增的 [slot-scope](#slot-scope) 取代。推荐 2.6.0 新增的 [v-slot](#v-slot)。**
+
+用于表示一个作为带作用域的插槽的 `<template>` 元素，它在 2.5.0+ 中被 [`slot-scope`](#slot-scope) 替代。
+
+- **用法：**
+
+  除了 `scope` 只可以用于 `<template>` 元素，其它和 [`slot-scope`](#slot-scope) 都相同。
 
 ## 内置的组件
 

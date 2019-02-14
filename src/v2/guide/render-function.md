@@ -529,6 +529,8 @@ Vue.component('my-component', {
 - `props`：提供所有 prop 的对象
 - `children`: VNode 子节点的数组
 - `slots`: 返回所有插槽的对象的函数
+<!-- todo: translation -->
+- `scopedSlots`: (2.6.0+) An object that exposes passed-in scoped slots. Also exposes normal slots as functions.
 - `data`：传递给组件的[数据对象](#深入-data-对象)，作为 `createElement` 的第二个参数传入组件 
 - `parent`：对父组件的引用
 - `listeners`: (2.3.0+) 一个包含了所有在父组件上注册的事件侦听器的对象。这只是一个指向 `data.on` 的别名。

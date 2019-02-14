@@ -27,17 +27,32 @@ Vue **不支持** IE8 及以下版本，因为 Vue 使用了 IE8 无法模拟的
 <p class="tip">在开发环境下不要使用压缩版本，不然你就失去了所有常见错误相关的警告!</p>
 
 <div id="downloads">
-<a class="button" href="https://vuejs.org/js/vue.js" download>开发版本</a><span class="light info">包含完整的警告和调试模式</span>
+  <a class="button" href="https://vuejs.org/js/vue.js" download>开发版本</a><span class="light info">包含完整的警告和调试模式</span>
 
-<a class="button" href="https://vuejs.org/js/vue.min.js" download>生产版本</a><span class="light info">删除了警告，{{gz_size}}KB min+gzip</span>
+  <a class="button" href="https://vuejs.org/js/vue.min.js" download>生产版本</a><span class="light info">删除了警告，{{gz_size}}KB min+gzip</span>
 </div>
 
 ### CDN
 
-我们推荐链接到一个你可以手动更新的指定版本号：
+<!-- todo: translation -->
+For prototyping or learning purposes, you can use the latest version with:
 
 ``` html
-<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+```
+
+For production, we recommend linking to a specific version number and build to avoid unexpected breakage from newer versions:
+
+``` html
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.0/dist/vue.js"></script>
+```
+
+If you are using native ES Modules, there is also an ES Modules compatible build:
+
+``` html
+<script type="module">
+  import Vue from 'https://cdn.jsdelivr.net/npm/vue@2.6.0/dist/vue.esm.browser.js'
+</script>
 ```
 
 你可以在 [cdn.jsdelivr.net/npm/vue](https://cdn.jsdelivr.net/npm/vue/) 浏览 NPM 包的源代码。
@@ -65,12 +80,12 @@ Vue 提供了一个[官方的 CLI](https://github.com/vuejs/vue-cli)，为单页
 
 在 [NPM 包的 `dist/` 目录](https://cdn.jsdelivr.net/npm/vue/dist/)你将会找到很多不同的 Vue.js 构建版本。这里列出了它们之间的差别：
 
-| | UMD | CommonJS | ES Module |
-| --- | --- | --- | --- |
-| **完整版** | vue.js | vue.common.js | vue.esm.js |
-| **只包含运行时版** | vue.runtime.js | vue.runtime.common.js | vue.runtime.esm.js |
-| **完整版 (生产环境)** | vue.min.js | - | - |
-| **只包含运行时版 (生产环境)** | vue.runtime.min.js | - | - |
+| | UMD | CommonJS | ES Module (基于构建工具使用) | ES Module (直接用于浏览器) |
+| --- | --- | --- | --- | --- |
+| **完整版** | vue.js | vue.common.js | vue.esm.js | vue.esm.browser.js |
+| **只包含运行时版** | vue.runtime.js | vue.runtime.common.js | vue.runtime.esm.js | - |
+| **完整版 (生产环境)** | vue.min.js | - | - | vue.esm.browser.min.js |
+| **只包含运行时版 (生产环境)** | vue.runtime.min.js | - | - | - |
 
 ### 术语
 
@@ -84,7 +99,13 @@ Vue 提供了一个[官方的 CLI](https://github.com/vuejs/vue-cli)，为单页
 
 - **[CommonJS](http://wiki.commonjs.org/wiki/Modules/1.1)**：CommonJS 版本用来配合老的打包工具比如 [Browserify](http://browserify.org/) 或 [webpack 1](https://webpack.github.io)。这些打包工具的默认文件 (`pkg.main`) 是只包含运行时的 CommonJS 版本 (`vue.runtime.common.js`)。
 
-- **[ES Module](http://exploringjs.com/es6/ch_modules.html)**：ES module 版本用来配合现代打包工具比如 [webpack 2](https://webpack.js.org) 或 [Rollup](https://rollupjs.org/)。这些打包工具的默认文件 (`pkg.module`) 是只包含运行时的 ES Module 版本 (`vue.runtime.esm.js`)。
+<!-- todo: translation -->
+<!-- - **[ES Module](http://exploringjs.com/es6/ch_modules.html)**：ES module 版本用来配合现代打包工具比如 [webpack 2](https://webpack.js.org) 或 [Rollup](https://rollupjs.org/)。这些打包工具的默认文件 (`pkg.module`) 是只包含运行时的 ES Module 版本 (`vue.runtime.esm.js`)。 -->
+- **[ES Module](http://exploringjs.com/es6/ch_modules.html)**: starting in 2.6 Vue provides two ES Modules (ESM) builds:
+
+  - ESM for bundlers: intended for use with modern bundlers like [webpack 2](https://webpack.js.org) or [Rollup](https://rollupjs.org/). ESM format is designed to be statically analyzable so the bundlers can take advantage of that to perform "tree-shaking" and eliminate unused code from your final bundle. The default file for these bundlers (`pkg.module`) is the Runtime only ES Module build (`vue.runtime.esm.js`).
+
+  - ESM for browsers (2.6+ only): intended for direct imports in modern browsers via `<script type="module">`.
 
 ### 运行时 + 编译器 vs. 只包含运行时
 
