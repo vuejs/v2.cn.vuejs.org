@@ -128,46 +128,46 @@ Mustache 语法不能作用在 HTML 特性上，遇到这种情况应该使用 [
 
 在这里参数是监听的事件名。我们也会更详细地讨论事件处理。
 
-<!-- todo: translation -->
-### Dynamic Arguments
+### 动态参数
 
-> New in 2.6.0+
-Starting in version 2.6.0, it is also possible to use a JavaScript expression in a directive argument by wrapping it with square brackets:
+> 2.6.0 新增
+
+从 2.6.0 开始，将用方括号括起来的 JavaScript 表达式作为一个指令的参数也是可以的：
 
 ``` html
 <a v-bind:[attributeName]="url"> ... </a>
 ```
 
-Here `attributeName` will be dynamically evaluated as a JavaScript expression, and its evaluated value will be used as the final value for the argument. For example, if your Vue instance has a data property, `attributeName`, whose value is `"href"`, then this binding will be equivalent to `v-bind:href`.
+这里的 `attributeName` 会被作为一个 JavaScript 表达式进行动态求值，求得的值将会作为最终的参数来使用。例如，如果你的 Vue 实例有一个 `data` 属性 `attributeName`，其值为 `"href"`，那么这个绑定将等价于 `v-bind:href`。
 
-Similarly, you can use dynamic arguments to bind a handler to a dynamic event name:
+同样地，你可以使用动态参数为一个动态的事件名绑定处理函数：
 
 ``` html
 <a v-on:[eventName]="doSomething"> ... </a>
 ```
 
-Similarly, when `eventName`'s value is `"focus"`, for example, `v-on:[eventName]` will be equivalent to `v-on:focus`.
+同样地，当 `eventName` 的值为 `"focus"` 时，`v-on:[eventName]` 将等价于 `v-on:focus`。
 
-#### Dynamic Argument Value Constraints
+#### 对动态参数的值的约束
 
-Dynamic arguments are expected to evaluate to a string, with the exception of `null`. The special value `null` can be used to explicitly remove the binding. Any other non-string value will trigger a warning.
+动态参数预期会求出一个字符串，异常情况下值为 `null`。这个特殊的 `null` 值可以被显性地用于移除绑定。任何其它非字符串类型的值都将会触发一个警告。
 
-#### Dynamic Argument Expression Constraints
+#### 对动态参数表达式的约束
 
-<p class="tip">Dynamic argument expressions have some syntax constraints because certain characters are invalid inside HTML attribute names, such as spaces and quotes.</p>
+<p class="tip">动态参数表达式有一些语法约束，因为某些字符，例如空格和引号，放在 HTML 特性名里是无效的。</p>
 
-For example, the following is invalid:
+例如，下面的代码是无效的：
 
 ``` html
-<!-- This will trigger a compiler warning. -->
+<!-- 这会触发一个编译警告 -->
 <a v-bind:['foo' + bar]="value"> ... </a>
 ```
 
-The workaround is to either use expressions without spaces or quotes, or replace the complex expression with a computed property.
+变通的办法是使用没有空格或引号的表达式，或用计算属性替代这种复杂表达式。
 
 ### 修饰符
 
-修饰符 (Modifiers) 是以半角句号 `.` 指明的特殊后缀，用于指出一个指令应该以特殊方式绑定。例如，`.prevent` 修饰符告诉 `v-on` 指令对于触发的事件调用 `event.preventDefault()`：
+修饰符 (modifier) 是以半角句号 `.` 指明的特殊后缀，用于指出一个指令应该以特殊方式绑定。例如，`.prevent` 修饰符告诉 `v-on` 指令对于触发的事件调用 `event.preventDefault()`：
 
 ``` html
 <form v-on:submit.prevent="onSubmit">...</form>
