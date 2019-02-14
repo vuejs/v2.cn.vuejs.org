@@ -84,8 +84,7 @@ type: api
 
   > 从 2.4.0 起，这个钩子也会捕获 Vue 自定义事件处理函数内部的错误了。
 
-  <!-- todo: translation -->
-  > In 2.6.0+, this hook also captures errors thrown inside `v-on` DOM listeners. In addition, if any of the covered hooks or handlers returns a Promise chain (e.g. async functions), the error from that Promise chain will also be handled.
+  > 从 2.6.0 起，这个钩子也会捕获 `v-on` DOM 监听器内部抛出的错误。额外的，如果任何被覆盖的钩子或处理函数返回一个 Promise 链 (例如 async 函数)，则来自其 Promise 链的错误也会被处理。
 
   > 错误追踪服务 [Sentry](https://sentry.io) 和 [Bugsnag](https://docs.bugsnag.com/platforms/browsers/vue/) 都通过此选项提供了官方支持。
 
@@ -401,19 +400,18 @@ type: api
 
 - **参考**：[渲染函数](../guide/render-function.html)
 
-<!-- todo: translation -->
 ### Vue.observable( object )
 
-> New in 2.6.0+
+> 2.6.0 新增
 
-- **Arguments:**
+- **参数**：
   - `{Object} object`
 
-- **Usage:**
+- **用法**：
 
-  Make an object reactive. Internally, Vue uses this on the object returned by the `data` function.
+  让一个对象可响应。Vue 内部会用它来处理 `data` 函数返回的对象。
 
-  The returned object can be used directly inside [render functions](../guide/render-function.html) and [computed properties](../guide/computed.html), and will trigger appropriate updates when mutated. It can also be used as a minimal, cross-component state store for simple scenarios:
+  返回的对象可以直接用于[渲染函数](../guide/render-function.html)和[计算属性](../guide/computed.html)内，并且会在发生突变时触发相应的更新。也可以作为最小化的跨组件状态存储器，用于简单的场景：
 
   ``` js
   const state = Vue.observable({ count: 0 })
@@ -426,9 +424,9 @@ type: api
   }
   ```
 
-  <p class="tip">In Vue 2.x, `Vue.observable` directly mutates the object passed to it, so that it is equivalent to the object returned, as [demonstrated here](../guide/instance.html#Data-and-Methods). In Vue 3.x, a reactive proxy will be returned instead, leaving the original object non-reactive if mutated directly. Therefore, for future compatibility, we recommend always working with the object returned by `Vue.observable`, rather than the object originally passed to it.</p>
+  <p class="tip">在 Vue 2.x 中，被传入的对象会直接被 `Vue.observable` 突变，所以如[这里的展示](../guide/instance.html#数据与方法)，它和被返回的对象是同一个对象。在 Vue 3.x 中，取而代之的是返回一个可响应的代理，而对源对象直接进行修改仍然是不可响应的。因此，为了向前兼容，我们推荐始终在 `Vue.observable` 返回的对象上工作，而不是传入源对象。</p>
 
-- **See also:** [Reactivity in Depth](../guide/reactivity.html)
+- **参考**：[深入响应式原理](../guide/reactivity.html)
 
 ### Vue.version
 
@@ -1429,12 +1427,11 @@ type: api
 
   `vm.$scopedSlots` 在使用[渲染函数](../guide/render-function.html)开发一个组件时特别有用。
 
-  <!-- todo: translation -->
-  **Note:** since 2.6.0+, there are two notable changes to this property:
+  **注意**：从 2.6.0 开始，这个属性有两个变化：
 
-  1. Scoped slot functions are now guaranteed to return an array of VNodes, unless the return value is invalid, in which case the function will return `undefined`.
+  1. 作用域插槽函数现在保证返回一个 VNodes 数组，除非在返回值无效的情况下返回 `undefined`。
 
-  2. All `$slots` are now also exposed on `$scopedSlots` as functions. If you work with render functions, it is now recommended to always access slots via `$scopedSlots`, whether they currently use a scope or not. This will not only make future refactors to add a scope simpler, but also ease your eventual migration to Vue 3, where all slots will be functions.
+  2. 所有的 `$slots` 现在都会作为函数暴露在 `$scopedSlots` 中。如果你在使用渲染函数，不论当下插槽是否带有作用域，我们都推荐始终通过 `$scopedSlots` 访问它们。这不仅仅使得在未来添加作用域变得简单，也可以让你最终轻松迁移到所有插槽都是函数的 Vue 3。
 
 - **参考**：
   - [`<slot>` 组件](#slot-1)
@@ -2011,10 +2008,9 @@ type: api
   </div>
   ```
 
-  <!-- todo: translation -->
-  In 2.6+, `v-for` can also work on values that implement the [Iterable Protocol](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterable_protocol), including native `Map` and `Set`. However, it should be noted that Vue 2.x currently does not support reactivity on `Map` and `Set` values, so cannot automatically detect changes.
+  从 2.6 起，`v-for` 也可以在实现了[可迭代协议](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Iteration_protocols#可迭代协议)的值上工作，包括原生的 `Map` 和 `Set`。不过应该注意的是 Vue 2.x 目前并不支持可响应的 `Map` 和 `Set` 值，所以无法自动探测变更。
 
-  <p class="tip">When used together with v-if, v-for has a higher priority than v-if. See the <a href="../guide/list.html#v-for-with-v-if">list rendering guide</a> for details.</p>
+  <p class="tip">当和 `v-if` 一起使用时，`v-for` 的优先级比 `v-if` 更高。详见[列表渲染教程](../guide/list.html#v-for-with-v-if)</p>
 
   `v-for` 的详细用法可以通过以下链接查看教程详细说明。
 
@@ -2059,8 +2055,7 @@ type: api
   <!-- 方法处理器 -->
   <button v-on:click="doThis"></button>
 
-  <!-- todo: translation -->
-  <!-- dynamic event (2.6.0+) -->
+  <!-- 动态事件 (2.6.0 新增) -->
   <button v-on:[event]="doThis"></button>
 
   <!-- 内联语句 -->
@@ -2069,8 +2064,7 @@ type: api
   <!-- 缩写 -->
   <button @click="doThis"></button>
 
-  <!-- todo: translation -->
-  <!-- shorthand dynamic event (2.6.0+) -->
+  <!-- 动态事件缩写 (2.6.0 新增) -->
   <button @[event]="doThis"></button>
 
   <!-- 停止冒泡 -->
@@ -2143,15 +2137,13 @@ type: api
   <!-- 绑定一个属性 -->
   <img v-bind:src="imageSrc">
 
-  <!-- todo: translation -->
-  <!-- dynamic attribute name (2.6.0+) -->
+  <!-- 动态特性名 (2.6.0 新增) -->
   <button v-bind:[key]="value"></button>
 
   <!-- 缩写 -->
   <img :src="imageSrc">
 
-  <!-- todo: translation -->
-  <!-- shorthand dynamic attribute name (2.6.0+) -->
+  <!-- 动态特性名缩写 (2.6.0 新增) -->
   <button :[key]="value"></button>
 
   <!-- 内联字符串拼接 -->
@@ -2218,27 +2210,28 @@ type: api
   - [表单控件绑定](../guide/forms.html)
   - [组件 - 在输入组件上使用自定义事件](../guide/components.html#使用自定义事件的表单输入组件)
 
-<!-- todo: translation -->
 ### v-slot
 
-- **Shorthand:** `#`
+- **缩写**：`#`
 
-- **Expects:** JavaScript expression that is valid in a function argument position (supports destructuring in [supported environments](../guide/components-slots.html#Slot-Props-Destructuring)). Optional - only needed if expecting props to be passed to the slot.
+<!-- todo: update link -->
+- **预期**：可放置在函数参数位置的 JavaScript 表达式 (在[支持的环境下](../guide/components-slots.html#Slot-Props-Destructuring)可使用解构)。可选的，即只需要在为插槽传入 prop 的时候使用。
 
-- **Argument:** slot name (optional, defaults to `default`)
+- **参数**：插槽名 (可选的，默认值是 `default`)
 
-- **Limited to:**
+<!-- todo: update link -->
+- **限用于**
   - `<template>`
-  - [components](../guide/components-slots.html#Abbreviated-Syntax-for-Lone-Default-Slots) (for a lone default slot with props)
+  - [组件](../guide/components-slots.html#Abbreviated-Syntax-for-Lone-Default-Slots) (对于一个单独的带 prop 的默认插槽)
 
-- **Usage:**
+- **用法**：
 
-  Denote named slots or slots that expect to receive props.
+  提供具名插槽或需要接收 prop 的插槽。
 
-- **Example:**
+- **示例**：
 
   ```html
-  <!-- Named slots -->
+  <!-- 具名插槽 -->
   <base-layout>
     <template v-slot:header>
       Header content
@@ -2251,7 +2244,7 @@ type: api
     </template>
   </base-layout>
 
-  <!-- Named slot that receives props -->
+  <!-- 接收 prop 的具名插槽 -->
   <infinite-scroll>
     <template v-slot:item="slotProps">
       <div class="item">
@@ -2260,16 +2253,16 @@ type: api
     </template>
   </infinite-scroll>
 
-  <!-- Default slot that receive props, with destructuring -->
+  <!-- 接收 prop 的默认插槽，使用了解构 -->
   <mouse-position v-slot="{ x, y }">
     Mouse position: {{ x }}, {{ y }}
   </mouse-position>
   ```
 
-  For more details, see the links below.
+  更多细节请查阅以下链接。
 
-- **See also:**
-  - [Components - Slots](../guide/components-slots.html)
+- **参考**：
+  - [组件 - 插槽](../guide/components-slots.html)
   - [RFC-0001](https://github.com/vuejs/rfcs/blob/master/active-rfcs/0001-new-slot-syntax.md)
 
 ### v-pre
