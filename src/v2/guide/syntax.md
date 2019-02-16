@@ -132,7 +132,7 @@ Mustache 语法不能作用在 HTML 特性上，遇到这种情况应该使用 [
 
 > 2.6.0 新增
 
-从 2.6.0 开始，将用方括号括起来的 JavaScript 表达式作为一个指令的参数也是可以的：
+从 2.6.0 开始，可以用方括号括起来的 JavaScript 表达式作为一个指令的参数：
 
 ``` html
 <a v-bind:[attributeName]="url"> ... </a>
