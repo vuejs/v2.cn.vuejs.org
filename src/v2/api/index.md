@@ -84,7 +84,7 @@ type: api
 
   > 从 2.4.0 起，这个钩子也会捕获 Vue 自定义事件处理函数内部的错误了。
 
-  > 从 2.6.0 起，这个钩子也会捕获 `v-on` DOM 监听器内部抛出的错误。额外的，如果任何被覆盖的钩子或处理函数返回一个 Promise 链 (例如 async 函数)，则来自其 Promise 链的错误也会被处理。
+  > 从 2.6.0 起，这个钩子也会捕获 `v-on` DOM 监听器内部抛出的错误。另外，如果任何被覆盖的钩子或处理函数返回一个 Promise 链 (例如 async 函数)，则来自其 Promise 链的错误也会被处理。
 
   > 错误追踪服务 [Sentry](https://sentry.io) 和 [Bugsnag](https://docs.bugsnag.com/platforms/browsers/vue/) 都通过此选项提供了官方支持。
 
@@ -424,7 +424,7 @@ type: api
   }
   ```
 
-  <p class="tip">在 Vue 2.x 中，被传入的对象会直接被 `Vue.observable` 突变，所以如[这里的展示](../guide/instance.html#数据与方法)，它和被返回的对象是同一个对象。在 Vue 3.x 中，取而代之的是返回一个可响应的代理，而对源对象直接进行修改仍然是不可响应的。因此，为了向前兼容，我们推荐始终在 `Vue.observable` 返回的对象上工作，而不是传入源对象。</p>
+  <p class="tip">在 Vue 2.x 中，被传入的对象会直接被 `Vue.observable` 改变，所以如[这里展示的](../guide/instance.html#数据与方法)，它和被返回的对象是同一个对象。在 Vue 3.x 中，则会返回一个可响应的代理，而对源对象直接进行修改仍然是不可响应的。因此，为了向前兼容，我们推荐始终操作使用 `Vue.observable` 返回的对象，而不是传入源对象。</p>
 
 - **参考**：[深入响应式原理](../guide/reactivity.html)
 
@@ -1429,9 +1429,9 @@ type: api
 
   **注意**：从 2.6.0 开始，这个属性有两个变化：
 
-  1. 作用域插槽函数现在保证返回一个 VNodes 数组，除非在返回值无效的情况下返回 `undefined`。
+  1. 作用域插槽函数现在保证返回一个 VNode 数组，除非在返回值无效的情况下返回 `undefined`。
 
-  2. 所有的 `$slots` 现在都会作为函数暴露在 `$scopedSlots` 中。如果你在使用渲染函数，不论当下插槽是否带有作用域，我们都推荐始终通过 `$scopedSlots` 访问它们。这不仅仅使得在未来添加作用域变得简单，也可以让你最终轻松迁移到所有插槽都是函数的 Vue 3。
+  2. 所有的 `$slots` 现在都会作为函数暴露在 `$scopedSlots` 中。如果你在使用渲染函数，不论当前插槽是否带有作用域，我们都推荐始终通过 `$scopedSlots` 访问它们。这不仅仅使得在未来添加作用域变得简单，也可以让你最终轻松迁移到所有插槽都是函数的 Vue 3。
 
 - **参考**：
   - [`<slot>` 组件](#slot-1)
@@ -2008,7 +2008,7 @@ type: api
   </div>
   ```
 
-  从 2.6 起，`v-for` 也可以在实现了[可迭代协议](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Iteration_protocols#可迭代协议)的值上工作，包括原生的 `Map` 和 `Set`。不过应该注意的是 Vue 2.x 目前并不支持可响应的 `Map` 和 `Set` 值，所以无法自动探测变更。
+  从 2.6 起，`v-for` 也可以在实现了[可迭代协议](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Iteration_protocols#可迭代协议)的值上使用，包括原生的 `Map` 和 `Set`。不过应该注意的是 Vue 2.x 目前并不支持可响应的 `Map` 和 `Set` 值，所以无法自动探测变更。
 
   <p class="tip">当和 `v-if` 一起使用时，`v-for` 的优先级比 `v-if` 更高。详见[列表渲染教程](../guide/list.html#v-for-with-v-if)</p>
 
@@ -2215,9 +2215,9 @@ type: api
 - **缩写**：`#`
 
 <!-- todo: update link -->
-- **预期**：可放置在函数参数位置的 JavaScript 表达式 (在[支持的环境下](../guide/components-slots.html#Slot-Props-Destructuring)可使用解构)。可选的，即只需要在为插槽传入 prop 的时候使用。
+- **预期**：可放置在函数参数位置的 JavaScript 表达式 (在[支持的环境下](../guide/components-slots.html#Slot-Props-Destructuring)可使用解构)。可选，即只需要在为插槽传入 prop 的时候使用。
 
-- **参数**：插槽名 (可选的，默认值是 `default`)
+- **参数**：插槽名 (可选，默认值是 `default`)
 
 <!-- todo: update link -->
 - **限用于**
