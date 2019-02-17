@@ -411,7 +411,7 @@ type: api
 
   让一个对象可响应。Vue 内部会用它来处理 `data` 函数返回的对象。
 
-  返回的对象可以直接用于[渲染函数](../guide/render-function.html)和[计算属性](../guide/computed.html)内，并且会在发生突变时触发相应的更新。也可以作为最小化的跨组件状态存储器，用于简单的场景：
+  返回的对象可以直接用于[渲染函数](../guide/render-function.html)和[计算属性](../guide/computed.html)内，并且会在发生改变时触发相应的更新。也可以作为最小化的跨组件状态存储器，用于简单的场景：
 
   ``` js
   const state = Vue.observable({ count: 0 })
