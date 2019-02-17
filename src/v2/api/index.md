@@ -2214,15 +2214,13 @@ type: api
 
 - **缩写**：`#`
 
-<!-- todo: update link -->
-- **预期**：可放置在函数参数位置的 JavaScript 表达式 (在[支持的环境下](../guide/components-slots.html#Slot-Props-Destructuring)可使用解构)。可选，即只需要在为插槽传入 prop 的时候使用。
+- **预期**：可放置在函数参数位置的 JavaScript 表达式 (在[支持的环境下](../guide/components-slots.html#解构插槽的-Props)可使用解构)。可选，即只需要在为插槽传入 prop 的时候使用。
 
 - **参数**：插槽名 (可选，默认值是 `default`)
 
-<!-- todo: update link -->
 - **限用于**
   - `<template>`
-  - [组件](../guide/components-slots.html#Abbreviated-Syntax-for-Lone-Default-Slots) (对于一个单独的带 prop 的默认插槽)
+  - [组件](../guide/components-slots.html#独占默认插槽的缩写语法) (对于一个单独的带 prop 的默认插槽)
 
 - **用法**：
 
@@ -2417,7 +2415,6 @@ type: api
 
   用于标记往哪个具名插槽中插入子组件内容。
 
-<!-- todo: update link -->
 - **参考**：[具名插槽](../guide/components.html#具名插槽)
 
 ### slot-scope <sup style="color:#c92222">废弃</sup>
@@ -2432,8 +2429,7 @@ type: api
 
   此属性不支持动态绑定。
 
-<!-- todo: update link -->
-- **参考**：[Scoped Slots](../guide/components.html#作用域插槽)
+- **参考**：[作用域插槽](../guide/components.html#作用域插槽)
 
 ### scope <sup style="color:#c92222">移除</sup>
 

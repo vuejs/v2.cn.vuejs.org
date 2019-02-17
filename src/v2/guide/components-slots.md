@@ -6,8 +6,7 @@ order: 104
 
 > 该页面假设你已经阅读过了[组件基础](components.html)。如果你还对组件不太了解，推荐你先阅读它。
 
-<!-- todo: translation -->
-> In 2.6.0, we introduced a new unified syntax (the `v-slot` directive) for named and scoped slots. It replaces the `slot` and `slot-scope` attributes, which are now deprecated, but have _not_ been removed and are still documented [here](#Deprecated-Syntax). The rationale for introducing the new syntax is described in this [RFC](https://github.com/vuejs/rfcs/blob/master/active-rfcs/0001-new-slot-syntax.md).
+> 在 2.6.0 中，我们为具名插槽和作用域插槽引入了一个新的统一的语法 (即 `v-slot` 指令)。它取代了 `slot` 和 `slot-scope` 这两个目前已被废弃但未被移除且仍在[文档中](#废弃了的语法)的特性。新语法的由来可查阅这份 [RFC](https://github.com/vuejs/rfcs/blob/master/active-rfcs/0001-new-slot-syntax.md)。
 
 ## 插槽内容
 
@@ -52,13 +51,11 @@ Vue 实现了一套内容分发的 API，这套 API 的设计灵感源自 [Web C
 </navigation-link>
 ```
 
-<!-- todo: translation -->
-如果 `<navigation-link>` **没有**包含一个 `<slot>` 元素，则任何传入它的内容都会被抛弃。
-If `<navigation-link>`'s template did **not** contain a `<slot>` element, any content provided between its opening and closing tag would be discarded.
+如果 `<navigation-link>` **没有**包含一个 `<slot>` 元素，则该组件起始标签和结束标签之间的任何内容都会被抛弃。
 
-## Compilation Scope
+## 编译作用域
 
-When you want to use data inside a slot, such as in:
+当你想在一个插槽中使用数据时，例如：
 
 ``` html
 <navigation-link url="/profile">
@@ -66,26 +63,26 @@ When you want to use data inside a slot, such as in:
 </navigation-link>
 ```
 
-That slot has access to the same instance properties (i.e. the same "scope") as the rest of the template. The slot does **not** have access to `<navigation-link>`'s scope. For example, trying to access `url` would not work:
+该插槽跟模板的其它地方一样可以访问相同的实例属性 (也就是相同的“作用域”)，而**不能**访问 `<navigation-link>` 的作用域。例如 `url` 是访问不到的：
 
 ``` html
 <navigation-link url="/profile">
   Clicking here will send you to: {{ url }}
   <!--
-  The `url` will be undefined, because this content is passed
-  _to_ <navigation-link>, rather than defined _inside_ the
-  <navigation-link> component.
+  这里的 `url` 会是 undefined，因为 "/profile" 是
+  _传递给_ <navigation-link> 的而不是
+  在 <navigation-link> 组件*内部*定义的。
   -->
 </navigation-link>
 ```
 
-As a rule, remember that:
+作为一条规则，请记住：
 
-> Everything in the parent template is compiled in parent scope; everything in the child template is compiled in the child scope.
+> 父级模板里的所有内容都是在父级作用域中编译的；子模板里的所有内容都是在子作用域中编译的。
 
-## Fallback Content
+## 回退内容
 
-There are cases when it's useful to specify fallback (i.e. default) content for a slot, to be be rendered only when no content is provided. For example, in a `<submit-button>` component:
+有时为一个插槽设置具体的回退 (也就是默认的) 内容是很有用的，它只会在没有提供内容的时候被渲染。例如在一个 `<submit-button>` 组件中：
 
 ```html
 <button type="submit">
@@ -93,7 +90,7 @@ There are cases when it's useful to specify fallback (i.e. default) content for 
 </button>
 ```
 
-We might want the text "Submit" to be rendered inside the `<button>` most of the time. To make "Submit" the fallback content, we can place it in between the `<slot>` tags:
+我们可能希望这个 `<button>` 内绝大多数情况下都渲染文本“Submit”。为了将“Submit”作为回退内容，我们可以将它在 `<slot>` 标签内：
 
 ```html
 <button type="submit">
@@ -101,13 +98,13 @@ We might want the text "Submit" to be rendered inside the `<button>` most of the
 </button>
 ```
 
-Now when we use `<submit-button>` in a parent component, providing no content for the slot:
+现在当我在一个父级组件中使用 `<submit-button>`  并且不提供任何插槽内容时：
 
 ```html
 <submit-button></submit-button>
 ```
 
-will render the fallback content, "Submit":
+回退内容“Submit”将会被渲染：
 
 ```html
 <button type="submit">
@@ -115,7 +112,7 @@ will render the fallback content, "Submit":
 </button>
 ```
 
-But if we provide content:
+但是如果我们提供内容：
 
 ```html
 <submit-button>
@@ -123,7 +120,7 @@ But if we provide content:
 </submit-button>
 ```
 
-Then the provided content will be rendered instead:
+则这个提供的内容将会被渲染从而取代回退内容：
 
 ```html
 <button type="submit">
@@ -133,11 +130,9 @@ Then the provided content will be rendered instead:
 
 ## 具名插槽
 
-<!-- todo: translation -->
-> Updated in 2.6.0+. [See here](#Deprecated-Syntax) for the deprecated syntax using the `slot` attribute.
+> 自 2.6.0 起有所更新。已废弃的使用 `slot` 特性的语法在[这里](#废弃了的语法)。
 
-有些时候我们需要多个插槽。例如，一个假设的 `<base-layout>` 组件的模板如下：
-There are times when it's useful to have multiple slots. For example, in a `<base-layout>` component with the following template:
+有时我们需要多个插槽。例如对于一个带有如下模板的 `<base-layout>` 组件：
 
 ``` html
 <div class="container">
@@ -169,11 +164,9 @@ There are times when it's useful to have multiple slots. For example, in a `<bas
 </div>
 ```
 
-<!-- todo: translation -->
-A `<slot>` outlet without `name` implicitly has the name "default".
+一个不带显性 `name` 的 `<slot>` 插座会带有隐性的名字“default”。
 
-在向具名插槽提供内容的时候，我们可以在一个父组件的 `<template>` 元素上使用 `slot` 特性：
-To provide content to named slots, we can use the `v-slot` directive on a `<template>`, providing the name of the slot as `v-slot`'s argument:
+在向具名插槽提供内容的时候，我们可以在一个 `<template>` 元素上使用 `v-slot` 指令，并以 `v-slot` 的参数的形式提供其名称：
 
 ```html
 <base-layout>
@@ -190,9 +183,9 @@ To provide content to named slots, we can use the `v-slot` directive on a `<temp
 </base-layout>
 ```
 
-Now everything inside the `<template>` elements will be passed to the corresponding slots. Any content not wrapped in a `<template>` using `v-slot` is assumed to be for the default slot.
+现在 `<template>` 元素中的所有内容都将会被传入相应的插槽。任何没有被包裹在带有 `v-slot` 的 `<template>` 中的内容都会假设被传入了默认插槽中。
 
-However, you can still wrap default slot content in a `<template>` if you wish to be explicit:
+然而，如果你希望显性表述，还是可以在一个 `<template>` 中包裹默认插槽的内容：
 
 ```html
 <base-layout>
@@ -211,7 +204,7 @@ However, you can still wrap default slot content in a `<template>` if you wish t
 </base-layout>
 ```
 
-Either way, the rendered HTML will be:
+任何一种写法都会渲染出：
 
 ``` html
 <div class="container">
@@ -228,13 +221,13 @@ Either way, the rendered HTML will be:
 </div>
 ```
 
-Note that **`v-slot` can only be added to a `<template>`** (with [one exception](#Abbreviated-Syntax-for-Lone-Default-Slots)), unlike the deprecated [`slot` attribute](#Deprecated-Syntax).
+注意 **`v-slot` 只能添加在一个 `<template>` 上** (只有[一种例外情况](#独占默认插槽的缩写语法))，这一点和已经废弃的 [`slot` 特性](#废弃了的语法)不同。
 
-## Scoped Slots
+## 作用域插槽
 
-> Updated in 2.6.0+. [See here](#Deprecated-Syntax) for the deprecated syntax using the `slot-props` attribute.
+> 自 2.6.0 起有所更新。已废弃的使用 `slot-scope` 特性的语法在[这里](#废弃了的语法)。
 
-Sometimes, it's useful for slot content to have access to data only available in the child component. For example, imagine a `<current-user>` component with the following template:
+有时让插槽内容能够访问子组件中才有的数据是很有用的。例如，设想一个带有如下模板的 `<current-user>` 组件：
 
 ```html
 <span>
@@ -242,7 +235,7 @@ Sometimes, it's useful for slot content to have access to data only available in
 </span>
 ```
 
-We might want to replace this fallback content to display the user's first name, instead of last, like this:
+我们想让它的回退内容显示用户的名，以取代正常情况下用户的姓，如下：
 
 ``` html
 <current-user>
@@ -250,9 +243,9 @@ We might want to replace this fallback content to display the user's first name,
 </current-user>
 ```
 
-That won't work, however, because only the `<current-user>` component has access to the `user` and the content we're providing is rendered in the parent.
+然而上述代码不会正常工作，因为只有 `<current-user>` 组件可以访问到 `user` 而我们提供的内容是在父级渲染的。
 
-To make `user` available to the slot content in the parent, we can bind `user` as an attribute to the `<slot>` element:
+为了让 `user` 在父级的插槽内容可用，我们可以将 `user` 作为一个 `<slot>` 元素的特性绑定上去：
 
 ``` html
 <span>
@@ -262,7 +255,7 @@ To make `user` available to the slot content in the parent, we can bind `user` a
 </span>
 ```
 
-Attributes bound to a `<slot>` element are called **slot props**. Now, in the parent scope, we can use `v-slot` with a value to define a name for the slot props we've been provided:
+绑定在 `<slot>` 元素上的特性被称为**插槽 prop**。现在在父级作用域中，我们可以给 `v-slot` 带一个值来定义我们提供的插槽 prop 的名字：
 
 ``` html
 <current-user>
@@ -272,11 +265,11 @@ Attributes bound to a `<slot>` element are called **slot props**. Now, in the pa
 </current-user>
 ```
 
-In this example, we've chosen to name the object containing all our slot props `slotProps`, but you can use any name you like.
+在这个例子中，我们选择将包含所有插槽 prop 的对象命名为 `slotProps`，但你也可以使用任意你喜欢的名字。
 
-### Abbreviated Syntax for Lone Default Slots
+### 独占默认插槽的缩写语法
 
-In cases like above, when _only_ the default slot is provided content, the component's tags can be used as the slot's template. This allows us to use `v-slot` directly on the component:
+在上述情况下，当被提供的内容*只有*默认插槽时，组件的标签才可以被当作插槽的模板来使用。这样我们就可以把 `v-slot` 直接用在组件上：
 
 ``` html
 <current-user v-slot:default="slotProps">
@@ -284,7 +277,7 @@ In cases like above, when _only_ the default slot is provided content, the compo
 </current-user>
 ```
 
-This can be shortened even further. Just as non-specified content is assumed to be for the default slot, `v-slot` without an argument is assumed to refer to the default slot:
+这种写法还可以更简单。就像假定未指明的内容对应默认插槽一样，不带参数但 `v-slot` 被假定对应默认插槽：
 
 ``` html
 <current-user v-slot="slotProps">
@@ -292,10 +285,10 @@ This can be shortened even further. Just as non-specified content is assumed to 
 </current-user>
 ```
 
-Note that the abbreviated syntax for default slot **cannot** be mixed with named slots, as it would lead to scope ambiguity:
+注意默认插槽的缩写语法**不能**和具名插槽混用，因为它会导致作用域不明确：
 
 ``` html
-<!-- INVALID, will result in warning -->
+<!-- 无效，会导致警告 -->
 <current-user v-slot="slotProps">
   {{ slotProps.user.firstName }}
   <template v-slot:other="otherSlotProps">
@@ -304,7 +297,7 @@ Note that the abbreviated syntax for default slot **cannot** be mixed with named
 </current-user>
 ```
 
-Whenever there are multiple slots, use the full `<template>` based syntax for _all_ slots:
+只要出现多个插槽，请始终为*所有的*插槽使用完整的基于 `<template>` 的语法：
 
 ``` html
 <current-user>
@@ -318,17 +311,17 @@ Whenever there are multiple slots, use the full `<template>` based syntax for _a
 </current-user>
 ```
 
-### Destructuring Slot Props
+### 解构插槽的 Prop
 
-Internally, scoped slots work by wrapping your slot content in a function passed a single argument:
+作用域插槽的内部工作原理是将你的插槽内容包括在一个传入单个参数的函数里：
 
 ```js
 function (slotProps) {
-  // ... slot content ...
+  // 插槽内容
 }
 ```
 
-That means the value of `v-slot` can actually accept any valid JavaScript expression that can appear in the argument position of a function definition. So in supported environments ([single-file components](single-file-components.html) or [modern browsers](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment#Browser_compatibility)), you can also use [ES2015 destructuring](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment#Object_destructuring) to pull out specific slot props, like so:
+这意味着 `v-slot` 的值实际上可以是任何能够作为函数定义中的参数的 JavaScript 表达式。所以在支持的环境下 ([单文件组建](single-file-components.html)或[现代浏览器](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment#浏览器兼容))，你也可以使用 [ES2015 解构](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment#解构对象)来传入具体的插槽 prop，如下：
 
 ``` html
 <current-user v-slot="{ user }">
@@ -336,7 +329,7 @@ That means the value of `v-slot` can actually accept any valid JavaScript expres
 </current-user>
 ```
 
-This can make the template much cleaner, especially when the slot provides many props. It also opens other possibilities, such as renaming props, e.g. `user` to `person`:
+这样可以使模板更简洁，尤其是在该插槽提供了多个 prop 的时候。它同样打开了对 prop 重命名等其它的可能性，例如将 `user` 重命名为 `person`：
 
 ``` html
 <current-user v-slot="{ user: person }">>
@@ -344,7 +337,7 @@ This can make the template much cleaner, especially when the slot provides many 
 </current-user>
 ```
 
-You can even define fallbacks, to be used in case a slot prop is undefined:
+你甚至可以定义回退，用于插槽 prop 是 undefined 的情形：
 
 ``` html
 <current-user v-slot="{ user = { firstName: 'Guest' } }">>
@@ -352,10 +345,11 @@ You can even define fallbacks, to be used in case a slot prop is undefined:
 </current-user>
 ```
 
-## Dynamic Slot Names
+## 动态插槽名
 
-> New in 2.6.0+
-[Dynamic directive arguments](syntax.html#Dynamic-Arguments) also work on `v-slot`, allowing the definition of dynamic slot names:
+> 2.6.0 新增
+
+[动态指令参数](syntax.html#动态参数)在 `v-slot` 上同样工作，允许定义动态的插槽名：
 
 ``` html
 <base-layout>
@@ -365,10 +359,13 @@ You can even define fallbacks, to be used in case a slot prop is undefined:
 </base-layout>
 ```
 
-## Named Slots Shorthand
+## 具名插槽的缩写
 
 > New in 2.6.0+
-Similar to `v-on` and `v-bind`, `v-slot` also has a shorthand, replacing everything before the argument (`v-slot:`) with the special symbol `#`. For example, `v-slot:header` and be rewritten as `#header`:
+
+> 2.6.0 新增
+
+跟 `v-on` 和 `v-bind` 一样，`v-slot` 也有缩写，即把参数之前的所有内容 (`v-slot:`) 替换为字符 `#`。例如 `v-slot:header` 可以被重写为 `#header`：
 
 ```html
 <base-layout>
@@ -385,29 +382,16 @@ Similar to `v-on` and `v-bind`, `v-slot` also has a shorthand, replacing everyth
 </base-layout>
 ```
 
-However, just as with other directives, the shorthand is only available when an argument is provided. That means the following syntax is invalid:
+然而，和其它指令一样，该缩写只在其有参数的时候才可用。这意味着以下语法是无效的：
 
 ``` html
-<!-- This will trigger a warning -->
+<!-- 这样会触发一个警告 -->
 <current-user #="{ user }">
   {{ user.firstName }}
 </current-user>
 ```
 
-有的时候你希望提供的组件带有一个可从子组件获取数据的可复用的插槽。例如一个简单的 `<todo-list>` 组件的模板可能包含了如下代码：
-
-```html
-<ul>
-  <li
-    v-for="todo in todos"
-    v-bind:key="todo.id"
-  >
-    {{ todo.text }}
-  </li>
-</ul>
-```
-
-Instead, you must always specify the name of the slot if you wish to use the shorthand:
+如果你希望使用缩写的话，你必须始终以明确插槽名取而代之：
 
 ``` html
 <current-user #default="{ user }">
@@ -415,11 +399,11 @@ Instead, you must always specify the name of the slot if you wish to use the sho
 </current-user>
 ```
 
-## Other Examples
+## 其它示例
 
-**Slot props allow us to turn slots into reusable templates that can render different content based on input props.** This is most useful when you are designing a reusable component that encapsulates data logic while allowing the consuming parent component to customize part of its layout.
+**插槽 prop 允许我们将插槽转换为可复用的模板，这些模板可以基于输入的 prop 渲染出不同的内容。**这在设计封装数据逻辑同时允许父级组件自定义部分布局的可复用组件时是最有用的。
 
-For example, we are implementing a `<todo-list>` component that contains the layout and filtering logic for a list:
+例如，我们要实现一个 `<todo-list>` 组件，它是一个列表且包含布局和过滤逻辑：
 
 ```html
 <ul>
@@ -432,7 +416,7 @@ For example, we are implementing a `<todo-list>` component that contains the lay
 </ul>
 ```
 
-Instead of hard-coding the content for each todo, we can let the parent component take control by making every todo a slot, then binding `todo` as a slot prop:
+我们可以将每个 todo 作为父级组件的插槽，以此通过父级组件对其进行控制，然后将 `todo` 作为一个插槽 prop 进行绑定：
 
 ```html
 <ul>
@@ -463,16 +447,16 @@ Instead of hard-coding the content for each todo, we can let the parent componen
 </todo-list>
 ```
 
-However, even this barely scratches the surface of what scoped slots are capable of. For real-life, powerful examples of scoped slot usage, we recommend browsing libraries such as [Vue Virtual Scroller](https://github.com/Akryum/vue-virtual-scroller), [Vue Promised](https://github.com/posva/vue-promised), and [Portal Vue](https://github.com/LinusBorg/portal-vue).
+这只是作用域插槽用武之地的冰山一角。想了解更多现实生活中的作用域插槽的用法，我们推荐浏览诸如 [Vue Virtual Scroller](https://github.com/Akryum/vue-virtual-scroller)、[Vue Promised](https://github.com/posva/vue-promised) 和 [Portal Vue](https://github.com/LinusBorg/portal-vue) 等库。
 
-## Deprecated Syntax
+## 废弃了的语法
 
 > The `v-slot` directive was introduced in Vue 2.6.0, offering an improved, alternative API to the still-supported `slot` and `slot-scope` attributes. The full rationale for introducing `v-slot` is described in this [RFC](https://github.com/vuejs/rfcs/blob/master/active-rfcs/0001-new-slot-syntax.md). The `slot` and `slot-scope` attributes will continue to be supported in all future 2.x releases, but are officially deprecated and will eventually be removed in Vue 3.
 
-### Named Slots with the `slot` Attribute
+### 带有 `slot` 特性的具名插槽
 
-> <abbr title="Still supported in all 2.x versions of Vue, but no longer recommended.">Deprecated</abbr> in 2.6.0+. See [here](#Named-Slots) for the new, recommended syntax.
-To pass content to named slots from the parent, use the special `slot` attribute on `<template>` (using the `<base-layout>` component described [here](#Named-Slots) as example):
+> <abbr title="Still supported in all 2.x versions of Vue, but no longer recommended.">Deprecated</abbr> in 2.6.0+. See [here](#具名插槽) for the new, recommended syntax.
+To pass content to named slots from the parent, use the special `slot` attribute on `<template>` (using the `<base-layout>` component described [here](#具名插槽) as example):
 
 ```html
 <base-layout>
@@ -519,10 +503,10 @@ There can still be one unnamed slot, which is the **default slot** that serves a
 </div>
 ```
 
-### Scoped Slots with the `slot-scope` Attribute
+### 带有 `slot-scope` 特性的作用域插槽
 
-> <abbr title="Still supported in all 2.x versions of Vue, but no longer recommended.">Deprecated</abbr> in 2.6.0+. See [here](#Scoped-Slots) for the new, recommended syntax.
-To receive props passed to a slot, the parent component can use `<template>` with the `slot-scope` attribute (using the `<slot-example>` described [here](#Scoped-Slots) as example):
+> <abbr title="Still supported in all 2.x versions of Vue, but no longer recommended.">Deprecated</abbr> in 2.6.0+. See [here](#作用域插槽) for the new, recommended syntax.
+To receive props passed to a slot, the parent component can use `<template>` with the `slot-scope` attribute (using the `<slot-example>` described [here](#作用域插槽) as example):
 
 ``` html
 <slot-example>
@@ -564,7 +548,7 @@ The value of `slot-scope` can accept any valid JavaScript expression that can ap
 </slot-example>
 ```
 
-Using the `<todo-list>` described [here](#Other-Examples) as an example, here's the equivalent usage using `slot-scope`:
+Using the `<todo-list>` described [here](#其它示例) as an example, here's the equivalent usage using `slot-scope`:
 
 ``` html
 <todo-list v-bind:todos="todos">
