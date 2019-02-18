@@ -331,9 +331,11 @@ components: {
 </my-component>
 ```
 
-<p class="tip">不过，<code>inline-template</code> 会让你模板的作用域变得更加难以理解。所以作为最佳实践，请在组件内优先选择 <code>template</code> 选项或 <code>.vue</code> 文件里的一个 <code>&lt;template&gt;</code> 元素来定义模板。</p>
+内联模板需要定义在 Vue 所属的 DOM 元素内。
 
-### X-Templates
+<p class="tip">不过，<code>inline-template</code> 会让模板的作用域变得更加难以理解。所以作为最佳实践，请在组件内优先选择 <code>template</code> 选项或 <code>.vue</code> 文件里的一个 <code>&lt;template&gt;</code> 元素来定义模板。</p>
+
+### X-Template
 
 另一个定义模板的方式是在一个 `<script>` 元素中，并为其带上 `text/x-template` 的类型，然后通过一个 id 将模板引用过去。例如：
 
@@ -348,6 +350,8 @@ Vue.component('hello-world', {
   template: '#hello-world-template'
 })
 ```
+
+x-template 需要定义在 Vue 所属的 DOM 元素外。
 
 <p class="tip">这些可以用于模板特别大的 demo 或极小型的应用，但是其它情况下请避免使用，因为这会将模板和该组件的其它定义分离开。</p>
 
