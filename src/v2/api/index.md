@@ -698,7 +698,7 @@ type: api
 
 ### el
 
-- **类型**：`string | HTMLElement`
+- **类型**：`string | Element`
 
 - **限制**：只在由 `new` 创建的实例中遵守。
 
@@ -1314,7 +1314,7 @@ type: api
 
 ### vm.$el
 
-- **类型**：`HTMLElement`
+- **类型**：`Element`
 
 - **只读**
 
