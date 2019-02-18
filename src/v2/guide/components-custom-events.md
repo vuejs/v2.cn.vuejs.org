@@ -17,7 +17,7 @@ this.$emit('myEvent')
 则监听这个名字的 kebab-case 版本是不会有任何效果的：
 
 ```html
-<!-- Won't work -->
+<!-- 没有效果 -->
 <my-component v-on:my-event="doSomething"></my-component>
 ```
 
