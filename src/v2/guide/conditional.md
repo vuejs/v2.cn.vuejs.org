@@ -6,26 +6,17 @@ order: 7
 
 ## `v-if`
 
-在字符串模板中，比如 [Handlebars](https://handlebarsjs.com/)，我们得像这样写一个条件块：
+`v-if` 指令用于条件性地渲染一块内容。这块内容只会在指令的表达式返回 truthy 值的时候被渲染。
 
 ``` html
-<!-- Handlebars 模板 -->
-{{#if ok}}
-  <h1>Yes</h1>
-{{/if}}
-```
-
-在 Vue 中，我们使用 `v-if` 指令实现同样的功能：
-
-``` html
-<h1 v-if="ok">Yes</h1>
+<h1 v-if="awesome">Vue is awesome!</h1>
 ```
 
 也可以用 `v-else` 添加一个“else 块”：
 
 ``` html
-<h1 v-if="ok">Yes</h1>
-<h1 v-else>No</h1>
+<h1 v-if="awesome">Vue is awesome!</h1>
+<h1 v-else>Oh no 😢</h1>
 ```
 
 ### 在 `<template>` 元素上使用 `v-if` 条件渲染分组
