@@ -188,7 +188,7 @@ post: {
 ``` js
 Vue.component('my-component', {
   props: {
-    // 基础的类型检查 (`null` 匹配任何类型)
+    // 基础的类型检查 (`null` 和 `undefined` 会通过任何类型验证)
     propA: Number,
     // 多个可能的类型
     propB: [String, Number],
