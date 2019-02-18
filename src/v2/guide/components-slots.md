@@ -451,12 +451,13 @@ function (slotProps) {
 
 ## 废弃了的语法
 
-> The `v-slot` directive was introduced in Vue 2.6.0, offering an improved, alternative API to the still-supported `slot` and `slot-scope` attributes. The full rationale for introducing `v-slot` is described in this [RFC](https://github.com/vuejs/rfcs/blob/master/active-rfcs/0001-new-slot-syntax.md). The `slot` and `slot-scope` attributes will continue to be supported in all future 2.x releases, but are officially deprecated and will eventually be removed in Vue 3.
+> `v-slot` 指令自 Vue 2.6.0 起被引入，提供更好的支持 `slot` 和 `slot-scope` 特性的 API 替代方案。`v-slot` 完整的由来参见这份 [RFC](https://github.com/vuejs/rfcs/blob/master/active-rfcs/0001-new-slot-syntax.md)。在接下来所有的 2.x 版本中 `slot` 和 `slot-scope` 特性仍会被支持，但已经被官方废弃且不会出现在 Vue 3 中。
 
 ### 带有 `slot` 特性的具名插槽
 
-> <abbr title="Still supported in all 2.x versions of Vue, but no longer recommended.">Deprecated</abbr> in 2.6.0+. See [here](#具名插槽) for the new, recommended syntax.
-To pass content to named slots from the parent, use the special `slot` attribute on `<template>` (using the `<base-layout>` component described [here](#具名插槽) as example):
+> 自 2.6.0 起<abbr title="在所有 Vue 2.x 版本中仍被支持，但不再推荐使用。">被废弃</abbr>。新推荐的语法请查阅[这里](#具名插槽)。
+
+在 `<template>` 上使用特殊的 `slot` 特性，可以将内容从父级传给具名插槽 (把[这里](#具名插槽)提到过的 `<base-layout>` 组件作为示例)：
 
 ```html
 <base-layout>
@@ -473,7 +474,7 @@ To pass content to named slots from the parent, use the special `slot` attribute
 </base-layout>
 ```
 
-Or, the `slot` attribute can also be used directly on a normal element:
+或者直接把 `slot` 特性用在一个普通元素上：
 
 ``` html
 <base-layout>
@@ -486,7 +487,7 @@ Or, the `slot` attribute can also be used directly on a normal element:
 </base-layout>
 ```
 
-There can still be one unnamed slot, which is the **default slot** that serves as a catch-all for any unmatched content. In both examples above, the rendered HTML would be:
+这里其实还有一个未命名插槽，也就是**默认插槽**，捕获所有未被匹配的内容。上述两个示例的 HTML 渲染结果均为：
 
 ``` html
 <div class="container">
@@ -505,8 +506,9 @@ There can still be one unnamed slot, which is the **default slot** that serves a
 
 ### 带有 `slot-scope` 特性的作用域插槽
 
-> <abbr title="Still supported in all 2.x versions of Vue, but no longer recommended.">Deprecated</abbr> in 2.6.0+. See [here](#作用域插槽) for the new, recommended syntax.
-To receive props passed to a slot, the parent component can use `<template>` with the `slot-scope` attribute (using the `<slot-example>` described [here](#作用域插槽) as example):
+> 自 2.6.0 起<abbr title="在所有 Vue 2.x 版本中仍被支持，但不再推荐使用。">被废弃</abbr>。新推荐的语法请查阅[这里](#作用域插槽)。
+
+在 `<template>` 上使用特殊的 `slot-scope` 特性，可以接收传递给插槽的 prop (把[这里](#作用域插槽)提到过的 `<slot-example>` 组件作为示例)：
 
 ``` html
 <slot-example>
@@ -516,9 +518,9 @@ To receive props passed to a slot, the parent component can use `<template>` wit
 </slot-example>
 ```
 
-Here, `slot-scope` declares the received props object as the `slotProps` variable, and makes it available inside the `<template>` scope. You can name `slotProps` anything you like similar to naming function arguments in JavaScript.
+这里的 `slot-scope` 声明了被接收的 prop 对象会作为 `slotProps` 变量存在于 `<template`> 作用域中。你可以像命名 JavaScript 函数参数一样随意命名 `slotProps`。
 
-Here `slot="default"` can be omitted as it is implied:
+这里的 `slot="default"` 可以被忽略为隐性写法：
 
 ``` html
 <slot-example>
@@ -528,7 +530,7 @@ Here `slot="default"` can be omitted as it is implied:
 </slot-example>
 ```
 
-The `slot-scope` attribute can also be used directly on a non-`<template>` element (including components):
+`slot-scope` 特性也可以直接用于非 `<template>` 元素 (包括组件)：
 
 ``` html
 <slot-example>
@@ -538,7 +540,7 @@ The `slot-scope` attribute can also be used directly on a non-`<template>` eleme
 </slot-example>
 ```
 
-The value of `slot-scope` can accept any valid JavaScript expression that can appear in the argument position of a function definition. This means in supported environments ([single-file components](single-file-components.html) or [modern browsers](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment#Browser_compatibility)) you can also use [ES2015 destructuring](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment#Object_destructuring) in the expression, like so:
+`slot-scope` 的值可以接收任何有效的可以出现在函数定义的参数位置上的 JavaScript 表达式。这意味着在支持的环境下 ([单文件组建](single-file-components.html)或[现代浏览器](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment#浏览器兼容))，你也可以在表达式中使用 [ES2015 解构](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment#解构对象)，如下：
 
 ``` html
 <slot-example>
@@ -548,7 +550,7 @@ The value of `slot-scope` can accept any valid JavaScript expression that can ap
 </slot-example>
 ```
 
-Using the `<todo-list>` described [here](#其它示例) as an example, here's the equivalent usage using `slot-scope`:
+使用[这里](#其它示例)描述过的 `<todo-list>` 作为示例，与它等价的使用 `slot-scope` 的代码是：
 
 ``` html
 <todo-list v-bind:todos="todos">
