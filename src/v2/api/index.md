@@ -2647,7 +2647,7 @@ type: api
   </keep-alive>
   ```
 
-<p class="tip">`<keep-alive>` 不会在函数式组件中正常工作，因为它们没有缓存实例。</p>
+  <p class="tip">`<keep-alive>` 不会在函数式组件中正常工作，因为它们没有缓存实例。</p>
 
 - **参考**：[动态组件 - keep-alive](../guide/components-dynamic-async.html#在动态组件上使用-keep-alive)
 
