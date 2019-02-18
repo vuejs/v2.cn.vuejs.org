@@ -80,9 +80,9 @@ Vue 实现了一套内容分发的 API，这套 API 的设计灵感源自 [Web C
 
 > 父级模板里的所有内容都是在父级作用域中编译的；子模板里的所有内容都是在子作用域中编译的。
 
-## 回退内容
+## 后备内容
 
-有时为一个插槽设置具体的回退 (也就是默认的) 内容是很有用的，它只会在没有提供内容的时候被渲染。例如在一个 `<submit-button>` 组件中：
+有时为一个插槽设置具体的后备 (也就是默认的) 内容是很有用的，它只会在没有提供内容的时候被渲染。例如在一个 `<submit-button>` 组件中：
 
 ```html
 <button type="submit">
@@ -90,7 +90,7 @@ Vue 实现了一套内容分发的 API，这套 API 的设计灵感源自 [Web C
 </button>
 ```
 
-我们可能希望这个 `<button>` 内绝大多数情况下都渲染文本“Submit”。为了将“Submit”作为回退内容，我们可以将它在 `<slot>` 标签内：
+我们可能希望这个 `<button>` 内绝大多数情况下都渲染文本“Submit”。为了将“Submit”作为后备内容，我们可以将它在 `<slot>` 标签内：
 
 ```html
 <button type="submit">
@@ -104,7 +104,7 @@ Vue 实现了一套内容分发的 API，这套 API 的设计灵感源自 [Web C
 <submit-button></submit-button>
 ```
 
-回退内容“Submit”将会被渲染：
+后备内容“Submit”将会被渲染：
 
 ```html
 <button type="submit">
@@ -120,7 +120,7 @@ Vue 实现了一套内容分发的 API，这套 API 的设计灵感源自 [Web C
 </submit-button>
 ```
 
-则这个提供的内容将会被渲染从而取代回退内容：
+则这个提供的内容将会被渲染从而取代后备内容：
 
 ```html
 <button type="submit">
@@ -427,7 +427,7 @@ function (slotProps) {
     将 `todo` 对象作为一个插槽的 prop 传入。
     -->
     <slot v-bind:todo="todo">
-      <!-- 回退的内容 -->
+      <!-- 后备内容 -->
       {{ todo.text }}
     </slot>
   </li>
