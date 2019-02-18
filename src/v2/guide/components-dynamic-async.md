@@ -10,9 +10,9 @@ order: 105
 
 我们之前曾经在一个多标签的界面中使用 `is` 特性来切换不同的组件：
 
-```html
+{% codeblock lang:html %}
 <component v-bind:is="currentTabComponent"></component>
-```
+{% endcodeblock %}
 
 当在这些组件之间切换的时候，你有时会想保持这些组件的状态，以避免反复重渲染导致的性能问题。例如我们来展开说一说这个多标签界面：
 
