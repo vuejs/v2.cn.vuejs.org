@@ -244,6 +244,8 @@ type: api
 
   > 2.1.0 起新增：如果没有提供回调且在支持 Promise 的环境中，则返回一个 Promise。请注意 Vue 不自带 Promise 的 polyfill，所以如果你的目标浏览器不原生支持 Promise (IE：你们都看我干嘛)，你得自己提供 polyfill。
 
+- **参考**：[异步更新队列](../guide/reactivity.html#异步更新队列)
+
 ### Vue.set( target, key, value )
 
 - **参数**：
@@ -274,6 +276,8 @@ type: api
   > 在 2.2.0+ 中同样支持在数组上工作。
 
   <p class="tip">目标对象不能是一个 Vue 实例或 Vue 实例的根数据对象。</p>
+
+- **参考**：[深入响应式原理](../guide/reactivity.html)
 
 ### Vue.directive( id, [definition] )
 
@@ -415,6 +419,7 @@ type: api
 
   ``` js
   const state = Vue.observable({ count: 0 })
+
   const Demo = {
     render(h) {
       return h('button', {
@@ -493,6 +498,8 @@ type: api
   ```js
   data: vm => ({ a: vm.myProp })
   ```
+
+- **参考**：[深入响应式原理](../guide/reactivity.html)
 
 ### props
 
@@ -991,6 +998,7 @@ type: api
 - **详细**：
 
   `mixins` 选项接受一个混入对象的数组。这些混入实例对象可以像正常的实例对象一样包含选项，他们将在 `Vue.extend()` 里最终选择使用相同的选项合并逻辑合并。举例：如果你的混入包含一个钩子而创建组件本身也有一个，两个函数将被调用。
+
   Mixin 钩子按照传入顺序依次调用，并在调用组件自身的钩子之前被调用。
 
 - **示例**：
@@ -1518,7 +1526,8 @@ type: api
   // 函数
   vm.$watch(
     function () {
-      // 表达式 `this.a + this.b` 每次得出一个不同的结果时，处理函数都会被调用。
+      // 表达式 `this.a + this.b` 每次得出一个不同的结果时
+      // 处理函数都会被调用。
       // 这就像监听一个未被定义的计算属性
       return this.a + this.b
     },
@@ -1848,7 +1857,9 @@ type: api
   })
   ```
 
-- **参考**：[Vue.nextTick](#Vue-nextTick)
+- **参考**
+  - [Vue.nextTick](#Vue-nextTick)
+  - [异步更新队列](../guide/reactivity.html#异步更新队列)
 
 ### vm.$destroy()
 

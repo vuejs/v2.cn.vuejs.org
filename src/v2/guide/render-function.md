@@ -316,6 +316,7 @@ render: function (createElement) {
 </ul>
 <p v-else>No items found.</p>
 ```
+
 这些都会在 render 函数中被 JavaScript 的 `if`/`else` 和 `map` 重写：
 
 ``` js
@@ -490,6 +491,7 @@ new Vue({
   }
 })
 ```
+
 <p class="tip">将 `h` 作为 `createElement` 的别名是 Vue 生态系统中的一个通用惯例，实际上也是 JSX 所要求的。从 Vue 的 Babel 插件的 [3.4.0 版本](https://github.com/vuejs/babel-plugin-transform-vue-jsx#h-auto-injection)开始，我们会在以 ES2015 语法声明的含有 JSX 的任何方法和 getter 中 (不是函数或箭头函数中) 自动注入 `const h = this.$createElement`，这样你就可以去掉 `(h)` 参数了。对于更早版本的插件，如果 `h` 在当前作用域中不可用，应用会抛错。</p>
 
 更多关于 JSX 映射到 JavaScript，阅读 [使用文档](https://github.com/vuejs/jsx#installation)。
