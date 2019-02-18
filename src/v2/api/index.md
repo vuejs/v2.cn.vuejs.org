@@ -2225,7 +2225,7 @@ type: api
 
 - **缩写**：`#`
 
-- **预期**：可放置在函数参数位置的 JavaScript 表达式 (在[支持的环境下](../guide/components-slots.html#解构插槽的-Props)可使用解构)。可选，即只需要在为插槽传入 prop 的时候使用。
+- **预期**：可放置在函数参数位置的 JavaScript 表达式 (在[支持的环境下](../guide/components-slots.html#解构插槽-Props)可使用解构)。可选，即只需要在为插槽传入 prop 的时候使用。
 
 - **参数**：插槽名 (可选，默认值是 `default`)
 
