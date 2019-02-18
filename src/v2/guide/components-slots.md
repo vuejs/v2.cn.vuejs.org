@@ -164,7 +164,7 @@ Vue 实现了一套内容分发的 API，这套 API 的设计灵感源自 [Web C
 </div>
 ```
 
-一个不带显性 `name` 的 `<slot>` 插座会带有隐性的名字“default”。
+一个不带 `name` 的 `<slot>` 出口会带有隐含的名字“default”。
 
 在向具名插槽提供内容的时候，我们可以在一个 `<template>` 元素上使用 `v-slot` 指令，并以 `v-slot` 的参数的形式提供其名称：
 
@@ -183,9 +183,9 @@ Vue 实现了一套内容分发的 API，这套 API 的设计灵感源自 [Web C
 </base-layout>
 ```
 
-现在 `<template>` 元素中的所有内容都将会被传入相应的插槽。任何没有被包裹在带有 `v-slot` 的 `<template>` 中的内容都会假设被传入了默认插槽中。
+现在 `<template>` 元素中的所有内容都将会被传入相应的插槽。任何没有被包裹在带有 `v-slot` 的 `<template>` 中的内容都会被视为默认插槽的内容。
 
-然而，如果你希望显性表述，还是可以在一个 `<template>` 中包裹默认插槽的内容：
+然而，如果你希望更明确一些，仍然可以在一个 `<template>` 中包裹默认插槽的内容：
 
 ```html
 <base-layout>
@@ -235,7 +235,7 @@ Vue 实现了一套内容分发的 API，这套 API 的设计灵感源自 [Web C
 </span>
 ```
 
-我们想让它的回退内容显示用户的名，以取代正常情况下用户的姓，如下：
+我们想让它的后备内容显示用户的名，以取代正常情况下用户的姓，如下：
 
 ``` html
 <current-user>
@@ -311,7 +311,7 @@ Vue 实现了一套内容分发的 API，这套 API 的设计灵感源自 [Web C
 </current-user>
 ```
 
-### 解构插槽的 Prop
+### 解构插槽 Prop
 
 作用域插槽的内部工作原理是将你的插槽内容包括在一个传入单个参数的函数里：
 
@@ -329,7 +329,7 @@ function (slotProps) {
 </current-user>
 ```
 
-这样可以使模板更简洁，尤其是在该插槽提供了多个 prop 的时候。它同样打开了对 prop 重命名等其它的可能性，例如将 `user` 重命名为 `person`：
+这样可以使模板更简洁，尤其是在该插槽提供了多个 prop 的时候。它同样开启了 prop 重命名等其它可能，例如将 `user` 重命名为 `person`：
 
 ``` html
 <current-user v-slot="{ user: person }">>
@@ -337,7 +337,7 @@ function (slotProps) {
 </current-user>
 ```
 
-你甚至可以定义回退，用于插槽 prop 是 undefined 的情形：
+你甚至可以定义后备内容，用于插槽 prop 是 undefined 的情形：
 
 ``` html
 <current-user v-slot="{ user = { firstName: 'Guest' } }">>
@@ -349,7 +349,7 @@ function (slotProps) {
 
 > 2.6.0 新增
 
-[动态指令参数](syntax.html#动态参数)在 `v-slot` 上同样工作，允许定义动态的插槽名：
+[动态指令参数](syntax.html#动态参数)也可以用在 `v-slot` 上，来定义动态的插槽名：
 
 ``` html
 <base-layout>
@@ -434,7 +434,7 @@ function (slotProps) {
 </ul>
 ```
 
-现在当我们使用 `<todo-list>` 组件的时候，我们可以选择为待办项定义一个不一样的 `<template>` 作为替代方案，并且可以从子组件获取数据：
+现在当我们使用 `<todo-list>` 组件的时候，我们可以选择为 todo 定义一个不一样的 `<template>` 作为替代方案，并且可以从子组件获取数据：
 
 ```html
 <todo-list v-bind:todos="todos">
