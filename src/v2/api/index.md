@@ -734,7 +734,7 @@ type: api
 
 - **参考**：
   - [生命周期图示](../guide/instance.html#生命周期图示)
-  - [用插槽分发内容](../guide/components.html#使用插槽分发内容)
+  - [通过插槽分发内容](../guide/components.html#通过插槽分发内容)
 
 ### render
 
@@ -885,7 +885,7 @@ type: api
 
 - **参考**：
   - [构建组件 - keep-alive](#keep-alive)
-  - [动态组件 - keep-alive](../guide/components.html#keep-alive)
+  - [动态组件 - keep-alive](../guide/components-dynamic-async.html#在动态组件上使用-keep-alive)
 
 ### deactivated
 
@@ -899,7 +899,7 @@ type: api
 
 - **参考**：
   - [构建组件 - keep-alive](#keep-alive)
-  - [动态组件 - keep-alive](../guide/components.html#keep-alive)
+  - [动态组件 - keep-alive](../guide/components-dynamic-async.html#在动态组件上使用-keep-alive)
 
 ### beforeDestroy
 
@@ -1379,7 +1379,7 @@ type: api
 
 - **详细**：
 
-  用来访问被[插槽分发](../guide/components.html#使用插槽分发内容)的内容。每个[具名插槽](../guide/components.html#具名插槽) 有其相应的属性 (例如：`slot="foo"` 中的内容将会在 `vm.$slots.foo` 中被找到)。`default` 属性包括了所有没有被包含在具名插槽中的节点。
+  用来访问被[插槽分发](../guide/components.html#通过插槽分发内容)的内容。每个[具名插槽](../guide/components-slots.html#具名插槽) 有其相应的属性 (例如：`slot="foo"` 中的内容将会在 `vm.$slots.foo` 中被找到)。`default` 属性包括了所有没有被包含在具名插槽中的节点。
 
   在使用[渲染函数](../guide/render-function.html)书写一个组件时，访问 `vm.$slots` 最有帮助。
 
@@ -1418,7 +1418,7 @@ type: api
 
 - **参考**：
   - [`<slot>` 组件](#slot-1)
-  - [使用插槽分发内容](../guide/components.html#使用插槽分发内容)
+  - [通过插槽分发内容](../guide/components.html#通过插槽分发内容)
   - [渲染函数 - 插槽](../guide/render-function.html#插槽)
 
 ### vm.$scopedSlots
@@ -1431,7 +1431,7 @@ type: api
 
 - **详细**：
 
-  用来访问[作用域插槽](../guide/components.html#作用域插槽)。对于包括 `默认 slot` 在内的每一个插槽，该对象都包含一个返回相应 VNode 的函数。
+  用来访问[作用域插槽](../guide/components-slots.html#作用域插槽)。对于包括 `默认 slot` 在内的每一个插槽，该对象都包含一个返回相应 VNode 的函数。
 
   `vm.$scopedSlots` 在使用[渲染函数](../guide/render-function.html)开发一个组件时特别有用。
 
@@ -1443,7 +1443,7 @@ type: api
 
 - **参考**：
   - [`<slot>` 组件](#slot-1)
-  - [作用域插槽](../guide/components.html#作用域插槽)
+  - [作用域插槽](../guide/components-slots.html#作用域插槽)
   - [渲染函数 - 插槽](../guide/render-function.html#插槽)
 
 ### vm.$refs
@@ -1457,7 +1457,7 @@ type: api
   一个对象，持有注册过 [`ref` 特性](#ref) 的所有 DOM 元素和组件实例。
 
 - **参考**：
-  - [子组件引用](../guide/components.html#子组件索引)
+  - [子组件引用](../guide/components-edge-cases.html#访问子组件实例或子元素)
   - [特殊特性 - ref](#ref)
 
 ### vm.$isServer
@@ -2117,7 +2117,7 @@ type: api
 
 - **参考**：
   - [事件处理器](../guide/events.html)
-  - [组件 - 自定义事件](../guide/components.html#自定义事件)
+  - [组件 - 自定义事件](../guide/components.html#监听子组件事件)
 
 ### v-bind
 
@@ -2195,8 +2195,8 @@ type: api
 
 - **参考**：
   - [Class 与 Style 绑定](../guide/class-and-style.html)
-  - [组件 - Props](../guide/components.html#Props)
-  - [组件 - `.sync` 修饰符](../guide/components.html#sync-修饰符)
+  - [组件 - Props](../guide/components.html#通过-Prop-向子组件传递数据)
+  - [组件 - `.sync` 修饰符](../guide/components-custom-events.html#sync-修饰符)
 
 ### v-model
 
@@ -2219,7 +2219,7 @@ type: api
 
 - **参考**：
   - [表单控件绑定](../guide/forms.html)
-  - [组件 - 在输入组件上使用自定义事件](../guide/components.html#使用自定义事件的表单输入组件)
+  - [组件 - 在输入组件上使用自定义事件](../guide/components-custom-events.html#将原生事件绑定到组件)
 
 ### v-slot
 
@@ -2338,7 +2338,7 @@ type: api
 
 - **参考**：
   - [数据绑定语法- 插值](../guide/syntax.html#插值)
-  - [组件 - 对低开销的静态组件使用 `v-once`](../guide/components.html#对低开销的静态组件使用-v-once)
+  - [组件 - 对低开销的静态组件使用 `v-once`](../guide/components-edge-cases.html#通过-v-once-创建低开销的静态组件)
 
 ## 特殊特性
 
@@ -2391,13 +2391,13 @@ type: api
 
   关于 ref 注册时间的重要说明：因为 ref 本身是作为渲染结果被创建的，在初始渲染的时候你不能访问它们 - 它们还不存在！`$refs` 也不是响应式的，因此你不应该试图用它在模板中做数据绑定。
 
-- **参考**：[子组件 Refs](../guide/components-edge-cases.html#访问子组件实例或子元素)
+- **参考**：[子组件引用](../guide/components-edge-cases.html#访问子组件实例或子元素)
 
 ### is
 
 - **预期**：`string | Object (组件的选项对象)`
 
-  用于[动态组件](../guide/components.html#动态组件)且基于 [DOM 内模板的限制](../guide/components.html#DOM-模板解析说明)来工作。
+  用于[动态组件](../guide/components.html#动态组件)且基于 [DOM 内模板的限制](../guide/components.html#解析-DOM-模板时的注意事项)来工作。
 
   示例：
 
@@ -2416,7 +2416,7 @@ type: api
 
 - **See also**：
   - [动态组件](../guide/components.html#动态组件)
-  - [DOM 模板解析说明](../guide/components.html#DOM-模板解析说明)
+  - [DOM 模板解析说明](../guide/components.html#解析-DOM-模板时的注意事项)
 
 ### slot <sup style="color:#c92222">废弃</sup>
 
@@ -2426,7 +2426,7 @@ type: api
 
   用于标记往哪个具名插槽中插入子组件内容。
 
-- **参考**：[具名插槽](../guide/components.html#具名插槽)
+- **参考**：[具名插槽](../guide/components-slots.html#具名插槽)
 
 ### slot-scope <sup style="color:#c92222">废弃</sup>
 
@@ -2440,7 +2440,7 @@ type: api
 
   此属性不支持动态绑定。
 
-- **参考**：[作用域插槽](../guide/components.html#作用域插槽)
+- **参考**：[作用域插槽](../guide/components-slots.html#作用域插槽)
 
 ### scope <sup style="color:#c92222">移除</sup>
 
@@ -2649,7 +2649,7 @@ type: api
 
 <p class="tip">`<keep-alive>` 不会在函数式组件中正常工作，因为它们没有缓存实例。</p>
 
-- **参考**：[动态组件 - keep-alive](../guide/components.html#keep-alive)
+- **参考**：[动态组件 - keep-alive](../guide/components-dynamic-async.html#在动态组件上使用-keep-alive)
 
 ### slot
 
@@ -2662,7 +2662,7 @@ type: api
 
   详细用法，请参考下面教程的链接。
 
-- **参考**：[使用插槽分发内容](../guide/components.html#使用插槽分发内容)
+- **参考**：[通过插槽分发内容](../guide/components.html#通过插槽分发内容)
 
 ## VNode 接口
 
