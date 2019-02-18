@@ -188,7 +188,7 @@ new Vue({
 </summary>
 {% endraw %}
 
-细致的 [prop 定义](../guide/components.html#Prop-验证)有两个好处：
+细致的 [prop 定义](../guide/components-props.html#Prop-验证)有两个好处：
 
 - 它们写明了组件的 API，所以很容易看懂组件的用法；
 - 在开发环境下，如果向一个组件提供格式不正确的 prop，Vue 将会告警，以帮助你捕获潜在的错误来源。
