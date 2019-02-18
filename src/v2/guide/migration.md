@@ -209,15 +209,15 @@ mounted: function () {
 
 `track-by` 已经替换为 `key`，它的工作方式与其他属性一样，没有 `v-bind` 或者 `:` 前缀，它会被作为一个字符串处理。多数情况下，你需要使用具有完整表达式的动态绑定 (dynamic binding) 来替换静态的 key。例如，替换：
 
-``` html
+{% codeblock lang:html %}
 <div v-for="item in items" track-by="id">
-```
+{% endcodeblock %}
 
 你现在应该写为：
 
-``` html
+{% codeblock lang:html %}
 <div v-for="item in items" v-bind:key="item.id">
-```
+{% endcodeblock %}
 
 {% raw %}
 <div class="upgrade-path">
@@ -399,9 +399,9 @@ methods: {
 
   现在在组件上使用 `v-on` 只会监听自定义事件 (组件用 `$emit` 触发的事件)。如果要监听根元素的原生事件，可以使用 `.native` 修饰符，比如：
 
-``` html
+{% codeblock lang:html %}
 <my-component v-on:click.native="doSomething"></my-component>
-```
+{% endcodeblock %}
 
 {% raw %}
 <div class="upgrade-path">
@@ -600,9 +600,9 @@ strings.map(function (str) {
 
 替代方案是，你可以使用对象数组，这样`v-model` 就可以同步更新对象里面的字段了，例如：
 
-``` html
+{% codeblock lang:html %}
 <input v-for="obj in objects" v-model="obj.str">
-```
+{% endcodeblock %}
 
 {% raw %}
 <div class="upgrade-path">
@@ -706,7 +706,7 @@ strings.map(function (str) {
 
 示例，如下更改：
 
-``` js
+``` html
 <p v-my-directive.literal="foo bar baz"></p>
 ```
 
@@ -989,9 +989,9 @@ computed: {
 
 甚至可以字段排序：
 
-``` js
+{% codeblock lang:js %}
 _.orderBy(this.users, ['name', 'last_login'], ['asc', 'desc'])
-```
+{% endcodeblock %}
 
 {% raw %}
 <div class="upgrade-path">
@@ -1069,9 +1069,9 @@ function pluralizeKnife (count) {
 
 对于简单的问题，可以这样做：
 
-``` js
+{% codeblock lang:js %}
 '$' + price.toFixed(2)
-```
+{% endcodeblock %}
 
 大多数情况下，仍然会有奇怪的现象 (比如 `0.035.toFixed(2)` 向上取舍得到 `0.04`，但是 `0.045` 向下取舍却也得到 `0.04`)。解决这些问题可以使用 [`accounting`](https://openexchangerates.github.io/accounting.js/) 库来实现更多可靠的货币格式化。
 
@@ -1364,9 +1364,9 @@ methods: {
 
 使用 DOM 原生方法：
 
-``` js
+{% codeblock lang:js %}
 myElement.appendChild(vm.$el)
-```
+{% endcodeblock %}
 
 {% raw %}
 <div class="upgrade-path">
@@ -1379,9 +1379,9 @@ myElement.appendChild(vm.$el)
 
 使用 DOM 原生方法：
 
-``` js
+{% codeblock lang:js %}
 myElement.parentNode.insertBefore(vm.$el, myElement)
-```
+{% endcodeblock %}
 
 {% raw %}
 <div class="upgrade-path">
@@ -1394,15 +1394,15 @@ myElement.parentNode.insertBefore(vm.$el, myElement)
 
 使用 DOM 原生方法：
 
-``` js
+{% codeblock lang:js %}
 myElement.parentNode.insertBefore(vm.$el, myElement.nextSibling)
-```
+{% endcodeblock %}
 
 如果 `myElement` 是最后一个节点也可以这样写：
 
-``` js
+{% codeblock lang:js %}
 myElement.parentNode.appendChild(vm.$el)
-```
+{% endcodeblock %}
 
 {% raw %}
 <div class="upgrade-path">
@@ -1415,9 +1415,9 @@ myElement.parentNode.appendChild(vm.$el)
 
 使用 DOM 原生方法：
 
-``` js
+{% codeblock lang:js %}
 vm.$el.remove()
-```
+{% endcodeblock %}
 
 {% raw %}
 <div class="upgrade-path">
