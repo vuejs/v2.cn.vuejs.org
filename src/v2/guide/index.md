@@ -139,7 +139,8 @@ var app3 = new Vue({
 </script>
 {% endraw %}
 
-继续在控制台输入 `app3.seen = false`，你会发现之前显示的消息消失了。
+继续在控制台输入 `app3.seen = false`，你会发现之前显示的消息不会消失了。
+需要输入 app3._data.seen=false,你会发现消息消失了（app3为js中new的Vue对象）
 
 这个例子演示了我们不仅可以把数据绑定到 DOM 文本或特性，还可以绑定到 DOM **结构**。此外，Vue 也提供一个强大的过渡效果系统，可以在 Vue 插入/更新/移除元素时自动应用[过渡效果](transitions.html)。
 
