@@ -14,6 +14,10 @@ special_sponsors:
     description: 几分钟内在云端构建发布 API，免费试用。
 platinum_sponsors:
   - url: >-
+      https://moduscreate.com/?utm_source=Vue&utm_medium=Partnership&utm_campaign=VueShip
+    img: modus.png
+    name: Modus
+  - url: >-
       https://www.bitsrc.io/?utm_source=vue&utm_medium=vue&utm_campaign=vue&utm_term=vue&utm_content=vue
     img: bit.png
     name: Bit
