@@ -283,15 +283,20 @@ var app6 = new Vue({
 Vue.component('todo-item', {
   template: '<li>这是个待办项</li>'
 })
+var app70 = new Vue({
+  el: '#app-70'
+})
 ```
 
 现在你可以用它构建另一个组件模板：
 
 ``` html
-<ol>
-  <!-- 创建一个 todo-item 组件的实例 -->
-  <todo-item></todo-item>
-</ol>
+<div id="app-70">
+  <ol>
+    <!-- 创建一个 todo-item 组件的实例 -->
+    <todo-item></todo-item>
+  </ol>
+</div>
 ```
 
 但是这样会为每个待办项渲染同样的文本，这看起来并不炫酷。我们应该能从父作用域将数据传到子组件才对。让我们来修改一下组件的定义，使之能够接受一个 [prop](components.html#通过-Prop-向子组件传递数据)：
