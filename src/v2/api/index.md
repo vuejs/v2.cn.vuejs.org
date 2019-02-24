@@ -509,6 +509,16 @@ type: api
 
   props 可以是数组或对象，用于接收来自父组件的数据。props 可以是简单的数组，或者使用对象作为替代，对象允许配置高级选项，如类型检测、自定义校验和设置默认值。
 
+  <!-- todo: translation -->
+  With Object-based syntax, you can use following options:
+    - **type:** can be one of the following native constructors: `String`, `Number`, `Boolean`, `Array`, `Object`, `Date`, `Function`, `Symbol`, any custom constructor function or an array of those. Will check if a prop has a given type, and will throw a warning if it doesn't. [More information](../guide/components-props.html#Prop-Types) on prop types.
+    - **default:** `any`
+    Specifies a default value for the prop. If the prop is not passed, this value will be used instead. Object or array defaults must be returned from a factory function.
+    - **required:** `Boolean`
+    Defines if the prop is required. In a non-production environment, a console warning will be thrown if this value is truthy and the prop is not passed.
+    - **validator:** `Function`
+    Custom validator function that takes the prop value as the sole argument. In a non-production environment, a console warning will be thrown if this function returns a falsy value (i.e. the validation fails). You can read more about prop validation [here](../guide/components-props.html#Prop-Validation).
+
 - **示例**：
 
   ``` js
@@ -535,7 +545,7 @@ type: api
   })
   ```
 
-- **参考**：[Props](../guide/components.html#通过-Prop-向子组件传递数据)
+- **参考**：[Props](../guide/components-props.html)
 
 ### propsData
 
