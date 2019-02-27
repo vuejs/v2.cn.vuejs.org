@@ -332,7 +332,7 @@ function (slotProps) {
 这样可以使模板更简洁，尤其是在该插槽提供了多个 prop 的时候。它同样开启了 prop 重命名等其它可能，例如将 `user` 重命名为 `person`：
 
 ``` html
-<current-user v-slot="{ user: person }">>
+<current-user v-slot="{ user: person }">
   {{ person.firstName }}
 </current-user>
 ```
@@ -340,7 +340,7 @@ function (slotProps) {
 你甚至可以定义后备内容，用于插槽 prop 是 undefined 的情形：
 
 ``` html
-<current-user v-slot="{ user = { firstName: 'Guest' } }">>
+<current-user v-slot="{ user = { firstName: 'Guest' } }">
   {{ user.firstName }}
 </current-user>
 ```
