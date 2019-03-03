@@ -298,7 +298,7 @@ created() {
 
 ## 替代方案
 
-有一个替代方案，尤其在你只喜欢写 Markdown 时适用，就是使用诸如 [Nuxtent](https://nuxtent.now.sh/guide/writing#async-components) 的工具。Nuxtent 允许你在 Markdown 文件内部使用 `Vue Component`。它类似一个静态站点工具 (例如 Jekyll)，让你在 Markdown 文件中撰写你的博文。Nuxtent 将 Vue.js 和 Markdown 很好地整合起来，让你完全生活在 Vue.js 的世界里。
+有一个替代方案，尤其在你只喜欢写 Markdown 时适用，就是使用诸如 [Nuxtent](https://nuxtent-module.netlify.com/guide/writing/#async-components) 的工具。Nuxtent 允许你在 Markdown 文件内部使用 `Vue Component`。它类似一个静态站点工具 (例如 Jekyll)，让你在 Markdown 文件中撰写你的博文。Nuxtent 将 Vue.js 和 Markdown 很好地整合起来，让你完全生活在 Vue.js 的世界里。
 
 ## 总结
 
