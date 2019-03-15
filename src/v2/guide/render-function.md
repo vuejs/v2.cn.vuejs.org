@@ -82,7 +82,7 @@ Vue.component('anchored-heading', {
 })
 ```
 
-简单清晰很多！简单来说，这样代码精简很多，但是需要非常熟悉 Vue 的实例属性。在这个例子中，你需要知道，向组件中传递不带 `slot` 特性的子元素时，比如 `anchored-heading` 中的 `Hello world!`，这些子元素被存储在组件实例中的 `$slots.default` 中。如果你还不了解，**在深入 render 函数之前推荐阅读[实例属性 API](../api/#实例属性)。**
+简单清晰很多！简单来说，这样代码精简很多，但是需要非常熟悉 Vue 的实例属性。在这个例子中，你需要知道，向组件中传递不带 `v-slot` 指令的子元素时，比如 `anchored-heading` 中的 `Hello world!`，这些子元素被存储在组件实例中的 `$slots.default` 中。如果你还不了解，**在深入 render 函数之前推荐阅读[实例属性 API](../api/#实例属性)。**
 
 ## 节点、树以及虚拟 DOM
 

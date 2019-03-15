@@ -1389,7 +1389,10 @@ type: api
 
 - **详细**：
 
-  用来访问被[插槽分发](../guide/components.html#通过插槽分发内容)的内容。每个[具名插槽](../guide/components-slots.html#具名插槽) 有其相应的属性 (例如：`slot="foo"` 中的内容将会在 `vm.$slots.foo` 中被找到)。`default` 属性包括了所有没有被包含在具名插槽中的节点。
+  用来访问被[插槽分发](../guide/components.html#通过插槽分发内容)的内容。每个[具名插槽](../guide/components-slots.html#具名插槽) 有其相应的属性 (例如：`v-slot:foo` 中的内容将会在 `vm.$slots.foo` 中被找到)。`default` 属性包括了所有没有被包含在具名插槽中的节点，或 `v-slot:default` 的内容。
+
+  <!-- todo: translation -->
+  **Note:** `v-slot:foo` is supported in v2.6+. For older versions, you can use the [deprecated syntax](../guide/components-slots.html#Deprecated-Syntax).
 
   在使用[渲染函数](../guide/render-function.html)书写一个组件时，访问 `vm.$slots` 最有帮助。
 
@@ -1397,15 +1400,15 @@ type: api
 
   ```html
   <blog-post>
-    <h1 slot="header">
-      About Me
-    </h1>
+    <template v-slot:header>
+      <h1>About Me</h1>
+    </template>
 
     <p>Here's some page content, which will be included in vm.$slots.default, because it's not inside a named slot.</p>
 
-    <p slot="footer">
-      Copyright 2016 Evan You
-    </p>
+    <template v-slot:footer>
+      <p>Copyright 2016 Evan You</p>
+    </template>
 
     <p>If I have some content down here, it will also be included in vm.$slots.default.</p>.
   </blog-post>
@@ -1427,7 +1430,7 @@ type: api
   ```
 
 - **参考**：
-  - [`<slot>` 组件](#slot-1)
+  - [`<slot>` 组件](#slot)
   - [通过插槽分发内容](../guide/components.html#通过插槽分发内容)
   - [渲染函数 - 插槽](../guide/render-function.html#插槽)
 
@@ -1452,7 +1455,7 @@ type: api
   2. 所有的 `$slots` 现在都会作为函数暴露在 `$scopedSlots` 中。如果你在使用渲染函数，不论当前插槽是否带有作用域，我们都推荐始终通过 `$scopedSlots` 访问它们。这不仅仅使得在未来添加作用域变得简单，也可以让你最终轻松迁移到所有插槽都是函数的 Vue 3。
 
 - **参考**：
-  - [`<slot>` 组件](#slot-1)
+  - [`<slot>` 组件](#slot)
   - [作用域插槽](../guide/components-slots.html#作用域插槽)
   - [渲染函数 - 插槽](../guide/render-function.html#插槽)
 
