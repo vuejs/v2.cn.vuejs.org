@@ -90,7 +90,7 @@ Vue 实现了一套内容分发的 API，这套 API 的设计灵感源自 [Web C
 </button>
 ```
 
-我们可能希望这个 `<button>` 内绝大多数情况下都渲染文本“Submit”。为了将“Submit”作为后备内容，我们可以将它在 `<slot>` 标签内：
+我们可能希望这个 `<button>` 内绝大多数情况下都渲染文本“Submit”。为了将“Submit”作为后备内容，我们可以将它放在 `<slot>` 标签内：
 
 ```html
 <button type="submit">
