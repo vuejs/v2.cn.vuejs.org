@@ -10,7 +10,7 @@ order: 3
 
 给定一个表单，包含三个字段，其中两个是必填项。我们先来看看 HTML：
 
-``` html
+```html
 <form
   id="app"
   @submit="checkForm"
@@ -71,31 +71,31 @@ order: 3
 
 最后值得注意的是这三个字段都有一个对应的 `v-model` 来连接它们的值，我们将会在 JavaScript 中使用它。现在我们就来看一下。
 
-``` js
+```js
 const app = new Vue({
-  el: '#app',
+  el: "#app",
   data: {
     errors: [],
     name: null,
     age: null,
     movie: null
   },
-  methods:{
-    checkForm: function (e) {
+  methods: {
+    checkForm: function(e) {
       if (this.name && this.age) {
-        return true;
+        return true
       }
 
-      this.errors = [];
+      this.errors = []
 
       if (!this.name) {
-        this.errors.push('Name required.');
+        this.errors.push("Name required.")
       }
       if (!this.age) {
-        this.errors.push('Age required.');
+        this.errors.push("Age required.")
       }
 
-      e.preventDefault();
+      e.preventDefault()
     }
   }
 })
@@ -110,7 +110,7 @@ const app = new Vue({
 
 对于第二个示例来说，第二个文本字段 (年龄) 变换成了电子邮件地址，它将会通过一些自定义的逻辑来校验。这部分代码来自 StackOverflow 的问题：[如何在 JavaScript 中校验电子邮件地址](https://stackoverflow.com/questions/46155/how-to-validate-email-address-in-javascript)。这是一个很好的问题，因为它会让 Facebook 上最激烈的政治、宗教争论看上去都只是“哪家的啤酒最好喝”这样的小分歧了。讲真的这很疯狂。我们来看 HTML，尽管它和第一个例子很接近。
 
-``` html
+```html
 <form
   id="app"
   @submit="checkForm"
@@ -169,11 +169,11 @@ const app = new Vue({
 </form>
 ```
 
-尽管这里的不同点很小，注意顶端的 `novalidate="true"`。但是这很重要，因为浏览器会尝试在 `type="email"` 的字端校验邮件地址。坦白说在这个案例中浏览器的校验规则是值得信任的，不过我们想要创建一个自定义校验的例子，所以把它禁用了。以下是更新后的 JavaScript。
+尽管这里的不同点很小，注意顶端的 `novalidate="true"`。但是这很重要，因为浏览器会尝试在 `type="email"` 的字段校验邮件地址。坦白说在这个案例中浏览器的校验规则是值得信任的，不过我们想要创建一个自定义校验的例子，所以把它禁用了。以下是更新后的 JavaScript。
 
-``` js
+```js
 const app = new Vue({
-  el: '#app',
+  el: "#app",
   data: {
     errors: [],
     name: null,
@@ -181,27 +181,27 @@ const app = new Vue({
     movie: null
   },
   methods: {
-    checkForm: function (e) {
-      this.errors = [];
+    checkForm: function(e) {
+      this.errors = []
 
       if (!this.name) {
-        this.errors.push("Name required.");
+        this.errors.push("Name required.")
       }
       if (!this.email) {
-        this.errors.push('Email required.');
+        this.errors.push("Email required.")
       } else if (!this.validEmail(this.email)) {
-        this.errors.push('Valid email required.');
+        this.errors.push("Valid email required.")
       }
 
       if (!this.errors.length) {
-        return true;
+        return true
       }
 
-      e.preventDefault();
+      e.preventDefault()
     },
-    validEmail: function (email) {
-      var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-      return re.test(email);
+    validEmail: function(email) {
+      var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+      return re.test(email)
     }
   }
 })
@@ -216,7 +216,7 @@ const app = new Vue({
 
 在第三个示例中，我们已经构建了一些你可能在一些调研类应用中见过的东西。用户需要花掉“预算”来为歼星舰模型装配一套部件。总价必须等于 100。先看 HTML。
 
-``` html
+```html
 <form
   id="app"
   @submit="checkForm"
@@ -282,10 +282,10 @@ const app = new Vue({
 
 这组输入框覆盖了五个不同的部件。注意这里为 `v-model` 特性添加了 `.number`。它会告诉 Vue 将其值作为数字来使用。不过这里有一个小小的 bug，那就是当其值为空的时候，它会回到字符串格式，稍后你将会看到变通的办法。为了让用户使用起来更方便，我们添加展示了一个当前的总和，这样我们就能够实时的看到它们一共花掉了多少钱。现在我们来看看 JavaScript。
 
-``` js
+```js
 const app = new Vue({
-  el: '#app',
-  data:{
+  el: "#app",
+  data: {
     errors: [],
     weapons: 0,
     shields: 0,
@@ -294,27 +294,29 @@ const app = new Vue({
     mousedroids: 0
   },
   computed: {
-     total: function () {
-       // 必须解析，因为 Vue 会将空值转换为字符串
-       return Number(this.weapons) +
-         Number(this.shields) +
-         Number(this.coffee) +
-         Number(this.ac+this.mousedroids);
-     }
+    total: function() {
+      // 必须解析，因为 Vue 会将空值转换为字符串
+      return (
+        Number(this.weapons) +
+        Number(this.shields) +
+        Number(this.coffee) +
+        Number(this.ac + this.mousedroids)
+      )
+    }
   },
-  methods:{
-    checkForm: function (e) {
-      this.errors = [];
+  methods: {
+    checkForm: function(e) {
+      this.errors = []
 
       if (this.total != 100) {
-        this.errors.push('Total must be 100!');
+        this.errors.push("Total must be 100!")
       }
 
       if (!this.errors.length) {
-        return true;
+        return true
       }
 
-      e.preventDefault();
+      e.preventDefault()
     }
   }
 })
@@ -329,24 +331,24 @@ const app = new Vue({
 
 在我们最终的示例中，我们构建了一些用到 Ajax 的服务端校验的东西。这个表单将会问你为一个新产品起名字，并且将会确保这个名字是唯一的。我们快速写了一个 [OpenWhisk](http://openwhisk.apache.org/) 的 serverless action 来进行这个校验。虽然这不是非常重要，但其逻辑如下：
 
-``` js
+```js
 function main(args) {
   return new Promise((resolve, reject) => {
     // 不好的产品名：vista, empire, mbp
-    const badNames = ['vista', 'empire', 'mbp'];
-    
+    const badNames = ["vista", "empire", "mbp"]
+
     if (badNames.includes(args.name)) {
-      reject({error: 'Existing product'});
+      reject({ error: "Existing product" })
     }
-    
-    resolve({status: 'ok'});
-  });
+
+    resolve({ status: "ok" })
+  })
 }
 ```
 
 基本上除了“vista”、“empire”和“mbp”的名字都是可以接受的。好，让我们来看看表单。
 
-``` html
+```html
 <form
   id="app"
   @submit="checkForm"
@@ -382,34 +384,35 @@ function main(args) {
 
 这里没有任何特殊的东西。接下来我们再看看 JavaScript。
 
-``` js
-const apiUrl = 'https://openwhisk.ng.bluemix.net/api/v1/web/rcamden%40us.ibm.com_My%20Space/safeToDelete/productName.json?name=';
+```js
+const apiUrl =
+  "https://openwhisk.ng.bluemix.net/api/v1/web/rcamden%40us.ibm.com_My%20Space/safeToDelete/productName.json?name="
 
 const app = new Vue({
-  el: '#app',
+  el: "#app",
   data: {
     errors: [],
-    name: ''
+    name: ""
   },
-  methods:{
-    checkForm: function (e) {
-      e.preventDefault();
+  methods: {
+    checkForm: function(e) {
+      e.preventDefault()
 
-      this.errors = [];
+      this.errors = []
 
-      if (this.name === '') {
-        this.errors.push('Product name is required.');
+      if (this.name === "") {
+        this.errors.push("Product name is required.")
       } else {
         fetch(apiUrl + encodeURIComponent(this.name))
-        .then(res => res.json())
-        .then(res => {
-          if (res.error) {
-            this.errors.push(res.error);
-          } else {
-            // 在成功的时候重定向到一个新的 URL 或做一些别的事情
-            alert('ok!');
-          }
-        });
+          .then(res => res.json())
+          .then(res => {
+            if (res.error) {
+              this.errors.push(res.error)
+            } else {
+              // 在成功的时候重定向到一个新的 URL 或做一些别的事情
+              alert("ok!")
+            }
+          })
       }
     }
   }
@@ -425,5 +428,5 @@ const app = new Vue({
 
 这份秘笈专注在“手动”校验表单，当然一些非常棒的 Vue 的库会为你搞定这些事情。使用一些预打包的库可能会影响你的应用最终的体积，但是好处是非常多的。这里有经过充分测试且保持日常更新的代码。其中包括以下 Vue 的表单校验库：
 
-* [vuelidate](https://github.com/monterail/vuelidate)
-* [VeeValidate](http://vee-validate.logaretm.com/)
+- [vuelidate](https://github.com/monterail/vuelidate)
+- [VeeValidate](http://vee-validate.logaretm.com/)
