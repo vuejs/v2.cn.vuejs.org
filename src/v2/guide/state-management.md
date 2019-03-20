@@ -6,7 +6,7 @@ order: 502
 
 ## 类 Flux 状态管理的官方实现
 
-由于状态零散地分布在许多组件和组件之间的交互中，大型应用复杂度也经常逐渐增长。为了解决这个问题，Vue 提供 [vuex](https://github.com/vuejs/vuex)：我们有受到 Elm 启发的状态管理库。vuex 甚至集成到 [vue-devtools](https://github.com/vuejs/vue-devtools)，无需配置即可进行[时光旅行调试](https://raw.githubusercontent.com/vuejs/vue-devtools/master/media/demo.gif)。
+由于状态零散地分布在许多组件和组件之间的交互中，大型应用复杂度也经常逐渐增长。为了解决这个问题，Vue 提供 [vuex](https://github.com/vuejs/vuex)：我们有受到 Elm 启发的状态管理库。vuex 甚至集成到 [vue-devtools](https://github.com/vuejs/vue-devtools)，无需配置即可进行[time travel debugging](https://raw.githubusercontent.com/vuejs/vue-devtools/master/media/demo.gif)。
 
 ### React 的开发者请参考以下信息
 
