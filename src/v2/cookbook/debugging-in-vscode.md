@@ -6,7 +6,7 @@ order: 8
 
 每个应用，不论大小，都需要理解程序是如何运行失败的。在本案例中，我们会探索一些 VS Code 用户在浏览器中调试应用的工作流程。
 
-这个案例展示了在如何在 VS Code 中调试浏览器中运行的通过 [Vue CLI](https://github.com/vuejs/vue-cli) 生成的 Vue.js 应用程序。
+这个案例展示了如何在 VS Code 中调试浏览器中运行的通过 [Vue CLI](https://github.com/vuejs/vue-cli) 生成的 Vue.js 应用程序。
 
 <p class="tip">注意：这个案例覆盖了 Chrome 和 Firefox。如果你知道如何在其它浏览器中进行 VS Code 调试，欢迎分享你的观点 (请看页面底部)。</p>
 
