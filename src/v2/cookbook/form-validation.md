@@ -42,7 +42,8 @@ order: 3
       v-model="age"
       type="number"
       name="age"
-      min="0">
+      min="0"
+    >
   </p>
 
   <p>
