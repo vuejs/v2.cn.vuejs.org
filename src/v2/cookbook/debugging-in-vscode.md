@@ -45,6 +45,9 @@ module.exports = {
 
 ### 从 VS Code 启动应用
 
+<!-- todo: translation -->
+<p class="tip">We're assuming the port to be `8080` here. If it's not the case (for instance, if `8080` has been taken and Vue CLI automatically picks another port for you), just modify the configuration accordingly.</p>
+
 点击在 Activity Bar 里的 Debugger 图标来到 Debug 视图，然后点击那个齿轮图标来配置一个 `launch.json` 的文件，选择 **Chrome/Firefox: Launch** 环境。然后将生成的 `launch.json` 的内容替换成为相应的配置：
 
 ![添加 Chrome 配置](/images/config_add.png)
@@ -85,7 +88,7 @@ module.exports = {
 2. 在根目录打开你惯用的终端并使用 Vue CLI 开启这个应用：
 
   ```
-  npm start
+  npm run serve
   ```
 
 3. 来到 Debug 视图，选择 **'vuejs: chrome/firefox'** 配置，然后按 <kbd>F5</kbd> 或点击那个绿色的 play 按钮。
