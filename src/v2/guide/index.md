@@ -389,7 +389,7 @@ var app7 = new Vue({
 
 2. Vue 组件提供了纯自定义元素所不具备的一些重要功能，最突出的是跨组件数据流、自定义事件通信以及构建工具集成。
 
-虽然 Vue 内部没有使用自定义元素，不过在作为自定义元素进行消费或分发的时候[其互通性还是很好的](https://custom-elements-everywhere.com/#vue)。Vue CLI 也支持将 Vue 组件构建成为原生的自定义元素。
+虽然 Vue 内部没有使用自定义元素，不过在应用使用自定义元素、或以自定义元素形式发布时，[依然有很好的互操作性](https://custom-elements-everywhere.com/#vue)。Vue CLI 也支持将 Vue 组件构建成为原生的自定义元素。
 
 ## 准备好了吗？
 
