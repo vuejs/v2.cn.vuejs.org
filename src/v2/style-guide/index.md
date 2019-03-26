@@ -1736,15 +1736,6 @@ computed: {
   {{ results }}
 </div>
 ```
-
-``` html
-<p v-if="error">
-  错误：{{ error }}
-</p>
-<div v-else>
-  {{ results }}
-</div>
-```
 {% raw %}</div>{% endraw %}
 
 
