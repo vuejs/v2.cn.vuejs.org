@@ -109,7 +109,7 @@ var vm = new Vue({
   data: data
 })
 
-vm.$data === data // => true
+vm.$data.data === data // => true
 vm.$el === document.getElementById('example') // => true
 
 // $watch 是一个实例方法
