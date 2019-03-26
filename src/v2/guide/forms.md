@@ -65,7 +65,9 @@ new Vue({
 </script>
 {% endraw %}
 
+{% raw %}
 <p class="tip">在文本区域插值 (`<textarea>{{text}}</textarea>`) 并不会生效，应用 `v-model` 来代替。</p>
+{% endraw %}
 
 ### 复选框
 
