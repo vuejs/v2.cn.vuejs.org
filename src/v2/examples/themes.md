@@ -20,7 +20,7 @@ order: 13
    <div class="see-more-container">
     <a :href="`https://www.creative-tim.com/bootstrap-themes/vuejs-themes?affiliate_id=${affiliateId}`"
        class="button white see-more-link">
-       See More Themes
+       查看更多主题
     </a>
    </div>
 </div>
