@@ -1,10 +1,10 @@
 ---
-title: Themes
+title: 主题
 type: examples
 is_new: true
 order: 13
 ---
-> With the examples below built by our partners from [Creative Tim](https://creative-tim.com?affiliate_id=116187) you can see how a real world application is built, the technology stack behind it and how most of the concepts you've learned so far apply in a real world application. 
+> 通过以下由我们的伙伴[Creative Tim](https://creative-tim.com?affiliate_id=116187)创建的例子，你可以看到一个真实的应用是如何构建起来的、它背后的技术栈以及目前为止你学到的大部分概念是如何应用到一个真实的应用中的。
 
 {% raw %}
 <div id="themes-example" class="themes-grid">
