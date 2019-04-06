@@ -4,7 +4,7 @@ type: examples
 is_new: true
 order: 13
 ---
-> 通过以下由我们的伙伴 [Creative Tim](https://creative-tim.com?affiliate_id=116187) 创建的例子，你可以看到一个真实的应用是如何构建起来的、它背后的技术栈以及目前为止你学到的大部分概念是如何应用到一个真实的应用中的。
+> 通过合作伙伴 [Creative Tim](https://creative-tim.com?affiliate_id=116187) 创建的例子，你可以在一个真实的应用中看到它是如何构建起来的，它背后的技术栈以及你学到的大部分概念。
 
 {% raw %}
 <div id="themes-example" class="themes-grid">
