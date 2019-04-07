@@ -1,10 +1,10 @@
 ---
-title: Themes
+title: 主题
 type: examples
 is_new: true
 order: 13
 ---
-> With the examples below built by our partners from [Creative Tim](https://creative-tim.com?affiliate_id=116187) you can see how a real world application is built, the technology stack behind it and how most of the concepts you've learned so far apply in a real world application. 
+> 通过合作伙伴 [Creative Tim](https://creative-tim.com?affiliate_id=116187) 创建的例子，你可以在一个真实的应用中看到它是如何构建起来的，它背后的技术栈以及你学到的大部分概念。
 
 {% raw %}
 <div id="themes-example" class="themes-grid">
@@ -20,7 +20,7 @@ order: 13
    <div class="see-more-container">
     <a :href="`https://www.creative-tim.com/bootstrap-themes/vuejs-themes?affiliate_id=${affiliateId}`"
        class="button white see-more-link">
-       See More Themes
+       查看更多主题
     </a>
    </div>
 </div>
