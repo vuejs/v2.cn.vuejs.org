@@ -244,12 +244,12 @@ export default new Router({
       }
     },
     watch: {
-      $route(to, from) {
-        this.getPost()
+      $route: {
+        immediate: true,
+        handler(to, from) {
+          this.getPost()
+        }
       }
-    },
-    created() {
-      this.getPost()
     }
   }
 </script>
