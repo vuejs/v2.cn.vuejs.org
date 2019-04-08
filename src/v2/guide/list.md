@@ -6,7 +6,7 @@ order: 8
 
 ## 用 `v-for` 把一个数组对应为一组元素
 
-我们用 `v-for` 指令根据一组数组的选项列表进行渲染。`v-for` 指令需要使用 `item in items` 形式的特殊语法，`items` 是源数据数组并且 `item` 是数组元素迭代的别名。
+我们可以用 `v-for` 指令基于一个数组来渲染一个列表。`v-for` 指令需要使用 `item in items` 形式的特殊语法，其中 `items` 是源数据数组，而 `item` 则是被迭代的数组元素的**别名**。
 
 ``` html
 <ul id="example-1">
@@ -54,7 +54,7 @@ var example1 = new Vue({
 </script>
 {% endraw %}
 
-在 `v-for` 块中，我们拥有对父作用域属性的完全访问权限。`v-for` 还支持一个可选的第二个参数为当前项的索引。
+在 `v-for` 块中，我们可以访问所有父作用域的属性。`v-for` 还支持一个可选的第二个参数，即当前项的索引。
 
 ``` html
 <ul id="example-2">
@@ -104,15 +104,15 @@ var example2 = new Vue({
 </script>
 {% endraw %}
 
-你也可以用 `of` 替代 `in` 作为分隔符，因为它是最接近 JavaScript 迭代器的语法：
+你也可以用 `of` 替代 `in` 作为分隔符，因为它更接近 JavaScript 迭代器的语法：
 
 ``` html
 <div v-for="item of items"></div>
 ```
 
-## 一个对象的 `v-for`
+## 在对象上使用 `v-for`
 
-你也可以用 `v-for` 通过一个对象的属性来迭代。
+你也可以用 `v-for` 来遍历一个对象的属性。
 
 ``` html
 <ul id="v-for-object" class="demo">
@@ -185,7 +185,7 @@ new Vue({
 </script>
 {% endraw %}
 
-第三个参数为索引：
+还可以用第三个参数作为索引：
 
 ``` html
 <div v-for="(value, name, index) in object">
@@ -213,11 +213,11 @@ new Vue({
 </script>
 {% endraw %}
 
-<p class="tip">在遍历对象时，是按 `Object.keys()` 的结果遍历，但是不能保证它的结果在不同的 JavaScript 引擎下是一致的。</p>
+<p class="tip">在遍历对象时，会按 `Object.keys()` 的结果遍历，但是**不能**保证它的结果在不同的 JavaScript 引擎下都一致。</p>
 
 ## 维护状态
 
-当 Vue.js 用 `v-for` 正在更新已渲染过的元素列表时，它默认用“就地复用”策略。如果数据项的顺序被改变，Vue 将不会移动 DOM 元素来匹配数据项的顺序， 而是简单复用此处每个元素，并且确保它在特定索引下显示已被渲染过的每个元素。这个类似 Vue 1.x 的 `track-by="$index"` 。
+当 Vue 正在更新使用 `v-for` 渲染的元素列表时，它默认使用“就地更新”的策略。如果数据项的顺序被改变，Vue 将不会移动 DOM 元素来匹配数据项的顺序，而是就地更新每个元素，并且确保它们在每个索引位置正确渲染。这个类似 Vue 1.x 的 `track-by="$index"`。
 
 这个默认的模式是高效的，但是**只适用于不依赖子组件状态或临时 DOM 状态 (例如：表单输入值) 的列表渲染输出**。
 
@@ -231,17 +231,17 @@ new Vue({
 
 建议尽可能在使用 `v-for` 时提供 `key` attribute，除非遍历输出的 DOM 内容非常简单，或者是刻意依赖默认行为以获取性能上的提升。
 
-因为它是 Vue 识别节点的一个通用机制，`key` 并不与 `v-for` 特别关联，`key` 还具有其他用途，我们将在后面的指南中看到其他用途。
+因为它是 Vue 识别节点的一个通用机制，`key` 并不仅与 `v-for` 特别关联。后面我们将在指南中看到，它还具有其它用途。
 
-<p class="tip">不要使用对象或数组之类的非原始类型值作为 `v-for` 的 `key`。用字符串或数类型的值取而代之。</p>
+<p class="tip">不要使用对象或数组之类的非基本类型值作为 `v-for` 的 `key`。请用字符串或数值类型的值。</p>
 
 更多 `key` attribute 的细节用法请移步至 [`key` 的 API 文档](https://cn.vuejs.org/v2/api/#key)。
 
 ## 数组更新检测
 
-### 变异方法
+### 变异方法 (mutation method)
 
-Vue 包含一组观察数组的变异方法，所以它们也将会触发视图更新。这些方法如下：
+Vue 将被侦听的数组的变异方法进行了包裹，所以它们也将会触发视图更新。这些被包裹过的方法包括：
 
 - `push()`
 - `pop()`
@@ -251,11 +251,11 @@ Vue 包含一组观察数组的变异方法，所以它们也将会触发视图�
 - `sort()`
 - `reverse()`
 
-你打开控制台，然后用前面例子的 `items` 数组调用变异方法：`example1.items.push({ message: 'Baz' })` 。
+你可以打开控制台，然后对前面例子的 `items` 数组尝试调用变异方法。比如 `example1.items.push({ message: 'Baz' })`。
 
 ### 替换数组
 
-变异方法 (mutation method)，顾名思义，会改变被这些方法调用的原始数组。相比之下，也有非变异 (non-mutating method) 方法，例如：`filter()`, `concat()` 和 `slice()` 。这些不会改变原始数组，但**总是返回一个新数组**。当使用非变异方法时，可以用新数组替换旧数组：
+变异方法，顾名思义，会改变调用了这些方法的原始数组。相比之下，也有非变异 (non-mutating method) 方法，例如 `filter()`、`concat()` 和 `slice()` 。它们不会改变原始数组，而**总是返回一个新数组**。当使用非变异方法时，可以用新数组替换旧数组：
 
 ``` js
 example1.items = example1.items.filter(function (item) {
@@ -263,13 +263,13 @@ example1.items = example1.items.filter(function (item) {
 })
 ```
 
-你可能认为这将导致 Vue 丢弃现有 DOM 并重新渲染整个列表。幸运的是，事实并非如此。Vue 为了使得 DOM 元素得到最大范围的重用而实现了一些智能的、启发式的方法，所以用一个含有相同元素的数组去替换原来的数组是非常高效的操作。
+你可能认为这将导致 Vue 丢弃现有 DOM 并重新渲染整个列表。幸运的是，事实并非如此。Vue 为了使得 DOM 元素得到最大范围的重用而实现了一些智能的启发式方法，所以用一个含有相同元素的数组去替换原来的数组是非常高效的操作。
 
 ### 注意事项
 
-由于 JavaScript 的限制，Vue 不能检测以下变动的数组：
+由于 JavaScript 的限制，Vue **不能**检测以下数组的变动：
 
-1. 当你利用索引直接设置一个项时，例如：`vm.items[indexOfItem] = newValue`
+1. 当你利用索引直接设置一个数组项时，例如：`vm.items[indexOfItem] = newValue`
 2. 当你修改数组的长度时，例如：`vm.items.length = newLength`
 
 举个例子：
@@ -284,7 +284,7 @@ vm.items[1] = 'x' // 不是响应性的
 vm.items.length = 2 // 不是响应性的
 ```
 
-为了解决第一类问题，以下两种方式都可以实现和 `vm.items[indexOfItem] = newValue` 相同的效果，同时也将触发状态更新：
+为了解决第一类问题，以下两种方式都可以实现和 `vm.items[indexOfItem] = newValue` 相同的效果，同时也将在响应式系统内触发状态更新：
 
 ``` js
 // Vue.set
@@ -307,7 +307,7 @@ vm.$set(vm.items, indexOfItem, newValue)
 vm.items.splice(newLength)
 ```
 
-## 对象更改检测注意事项
+## 对象变更检测注意事项
 
 还是由于 JavaScript 的限制，**Vue 不能检测对象属性的添加或删除**：
 
@@ -323,7 +323,7 @@ vm.b = 2
 // `vm.b` 不是响应式的
 ```
 
-对于已经创建的实例，Vue 不能动态添加根级别的响应式属性。但是，可以使用 `Vue.set(object, propertyName, value)` 方法向嵌套对象添加响应式属性。例如，对于：
+对于已经创建的实例，Vue 不允许动态添加根级别的响应式属性。但是，可以使用 `Vue.set(object, propertyName, value)` 方法向嵌套对象添加响应式属性。例如，对于：
 
 ``` js
 var vm = new Vue({
@@ -347,7 +347,7 @@ Vue.set(vm.userProfile, 'age', 27)
 vm.$set(vm.userProfile, 'age', 27)
 ```
 
-有时你可能需要为已有对象赋予多个新属性，比如使用 `Object.assign()` 或 `_.extend()`。在这种情况下，你应该用两个对象的属性创建一个新的对象。所以，如果你想添加新的响应式属性，不要像这样：
+有时你可能需要为已有对象赋值多个新属性，比如使用 `Object.assign()` 或 `_.extend()`。在这种情况下，你应该用两个对象的属性创建一个新的对象。所以，如果你想添加新的响应式属性，不要像这样：
 
 ``` js
 Object.assign(vm.userProfile, {
@@ -365,9 +365,9 @@ vm.userProfile = Object.assign({}, vm.userProfile, {
 })
 ```
 
-## 显示过滤/排序结果
+## 显示过滤/排序后的结果
 
-有时，我们想要显示一个数组的过滤或排序副本，而不实际改变或重置原始数据。在这种情况下，可以创建返回过滤或排序数组的计算属性。
+有时，我们想要显示一个数组经过过滤或排序后的版本，而不实际改变或重置原始数据。在这种情况下，可以创建一个计算属性，来返回过滤或排序后的数组。
 
 例如：
 
@@ -388,7 +388,7 @@ computed: {
 }
 ```
 
-在计算属性不适用的情况下 (例如，在嵌套 `v-for` 循环中) 你可以使用一个 method 方法：
+在计算属性不适用的情况下 (例如，在嵌套 `v-for` 循环中) 你可以使用一个方法：
 
 ``` html
 <li v-for="n in even(numbers)">{{ n }}</li>
@@ -407,9 +407,9 @@ methods: {
 }
 ```
 
-## 一段取值范围的 `v-for`
+## 在值范围上使用 `v-for`
 
-`v-for` 也可以取整数。在这种情况下，它将重复多次模板。
+`v-for` 也可以接受整数。在这种情况下，它会把模板重复对应次数。
 
 ``` html
 <div>
@@ -428,9 +428,9 @@ methods: {
 </script>
 {% endraw %}
 
-## `v-for` on a `<template>`
+## 在 `<template>` 上使用 `v-for`
 
-类似于 `v-if`，你也可以利用带有 `v-for` 的 `<template>` 渲染多个元素。比如：
+类似于 `v-if`，你也可以利用带有 `v-for` 的 `<template>` 来循环渲染一段包含多个元素的内容。比如：
 
 ``` html
 <ul>
@@ -441,11 +441,11 @@ methods: {
 </ul>
 ```
 
-## `v-for` with `v-if`
+## `v-for` 与 `v-if` 一同使用
 
-<p class="tip">注意我们**不**推荐同时使用 `v-if` 和 `v-for`。更多细节可查阅[风格指南](/v2/style-guide/#避免-v-if-和-v-for-用在一起-必要)。</p>
+<p class="tip">注意我们**不**推荐在同一元素上使用 `v-if` 和 `v-for`。更多细节可查阅[风格指南](/v2/style-guide/#避免-v-if-和-v-for-用在一起-必要)。</p>
 
-当它们处于同一节点，`v-for` 的优先级比 `v-if` 更高，这意味着 `v-if` 将分别重复运行于每个 `v-for` 循环中。当你想为仅有的*一些*项渲染节点时，这种优先级的机制会十分有用，如下：
+当它们处于同一节点，`v-for` 的优先级比 `v-if` 更高，这意味着 `v-if` 将分别重复运行于每个 `v-for` 循环中。当你只想为*部分*项渲染节点时，这种优先级的机制会十分有用，如下：
 
 ``` html
 <li v-for="todo in todos" v-if="!todo.isComplete">
@@ -453,7 +453,7 @@ methods: {
 </li>
 ```
 
-上面的代码只传递了未完成的 todos。
+上面的代码将只渲染未完成的 todo。
 
 而如果你的目的是有条件地跳过循环的执行，那么可以将 `v-if` 置于外层元素 (或 [`<template>`](conditional.html#在-lt-template-gt-中配合-v-if-条件渲染一整组))上。如：
 
@@ -466,19 +466,19 @@ methods: {
 <p v-else>No todos left!</p>
 ```
 
-## 一个组件的 `v-for`
+## 在组件上使用 `v-for`
 
-> 了解组件相关知识，查看 [组件](components.html)。完全可以先跳过它，以后再回来查看。
+> 这部分内容假定你已经了解[组件](components.html)相关知识。你也完全可以先跳过它，以后再回来查看。
 
-在自定义组件里，你可以像任何普通元素一样用 `v-for` 。
+在自定义组件上，你可以像在任何普通元素上一样使用 `v-for` 。
 
 ``` html
 <my-component v-for="item in items" :key="item.id"></my-component>
 ```
 
-> 2.2.0+ 的版本里，当在组件中使用 `v-for` 时，`key` 现在是必须的。
+> 2.2.0+ 的版本里，当在组件上使用 `v-for` 时，`key` 现在是必须的。
 
-然而，任何数据都不会被自动传递到组件里，因为组件有自己独立的作用域。为了把迭代数据传递到组件里，我们要用 `props` ：
+然而，任何数据都不会被自动传递到组件里，因为组件有自己独立的作用域。为了把迭代数据传递到组件里，我们要使用 prop：
 
 ``` html
 <my-component
@@ -491,7 +491,7 @@ methods: {
 
 不自动将 `item` 注入到组件里的原因是，这会使得组件与 `v-for` 的运作紧密耦合。明确组件数据的来源能够使组件在其他场合重复使用。
 
-下面是一个简单的 todo list 的完整例子：
+下面是一个简单的 todo 列表的完整例子：
 
 ``` html
 <div id="todo-list-example">
@@ -516,7 +516,7 @@ methods: {
 </div>
 ```
 
-<p class="tip">注意这里的 `is="todo-item"` 属性。这种做法在使用 DOM 模板时是十分必要的，因为在 `<ul>` 元素内只有 `<li>` 元素会被看作有效内容。这样做实现的效果与 `<todo-item>` 相同，但是可以避开一些潜在的浏览器解析错误。查看 [DOM 模板解析说明](components.html#解析-DOM-模板时的注意事项) 来了解更多信息。</p>
+<p class="tip">注意这里的 `is="todo-item"` 属性。这种做法在使用 DOM 模板时是十分必要的，因为在 `<ul>` 元素内只有 `<li>` 元素会被看作合法内容。这样做实现的效果与 `<todo-item>` 相同，但是可以避开一些潜在的浏览器解析错误。查看 [DOM 模板解析说明](components.html#解析-DOM-模板时的注意事项) 来了解更多信息。</p>
 
 ``` js
 Vue.component('todo-item', {
