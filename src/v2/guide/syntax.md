@@ -58,7 +58,7 @@ new Vue({
 
 <p class="tip">你的站点上动态渲染的任意 HTML 可能会非常危险，因为它很容易导致 [XSS 攻击](https://en.wikipedia.org/wiki/Cross-site_scripting)。请只对可信内容使用 HTML 插值，**绝不要**对用户提供的内容使用插值。</p>
 
-### 特性
+### 属性
 
 Mustache 语法不能作用在 HTML 属性上，遇到这种情况应该使用 [v-bind 指令](../api/#v-bind)：
 
