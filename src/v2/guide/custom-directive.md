@@ -143,6 +143,37 @@ new Vue({
 </script>
 {% endraw %}
 
+指令的参数可以是动态的。例如，在 `v-mydirective:argument=[dataproperty]` 中，`argument` 是一个赋值给这个指令钩子 `binding` 参数中的 *arg* property 的字符串，同时 `dataproperty` 是一个引用到组件实例上并赋值给同一个 *binding* 参数中的 *value* property 的 data property。当指令钩子被调用的时候，`binding` 参数中的 *value* property 会基于 `dataproperty 的值动态改变。
+
+一个使用了动态参数的自定义指令的例子如下：
+
+```html
+<div id="app">
+  <p>Scroll down the page</p>
+  <p v-tack:left="[dynamicleft]">I’ll now be offset from the left instead of the top</p>
+</div>
+```
+
+```js
+Vue.directive('tack', {
+  bind(el, binding, vnode) {
+    el.style.position = 'fixed';
+    const s = (binding.arg == 'left' ? 'left' : 'top');
+    el.style[s] = binding.value + 'px';
+  }
+})
+
+// start app
+new Vue({
+  el: '#app',
+  data() {
+    return {
+      dynamicleft: 500
+    }
+  }
+})
+```
+
 ## 函数简写
 
 在很多时候，你可能想在 `bind` 和 `update` 时触发相同行为，而不关心其它的钩子。比如这样写:
