@@ -538,7 +538,7 @@ Vue.component('my-component', {
 
 在添加 `functional: true` 之后，需要更新我们的锚点标题组件的渲染函数，为其增加 `context` 参数，并将 `this.$slots.default` 更新为 `context.children`，然后将 `this.level` 更新为 `context.props.level`。
 
-因为函数式组件只是函数，所以渲染开销也低很多。然而，对持久化实例的缺乏也意味着函数式组件不会出现在 [Vue devtools](https://github.com/vuejs/vue-devtools) 的组件树里。
+因为函数式组件只是函数，所以渲染开销也低很多。
 
 在作为包装组件时它们也同样非常有用。比如，当你需要做这些时：
 
