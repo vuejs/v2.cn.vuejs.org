@@ -16,6 +16,8 @@ Vue (读音 /vjuː/，类似于 **view**) 是一套用于构建用户界面的**
 
 <p class="tip">官方指南假设你已了解关于 HTML、CSS 和 JavaScript 的中级知识。如果你刚开始学习前端开发，将框架作为你的第一步可能不是最好的主意——掌握好基础知识再来吧！之前有其它框架的使用经验会有帮助，但这不是必需的。</p>
 
+<a class="button" href="installation.html">如何安装</a>
+
 尝试 Vue.js 最简单的方法是使用 [JSFiddle 上的 Hello World 例子](https://jsfiddle.net/chrisvfritz/50wL7mdz/)。你可以在浏览器新标签页中打开它，跟着例子学习一些基础用法。或者你也可以<a href="https://gist.githubusercontent.com/chrisvfritz/7f8d7d63000b48493c336e48b3db3e52/raw/ed60c4e5d5c6fec48b0921edaed0cb60be30e87c/index.html" target="_blank" download="index.html" rel="noopener noreferrer">创建一个 <code>.html</code> 文件<a/>，然后通过如下方式引入 Vue：
 
 ``` html
