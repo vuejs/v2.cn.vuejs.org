@@ -43,7 +43,7 @@ type: style-guide
 
 ### 组件名为多个单词 <sup data-p="a">必要</sup>
 
-**组件名应该始终是多个单词的，根组件 `App` 除外。**
+**组件名应该始终是多个单词的，根组件 `App` 以及 `<transition>`、`<component>` 之类的 Vue 内置组件除外。**
 
 这样做可以避免跟现有的以及未来的 HTML 元素[相冲突](http://w3c.github.io/webcomponents/spec/custom/#valid-custom-element-name)，因为所有的 HTML 元素名称都是单个单词的。
 
