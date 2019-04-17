@@ -6,7 +6,7 @@ order: 303
 
 ## 基础
 
-Vue 推荐在绝大多数情况下使用模板来创建你的 HTML。然而在一些场景中，你真的需要 JavaScript 的完全编程的能力。这时你可以用 **渲染函数**，它比模板更接近编译器。
+Vue 推荐在绝大多数情况下使用模板来创建你的 HTML。然而在一些场景中，你真的需要 JavaScript 的完全编程的能力。这时你可以用**渲染函数**，它比模板更接近编译器。
 
 让我们深入一个简单的例子，这个例子里 `render` 函数很实用。假设我们要生成一些带锚点的标题：
 
@@ -82,7 +82,7 @@ Vue.component('anchored-heading', {
 })
 ```
 
-看起来简单多了！这样代码精简很多，但是需要非常熟悉 Vue 的实例属性。在这个例子中，你需要知道，向组件中传递不带 `v-slot` 指令的子节点时，比如 `anchored-heading` 中的 `Hello world!`，这些子节点被存储在组件实例中的 `$slots.default` 中。如果你还不了解，**在深入 render 函数之前推荐阅读[实例属性 API](../api/#实例属性)。**
+看起来简单多了！这样代码精简很多，但是需要非常熟悉 Vue 的实例属性。在这个例子中，你需要知道，向组件中传递不带 `v-slot` 指令的子节点时，比如 `anchored-heading` 中的 `Hello world!`，这些子节点被存储在组件实例中的 `$slots.default` 中。如果你还不了解，**在深入渲染函数之前推荐阅读[实例属性 API](../api/#实例属性)。**
 
 ## 节点、树以及虚拟 DOM
 
@@ -139,7 +139,7 @@ return createElement('h1', this.blogTitle)
 createElement(
   // {String | Object | Function}
   // 一个 HTML 标签名、组件选项对象，或者
-  // resolve 了上述任何一种的一个 async 函数。必须。
+  // resolve 了上述任何一种的一个 async 函数。必填项。
   'div',
 
   // {Object}
@@ -170,7 +170,7 @@ createElement(
 ``` js
 {
   // 与 `v-bind:class` 的 API 相同，
-  // 接受一个字符串、对象，或字符串和对象组成的数组
+  // 接受一个字符串、对象或字符串和对象组成的数组
   'class': {
     foo: true,
     bar: false
@@ -382,7 +382,7 @@ on: {
 | `.stop` | `event.stopPropagation()` |
 | `.prevent` | `event.preventDefault()` |
 | `.self` | `if (event.target !== event.currentTarget) return` |
-| 按键：<br>`.enter`, `.13` | `if (event.keyCode !== 13) return` (change `13` to [another key code](http://keycode.info/) for other key modifiers) |
+| 按键：<br>`.enter`, `.13` | `if (event.keyCode !== 13) return` (对于别的按键修饰符来说，可将 `13` 改为[另一个按键码](http://keycode.info/)) |
 | 修饰键：<br>`.ctrl`, `.alt`, `.shift`, `.meta` | `if (!event.ctrlKey) return` (将 `ctrlKey` 分别修改为 `altKey`、`shiftKey` 或者 `metaKey`) |
 
 这里是一个使用所有修饰符的例子：
@@ -417,7 +417,7 @@ render: function (createElement) {
 }
 ```
 
-也可以通过 [`this.$scopedSlots`](../api/#vm-scopedSlots) 访问作用域插槽，每个作用域插槽都是一个返回 VNode 的函数：
+也可以通过 [`this.$scopedSlots`](../api/#vm-scopedSlots) 访问作用域插槽，每个作用域插槽都是一个返回若干 VNode 的函数：
 
 ``` js
 props: ['message'],
@@ -493,7 +493,7 @@ new Vue({
 
 <p class="tip">将 `h` 作为 `createElement` 的别名是 Vue 生态系统中的一个通用惯例，实际上也是 JSX 所要求的。从 Vue 的 Babel 插件的 [3.4.0 版本](https://github.com/vuejs/babel-plugin-transform-vue-jsx#h-auto-injection)开始，我们会在以 ES2015 语法声明的含有 JSX 的任何方法和 getter 中 (不是函数或箭头函数中) 自动注入 `const h = this.$createElement`，这样你就可以去掉 `(h)` 参数了。对于更早版本的插件，如果 `h` 在当前作用域中不可用，应用会抛错。</p>
 
-要了解更多关于 JSX 如何映射到 JavaScript，请阅读 [使用文档](https://github.com/vuejs/jsx#installation)。
+要了解更多关于 JSX 如何映射到 JavaScript，请阅读[使用文档](https://github.com/vuejs/jsx#installation)。
 
 ## 函数式组件
 
