@@ -33,7 +33,7 @@ vm.b = 2
 // `vm.b` 是非响应式的
 ```
 
-对于已经创建的实例，Vue 不允许动态添加根级别的响应式属性。但是，可以使用 `Vue.set(object, key, value)` 方法向嵌套对象添加响应式属性。例如，对于：
+对于已经创建的实例，Vue 不允许动态添加根级别的响应式属性。但是，可以使用 `Vue.set(object, propertyName, value)` 方法向嵌套对象添加响应式属性。例如，对于：
 
 ``` js
 Vue.set(vm.someObject, 'b', 2)

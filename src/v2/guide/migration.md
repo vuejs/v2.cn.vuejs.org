@@ -186,7 +186,7 @@ mounted: function () {
 
 ### `v-for` 遍历对象时的参数顺序 <sup>变更</sup>
 
-当包含 `key` 时，之前遍历对象的参数顺序是 `(key, value)`。现在是 `(value, key)`，来和常见的对象迭代器 (例如 lodash) 保持一致。
+当包含 property 名称/key 时，之前遍历对象的参数顺序是 `(name, value)`。现在是 `(value, name)`，来和常见的对象迭代器 (例如 lodash) 保持一致。
 
 {% raw %}
 <div class="upgrade-path">

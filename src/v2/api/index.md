@@ -246,11 +246,11 @@ type: api
 
 - **参考**：[异步更新队列](../guide/reactivity.html#异步更新队列)
 
-### Vue.set( target, key, value )
+### Vue.set( target, propertyName/index, value )
 
 - **参数**：
   - `{Object | Array} target`
-  - `{string | number} key`
+  - `{string | number} propertyName/index`
   - `{any} value`
 
 - **返回值**：设置的值。
@@ -261,11 +261,11 @@ type: api
 
   <p class="tip">注意对象不能是 Vue 实例，或者 Vue 实例的根数据对象。</p>
 
-### Vue.delete( target, key )
+### Vue.delete( target, propertyName/index )
 
 - **参数**：
   - `{Object | Array} target`
-  - `{string | number} key/index`
+  - `{string | number} propertyName/index`
 
   > 仅在 2.2.0+ 版本中支持 Array + index 用法。
 
@@ -1580,11 +1580,11 @@ type: api
   // 立即以 `a` 的当前值触发回调
   ```
 
-### vm.$set( target, key, value )
+### vm.$set( target, propertyName/index, value )
 
 - **参数**：
   - `{Object | Array} target`
-  - `{string | number} key`
+  - `{string | number} propertyName/index`
   - `{any} value`
 
 - **返回值**：设置的值。
@@ -1595,11 +1595,11 @@ type: api
 
 - **参考**：[Vue.set](#Vue-set)
 
-### vm.$delete( target, key )
+### vm.$delete( target, propertyName/index )
 
 - **参数**：
   - `{Object | Array} target`
-  - `{string | number} key`
+  - `{string | number} propertyName/index`
 
 - **用法**：
 
@@ -2020,7 +2020,7 @@ type: api
   ``` html
   <div v-for="(item, index) in items"></div>
   <div v-for="(val, key) in object"></div>
-  <div v-for="(val, key, index) in object"></div>
+  <div v-for="(val, name, index) in object"></div>
   ```
 
   `v-for` 默认行为试着不改变整体，而是替换元素。迫使其重新排序的元素，你需要提供一个 `key` 的特殊属性：
