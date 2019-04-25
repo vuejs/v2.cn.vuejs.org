@@ -20,6 +20,9 @@
   // moved to a perhaps differently-named section on
   // another page, we need this.
   function initHashLevelRedirects() {
+    checkForHashRedirect(/list\.html$/, {
+      key: '/v2/guide/list.html#维护状态'
+    })
     checkForHashRedirect(/components\.html$/, {
       '什么是组件？': '/v2/guide/components.html',
       '使用组件': '/v2/guide/components-registration.html',
