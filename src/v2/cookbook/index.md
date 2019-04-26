@@ -16,7 +16,7 @@ order: 0
 
 * **探索生态系统**：对于高级特性，我们会假设你已经对生态系统有一定了解。例如，如果你想在 webpack 中使用单文件组件，我们不会解释如何在 webpack 中配置 Vue 以外的部分。在 cookbook 里，我们有空间去更深度探索这些生态系统中的库——至少能到对 Vue 开发者普遍使用的程度。
 
-<p class="tip">除了这些不同，请注意这份 cookbook 仍*不是*逐步引导手册。其大部分内容都假设你已经理解 HTML、CSS、JavaScript、npm/yarn 等基本概念。</p>
+<p class="tip">除了这些不同，请注意这份 cookbook 仍*不是*入门教程。其大部分内容都假设你已经理解 HTML、CSS、JavaScript、npm/yarn 等基本概念。</p>
 
 ## 参与 Cookbook 贡献
 
