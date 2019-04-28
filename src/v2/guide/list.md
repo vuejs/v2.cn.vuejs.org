@@ -235,7 +235,7 @@ new Vue({
 
 <p class="tip">不要使用对象或数组之类的非原始类型值作为 `v-for` 的 `key`。用字符串或数类型的值取而代之。</p>
 
-更多 `key` attribute 的细节用法请移步至 [`key` 的 API 文档](https://vuejs.org/v2/api/#key)。
+更多 `key` attribute 的细节用法请移步至 [`key` 的 API 文档](https://cn.vuejs.org/v2/api/#key)。
 
 ## 数组更新检测
 
@@ -295,7 +295,7 @@ Vue.set(vm.items, indexOfItem, newValue)
 vm.items.splice(indexOfItem, 1, newValue)
 ```
 
-你也可以使用 [`vm.$set`](https://vuejs.org/v2/api/#vm-set) 实例方法，该方法是全局方法 `Vue.set` 的一个别名：
+你也可以使用 [`vm.$set`](https://cn.vuejs.org/v2/api/#vm-set) 实例方法，该方法是全局方法 `Vue.set` 的一个别名：
 
 ``` js
 vm.$set(vm.items, indexOfItem, newValue)
