@@ -6,8 +6,7 @@ version: 2
 jobs:
   build:
     branches:
-      only:
-        - master
+      only: master
 
     docker:
       # specify the version you desire here
@@ -43,6 +42,7 @@ jobs:
       - run:
           name: deploy
           command: |
+            cp -r .circleci public/
             cd public
             git init
             git config user.email "zhaojinjiang@me.com"
