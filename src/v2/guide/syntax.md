@@ -66,7 +66,7 @@ Mustache 语法不能作用在 HTML 特性上，遇到这种情况应该使用 [
 <div v-bind:id="dynamicId"></div>
 ```
 
-在布尔特性的情况下，它们的存在即暗示为 `true`，`v-bind` 工作起来略有不同，在这个例子中：
+在布尔特性的情况下(它们只要存在就意味着它们的值为 `true`)，`v-bind` 工作起来略有不同，在这个例子中：
 
 ``` html
 <button v-bind:disabled="isButtonDisabled">Button</button>
