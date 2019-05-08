@@ -10,7 +10,7 @@ order: 10
 
 <p class="tip">`v-model` 会忽略所有表单元素的 `value`、`checked`、`selected` 特性的初始值而总是将 Vue 实例的数据作为数据来源。你应该通过 JavaScript 在组件的 `data` 选项中声明初始值。</p>
 
-`v-model` 在内部使用不同的属性为不同的输入元素并抛出不同的事件：
+`v-model` 在内部为不同的输入元素使用不同的属性并抛出不同的事件：
 - text 和 textarea 元素使用 `value` 属性和 `input` 事件；
 - checkbox 和 radio 使用 `checked` 属性和 `change` 事件；
 - select 字段将 `value` 作为 prop 并将 `change` 作为事件。
