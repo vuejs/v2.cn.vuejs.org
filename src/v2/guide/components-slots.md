@@ -516,7 +516,7 @@ function (slotProps) {
 </slot-example>
 ```
 
-这里的 `slot-scope` 声明了被接收的 prop 对象会作为 `slotProps` 变量存在于 `<template`> 作用域中。你可以像命名 JavaScript 函数参数一样随意命名 `slotProps`。
+这里的 `slot-scope` 声明了被接收的 prop 对象会作为 `slotProps` 变量存在于 `<template>` 作用域中。你可以像命名 JavaScript 函数参数一样随意命名 `slotProps`。
 
 这里的 `slot="default"` 可以被忽略为隐性写法：
 
