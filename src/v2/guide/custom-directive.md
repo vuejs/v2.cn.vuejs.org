@@ -143,36 +143,69 @@ new Vue({
 </script>
 {% endraw %}
 
-指令的参数可以是动态的。例如，在 `v-mydirective:argument=[dataproperty]` 中，`argument` 是一个赋值给这个指令钩子 `binding` 参数中的 *arg* property 的字符串，同时 `dataproperty` 是一个引用到组件实例上并赋值给同一个 *binding* 参数中的 *value* property 的 data property。当指令钩子被调用的时候，`binding` 参数中的 *value* property 会基于 `dataproperty` 的值动态改变。
+### 动态指令参数
 
-一个使用了动态参数的自定义指令的例子如下：
+指令的参数可以是动态的。例如，在 `v-mydirective:[argument]="value"` 中，`argument` 是可以根据我们组件实例中数据的 property 进行更新的！这使得自定义指令可以在应用中被灵活使用。
+
+例如你想要做一个自定义指令，可以通过固定布局将元素固定在页面上。我们可以像这样创建一个通过该值来更新竖直位置像素值的自定义指令：
 
 ```html
-<div id="app">
+<div id="baseexample">
   <p>Scroll down the page</p>
-  <p v-tack:left="[dynamicleft]">I’ll now be offset from the left instead of the top</p>
+  <p v-pin="200">Stick me 200px from the top of the page</p>
 </div>
 ```
 
 ```js
-Vue.directive('tack', {
-  bind(el, binding, vnode) {
-    el.style.position = 'fixed';
-    const s = (binding.arg == 'left' ? 'left' : 'top');
-    el.style[s] = binding.value + 'px';
+Vue.directive('pin', {
+  bind: function (el, binding, vnode) {
+    el.style.position = 'fixed'
+    el.style.top = binding.value + 'px'
   }
 })
 
-// start app
 new Vue({
-  el: '#app',
-  data() {
+  el: '#baseexample'
+})
+```
+
+这会把该元素固定在页面顶部 200 像素的位置。但如果场景是我们需要把元素固定在左侧而不是顶部又该怎么办呢？这里有一个动态参数，可以非常方便地根据每个组件实例更新。
+
+```html
+<div id="dynamicexample">
+  <h3>Scroll down inside this section ↓</h3>
+  <p v-pin:[direction]="200">I am pinned onto the page at 200px to the left.</p>
+</div>
+```
+
+```js
+Vue.directive('pin', {
+  bind: function (el, binding, vnode) {
+    el.style.position = 'fixed'
+    var s = (binding.arg == 'left' ? 'left' : 'top')
+    el.style[s] = binding.value + 'px'
+  }
+})
+
+new Vue({
+  el: '#dynamicexample',
+  data: function () {
     return {
-      dynamicleft: 500
+      direction: 'left'
     }
   }
 })
 ```
+
+结果：
+{% raw %}
+<iframe height="200" style="width: 100%;" class="demo" scrolling="no" title="Dynamic Directive Arguments" src="//codepen.io/team/Vue/embed/rgLLzb/?height=300&theme-id=32763&default-tab=result" frameborder="no" allowtransparency="true" allowfullscreen="true">
+  查看 <a href='https://codepen.io'>CodePen</a> 上 Vue
+  (<a href='https://codepen.io/Vue'>@Vue</a>) 的例子 <a href='https://codepen.io/team/Vue/pen/rgLLzb/'>Dynamic Directive Arguments</a>.
+</iframe>
+{% endraw %}
+
+自定义指令现在的灵活性足以支持一些不同的用例。
 
 ## 函数简写
 
