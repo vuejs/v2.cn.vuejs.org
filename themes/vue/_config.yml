@@ -14,10 +14,6 @@ special_sponsors:
     description: 几分钟内在云端构建发布 API，免费试用。
 platinum_sponsors:
   - url: >-
-      https://moduscreate.com/?utm_source=Vue&utm_medium=Partnership&utm_campaign=VueShip
-    img: modus.png
-    name: Modus
-  - url: >-
       https://bit.dev/?utm_source=vue&utm_medium=vue&utm_campaign=vue&utm_term=vue&utm_content=vue
     img: bit.png
     name: Bit
@@ -116,6 +112,9 @@ gold_sponsors:
   - url: 'https://www.y8.com/'
     img: y8.png
     name: Y8
+  - url: 'https://js.devexpress.com/'
+    img: devexpress.png
+    name: DevExpress
 silver_sponsors:
   - url: 'https://dopamine.bg/'
     img: dopamine.png
