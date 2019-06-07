@@ -1432,7 +1432,7 @@ computed: {
 
 ### 指令缩写 <sup data-p="b">强烈推荐</sup>
 
-**指令缩写 (用 `:` 表示 `v-bind:` 和用 `@` 表示 `v-on:`) 应该要么都用要么都不用。**
+**指令缩写 (用 `:` 表示 `v-bind:` 、用 `@` 表示 `v-on:` 和用 `#` 表示 `v-slot`) 应该要么都用要么都不用。**
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
 #### 反例
@@ -1449,6 +1449,16 @@ computed: {
   v-on:input="onInput"
   @focus="onFocus"
 >
+```
+
+``` html
+<template v-slot:header>
+  <h1>Here might be a page title</h1> 
+</template>
+
+<template #footer>
+  <p>Here's some contact info</p>
+</template>
 ```
 {% raw %}</div>{% endraw %}
 
@@ -1481,6 +1491,26 @@ computed: {
   v-on:input="onInput"
   v-on:focus="onFocus"
 >
+```
+
+``` html
+<template v-slot:header>
+  <h1>Here might be a page title</h1> 
+</template>
+
+<template v-slot:footer>
+  <p>Here's some contact info</p>
+</template>
+```
+
+``` html
+<template #header>
+  <h1>Here might be a page title</h1> 
+</template>
+
+<template #footer>
+  <p>Here's some contact info</p>
+</template>
 ```
 {% raw %}</div>{% endraw %}
 
