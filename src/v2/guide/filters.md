@@ -10,7 +10,7 @@ Vue.js 允许你自定义过滤器，可被用于一些常见的文本格式化�
 <!-- 在双花括号中 -->
 {{ message | capitalize }}
 
-<!-- 在 `v-bind` 中 -->
+<!-- 在 v-bind 中 -->
 <div v-bind:id="rawId | formatId"></div>
 ```
 
