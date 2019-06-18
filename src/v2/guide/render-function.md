@@ -632,7 +632,8 @@ Vue.component('my-functional-button', {
 ## 模板编译
 
 你可能会有兴趣知道，Vue 的模板实际上被编译成了渲染函数。这是一个实现细节，通常不需要关心。但如果你想看看模板的功能具体是怎样被编译的，可能会发现会非常有意思。下面是一个使用 `Vue.compile` 来实时编译模板字符串的简单示例：
-
+```html
 {% raw %}
 <script async src="https://jsfiddle.net/phanan/5h0wx9np/embed/result,js,html/"></script>
 {% endraw %}
+```
