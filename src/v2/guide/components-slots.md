@@ -23,12 +23,12 @@ Vue 实现了一套内容分发的 API，这套 API 的设计灵感源自 [Web C
 然后你在 `<navigation-link>` 的模板中可能会写为：
 
 ``` html
-<a
+<navigation-link
   v-bind:href="url"
   class="nav-link"
 >
   <slot></slot>
-</a>
+</navigation-link>
 ```
 
 当组件渲染的时候，`<slot></slot>` 将会被替换为“Your Profile”。插槽内可以包含任何模板代码，包括 HTML：
