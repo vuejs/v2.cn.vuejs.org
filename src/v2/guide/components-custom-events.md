@@ -129,6 +129,35 @@ Vue.component('base-input', {
 })
 ```
 
+或者，我们可以使用es6的展开语法(Spread syntax)来简化代码：
+
+```js
+Vue.component('base-input', {
+  inheritAttrs: false,
+  props: ['label', 'value'],
+  computed: {
+    inputListeners: function () {
+      return {
+        // Pass all component listeners directly to input
+        ...this.$listeners,
+        // Override input listener to work with v-model
+        input: event => this.$emit('input', event.target.value)
+      }
+    }
+  },
+  template: `
+    <label>
+      {{ label }}
+      <input
+        v-bind="$attrs"
+        v-bind:value="value"
+        v-on="inputListeners"
+      >
+    </label>
+  `
+})
+```
+
 现在 `<base-input>` 组件是一个**完全透明的包裹器**了，也就是说它可以完全像一个普通的 `<input>` 元素一样使用了：所有跟它相同的特性和监听器的都可以工作。
 
 ## `.sync` 修饰符
