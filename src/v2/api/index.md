@@ -1580,6 +1580,35 @@ type: api
   // 立即以 `a` 的当前值触发回调
   ```
 
+  注意在带有 `immediate` 选项时，你不能在第一次回调时取消关注给定的 property。
+
+  ``` js
+  // 这会导致报错
+  var unwatch = vm.$watch(
+    'value',
+    function () {
+      doSomething()
+      unwatch()
+    },
+    { immediate: true }
+  )
+  ```
+
+  如果你仍然希望在回调内部调用一个取消关注的函数，你应该先检查其函数的可用性：
+
+  ``` js
+  var unwatch = vm.$watch(
+    'value',
+    function () {
+      doSomething()
+      if (unwatch) {
+        unwatch()
+      }
+    },
+    { immediate: true }
+  )
+  ```
+
 ### vm.$set( target, propertyName/index, value )
 
 - **参数**：
