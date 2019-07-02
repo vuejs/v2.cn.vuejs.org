@@ -198,6 +198,7 @@ new Vue({
 ```
 
 结果：
+
 {% raw %}
 <iframe height="200" style="width: 100%;" class="demo" scrolling="no" title="Dynamic Directive Arguments" src="//codepen.io/team/Vue/embed/rgLLzb/?height=300&theme-id=32763&default-tab=result" frameborder="no" allowtransparency="true" allowfullscreen="true">
   查看 <a href='https://codepen.io'>CodePen</a> 上 Vue
