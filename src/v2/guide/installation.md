@@ -27,9 +27,9 @@ Vue **不支持** IE8 及以下版本，因为 Vue 使用了 IE8 无法模拟的
 <p class="tip">在开发环境下不要使用压缩版本，不然你就失去了所有常见错误相关的警告!</p>
 
 <div id="downloads">
-  <a class="button" href="https://vuejs.org/js/vue.js" download>开发版本</a><span class="light info">包含完整的警告和调试模式</span>
+  <a class="button" href="https://cn.vuejs.org/js/vue.js" download>开发版本</a><span class="light info">包含完整的警告和调试模式</span>
 
-  <a class="button" href="https://vuejs.org/js/vue.min.js" download>生产版本</a><span class="light info">删除了警告，{{gz_size}}KB min+gzip</span>
+  <a class="button" href="https://cn.vuejs.org/js/vue.min.js" download>生产版本</a><span class="light info">删除了警告，{{gz_size}}KB min+gzip</span>
 </div>
 
 ### CDN
