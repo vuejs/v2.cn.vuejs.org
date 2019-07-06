@@ -488,7 +488,7 @@ scrollBehavior: function (to, from, savedPosition) {
 {% raw %}
 <div class="upgrade-path">
   <h4>升级路径</h4>
-  <p>运行 <a href="https://github.com/vuejs/vue-migration-helper">迁移路径</a> 找到 <code>beforeRouteEnter</code> 钩子的示例。</p>
+  <p>运行 <a href="https://github.com/vuejs/vue-migration-helper">迁移路径</a> 找到 <code>activate</code> 钩子的示例。</p>
 </div>
 {% endraw %}
 
