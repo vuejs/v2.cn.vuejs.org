@@ -135,18 +135,18 @@ Mustache 语法不能作用在 HTML 特性上，遇到这种情况应该使用 [
 从 2.6.0 开始，可以用方括号括起来的 JavaScript 表达式作为一个指令的参数：
 
 ``` html
-<a v-bind:[attributeName]="url"> ... </a>
+<a v-bind:[attribute_name]="url"> ... </a>
 ```
 
-这里的 `attributeName` 会被作为一个 JavaScript 表达式进行动态求值，求得的值将会作为最终的参数来使用。例如，如果你的 Vue 实例有一个 `data` 属性 `attributeName`，其值为 `"href"`，那么这个绑定将等价于 `v-bind:href`。
+这里的 `attribute_name` 会被作为一个 JavaScript 表达式进行动态求值，求得的值将会作为最终的参数来使用。例如，如果你的 Vue 实例有一个 `data` 属性 `attribute_name`，其值为 `"href"`，那么这个绑定将等价于 `v-bind:href`。
 
 同样地，你可以使用动态参数为一个动态的事件名绑定处理函数：
 
 ``` html
-<a v-on:[eventName]="doSomething"> ... </a>
+<a v-on:[event_name]="doSomething"> ... </a>
 ```
 
-同样地，当 `eventName` 的值为 `"focus"` 时，`v-on:[eventName]` 将等价于 `v-on:focus`。
+同样地，当 `event_name` 的值为 `"focus"` 时，`v-on:[event_name]` 将等价于 `v-on:focus`。
 
 #### 对动态参数的值的约束
 
