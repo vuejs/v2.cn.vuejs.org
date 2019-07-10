@@ -6,6 +6,8 @@ order: 101
 
 > 该页面假设你已经阅读过了[组件基础](components.html)。如果你还对组件不太了解，推荐你先阅读它。
 
+<div class="vueschool"><a href="https://vueschool.io/lessons/global-vs-local-components?friend=vuejs" target="_blank" rel="noopener" title="Free Vue.js Component Registration lesson">Watch a free video lesson on Vue School</a></div>
+
 ## 组件名
 
 在注册一个组件的时候，我们始终需要给它一个名字。比如在全局注册的时候我们已经看到了：
