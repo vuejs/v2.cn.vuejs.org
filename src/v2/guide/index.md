@@ -287,6 +287,7 @@ Vue.component('todo-item', {
 })
 ```
 
+
 现在你可以用它构建另一个组件模板：
 
 ``` html
@@ -328,6 +329,7 @@ Vue.component('todo-item', {
 </div>
 ```
 
+注意，Vue的组件注册要写在Vue实例之前。
 ``` js
 Vue.component('todo-item', {
   props: ['todo'],
