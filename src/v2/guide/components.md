@@ -4,6 +4,8 @@ type: guide
 order: 11
 ---
 
+<div class="vueschool"><a href="https://vueschool.io/courses/vuejs-components-fundamentals?friend=vuejs" target="_blank" rel="noopener" title="Free Vue.js Components Fundamentals Course">Watch a free video course on Vue School</a></div>
+
 ## 基本示例
 
 这里有一个 Vue 组件的示例：
