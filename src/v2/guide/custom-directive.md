@@ -176,7 +176,7 @@ new Vue({
 ```html
 <div id="dynamicexample">
   <h3>Scroll down inside this section ↓</h3>
-  <p v-pin:[direction]="200">I am pinned onto the page at 200px to the left.</p>
+  <p v-pin:[direction]="200">I am pinned onto the page at 200px to the {{direction}}.</p>
 </div>
 ```
 
