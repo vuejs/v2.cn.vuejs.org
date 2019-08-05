@@ -1,12 +1,14 @@
 <div id="sidebar-sponsors-special">
   <div class="main-sponsor">
-    <%_ var sponsor = theme.platinum_sponsors_china[0]; if (sponsor) { _%>
+    <%_ if (theme.platinum_sponsors_china.length) { _%>
     <span>特别赞助商</span>
+    <%_ for (const sponsor of theme.platinum_sponsors_china) { _%>
     <div>
       <a href="<%- sponsor.url %>" target="_blank" class="logo">
       <img src="<%- url_for(`/images/${sponsor.ad_img || sponsor.img}`) %>" alt="<%-sponsor.name-%>">
     </a>
     </div>
+    <%_ } _%>
     <%_ } else { _%>
     <a class="become-backer" href="/support-vuejs/#special-sponsor-china">
       特别赞助商广告位
