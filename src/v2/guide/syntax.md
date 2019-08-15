@@ -100,7 +100,7 @@ Mustache 语法不能作用在 HTML 特性上，遇到这种情况应该使用 [
 {{ if (ok) { return message } }}
 ```
 
-<p class="tip">模板表达式都被放在沙盒中，只能访问全局变量的一个白名单，如 `Math` 和 `Date` 。你不应该在模板表达式中试图访问用户定义的全局变量。</p>
+<p class="tip">模板表达式都被放在沙盒中，只能访问[全局变量的一个白名单](https://github.com/vuejs/vue/blob/v2.6.10/src/core/instance/proxy.js#L9)，如 `Math` 和 `Date` 。你不应该在模板表达式中试图访问用户定义的全局变量。</p>
 
 ## 指令
 
