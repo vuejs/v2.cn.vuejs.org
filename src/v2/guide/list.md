@@ -506,7 +506,7 @@ methods: {
   </form>
   <ul>
     <li
-      is="todo-item"
+      id="todo-item"
       v-for="(todo, index) in todos"
       v-bind:key="todo.id"
       v-bind:title="todo.title"
