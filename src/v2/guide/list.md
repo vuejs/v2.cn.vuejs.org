@@ -6,7 +6,7 @@ order: 8
 
 ## 用 `v-for` 把一个数组对应为一组元素
 
-<div class="vueschool"><a href="https://learning.dcloud.io/#/?vid=9" target="_blank" rel="noopener" title="Vue.js教程-列表渲染"><span>观看本节的视频讲解</span><span>，并使用HBuilderX实际编码体验</span></a></div>
+<div class="vueschool"><a href="https://learning.dcloud.io/#/?vid=9" target="_blank" rel="noopener" title="Vue.js教程-列表渲染">观看本节视频讲解</a></div>
 
 我们可以用 `v-for` 指令基于一个数组来渲染一个列表。`v-for` 指令需要使用 `item in items` 形式的特殊语法，其中 `items` 是源数据数组，而 `item` 则是被迭代的数组元素的**别名**。
 

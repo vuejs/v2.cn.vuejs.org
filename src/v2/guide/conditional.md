@@ -6,7 +6,7 @@ order: 7
 
 ## `v-if`
 
-<div class="vueschool"><a href="https://learning.dcloud.io/#/?vid=8" target="_blank" rel="noopener" title="Vue.js教程-条件渲染"><span>观看本节的视频讲解</span><span>，并使用HBuilderX实际编码体验</span></a></div>
+<div class="vueschool"><a href="https://learning.dcloud.io/#/?vid=8" target="_blank" rel="noopener" title="Vue.js教程-条件渲染">观看本节视频讲解</a></div>
 
 `v-if` 指令用于条件性地渲染一块内容。这块内容只会在指令的表达式返回 truthy 值的时候被渲染。
 
