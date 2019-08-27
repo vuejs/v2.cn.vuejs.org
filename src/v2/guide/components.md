@@ -4,9 +4,10 @@ type: guide
 order: 11
 ---
 
-<div class="vueschool"><a href="https://vueschool.io/courses/vuejs-components-fundamentals?friend=vuejs" target="_blank" rel="noopener" title="Free Vue.js Components Fundamentals Course">Watch a free video course on Vue School</a></div>
 
 ## 基本示例
+
+<div class="vueschool"><a href="https://learning.dcloud.io/#/?vid=12" target="_blank" rel="noopener" title="Vue.js教程-组件基础">观看本节视频讲解</a></div>
 
 这里有一个 Vue 组件的示例：
 

@@ -6,6 +6,8 @@ order: 3
 
 ## 创建一个 Vue 实例
 
+<div class="vueschool"><a href="https://learning.dcloud.io/#/?vid=2" target="_blank" rel="noopener" title="Vue.js教程-创建第一个vue应用">观看本节视频讲解</a></div>
+
 每个 Vue 应用都是通过用 `Vue` 函数创建一个新的 **Vue 实例**开始的：
 
 ```js
@@ -34,6 +36,8 @@ var vm = new Vue({
 我们会在稍后的[组件系统](components.html)章节具体展开。不过现在，你只需要明白所有的 Vue 组件都是 Vue 实例，并且接受相同的选项对象 (一些根实例特有的选项除外)。
 
 ## 数据与方法
+
+<div class="vueschool"><a href="https://learning.dcloud.io/#/?vid=3" target="_blank" rel="noopener" title="Vue.js教程-数据与方法">观看本节视频讲解</a></div>
 
 当一个 Vue 实例被创建时，它将 `data` 对象中的所有的属性加入到 Vue 的**响应式系统**中。当这些属性的值发生改变时，视图将会产生“响应”，即匹配更新为新的值。
 
@@ -122,7 +126,7 @@ vm.$watch('a', function (newValue, oldValue) {
 
 ## 实例生命周期钩子
 
-<div class="vueschool"><a href="https://vueschool.io/lessons/understanding-the-vuejs-lifecycle-hooks?friend=vuejs" target="_blank" rel="noopener" title="Free Vue.js Lifecycle Hooks Lesson">Watch a free lesson on Vue School</a></div>
+<div class="vueschool"><a href="https://learning.dcloud.io/#/?vid=4" target="_blank" rel="noopener" title="Vue.js教程-生命周期">观看本节视频讲解</a></div>
 
 每个 Vue 实例在被创建时都要经过一系列的初始化过程——例如，需要设置数据监听、编译模板、将实例挂载到 DOM 并在数据变化时更新 DOM 等。同时在这个过程中也会运行一些叫做**生命周期钩子**的函数，这给了用户在不同阶段添加自己的代码的机会。
 

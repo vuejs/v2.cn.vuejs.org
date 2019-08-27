@@ -6,6 +6,8 @@ order: 9
 
 ## 监听事件
 
+<div class="vueschool"><a href="https://learning.dcloud.io/#/?vid=10" target="_blank" rel="noopener" title="Vue.js教程-事件绑定">观看本节视频讲解</a></div>
+
 可以用 `v-on` 指令监听 DOM 事件，并在触发时运行一些 JavaScript 代码。
 
 示例：

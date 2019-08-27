@@ -22,6 +22,8 @@ Vue **不支持** IE8 及以下版本，因为 Vue 使用了 IE8 无法模拟的
 
 ## 直接用 `<script>` 引入
 
+<div class="vueschool" style=""><a href="https://learning.dcloud.io/#/?vid=1" target="_blank" rel="noopener" title="Vue.js教程-安装与部署">观看本节视频讲解</a></div>
+
 直接下载并用 `<script>` 标签引入，`Vue` 会被注册为一个全局变量。
 
 <p class="tip">在开发环境下不要使用压缩版本，不然你就失去了所有常见错误相关的警告!</p>
