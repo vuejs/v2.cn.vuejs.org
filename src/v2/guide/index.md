@@ -289,6 +289,8 @@ var app6 = new Vue({
 Vue.component('todo-item', {
   template: '<li>这是个待办项</li>'
 })
+
+var app = new Vue(...)
 ```
 
 现在你可以用它构建另一个组件模板：
