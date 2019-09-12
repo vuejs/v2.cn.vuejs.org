@@ -20,7 +20,7 @@
           <%- partial('icons/play') %>
           WHY VUE.JS?</a>
         <a class="button white" href="<%- url_for("/v2/guide/") %>">起步</a>
-        <a class="button gray has-icon" href="https://github.com/vuejs/vue" target="_blank">
+        <a class="button gray has-icon" href="https://github.com/vuejs/vue" target="_blank" rel="noopener">
           <%- partial('icons/github-dark') %>
           GITHUB</a>
       </p>
@@ -31,7 +31,7 @@
 <div id="special-sponsor">
   <h3>特别赞助</h3>
   <%_ for (const sponsor of theme.platinum_sponsors_china) { _%>
-  <a href="<%- sponsor.url %>" target="_blank">
+  <a href="<%- sponsor.url %>" target="_blank" rel="noopener">
     <img src="<%- url_for(`/images/${sponsor.img}`) %>" style="width:200px">
   </a>
   <%_ } _%>
@@ -80,6 +80,7 @@
       id="revue-form"
       name="revue-form"
       target="_blank"
+      rel="noopener"
       action="https://www.getrevue.co/profile/vuenewsletter/add_subscriber"
       method="post"
       @submit="subscribe"
@@ -101,24 +102,24 @@
       >
     </form>
     <p>
-      你可以在 <a href="https://news.vuejs.org" target="_blank">news.vuejs.org</a> 翻阅往期的 issue，也可以收听 podcast。
+      你可以在 <a href="https://news.vuejs.org" target="_blank" rel="noopener">news.vuejs.org</a> 翻阅往期的 issue，也可以收听 podcast。
     </p>
   </div>
 </div>
 
 <div id="footer">
   <p>
-    <a class="social-icon" href="https://github.com/vuejs/vue" target="_blank">
+    <a class="social-icon" href="https://github.com/vuejs/vue" target="_blank" rel="noopener">
       <%- partial('icons/github') %>
     </a>
-    <a class="social-icon" href="https://twitter.com/vuejs" target="_blank">
+    <a class="social-icon" href="https://twitter.com/vuejs" target="_blank" rel="noopener">
       <%- partial('icons/twitter') %>
     </a>
-    <a class="social-icon" href="https://medium.com/the-vue-point" target="_blank">
+    <a class="social-icon" href="https://medium.com/the-vue-point" target="_blank" rel="noopener">
       <%- partial('icons/medium') %>
     </a>
   </p>
-  <p>遵循 <a href="https://opensource.org/licenses/MIT" target="_blank">MIT 开源协议</a><br>
+  <p>遵循 <a href="https://opensource.org/licenses/MIT" target="_blank" rel="noopener">MIT 开源协议</a><br>
   Copyright &copy; 2014-<%- new Date().getFullYear() %> Evan You</p>
 </div>
 

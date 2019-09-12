@@ -4,7 +4,7 @@
     <span>特别赞助商</span>
     <%_ for (const sponsor of theme.platinum_sponsors_china) { _%>
     <div>
-      <a href="<%- sponsor.url %>" target="_blank" class="logo">
+    <a href="<%- sponsor.url %>" target="_blank" rel="noopener" class="logo">
       <img src="<%- url_for(`/images/${sponsor.ad_img || sponsor.img}`) %>" alt="<%-sponsor.name-%>">
     </a>
     </div>
