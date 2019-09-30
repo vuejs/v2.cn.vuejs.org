@@ -6,7 +6,7 @@ order: 401
 
 ## 介绍
 
-<div class="vueschool"><a href="https://vueschool.io/lessons/introduction-to-single-file-components?friend=vuejs" target="_blank" rel="noopener" title="Free Vue.js Single File Components lesson">Watch a free video lesson on Vue School</a></div>
+<div class="vueschool" style=""><a href="https://learning.dcloud.io/#/?vid=14" target="_blank" rel="noopener" title="Vue.js教程-单文件组件">观看本节视频讲解</a></div>
 
 在很多 Vue 项目中，我们使用 `Vue.component` 来定义全局组件，紧接着用 `new Vue({ el: '#container '})` 在每个页面内指定一个容器元素。
 
