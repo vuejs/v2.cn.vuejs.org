@@ -6,7 +6,7 @@ order: 101
 
 > 该页面假设你已经阅读过了[组件基础](components.html)。如果你还对组件不太了解，推荐你先阅读它。
 
-<div class="vueschool" style=""><a href="https://learning.dcloud.io/#/?vid=13" target="_blank" rel="noopener" title="Vue.js教程-组件注册">观看本节视频讲解</a></div>
+<div class="vueschool" style=""><a href="https://learning.dcloud.io/#/?vid=13" target="_blank" rel="sponsored noopener" title="Vue.js教程-组件注册">观看本节视频讲解</a></div>
 
 ## 组件名
 

@@ -126,7 +126,11 @@ vm.$watch('a', function (newValue, oldValue) {
 
 ## 实例生命周期钩子
 
+<<<<<<< HEAD
 <div class="vueschool"><a href="https://learning.dcloud.io/#/?vid=4" target="_blank" rel="noopener" title="Vue.js 教程 - 生命周期">观看本节视频讲解</a></div>
+=======
+<div class="vueschool"><a href="https://vueschool.io/lessons/understanding-the-vuejs-lifecycle-hooks?friend=vuejs" target="_blank" rel="sponsored noopener" title="Free Vue.js Lifecycle Hooks Lesson">Watch a free lesson on Vue School</a></div>
+>>>>>>> 57419054... chore: add rel=sponsor to partner links (#2316)
 
 每个 Vue 实例在被创建时都要经过一系列的初始化过程——例如，需要设置数据监听、编译模板、将实例挂载到 DOM 并在数据变化时更新 DOM 等。同时在这个过程中也会运行一些叫做**生命周期钩子**的函数，这给了用户在不同阶段添加自己的代码的机会。
 
