@@ -14,11 +14,7 @@ special_sponsors:
     description: 几分钟内在云端构建发布 API，免费试用。
 platinum_sponsors:
   - url: >-
-      https://moduscreate.com/?utm_source=Vue&utm_medium=Partnership&utm_campaign=VueShip
-    img: modus.png
-    name: Modus
-  - url: >-
-      https://www.bitsrc.io/?utm_source=vue&utm_medium=vue&utm_campaign=vue&utm_term=vue&utm_content=vue
+      https://bit.dev/?utm_source=vue&utm_medium=vue&utm_campaign=vue&utm_term=vue&utm_content=vue
     img: bit.png
     name: Bit
   - url: 'http://tooltwist.com/'
@@ -35,6 +31,9 @@ platinum_sponsors:
       https://www.nativescript.org/vue?utm_source=vue-js-org&utm_medium=website&utm_campaign=nativescript-awareness
     img: nativescript.png
     name: NativeScript
+  - url: 'https://teeplusplusclth.com/'
+    img: tee__.png
+    name: Tee++
 gold_sponsors:
   - url: 'https://www.vuemastery.com/'
     img: vuemastery.png
@@ -54,9 +53,6 @@ gold_sponsors:
   - url: 'https://onsen.io/vue/'
     img: onsen_ui.png
     name: Onsen UI
-  - url: 'https://vuetifyjs.com'
-    img: vuetify.png
-    name: Vuetify
   - url: 'https://neds.com.au/'
     img: neds.png
     name: Neds
@@ -94,9 +90,6 @@ gold_sponsors:
   - url: 'https://passionatepeople.io/'
     img: passionate_people.png
     name: Passionate People
-  - url: 'https://www.bestvpn.co/'
-    img: bestvpn_co.png
-    name: BestVPN.co
   - url: 'http://en.shopware.com/'
     img: shopware_ag.png
     name: shopware AG
@@ -110,6 +103,30 @@ gold_sponsors:
   - url: 'https://www.simplyswitch.com/'
     img: energy_comparison.png
     name: Energy Comparison
+  - url: 'https://www.bacancytechnology.com'
+    img: bacancy_technology.png
+    name: Bacancy Technology
+  - url: 'https://www.bestvpn.co/'
+    img: bestvpn_co.png
+    name: BestVPN.co
+  - url: 'https://blokt.com/'
+    img: blokt_cryptocurrency_news.png
+    name: Blokt Cryptocurrency News
+  - url: 'https://www.jqwidgets.com/vue/'
+    img: jqwidgets_ltd.png
+    name: jQWidgets LTD
+  - url: 'https://www.y8.com/'
+    img: y8.png
+    name: Y8
+  - url: 'https://js.devexpress.com/'
+    img: devexpress.png
+    name: DevExpress
+  - url: 'https://fastcoding.jp/javascript/ '
+    img: fastcoding_inc.svg
+    name: FASTCODING Inc
+  - url: 'https://usave.co.uk/utilities/broadband'
+    img: usave.png
+    name: usave
 silver_sponsors:
   - url: 'https://dopamine.bg/'
     img: dopamine.png
