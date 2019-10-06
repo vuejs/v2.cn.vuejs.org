@@ -5,6 +5,8 @@ vue_version: 2.5.16
 platinum_sponsors_china:
   - url: 'http://www.dcloud.io/?hmsr=vuejsorg&hmpl=&hmcu=&hmkw=&hmci='
     img: dcloud.gif
+  - url: 'https://youzan.github.io/vant?source=vuejsorg'
+    img: vant.png
 video_sponsors_china:
   - url: http://cloud.youku.com/index.php?source=vuejs
     img: youku.png
@@ -17,9 +19,6 @@ platinum_sponsors:
       https://bit.dev/?utm_source=vue&utm_medium=vue&utm_campaign=vue&utm_term=vue&utm_content=vue
     img: bit.png
     name: Bit
-  - url: 'http://tooltwist.com/'
-    img: tooltwist.png
-    name: Tooltwist
   - url: >-
       https://vueschool.io/?utm_source=Vuejs.org&utm_medium=Banner&utm_campaign=Sponsored%20Banner&utm_content=V1
     img: vueschool.png
@@ -31,9 +30,9 @@ platinum_sponsors:
       https://www.nativescript.org/vue?utm_source=vue-js-org&utm_medium=website&utm_campaign=nativescript-awareness
     img: nativescript.png
     name: NativeScript
-  - url: 'https://teeplusplusclth.com/'
-    img: tee__.png
-    name: Tee++
+  - url: 'https://retool.com/?utm_source=sponsor&utm_campaign=vue'
+    img: retool.png
+    name: Retool
 gold_sponsors:
   - url: 'https://www.vuemastery.com/'
     img: vuemastery.png
@@ -48,8 +47,8 @@ gold_sponsors:
     img: html_burger.png
     name: HTML Burger
   - url: 'https://www.frontenddeveloperlove.com/'
-    img: frontend_love.png
-    name: Frontend Love
+    img: frontendlove.png
+    name: FrontendLove
   - url: 'https://onsen.io/vue/'
     img: onsen_ui.png
     name: Onsen UI
@@ -62,16 +61,9 @@ gold_sponsors:
   - url: 'https://vuejobs.com/?ref=vuejs'
     img: vuejobs.png
     name: VueJobs
-  - url: 'https://www.valuecoders.com'
-    img: valuecoders.png
-    name: ValueCoders
   - url: 'https://tidelift.com/subscription/npm/vue'
     img: tidelift.png
     name: Tidelift
-  - url: >-
-      http://www.syncfusion.com/?utm_source=vuejs&utm_medium=list&utm_campaign=vuejsjslistcy19
-    img: syncfusion.png
-    name: SyncFusion
   - url: 'https://opteo.com/vue'
     img: opteo.png
     name: Opteo
@@ -84,19 +76,12 @@ gold_sponsors:
   - url: 'https://intygrate.com/'
     img: intygrate.png
     name: Intygrate
-  - url: 'https://isleofcode.com/'
-    img: isle_of_code.png
-    name: Isle of Code
   - url: 'https://passionatepeople.io/'
     img: passionate_people.png
     name: Passionate People
   - url: 'http://en.shopware.com/'
     img: shopware_ag.png
     name: shopware AG
-  - url: >-
-      https://x-team.com/join/?utm_source=vuejsorg&utm_medium=sponsor&utm_campaign=vuejsorg-patreon
-    img: x_team.png
-    name: X-Team
   - url: 'https://www.vpnranks.com/'
     img: vpnranks.png
     name: VPNRanks
@@ -112,9 +97,6 @@ gold_sponsors:
   - url: 'https://blokt.com/'
     img: blokt_cryptocurrency_news.png
     name: Blokt Cryptocurrency News
-  - url: 'https://www.jqwidgets.com/vue/'
-    img: jqwidgets_ltd.png
-    name: jQWidgets LTD
   - url: 'https://www.y8.com/'
     img: y8.png
     name: Y8
@@ -127,14 +109,17 @@ gold_sponsors:
   - url: 'https://usave.co.uk/utilities/broadband'
     img: usave.png
     name: usave
+  - url: 'https://www.dailynow.co/'
+    img: daily.png
+    name: Daily
+  - url: 'https://storekit.com'
+    img: storekit.png
+    name: StoreKit
 silver_sponsors:
   - url: 'https://dopamine.bg/'
     img: dopamine.png
     name: Dopamine
 bronze_sponsors:
-  - url: 'http://tighten.co/'
-    img: tighten_co.png
-    name: Tighten.co
   - url: 'https://www.accelebrate.com/'
     img: accelebrate.png
     name: Accelebrate

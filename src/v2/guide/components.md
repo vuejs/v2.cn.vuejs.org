@@ -4,7 +4,10 @@ type: guide
 order: 11
 ---
 
+
 ## 基本示例
+
+<div class="vueschool"><a href="https://learning.dcloud.io/#/?vid=12" target="_blank" rel="noopener" title="Vue.js 教程 - 组件基础">观看本节视频讲解</a></div>
 
 这里有一个 Vue 组件的示例：
 

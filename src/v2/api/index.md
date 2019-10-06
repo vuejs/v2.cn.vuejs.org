@@ -1390,8 +1390,7 @@ type: api
 
   用来访问被[插槽分发](../guide/components.html#通过插槽分发内容)的内容。每个[具名插槽](../guide/components-slots.html#具名插槽) 有其相应的属性 (例如：`v-slot:foo` 中的内容将会在 `vm.$slots.foo` 中被找到)。`default` 属性包括了所有没有被包含在具名插槽中的节点，或 `v-slot:default` 的内容。
 
-  <!-- todo: translation -->
-  **Note:** `v-slot:foo` is supported in v2.6+. For older versions, you can use the [deprecated syntax](../guide/components-slots.html#Deprecated-Syntax).
+  **注意:** `v-slot:foo` 在 2.6 以上的版本才支持。对于之前的版本，你可以使用[废弃了的语法](../guide/components-slots.html#废弃了的语法).
 
   在使用[渲染函数](../guide/render-function.html)书写一个组件时，访问 `vm.$slots` 最有帮助。
 
@@ -1578,6 +1577,35 @@ type: api
     immediate: true
   })
   // 立即以 `a` 的当前值触发回调
+  ```
+
+  注意在带有 `immediate` 选项时，你不能在第一次回调时取消侦听给定的 property。
+
+  ``` js
+  // 这会导致报错
+  var unwatch = vm.$watch(
+    'value',
+    function () {
+      doSomething()
+      unwatch()
+    },
+    { immediate: true }
+  )
+  ```
+
+  如果你仍然希望在回调内部调用一个取消侦听的函数，你应该先检查其函数的可用性：
+
+  ``` js
+  var unwatch = vm.$watch(
+    'value',
+    function () {
+      doSomething()
+      if (unwatch) {
+        unwatch()
+      }
+    },
+    { immediate: true }
+  )
   ```
 
 ### vm.$set( target, propertyName/index, value )

@@ -6,6 +6,8 @@ order: 3
 
 ## 基本的示例
 
+<div class="vueschool"><a href="https://vueschool.io/lessons/vuejs-form-validation-diy?friend=vuejs" target="_blank" rel="noopener" title="Free Vue.js Form Validation Lesson">Watch a free lesson on Vue School</a></div>
+
 表单校验是浏览器原生支持的，但是有的时候用不同的浏览器处理起来需要一些小技巧。即使当表单校验已经被完美支持，你也还是有很多时候需要进行自定义的校验。这时一个更加手动的基于 Vue 的解决方案可能会更适合。我们来看一个简单的示例。
 
 给定一个表单，包含三个字段，其中两个是必填项。我们先来看看 HTML：
@@ -427,4 +429,4 @@ const app = new Vue({
 这份秘笈专注在“手动”校验表单，当然一些非常棒的 Vue 的库会为你搞定这些事情。使用一些预打包的库可能会影响你的应用最终的体积，但是好处是非常多的。这里有经过充分测试且保持日常更新的代码。其中包括以下 Vue 的表单校验库：
 
 * [vuelidate](https://github.com/monterail/vuelidate)
-* [VeeValidate](http://vee-validate.logaretm.com/)
+* [VeeValidate](https://logaretm.github.io/vee-validate/)

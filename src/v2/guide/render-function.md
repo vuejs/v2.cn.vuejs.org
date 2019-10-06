@@ -517,6 +517,8 @@ Vue.component('my-component', {
 ```
 
 > 注意：在 2.3.0 之前的版本中，如果一个函数式组件想要接收 prop，则 `props` 选项是必须的。在 2.3.0 或以上的版本中，你可以省略 `props` 选项，所有组件上的特性都会被自动隐式解析为 prop。
+> 
+> 当使用函数式组件时，该引用将会是 HTMLElement，因为他们是无状态的也是无实例的。
 
 在 2.5.0 及以上版本中，如果你使用了[单文件组件](single-file-components.html)，那么基于模板的函数式组件可以这样声明：
 
@@ -531,7 +533,7 @@ Vue.component('my-component', {
 - `children`: VNode 子节点的数组
 - `slots`: 一个函数，返回了包含所有插槽的对象
 - `scopedSlots`: (2.6.0+) 一个暴露传入的作用域插槽的对象。也以函数形式暴露普通插槽。
-- `data`：传递给组件的整个[数据对象](#深入-data-对象)，作为 `createElement` 的第二个参数传入组件
+- `data`：传递给组件的整个[数据对象](#深入数据对象)，作为 `createElement` 的第二个参数传入组件
 - `parent`：对父组件的引用
 - `listeners`: (2.3.0+) 一个包含了所有父组件为当前组件注册的事件监听器的对象。这是 `data.on` 的一个别名。
 - `injections`: (2.3.0+) 如果使用了 [`inject`](../api/#provide-inject) 选项，则该对象包含了应当被注入的属性。

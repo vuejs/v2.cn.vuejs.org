@@ -6,6 +6,8 @@ order: 101
 
 > 该页面假设你已经阅读过了[组件基础](components.html)。如果你还对组件不太了解，推荐你先阅读它。
 
+<div class="vueschool" style=""><a href="https://learning.dcloud.io/#/?vid=13" target="_blank" rel="noopener" title="Vue.js教程-组件注册">观看本节视频讲解</a></div>
+
 ## 组件名
 
 在注册一个组件的时候，我们始终需要给它一个名字。比如在全局注册的时候我们已经看到了：

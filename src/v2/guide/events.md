@@ -6,6 +6,8 @@ order: 9
 
 ## 监听事件
 
+<div class="vueschool"><a href="https://learning.dcloud.io/#/?vid=10" target="_blank" rel="noopener" title="Vue.js 教程 - 事件绑定">观看本节视频讲解</a></div>
+
 可以用 `v-on` 指令监听 DOM 事件，并在触发时运行一些 JavaScript 代码。
 
 示例：
@@ -189,7 +191,7 @@ methods: {
 <form v-on:submit.prevent></form>
 
 <!-- 添加事件监听器时使用事件捕获模式 -->
-<!-- 即元素自身触发的事件先在此处理，然后才交由内部元素进行处理 -->
+<!-- 即内部元素触发的事件先在此处理，然后才交由内部元素进行处理 -->
 <div v-on:click.capture="doThis">...</div>
 
 <!-- 只当在 event.target 是当前元素自身时触发处理函数 -->

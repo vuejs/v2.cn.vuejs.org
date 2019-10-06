@@ -7,6 +7,7 @@ order: 6
 操作元素的 class 列表和内联样式是数据绑定的一个常见需求。因为它们都是属性，所以我们可以用 `v-bind` 处理它们：只需要通过表达式计算出字符串结果即可。不过，字符串拼接麻烦且易错。因此，在将 `v-bind` 用于 `class` 和 `style` 时，Vue.js 做了专门的增强。表达式结果的类型除了字符串之外，还可以是对象或数组。
 
 ## 绑定 HTML Class
+<div class="vueschool"><a href="https://learning.dcloud.io/#/?vid=7" target="_blank" rel="noopener" title="Vue.js 教程 - class 与 style 绑定">观看本节视频讲解</a></div>
 
 ### 对象语法
 
@@ -118,7 +119,7 @@ data: {
 
 > 这个章节假设你已经对 [Vue 组件](components.html)有一定的了解。当然你也可以先跳过这里，稍后再回过头来看。
 
-当在一个自定义组件上使用 `class` 属性时，这些类将被添加到该组件的根元素上面。这个元素上已经存在的类不会被覆盖。
+当在一个自定义组件上使用 `class` 属性时，这些 class 将被添加到该组件的根元素上面。这个元素上已经存在的 class 不会被覆盖。
 
 例如，如果你声明了这个组件：
 

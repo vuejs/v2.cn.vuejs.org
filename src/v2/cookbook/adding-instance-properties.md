@@ -6,7 +6,7 @@ order: 2
 
 ## 基本的示例
 
-你可能会在很多组件里用到数据/实用工具，但是不想[污染全局作用域](https://github.com/getify/You-Dont-Know-JS/blob/master/scope%20%26%20closures/ch3.md)。这种情况下，你可以通过在原型上定义它们使其在每个 Vue 的实例中可用。
+你可能会在很多组件里用到数据/实用工具，但是不想[污染全局作用域](https://github.com/getify/You-Dont-Know-JS/blob/2nd-ed/scope-closures/ch3.md)。这种情况下，你可以通过在原型上定义它们使其在每个 Vue 的实例中可用。
 
 ``` js
 Vue.prototype.$appName = 'My App'
