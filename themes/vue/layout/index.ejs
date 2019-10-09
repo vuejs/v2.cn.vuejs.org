@@ -28,13 +28,11 @@
   </div>
 </div>
 
-<div id="special-sponsor">
+<div id="special">
   <h3>特别赞助</h3>
   <%_ for (const sponsor of theme.platinum_sponsors_china) { _%>
   <a href="<%- sponsor.url %>" target="_blank" rel="noopener">
     <img src="<%- url_for(`/images/${sponsor.img}`) %>" style="width:200px">
-    <br>
-    <span><%- specialSponsor.description %></span>
   </a>
   <%_ } _%>
   <%_if (theme.platinum_sponsors_china.length < 2) { _%>
