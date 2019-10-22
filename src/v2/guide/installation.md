@@ -22,7 +22,7 @@ Vue **不支持** IE8 及以下版本，因为 Vue 使用了 IE8 无法模拟的
 
 ## 直接用 `<script>` 引入
 
-<div class="vueschool" style=""><a href="https://learning.dcloud.io/#/?vid=1" target="_blank" rel="noopener" title="Vue.js 教程 - 安装与部署">观看本节视频讲解</a></div>
+<div class="vueschool" style=""><a href="https://learning.dcloud.io/#/?vid=1" target="_blank" rel="sponsored noopener" title="Vue.js 教程 - 安装与部署">观看本节视频讲解</a></div>
 
 直接下载并用 `<script>` 标签引入，`Vue` 会被注册为一个全局变量。
 
@@ -77,7 +77,7 @@ Vue 提供了一个[官方的 CLI](https://github.com/vuejs/vue-cli)，为单页
 
 <p class="tip">CLI 工具假定用户对 Node.js 和相关构建工具有一定程度的了解。如果你是新手，我们强烈建议先在不用构建工具的情况下通读<a href="./">指南</a>，在熟悉 Vue 本身之后再使用 CLI。</p>
 
-<div class="vue-mastery"><a href="https://www.vuemastery.com/courses/real-world-vue-js/vue-cli" target="_blank" rel="sponsored noopener" title="Vue CLI">Watch a video explanation on Vue Mastery</a></div>
+<div class="vue-mastery"><a href="https://www.vuemastery.com/courses/real-world-vue-js/vue-cli" target="_blank" rel="sponsored noopener" title="Vue CLI">在 Vue Mastery 观看视频讲解</a></div>
 
 ## 对不同构建版本的解释
 
