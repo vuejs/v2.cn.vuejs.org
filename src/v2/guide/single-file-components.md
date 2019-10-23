@@ -6,7 +6,7 @@ order: 401
 
 ## 介绍
 
-<div class="vueschool" style=""><a href="https://learning.dcloud.io/#/?vid=14" target="_blank" rel="noopener" title="Vue.js教程-单文件组件">观看本节视频讲解</a></div>
+<div class="vueschool" style=""><a href="https://learning.dcloud.io/#/?vid=14" target="_blank" rel="sponsored noopener" title="Vue.js教程-单文件组件">观看本节视频讲解</a></div>
 
 在很多 Vue 项目中，我们使用 `Vue.component` 来定义全局组件，紧接着用 `new Vue({ el: '#container '})` 在每个页面内指定一个容器元素。
 
@@ -60,7 +60,7 @@ order: 401
 
 有了 `.vue` 组件，我们就进入了高级 JavaScript 应用领域。如果你没有准备好的话，意味着还需要学会使用一些附加的工具：
 
-- **Node Package Manager (NPM)**：阅读 [Getting Started guide](https://docs.npmjs.com/getting-started/what-is-npm) 直到 *10: Uninstalling global packages*章节。
+- **Node Package Manager (NPM)**：阅读 [Getting Started guide](https://docs.npmjs.com/packages-and-modules/getting-packages-from-the-registry) 中关于如何从注册地 (registry) 获取包的章节。
 
 - **Modern JavaScript with ES2015/16**：阅读 Babel 的 [Learn ES2015 guide](https://babeljs.io/docs/learn-es2015/)。你不需要立刻记住每一个方法，但是你可以保留这个页面以便后期参考。
 

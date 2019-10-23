@@ -16,10 +16,6 @@ special_sponsors:
     description: 几分钟内在云端构建发布 API，免费试用。
 platinum_sponsors:
   - url: >-
-      https://bit.dev/?utm_source=vue&utm_medium=vue&utm_campaign=vue&utm_term=vue&utm_content=vue
-    img: bit.png
-    name: Bit
-  - url: >-
       https://vueschool.io/?utm_source=Vuejs.org&utm_medium=Banner&utm_campaign=Sponsored%20Banner&utm_content=V1
     img: vueschool.png
     name: VueSchool
@@ -115,10 +111,22 @@ gold_sponsors:
   - url: 'https://storekit.com'
     img: storekit.png
     name: StoreKit
+  - url: 'https://staffaugmentation.ro/en'
+    img: staff_augmentation.png
+    name: Staff Augmentation
+  - url: 'https://piratebay.ink'
+    img: piratebay_proxy.png
+    name: Piratebay Proxy
+  - url: 'https://www.programmers.io'
+    img: programmers_io.png
+    name: Programmers.io
 silver_sponsors:
   - url: 'https://dopamine.bg/'
     img: dopamine.png
     name: Dopamine
+  - url: 'https://roadster.com'
+    img: roadster.png
+    name: Roadster
 bronze_sponsors:
   - url: 'https://www.accelebrate.com/'
     img: accelebrate.png
@@ -129,3 +137,6 @@ bronze_sponsors:
   - url: 'https://www.earthlink.ro'
     img: earthlink.png
     name: Earthlink
+  - url: 'https://twitter.com/philipjbasile'
+    img: philip_john_basile.gif
+    name: Philip John Basile

@@ -8,6 +8,8 @@ order: 502
 
 由于状态零散地分布在许多组件和组件之间的交互中，大型应用复杂度也经常逐渐增长。为了解决这个问题，Vue 提供 [vuex](https://github.com/vuejs/vuex)：我们有受到 Elm 启发的状态管理库。vuex 甚至集成到 [vue-devtools](https://github.com/vuejs/vue-devtools)，无需配置即可进行[时光旅行调试 (time travel debugging)](https://raw.githubusercontent.com/vuejs/vue-devtools/master/media/demo.gif)。
 
+<div class="vue-mastery"><a href="https://www.vuemastery.com/courses/mastering-vuex/intro-to-vuex/" target="_blank" rel="sponsored noopener" title="Vuex Tutorial">在 Vue Mastery 观看视频讲解</a></div>
+
 ### React 的开发者请参考以下信息
 
 如果你是来自 React 的开发者，你可能会对 Vuex 和 [Redux](https://github.com/reactjs/redux) 间的差异表示关注，Redux 是 React 生态环境中最流行的 Flux 实现。Redux 事实上无法感知视图层，所以它能够轻松的通过一些[简单绑定](https://yarnpkg.com/en/packages?q=redux%20vue&p=1)和 Vue 一起使用。Vuex 区别在于它是一个专门为 Vue 应用所设计。这使得它能够更好地和 Vue 进行整合，同时提供简洁的 API 和改善过的开发体验。

@@ -6,7 +6,7 @@ order: 3
 
 ## 基本的示例
 
-<div class="vueschool"><a href="https://vueschool.io/lessons/vuejs-form-validation-diy?friend=vuejs" target="_blank" rel="noopener" title="Free Vue.js Form Validation Lesson">Watch a free lesson on Vue School</a></div>
+<div class="vueschool"><a href="https://vueschool.io/lessons/vuejs-form-validation-diy?friend=vuejs" target="_blank" rel="sponsored noopener" title="Free Vue.js Form Validation Lesson">Watch a free lesson on Vue School</a></div>
 
 表单校验是浏览器原生支持的，但是有的时候用不同的浏览器处理起来需要一些小技巧。即使当表单校验已经被完美支持，你也还是有很多时候需要进行自定义的校验。这时一个更加手动的基于 Vue 的解决方案可能会更适合。我们来看一个简单的示例。
 
