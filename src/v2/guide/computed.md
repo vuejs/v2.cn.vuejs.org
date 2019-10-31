@@ -23,7 +23,7 @@ order: 5
 ``` html
 <div id="example">
   <p>Original message: "{{ message }}"</p>
-  <p>Computed reversed message: "{{ reversedMessage }}"</p>
+  <p>Computed reversed message: "{{ reversedMessage() }}"</p>
 </div>
 ```
 
@@ -48,7 +48,7 @@ var vm = new Vue({
 {% raw %}
 <div id="example">
   <p>Original message: "{{ message }}"</p>
-  <p>Computed reversed message: "{{ reversedMessage }}"</p>
+  <p>Computed reversed message: "{{ reversedMessage() }}"</p>
 </div>
 <script>
 var vm = new Vue({
