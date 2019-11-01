@@ -39,7 +39,7 @@ Vue (读音 /vjuː/，类似于 **view**) 是一套用于构建用户界面的**
 
 [安装教程](/guide/installation.html)给出了更多安装 Vue 的方式。请注意我们**不推荐**新手直接使用 `vue-cli`，尤其是在你还不熟悉基于 Node.js 的构建工具时。
 
-如果你喜欢交互式的东西，你也可以查阅[这个 Scrimba 上的系列教程](https://scrimba.com/playlist/pXKqta)，它揉合了录屏和代码试验田，并允许你随时暂停和播放。
+如果你喜欢交互式的东西，你也可以查阅[这个 Scrimba 上的系列教程](https://scrimba.com/g/gvuedocs)，它揉合了录屏和代码试验田，并允许你随时暂停和播放。
 
 ## 声明式渲染
 
