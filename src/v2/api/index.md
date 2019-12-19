@@ -388,7 +388,7 @@ type: api
 
 - **用法**：
 
-  将一个模板字符串编译成render函数。**只在full build的时候可用**。
+  将一个模板字符串编译成render函数。**只在完整版时可用**。
 
   ``` js
   var res = Vue.compile('<div><span>{{ msg }}</span></div>')
