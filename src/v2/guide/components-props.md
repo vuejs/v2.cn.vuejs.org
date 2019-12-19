@@ -216,7 +216,7 @@ Vue.component('my-component', {
     propF: {
       validator: function (value) {
         // 这个值必须匹配下列字符串中的一个
-        return ['success', 'warning', 'danger'].indexOf(value) !== -1
+        return ['success', 'warning', 'danger'].includes(value)
       }
     }
   }
