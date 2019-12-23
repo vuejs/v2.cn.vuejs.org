@@ -58,7 +58,7 @@ order: 504
 
 因此避免了通过闭合 `title` attribute 而注入新的任意 HTML。该转义通过诸如 `setAttribute` 的浏览器原生的 API 完成，所以除非浏览器本身存在安全漏洞，否则不会存在安全漏洞。
 
-## 潜在的危险
+## 潜在危险
 
 在任何 web 应用中，允许未清洁的用户提供的内容成为 HTML、CSS 或 JavaScript 都有潜在的危险。因此应该避免所有的可能。尽管如此，有些情况下的风险是可接受的。
 
@@ -116,15 +116,15 @@ order: 504
 </a>
 ```
 
-let's assume that `sanitizedUrl` has been sanitized, so that it's definitely a real URL and not JavaScript. With the `userProvidedStyles`, malicious users could still provide CSS to "click jack", e.g. styling the link into a transparent box over the "Log in" button. Then if `https://user-controlled-website.com/` is built to resemble the login page of your application, they might have just captured a user's real login information.
+让我们假设 `sanitizedUrl` 已经被清洁过了，所以这已经是一个完全真实的 URL 且没有 JavaScript。但通过 `userProvidedStyles`，恶意用户仍可以提供 CSS 来“点击诈骗”，例如讲链接的样式设置为一个透明的盒子放在“登录”按钮之上。然后再把 `https://user-controlled-website.com/` 做成你的应用的登录页的样子，它们就可能获取一个用户真实的登录信息。
 
-You may be able to imagine how allowing user-provided content for a `<style>` element would create an even greater vulnerability, giving that user full control over how to style the entire page. That's why prevents rendering of style tags inside templates, such as:
+你可以想象到，允许用户为一个 `<style>` 元素提供内容，将产生甚至更严重的安全漏洞，以使得用户完全控制整个页面的样式。这就是为什么要在模板内避免渲染 style 标签，例如：
 
 ```html
 <style>{{ userProvidedStyles }}</style>
 ```
 
-To keep your users fully safe from click jacking, we recommend only allowing full control over CSS inside a sandboxed iframe. Alternatively, when providing user control through a style binding, we recommend using its [object syntax](class-and-style.html#Object-Syntax-1) and only allowing users to provide values for specific properties it's safe for them to control, like this:
+为了确保用户完全远离点击诈骗，我们推荐只允许在一个 iframe 沙盒内进行 CSS 的完全控制。或让用户通过一个样式绑定来控制，我们推荐使用其[对象语法](class-and-style.html#对象语法-1)且只允许用户提供特定的可以安全控制的 property 的值。例如：
 
 ```html
 <a
@@ -140,33 +140,33 @@ To keep your users fully safe from click jacking, we recommend only allowing ful
 
 ### 注入 JavaScript
 
-We strongly discourage ever rendering a `<script>` element with Vue, since templates and render functions should never have side effects. However, this isn't the only way to include strings that would be evaluated as JavaScript at runtime.
+我们强烈不鼓励使用 Vue 渲染 `<script>` 元素，因为模板和渲染函数永远不应该产生副作用。然而，这并不是唯一包含可能在运行时会被视为 JavaScript 的字符串。
 
-Every HTML element has attributes with values accepting strings of JavaScript, such as `onclick`, `onfocus`, and `onmouseenter`. Binding user-provided JavaScript to any of these event attributes is a potential security risk, so should be avoided.
+每个 HTML 元素都有接受 JavaScript 字符串作为其值的 attribute，如 `onclick`、`onfocus` 和 `onmouseenter`。将用户提供的 JavaScript 绑定到它们任意当中都是一个潜在的安全风险，因此应该避免。
 
-<p class="tip">Note that user-provided JavaScript can never be considered 100% safe unless it's in a sandboxed iframe or in a part of the app where only the user who wrote that JavaScript can ever be exposed to it.</p>
+<p class="tip">意永远不要认为用户提供的 JavaScript 是 100% 安全的，除非在一个 iframe 沙盒或只有这些 JavaScript 的作者可以看到的应用的那部分。</p>
 
-Sometimes we receive vulnerability reports on how it's possible to do cross-site scripting (XSS) in Vue templates. In general, we do not consider such cases to be actual vulnerabilities, because there's no practical way to protect developers from the two scenarios that would allow XSS:
+有的时候我们会收到在 Vue 模板中如何产生跨站脚本攻击 (XSS) 的安全漏洞报告。一般情况下，我们不会将这样的案例视为真正的安全漏洞，因为从以下两个可能允许 XSS 的场景看，不存在可行的办法来保护开发者：
 
-1. The developer is explicitly asking Vue to render user-provided, unsanitized content as Vue templates. This is inherently unsafe and there's no way for Vue to know the origin.
+1. 开发者显性地要求 Vue 将用户提供的，为清洁过的内容作为 Vue 模板进行渲染。这是内在的不安全， Vue 没有办法知道其源头。
 
-2. The developer is mounting Vue to an entire HTML page which happens to contain server-rendered and user-provided content. This is fundamentally the same problem as \#1, but sometimes devs may do it without realizing. This can lead to possible vulnerabilities where the attacker provides HTML which is safe as plain HTML but unsafe as a Vue template. The best practice is to never mount Vue on nodes that may contain server-rendered and user-provided content.
+2. 开发者向 Vue 挂载包含服务端渲染或用户提供的内容的 HTML 的整个页面。这实质上和问题 \#1 是相同的，但是有的时候开发者可能没有意识到。这会使得攻击者提供作为普通 HTML 安全但对于 Vue 模板不安全的 HTML 以导致安全漏洞。最佳实践是永远不要向 Vue 挂载可能包含服务端渲染或用户提供的内容。
 
 ## 最佳实践
 
-The general rule is that if you allow unsanitized, user-provided content to be executed (as either HTML, JavaScript, or even CSS), you might be opening yourself up to attacks. This advice actually holds true whether using Vue, another framework, or even no framework.
+普遍的规则是只要允许执行未清洁的用户提供的内容 (不论作为 HTML、JavaScript 甚至 CSS)，你就可能令自己处于被攻击的境地。这些建议实际上不论使用 Vue 还是别的框架甚至不使用框架，都是千真万确的。
 
-Beyond the recommendations made above for [Potential Dangers](#Potential-Dangers), we also recommend familiarizing yourself with these resources:
+除了上述关于[潜在危险](#潜在危险)的建议，我们也推荐自行熟悉以下资料：
 
 - [HTML5 Security Cheat Sheet](https://html5sec.org/)
 - [OWASP's Cross Site Scripting (XSS) Prevention Cheat Sheet](https://www.owasp.org/index.php/XSS_%28Cross_Site_Scripting%29_Prevention_Cheat_Sheet)
 
-Then use what you learn to also review the source code of your dependencies for potentially dangerous patterns, if any of them include 3rd-party components or otherwise influence what's rendered to the DOM.
+然后利用学到的知识重新审视包含了第三方组件或通过其它方式影响渲染到 DOM 的内容的依赖的源代码，找到存在潜在的危险模式。
 
 ## 后端协作
 
-HTTP security vulnerabilities, such as cross-site request forgery (CSRF/XSRF) and cross-site script inclusion (XSSI), are primarily addressed on the backend, so aren't a concern of Vue's. However, it's still a good idea to communicate with your backend team to learn how to best interact with their API, e.g. by submitting CSRF tokens with form submissions.
+HTTP 安全漏洞，诸如伪造跨站请求 (CSRF/XSRF) 和跨站脚本注入 (XSSI)，都是后端重点关注的方向，因此并不是 Vue 所担心的。尽管如此，和后端团队交流学习如何和他们的 API 最好地交互，例如在表单提交时提交 CSRF token，永远是件好事。
 
 ## 服务端渲染 (SSR)
 
-There are some additional security concerns when using SSR, so make sure to follow the best practices outlined throughout [our SSR documentation](https://ssr.vuejs.org/) to avoid vulnerabilities.
+使用 SSR 时存在额外的安全顾虑，因此请确认遵循[我们 SSR 文档](https://ssr.vuejs.org/zh/)中概括出的最佳实践以避免安全漏洞。
