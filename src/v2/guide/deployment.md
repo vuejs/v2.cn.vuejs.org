@@ -94,10 +94,10 @@ NODE_ENV=production browserify -g envify -e main.js | uglifyjs -c -m > build.js
 
 #### Rollup
 
-使用 [rollup-plugin-replace](https://github.com/rollup/rollup-plugin-replace)：
+使用 [@rollup/plugin-replace](https://github.com/rollup/plugins/tree/master/packages/replace)：
 
 ``` js
-const replace = require('rollup-plugin-replace')
+const replace = require('@rollup/plugin-replace')
 rollup({
   // ...
   plugins: [
