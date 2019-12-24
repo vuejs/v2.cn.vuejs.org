@@ -29,7 +29,7 @@ order: 803
           <dd>
             <ul>
               <li v-for="repo in profile.reposOfficial">
-                <a :href="githubUrl('vuejs', repo)" target=_blank>{{ repo.name || repo }}</a>
+                <a :href="githubUrl('vuejs', repo)" target=_blank rel="noopener noreferrer">{{ repo.name || repo }}</a>
               </li>
             </ul>
           </dd>
@@ -39,7 +39,7 @@ order: 803
           <dd>
             <ul>
               <li v-for="repo in profile.reposPersonal">
-                <a :href="githubUrl(profile.github, repo)" target=_blank>{{ repo.name || repo }}</a>
+                <a :href="githubUrl(profile.github, repo)" target=_blank rel="noopener noreferrer">{{ repo.name || repo }}</a>
               </li>
             </ul>
           </dd>
@@ -264,7 +264,8 @@ order: 803
     'Kyiv, Ukraine': [50.450100, 30.523399],
     'Washington, DC, USA': [38.8935755,-77.0846156,12],
     'Kraków, Poland': [50.064650, 19.936579],
-    'Oslo, Norway': [59.911491, 10.757933]
+    'Oslo, Norway': [59.911491, 10.757933],
+    'Kanagawa, Japan': [35.44778, 139.6425]
   }
   var languageNameFor = {
     en: 'English',
@@ -651,7 +652,22 @@ order: 803
       },
       github: 'NataliaTepluhina',
       twitter: 'N_Tepluhina',
-    }
+    },
+    {
+      name: 'Yosuke Ota',
+      city: 'Kanagawa, Japan',
+      languages: ['jp'],
+      github: 'ota-meshi',
+      twitter: 'omoteota',
+      work: {
+        role: 'Lead Web Engineer',
+        org: 'Future Corporation',
+        orgUrl: 'https://www.future.co.jp/'
+      },
+      reposOfficial: [
+        'eslint-plugin-vue'
+      ],
+    },
   ]))
 
   var emeriti = shuffle([

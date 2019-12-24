@@ -32,7 +32,7 @@ Mustache 标签将会被替代为对应数据对象上 `msg` 属性的值。无�
 
 ### 原始 HTML
 
-双大括号会将数据解释为普通文本，而非 HTML 代码。为了输出真正的 HTML，你需要使用 `v-html` 指令：
+双大括号会将数据解释为普通文本，而非 HTML 代码。为了输出真正的 HTML，你需要使用 [`v-html` 指令](../api/#v-html)：
 
 ``` html
 <p>Using mustaches: {{ rawHtml }}</p>
@@ -62,7 +62,7 @@ new Vue({
 
 ### 特性
 
-Mustache 语法不能作用在 HTML 特性上，遇到这种情况应该使用 [v-bind 指令](../api/#v-bind)：
+Mustache 语法不能作用在 HTML 特性上，遇到这种情况应该使用 [`v-bind` 指令](../api/#v-bind)：
 
 ``` html
 <div v-bind:id="dynamicId"></div>

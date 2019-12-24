@@ -57,7 +57,7 @@ new Vue({
 })
 ```
 
-日志中会先出现 `"My App"`，然后出现 `"The name of some other app"`，因为 `this.appName` 在实例被创建之后被 `data` [覆写了](https://github.com/getify/You-Dont-Know-JS/blob/master/this%20%26%20object%20prototypes/ch5.md)。我们通过 `$` 为实例属性设置作用域来避免这种事情发生。你还可以根据你的喜好使用自己的约定，诸如 `$_appName` 或 `ΩappName`，来避免和插件或未来的插件相冲突。
+日志中会先出现 `"My App"`，然后出现 `"The name of some other app"`，因为 `this.appName` 在实例被创建之后被 `data` [覆写了](https://github.com/getify/You-Dont-Know-JS/blob/2nd-ed/objects-classes/ch5.md)。我们通过 `$` 为实例属性设置作用域来避免这种事情发生。你还可以根据你的喜好使用自己的约定，诸如 `$_appName` 或 `ΩappName`，来避免和插件或未来的插件相冲突。
 
 ## 真实的示例：通过 axios 替换 Vue Resource
 
