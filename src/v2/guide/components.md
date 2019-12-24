@@ -603,7 +603,7 @@ new Vue({
 
 你可以在[这里](https://jsfiddle.net/chrisvfritz/o3nycadu/)查阅并体验完整的代码，或在[这个版本](https://jsfiddle.net/chrisvfritz/b2qj69o1/)了解绑定组件选项对象，而不是已注册组件名的示例。
 
-请留意，尽管它们会被当作组件对待，这个 attribute 还是可以用于常规 HTML 元素的，也就是说所有的 attribute **都会作为 DOM attribute 被绑定**。对于像 `value` 这样的 property，若想让其如预期般工作，你需要使用 [`.prop` 修饰器](../api/#v-bind)。
+请留意，这个 attribute 可以用于常规 HTML 元素的，但这些元素将被视为组件，这意味着所有的 attribute **都会作为 DOM attribute 被绑定**。对于像 `value` 这样的 property，若想让其如预期般工作，你需要使用 [`.prop` 修饰器](../api/#v-bind)。
 
 到目前为止，关于动态组件你需要了解的大概就这些了，如果你阅读完本页内容并掌握了它的内容，我们会推荐你再回来把[动态和异步组件](components-dynamic-async.html)读完。
 
