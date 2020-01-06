@@ -2051,7 +2051,7 @@ type: api
   <div v-for="(val, name, index) in object"></div>
   ```
 
-  `v-for`的默认行为会尝试原地给元素打补丁而不是移动它们。要强制其重新排序元素，你需要用key特殊属性来提供一个排序提示：
+  `v-for` 的默认行为会尝试原地修改元素而不是移动它们。要强制其重新排序元素，你需要用特殊属性 `key` 来提供一个排序提示：
 
   ``` html
   <div v-for="item in items" :key="item.id">
