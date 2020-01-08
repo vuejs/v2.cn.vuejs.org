@@ -8,7 +8,7 @@ order: 102
 
 ## Prop 的大小写 (camelCase vs kebab-case)
 
-HTML 中的特性名是大小写不敏感的，所以浏览器会把所有大写字符解释为小写字符。这意味着当你使用 DOM 中的模板时，camelCase (驼峰命名法) 的 prop 名需要使用其等价的 kebab-case (短横线分隔命名) 命名：
+HTML 中的 attribute 名是大小写不敏感的，所以浏览器会把所有大写字符解释为小写字符。这意味着当你使用 DOM 中的模板时，camelCase (驼峰命名法) 的 prop 名需要使用其等价的 kebab-case (短横线分隔命名) 命名：
 
 ``` js
 Vue.component('blog-post', {
@@ -261,21 +261,21 @@ Vue.component('blog-post', {
 
 来验证 `author` prop 的值是否是通过 `new Person` 创建的。
 
-## 非 Prop 的特性
+## 非 Prop 的 Attribute
 
-一个非 prop 特性是指传向一个组件，但是该组件并没有相应 prop 定义的特性。
+一个非 prop 的 attribute 是指传向一个组件，但是该组件并没有相应 prop 定义的 attribute。
 
-因为显式定义的 prop 适用于向一个子组件传入信息，然而组件库的作者并不总能预见组件会被用于怎样的场景。这也是为什么组件可以接受任意的特性，而这些特性会被添加到这个组件的根元素上。
+因为显式定义的 prop 适用于向一个子组件传入信息，然而组件库的作者并不总能预见组件会被用于怎样的场景。这也是为什么组件可以接受任意的 attribute，而这些 attribute 会被添加到这个组件的根元素上。
 
-例如，想象一下你通过一个 Bootstrap 插件使用了一个第三方的 `<bootstrap-date-input>` 组件，这个插件需要在其 `<input>` 上用到一个 `data-date-picker` 特性。我们可以将这个特性添加到你的组件实例上：
+例如，想象一下你通过一个 Bootstrap 插件使用了一个第三方的 `<bootstrap-date-input>` 组件，这个插件需要在其 `<input>` 上用到一个 `data-date-picker` attribute。我们可以将这个 attribute 添加到你的组件实例上：
 
 ``` html
 <bootstrap-date-input data-date-picker="activated"></bootstrap-date-input>
 ```
 
-然后这个 `data-date-picker="activated"` 特性就会自动添加到 `<bootstrap-date-input>` 的根元素上。
+然后这个 `data-date-picker="activated"` attribute 就会自动添加到 `<bootstrap-date-input>` 的根元素上。
 
-### 替换/合并已有的特性
+### 替换/合并已有的 Attribute
 
 想象一下 `<bootstrap-date-input>` 的模板是这样的：
 
@@ -297,11 +297,11 @@ Vue.component('blog-post', {
 - `form-control`，这是在组件的模板内设置好的
 - `date-picker-theme-dark`，这是从组件的父级传入的
 
-对于绝大多数特性来说，从外部提供给组件的值会替换掉组件内部设置好的值。所以如果传入 `type="text"` 就会替换掉 `type="date"` 并把它破坏！庆幸的是，`class` 和 `style` 特性会稍微智能一些，即两边的值会被合并起来，从而得到最终的值：`form-control date-picker-theme-dark`。
+对于绝大多数 attribute 来说，从外部提供给组件的值会替换掉组件内部设置好的值。所以如果传入 `type="text"` 就会替换掉 `type="date"` 并把它破坏！庆幸的是，`class` 和 `style` attribute 会稍微智能一些，即两边的值会被合并起来，从而得到最终的值：`form-control date-picker-theme-dark`。
 
-### 禁用特性继承
+### 禁用 Attribute 继承
 
-如果你**不**希望组件的根元素继承特性，你可以在组件的选项中设置 `inheritAttrs: false`。例如：
+如果你**不**希望组件的根元素继承 attribute，你可以在组件的选项中设置 `inheritAttrs: false`。例如：
 
 ```js
 Vue.component('my-component', {
@@ -310,7 +310,7 @@ Vue.component('my-component', {
 })
 ```
 
-这尤其适合配合实例的 `$attrs` 属性使用，该属性包含了传递给一个组件的特性名和特性值，例如：
+这尤其适合配合实例的 `$attrs` 属性使用，该属性包含了传递给一个组件的 attribute 名和 attribute 值，例如：
 
 ```js
 {
@@ -319,7 +319,7 @@ Vue.component('my-component', {
 }
 ```
 
-有了 `inheritAttrs: false` 和 `$attrs`，你就可以手动决定这些特性会被赋予哪个元素。在撰写[基础组件](../style-guide/#基础组件名-强烈推荐)的时候是常会用到的：
+有了 `inheritAttrs: false` 和 `$attrs`，你就可以手动决定这些 attribute 会被赋予哪个元素。在撰写[基础组件](../style-guide/#基础组件名-强烈推荐)的时候是常会用到的：
 
 ```js
 Vue.component('base-input', {
