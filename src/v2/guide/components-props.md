@@ -263,7 +263,7 @@ Vue.component('blog-post', {
 
 ## 非 Prop 的 Attribute
 
-一个非 prop attribute 是指传向一个组件，但是该组件并没有相应 prop 定义的 attribute。
+一个非 prop 的 attribute 是指传向一个组件，但是该组件并没有相应 prop 定义的 attribute。
 
 因为显式定义的 prop 适用于向一个子组件传入信息，然而组件库的作者并不总能预见组件会被用于怎样的场景。这也是为什么组件可以接受任意的 attribute，而这些 attribute 会被添加到这个组件的根元素上。
 
