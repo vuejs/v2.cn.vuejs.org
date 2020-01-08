@@ -60,15 +60,15 @@ new Vue({
 
 <p class="tip">你的站点上动态渲染的任意 HTML 可能会非常危险，因为它很容易导致 [XSS 攻击](https://en.wikipedia.org/wiki/Cross-site_scripting)。请只对可信内容使用 HTML 插值，**绝不要**对用户提供的内容使用插值。</p>
 
-### Attributes
+### Attribute
 
-Mustache 语法不能作用在 HTML attributes 上，遇到这种情况应该使用 [`v-bind` 指令](../api/#v-bind)：
+Mustache 语法不能作用在 HTML attribute 上，遇到这种情况应该使用 [`v-bind` 指令](../api/#v-bind)：
 
 ``` html
 <div v-bind:id="dynamicId"></div>
 ```
 
-对于布尔 attributes (它们只要存在就意味着值为 `true`)，`v-bind` 工作起来略有不同，在这个例子中：
+对于布尔 attribute (它们只要存在就意味着值为 `true`)，`v-bind` 工作起来略有不同，在这个例子中：
 
 ``` html
 <button v-bind:disabled="isButtonDisabled">Button</button>
@@ -106,7 +106,7 @@ Mustache 语法不能作用在 HTML attributes 上，遇到这种情况应该使
 
 <div class="vueschool"><a href="https://learning.dcloud.io/#/?vid=6" target="_blank" rel="sponsored noopener" title="Vue.js 教程 - 模板语法 - 指令">观看本节视频讲解</a></div>
 
-指令 (Directives) 是带有 `v-` 前缀的特殊 attributes。指令 attribute 的值预期是**单个 JavaScript 表达式** (`v-for` 是例外情况，稍后我们再讨论)。指令的职责是，当表达式的值改变时，将其产生的连带影响，响应式地作用于 DOM。回顾我们在介绍中看到的例子：
+指令 (Directives) 是带有 `v-` 前缀的特殊 attribute。指令 attribute 的值预期是**单个 JavaScript 表达式** (`v-for` 是例外情况，稍后我们再讨论)。指令的职责是，当表达式的值改变时，将其产生的连带影响，响应式地作用于 DOM。回顾我们在介绍中看到的例子：
 
 ``` html
 <p v-if="seen">现在你看到我了</p>
@@ -192,7 +192,7 @@ Mustache 语法不能作用在 HTML attributes 上，遇到这种情况应该使
 
 ## 缩写
 
-`v-` 前缀作为一种视觉提示，用来识别模板中 Vue 特定的 attributes。当你在使用 Vue.js 为现有标签添加动态行为 (dynamic behavior) 时，`v-` 前缀很有帮助，然而，对于一些频繁用到的指令来说，就会感到使用繁琐。同时，在构建由 Vue 管理所有模板的[单页面应用程序 (SPA - single page application)](https://en.wikipedia.org/wiki/Single-page_application) 时，`v-` 前缀也变得没那么重要了。因此，Vue 为 `v-bind` 和 `v-on` 这两个最常用的指令，提供了特定简写：
+`v-` 前缀作为一种视觉提示，用来识别模板中 Vue 特定的 attribute。当你在使用 Vue.js 为现有标签添加动态行为 (dynamic behavior) 时，`v-` 前缀很有帮助，然而，对于一些频繁用到的指令来说，就会感到使用繁琐。同时，在构建由 Vue 管理所有模板的[单页面应用程序 (SPA - single page application)](https://en.wikipedia.org/wiki/Single-page_application) 时，`v-` 前缀也变得没那么重要了。因此，Vue 为 `v-bind` 和 `v-on` 这两个最常用的指令，提供了特定简写：
 
 ### `v-bind` 缩写
 
