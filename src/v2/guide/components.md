@@ -144,7 +144,7 @@ Vue.component('my-component-name', {
 
 早些时候，我们提到了创建一个博文组件的事情。问题是如果你不能向这个组件传递某一篇博文的标题或内容之类的我们想展示的数据的话，它是没有办法使用的。这也正是 prop 的由来。
 
-Prop 是你可以在组件上注册的一些自定义特性。当一个值传递给一个 prop 特性的时候，它就变成了那个组件实例的一个属性。为了给博文组件传递一个标题，我们可以用一个 `props` 选项将其包含在该组件可接受的 prop 列表中：
+Prop 是你可以在组件上注册的一些自定义 attribute。当一个值传递给一个 prop attribute 的时候，它就变成了那个组件实例的一个属性。为了给博文组件传递一个标题，我们可以用一个 `props` 选项将其包含在该组件可接受的 prop 列表中：
 
 ```js
 Vue.component('blog-post', {
@@ -155,7 +155,7 @@ Vue.component('blog-post', {
 
 一个组件默认可以拥有任意数量的 prop，任何值都可以传递给任何 prop。在上述模板中，你会发现我们能够在组件实例中访问这个值，就像访问 `data` 中的值一样。
 
-一个 prop 被注册之后，你就可以像这样把数据作为一个自定义特性传递进来：
+一个 prop 被注册之后，你就可以像这样把数据作为一个自定义 attribute 传递进来：
 
 ```html
 <blog-post title="My journey with Vue"></blog-post>
@@ -448,7 +448,7 @@ methods: {
 
 为了让它正常工作，这个组件内的 `<input>` 必须：
 
-- 将其 `value` 特性绑定到一个名叫 `value` 的 prop 上
+- 将其 `value` attribute 绑定到一个名叫 `value` 的 prop 上
 - 在其 `input` 事件被触发时，将新的值通过自定义的 `input` 事件抛出
 
 写成代码之后是这样的：
@@ -589,7 +589,7 @@ new Vue({
 </style>
 {% endraw %}
 
-上述内容可以通过 Vue 的 `<component>` 元素加一个特殊的 `is` 特性来实现：
+上述内容可以通过 Vue 的 `<component>` 元素加一个特殊的 `is` attribute 来实现：
 
 ```html
 <!-- 组件会在 `currentTabComponent` 改变时改变 -->
@@ -619,7 +619,7 @@ new Vue({
 </table>
 ```
 
-这个自定义组件 `<blog-post-row>` 会被作为无效的内容提升到外部，并导致最终渲染结果出错。幸好这个特殊的 `is` 特性给了我们一个变通的办法：
+这个自定义组件 `<blog-post-row>` 会被作为无效的内容提升到外部，并导致最终渲染结果出错。幸好这个特殊的 `is` attribute 给了我们一个变通的办法：
 
 ``` html
 <table>
