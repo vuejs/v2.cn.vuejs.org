@@ -248,7 +248,7 @@ Vue 还对应 [`addEventListener` 中的 `passive` 选项](https://developer.moz
 
 <p class="tip">`keyCode` 的事件用法[已经被废弃了](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/keyCode)并可能不会被最新的浏览器支持。</p>
 
-使用 `keyCode` 特性也是允许的：
+使用 `keyCode` attribute 也是允许的：
 
 ``` html
 <input v-on:keyup.13="submit">
