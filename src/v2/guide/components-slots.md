@@ -6,7 +6,7 @@ order: 104
 
 > 该页面假设你已经阅读过了[组件基础](components.html)。如果你还对组件不太了解，推荐你先阅读它。
 
-> 在 2.6.0 中，我们为具名插槽和作用域插槽引入了一个新的统一的语法 (即 `v-slot` 指令)。它取代了 `slot` 和 `slot-scope` 这两个目前已被废弃但未被移除且仍在[文档中](#废弃了的语法)的特性。新语法的由来可查阅这份 [RFC](https://github.com/vuejs/rfcs/blob/master/active-rfcs/0001-new-slot-syntax.md)。
+> 在 2.6.0 中，我们为具名插槽和作用域插槽引入了一个新的统一的语法 (即 `v-slot` 指令)。它取代了 `slot` 和 `slot-scope` 这两个目前已被废弃但未被移除且仍在[文档中](#废弃了的语法)的 attribute。新语法的由来可查阅这份 [RFC](https://github.com/vuejs/rfcs/blob/master/active-rfcs/0001-new-slot-syntax.md)。
 
 ## 插槽内容
 
@@ -130,7 +130,7 @@ Vue 实现了一套内容分发的 API，这套 API 的设计灵感源自 [Web C
 
 ## 具名插槽
 
-> 自 2.6.0 起有所更新。已废弃的使用 `slot` 特性的语法在[这里](#废弃了的语法)。
+> 自 2.6.0 起有所更新。已废弃的使用 `slot` attribute 的语法在[这里](#废弃了的语法)。
 
 有时我们需要多个插槽。例如对于一个带有如下模板的 `<base-layout>` 组件：
 
@@ -148,7 +148,7 @@ Vue 实现了一套内容分发的 API，这套 API 的设计灵感源自 [Web C
 </div>
 ```
 
-对于这样的情况，`<slot>` 元素有一个特殊的特性：`name`。这个特性可以用来定义额外的插槽：
+对于这样的情况，`<slot>` 元素有一个特殊的 attribute：`name`。这个 attribute 可以用来定义额外的插槽：
 
 ``` html
 <div class="container">
@@ -221,11 +221,11 @@ Vue 实现了一套内容分发的 API，这套 API 的设计灵感源自 [Web C
 </div>
 ```
 
-注意 **`v-slot` 只能添加在 `<template>` 上** (只有[一种例外情况](#独占默认插槽的缩写语法))，这一点和已经废弃的 [`slot` 特性](#废弃了的语法)不同。
+注意 **`v-slot` 只能添加在 `<template>` 上** (只有[一种例外情况](#独占默认插槽的缩写语法))，这一点和已经废弃的 [`slot` attribute](#废弃了的语法)不同。
 
 ## 作用域插槽
 
-> 自 2.6.0 起有所更新。已废弃的使用 `slot-scope` 特性的语法在[这里](#废弃了的语法)。
+> 自 2.6.0 起有所更新。已废弃的使用 `slot-scope` attribute 的语法在[这里](#废弃了的语法)。
 
 有时让插槽内容能够访问子组件中才有的数据是很有用的。例如，设想一个带有如下模板的 `<current-user>` 组件：
 
@@ -245,7 +245,7 @@ Vue 实现了一套内容分发的 API，这套 API 的设计灵感源自 [Web C
 
 然而上述代码不会正常工作，因为只有 `<current-user>` 组件可以访问到 `user` 而我们提供的内容是在父级渲染的。
 
-为了让 `user` 在父级的插槽内容中可用，我们可以将 `user` 作为 `<slot>` 元素的一个特性绑定上去：
+为了让 `user` 在父级的插槽内容中可用，我们可以将 `user` 作为 `<slot>` 元素的一个 attribute 绑定上去：
 
 ``` html
 <span>
@@ -255,7 +255,7 @@ Vue 实现了一套内容分发的 API，这套 API 的设计灵感源自 [Web C
 </span>
 ```
 
-绑定在 `<slot>` 元素上的特性被称为**插槽 prop**。现在在父级作用域中，我们可以使用带值的 `v-slot` 来定义我们提供的插槽 prop 的名字：
+绑定在 `<slot>` 元素上的 attribute 被称为**插槽 prop**。现在在父级作用域中，我们可以使用带值的 `v-slot` 来定义我们提供的插槽 prop 的名字：
 
 ``` html
 <current-user>
@@ -449,13 +449,13 @@ function (slotProps) {
 
 ## 废弃了的语法
 
-> `v-slot` 指令自 Vue 2.6.0 起被引入，提供更好的支持 `slot` 和 `slot-scope` 特性的 API 替代方案。`v-slot` 完整的由来参见这份 [RFC](https://github.com/vuejs/rfcs/blob/master/active-rfcs/0001-new-slot-syntax.md)。在接下来所有的 2.x 版本中 `slot` 和 `slot-scope` 特性仍会被支持，但已经被官方废弃且不会出现在 Vue 3 中。
+> `v-slot` 指令自 Vue 2.6.0 起被引入，提供更好的支持 `slot` 和 `slot-scope` attribute 的 API 替代方案。`v-slot` 完整的由来参见这份 [RFC](https://github.com/vuejs/rfcs/blob/master/active-rfcs/0001-new-slot-syntax.md)。在接下来所有的 2.x 版本中 `slot` 和 `slot-scope` attribute 仍会被支持，但已经被官方废弃且不会出现在 Vue 3 中。
 
-### 带有 `slot` 特性的具名插槽
+### 带有 `slot` attribute 的具名插槽
 
 > 自 2.6.0 起<abbr title="在所有 Vue 2.x 版本中仍被支持，但不再推荐使用。">被废弃</abbr>。新推荐的语法请查阅[这里](#具名插槽)。
 
-在 `<template>` 上使用特殊的 `slot` 特性，可以将内容从父级传给具名插槽 (把[这里](#具名插槽)提到过的 `<base-layout>` 组件作为示例)：
+在 `<template>` 上使用特殊的 `slot` attribute，可以将内容从父级传给具名插槽 (把[这里](#具名插槽)提到过的 `<base-layout>` 组件作为示例)：
 
 ```html
 <base-layout>
@@ -472,7 +472,7 @@ function (slotProps) {
 </base-layout>
 ```
 
-或者直接把 `slot` 特性用在一个普通元素上：
+或者直接把 `slot` attribute 用在一个普通元素上：
 
 ``` html
 <base-layout>
@@ -502,11 +502,11 @@ function (slotProps) {
 </div>
 ```
 
-### 带有 `slot-scope` 特性的作用域插槽
+### 带有 `slot-scope` attribute 的作用域插槽
 
 > 自 2.6.0 起<abbr title="在所有 Vue 2.x 版本中仍被支持，但不再推荐使用。">被废弃</abbr>。新推荐的语法请查阅[这里](#作用域插槽)。
 
-在 `<template>` 上使用特殊的 `slot-scope` 特性，可以接收传递给插槽的 prop (把[这里](#作用域插槽)提到过的 `<slot-example>` 组件作为示例)：
+在 `<template>` 上使用特殊的 `slot-scope` attribute，可以接收传递给插槽的 prop (把[这里](#作用域插槽)提到过的 `<slot-example>` 组件作为示例)：
 
 ``` html
 <slot-example>
@@ -528,7 +528,7 @@ function (slotProps) {
 </slot-example>
 ```
 
-`slot-scope` 特性也可以直接用于非 `<template>` 元素 (包括组件)：
+`slot-scope` attribute 也可以直接用于非 `<template>` 元素 (包括组件)：
 
 ``` html
 <slot-example>
