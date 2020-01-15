@@ -85,7 +85,7 @@ var map = this.$parent.map || this.$parent.$parent.map
 
 ### 访问子组件实例或子元素
 
-尽管存在 prop 和事件，有的时候你仍可能需要在 JavaScript 里直接访问一个子组件。为了达到这个目的，你可以通过 `ref` 特性为这个子组件赋予一个 ID 引用。例如：
+尽管存在 prop 和事件，有的时候你仍可能需要在 JavaScript 里直接访问一个子组件。为了达到这个目的，你可以通过 `ref` 这个 attribute 为子组件赋予一个 ID 引用。例如：
 
 ```html
 <base-input ref="usernameInput"></base-input>
@@ -320,7 +320,7 @@ components: {
 
 ### 内联模板
 
-当 `inline-template` 这个特殊的特性出现在一个子组件上时，这个组件将会使用其里面的内容作为模板，而不是将其作为被分发的内容。这使得模板的撰写工作更加灵活。
+当 `inline-template` 这个特殊的 attribute 出现在一个子组件上时，这个组件将会使用其里面的内容作为模板，而不是将其作为被分发的内容。这使得模板的撰写工作更加灵活。
 
 ``` html
 <my-component inline-template>
@@ -369,7 +369,7 @@ x-template 需要定义在 Vue 所属的 DOM 元素外。
 
 ### 通过 `v-once` 创建低开销的静态组件
 
-渲染普通的 HTML 元素在 Vue 中是非常快速的，但有的时候你可能有一个组件，这个组件包含了**大量**静态内容。在这种情况下，你可以在根元素上添加 `v-once` 特性以确保这些内容只计算一次然后缓存起来，就像这样：
+渲染普通的 HTML 元素在 Vue 中是非常快速的，但有的时候你可能有一个组件，这个组件包含了**大量**静态内容。在这种情况下，你可以在根元素上添加 `v-once` attribute 以确保这些内容只计算一次然后缓存起来，就像这样：
 
 ``` js
 Vue.component('terms-of-service', {
