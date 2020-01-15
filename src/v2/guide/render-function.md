@@ -165,7 +165,7 @@ createElement(
 
 ### 深入数据对象
 
-有一点要注意：正如 `v-bind:class` 和 `v-bind:style` 在模板语法中会被特别对待一样，它们在 VNode 数据对象中也有对应的顶层字段。该对象也允许你绑定普通的 HTML 特性，也允许绑定如 `innerHTML` 这样的 DOM 属性 (这会覆盖 `v-html` 指令)。
+有一点要注意：正如 `v-bind:class` 和 `v-bind:style` 在模板语法中会被特别对待一样，它们在 VNode 数据对象中也有对应的顶层字段。该对象也允许你绑定普通的 HTML attribute，也允许绑定如 `innerHTML` 这样的 DOM 属性 (这会覆盖 `v-html` 指令)。
 
 ``` js
 {
@@ -181,7 +181,7 @@ createElement(
     color: 'red',
     fontSize: '14px'
   },
-  // 普通的 HTML 特性
+  // 普通的 HTML attribute
   attrs: {
     id: 'foo'
   },
@@ -516,7 +516,7 @@ Vue.component('my-component', {
 })
 ```
 
-> 注意：在 2.3.0 之前的版本中，如果一个函数式组件想要接收 prop，则 `props` 选项是必须的。在 2.3.0 或以上的版本中，你可以省略 `props` 选项，所有组件上的特性都会被自动隐式解析为 prop。
+> 注意：在 2.3.0 之前的版本中，如果一个函数式组件想要接收 prop，则 `props` 选项是必须的。在 2.3.0 或以上的版本中，你可以省略 `props` 选项，所有组件上的 attribute 都会被自动隐式解析为 prop。
 > 
 > 当使用函数式组件时，该引用将会是 HTMLElement，因为他们是无状态的也是无实例的。
 
@@ -584,9 +584,9 @@ Vue.component('smart-list', {
 })
 ```
 
-### 向子元素或子组件传递特性和事件
+### 向子元素或子组件传递 attribute 和事件
 
-在普通组件中，没有被定义为 prop 的特性会自动添加到组件的根元素上，将已有的同名特性进行替换或与其进行[智能合并](class-and-style.html)。
+在普通组件中，没有被定义为 prop 的 attribute 会自动添加到组件的根元素上，将已有的同名 attribute 进行替换或与其进行[智能合并](class-and-style.html)。
 
 然而函数式组件要求你显式定义该行为：
 
@@ -594,15 +594,15 @@ Vue.component('smart-list', {
 Vue.component('my-functional-button', {
   functional: true,
   render: function (createElement, context) {
-    // 完全透传任何特性、事件监听器、子节点等。
+    // 完全透传任何 attribute、事件监听器、子节点等。
     return createElement('button', context.data, context.children)
   }
 })
 ```
 
-通过向 `createElement` 传入 `context.data` 作为第二个参数，我们就把 `my-functional-button` 上面所有的特性和事件监听器都传递下去了。事实上这是非常透明的，以至于那些事件甚至并不要求 `.native` 修饰符。
+通过向 `createElement` 传入 `context.data` 作为第二个参数，我们就把 `my-functional-button` 上面所有的 attribute 和事件监听器都传递下去了。事实上这是非常透明的，以至于那些事件甚至并不要求 `.native` 修饰符。
 
-如果你使用基于模板的函数式组件，那么你还需要手动添加特性和监听器。因为我们可以访问到其独立的上下文内容，所以我们可以使用 `data.attrs` 传递任何 HTML 特性，也可以使用 `listeners` *(即 `data.on` 的别名)* 传递任何事件监听器。
+如果你使用基于模板的函数式组件，那么你还需要手动添加 attribute 和监听器。因为我们可以访问到其独立的上下文内容，所以我们可以使用 `data.attrs` 传递任何 HTML attribute，也可以使用 `listeners` *(即 `data.on` 的别名)* 传递任何事件监听器。
 
 ```html
 <template functional>
