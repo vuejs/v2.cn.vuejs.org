@@ -1281,7 +1281,7 @@ type: api
 
 - **详细**：
 
-  默认情况下父作用域的不被认作 props 的特性绑定 (attribute bindings) 将会“回退”且作为普通的 HTML 特性应用在子组件的根元素上。当撰写包裹一个目标元素或另一个组件的组件时，这可能不会总是符合预期行为。通过设置 `inheritAttrs` 到 `false`，这些默认行为将会被去掉。而通过 (同样是 2.4 新增的) 实例属性 `$attrs` 可以让这些特性生效，且可以通过 `v-bind` 显性的绑定到非根元素上。
+  默认情况下父作用域的不被认作 props 的 attribute 绑定 (attribute bindings) 将会“回退”且作为普通的 HTML attribute 应用在子组件的根元素上。当撰写包裹一个目标元素或另一个组件的组件时，这可能不会总是符合预期行为。通过设置 `inheritAttrs` 到 `false`，这些默认行为将会被去掉。而通过 (同样是 2.4 新增的) 实例属性 `$attrs` 可以让这些 attribute 生效，且可以通过 `v-bind` 显性的绑定到非根元素上。
 
   注意：这个选项**不影响** `class` 和 `style` 绑定。
 
@@ -1465,11 +1465,11 @@ type: api
 
 - **详细**：
 
-  一个对象，持有注册过 [`ref` 特性](#ref) 的所有 DOM 元素和组件实例。
+  一个对象，持有注册过 [`ref` attribute](#ref) 的所有 DOM 元素和组件实例。
 
 - **参考**：
   - [子组件引用](../guide/components-edge-cases.html#访问子组件实例或子元素)
-  - [特殊特性 - ref](#ref)
+  - [特殊 attribute - ref](#ref)
 
 ### vm.$isServer
 
@@ -1493,7 +1493,7 @@ type: api
 
 - **详细**：
 
-  包含了父作用域中不作为 prop 被识别 (且获取) 的特性绑定 (`class` 和 `style` 除外)。当一个组件没有声明任何 prop 时，这里会包含所有父作用域的绑定 (`class` 和 `style` 除外)，并且可以通过 `v-bind="$attrs"` 传入内部组件——在创建高级别的组件时非常有用。
+  包含了父作用域中不作为 prop 被识别 (且获取) 的 attribute 绑定 (`class` 和 `style` 除外)。当一个组件没有声明任何 prop 时，这里会包含所有父作用域的绑定 (`class` 和 `style` 除外)，并且可以通过 `v-bind="$attrs"` 传入内部组件——在创建高级别的组件时非常有用。
 
 ### vm.$listeners
 
@@ -2169,14 +2169,14 @@ type: api
 
 - **修饰符**：
   - `.prop` - 作为一个 DOM property 绑定而不是作为 attribute 绑定。([差别在哪里？](https://stackoverflow.com/questions/6003819/properties-and-attributes-in-html#answer-6004028))
-  - `.camel` - (2.1.0+) 将 kebab-case 特性名转换为 camelCase. (从 2.1.0 开始支持)
+  - `.camel` - (2.1.0+) 将 kebab-case attribute 名转换为 camelCase. (从 2.1.0 开始支持)
   - `.sync` (2.3.0+) 语法糖，会扩展成一个更新父组件绑定值的 `v-on` 侦听器。
 
 - **用法**：
 
-  动态地绑定一个或多个特性，或一个组件 prop 到表达式。
+  动态地绑定一个或多个 attribute，或一个组件 prop 到表达式。
 
-  在绑定 `class` 或 `style` 特性时，支持其它类型的值，如数组或对象。可以通过下面的教程链接查看详情。
+  在绑定 `class` 或 `style` attribute 时，支持其它类型的值，如数组或对象。可以通过下面的教程链接查看详情。
 
   在绑定 prop 时，prop 必须在子组件中声明。可以用修饰符指定不同的绑定类型。
 
@@ -2188,13 +2188,13 @@ type: api
   <!-- 绑定一个属性 -->
   <img v-bind:src="imageSrc">
 
-  <!-- 动态特性名 (2.6.0+) -->
+  <!-- 动态 attribute 名 (2.6.0+) -->
   <button v-bind:[key]="value"></button>
 
   <!-- 缩写 -->
   <img :src="imageSrc">
 
-  <!-- 动态特性名缩写 (2.6.0+) -->
+  <!-- 动态 attribute 名缩写 (2.6.0+) -->
   <button :[key]="value"></button>
 
   <!-- 内联字符串拼接 -->
@@ -2380,7 +2380,7 @@ type: api
   - [数据绑定语法- 插值](../guide/syntax.html#插值)
   - [组件 - 对低开销的静态组件使用 `v-once`](../guide/components-edge-cases.html#通过-v-once-创建低开销的静态组件)
 
-## 特殊特性
+## 特殊 attribute
 
 ### key
 
@@ -2476,7 +2476,7 @@ type: api
 
 - **用法**：
 
-  用于将元素或组件表示为作用域插槽。特性的值应该是可以出现在函数签名的参数位置的合法的 JavaScript 表达式。这意味着在支持的环境中，你还可以在表达式中使用 ES2015 解构。它在 2.5.0+ 中替代了 [`scope`](#scope-replaced)。
+  用于将元素或组件表示为作用域插槽。attribute 的值应该是可以出现在函数签名的参数位置的合法的 JavaScript 表达式。这意味着在支持的环境中，你还可以在表达式中使用 ES2015 解构。它在 2.5.0+ 中替代了 [`scope`](#scope-replaced)。
 
   此属性不支持动态绑定。
 
@@ -2589,7 +2589,7 @@ type: api
 - **Props**：
   - `tag` - string，默认为 `span`
   - `move-class` - 覆盖移动过渡期间应用的 CSS 类。
-  - 除了 `mode`，其他特性和 `<transition>` 相同。
+  - 除了 `mode`，其他 attribute 和 `<transition>` 相同。
 
 - **事件**：
   - 事件和 `<transition>` 相同。
