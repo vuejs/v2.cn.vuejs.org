@@ -5,7 +5,7 @@ type: style-guide
 
 这里是官方的 Vue 特有代码的风格指南。如果在工程中使用 Vue，为了回避错误、小纠结和反模式，该指南是份不错的参考。不过我们也不确信风格指南的所有内容对于所有的团队或工程都是理想的。所以根据过去的经验、周围的技术栈、个人价值观做出有意义的偏差是可取的。
 
-对于其绝大部分，我们也总体上避免就 JavaScript 或 HTML 的本身提出建议。我们不介意你是否使用分号或结尾的逗号。我们不介意你在 HTML 特性中使用单引号还是双引号。不过当我们发现在 Vue 的情景下有帮助的特定模式时，也会存在例外。
+对于其绝大部分，我们也总体上避免就 JavaScript 或 HTML 的本身提出建议。我们不介意你是否使用分号或结尾的逗号。我们不介意你在 HTML attribute 中使用单引号还是双引号。不过当我们发现在 Vue 的情景下有帮助的特定模式时，也会存在例外。
 
 > **不久之后，我们还会提供操作层面的技巧。**有的时候你只需要遵守规则，而我们会尽可能向你展示如何使用 ESLint 及其它自动化程序把操作层面弄得更简单。
 
@@ -466,10 +466,10 @@ computed: {
 
 **对于应用来说，顶级 `App` 组件和布局组件中的样式可以是全局的，但是其它所有组件都应该是有作用域的。**
 
-这条规则只和[单文件组件](../guide/single-file-components.html)有关。你*不一定*要使用 [`scoped` 特性](https://vue-loader.vuejs.org/zh-cn/features/scoped-css.html)。设置作用域也可以通过 [CSS Modules](https://vue-loader.vuejs.org/zh-cn/features/css-modules.html)，那是一个基于 class 的类似 [BEM](http://getbem.com/) 的策略，当然你也可以使用其它的库或约定。
+这条规则只和[单文件组件](../guide/single-file-components.html)有关。你*不一定*要使用 [`scoped` attribute](https://vue-loader.vuejs.org/zh-cn/features/scoped-css.html)。设置作用域也可以通过 [CSS Modules](https://vue-loader.vuejs.org/zh-cn/features/css-modules.html)，那是一个基于 class 的类似 [BEM](http://getbem.com/) 的策略，当然你也可以使用其它的库或约定。
 
 
-**不管怎样，对于组件库，我们应该更倾向于选用基于 class 的策略而不是 `scoped` 特性。**
+**不管怎样，对于组件库，我们应该更倾向于选用基于 class 的策略而不是 `scoped` attribute。**
 
 这让覆写内部样式更容易：使用了常人可理解的 class 名称且没有太高的选择器优先级，而且不太会导致冲突。
 
@@ -482,7 +482,7 @@ computed: {
 
 如果你和其他开发者一起开发一个大型工程，或有时引入三方 HTML/CSS (比如来自 Auth0)，设置一致的作用域会确保你的样式只会运用在它们想要作用的组件上。
 
-不止要使用 `scoped` 特性，使用唯一的 class 名可以帮你确保那些三方库的 CSS 不会运用在你自己的 HTML 上。比如许多工程都使用了 `button`、`btn` 或 `icon` class 名，所以即便你不使用类似 BEM 的策略，添加一个 app 专属或组件专属的前缀 (比如 `ButtonClose-icon`) 也可以提供很多保护。
+不止要使用 `scoped` attribute，使用唯一的 class 名可以帮你确保那些三方库的 CSS 不会运用在你自己的 HTML 上。比如许多工程都使用了 `button`、`btn` 或 `icon` class 名，所以即便你不使用类似 BEM 的策略，添加一个 app 专属或组件专属的前缀 (比如 `ButtonClose-icon`) 也可以提供很多保护。
 
 {% raw %}</details>{% endraw %}
 
@@ -510,7 +510,7 @@ computed: {
   <button class="button button-close">X</button>
 </template>
 
-<!-- 使用 `scoped` 特性 -->
+<!-- 使用 `scoped` attribute -->
 <style scoped>
 .button {
   border: none;
@@ -1254,9 +1254,9 @@ props: {
 
 
 
-### 多个特性的元素 <sup data-p="b">强烈推荐</sup>
+### 多个 attribute 的元素 <sup data-p="b">强烈推荐</sup>
 
-**多个特性的元素应该分多行撰写，每个特性一行。**
+**多个 attribute 的元素应该分多行撰写，每个 attribute 一行。**
 
 在 JavaScript 中，用多行分隔对象的多个属性是很常见的最佳实践，因为这样更易读。模板和 [JSX](../guide/render-function.html#JSX) 值得我们做相同的考虑。
 
@@ -1398,11 +1398,11 @@ computed: {
 
 
 
-### 带引号的特性值 <sup data-p="b">强烈推荐</sup>
+### 带引号的 attribute 值 <sup data-p="b">强烈推荐</sup>
 
-**非空 HTML 特性值应该始终带引号 (单引号或双引号，选你 JS 里不用的那个)。**
+**非空 HTML attribute 值应该始终带引号 (单引号或双引号，选你 JS 里不用的那个)。**
 
-在 HTML 中不带空格的特性值是可以没有引号的，但这鼓励了大家在特征值里*不写*空格，导致可读性变差。
+在 HTML 中不带空格的 attribute 值是可以没有引号的，但这鼓励了大家在特征值里*不写*空格，导致可读性变差。
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
 #### 反例
@@ -1581,11 +1581,11 @@ computed: {
 
 
 
-### 元素特性的顺序 <sup data-p="c">推荐</sup>
+### 元素 attribute 的顺序 <sup data-p="c">推荐</sup>
 
-**元素 (包括组件) 的特性应该有统一的顺序。**
+**元素 (包括组件) 的 attribute 应该有统一的顺序。**
 
-这是我们为组件选项推荐的默认顺序。它们被划分为几大类，所以你也能知道新添加的自定义特性和指令应该放到哪里。
+这是我们为组件选项推荐的默认顺序。它们被划分为几大类，所以你也能知道新添加的自定义 attribute 和指令应该放到哪里。
 
 1. **定义** (提供组件的选项)
   - `is`
@@ -1607,14 +1607,14 @@ computed: {
 5. **全局感知** (需要超越组件的知识)
   - `id`
 
-6. **唯一的特性** (需要唯一值的特性)
+6. **唯一的 attribute** (需要唯一值的 attribute)
   - `ref`
   - `key`
 
 7. **双向绑定** (把绑定和事件结合起来)
   - `v-model`
 
-8. **其它特性** (所有普通的绑定或未绑定的特性)
+8. **其它 attribute** (所有普通的绑定或未绑定的 attribute)
 
 9. **事件** (组件事件监听器)
   - `v-on`
@@ -1801,9 +1801,9 @@ computed: {
 </summary>
 {% endraw %}
 
-为了给样式设置作用域，Vue 会为元素添加一个独一无二的特性，例如 `data-v-f3f3eg9`。然后修改选择器，使得在匹配选择器的元素中，只有带这个特性才会真正生效 (比如 `button[data-v-f3f3eg9]`)。
+为了给样式设置作用域，Vue 会为元素添加一个独一无二的 attribute，例如 `data-v-f3f3eg9`。然后修改选择器，使得在匹配选择器的元素中，只有带这个 attribute 才会真正生效 (比如 `button[data-v-f3f3eg9]`)。
 
-问题在于大量的[元素和特性组合的选择器](http://stevesouders.com/efws/css-selectors/csscreate.php?n=1000&sel=a%5Bhref%5D&body=background%3A+%23CFD&ne=1000) (比如 `button[data-v-f3f3eg9]`) 会比[类和特性组合的选择器](http://stevesouders.com/efws/css-selectors/csscreate.php?n=1000&sel=.class%5Bhref%5D&body=background%3A+%23CFD&ne=1000) 慢，所以应该尽可能选用类选择器。
+问题在于大量的[元素和 attribute 组合的选择器](http://stevesouders.com/efws/css-selectors/csscreate.php?n=1000&sel=a%5Bhref%5D&body=background%3A+%23CFD&ne=1000) (比如 `button[data-v-f3f3eg9]`) 会比[类和 attribute 组合的选择器](http://stevesouders.com/efws/css-selectors/csscreate.php?n=1000&sel=.class%5Bhref%5D&body=background%3A+%23CFD&ne=1000) 慢，所以应该尽可能选用类选择器。
 
 {% raw %}</details>{% endraw %}
 
