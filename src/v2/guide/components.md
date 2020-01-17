@@ -239,7 +239,7 @@ new Vue({
   v-bind:key="post.id"
   v-bind:title="post.title"
   v-bind:content="post.content"
-  v-bind:publishedAt="post.publishedAt"
+  v-bind:publishedat="post.publishedat"
   v-bind:comments="post.comments"
 ></blog-post>
 ```
