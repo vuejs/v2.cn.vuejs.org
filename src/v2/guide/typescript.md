@@ -65,7 +65,7 @@ const Component = Vue.extend({
 
 const Component = {
   // 这里不会有类型推断，
-  // 因为TypeScript不能确认这是Vue组件的选项
+  // 因为 TypeScript 不能确认这是 Vue 组件的选项
 }
 ```
 
