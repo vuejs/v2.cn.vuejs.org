@@ -87,7 +87,7 @@ order: 504
   <div domPropsInnerHTML={this.userProvidedHtml}></div>
   ```
 
-<p class="tip">注意永远不要认为用户提供的 HTML 是 100% 安全的，除非在一个 iframe 沙盒或应用中只有这些 HTML 的作者可以看到的那部分。除此之外，允许用户撰写其自己的 Vue 模板会带来类似的危险。</p>
+<p class="tip">注意永远不要认为用户提供的 HTML 是 100% 安全的，除非它是在一个 iframe 沙盒里或者应用中只有编写这些 HTML 的用户可以接触它。除此之外，允许用户撰写其自己的 Vue 模板会带来类似的危险。</p>
 
 ### 注入 URL
 
@@ -144,7 +144,7 @@ order: 504
 
 每个 HTML 元素都有接受 JavaScript 字符串作为其值的 attribute，如 `onclick`、`onfocus` 和 `onmouseenter`。将用户提供的 JavaScript 绑定到它们任意当中都是一个潜在的安全风险，因此应该避免。
 
-<p class="tip">请注意，永远不要认为用户提供的 JavaScript 是 100% 安全的，除非在一个 iframe 沙盒或者只有编写该 JavaScript 的用户才能接触到它。</p>
+<p class="tip">请注意，永远不要认为用户提供的 JavaScript 是 100% 安全的，除非它是在一个 iframe 沙盒或者应用中只有编写该 JavaScript 的用户才能接触到它。</p>
 
 有的时候我们会收到在 Vue 模板中可以产生跨站脚本攻击 (XSS) 的安全漏洞报告。一般情况下，我们不会将这样的案例视为真正的安全漏洞，因为从以下两个可能允许 XSS 的场景看，不存在可行的办法来保护开发者：
 
