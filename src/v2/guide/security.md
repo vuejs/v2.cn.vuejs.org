@@ -87,7 +87,7 @@ order: 504
   <div domPropsInnerHTML={this.userProvidedHtml}></div>
   ```
 
-<p class="tip">注意永远不要认为用户提供的 HTML 是 100% 安全的，除非它是在一个 iframe 沙盒里或者应用中只有编写这些 HTML 的用户可以接触它。除此之外，允许用户撰写其自己的 Vue 模板会带来类似的危险。</p>
+<p class="tip">注意永远不要认为用户提供的 HTML 是 100% 安全的，除非它是在一个 iframe 沙盒里或者应用中只有编写这些 HTML 的用户可以接触到它。除此之外，允许用户撰写其自己的 Vue 模板会带来类似的危险。</p>
 
 ### 注入 URL
 
