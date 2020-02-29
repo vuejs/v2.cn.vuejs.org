@@ -80,7 +80,7 @@ directives: {
 
 指令钩子函数会被传入以下参数：
 
-- `el`：指令所绑定的元素，可以用来直接操作 DOM 。
+- `el`：指令所绑定的元素，可以用来直接操作 DOM。
 - `binding`：一个对象，包含以下属性：
   - `name`：指令名，不包括 `v-` 前缀。
   - `value`：指令的绑定值，例如：`v-my-directive="1 + 1"` 中，绑定值为 `2`。
@@ -212,7 +212,7 @@ new Vue({
 
 ## 函数简写
 
-在很多时候，你可能想在 `bind` 和 `update` 时触发相同行为，而不关心其它的钩子。比如这样写:
+在很多时候，你可能想在 `bind` 和 `update` 时触发相同行为，而不关心其它的钩子。比如这样写：
 
 ``` js
 Vue.directive('color-swatch', function (el, binding) {

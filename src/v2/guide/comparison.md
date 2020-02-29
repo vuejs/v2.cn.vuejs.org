@@ -224,7 +224,7 @@ Polymer 是另一个由谷歌赞助的项目，事实上也是 Vue 的一个灵�
 
 ## Riot
 
-Riot 3.0 提供了一个类似于基于组件的开发模型 (在 Riot 中称之为 Tag)，它提供了小巧精美的 API。Riot 和 Vue 在设计理念上可能有许多相似处。尽管相比 Riot ，Vue 要显得重一点，Vue 还是有很多显著优势的：
+Riot 3.0 提供了一个类似于基于组件的开发模型 (在 Riot 中称之为 Tag)，它提供了小巧精美的 API。Riot 和 Vue 在设计理念上可能有许多相似处。尽管相比 Riot，Vue 要显得重一点，Vue 还是有很多显著优势的：
 
 - 更好的性能。Riot 使用了 [遍历 DOM 树](https://v3.riotjs.now.sh/compare/#virtual-dom-vs-expressions-binding) 而不是虚拟 DOM，但实际上用的还是脏检查机制，因此和 AngularJS 患有相同的性能问题。
 - 更多成熟工具的支持。Vue 提供官方支持 [webpack](https://github.com/vuejs/vue-loader) 和 [Browserify](https://github.com/vuejs/vueify)，而 Riot 是依靠社区来建立集成系统。

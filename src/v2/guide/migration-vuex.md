@@ -4,7 +4,7 @@ type: guide
 order: 703
 ---
 
-> Vuex 2.0 已经发布了，但是这份指南只涵盖迁移到 1.0？这是打错了吗？此外，似乎 Vuex 1.0 和 2.0 也同时发布。这是怎么回事？我该用哪一个并且哪一个兼容 Vue 2.0呢？
+> Vuex 2.0 已经发布了，但是这份指南只涵盖迁移到 1.0？这是打错了吗？此外，似乎 Vuex 1.0 和 2.0 也同时发布。这是怎么回事？我该用哪一个并且哪一个兼容 Vue 2.0 呢？
 
 Vuex 1.0 和 2.0 如下：
 
@@ -47,9 +47,9 @@ store.watch(
 </div>
 {% endraw %}
 
-## Store 的事件触发器 <sup>移除</sup>
+## Store 的事件触发器<sup>移除</sup>
 
-store 实例不再暴露事件触发器 (event emitter) 接口 (`on`, `off`, `emit`)。如果你之前使用 store 作为全局的 event bus，迁移说明相关内容请查阅[此章节](migration.html#dispatch-和-broadcast-替换)。
+store 实例不再暴露事件触发器 (event emitter) 接口 (`on`，`off`，`emit`)。如果你之前使用 store 作为全局的 event bus，迁移说明相关内容请查阅[此章节](migration.html#dispatch-和-broadcast-替换)。
 
 为了替换正在使用观察 store 自身触发事件的这些接口，(例如：`store.on('mutation', callback)`)，我们引入新的方法 `store.subscribe`。在插件中的典型使用方式如下：
 
@@ -71,7 +71,7 @@ var myPlugin = store => {
 </div>
 {% endraw %}
 
-## 中间件 <sup>替换</sup>
+## 中间件<sup>替换</sup>
 
 中间件被替换为插件。插件是接收 store 作为仅有参数的基本函数，能够监听 store 中的 mutation 事件：
 
