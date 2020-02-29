@@ -19,7 +19,7 @@ order: 6
 ```
 上面的语法表示 `active` 这个 class 存在与否将取决于数据属性 `isActive` 的 [truthiness](https://developer.mozilla.org/zh-CN/docs/Glossary/Truthy)。
 
-你可以在对象中传入更多属性来动态切换多个 class。此外，`v-bind:class` 指令也可以与普通的 class 属性共存。当有如下模板:
+你可以在对象中传入更多属性来动态切换多个 class。此外，`v-bind:class` 指令也可以与普通的 class 属性共存。当有如下模板：
 
 ``` html
 <div
@@ -136,7 +136,7 @@ Vue.component('my-component', {
 <my-component class="baz boo"></my-component>
 ```
 
-HTML 将被渲染为:
+HTML 将被渲染为：
 
 ``` html
 <p class="foo bar baz boo">Hi</p>
