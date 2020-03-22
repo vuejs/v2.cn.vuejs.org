@@ -6,7 +6,7 @@ order: 304
 
 插件通常用来为 Vue 添加全局功能。插件的功能范围没有严格的限制——一般有下面几种：
 
-1. 添加全局方法或者属性。如: [vue-custom-element](https://github.com/karol-f/vue-custom-element)
+1. 添加全局方法或者属性。如：[vue-custom-element](https://github.com/karol-f/vue-custom-element)
 
 2. 添加全局资源：指令/过滤器/过渡等。如 [vue-touch](https://github.com/vuejs/vue-touch)
 

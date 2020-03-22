@@ -165,7 +165,7 @@ createElement(
 
 ### 深入数据对象
 
-有一点要注意：正如 `v-bind:class` 和 `v-bind:style` 在模板语法中会被特别对待一样，它们在 VNode 数据对象中也有对应的顶层字段。该对象也允许你绑定普通的 HTML attribute，也允许绑定如 `innerHTML` 这样的 DOM 属性 (这会覆盖 `v-html` 指令)。
+有一点要注意：正如 `v-bind:class` 和 `v-bind:style` 在模板语法中会被特别对待一样，它们在 VNode 数据对象中也有对应的顶层字段。该对象也允许你绑定普通的 HTML attribute，也允许绑定如 `innerHTML` 这样的 DOM 属性 (这会覆盖 `v-html` 指令)。
 
 ``` js
 {
@@ -356,7 +356,7 @@ render: function (createElement) {
 
 ### 事件 & 按键修饰符
 
-对于 `.passive`、`.capture` 和 `.once` 这些事件修饰符, Vue 提供了相应的前缀可以用于 `on`：
+对于 `.passive`、`.capture` 和 `.once` 这些事件修饰符，Vue 提供了相应的前缀可以用于 `on`：
 
 | 修饰符 | 前缀 |
 | ------ | ------ |
@@ -365,7 +365,7 @@ render: function (createElement) {
 | `.once` | `~` |
 | `.capture.once` 或<br>`.once.capture` | `~!` |
 
-例如:
+例如：
 
 ```javascript
 on: {
@@ -497,9 +497,7 @@ new Vue({
 
 ## 函数式组件
 
-之前创建的锚点标题组件是比较简单，没有管理任何状态，也没有监听任何传递给它的状态，也没有生命周期方法。实际上，它只是一个接受一些 prop 的函数。
-在这样的场景下，我们可以将组件标记为 `functional`，这意味它无状态 (没有[响应式数据](../api/#选项-数据))，也没有实例 (没有 `this` 上下文)。
-一个**函数式组件**就像这样：
+之前创建的锚点标题组件是比较简单，没有管理任何状态，也没有监听任何传递给它的状态，也没有生命周期方法。实际上，它只是一个接受一些 prop 的函数。在这样的场景下，我们可以将组件标记为 `functional`，这意味它无状态 (没有[响应式数据](../api/#选项-数据))，也没有实例 (没有 `this` 上下文)。一个**函数式组件**就像这样：
 
 ``` js
 Vue.component('my-component', {
@@ -530,13 +528,13 @@ Vue.component('my-component', {
 组件需要的一切都是通过 `context` 参数传递，它是一个包括如下字段的对象：
 
 - `props`：提供所有 prop 的对象
-- `children`: VNode 子节点的数组
-- `slots`: 一个函数，返回了包含所有插槽的对象
-- `scopedSlots`: (2.6.0+) 一个暴露传入的作用域插槽的对象。也以函数形式暴露普通插槽。
+- `children`：VNode 子节点的数组
+- `slots`：一个函数，返回了包含所有插槽的对象
+- `scopedSlots`：(2.6.0+) 一个暴露传入的作用域插槽的对象。也以函数形式暴露普通插槽。
 - `data`：传递给组件的整个[数据对象](#深入数据对象)，作为 `createElement` 的第二个参数传入组件
 - `parent`：对父组件的引用
-- `listeners`: (2.3.0+) 一个包含了所有父组件为当前组件注册的事件监听器的对象。这是 `data.on` 的一个别名。
-- `injections`: (2.3.0+) 如果使用了 [`inject`](../api/#provide-inject) 选项，则该对象包含了应当被注入的属性。
+- `listeners`：(2.3.0+) 一个包含了所有父组件为当前组件注册的事件监听器的对象。这是 `data.on` 的一个别名。
+- `injections`：(2.3.0+) 如果使用了 [`inject`](../api/#provide-inject) 选项，则该对象包含了应当被注入的属性。
 
 在添加 `functional: true` 之后，需要更新我们的锚点标题组件的渲染函数，为其增加 `context` 参数，并将 `this.$slots.default` 更新为 `context.children`，然后将 `this.level` 更新为 `context.props.level`。
 
