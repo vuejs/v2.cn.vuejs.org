@@ -4,14 +4,13 @@ type: guide
 order: 702
 ---
 
-> 只有 Vue Router 2 是与 Vue 2 相互兼容的，所以如果你更新了 Vue ，你也需要更新 Vue Router 。这也是我们在主文档中将迁移路径的详情添加进来的原因。
-有关使用 Vue Router 2 的完整教程，请参阅 [Vue Router 文档](https://router.vuejs.org/zh-cn/)。
+> 只有 Vue Router 2 是与 Vue 2 相互兼容的，所以如果你更新了 Vue，你也需要更新 Vue Router。这也是我们在主文档中将迁移路径的详情添加进来的原因。有关使用 Vue Router 2 的完整教程，请参阅 [Vue Router 文档](https://router.vuejs.org/zh-cn/)。
 
 ## Router 初始化
 
 ### `router.start` <sup>替换</sup>
 
-不再会有一个特殊的 API 用来初始化包含 Vue Router 的 app ，这意味着不再是：
+不再会有一个特殊的 API 用来初始化包含 Vue Router 的 app，这意味着不再是：
 
 ``` js
 router.start({
@@ -155,7 +154,7 @@ router.beforeEach(function (to, from, next) {
 
 ### `subRoutes` <sup>换名</sup>
 
-出于 Vue Router 和其他路由库一致性的考虑，重命名为[`children`](https://router.vuejs.org/zh-cn/essentials/nested-routes.html)
+出于 Vue Router 和其他路由库一致性的考虑，重命名为 [`children`](https://router.vuejs.org/zh-cn/essentials/nested-routes.html)
 
 {% raw %}
 <div class="upgrade-path">
@@ -174,7 +173,7 @@ router.redirect({
 })
 ```
 
-成像下面的`routes`配置里定义的样子：
+成像下面的 `routes` 配置里定义的样子：
 
 ``` js
 {
@@ -192,7 +191,7 @@ router.redirect({
 
 ### `router.alias` <sup>替换</sup>
 
-现在是你进行 alias 操作的[路由定义里的一个选项](https://router.vuejs.org/zh-cn/essentials/redirect-and-alias.html)。举个例子，你需要在你的`routes`定义里将：
+现在是你进行 alias 操作的[路由定义里的一个选项](https://router.vuejs.org/zh-cn/essentials/redirect-and-alias.html)。举个例子，你需要在你的 `routes` 定义里将：
 
 ``` js
 router.alias({
@@ -223,7 +222,7 @@ alias: ['/manage', '/administer', '/administrate']
 </div>
 {% endraw %}
 
-### 任意的 Route 属性 <sup>替换</sup>
+### 任意的 Route 属性<sup>替换</sup>
 
 现在任意的 route 属性必须在新 meta 属性的作用域内，以避免和以后的新特性发生冲突。举个例子，如果你以前这样定义：
 
@@ -246,7 +245,7 @@ alias: ['/manage', '/administer', '/administrate']
 }
 ```
 
-如果在一个路由上访问一个属性，你仍然会通过 meta 。举个例子：
+如果在一个路由上访问一个属性，你仍然会通过 meta。举个例子：
 
 ``` js
 if (route.meta.requiresAuth) {
@@ -261,7 +260,7 @@ if (route.meta.requiresAuth) {
 </div>
 {% endraw %}
 
-### URL 中的 Query 数组 [] 语法 <sup>移除</sup>
+### URL 中的 Query 数组 [] 语法<sup>移除</sup>
 
 当传递数组给 query 参数时，URL 语法不再是 `/foo?users[]=Tom&users[]=Jerry`，取而代之，新语法是 `/foo?users=Tom&users=Jerry`，此时 `$route.query.users` 将仍旧是一个数组，不过如果在该 query 中只有一个参数：`/foo?users=Tom`，当直接访问该路由时，vue-router 将无法知道我们期待的 `users` 是个数组。因此，可以考虑添加一个计算属性并且在每个使用 `$route.query.users` 的地方以该计算属性代替：
 
@@ -282,9 +281,9 @@ export default {
 
 路由匹配现在使用 [path-to-regexp](https://github.com/pillarjs/path-to-regexp) 这个包，这将会使得工作与之前相比更加灵活。
 
-### 一个或者更多的命名参数 <sup>改变</sup>
+### 一个或者更多的命名参数<sup>改变</sup>
 
-语法稍微有些许改变，所以以`/category/*tags`为例，应该被更新为`/category/:tags+`。
+语法稍微有些许改变，所以以 `/category/*tags` 为例，应该被更新为 `/category/:tags+`。
 
 {% raw %}
 <div class="upgrade-path">
@@ -309,7 +308,7 @@ export default {
 <router-link to="/about">About</router-link>
 ```
 
-注意：`<router-link>`不支持`target="_blank"`属性，如果你想打开一个新标签页，你必须用`<a>`标签。
+注意：`<router-link>`不支持 `target="_blank"` 属性，如果你想打开一个新标签页，你必须用`<a>`标签。
 
 {% raw %}
 <div class="upgrade-path">
@@ -349,7 +348,7 @@ export default {
 
 ### `router.go` <sup>改变</sup>
 
-为了与 [HTML5 History API](https://developer.mozilla.org/en-US/docs/Web/API/History_API) 保持一致性，`router.go` 已经被用来作为 [后退/前进导航](https://router.vuejs.org/zh-cn/essentials/navigation.html#routergon)，[`router.push` ](https://router.vuejs.org/zh-cn/essentials/navigation.html#routerpushlocation) 用来导向特殊页面。
+为了与 [HTML5 History API](https://developer.mozilla.org/en-US/docs/Web/API/History_API) 保持一致性，`router.go` 已经被用来作为 [后退/前进导航](https://router.vuejs.org/zh-cn/essentials/navigation.html#routergon)，[`router.push`](https://router.vuejs.org/zh-cn/essentials/navigation.html#routerpushlocation) 用来导向特殊页面。
 
 {% raw %}
 <div class="upgrade-path">
@@ -373,7 +372,7 @@ Hashbangs 将不再为谷歌需要去爬去一个网址，所以他们将不再�
 
 ### `history: true` <sup>替换</sup>
 
-所有路由模型选项将被简化成一个单个的[`mode` 选项](https://router.vuejs.org/zh-cn/api/options.html#mode)。你需要更新：
+所有路由模型选项将被简化成一个单个的 [`mode` 选项](https://router.vuejs.org/zh-cn/api/options.html#mode)。你需要更新：
 
 ``` js
 var router = new VueRouter({
@@ -398,7 +397,7 @@ var router = new VueRouter({
 
 ### `abstract: true` <sup>替换</sup>
 
-所有路由模型选项将被简化成一个单个的[`mode` 选项](https://router.vuejs.org/zh-cn/api/options.html#mode)。你需要更新：
+所有路由模型选项将被简化成一个单个的 [`mode` 选项](https://router.vuejs.org/zh-cn/api/options.html#mode)。你需要更新：
 
 ``` js
 var router = new VueRouter({
@@ -494,7 +493,7 @@ scrollBehavior: function (to, from, savedPosition) {
 
 ### `canActivate` <sup>替换</sup>
 
-使用[`beforeEnter`](https://router.vuejs.org/en/advanced/navigation-guards.html#perroute-guard) 在路由中作为替代。
+使用 [`beforeEnter`](https://router.vuejs.org/en/advanced/navigation-guards.html#perroute-guard) 在路由中作为替代。
 
 {% raw %}
 <div class="upgrade-path">
@@ -505,7 +504,7 @@ scrollBehavior: function (to, from, savedPosition) {
 
 ### `deactivate` <sup>移除</sup>
 
-使用[`beforeDestroy`](../api/#beforeDestroy) 或者 [`destroyed`](../api/#destroyed) 钩子作为替代。
+使用 [`beforeDestroy`](../api/#beforeDestroy) 或者 [`destroyed`](../api/#destroyed) 钩子作为替代。
 
 {% raw %}
 <div class="upgrade-path">
@@ -516,7 +515,7 @@ scrollBehavior: function (to, from, savedPosition) {
 
 ### `canDeactivate` <sup>替换</sup>
 
-在组件中使用[`beforeRouteLeave`](https://router.vuejs.org/zh-cn/advanced/navigation-guards.html#组件内的钩子) 作为替代。
+在组件中使用 [`beforeRouteLeave`](https://router.vuejs.org/zh-cn/advanced/navigation-guards.html#组件内的钩子) 作为替代。
 
 {% raw %}
 <div class="upgrade-path">
@@ -538,7 +537,7 @@ scrollBehavior: function (to, from, savedPosition) {
 
 ### `data` <sup>替换</sup>
 
-`$route`属性是响应式的，所以你可以就使用一个 watcher 去响应路由的改变，就像这样：
+`$route` 属性是响应式的，所以你可以就使用一个 watcher 去响应路由的改变，就像这样：
 
 ``` js
 watch: {
