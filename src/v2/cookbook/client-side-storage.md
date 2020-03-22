@@ -6,7 +6,7 @@ order: 11
 
 ## 基本的示例
 
-客户端存储是快速为一个应用进行性能优化的绝佳方法。通过把数据存储在浏览器中，用户不必每次都向服务器请求获取同一个信息。在你离线时，使用本地存储的数据而不是向远端服务器上请求数据就显得非常有用，甚至在线用户也可以从中获益。 客户端存储可以通过这些技术来实现：[cookie](https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies)、[Local Storage](https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API) (更准确地说是“Web Storage”)、[IndexedDB](https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API) 和 [WebSQL](https://www.w3.org/TR/webdatabase/) (这项技术已经被废弃了，你不应该在新项目中使用它)。
+客户端存储是快速为一个应用进行性能优化的绝佳方法。通过把数据存储在浏览器中，用户不必每次都向服务器请求获取同一个信息。在你离线时，使用本地存储的数据而不是向远端服务器上请求数据就显得非常有用，甚至在线用户也可以从中获益。客户端存储可以通过这些技术来实现：[cookie](https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies)、[Local Storage](https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API) (更准确地说是“Web Storage”)、[IndexedDB](https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API) 和 [WebSQL](https://www.w3.org/TR/webdatabase/) (这项技术已经被废弃了，你不应该在新项目中使用它)。
 
 在这个 cookbook 的条目中，我们将专注于最简单的存储机制：Local Storage。Local Storage 使用键/值对来存储数据。它仅支持存储简单的值，但也可以通过 JSON 编解码来存储复杂的数据。总的来说，Local Storage 适合存储你希望进行持久化的较小数据集，比如用户偏好设置或表单数据。更大规模和更复杂的数据则适合存储在 IndexedDB 中。
 
@@ -168,9 +168,9 @@ const app = new Vue({
 })
 ```
 
-在这个应用中，我们转而调用 Local Storage API 而不再“直接”访问 Local Storage。这两种方法都是有效的，但是调用 API 往往是更值得推荐的方法。`mounted` 方法现在需要先获取数据，然后对 JSON 格式的数据进行解析。如果这里出现了任何错误，我们就认为数据已经损坏了并将它删除。 (请记住，如果你的网页应用使用了客户端存储技术，用户可以随意访问并修改这些存储的数据。)
+在这个应用中，我们转而调用 Local Storage API 而不再“直接”访问 Local Storage。这两种方法都是有效的，但是调用 API 往往是更值得推荐的方法。`mounted` 方法现在需要先获取数据，然后对 JSON 格式的数据进行解析。如果这里出现了任何错误，我们就认为数据已经损坏了并将它删除。(请记住，如果你的网页应用使用了客户端存储技术，用户可以随意访问并修改这些存储的数据。)
 
-我们现在有三种方法可以对猫进行操作。`addCat` 和 `removeCat` 方法负责更新储存在 `this.cats` 中的“实时” Vue 数据。在此之后，它们通过 `saveCats` 方法来序列化和持久化这些数据。你可以在下面体验一下这个版本：
+我们现在有三种方法可以对猫进行操作。`addCat` 和 `removeCat` 方法负责更新储存在 `this.cats` 中的“实时”Vue 数据。在此之后，它们通过 `saveCats` 方法来序列化和持久化这些数据。你可以在下面体验一下这个版本：
 
 <p data-height="265" data-theme-id="0" data-slug-hash="qoYbyW" data-default-tab="js,result" data-user="cfjedimaster" data-embed-version="2" data-pen-title="localstorage, complex" class="codepen">See the Pen <a href="https://codepen.io/cfjedimaster/pen/qoYbyW/">localstorage, complex</a> by Raymond Camden (<a href="https://codepen.io/cfjedimaster">@cfjedimaster</a>) on <a href="https://codepen.io">CodePen</a>.</p>
 <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
