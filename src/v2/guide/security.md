@@ -159,7 +159,7 @@ order: 504
 除了上述关于[潜在危险](#潜在危险)的建议，我们也推荐自行熟悉以下资料：
 
 - [HTML5 Security Cheat Sheet](https://html5sec.org/)
-- [OWASP's Cross Site Scripting (XSS) Prevention Cheat Sheet](https://www.owasp.org/index.php/XSS_%28Cross_Site_Scripting%29_Prevention_Cheat_Sheet)
+- [OWASP's Cross Site Scripting (XSS) Prevention Cheat Sheet](https://owasp.org/www-project-cheat-sheets)
 
 然后利用学到的知识，对那些包含了第三方组件或通过其它方式影响渲染到 DOM 的内容的依赖的源代码进行重新审查，以发现潜在的危险模式。
 
