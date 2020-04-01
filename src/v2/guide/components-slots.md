@@ -332,8 +332,8 @@ function (slotProps) {
 这样可以使模板更简洁，尤其是在该插槽提供了多个 prop 的时候。它同样开启了 prop 重命名等其它可能，例如将 `user` 重命名为 `person`：
 
 ``` html
-<current-user v-slot="{ user: person }">
-  {{ person.firstName }}
+<current-user v-slot="{ person: user }">
+  {{ user.firstName }}
 </current-user>
 ```
 
