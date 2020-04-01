@@ -333,7 +333,7 @@ function (slotProps) {
 
 ``` html
 <current-user v-slot="{ user: person }">
-  {{ person.firstName }}
+  {{ user.firstName }}
 </current-user>
 ```
 
