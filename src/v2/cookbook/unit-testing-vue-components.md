@@ -91,7 +91,7 @@ test('Hello', () => {
 - 易于理解
 - 只测试*一个独立单元的工作*
 
-我们在上一个示例的基础上继续构建，同时引入一个<a href="https://zh.wikipedia.org/wiki/工厂方法#工厂">工厂函数 (factory function)</a>使得我们的测试更简洁更易读。这个组件应该：
+我们在上一个示例的基础上继续构建，同时引入一个<a href="https://zh.wikipedia.org/wiki/工厂方法#工厂">工厂函数 (factory function)</a> 使得我们的测试更简洁更易读。这个组件应该：
 
 - 展示一个“Welcome to the Vue.js cookbook”的问候语
 - 提示用户输入用户名
