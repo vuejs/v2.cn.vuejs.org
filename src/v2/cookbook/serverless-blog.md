@@ -39,7 +39,7 @@ import Butter from 'buttercms';
 const butter = Butter('your_api_token');
 ```
 
-使用 CDN:
+使用 CDN：
 
 ```html
 <script src="https://cdnjs.buttercms.com/buttercms-1.1.0.min.js"></script>
@@ -302,4 +302,4 @@ created() {
 
 ## 总结
 
-差不多就是这些了！现在你已经在自己的应用中拥有了一个可以正常工作的 CMS 博客。我们希望这份教程可以帮助你，使你的 Vue.js 开发体验更有乐趣 :)
+差不多就是这些了！现在你已经在自己的应用中拥有了一个可以正常工作的 CMS 博客。我们希望这份教程可以帮助你，使你的 Vue.js 开发体验更有乐趣 🙂
