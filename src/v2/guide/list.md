@@ -81,7 +81,7 @@ var example2 = new Vue({
 
 结果：
 
-{% raw%}
+{% raw %}
 <ul id="example-2" class="demo">
   <li v-for="(item, index) in items">
     {{ parentMessage }} - {{ index }} - {{ item.message }}
@@ -257,7 +257,7 @@ Vue 将被侦听的数组的变异方法进行了包裹，所以它们也将会�
 
 ### 替换数组
 
-变异方法，顾名思义，会改变调用了这些方法的原始数组。相比之下，也有非变异 (non-mutating method) 方法，例如 `filter()`、`concat()` 和 `slice()` 。它们不会改变原始数组，而**总是返回一个新数组**。当使用非变异方法时，可以用新数组替换旧数组：
+变异方法，顾名思义，会改变调用了这些方法的原始数组。相比之下，也有非变异 (non-mutating method) 方法，例如 `filter()`、`concat()` 和 `slice()`。它们不会改变原始数组，而**总是返回一个新数组**。当使用非变异方法时，可以用新数组替换旧数组：
 
 ``` js
 example1.items = example1.items.filter(function (item) {
@@ -457,7 +457,7 @@ methods: {
 
 上面的代码将只渲染未完成的 todo。
 
-而如果你的目的是有条件地跳过循环的执行，那么可以将 `v-if` 置于外层元素 (或 [`<template>`](conditional.html#在-lt-template-gt-中配合-v-if-条件渲染一整组))上。如：
+而如果你的目的是有条件地跳过循环的执行，那么可以将 `v-if` 置于外层元素 (或 [`<template>`](conditional.html#在-lt-template-gt-中配合-v-if-条件渲染一整组)) 上。如：
 
 ``` html
 <ul v-if="todos.length">
@@ -472,7 +472,7 @@ methods: {
 
 > 这部分内容假定你已经了解[组件](components.html)相关知识。你也完全可以先跳过它，以后再回来查看。
 
-在自定义组件上，你可以像在任何普通元素上一样使用 `v-for` 。
+在自定义组件上，你可以像在任何普通元素上一样使用 `v-for`。
 
 ``` html
 <my-component v-for="item in items" :key="item.id"></my-component>
