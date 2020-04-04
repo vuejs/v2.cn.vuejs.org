@@ -255,7 +255,7 @@ NODE_ENV=production browserify -g envify -e main.js | uglifyjs -c -m > build.js
 
 ## 开发版本
 
-**重要**: GitHub 仓库的 `/dist` 文件夹只有在新版本发布时才会提交。如果想要使用 GitHub 上 Vue 最新的源码，你需要自己构建！
+**重要**：GitHub 仓库的 `/dist` 文件夹只有在新版本发布时才会提交。如果想要使用 GitHub 上 Vue 最新的源码，你需要自己构建！
 
 ``` bash
 git clone https://github.com/vuejs/vue.git node_modules/vue
