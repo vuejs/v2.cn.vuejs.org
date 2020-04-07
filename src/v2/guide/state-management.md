@@ -19,13 +19,13 @@ order: 502
 经常被忽略的是，Vue 应用中原始 `data` 对象的实际来源——当访问数据对象时，一个 Vue 实例只是简单的代理访问。所以，如果你有一处需要被多个实例间共享的状态，可以简单地通过维护一份数据来实现共享：
 
 ``` js
-const sourceOfTruth = {}
+var sourceOfTruth = {}
 
-const vmA = new Vue({
+var vmA = new Vue({
   data: sourceOfTruth
 })
 
-const vmB = new Vue({
+var vmB = new Vue({
   data: sourceOfTruth
 })
 ```

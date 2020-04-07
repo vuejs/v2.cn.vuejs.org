@@ -1,113 +1,115 @@
-<div class="sidebar">
-  <div class="sidebar-inner-index">
-    <ul class="main-menu">
-      <%- partial('partials/main_menu', { context: 'sidebar' }) %>
-    </ul>
+<main role="main">
+  <div class="sidebar">
+    <div class="sidebar-inner-index">
+      <ul class="main-menu">
+        <%- partial('partials/main_menu', { context: 'sidebar' }) %>
+      </ul>
+    </div>
   </div>
-</div>
 
-<div id="hero">
-  <div class="inner">
-    <div class="left">
-      <img class="hero-logo" src="<%- url_for("/images/logo.png") %>" alt="vue logo">
-    </div><div class="right">
-      <h2 class="vue">Vue.js</h2>
-      <h1>
-        渐进式<br>JavaScript 框架
-      </h1>
+  <div id="hero">
+    <div class="inner">
+      <div class="left">
+        <img class="hero-logo" src="<%- url_for("/images/logo.png") %>" alt="vue logo">
+      </div><div class="right">
+        <h2 class="vue">Vue.js</h2>
+        <h1>
+          渐进式<br>JavaScript 框架
+        </h1>
+        <p>
+          <a id="modal-player" class="button has-icon" href="javascript:;">
+            <%- partial('icons/play') %>
+            WHY VUE.JS?</a>
+          <a class="button white" href="<%- url_for("/v2/guide/") %>">起步</a>
+          <a class="button gray has-icon" href="https://github.com/vuejs/vue" target="_blank" rel="noopener">
+            <%- partial('icons/github-dark') %>
+            GITHUB</a>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div id="special">
+    <h3>特别赞助</h3>
+    <%_ for (const sponsor of theme.platinum_sponsors_china) { _%>
+    <a href="<%- sponsor.url %>" target="_blank" rel="noopener sponsored">
+      <img src="<%- url_for(`/images/${sponsor.img}`) %>" style="width:200px">
+    </a>
+    <%_ } _%>
+    <%_if (theme.platinum_sponsors_china.length < 2) { _%>
+    <br>
+    <a class="become-backer" href="/support-vuejs/#special-sponsor-china">
+      成为特别赞助商
+    </a>
+    <%_} _%>
+  </div>
+
+  <div id="highlights">
+    <div class="inner">
+      <div class="point">
+        <h2>易用</h2>
+        <p>已经会了 HTML、CSS、JavaScript？即刻阅读指南开始构建应用！</p>
+      </div>
+
+      <div class="point">
+        <h2>灵活</h2>
+        <p>不断繁荣的生态系统，可以在一个库和一套完整框架之间自如伸缩。</p>
+      </div>
+
+      <div class="point">
+        <h2>高效</h2>
+        <p>
+          20kB min+gzip 运行大小<br>
+          超快虚拟 DOM <br>
+          最省心的优化
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div id="sponsors">
+    <div class="inner">
+      <%- partial('partials/sponsors') %>
+    </div>
+  </div>
+
+  <div id="news">
+    <div class="inner">
+      <h3><label for="member_email">订阅我们的周刊 (英文)</label></h3>
+      <form
+        class="newsletter-form"
+        id="revue-form"
+        name="revue-form"
+        target="_blank"
+        rel="noopener"
+        action="https://www.getrevue.co/profile/vuenewsletter/add_subscriber"
+        method="post"
+        @submit="subscribe"
+      >
+        <input
+          class="newsletter-input"
+          type="email"
+          name="member[email]"
+          id="member_email"
+          required
+          placeholder="邮件地址"
+        >
+        <input
+          class="button newsletter-button"
+          type="submit"
+          value="订阅"
+          name="member[subscribe]"
+          id="member_submit"
+        >
+      </form>
       <p>
-        <a id="modal-player" class="button has-icon" href="javascript:;">
-          <%- partial('icons/play') %>
-          WHY VUE.JS?</a>
-        <a class="button white" href="<%- url_for("/v2/guide/") %>">起步</a>
-        <a class="button gray has-icon" href="https://github.com/vuejs/vue" target="_blank" rel="noopener">
-          <%- partial('icons/github-dark') %>
-          GITHUB</a>
+        你可以在 <a href="https://news.vuejs.org" target="_blank" rel="noopener">news.vuejs.org</a> 翻阅往期的 issue，也可以收听 podcast。
       </p>
     </div>
   </div>
-</div>
+</main>
 
-<div id="special">
-  <h3>特别赞助</h3>
-  <%_ for (const sponsor of theme.platinum_sponsors_china) { _%>
-  <a href="<%- sponsor.url %>" target="_blank" rel="noopener">
-    <img src="<%- url_for(`/images/${sponsor.img}`) %>" style="width:200px">
-  </a>
-  <%_ } _%>
-  <%_if (theme.platinum_sponsors_china.length < 2) { _%>
-  <br>
-  <a class="become-backer" href="/support-vuejs/#special-sponsor-china">
-    成为特别赞助商
-  </a>
-  <%_} _%>
-</div>
-
-<div id="highlights">
-  <div class="inner">
-    <div class="point">
-      <h2>易用</h2>
-      <p>已经会了 HTML、CSS、JavaScript？即刻阅读指南开始构建应用！</p>
-    </div>
-
-    <div class="point">
-      <h2>灵活</h2>
-      <p>不断繁荣的生态系统，可以在一个库和一套完整框架之间自如伸缩。</p>
-    </div>
-
-    <div class="point">
-      <h2>高效</h2>
-      <p>
-        20kB min+gzip 运行大小<br>
-        超快虚拟 DOM <br>
-        最省心的优化
-      </p>
-    </div>
-  </div>
-</div>
-
-<div id="sponsors">
-  <div class="inner">
-    <%- partial('partials/sponsors') %>
-  </div>
-</div>
-
-<div id="news">
-  <div class="inner">
-    <h3><label for="member_email">订阅我们的周刊 (英文)</label></h3>
-    <form
-      class="newsletter-form"
-      id="revue-form"
-      name="revue-form"
-      target="_blank"
-      rel="noopener"
-      action="https://www.getrevue.co/profile/vuenewsletter/add_subscriber"
-      method="post"
-      @submit="subscribe"
-    >
-      <input
-        class="newsletter-input"
-        type="email"
-        name="member[email]"
-        id="member_email"
-        required
-        placeholder="邮件地址"
-      >
-      <input
-        class="button newsletter-button"
-        type="submit"
-        value="订阅"
-        name="member[subscribe]"
-        id="member_submit"
-      >
-    </form>
-    <p>
-      你可以在 <a href="https://news.vuejs.org" target="_blank" rel="noopener">news.vuejs.org</a> 翻阅往期的 issue，也可以收听 podcast。
-    </p>
-  </div>
-</div>
-
-<div id="footer">
+<footer id="footer" role="contentinfo">
   <p>
     <a class="social-icon" href="https://github.com/vuejs/vue" target="_blank" rel="noopener">
       <%- partial('icons/github') %>
@@ -121,7 +123,7 @@
   </p>
   <p>遵循 <a href="https://opensource.org/licenses/MIT" target="_blank" rel="noopener">MIT 开源协议</a><br>
   Copyright &copy; 2014-<%- new Date().getFullYear() %> Evan You</p>
-</div>
+</footer>
 
 <div id="video-modal" class="modal">
   <div class="video-space" style="padding: 56.25% 0 0 0; position: relative;"></div>

@@ -12,7 +12,7 @@ order: 8
 
 ``` html
 <ul id="example-1">
-  <li v-for="item in items">
+  <li v-for="item in items" :key="item.message">
     {{ item.message }}
   </li>
 </ul>
@@ -34,7 +34,7 @@ var example1 = new Vue({
 
 {% raw %}
 <ul id="example-1" class="demo">
-  <li v-for="item in items">
+  <li v-for="item in items" :key="item.message">
     {{item.message}}
   </li>
 </ul>
@@ -269,103 +269,7 @@ example1.items = example1.items.filter(function (item) {
 
 ### 注意事项
 
-由于 JavaScript 的限制，Vue **不能**检测以下数组的变动：
-
-1. 当你利用索引直接设置一个数组项时，例如：`vm.items[indexOfItem] = newValue`
-2. 当你修改数组的长度时，例如：`vm.items.length = newLength`
-
-举个例子：
-
-``` js
-var vm = new Vue({
-  data: {
-    items: ['a', 'b', 'c']
-  }
-})
-vm.items[1] = 'x' // 不是响应性的
-vm.items.length = 2 // 不是响应性的
-```
-
-为了解决第一类问题，以下两种方式都可以实现和 `vm.items[indexOfItem] = newValue` 相同的效果，同时也将在响应式系统内触发状态更新：
-
-``` js
-// Vue.set
-Vue.set(vm.items, indexOfItem, newValue)
-```
-``` js
-// Array.prototype.splice
-vm.items.splice(indexOfItem, 1, newValue)
-```
-
-你也可以使用 [`vm.$set`](https://cn.vuejs.org/v2/api/#vm-set) 实例方法，该方法是全局方法 `Vue.set` 的一个别名：
-
-``` js
-vm.$set(vm.items, indexOfItem, newValue)
-```
-
-为了解决第二类问题，你可以使用 `splice`：
-
-``` js
-vm.items.splice(newLength)
-```
-
-## 对象变更检测注意事项
-
-还是由于 JavaScript 的限制，**Vue 不能检测对象属性的添加或删除**：
-
-``` js
-var vm = new Vue({
-  data: {
-    a: 1
-  }
-})
-// `vm.a` 现在是响应式的
-
-vm.b = 2
-// `vm.b` 不是响应式的
-```
-
-对于已经创建的实例，Vue 不允许动态添加根级别的响应式属性。但是，可以使用 `Vue.set(object, propertyName, value)` 方法向嵌套对象添加响应式属性。例如，对于：
-
-``` js
-var vm = new Vue({
-  data: {
-    userProfile: {
-      name: 'Anika'
-    }
-  }
-})
-```
-
-你可以添加一个新的 `age` 属性到嵌套的 `userProfile` 对象：
-
-``` js
-Vue.set(vm.userProfile, 'age', 27)
-```
-
-你还可以使用 `vm.$set` 实例方法，它只是全局 `Vue.set` 的别名：
-
-``` js
-vm.$set(vm.userProfile, 'age', 27)
-```
-
-有时你可能需要为已有对象赋值多个新属性，比如使用 `Object.assign()` 或 `_.extend()`。在这种情况下，你应该用两个对象的属性创建一个新的对象。所以，如果你想添加新的响应式属性，不要像这样：
-
-``` js
-Object.assign(vm.userProfile, {
-  age: 27,
-  favoriteColor: 'Vue Green'
-})
-```
-
-你应该这样做：
-
-``` js
-vm.userProfile = Object.assign({}, vm.userProfile, {
-  age: 27,
-  favoriteColor: 'Vue Green'
-})
-```
+由于 JavaScript 的限制，Vue **不能检测**数组和对象的变化。[深入响应式原理](reactivity.html#检测变化的注意事项)中有相关的讨论。
 
 ## 显示过滤/排序后的结果
 
@@ -392,13 +296,15 @@ computed: {
 
 在计算属性不适用的情况下 (例如，在嵌套 `v-for` 循环中) 你可以使用一个方法：
 
-``` html
-<li v-for="n in even(numbers)">{{ n }}</li>
+```html
+<ul v-for="set in sets">
+  <li v-for="n in even(set)">{{ n }}</li>
+</ul>
 ```
 
-``` js
+```js
 data: {
-  numbers: [ 1, 2, 3, 4, 5 ]
+  sets: [[ 1, 2, 3, 4, 5 ], [6, 7, 8, 9, 10]]
 },
 methods: {
   even: function (numbers) {
