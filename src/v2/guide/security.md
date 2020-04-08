@@ -6,9 +6,22 @@ order: 504
 
 ## 报告安全漏洞
 
-当我们收到一个安全漏洞报告，将给予其最高优先级，并由全职贡献者停下手中的工作处理此事。如发现任何安全漏洞，请邮件给 [vuejs.org@gmail.com](mailto:vuejs.org@gmail.com)。
+当我们收到一个安全漏洞报告，将给予其最高优先级，并由全职贡献者停下手中的工作处理此事。如发现任何安全漏洞，请邮件给 [security@vuejs.org](mailto:security@vuejs.org)。
 
 虽然发现新安全漏洞是比较罕见的事，我们仍推荐始终使用最新版本的 Vue 及其官方的周边库，以确保应用尽可能安全。
+
+## 第一原则：永远不要使用不可信任的模板
+
+在使用 Vue 的时候最基本的安全规则是**永远不要将不可信任的内容作为模板内容使用**。这样做等价于允许在应用程序中执行任意的 JavaScript——甚至更糟的是如果在服务端渲染的话可能导致服务器被攻破。举个例子：
+
+``` js
+new Vue({
+  el: '#app',
+  template: `<div>` + userProvidedString + `</div>` // 永远不要这样做
+})
+```
+
+Vue 的模板是被编译为 JavaScript 的，而其中的表达式会作为渲染流程的一部分执行。尽管该表达式是在一个特定的渲染上下文中进行运算的。考虑到潜在的全局运行环境的复杂性，作为类似 Vue 的框架，想要完全让代码远离潜在的恶意代码执行而不导致性能问题，是不切实际的。最直接的回避这类问题的方式就是确保 Vue 模板的内容始终是可信的且完全由你掌控。
 
 ## Vue 的安全措施
 
@@ -87,7 +100,7 @@ order: 504
   <div domPropsInnerHTML={this.userProvidedHtml}></div>
   ```
 
-<p class="tip">注意永远不要认为用户提供的 HTML 是 100% 安全的，除非在一个 iframe 沙盒或应用中只有这些 HTML 的作者可以看到的那部分。除此之外，允许用户撰写其自己的 Vue 模板会带来类似的危险。</p>
+<p class="tip">注意永远不要认为用户提供的 HTML 是 100% 安全的，除非它是在一个 iframe 沙盒里或者应用中只有编写这些 HTML 的用户可以接触到它。除此之外，允许用户撰写其自己的 Vue 模板会带来类似的危险。</p>
 
 ### 注入 URL
 
@@ -118,7 +131,7 @@ order: 504
 
 让我们假设 `sanitizedUrl` 已经被过滤过了，所以这已经是一个完全真实的 URL 且没有 JavaScript。但通过 `userProvidedStyles`，恶意用户仍可以提供 CSS 来进行“点击诈骗”，例如将链接的样式设置为一个透明的方框覆盖在“登录”按钮之上。然后再把 `https://user-controlled-website.com/` 做成你的应用的登录页的样子，它们就可能获取一个用户真实的登录信息。
 
-你可以想象到，允许用户为一个 `<style>` 元素提供内容，将产生甚至更严重的安全漏洞，以使得用户完全控制整个页面的样式。这就是为什么要在模板内避免渲染 style 标签，例如：
+你可以想象到，允许用户为一个 `<style>` 元素提供内容，将产生甚至更严重的安全漏洞，以使得用户完全控制整个页面的样式。这就是为什么 Vue 要在模板内避免渲染 style 标签，例如：
 
 ```html
 <style>{{ userProvidedStyles }}</style>
@@ -144,7 +157,7 @@ order: 504
 
 每个 HTML 元素都有接受 JavaScript 字符串作为其值的 attribute，如 `onclick`、`onfocus` 和 `onmouseenter`。将用户提供的 JavaScript 绑定到它们任意当中都是一个潜在的安全风险，因此应该避免。
 
-<p class="tip">请注意，永远不要认为用户提供的 JavaScript 是 100% 安全的，除非在一个 iframe 沙盒或应用中只有这些 JavaScript 的作者可以看到的那部分。</p>
+<p class="tip">请注意，永远不要认为用户提供的 JavaScript 是 100% 安全的，除非它是在一个 iframe 沙盒里或者应用中只有编写该 JavaScript 的用户可以接触到它。</p>
 
 有的时候我们会收到在 Vue 模板中可以产生跨站脚本攻击 (XSS) 的安全漏洞报告。一般情况下，我们不会将这样的案例视为真正的安全漏洞，因为从以下两个可能允许 XSS 的场景看，不存在可行的办法来保护开发者：
 
@@ -159,7 +172,7 @@ order: 504
 除了上述关于[潜在危险](#潜在危险)的建议，我们也推荐自行熟悉以下资料：
 
 - [HTML5 Security Cheat Sheet](https://html5sec.org/)
-- [OWASP's Cross Site Scripting (XSS) Prevention Cheat Sheet](https://www.owasp.org/index.php/XSS_%28Cross_Site_Scripting%29_Prevention_Cheat_Sheet)
+- [OWASP's Cross Site Scripting (XSS) Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html)
 
 然后利用学到的知识，对那些包含了第三方组件或通过其它方式影响渲染到 DOM 的内容的依赖的源代码进行重新审查，以发现潜在的危险模式。
 

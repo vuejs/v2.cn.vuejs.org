@@ -358,7 +358,7 @@ vm.toggle === 'yes'
 vm.toggle === 'no'
 ```
 
-<p class="tip">这里的 `true-value` 和 `false-value` attribute 并不会影响输入控件的 `value` attribute，因为浏览器在提交表单时并不会包含未被选中的复选框。如果要确保表单中这两个值中的一个能够被提交，(比如“yes”或“no”)，请换用单选按钮。</p>
+<p class="tip">这里的 `true-value` 和 `false-value` attribute 并不会影响输入控件的 `value` attribute，因为浏览器在提交表单时并不会包含未被选中的复选框。如果要确保表单中这两个值中的一个能够被提交，(即“yes”或“no”)，请换用单选按钮。</p>
 
 ### 单选按钮
 
@@ -390,11 +390,11 @@ vm.selected.number // => 123
 
 ### `.lazy`
 
-在默认情况下，`v-model` 在每次 `input` 事件触发后将输入框的值与数据进行同步 (除了[上述](#vmodel-ime-tip)输入法组合文字时)。你可以添加 `lazy` 修饰符，从而转变为使用 `change` 事件进行同步：
+在默认情况下，`v-model` 在每次 `input` 事件触发后将输入框的值与数据进行同步 (除了[上述](#vmodel-ime-tip)输入法组合文字时)。你可以添加 `lazy` 修饰符，从而转为在 `change` 事件_之后_进行同步：
 
 ``` html
 <!-- 在“change”时而非“input”时更新 -->
-<input v-model.lazy="msg" >
+<input v-model.lazy="msg">
 ```
 
 ### `.number`
@@ -419,4 +419,6 @@ vm.selected.number // => 123
 
 > 如果你还不熟悉 Vue 的组件，可以暂且跳过这里。
 
-HTML 原生的输入元素类型并不总能满足需求。幸好，Vue 的组件系统允许你创建具有完全自定义行为且可复用的输入组件。这些输入组件甚至可以和 `v-model` 一起使用！要了解更多，请参阅组件指南中的[自定义输入组件](components-custom-events.html#自定义组件的-v-model)。
+HTML 原生的输入元素类型并不总能满足需求。幸好，Vue 的组件系统允许你创建具有完全自定义行为且可复用的输入组件。这些输入组件甚至可以和 `v-model` 一起使用！
+
+要了解更多，请参阅组件指南中的[自定义输入组件](components-custom-events.html#自定义组件的-v-model)。

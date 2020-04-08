@@ -29,15 +29,17 @@ order: 402
 </script>
 ```
 
-然后随着 Vue 导入组件的选项，你可以使用许多常见的断言 (这里我们使用的是 Jasmine/Jest 风格的 `expect` 断言作为示例)：
+然后随着 [Vue Test Utils](https://vue-test-utils.vuejs.org/) 导入组件，你可以使用许多常见的断言 (这里我们使用的是 Jest 风格的 `expect` 断言作为示例)：
 
 ``` js
-// 导入 Vue.js 和组件，进行测试
-import Vue from 'vue'
-import MyComponent from 'path/to/MyComponent.vue'
+// 导入 Vue Test Utils 内的 `shallowMount` 和待测试的组件
+import { shallowMount } from '@vue/test-utils'
+import MyComponent from './MyComponent.vue'
 
-// 这里是一些 Jasmine 2.0 的测试，你也可以使用你喜欢的任何断言库或测试工具。
+// 挂载这个组件
+const wrapper = shallowMount(MyComponent)
 
+// 这里是一些 Jest 的测试，你也可以使用你喜欢的任何断言库或测试
 describe('MyComponent', () => {
   // 检查原始组件选项
   it('has a created hook', () => {
@@ -53,15 +55,12 @@ describe('MyComponent', () => {
 
   // 检查 mount 中的组件实例
   it('correctly sets the message when created', () => {
-    const vm = new Vue(MyComponent).$mount()
-    expect(vm.message).toBe('bye!')
+    expect(wrapper.vm.$data.message).toBe('bye!')
   })
 
   // 创建一个实例并检查渲染输出
   it('renders the correct message', () => {
-    const Constructor = Vue.extend(MyComponent)
-    const vm = new Constructor().$mount()
-    expect(vm.$el.textContent).toBe('bye!')
+    expect(wrapper.text()).toBe('bye!')
   })
 })
 ```
@@ -82,47 +81,49 @@ describe('MyComponent', () => {
 </script>
 ```
 
-你可以在不同的 props 中，通过 `propsData` 选项断言它的渲染输出：
+你可以使用 [Vue Test Utils](https://vue-test-utils.vuejs.org/) 来在输入不同 prop 时为渲染输出下断言：
 
 ``` js
-import Vue from 'vue'
+import { shallowMount } from '@vue/test-utils'
 import MyComponent from './MyComponent.vue'
 
-// 挂载元素并返回已渲染的文本的工具函数
-function getRenderedText (Component, propsData) {
-  const Constructor = Vue.extend(Component)
-  const vm = new Constructor({ propsData: propsData }).$mount()
-  return vm.$el.textContent
+// 挂载元素并返回已渲染的组件的工具函数
+function getMountedComponent(Component, propsData) {
+  return shallowMount(Component, {
+    propsData
+  })
 }
 
 describe('MyComponent', () => {
   it('renders correctly with different props', () => {
-    expect(getRenderedText(MyComponent, {
-      msg: 'Hello'
-    })).toBe('Hello')
+    expect(
+      getMountedComponent(MyComponent, {
+        msg: 'Hello'
+      }).text()
+    ).toBe('Hello')
 
-    expect(getRenderedText(MyComponent, {
-      msg: 'Bye'
-    })).toBe('Bye')
+    expect(
+      getMountedComponent(MyComponent, {
+        msg: 'Bye'
+      }).text()
+    ).toBe('Bye')
   })
 })
 ```
 
 ## 断言异步更新
 
-由于 Vue 进行 [异步更新 DOM](reactivity.html#异步更新队列) 的情况，一些依赖 DOM 更新结果的断言必须在 `Vue.nextTick` 回调中进行：
+由于 Vue 进行 [异步更新 DOM](reactivity.html#异步更新队列) 的情况，一些依赖 DOM 更新结果的断言必须在 `vm.$nextTick()` resolve 之后进行：
 
 ``` js
 // 在状态更新后检查生成的 HTML
-it('updates the rendered message when vm.message updates', done => {
-  const vm = new Vue(MyComponent).$mount()
-  vm.message = 'foo'
+it('updates the rendered message when wrapper.message updates', async () => {
+  const wrapper = shallowMount(MyComponent)
+  wrapper.setData({ message: 'foo' })
 
   // 在状态改变后和断言 DOM 更新前等待一刻
-  Vue.nextTick(() => {
-    expect(vm.$el.textContent).toBe('foo')
-    done()
-  })
+  await wrapper.vm.$nextTick()
+  expect(wrapper.text()).toBe('foo')
 })
 ```
 

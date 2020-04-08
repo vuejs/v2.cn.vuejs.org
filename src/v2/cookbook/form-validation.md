@@ -203,7 +203,7 @@ const app = new Vue({
       e.preventDefault();
     },
     validEmail: function (email) {
-      var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
       return re.test(email);
     }
   }
@@ -330,21 +330,26 @@ const app = new Vue({
 
 ## 服务端校验
 
-在我们最终的示例中，我们构建了一些用到 Ajax 的服务端校验的东西。这个表单将会问你为一个新产品起名字，并且将会确保这个名字是唯一的。我们快速写了一个 [OpenWhisk](http://openwhisk.apache.org/) 的 serverless action 来进行这个校验。虽然这不是非常重要，但其逻辑如下：
+在我们最终的示例中，我们构建了一些用到 Ajax 的服务端校验的东西。这个表单将会问你为一个新产品起名字，并且将会确保这个名字是唯一的。我们快速写了一个 [Netlify](https://netlify.com/) 的 serverless action 来进行这个校验。虽然这不是非常重要，但其逻辑如下：
 
 ``` js
-function main(args) {
-  return new Promise((resolve, reject) => {
-    // 不好的产品名：vista, empire, mbp
+exports.handler = async (event, context) => {
+  
     const badNames = ['vista', 'empire', 'mbp'];
-    
-    if (badNames.includes(args.name)) {
-      reject({error: 'Existing product'});
+    const name = event.queryStringParameters.name;
+
+    if (badNames.includes(name)) {
+      return { 
+        statusCode: 400,         
+        body: JSON.stringify({error: 'Invalid name passed.'}) 
+      }
     }
-    
-    resolve({status: 'ok'});
-  });
+
+    return {
+      statusCode: 204
+    }
 }
+
 ```
 
 基本上除了“vista”、“empire”和“mbp”的名字都是可以接受的。好，让我们来看看表单。
@@ -386,7 +391,7 @@ function main(args) {
 这里没有任何特殊的东西。接下来我们再看看 JavaScript。
 
 ``` js
-const apiUrl = 'https://openwhisk.ng.bluemix.net/api/v1/web/rcamden%40us.ibm.com_My%20Space/safeToDelete/productName.json?name=';
+const apiUrl = 'https://vuecookbook.netlify.com/.netlify/functions/product-name?name=';
 
 const app = new Vue({
   el: '#app',
@@ -404,13 +409,12 @@ const app = new Vue({
         this.errors.push('Product name is required.');
       } else {
         fetch(apiUrl + encodeURIComponent(this.name))
-        .then(res => res.json())
-        .then(res => {
-          if (res.error) {
-            this.errors.push(res.error);
-          } else {
-            // 在成功的时候重定向到一个新的 URL 或做一些别的事情
-            alert('ok!');
+        .then(async res => {
+          if (res.status === 204) {
+            alert('OK');
+          } else if (res.status === 400) {
+            let errorResponse = await res.json();
+            this.errors.push(errorResponse.error);
           }
         });
       }
