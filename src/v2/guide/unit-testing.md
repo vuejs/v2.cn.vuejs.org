@@ -81,7 +81,7 @@ describe('MyComponent', () => {
 </script>
 ```
 
-你可以在不同的 props 中，通过 [Vue Test Utils](https://vue-test-utils.vuejs.org/) 选项断言它的渲染输出：
+你可以使用 [Vue Test Utils](https://vue-test-utils.vuejs.org/) 来在输入不同 prop 时为渲染输出下断言：
 
 ``` js
 import { shallowMount } from '@vue/test-utils'
@@ -113,7 +113,7 @@ describe('MyComponent', () => {
 
 ## 断言异步更新
 
-由于 Vue 进行 [异步更新 DOM](reactivity.html#异步更新队列) 的情况，一些依赖 DOM 更新结果的断言必须在 `Vue.nextTick` 回调解决之后进行：
+由于 Vue 进行 [异步更新 DOM](reactivity.html#异步更新队列) 的情况，一些依赖 DOM 更新结果的断言必须在 `vm.$nextTick()` resolve 之后进行：
 
 ``` js
 // 在状态更新后检查生成的 HTML

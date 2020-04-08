@@ -1998,7 +1998,7 @@ Vue.component('TodoItem', {
 
 通过 `this.$root` 和/或[全局事件总线](../guide/migration.html#dispatch-和-broadcast-替换)管理状态在很多简单的情况下都是很方便的，但是并不适用于绝大多数的应用。
 
-Vuex 是 Vue 的[官方类 flux 实现](../guide/state-management.html#类-Flux-状态管理的官方实现)，其提供的不仅是一个管理状态的中心区域，还是组织、追踪和调试状态变更的好工具。它很好的集成在了 Vue 生态系统之中 (包括完整的 [Vue DevTools](../guide/installation.html#Vue-Devtools) 支持)。
+Vuex 是 Vue 的[官方类 flux 实现](../guide/state-management.html#类-Flux-状态管理的官方实现)，其提供的不仅是一个管理状态的中心区域，还是组织、追踪和调试状态变更的好工具。它很好地集成在了 Vue 生态系统之中 (包括完整的 [Vue DevTools](../guide/installation.html#Vue-Devtools) 支持)。
 
 {% raw %}</details>{% endraw %}
 
