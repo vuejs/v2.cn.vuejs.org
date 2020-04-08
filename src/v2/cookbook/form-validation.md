@@ -330,7 +330,6 @@ const app = new Vue({
 
 ## 服务端校验
 
-<<<<<<< HEAD
 在我们最终的示例中，我们构建了一些用到 Ajax 的服务端校验的东西。这个表单将会问你为一个新产品起名字，并且将会确保这个名字是唯一的。我们快速写了一个 [Netlify](https://netlify.com/) 的 serverless action 来进行这个校验。虽然这不是非常重要，但其逻辑如下：
 
 ``` js
