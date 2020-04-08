@@ -21,7 +21,7 @@ order: 401
 
 这是一个文件名为 `Hello.vue` 的简单实例：
 
-<a href="https://gist.github.com/chrisvfritz/e2b6a6110e0829d78fa4aedf7cf6b235" target="_blank" rel="noopener noreferrer"><img src="/images/vue-component.png" alt="单文件组件的示例 (点击查看文本版的代码)" style="display: block; margin: 30px auto;"></a>
+<a href="https://codesandbox.io/s/github/vuejs/vuejs.org/tree/master/src/v2/examples/vue-20-single-file-components" target="_blank" rel="noopener noreferrer"><img src="/images/vue-component.png" alt="单文件组件的示例 (点击查看文本版的代码" style="display: block; margin: 30px auto;"></a>
 
 现在我们获得：
 

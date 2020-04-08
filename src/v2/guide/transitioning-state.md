@@ -18,7 +18,7 @@ Vue 的过渡系统提供了非常多简单的方法设置进入、离开和列�
 通过侦听器我们能监听到任何数值属性的数值更新。可能听起来很抽象，所以让我们先来看看使用 [GreenSock](https://greensock.com/) 一个例子：
 
 ``` html
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.3/TweenMax.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.2.4/gsap.min.js"></script>
 
 <div id="animated-number-demo">
   <input v-model.number="number" type="number" step="20">
@@ -40,14 +40,14 @@ new Vue({
   },
   watch: {
     number: function(newValue) {
-      TweenLite.to(this.$data, 0.5, { tweenedNumber: newValue });
+      gsap.to(this.$data, { duration: 0.5, tweenedNumber: newValue });
     }
   }
 })
 ```
 
 {% raw %}
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.3/TweenMax.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.2.4/gsap.min.js"></script>
 <div id="animated-number-demo" class="demo">
   <input v-model.number="number" type="number" step="20">
   <p>{{ animatedNumber }}</p>
@@ -66,7 +66,7 @@ new Vue({
   },
   watch: {
     number: function(newValue) {
-      TweenLite.to(this.$data, 0.5, { tweenedNumber: newValue });
+      gsap.to(this.$data, { duration: 0.5, tweenedNumber: newValue });
     }
   }
 })
@@ -366,7 +366,7 @@ function generatePoints (stats) {
 </style>
 {% endraw %}
 
-上述 demo 背后的代码可以通过[这个 fiddle](https://jsfiddle.net/chrisvfritz/65gLu2b6/) 进行详阅。
+上述 demo 背后的代码可以通过[这个示例](https://codesandbox.io/s/github/vuejs/vuejs.org/tree/master/src/v2/examples/vue-20-dynamic-state-transitions)进行详阅。
 
 ## 把过渡放到组件里
 

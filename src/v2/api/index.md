@@ -684,6 +684,7 @@ type: api
         handler: 'someMethod',
         immediate: true
       },
+      // 你可以传入回调数组，它们会被逐一调用
       e: [
         'handle1',
         function handle2 (val, oldVal) { /* ... */ },

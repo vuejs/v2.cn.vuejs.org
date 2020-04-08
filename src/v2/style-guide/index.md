@@ -792,7 +792,7 @@ components/
 - 因为这些组件会被频繁使用，所以你可能想把它们放到全局而不是在各处分别导入它们。使用相同的前缀可以让 webpack 这样工作：
 
   ``` js
-  var requireComponent = require.context("./src", true, /^Base[A-Z]/)
+  var requireComponent = require.context("./src", true, /Base[A-Z]\w+\.(vue|js)$/)
   requireComponent.keys().forEach(function (fileName) {
     var baseComponentConfig = requireComponent(fileName)
     baseComponentConfig = baseComponentConfig.default || baseComponentConfig
@@ -1501,7 +1501,7 @@ computed: {
 
 ``` html
 <template v-slot:header>
-  <h1>Here might be a page title</h1> 
+  <h1>Here might be a page title</h1>
 </template>
 
 <template #footer>
@@ -1544,7 +1544,7 @@ computed: {
 
 ``` html
 <template v-slot:header>
-  <h1>Here might be a page title</h1> 
+  <h1>Here might be a page title</h1>
 </template>
 
 <template v-slot:footer>
@@ -1554,7 +1554,7 @@ computed: {
 
 ``` html
 <template #header>
-  <h1>Here might be a page title</h1> 
+  <h1>Here might be a page title</h1>
 </template>
 
 <template #footer>
@@ -1804,7 +1804,7 @@ computed: {
 
 **如果一组 `v-if` + `v-else` 的元素类型相同，最好使用 `key` (比如两个 `<div>` 元素)。**
 
-默认情况下，Vue 会尽可能高效的更新 DOM。这意味着其在相同类型的元素之间切换时，会修补已存在的元素，而不是将旧的元素移除然后在同一位置添加一个新元素。如果本不相同的元素被识别为相同，则会出现[意料之外的结果](https://jsfiddle.net/chrisvfritz/bh8fLeds/)。
+默认情况下，Vue 会尽可能高效的更新 DOM。这意味着其在相同类型的元素之间切换时，会修补已存在的元素，而不是将旧的元素移除然后在同一位置添加一个新元素。如果本不相同的元素被识别为相同，则会出现[意料之外的结果](https://codesandbox.io/s/github/vuejs/vuejs.org/tree/master/src/v2/examples/vue-20-priority-d-rules-unintended-consequences)。
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
 
@@ -1996,7 +1996,9 @@ Vue.component('TodoItem', {
 
 **应该优先通过 [Vuex](https://github.com/vuejs/vuex) 管理全局状态，而不是通过 `this.$root` 或一个全局事件总线。**
 
-通过 `this.$root` 和/或[全局事件总线](../guide/migration.html#dispatch-和-broadcast-替换)管理状态在很多简单的情况下都是很方便的，但是并不适用于绝大多数的应用。Vuex 提供的不仅是一个管理状态的中心区域，还是组织、追踪和调试状态变更的好工具。
+通过 `this.$root` 和/或[全局事件总线](../guide/migration.html#dispatch-和-broadcast-替换)管理状态在很多简单的情况下都是很方便的，但是并不适用于绝大多数的应用。
+
+Vuex 是 Vue 的[官方类 flux 实现](../guide/state-management.html#类-Flux-状态管理的官方实现)，其提供的不仅是一个管理状态的中心区域，还是组织、追踪和调试状态变更的好工具。它很好地集成在了 Vue 生态系统之中 (包括完整的 [Vue DevTools](../guide/installation.html#Vue-Devtools) 支持)。
 
 {% raw %}</details>{% endraw %}
 

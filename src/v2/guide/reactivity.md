@@ -20,7 +20,11 @@ order: 601
 
 ## 检测变化的注意事项
 
-受现代 JavaScript 的限制 (而且 `Object.observe` 也已经被废弃)，Vue **无法检测到对象属性的添加或删除**。由于 Vue 会在初始化实例时对属性执行 getter/setter 转化，所以属性必须在 `data` 对象上存在才能让 Vue 将它转换为响应式的。例如：
+由于 JavaScript 的限制，Vue **不能检测**数组和对象的变化。尽管如此我们还是有一些办法来回避这些限制并保证它们的响应性。
+
+### 对于对象
+
+Vue 无法检测 property 的添加或移除。由于 Vue 会在初始化实例时对属性执行 getter/setter 转化，所以属性必须在 `data` 对象上存在才能让 Vue 将它转换为响应式的。例如：
 
 ``` js
 var vm = new Vue({
@@ -54,7 +58,47 @@ this.$set(this.someObject,'b',2)
 this.someObject = Object.assign({}, this.someObject, { a: 1, b: 2 })
 ```
 
-也有一些数组相关的注意事项，之前已经在[列表渲染](list.html#注意事项)中讲过。
+### 对于数组
+
+Vue 不能检测以下数组的变动：
+
+1. 当你利用索引直接设置一个数组项时，例如：`vm.items[indexOfItem] = newValue`
+2. 当你修改数组的长度时，例如：`vm.items.length = newLength`
+
+举个例子：
+
+``` js
+var vm = new Vue({
+  data: {
+    items: ['a', 'b', 'c']
+  }
+})
+vm.items[1] = 'x' // 不是响应性的
+vm.items.length = 2 // 不是响应性的
+```
+
+为了解决第一类问题，以下两种方式都可以实现和 `vm.items[indexOfItem] = newValue` 相同的效果，同时也将在响应式系统内触发状态更新：
+
+``` js
+// Vue.set
+Vue.set(vm.items, indexOfItem, newValue)
+```
+``` js
+// Array.prototype.splice
+vm.items.splice(indexOfItem, 1, newValue)
+```
+
+你也可以使用 [`vm.$set`](https://cn.vuejs.org/v2/api/#vm-set) 实例方法，该方法是全局方法 `Vue.set` 的一个别名：
+
+``` js
+vm.$set(vm.items, indexOfItem, newValue)
+```
+
+为了解决第二类问题，你可以使用 `splice`：
+
+``` js
+vm.items.splice(newLength)
+```
 
 ## 声明响应式属性
 
