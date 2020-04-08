@@ -91,7 +91,7 @@ module.exports = {
   npm run serve
   ```
 
-3. 来到 Debug 视图，选择**‘vuejs：chrome/firefox’**配置，然后按 <kbd>F5</kbd> 或点击那个绿色的 play 按钮。
+3. 来到 Debug 视图，选择**“vuejs：chrome/firefox”**配置，然后按 <kbd>F5</kbd> 或点击那个绿色的 play 按钮。
 
 4. 随着一个新的浏览器实例打开 `http://localhost:8080`，你的断点现在应该被命中了。
 

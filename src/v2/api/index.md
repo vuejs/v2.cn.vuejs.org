@@ -5,7 +5,7 @@ type: api
 
 ## 全局配置
 
-`Vue.config`  是一个对象，包含 Vue 的全局配置。可以在启动应用之前修改下列属性：
+`Vue.config` 是一个对象，包含 Vue 的全局配置。可以在启动应用之前修改下列属性：
 
 ### silent
 
@@ -45,7 +45,7 @@ type: api
 
   合并策略选项分别接收在父实例和子实例上定义的该选项的值作为第一个和第二个参数，Vue 实例上下文被作为第三个参数传入。
 
-- **参考** [自定义选项的混入策略](../guide/mixins.html#自定义选项混入策略)
+- **参考**[自定义选项的混入策略](../guide/mixins.html#自定义选项混入策略)
 
 ### devtools
 
@@ -340,7 +340,7 @@ type: api
 
 - **用法**：
 
-  注册或获取全局组件。注册还会自动使用给定的`id`设置组件的名称
+  注册或获取全局组件。注册还会自动使用给定的 `id` 设置组件的名称
 
   ``` js
   // 注册组件，传入一个扩展过的构造器
@@ -467,7 +467,7 @@ type: api
 
   实例创建之后，可以通过 `vm.$data` 访问原始数据对象。Vue 实例也代理了 data 对象上所有的属性，因此访问 `vm.a` 等价于访问 `vm.$data.a`。
 
-  以 `_` 或 `$` 开头的属性 **不会** 被 Vue 实例代理，因为它们可能和 Vue 内置的属性、API 方法冲突。你可以使用例如 `vm.$data._property` 的方式访问这些属性。
+  以 `_` 或 `$` 开头的属性**不会**被 Vue 实例代理，因为它们可能和 Vue 内置的属性、API 方法冲突。你可以使用例如 `vm.$data._property` 的方式访问这些属性。
 
   当一个**组件**被定义，`data` 必须声明为返回一个初始数据对象的函数，因为组件可能被用来创建多个实例。如果 `data` 仍然是一个纯粹的对象，则所有的实例将**共享引用**同一个数据对象！通过提供 `data` 函数，每次创建一个新实例后，我们能够调用 `data` 函数，从而返回初始数据的一个全新副本数据对象。
 
@@ -510,12 +510,12 @@ type: api
   props 可以是数组或对象，用于接收来自父组件的数据。props 可以是简单的数组，或者使用对象作为替代，对象允许配置高级选项，如类型检测、自定义验证和设置默认值。
 
   你可以基于对象的语法使用以下选项：
-    - `type`: 可以是下列原生构造函数中的一种：`String`、`Number`、`Boolean`、`Array`、`Object`、`Date`、`Function`、`Symbol`、任何自定义构造函数、或上述内容组成的数组。会检查一个 prop 是否是给定的类型，否则抛出警告。Prop 类型的[更多信息在此](../guide/components-props.html#Prop-类型)。
-    - `default`: `any`
+    - `type`：可以是下列原生构造函数中的一种：`String`、`Number`、`Boolean`、`Array`、`Object`、`Date`、`Function`、`Symbol`、任何自定义构造函数、或上述内容组成的数组。会检查一个 prop 是否是给定的类型，否则抛出警告。Prop 类型的[更多信息在此](../guide/components-props.html#Prop-类型)。
+    - `default`：`any`
     为该 prop 指定一个默认值。如果该 prop 没有被传入，则换做用这个值。对象或数组的默认值必须从一个工厂函数返回。
-    - `required`: `Boolean`
+    - `required`：`Boolean`
     定义该 prop 是否是必填项。在非生产环境中，如果这个值为 truthy 且该 prop 没有被传入的，则一个控制台警告将会被抛出。
-    - `validator`: `Function`
+    - `validator`：`Function`
     自定义验证函数会将该 prop 的值作为唯一的参数代入。在非生产环境下，如果该函数返回一个 falsy 的值 (也就是验证失败)，一个控制台警告将会被抛出。你可以在[这里](../guide/components-props.html#Prop-验证)查阅更多 prop 验证的相关信息。
 
 - **示例**：
@@ -734,7 +734,7 @@ type: api
 
 - **详细**：
 
-  一个字符串模板作为 Vue 实例的标识使用。模板将会 **替换** 挂载的元素。挂载元素的内容都将被忽略，除非模板的内容有分发插槽。
+  一个字符串模板作为 Vue 实例的标识使用。模板将会**替换**挂载的元素。挂载元素的内容都将被忽略，除非模板的内容有分发插槽。
 
   如果值以 `#` 开始，则它将被用作选择符，并使用匹配元素的 innerHTML 作为模板。常用的技巧是用 `<script type="x-template">` 包含模板。
 
@@ -829,7 +829,7 @@ type: api
 
 - **详细**：
 
-  实例被挂载后调用，这时 `el` 被新创建的 `vm.$el` 替换了。 如果根实例挂载到了一个文档内的元素上，当`mounted`被调用时`vm.$el`也在文档内。
+  实例被挂载后调用，这时 `el` 被新创建的 `vm.$el` 替换了。如果根实例挂载到了一个文档内的元素上，当 `mounted` 被调用时 `vm.$el` 也在文档内。
 
   注意 `mounted` **不会**保证所有的子组件也都一起被挂载。如果你希望等到整个视图都渲染完毕，可以在 `mounted` 内部使用 [vm.$nextTick](#vm-nextTick)：
 
@@ -1033,7 +1033,7 @@ type: api
 
 - **详细**：
 
-  允许声明扩展另一个组件(可以是一个简单的选项对象或构造函数)，而无需使用 `Vue.extend`。这主要是为了便于扩展单文件组件。
+  允许声明扩展另一个组件 (可以是一个简单的选项对象或构造函数)，而无需使用 `Vue.extend`。这主要是为了便于扩展单文件组件。
 
   这和 `mixins` 类似。
 
@@ -1389,9 +1389,9 @@ type: api
 
 - **详细**：
 
-  用来访问被[插槽分发](../guide/components.html#通过插槽分发内容)的内容。每个[具名插槽](../guide/components-slots.html#具名插槽) 有其相应的属性 (例如：`v-slot:foo` 中的内容将会在 `vm.$slots.foo` 中被找到)。`default` 属性包括了所有没有被包含在具名插槽中的节点，或 `v-slot:default` 的内容。
+  用来访问被[插槽分发](../guide/components.html#通过插槽分发内容)的内容。每个[具名插槽](../guide/components-slots.html#具名插槽)有其相应的属性 (例如：`v-slot:foo` 中的内容将会在 `vm.$slots.foo` 中被找到)。`default` 属性包括了所有没有被包含在具名插槽中的节点，或 `v-slot:default` 的内容。
 
-  **注意:** `v-slot:foo` 在 2.6 以上的版本才支持。对于之前的版本，你可以使用[废弃了的语法](../guide/components-slots.html#废弃了的语法).
+  **注意：**`v-slot:foo` 在 2.6 以上的版本才支持。对于之前的版本，你可以使用[废弃了的语法](../guide/components-slots.html#废弃了的语法)。
 
   在使用[渲染函数](../guide/render-function.html)书写一个组件时，访问 `vm.$slots` 最有帮助。
 
@@ -1559,7 +1559,7 @@ type: api
 
 - **选项：deep**
 
-  为了发现对象内部值的变化，可以在选项参数中指定 `deep: true` 。注意监听数组的变动不需要这么做。
+  为了发现对象内部值的变化，可以在选项参数中指定 `deep: true`。注意监听数组的变动不需要这么做。
 
   ``` js
   vm.$watch('someObject', callback, {
@@ -1646,7 +1646,7 @@ type: api
 
 - **用法**：
 
-  监听当前实例上的自定义事件。事件可以由`vm.$emit`触发。回调函数会接收所有传入事件触发函数的额外参数。
+  监听当前实例上的自定义事件。事件可以由 `vm.$emit` 触发。回调函数会接收所有传入事件触发函数的额外参数。
 
 - **示例**：
 
@@ -1922,7 +1922,7 @@ type: api
 
 - **详细**：
 
-  更新元素的 `textContent`。如果要更新部分的 `textContent` ，需要使用 `{% raw %}{{ Mustache }}{% endraw %}` 插值。
+  更新元素的 `textContent`。如果要更新部分的 `textContent`，需要使用 `{% raw %}{{ Mustache }}{% endraw %}` 插值。
 
 - **示例**：
 
@@ -1940,7 +1940,7 @@ type: api
 
 - **详细**：
 
-  更新元素的 `innerHTML` 。**注意：内容按普通 HTML 插入 - 不会作为 Vue 模板进行编译** 。如果试图使用 `v-html` 组合模板，可以重新考虑是否通过使用组件来替代。
+  更新元素的 `innerHTML`。**注意：内容按普通 HTML 插入 - 不会作为 Vue 模板进行编译**。如果试图使用 `v-html` 组合模板，可以重新考虑是否通过使用组件来替代。
 
   <p class="tip">在网站上动态渲染任意 HTML 是非常危险的，因为容易导致 [XSS 攻击](https://en.wikipedia.org/wiki/Cross-site_scripting)。只在可信内容上使用 `v-html`，**永不**用在用户提交的内容上。</p>
 
@@ -1972,7 +1972,7 @@ type: api
 
 - **用法**：
 
-  根据表达式的值的 [truthiness](https://developer.mozilla.org/zh-CN/docs/Glossary/Truthy) 来有条件地渲染元素。在切换时元素及它的数据绑定 / 组件被销毁并重建。如果元素是 `<template>` ，将提出它的内容作为条件块。
+  根据表达式的值的 [truthiness](https://developer.mozilla.org/zh-CN/docs/Glossary/Truthy) 来有条件地渲染元素。在切换时元素及它的数据绑定 / 组件被销毁并重建。如果元素是 `<template>`，将提出它的内容作为条件块。
 
   当条件变化时该指令触发过渡效果。
 
@@ -2011,7 +2011,7 @@ type: api
 
 - **用法**：
 
-  表示 `v-if` 的 "else if 块"。可以链式调用。
+  表示 `v-if` 的“else if 块”。可以链式调用。
 
   ```html
   <div v-if="type === 'A'">
@@ -2036,7 +2036,7 @@ type: api
 
 - **用法**：
 
-  基于源数据多次渲染元素或模板块。此指令之值，必须使用特定语法 `alias in expression` ，为当前遍历的元素提供别名：
+  基于源数据多次渲染元素或模板块。此指令之值，必须使用特定语法 `alias in expression`，为当前遍历的元素提供别名：
 
   ``` html
   <div v-for="item in items">
@@ -2170,7 +2170,7 @@ type: api
 
 - **修饰符**：
   - `.prop` - 作为一个 DOM property 绑定而不是作为 attribute 绑定。([差别在哪里？](https://stackoverflow.com/questions/6003819/properties-and-attributes-in-html#answer-6004028))
-  - `.camel` - (2.1.0+) 将 kebab-case attribute 名转换为 camelCase. (从 2.1.0 开始支持)
+  - `.camel` - (2.1.0+) 将 kebab-case attribute 名转换为 camelCase。(从 2.1.0 开始支持)
   - `.sync` (2.3.0+) 语法糖，会扩展成一个更新父组件绑定值的 `v-on` 侦听器。
 
 - **用法**：
@@ -2518,7 +2518,7 @@ type: api
 ### transition
 
 - **Props**：
-  - `name` - string，用于自动生成 CSS 过渡类名。例如：`name: 'fade'` 将自动拓展为`.fade-enter`，`.fade-enter-active`等。默认类名为 `"v"`
+  - `name` - string，用于自动生成 CSS 过渡类名。例如：`name: 'fade'` 将自动拓展为 `.fade-enter`，`.fade-enter-active` 等。默认类名为 `"v"`
   - `appear` - boolean，是否在初始渲染时使用过渡。默认为 `false`。
   - `css` - boolean，是否使用 CSS 过渡类。默认为 `true`。如果设置为 `false`，将只通过组件事件触发注册的 JavaScript 钩子。
   - `type` - string，指定过渡事件类型，侦听过渡何时结束。有效值为 `"transition"` 和 `"animation"`。默认 Vue.js 将自动检测出持续时间长的为过渡事件类型。
@@ -2599,9 +2599,9 @@ type: api
 
   `<transition-group>` 元素作为多个元素/组件的过渡效果。`<transition-group>` 渲染一个真实的 DOM 元素。默认渲染 `<span>`，可以通过 `tag` 属性配置哪个元素应该被渲染。
 
-  注意，每个 `<transition-group>` 的子节点必须有 **独立的 key** ，动画才能正常工作
+  注意，每个 `<transition-group>` 的子节点必须有**独立的 key**，动画才能正常工作
 
-  `<transition-group>` 支持通过 CSS transform 过渡移动。当一个子节点被更新，从屏幕上的位置发生变化，它会被应用一个移动中的 CSS 类 (通过 `name` 属性或配置 `move-class` 属性自动生成)。如果 CSS `transform` 属性是“可过渡”属性，当应用移动类时，将会使用 [FLIP 技术](https://aerotwist.com/blog/flip-your-animations/) 使元素流畅地到达动画终点。
+  `<transition-group>` 支持通过 CSS transform 过渡移动。当一个子节点被更新，从屏幕上的位置发生变化，它会被应用一个移动中的 CSS 类 (通过 `name` 属性或配置 `move-class` 属性自动生成)。如果 CSS `transform` 属性是“可过渡”属性，当应用移动类时，将会使用 [FLIP 技术](https://aerotwist.com/blog/flip-your-animations/)使元素流畅地到达动画终点。
 
   ```html
   <transition-group tag="ul" name="slide">
@@ -2713,3 +2713,6 @@ type: api
 ## 服务端渲染
 
 - 请参考 [vue-server-renderer package documentation](https://github.com/vuejs/vue/tree/dev/packages/vue-server-renderer)。
+
+<!-- zhlint ignore: { `enter`: number, `leave`: number } -->
+<!-- zhlint ignore: ( , ) -->
