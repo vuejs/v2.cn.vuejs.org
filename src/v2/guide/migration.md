@@ -383,7 +383,7 @@ methods: {
 
 ### `v-bind` 真/假值<sup>变更</sup>
 
-在 2.0 中使用 `v-bind` 时，只有 `null`，`undefined`，和 `false` 被看作是假。这意味着，`0` 和空字符串将被作为真值渲染。比如 `v-bind:draggable="''"` 将被渲染为 `draggable="true"`。
+在 2.0 中使用 `v-bind` 时，只有 `null`、`undefined` 和 `false` 被看作是假。这意味着，`0` 和空字符串将被作为真值渲染。比如 `v-bind:draggable="''"` 将被渲染为 `draggable="true"`。
 
 对于枚举属性，除了以上假值之外，字符串 `"false"` 也会被渲染为 `attr="false"`。
 
@@ -564,7 +564,7 @@ data: {
 }
 ```
 
-将渲染 model 为‘bar’而不是‘foo’。同样，对 `<textarea>` 已有的值来说：
+将渲染 model 为“bar”而不是“foo”。同样，对 `<textarea>` 已有的值来说：
 
 ``` html
 <textarea v-model="text">
@@ -688,7 +688,7 @@ strings.map(function (str) {
 显要的改变有如下几点：
 
 - 指令不再拥有实例。意思是，在指令的钩子函数中不再拥有实例的 `this`。替代的是，你可以在参数中接受你需要的任何数据。如果确实需要，可以通过 `el` 来访问实例。
-- 类似 `acceptStatement`，`deep`，`priority` 等都已被弃用。为了替换 `双向` 指令，见[示例](#双向过滤器-替换)。
+- 类似 `acceptStatement`、`deep`、`priority` 等都已被弃用。为了替换“双向”指令，见[示例](#双向过滤器-替换)。
 - 现在有些钩子的意义和以前不一样了，并且多了两个钩子函数。
 
 幸运的是，新钩子更加简单，更加容易掌握。详见[自定义指令指南](custom-directive.html)。
@@ -1051,7 +1051,7 @@ text.toLowerCase()
 
 #### 替换 `pluralize` 过滤器
 
-NPM 上的 [pluralize](https://www.npmjs.com/package/pluralize) 库可以很好的实现这个功能。如果仅仅想将特定的词格式化成复数形式或者想给特定的值 (‘0’) 指定特定的输出，也可以很容易地自定义复数格式化过滤器：
+npm 上的 [pluralize](https://www.npmjs.com/package/pluralize) 库可以很好的实现这个功能。如果仅仅想将特定的词格式化成复数形式或者想给特定的值 (`0`) 指定特定的输出，也可以很容易地自定义复数格式化过滤器：
 
 ``` js
 function pluralizeKnife (count) {
