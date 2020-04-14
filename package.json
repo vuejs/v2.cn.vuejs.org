@@ -11,7 +11,7 @@
     "deploy": "npm run build && hexo deploy"
   },
   "engines": {
-    "node": ">=8.9.0"
+    "node": ">=12.0.0"
   },
   "dependencies": {
     "hexo": "^3.6.0",
