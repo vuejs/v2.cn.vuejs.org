@@ -29,6 +29,6 @@
     "hexo-server": "^0.3.1",
     "hoek": "^6.1.2",
     "request": "^2.85.0",
-    "zhlint": "git+https://github.com/Jinjiang/zhlint.git#4328866"
+    "zhlint": "git+https://github.com/Jinjiang/zhlint.git"
   }
 }
