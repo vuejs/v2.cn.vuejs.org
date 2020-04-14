@@ -6,6 +6,7 @@
   },
   "scripts": {
     "start": "hexo server",
+    "lint": "zhlint 'src/v2/{guide,api,style-guide}/*.md'",
     "build": "node pre-deploy.js && hexo clean && hexo generate",
     "deploy": "npm run build && hexo deploy"
   },
@@ -27,6 +28,7 @@
     "hexo-renderer-stylus": "^0.3.3",
     "hexo-server": "^0.3.1",
     "hoek": "^6.1.2",
-    "request": "^2.85.0"
+    "request": "^2.85.0",
+    "zhlint": "Jinjiang/zhlint#4328866"
   }
 }
