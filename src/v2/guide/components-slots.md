@@ -98,7 +98,7 @@ Vue 实现了一套内容分发的 API，这套 API 的设计灵感源自 [Web C
 </button>
 ```
 
-现在当我在一个父级组件中使用 `<submit-button>`  并且不提供任何插槽内容时：
+现在当我在一个父级组件中使用 `<submit-button>` 并且不提供任何插槽内容时：
 
 ```html
 <submit-button></submit-button>

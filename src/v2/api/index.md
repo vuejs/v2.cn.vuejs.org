@@ -1860,7 +1860,7 @@ type: api
   - [生命周期图示](../guide/instance.html#生命周期图示)
   - [服务端渲染](../guide/ssr.html)
 
-### vm.$forceUpdate()
+### vm.$forceUpdate ()
 
 - **示例**：
 
@@ -1902,7 +1902,7 @@ type: api
   - [Vue.nextTick](#Vue-nextTick)
   - [异步更新队列](../guide/reactivity.html#异步更新队列)
 
-### vm.$destroy()
+### vm.$destroy ()
 
 - **用法**：
 

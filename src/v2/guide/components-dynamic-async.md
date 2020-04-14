@@ -197,7 +197,7 @@ new Vue({
 
 <p class="tip">注意这个 `<keep-alive>` 要求被切换到的组件都有自己的名字，不论是通过组件的 `name` 选项还是局部/全局注册。</p>
 
-你可以在 [API 参考文档](../api/#keep-alive) 查阅更多关于 `<keep-alive>` 的细节。
+你可以在 [API 参考文档](../api/#keep-alive)查阅更多关于 `<keep-alive>` 的细节。
 
 ## 异步组件
 
