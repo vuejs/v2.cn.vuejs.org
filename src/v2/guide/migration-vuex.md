@@ -83,7 +83,7 @@ const myPlugins = store => {
 }
 ```
 
-更多详情，请查阅 [插件文档](https://github.com/vuejs/vuex/blob/1.0/docs/en/plugins.md)。
+更多详情，请查阅[插件文档](https://github.com/vuejs/vuex/blob/1.0/docs/en/plugins.md)。
 
 {% raw %}
 <div class="upgrade-path">

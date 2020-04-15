@@ -113,7 +113,7 @@ describe('MyComponent', () => {
 
 ## 断言异步更新
 
-由于 Vue 进行 [异步更新 DOM](reactivity.html#异步更新队列) 的情况，一些依赖 DOM 更新结果的断言必须在 `vm.$nextTick()` resolve 之后进行：
+由于 Vue 进行[异步更新 DOM](reactivity.html#异步更新队列) 的情况，一些依赖 DOM 更新结果的断言必须在 `vm.$nextTick()` resolve 之后进行：
 
 ``` js
 // 在状态更新后检查生成的 HTML

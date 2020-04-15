@@ -2716,3 +2716,5 @@ type: api
 
 <!-- zhlint ignore: { `enter`: number, `leave`: number } -->
 <!-- zhlint ignore: ( , ) -->
+<!-- zhlint ignore: vm.$destroy() -->
+<!-- zhlint ignore: vm.$forceUpdate() -->

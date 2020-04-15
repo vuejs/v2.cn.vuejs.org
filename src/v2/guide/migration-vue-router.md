@@ -308,7 +308,7 @@ export default {
 <router-link to="/about">About</router-link>
 ```
 
-注意：`<router-link>`不支持 `target="_blank"` 属性，如果你想打开一个新标签页，你必须用`<a>`标签。
+注意：`<router-link>` 不支持 `target="_blank"` 属性，如果你想打开一个新标签页，你必须用 `<a>` 标签。
 
 {% raw %}
 <div class="upgrade-path">
@@ -335,7 +335,7 @@ export default {
 </router-link>
 ```
 
- `<a>`标签将会成为真实的链接 (并且可以获取到正确的跳转)，但是激活的类将会被应用在外部的`<li>`标签上。
+ `<a>` 标签将会成为真实的链接 (并且可以获取到正确的跳转)，但是激活的类将会被应用在外部的 `<li>` 标签上。
 
 {% raw %}
 <div class="upgrade-path">
@@ -348,7 +348,7 @@ export default {
 
 ### `router.go` <sup>改变</sup>
 
-为了与 [HTML5 History API](https://developer.mozilla.org/en-US/docs/Web/API/History_API) 保持一致性，`router.go` 已经被用来作为 [后退/前进导航](https://router.vuejs.org/zh-cn/essentials/navigation.html#routergon)，[`router.push`](https://router.vuejs.org/zh-cn/essentials/navigation.html#routerpushlocation) 用来导向特殊页面。
+为了与 [HTML5 History API](https://developer.mozilla.org/en-US/docs/Web/API/History_API) 保持一致性，`router.go` 已经被用来作为[后退/前进导航](https://router.vuejs.org/zh-cn/essentials/navigation.html#routergon)，[`router.push`](https://router.vuejs.org/zh-cn/essentials/navigation.html#routerpushlocation) 用来导向特殊页面。
 
 {% raw %}
 <div class="upgrade-path">
@@ -447,7 +447,7 @@ scrollBehavior: function (to, from, savedPosition) {
 
 ### `root` <sup>换名</sup>
 
-为了与 [HTML 的`<base>` 标签](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base)保持一致性，重命名为 `base`。
+为了与 [HTML 的 `<base>` 标签](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base)保持一致性，重命名为 `base`。
 
 {% raw %}
 <div class="upgrade-path">
