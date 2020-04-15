@@ -269,16 +269,6 @@ template: '<div><stack-overflow></stack-overflow></div>'
 ### 组件之间的循环引用
 
 假设你需要构建一个文件目录树，像访达或资源管理器那样的。你可能有一个 `<tree-folder>` 组件，模板是这样的：
-
-``` html
-<p>
-  <span>{{ folder.name }}</span>
-  <tree-folder-contents :children="folder.children"/>
-</p>
-```
-
-还有一个 `<tree-folder-contents>` 组件，模板是这样的：
-
 ``` html
 <ul>
   <li v-for="child in children">
@@ -286,6 +276,15 @@ template: '<div><stack-overflow></stack-overflow></div>'
     <span v-else>{{ child.name }}</span>
   </li>
 </ul>
+```
+
+还有一个 `<tree-folder-contents>` 组件，模板是这样的：
+
+``` html
+<p>
+  <span>{{ folder.name }}</span>
+  <tree-folder-contents :children="folder.children"/>
+</p>
 ```
 
 当你仔细观察的时候，你会发现这些组件在渲染树中互为对方的后代*和*祖先——一个悖论！当通过 `Vue.component` 全局注册组件的时候，这个悖论会被自动解开。如果你是这样做的，那么你可以跳过这里。
