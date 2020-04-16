@@ -40,7 +40,7 @@ this.$root.foo
 // 写入根组件的数据
 this.$root.foo = 2
 
-// 访问根组件的computed property
+// 访问根组件的计算属性
 this.$root.bar
 
 // 调用根组件的方法
@@ -122,7 +122,7 @@ this.$refs.usernameInput.focus()
 
 当 `ref` 和 `v-for` 一起使用的时候，你得到的引用将会是一个包含了对应数据源的这些子组件的数组。
 
-<p class="tip"><code>$refs</code> 只会在组件渲染完成之后生效，并且它们不是响应式的。这仅作为一个用于直接操作子组件的“逃生舱”——你应该避免在模板或computed property中访问 <code>$refs</code>。</p>
+<p class="tip"><code>$refs</code> 只会在组件渲染完成之后生效，并且它们不是响应式的。这仅作为一个用于直接操作子组件的“逃生舱”——你应该避免在模板或计算属性中访问 <code>$refs</code>。</p>
 
 ### 依赖注入
 

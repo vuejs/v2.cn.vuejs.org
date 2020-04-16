@@ -321,7 +321,7 @@ Props 现在只能单向传递。为了对父组件产生反向影响，子组�
 大多数情况下，改变 prop 值可以用以下选项替代：
 
 - 通过 data property，用 prop 去设置一个 data property 的默认值。
-- 通过 computed property。
+- 通过 计算属性。
 
 {% raw %}
 <div class="upgrade-path">
@@ -341,11 +341,11 @@ Props 现在只能单向传递。为了对父组件产生反向影响，子组�
 </div>
 {% endraw %}
 
-## computed property
+## 计算属性
 
 ### `cache: false` <sup>弃用</sup>
 
-在 Vue 未来的大版本中，computed property 的缓存验证将会被移除。把不缓存的 computed property 转换为方法可以得到和之前相同的结果。
+在 Vue 未来的大版本中，计算属性 的缓存验证将会被移除。把不缓存的 计算属性 转换为方法可以得到和之前相同的结果。
 
 示例：
 
@@ -869,7 +869,7 @@ methods: {
 
 ### 插入文本之外的过滤器<sup>移除</sup>
 
-现在过滤器只能用在插入文本中 (`{% raw %}{{ }}{% endraw %}` tags)。我们发现在指令 (如：`v-model`，`v-on` 等) 中使用过滤器使事情变得更复杂。像 `v-for` 这样的列表过滤器最好把处理逻辑作为一个 computed property 放在 js 里面，这样就可以在整个模板中复用。
+现在过滤器只能用在插入文本中 (`{% raw %}{{ }}{% endraw %}` tags)。我们发现在指令 (如：`v-model`，`v-on` 等) 中使用过滤器使事情变得更复杂。像 `v-for` 这样的列表过滤器最好把处理逻辑作为一个 计算属性 放在 js 里面，这样就可以在整个模板中复用。
 
 总之，能在原生 js 中实现的东西，我们尽量避免引入一个新的符号去重复处理同样的问题。下面是如何替换 Vue 内置过滤器：
 
@@ -913,7 +913,7 @@ methods: {
 <p v-for="item in items | limitBy 10">{{ item }}</p>
 ```
 
-在 computed property 中使用 js 内置方法：[`.slice` method](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/slice#Examples)：
+在 计算属性 中使用 js 内置方法：[`.slice` method](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/slice#Examples)：
 
 ``` html
 <p v-for="item in filteredItems">{{ item }}</p>
@@ -935,7 +935,7 @@ computed: {
 <p v-for="user in users | filterBy searchQuery in 'name'">{{ user.name }}</p>
 ```
 
-在 computed property 中使用 js 内置方法 [`.filter` method](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter#Examples)：
+在 计算属性 中使用 js 内置方法 [`.filter` method](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter#Examples)：
 
 ``` html
 <p v-for="user in filteredUsers">{{ user.name }}</p>
@@ -952,7 +952,7 @@ computed: {
 }
 ```
 
-js 原生的 `.filter` 同样能实现很多复杂的过滤器操作，因为可以在计算 computed property 中使用所有 js 方法。比如，想要通过匹配用户名字和电子邮箱地址 (不区分大小写) 找到用户：
+js 原生的 `.filter` 同样能实现很多复杂的过滤器操作，因为可以在计算 计算属性 中使用所有 js 方法。比如，想要通过匹配用户名字和电子邮箱地址 (不区分大小写) 找到用户：
 
 ``` js
 var self = this
@@ -973,7 +973,7 @@ self.users.filter(function (user) {
 <p v-for="user in users | orderBy 'name'">{{ user.name }}</p>
 ```
 
-而是在 computed property 中使用 [lodash's `orderBy`](https://lodash.com/docs/4.15.0#orderBy) (或者可能是 [`sortBy`](https://lodash.com/docs/4.15.0#sortBy))：
+而是在 计算属性 中使用 [lodash's `orderBy`](https://lodash.com/docs/4.15.0#orderBy) (或者可能是 [`sortBy`](https://lodash.com/docs/4.15.0#sortBy))：
 
 ``` html
 <p v-for="user in orderedUsers">{{ user.name }}</p>
@@ -1025,11 +1025,11 @@ _.orderBy(this.users, ['name', 'last_login'], ['asc', 'desc'])
 
 尽管插入文本内部的过滤器依然有效，但是所有内置过滤器已经移除了。取代的是，推荐在每个区域使用更专业的库来解决。(比如用 [`date-fns`](https://date-fns.org/) 来格式化日期，用 [`accounting`](https://openexchangerates.github.io/accounting.js/) 来格式化货币)。
 
-对于每个内置过滤器，我们大概总结了下该怎么替换。代码示例可能写在自定义 helper 函数，方法或 computed property 中。
+对于每个内置过滤器，我们大概总结了下该怎么替换。代码示例可能写在自定义 helper 函数，方法或 计算属性 中。
 
 #### 替换 `json` 过滤器
 
-不用一个个改，因为 Vue 已经帮你自动格式化好了，无论是字符串，数字还是数组，对象。如果想用 js 的 `JSON.stringify` 功能去实现，你也可以把它写在方法或者 computed property 里面。
+不用一个个改，因为 Vue 已经帮你自动格式化好了，无论是字符串，数字还是数组，对象。如果想用 js 的 `JSON.stringify` 功能去实现，你也可以把它写在方法或者 计算属性 里面。
 
 #### 替换 `capitalize` 过滤器
 
@@ -1204,7 +1204,7 @@ property 内部的计算插值已经不能再使用了：
 <button v-bind:class="'btn btn-' + size"></button>
 ```
 
-或者 computed property：
+或者 计算属性：
 
 ``` html
 <button v-bind:class="buttonClasses"></button>
