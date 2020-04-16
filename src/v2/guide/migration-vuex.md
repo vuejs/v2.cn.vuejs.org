@@ -17,7 +17,7 @@ Vuex 1.0 和 2.0 如下：
 
 **Vuex 1.0** 主要是向下兼容，所以升级只需要很小的改动。推荐拥有大量现存代码库的用户，或只想尽可能平滑升级 Vue 2.0 的用户。这份指南致力促进这一过程，但仅包括迁移说明。完整使用指南请查阅 [Vuex 1.0 文档](https://github.com/vuejs/vuex/tree/1.0/docs/zh-cn)。
 
-## 带字符串属性路径的 `store.watch` <sup>替换</sup>
+## 带字符串property路径的 `store.watch` <sup>替换</sup>
 
 `store.watch` 现在只接受函数。因此，下面例子你需要替换：
 
@@ -38,7 +38,7 @@ store.watch(
 )
 ```
 
-这帮助你更加完善的控制那些需要监听的响应式属性。
+这帮助你更加完善的控制那些需要监听的响应式property。
 
 {% raw %}
 <div class="upgrade-path">

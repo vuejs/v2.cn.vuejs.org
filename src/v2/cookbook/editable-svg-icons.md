@@ -185,4 +185,4 @@ export default {
 * [svg-sprite-loader](https://github.com/kisenka/svg-sprite-loader)
 * [svgo-loader](https://github.com/rpominov/svgo-loader)
 
-这些工具会在编译时打包 SVG，但是在运行时编辑它们会有一些麻烦，因为 `<use>` 标签在处理一些复杂的事情时存在浏览器兼容问题。同时它们会给你两个嵌套的 `viewBox` 属性，这是两套坐标系。所以实现上稍微复杂了一些。
+这些工具会在编译时打包 SVG，但是在运行时编辑它们会有一些麻烦，因为 `<use>` 标签在处理一些复杂的事情时存在浏览器兼容问题。同时它们会给你两个嵌套的 `viewBox` property，这是两套坐标系。所以实现上稍微复杂了一些。

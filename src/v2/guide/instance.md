@@ -39,7 +39,7 @@ var vm = new Vue({
 
 <div class="vueschool"><a href="https://learning.dcloud.io/#/?vid=3" target="_blank" rel="sponsored noopener" title="Vue.js 教程 - 数据与方法">观看本节视频讲解</a></div>
 
-当一个 Vue 实例被创建时，它将 `data` 对象中的所有的属性加入到 Vue 的**响应式系统**中。当这些属性的值发生改变时，视图将会产生“响应”，即匹配更新为新的值。
+当一个 Vue 实例被创建时，它将 `data` 对象中的所有的property加入到 Vue 的**响应式系统**中。当这些property的值发生改变时，视图将会产生“响应”，即匹配更新为新的值。
 
 ```js
 // 我们的数据对象
@@ -50,11 +50,11 @@ var vm = new Vue({
   data: data
 })
 
-// 获得这个实例上的属性
+// 获得这个实例上的property
 // 返回源数据中对应的字段
 vm.a == data.a // => true
 
-// 设置属性也会影响到原始数据
+// 设置property也会影响到原始数据
 vm.a = 2
 data.a // => 2
 
@@ -63,13 +63,13 @@ data.a = 3
 vm.a // => 3
 ```
 
-当这些数据改变时，视图会进行重渲染。值得注意的是只有当实例被创建时就已经存在于 `data` 中的属性才是**响应式**的。也就是说如果你添加一个新的属性，比如：
+当这些数据改变时，视图会进行重渲染。值得注意的是只有当实例被创建时就已经存在于 `data` 中的property才是**响应式**的。也就是说如果你添加一个新的property，比如：
 
 ```js
 vm.b = 'hi'
 ```
 
-那么对 `b` 的改动将不会触发任何视图的更新。如果你知道你会在晚些时候需要一个属性，但是一开始它为空或不存在，那么你仅需要设置一些初始值。比如：
+那么对 `b` 的改动将不会触发任何视图的更新。如果你知道你会在晚些时候需要一个property，但是一开始它为空或不存在，那么你仅需要设置一些初始值。比如：
 
 ```js
 data: {
@@ -81,7 +81,7 @@ data: {
 }
 ```
 
-这里唯一的例外是使用 `Object.freeze()`，这会阻止修改现有的属性，也意味着响应系统无法再*追踪*变化。
+这里唯一的例外是使用 `Object.freeze()`，这会阻止修改现有的property，也意味着响应系统无法再*追踪*变化。
 
 ```js
 var obj = {
@@ -104,7 +104,7 @@ new Vue({
 </div>
 ```
 
-除了数据属性，Vue 实例还暴露了一些有用的实例属性与方法。它们都有前缀 `$`，以便与用户定义的属性区分开来。例如：
+除了数据property，Vue 实例还暴露了一些有用的实例property与方法。它们都有前缀 `$`，以便与用户定义的property区分开来。例如：
 
 ```js
 var data = { a: 1 }
@@ -122,7 +122,7 @@ vm.$watch('a', function (newValue, oldValue) {
 })
 ```
 
-以后你可以在 [API 参考](../api/#实例属性)中查阅到完整的实例属性和方法的列表。
+以后你可以在 [API 参考](../api/#实例property)中查阅到完整的实例property和方法的列表。
 
 ## 实例生命周期钩子
 
@@ -147,7 +147,7 @@ new Vue({
 
 也有一些其它的钩子，在实例生命周期的不同阶段被调用，如 [`mounted`](../api/#mounted)、[`updated`](../api/#updated) 和 [`destroyed`](../api/#destroyed)。生命周期钩子的 `this` 上下文指向调用它的 Vue 实例。
 
-<p class="tip">不要在选项属性或回调上使用[箭头函数](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Functions/Arrow_functions)，比如 `created: () => console.log(this.a)` 或 `vm.$watch('a', newValue => this.myMethod())`。因为箭头函数并没有 `this`，`this` 会作为变量一直向上级词法作用域查找，直至找到为止，经常导致 `Uncaught TypeError: Cannot read property of undefined` 或 `Uncaught TypeError: this.myMethod is not a function` 之类的错误。</p>
+<p class="tip">不要在选项property或回调上使用[箭头函数](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Functions/Arrow_functions)，比如 `created: () => console.log(this.a)` 或 `vm.$watch('a', newValue => this.myMethod())`。因为箭头函数并没有 `this`，`this` 会作为变量一直向上级词法作用域查找，直至找到为止，经常导致 `Uncaught TypeError: Cannot read property of undefined` 或 `Uncaught TypeError: this.myMethod is not a function` 之类的错误。</p>
 
 ## 生命周期图示
 

@@ -283,7 +283,7 @@ const app = new Vue({
 </form>
 ```
 
-这组输入框覆盖了五个不同的部件。注意这里为 `v-model` 特性添加了 `.number`。它会告诉 Vue 将其值作为数字来使用。不过这里有一个小小的 bug，那就是当其值为空的时候，它会回到字符串格式，稍后你将会看到变通的办法。为了让用户使用起来更方便，我们添加展示了一个当前的总和，这样我们就能够实时的看到它们一共花掉了多少钱。现在我们来看看 JavaScript。
+这组输入框覆盖了五个不同的部件。注意这里为 `v-model` attribute 添加了 `.number`。它会告诉 Vue 将其值作为数字来使用。不过这里有一个小小的 bug，那就是当其值为空的时候，它会回到字符串格式，稍后你将会看到变通的办法。为了让用户使用起来更方便，我们添加展示了一个当前的总和，这样我们就能够实时的看到它们一共花掉了多少钱。现在我们来看看 JavaScript。
 
 ``` js
 const app = new Vue({
@@ -323,7 +323,7 @@ const app = new Vue({
 })
 ```
 
-我们将总和设置为了一个计算属性，从那个我们解决掉的 bug 外面看上去，这已经足够了。我的 `checkForm` 方法现在只需要关注总和是不是 100 了。你可以在这里试用：
+我们将总和设置为了一个computed property，从那个我们解决掉的 bug 外面看上去，这已经足够了。我的 `checkForm` 方法现在只需要关注总和是不是 100 了。你可以在这里试用：
 
 <p data-height="265" data-theme-id="0" data-slug-hash="vWqGoy" data-default-tab="html,result" data-user="cfjedimaster" data-embed-version="2" data-pen-title="form validation 3" class="codepen">在 <a href="https://codepen.io">CodePen</a> 查看 Raymond Camden (<a href="https://codepen.io/cfjedimaster">@cfjedimaster</a>) 的 <a href="https://codepen.io/cfjedimaster/pen/vWqGoy/">表单校验3</a>。</p>
 <script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>

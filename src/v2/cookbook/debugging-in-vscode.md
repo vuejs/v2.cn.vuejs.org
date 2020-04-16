@@ -25,15 +25,15 @@ order: 8
 
 在可以从 VS Code 调试你的 Vue 组件之前，你需要更新 webpack 配置以构建 source map。做了这件事之后，我们的调试器就有机会将一个被压缩的文件中的代码对应回其源文件相应的位置。这会确保你可以在一个应用中调试，即便你的资源已经被 webpack 优化过了也没关系。
 
-打开 `config/index.js` 并找到 `devtool` 属性。将其更新为：
+打开 `config/index.js` 并找到 `devtool` property。将其更新为：
 
-如果你使用的是 Vue CLI 2，请设置并更新 `config/index.js` 内的 `devtool` 属性：
+如果你使用的是 Vue CLI 2，请设置并更新 `config/index.js` 内的 `devtool` property：
 
 ```json
 devtool: 'source-map',
 ```
 
-如果你使用的是 Vue CLI 3，请设置并更新 `vue.config.js` 内的 `devtool` 属性：
+如果你使用的是 Vue CLI 3，请设置并更新 `vue.config.js` 内的 `devtool` property：
 
 ```js
 module.exports = {
@@ -101,7 +101,7 @@ module.exports = {
 
 ### Vue Devtools
 
-我们还有一些其它的调试方法，复杂度不尽相同。其中最流行和简单的是使用非常棒的 [Chrome 版本](https://chrome.google.com/webstore/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd) 和 [Firefox 版本](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)的 Vue.js devtools。使用 devtools 有很多好处，比如它可以让你能够实时编辑数据属性并立即看到其反映出来的变化。另一个主要的好处是能够为 Vuex 提供时间旅行式的调试体验。
+我们还有一些其它的调试方法，复杂度不尽相同。其中最流行和简单的是使用非常棒的 [Chrome 版本](https://chrome.google.com/webstore/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd) 和 [Firefox 版本](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)的 Vue.js devtools。使用 devtools 有很多好处，比如它可以让你能够实时编辑数据property并立即看到其反映出来的变化。另一个主要的好处是能够为 Vuex 提供时间旅行式的调试体验。
 
 ![Devtools Timetravel Debugger](/images/devtools-timetravel.gif)
 

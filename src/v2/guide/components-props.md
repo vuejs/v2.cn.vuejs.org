@@ -33,7 +33,7 @@ Vue.component('blog-post', {
 props: ['title', 'likes', 'isPublished', 'commentIds', 'author']
 ```
 
-但是，通常你希望每个 prop 都有指定的值类型。这时，你可以以对象形式列出 prop，这些属性的名称和值分别是 prop 各自的名称和类型：
+但是，通常你希望每个 prop 都有指定的值类型。这时，你可以以对象形式列出 prop，这些property的名称和值分别是 prop 各自的名称和类型：
 
 ```js
 props: {
@@ -123,9 +123,9 @@ props: {
 <blog-post v-bind:author="post.author"></blog-post>
 ```
 
-### 传入一个对象的所有属性
+### 传入一个对象的所有property
 
-如果你想要将一个对象的所有属性都作为 prop 传入，你可以使用不带参数的 `v-bind` (取代 `v-bind:prop-name`)。例如，对于一个给定的对象 `post`：
+如果你想要将一个对象的所有property都作为 prop 传入，你可以使用不带参数的 `v-bind` (取代 `v-bind:prop-name`)。例如，对于一个给定的对象 `post`：
 
 ``` js
 post: {
@@ -157,7 +157,7 @@ post: {
 
 这里有两种常见的试图改变一个 prop 的情形：
 
-1. **这个 prop 用来传递一个初始值；这个子组件接下来希望将其作为一个本地的 prop 数据来使用。**在这种情况下，最好定义一个本地的 data 属性并将这个 prop 用作其初始值：
+1. **这个 prop 用来传递一个初始值；这个子组件接下来希望将其作为一个本地的 prop 数据来使用。**在这种情况下，最好定义一个本地的 data property并将这个 prop 用作其初始值：
 
   ``` js
   props: ['initialCounter'],
@@ -168,7 +168,7 @@ post: {
   }
   ```
 
-2. **这个 prop 以一种原始的值传入且需要进行转换。**在这种情况下，最好使用这个 prop 的值来定义一个计算属性：
+2. **这个 prop 以一种原始的值传入且需要进行转换。**在这种情况下，最好使用这个 prop 的值来定义一个computed property：
 
   ``` js
   props: ['size'],
@@ -225,7 +225,7 @@ Vue.component('my-component', {
 
 当 prop 验证失败的时候，(开发环境构建版本的) Vue 将会产生一个控制台的警告。
 
-<p class="tip">注意那些 prop 会在一个组件实例创建**之前**进行验证，所以实例的属性 (如 `data`、`computed` 等) 在 `default` 或 `validator` 函数中是不可用的。</p>
+<p class="tip">注意那些 prop 会在一个组件实例创建**之前**进行验证，所以实例的property (如 `data`、`computed` 等) 在 `default` 或 `validator` 函数中是不可用的。</p>
 
 ### 类型检查
 
@@ -310,7 +310,7 @@ Vue.component('my-component', {
 })
 ```
 
-这尤其适合配合实例的 `$attrs` 属性使用，该属性包含了传递给一个组件的 attribute 名和 attribute 值，例如：
+这尤其适合配合实例的 `$attrs` property使用，该property包含了传递给一个组件的 attribute 名和 attribute 值，例如：
 
 ```js
 {

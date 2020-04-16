@@ -56,7 +56,7 @@ var example1 = new Vue({
 </script>
 {% endraw %}
 
-在 `v-for` 块中，我们可以访问所有父作用域的属性。`v-for` 还支持一个可选的第二个参数，即当前项的索引。
+在 `v-for` 块中，我们可以访问所有父作用域的property。`v-for` 还支持一个可选的第二个参数，即当前项的索引。
 
 ``` html
 <ul id="example-2">
@@ -114,7 +114,7 @@ var example2 = new Vue({
 
 ## 在 `v-for` 里使用对象
 
-你也可以用 `v-for` 来遍历一个对象的属性。
+你也可以用 `v-for` 来遍历一个对象的property。
 
 ``` html
 <ul id="v-for-object" class="demo">
@@ -223,7 +223,7 @@ new Vue({
 
 这个默认的模式是高效的，但是**只适用于不依赖子组件状态或临时 DOM 状态 (例如：表单输入值) 的列表渲染输出**。
 
-为了给 Vue 一个提示，以便它能跟踪每个节点的身份，从而重用和重新排序现有元素，你需要为每项提供一个唯一 `key` 属性：
+为了给 Vue 一个提示，以便它能跟踪每个节点的身份，从而重用和重新排序现有元素，你需要为每项提供一个唯一 `key` property：
 
 ``` html
 <div v-for="item in items" v-bind:key="item.id">
@@ -273,7 +273,7 @@ example1.items = example1.items.filter(function (item) {
 
 ## 显示过滤/排序后的结果
 
-有时，我们想要显示一个数组经过过滤或排序后的版本，而不实际改变或重置原始数据。在这种情况下，可以创建一个计算属性，来返回过滤或排序后的数组。
+有时，我们想要显示一个数组经过过滤或排序后的版本，而不实际改变或重置原始数据。在这种情况下，可以创建一个computed property，来返回过滤或排序后的数组。
 
 例如：
 
@@ -294,7 +294,7 @@ computed: {
 }
 ```
 
-在计算属性不适用的情况下 (例如，在嵌套 `v-for` 循环中) 你可以使用一个方法：
+在computed property不适用的情况下 (例如，在嵌套 `v-for` 循环中) 你可以使用一个方法：
 
 ```html
 <ul v-for="set in sets">
@@ -424,7 +424,7 @@ methods: {
 </div>
 ```
 
-<p class="tip">注意这里的 `is="todo-item"` 属性。这种做法在使用 DOM 模板时是十分必要的，因为在 `<ul>` 元素内只有 `<li>` 元素会被看作有效内容。这样做实现的效果与 `<todo-item>` 相同，但是可以避开一些潜在的浏览器解析错误。查看 [DOM 模板解析说明](components.html#解析-DOM-模板时的注意事项) 来了解更多信息。</p>
+<p class="tip">注意这里的 `is="todo-item"` property。这种做法在使用 DOM 模板时是十分必要的，因为在 `<ul>` 元素内只有 `<li>` 元素会被看作有效内容。这样做实现的效果与 `<todo-item>` 相同，但是可以避开一些潜在的浏览器解析错误。查看 [DOM 模板解析说明](components.html#解析-DOM-模板时的注意事项) 来了解更多信息。</p>
 
 ``` js
 Vue.component('todo-item', {

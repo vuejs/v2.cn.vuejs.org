@@ -18,7 +18,7 @@ router.start({
 }, '#app')
 ```
 
-你只需要传一个路由属性给 Vue 实例：
+你只需要传一个路由property给 Vue 实例：
 
 ``` js
 new Vue({
@@ -222,9 +222,9 @@ alias: ['/manage', '/administer', '/administrate']
 </div>
 {% endraw %}
 
-### 任意的 Route 属性<sup>替换</sup>
+### 任意的 Route property<sup>替换</sup>
 
-现在任意的 route 属性必须在新 meta 属性的作用域内，以避免和以后的新特性发生冲突。举个例子，如果你以前这样定义：
+现在任意的 route property必须在新 meta property的作用域内，以避免和以后的新特性发生冲突。举个例子，如果你以前这样定义：
 
 ``` js
 '/admin': {
@@ -245,7 +245,7 @@ alias: ['/manage', '/administer', '/administrate']
 }
 ```
 
-如果在一个路由上访问一个属性，你仍然会通过 meta。举个例子：
+如果在一个路由上访问一个property，你仍然会通过 meta。举个例子：
 
 ``` js
 if (route.meta.requiresAuth) {
@@ -262,13 +262,13 @@ if (route.meta.requiresAuth) {
 
 ### URL 中的 Query 数组 [] 语法<sup>移除</sup>
 
-当传递数组给 query 参数时，URL 语法不再是 `/foo?users[]=Tom&users[]=Jerry`，取而代之，新语法是 `/foo?users=Tom&users=Jerry`，此时 `$route.query.users` 将仍旧是一个数组，不过如果在该 query 中只有一个参数：`/foo?users=Tom`，当直接访问该路由时，vue-router 将无法知道我们期待的 `users` 是个数组。因此，可以考虑添加一个计算属性并且在每个使用 `$route.query.users` 的地方以该计算属性代替：
+当传递数组给 query 参数时，URL 语法不再是 `/foo?users[]=Tom&users[]=Jerry`，取而代之，新语法是 `/foo?users=Tom&users=Jerry`，此时 `$route.query.users` 将仍旧是一个数组，不过如果在该 query 中只有一个参数：`/foo?users=Tom`，当直接访问该路由时，vue-router 将无法知道我们期待的 `users` 是个数组。因此，可以考虑添加一个computed property并且在每个使用 `$route.query.users` 的地方以该computed property代替：
 
 ```javascript
 export default {
   // ...
   computed: {
-    // 此计算属性将始终是个数组
+    // 此computed property将始终是个数组
     users () {
       const users = this.$route.query.users
       return Array.isArray(users) ? users : [users]
@@ -308,7 +308,7 @@ export default {
 <router-link to="/about">About</router-link>
 ```
 
-注意：`<router-link>` 不支持 `target="_blank"` 属性，如果你想打开一个新标签页，你必须用 `<a>` 标签。
+注意：`<router-link>` 不支持 `target="_blank"` property，如果你想打开一个新标签页，你必须用 `<a>` 标签。
 
 {% raw %}
 <div class="upgrade-path">
@@ -319,7 +319,7 @@ export default {
 
 ### `v-link-active` <sup>替换</sup>
 
-`v-link-active` 也因为指定了一个在 [`<router-link>` 组件](https://router.vuejs.org/zh-cn/api/router-link.html)上的 tag 属性而被弃用了。举个例子，你需要更新：
+`v-link-active` 也因为指定了一个在 [`<router-link>` 组件](https://router.vuejs.org/zh-cn/api/router-link.html)上的 tag property而被弃用了。举个例子，你需要更新：
 
 ``` html
 <li v-link-active>
@@ -537,7 +537,7 @@ scrollBehavior: function (to, from, savedPosition) {
 
 ### `data` <sup>替换</sup>
 
-`$route` 属性是响应式的，所以你可以就使用一个 watcher 去响应路由的改变，就像这样：
+`$route` property是响应式的，所以你可以就使用一个 watcher 去响应路由的改变，就像这样：
 
 ``` js
 watch: {
@@ -559,7 +559,7 @@ methods: {
 
 ### `$loadingRouteData` <sup>移除</sup>
 
-定义你自己的属性 (例如：`isLoading`)，然后在路由上的 watcher 中更新加载状态。举个例子，如果使用 [axios](https://github.com/mzabriskie/axios) 获取数据：
+定义你自己的property (例如：`isLoading`)，然后在路由上的 watcher 中更新加载状态。举个例子，如果使用 [axios](https://github.com/mzabriskie/axios) 获取数据：
 
 ``` js
 data: function () {
