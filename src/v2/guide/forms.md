@@ -141,6 +141,8 @@ new Vue({
 
 ### 单选按钮
 
+用v-model将单选按钮绑定至同一变量后它们会被识别为同一组，不再需要添加name属性
+
 ``` html
 <div id="example-4">
   <input type="radio" id="one" value="One" v-model="picked">
