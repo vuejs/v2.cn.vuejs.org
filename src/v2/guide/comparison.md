@@ -202,7 +202,7 @@ Ember 是一个全能框架。它提供了大量的约定，一旦你熟悉了�
 
 也就是说，我们最好比较的是 Vue 内核和 Ember 的[模板](https://guides.emberjs.com/v2.10.0/templates/handlebars-basics/)与[数据模型](https://guides.emberjs.com/v2.10.0/object-model/)层：
 
-* Vue 在普通 JavaScript 对象上建立响应，提供自动化的 计算属性。在 Ember 中需要将所有东西放在 Ember 对象内，并且手工为 计算属性 声明依赖。
+* Vue 在普通 JavaScript 对象上建立响应，提供自动化的计算属性。在 Ember 中需要将所有东西放在 Ember 对象内，并且手工为计算属性声明依赖。
 
 * Vue 的模板语法可以用全功能的 JavaScript 表达式，而 Handlebars 的语法和帮助函数相比来说非常受限。
 
