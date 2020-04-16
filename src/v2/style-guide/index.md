@@ -89,7 +89,7 @@ export default {
 
 **组件的 `data` 必须是一个函数。**
 
-当在组件中使用 `data` property的时候 (除了 `new Vue` 外的任何地方)，它的值必须是返回一个对象的函数。
+当在组件中使用 `data` property 的时候 (除了 `new Vue` 外的任何地方)，它的值必须是返回一个对象的函数。
 
 {% raw %}
 <details>
@@ -317,7 +317,7 @@ data: function () {
 
 一般我们在两种常见的情况下会倾向于这样做：
 
-- 为了过滤一个列表中的项目 (比如 `v-for="user in users" v-if="user.isActive"`)。在这种情形下，请将 `users` 替换为一个computed property (比如 `activeUsers`)，让其返回过滤后的列表。
+- 为了过滤一个列表中的项目 (比如 `v-for="user in users" v-if="user.isActive"`)。在这种情形下，请将 `users` 替换为一个 computed property (比如 `activeUsers`)，让其返回过滤后的列表。
 
 - 为了避免渲染本应该被隐藏的列表 (比如 `v-for="user in users" v-if="shouldShowUsers"`)。这种情形下，请将 `v-if` 移动至容器元素上 (比如 `ul`、`ol`)。
 
@@ -354,7 +354,7 @@ this.users.map(function (user) {
 
 因此哪怕我们只渲染出一小部分用户的元素，也得在每次重渲染的时候遍历整个列表，不论活跃用户是否发生了变化。
 
-通过将其更换为在如下的一个computed property上遍历：
+通过将其更换为在如下的一个 computed property 上遍历：
 
 ``` js
 computed: {
@@ -574,9 +574,9 @@ computed: {
 
 
 
-### 私有property名<sup data-p="a">必要</sup>
+### 私有 property 名<sup data-p="a">必要</sup>
 
-**使用模块作用域保持不允许外部访问的函数的私有性。如果无法做到这一点，就始终为插件、混入等不考虑作为对外公共 API 的自定义私有property使用 `$_` 前缀。并附带一个命名空间以回避和其它作者的冲突 (比如 `$_yourPluginName_`)。**
+**使用模块作用域保持不允许外部访问的函数的私有性。如果无法做到这一点，就始终为插件、混入等不考虑作为对外公共 API 的自定义私有 property 使用 `$_` 前缀。并附带一个命名空间以回避和其它作者的冲突 (比如 `$_yourPluginName_`)。**
 
 {% raw %}
 <details>
@@ -585,11 +585,11 @@ computed: {
 </summary>
 {% endraw %}
 
-Vue 使用 `_` 前缀来定义其自身的私有property，所以使用相同的前缀 (比如 `_update`) 有覆写实例property的风险。即便你检查确认 Vue 当前版本没有用到这个property名，也不能保证和将来的版本没有冲突。
+Vue 使用 `_` 前缀来定义其自身的私有 property，所以使用相同的前缀 (比如 `_update`) 有覆写实例 property 的风险。即便你检查确认 Vue 当前版本没有用到这个 property 名，也不能保证和将来的版本没有冲突。
 
-对于 `$` 前缀来说，其在 Vue 生态系统中的目的是暴露给用户的一个特殊的实例property，所以把它用于*私有*property并不合适。
+对于 `$` 前缀来说，其在 Vue 生态系统中的目的是暴露给用户的一个特殊的实例 property，所以把它用于*私有* property 并不合适。
 
-不过，我们推荐把这两个前缀结合为 `$_`，作为一个用户定义的私有property的约定，以确保不会和 Vue 自身相冲突。
+不过，我们推荐把这两个前缀结合为 `$_`，作为一个用户定义的私有 property 的约定，以确保不会和 Vue 自身相冲突。
 
 {% raw %}</details>{% endraw %}
 
@@ -1297,7 +1297,7 @@ props: {
 
 **多个 attribute 的元素应该分多行撰写，每个 attribute 一行。**
 
-在 JavaScript 中，用多行分隔对象的多个property是很常见的最佳实践，因为这样更易读。模板和 [JSX](../guide/render-function.html#JSX) 值得我们做相同的考虑。
+在 JavaScript 中，用多行分隔对象的多个 property 是很常见的最佳实践，因为这样更易读。模板和 [JSX](../guide/render-function.html#JSX) 值得我们做相同的考虑。
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
 
@@ -1336,9 +1336,9 @@ props: {
 
 ### 模板中简单的表达式<sup data-p="b">强烈推荐</sup>
 
-**组件模板应该只包含简单的表达式，复杂的表达式则应该重构为computed property或方法。**
+**组件模板应该只包含简单的表达式，复杂的表达式则应该重构为 computed property 或方法。**
 
-复杂表达式会让你的模板变得不那么声明式。我们应该尽量描述应该出现的*是什么*，而非*如何*计算那个值。而且computed property和方法使得代码可以重用。
+复杂表达式会让你的模板变得不那么声明式。我们应该尽量描述应该出现的*是什么*，而非*如何*计算那个值。而且 computed property 和方法使得代码可以重用。
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
 
@@ -1376,9 +1376,9 @@ computed: {
 
 
 
-### 简单的computed property<sup data-p="b">强烈推荐</sup>
+### 简单的 computed property <sup data-p="b">强烈推荐</sup>
 
-**应该把复杂computed property分割为尽可能多的更简单的property。**
+**应该把复杂 computed property 分割为尽可能多的更简单的 property。**
 
 {% raw %}
 <details>
@@ -1387,21 +1387,21 @@ computed: {
 </summary>
 {% endraw %}
 
-更简单、命名得当的computed property是这样的：
+更简单、命名得当的 computed property 是这样的：
 
 - **易于测试**
 
-  当每个computed property都包含一个非常简单且很少依赖的表达式时，撰写测试以确保其正确工作就会更加容易。
+  当每个 computed property 都包含一个非常简单且很少依赖的表达式时，撰写测试以确保其正确工作就会更加容易。
 
 - **易于阅读**
 
-  简化computed property要求你为每一个值都起一个描述性的名称，即便它不可复用。这使得其他开发者 (以及未来的你) 更容易专注在他们关心的代码上并搞清楚发生了什么。
+  简化 computed property 要求你为每一个值都起一个描述性的名称，即便它不可复用。这使得其他开发者 (以及未来的你) 更容易专注在他们关心的代码上并搞清楚发生了什么。
 
 - **更好的“拥抱变化”**
 
   任何能够命名的值都可能用在视图上。举个例子，我们可能打算展示一个信息，告诉用户他们存了多少钱；也可能打算计算税费，但是可能会分开展现，而不是作为总价的一部分。
 
-  小的、专注的computed property减少了信息使用时的假设性限制，所以需求变更时也用不着那么多重构了。
+  小的、专注的 computed property 减少了信息使用时的假设性限制，所以需求变更时也用不着那么多重构了。
 
 {% raw %}</details>{% endraw %}
 
@@ -1573,7 +1573,7 @@ computed: {
 
 **组件/实例的选项应该有统一的顺序。**
 
-这是我们推荐的组件选项默认顺序。它们被划分为几大类，所以你也能知道从插件里添加的新property应该放到哪里。
+这是我们推荐的组件选项默认顺序。它们被划分为几大类，所以你也能知道从插件里添加的新 property 应该放到哪里。
 
 1. **副作用** (触发组件外的影响)
   - `el`
@@ -1594,7 +1594,7 @@ computed: {
   - `directives`
   - `filters`
 
-6. **组合** (向选项里合并property)
+6. **组合** (向选项里合并 property)
   - `extends`
   - `mixins`
 
@@ -1603,7 +1603,7 @@ computed: {
   - `model`
   - `props`/`propsData`
 
-8. **本地状态** (本地的响应式property)
+8. **本地状态** (本地的响应式 property)
   - `data`
   - `computed`
 
@@ -1621,7 +1621,7 @@ computed: {
     - `beforeDestroy`
     - `destroyed`
 
-10. **非响应式的property** (不依赖响应系统的实例property)
+10. **非响应式的 property** (不依赖响应系统的实例 property)
   - `methods`
 
 11. **渲染** (组件输出的声明式描述)
@@ -1676,9 +1676,9 @@ computed: {
 
 ### 组件/实例选项中的空行<sup data-p="c">推荐</sup>
 
-**你可能想在多个property之间增加一个空行，特别是在这些选项一屏放不下，需要滚动才能都看到的时候。**
+**你可能想在多个 property 之间增加一个空行，特别是在这些选项一屏放不下，需要滚动才能都看到的时候。**
 
-当你的组件开始觉得密集或难以阅读时，在多个property之间添加空行可以让其变得容易。在一些诸如 Vim 的编辑器里，这样格式化后的选项还能通过键盘被快速导航。
+当你的组件开始觉得密集或难以阅读时，在多个 property 之间添加空行可以让其变得容易。在一些诸如 Vim 的编辑器里，这样格式化后的选项还能通过键盘被快速导航。
 
 {% raw %}<div class="style-example example-good">{% endraw %}
 

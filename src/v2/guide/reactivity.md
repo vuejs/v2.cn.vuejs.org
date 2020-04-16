@@ -10,11 +10,11 @@ order: 601
 
 <div class="vue-mastery"><a href="https://www.vuemastery.com/courses/advanced-components/build-a-reactivity-system" target="_blank" rel="sponsored noopener" title="Vue Reactivity">在 Vue Mastery 观看视频讲解</a></div>
 
-当你把一个普通的 JavaScript 对象传入 Vue 实例作为 `data` 选项，Vue 将遍历此对象所有的property，并使用 [`Object.defineProperty`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty) 把这些property全部转为 [getter/setter](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Working_with_Objects#定义_getters_与_setters)。`Object.defineProperty` 是 ES5 中一个无法 shim 的特性，这也就是 Vue 不支持 IE8 以及更低版本浏览器的原因。
+当你把一个普通的 JavaScript 对象传入 Vue 实例作为 `data` 选项，Vue 将遍历此对象所有的 property，并使用 [`Object.defineProperty`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty) 把这些 property 全部转为 [getter/setter](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Working_with_Objects#定义_getters_与_setters)。`Object.defineProperty` 是 ES5 中一个无法 shim 的特性，这也就是 Vue 不支持 IE8 以及更低版本浏览器的原因。
 
-这些 getter/setter 对用户来说是不可见的，但是在内部它们让 Vue 能够追踪依赖，在property被访问和修改时通知变更。这里需要注意的是不同浏览器在控制台打印数据对象时对 getter/setter 的格式化并不同，所以建议安装 [vue-devtools](https://github.com/vuejs/vue-devtools) 来获取对检查数据更加友好的用户界面。
+这些 getter/setter 对用户来说是不可见的，但是在内部它们让 Vue 能够追踪依赖，在 property 被访问和修改时通知变更。这里需要注意的是不同浏览器在控制台打印数据对象时对 getter/setter 的格式化并不同，所以建议安装 [vue-devtools](https://github.com/vuejs/vue-devtools) 来获取对检查数据更加友好的用户界面。
 
-每个组件实例都对应一个 **watcher** 实例，它会在组件渲染的过程中把“接触”过的数据property记录为依赖。之后当依赖项的 setter 触发时，会通知 watcher，从而使它关联的组件重新渲染。
+每个组件实例都对应一个 **watcher** 实例，它会在组件渲染的过程中把“接触”过的数据 property 记录为依赖。之后当依赖项的 setter 触发时，会通知 watcher，从而使它关联的组件重新渲染。
 
 ![data](/images/data.png)
 
@@ -24,7 +24,7 @@ order: 601
 
 ### 对于对象
 
-Vue 无法检测 property 的添加或移除。由于 Vue 会在初始化实例时对property执行 getter/setter 转化，所以property必须在 `data` 对象上存在才能让 Vue 将它转换为响应式的。例如：
+Vue 无法检测 property 的添加或移除。由于 Vue 会在初始化实例时对 property 执行 getter/setter 转化，所以 property 必须在 `data` 对象上存在才能让 Vue 将它转换为响应式的。例如：
 
 ``` js
 var vm = new Vue({
@@ -39,7 +39,7 @@ vm.b = 2
 // `vm.b` 是非响应式的
 ```
 
-对于已经创建的实例，Vue 不允许动态添加根级别的响应式property。但是，可以使用 `Vue.set(object, propertyName, value)` 方法向嵌套对象添加响应式property。例如，对于：
+对于已经创建的实例，Vue 不允许动态添加根级别的响应式 property。但是，可以使用 `Vue.set(object, propertyName, value)` 方法向嵌套对象添加响应式 property。例如，对于：
 
 ``` js
 Vue.set(vm.someObject, 'b', 2)
@@ -51,7 +51,7 @@ Vue.set(vm.someObject, 'b', 2)
 this.$set(this.someObject,'b',2)
 ```
 
-有时你可能需要为已有对象赋值多个新property，比如使用 `Object.assign()` 或 `_.extend()`。但是，这样添加到对象上的新property不会触发更新。在这种情况下，你应该用原对象与要混合进去的对象的property一起创建一个新的对象。
+有时你可能需要为已有对象赋值多个新 property，比如使用 `Object.assign()` 或 `_.extend()`。但是，这样添加到对象上的新 property 不会触发更新。在这种情况下，你应该用原对象与要混合进去的对象的 property 一起创建一个新的对象。
 
 ``` js
 // 代替 `Object.assign(this.someObject, { a: 1, b: 2 })`
@@ -100,9 +100,9 @@ vm.$set(vm.items, indexOfItem, newValue)
 vm.items.splice(newLength)
 ```
 
-## 声明响应式property
+## 声明响应式 property
 
-由于 Vue 不允许动态添加根级响应式property，所以你必须在初始化实例前声明所有根级响应式property，哪怕只是一个空值：
+由于 Vue 不允许动态添加根级响应式 property，所以你必须在初始化实例前声明所有根级响应式 property，哪怕只是一个空值：
 
 ``` js
 var vm = new Vue({
@@ -116,9 +116,9 @@ var vm = new Vue({
 vm.message = 'Hello!'
 ```
 
-如果你未在 `data` 选项中声明 `message`，Vue 将警告你渲染函数正在试图访问不存在的property。
+如果你未在 `data` 选项中声明 `message`，Vue 将警告你渲染函数正在试图访问不存在的 property。
 
-这样的限制在背后是有其技术原因的，它消除了在依赖项跟踪系统中的一类边界情况，也使 Vue 实例能更好地配合类型检查系统工作。但与此同时在代码可维护性方面也有一点重要的考虑：`data` 对象就像组件状态的结构 (schema)。提前声明所有的响应式property，可以让组件代码在未来修改或给其他开发人员阅读时更易于理解。
+这样的限制在背后是有其技术原因的，它消除了在依赖项跟踪系统中的一类边界情况，也使 Vue 实例能更好地配合类型检查系统工作。但与此同时在代码可维护性方面也有一点重要的考虑：`data` 对象就像组件状态的结构 (schema)。提前声明所有的响应式 property，可以让组件代码在未来修改或给其他开发人员阅读时更易于理解。
 
 ## 异步更新队列
 

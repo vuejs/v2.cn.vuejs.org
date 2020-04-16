@@ -22,7 +22,7 @@ Vue.js 使用了基于 HTML 的模板语法，允许开发者声明式地将 DOM
 <span>Message: {{ msg }}</span>
 ```
 
-Mustache 标签将会被替代为对应数据对象上 `msg` property的值。无论何时，绑定的数据对象上 `msg` property发生了改变，插值处的内容都会更新。
+Mustache 标签将会被替代为对应数据对象上 `msg` property 的值。无论何时，绑定的数据对象上 `msg` property 发生了改变，插值处的内容都会更新。
 
 通过使用 [v-once 指令](../api/#v-once)，你也能执行一次性地插值，当数据改变时，插值处的内容不会更新。但请留心这会影响到该节点上的其它数据绑定：
 
@@ -56,7 +56,7 @@ new Vue({
 </script>
 {% endraw %}
 
-这个 `span` 的内容将会被替换成为property值 `rawHtml`，直接作为 HTML——会忽略解析property值中的数据绑定。注意，你不能使用 `v-html` 来复合局部模板，因为 Vue 不是基于字符串的模板引擎。反之，对于用户界面 (UI)，组件更适合作为可重用和可组合的基本单位。
+这个 `span` 的内容将会被替换成为 property 值 `rawHtml`，直接作为 HTML——会忽略解析 property 值中的数据绑定。注意，你不能使用 `v-html` 来复合局部模板，因为 Vue 不是基于字符串的模板引擎。反之，对于用户界面 (UI)，组件更适合作为可重用和可组合的基本单位。
 
 <p class="tip">你的站点上动态渲染的任意 HTML 可能会非常危险，因为它很容易导致 [XSS 攻击](https://en.wikipedia.org/wiki/Cross-site_scripting)。请只对可信内容使用 HTML 插值，**绝不要**对用户提供的内容使用插值。</p>
 
@@ -78,7 +78,7 @@ Mustache 语法不能作用在 HTML attribute 上，遇到这种情况应该使�
 
 ### 使用 JavaScript 表达式
 
-迄今为止，在我们的模板中，我们一直都只绑定简单的property键值。但实际上，对于所有的数据绑定，Vue.js 都提供了完全的 JavaScript 表达式支持。
+迄今为止，在我们的模板中，我们一直都只绑定简单的 property 键值。但实际上，对于所有的数据绑定，Vue.js 都提供了完全的 JavaScript 表达式支持。
 
 ``` html
 {{ number + 1 }}
@@ -168,7 +168,7 @@ Mustache 语法不能作用在 HTML attribute 上，遇到这种情况应该使�
 <a v-bind:['foo' + bar]="value"> ... </a>
 ```
 
-变通的办法是使用没有空格或引号的表达式，或用computed property替代这种复杂表达式。
+变通的办法是使用没有空格或引号的表达式，或用 computed property 替代这种复杂表达式。
 
 在 DOM 中使用模板时 (直接在一个 HTML 文件里撰写模板)，还需要避免使用大写字符来命名键名，因为浏览器会把 attribute 名全部强制转为小写：
 

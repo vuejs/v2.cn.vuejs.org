@@ -96,9 +96,9 @@ export default class MyComponent extends Vue {
 
 ## 增强类型以配合插件使用
 
-插件可以增加 Vue 的全局/实例property和组件选项。在这些情况下，在 TypeScript 中制作插件需要类型声明。庆幸的是，TypeScript 有一个特性来补充现有的类型，叫做[模块补充 (module augmentation)](https://www.typescriptlang.org/docs/handbook/declaration-merging.html#module-augmentation)。
+插件可以增加 Vue 的全局/实例 property 和组件选项。在这些情况下，在 TypeScript 中制作插件需要类型声明。庆幸的是，TypeScript 有一个特性来补充现有的类型，叫做[模块补充 (module augmentation)](https://www.typescriptlang.org/docs/handbook/declaration-merging.html#module-augmentation)。
 
-例如，声明一个 `string` 类型的实例property `$myProperty`：
+例如，声明一个 `string` 类型的实例 property `$myProperty`：
 
 ``` ts
 // 1. 确保在声明补充的类型之前导入 'vue'
@@ -121,7 +121,7 @@ var vm = new Vue()
 console.log(vm.$myProperty) // 将会顺利编译通过
 ```
 
-你也可以声明额外的property和组件选项：
+你也可以声明额外的 property 和组件选项：
 
 ```ts
 import Vue from 'vue'

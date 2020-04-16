@@ -56,7 +56,7 @@ var example1 = new Vue({
 </script>
 {% endraw %}
 
-在 `v-for` 块中，我们可以访问所有父作用域的property。`v-for` 还支持一个可选的第二个参数，即当前项的索引。
+在 `v-for` 块中，我们可以访问所有父作用域的 property。`v-for` 还支持一个可选的第二个参数，即当前项的索引。
 
 ``` html
 <ul id="example-2">
@@ -114,7 +114,7 @@ var example2 = new Vue({
 
 ## 在 `v-for` 里使用对象
 
-你也可以用 `v-for` 来遍历一个对象的property。
+你也可以用 `v-for` 来遍历一个对象的 property。
 
 ``` html
 <ul id="v-for-object" class="demo">
@@ -273,7 +273,7 @@ example1.items = example1.items.filter(function (item) {
 
 ## 显示过滤/排序后的结果
 
-有时，我们想要显示一个数组经过过滤或排序后的版本，而不实际改变或重置原始数据。在这种情况下，可以创建一个computed property，来返回过滤或排序后的数组。
+有时，我们想要显示一个数组经过过滤或排序后的版本，而不实际改变或重置原始数据。在这种情况下，可以创建一个 computed property，来返回过滤或排序后的数组。
 
 例如：
 
@@ -294,7 +294,7 @@ computed: {
 }
 ```
 
-在computed property不适用的情况下 (例如，在嵌套 `v-for` 循环中) 你可以使用一个方法：
+在 computed property 不适用的情况下 (例如，在嵌套 `v-for` 循环中) 你可以使用一个方法：
 
 ```html
 <ul v-for="set in sets">

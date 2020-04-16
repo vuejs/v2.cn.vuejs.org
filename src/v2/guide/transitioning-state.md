@@ -9,13 +9,13 @@ Vue 的过渡系统提供了非常多简单的方法设置进入、离开和列�
 - 数字和运算
 - 颜色的显示
 - SVG 节点的位置
-- 元素的大小和其他的property
+- 元素的大小和其他的 property
 
 这些数据要么本身就以数值形式存储，要么可以转换为数值。有了这些数值后，我们就可以结合 Vue 的响应式和组件系统，使用第三方库来实现切换元素的过渡状态。
 
 ## 状态动画与侦听器
 
-通过侦听器我们能监听到任何数值property的数值更新。可能听起来很抽象，所以让我们先来看看使用 [GreenSock](https://greensock.com/) 一个例子：
+通过侦听器我们能监听到任何数值 property 的数值更新。可能听起来很抽象，所以让我们先来看看使用 [GreenSock](https://greensock.com/) 一个例子：
 
 ``` html
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.2.4/gsap.min.js"></script>

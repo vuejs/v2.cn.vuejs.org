@@ -4,7 +4,7 @@ type: guide
 order: 6
 ---
 
-操作元素的 class 列表和内联样式是数据绑定的一个常见需求。因为它们都是property，所以我们可以用 `v-bind` 处理它们：只需要通过表达式计算出字符串结果即可。不过，字符串拼接麻烦且易错。因此，在将 `v-bind` 用于 `class` 和 `style` 时，Vue.js 做了专门的增强。表达式结果的类型除了字符串之外，还可以是对象或数组。
+操作元素的 class 列表和内联样式是数据绑定的一个常见需求。因为它们都是 property，所以我们可以用 `v-bind` 处理它们：只需要通过表达式计算出字符串结果即可。不过，字符串拼接麻烦且易错。因此，在将 `v-bind` 用于 `class` 和 `style` 时，Vue.js 做了专门的增强。表达式结果的类型除了字符串之外，还可以是对象或数组。
 
 ## 绑定 HTML Class
 
@@ -17,9 +17,9 @@ order: 6
 ``` html
 <div v-bind:class="{ active: isActive }"></div>
 ```
-上面的语法表示 `active` 这个 class 存在与否将取决于数据property `isActive` 的 [truthiness](https://developer.mozilla.org/zh-CN/docs/Glossary/Truthy)。
+上面的语法表示 `active` 这个 class 存在与否将取决于数据 property `isActive` 的 [truthiness](https://developer.mozilla.org/zh-CN/docs/Glossary/Truthy)。
 
-你可以在对象中传入更多property来动态切换多个 class。此外，`v-bind:class` 指令也可以与普通的 class property共存。当有如下模板：
+你可以在对象中传入更多 property 来动态切换多个 class。此外，`v-bind:class` 指令也可以与普通的 class property 共存。当有如下模板：
 
 ``` html
 <div
@@ -60,7 +60,7 @@ data: {
 }
 ```
 
-渲染的结果和上面一样。我们也可以在这里绑定一个返回对象的[computed property](computed.html)。这是一个常用且强大的模式：
+渲染的结果和上面一样。我们也可以在这里绑定一个返回对象的 [computed property](computed.html)。这是一个常用且强大的模式：
 
 ``` html
 <div v-bind:class="classObject"></div>
@@ -120,7 +120,7 @@ data: {
 
 > 这个章节假设你已经对 [Vue 组件](components.html)有一定的了解。当然你也可以先跳过这里，稍后再回过头来看。
 
-当在一个自定义组件上使用 `class` property时，这些 class 将被添加到该组件的根元素上面。这个元素上已经存在的 class 不会被覆盖。
+当在一个自定义组件上使用 `class` property 时，这些 class 将被添加到该组件的根元素上面。这个元素上已经存在的 class 不会被覆盖。
 
 例如，如果你声明了这个组件：
 
@@ -158,7 +158,7 @@ HTML 将被渲染为：
 
 ### 对象语法
 
-`v-bind:style` 的对象语法十分直观——看着非常像 CSS，但其实是一个 JavaScript 对象。CSS property名可以用驼峰式 (camelCase) 或短横线分隔 (kebab-case，记得用引号括起来) 来命名：
+`v-bind:style` 的对象语法十分直观——看着非常像 CSS，但其实是一个 JavaScript 对象。CSS property 名可以用驼峰式 (camelCase) 或短横线分隔 (kebab-case，记得用引号括起来) 来命名：
 
 
 ``` html
@@ -187,7 +187,7 @@ data: {
 }
 ```
 
-同样的，对象语法常常结合返回对象的computed property使用。
+同样的，对象语法常常结合返回对象的 computed property 使用。
 
 ### 数组语法
 
@@ -199,13 +199,13 @@ data: {
 
 ### 自动添加前缀
 
-当 `v-bind:style` 使用需要添加[浏览器引擎前缀](https://developer.mozilla.org/zh-CN/docs/Glossary/Vendor_Prefix)的 CSS property时，如 `transform`，Vue.js 会自动侦测并添加相应的前缀。
+当 `v-bind:style` 使用需要添加[浏览器引擎前缀](https://developer.mozilla.org/zh-CN/docs/Glossary/Vendor_Prefix)的 CSS property 时，如 `transform`，Vue.js 会自动侦测并添加相应的前缀。
 
 ### 多重值
 
 > 2.3.0+
 
-从 2.3.0 起你可以为 `style` 绑定中的property提供一个包含多个值的数组，常用于提供多个带前缀的值，例如：
+从 2.3.0 起你可以为 `style` 绑定中的 property 提供一个包含多个值的数组，常用于提供多个带前缀的值，例如：
 
 ``` html
 <div :style="{ display: ['-webkit-box', '-ms-flexbox', 'flex'] }"></div>

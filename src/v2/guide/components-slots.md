@@ -63,7 +63,7 @@ Vue 实现了一套内容分发的 API，这套 API 的设计灵感源自 [Web C
 </navigation-link>
 ```
 
-该插槽跟模板的其它地方一样可以访问相同的实例property (也就是相同的“作用域”)，而**不能**访问 `<navigation-link>` 的作用域。例如 `url` 是访问不到的：
+该插槽跟模板的其它地方一样可以访问相同的实例 property (也就是相同的“作用域”)，而**不能**访问 `<navigation-link>` 的作用域。例如 `url` 是访问不到的：
 
 ``` html
 <navigation-link url="/profile">

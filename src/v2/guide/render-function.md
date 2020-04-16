@@ -82,7 +82,7 @@ Vue.component('anchored-heading', {
 })
 ```
 
-看起来简单多了！这样代码精简很多，但是需要非常熟悉 Vue 的实例property。在这个例子中，你需要知道，向组件中传递不带 `v-slot` 指令的子节点时，比如 `anchored-heading` 中的 `Hello world!`，这些子节点被存储在组件实例中的 `$slots.default` 中。如果你还不了解，**在深入渲染函数之前推荐阅读[实例property API](../api/#实例property)。**
+看起来简单多了！这样代码精简很多，但是需要非常熟悉 Vue 的实例 property。在这个例子中，你需要知道，向组件中传递不带 `v-slot` 指令的子节点时，比如 `anchored-heading` 中的 `Hello world!`，这些子节点被存储在组件实例中的 `$slots.default` 中。如果你还不了解，**在深入渲染函数之前推荐阅读[实例 property API](../api/#实例property)。**
 
 ## 节点、树以及虚拟 DOM
 
@@ -535,7 +535,7 @@ Vue.component('my-component', {
 - `data`：传递给组件的整个[数据对象](#深入数据对象)，作为 `createElement` 的第二个参数传入组件
 - `parent`：对父组件的引用
 - `listeners`：(2.3.0+) 一个包含了所有父组件为当前组件注册的事件监听器的对象。这是 `data.on` 的一个别名。
-- `injections`：(2.3.0+) 如果使用了 [`inject`](../api/#provide-inject) 选项，则该对象包含了应当被注入的property。
+- `injections`：(2.3.0+) 如果使用了 [`inject`](../api/#provide-inject) 选项，则该对象包含了应当被注入的 property。
 
 在添加 `functional: true` 之后，需要更新我们的锚点标题组件的渲染函数，为其增加 `context` 参数，并将 `this.$slots.default` 更新为 `context.children`，然后将 `this.level` 更新为 `context.props.level`。
 
