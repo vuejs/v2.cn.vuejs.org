@@ -323,7 +323,7 @@ const app = new Vue({
 })
 ```
 
-我们将总和设置为了一个computed property，从那个我们解决掉的 bug 外面看上去，这已经足够了。我的 `checkForm` 方法现在只需要关注总和是不是 100 了。你可以在这里试用：
+我们将总和设置为了一个 computed property，从那个我们解决掉的 bug 外面看上去，这已经足够了。我的 `checkForm` 方法现在只需要关注总和是不是 100 了。你可以在这里试用：
 
 <p data-height="265" data-theme-id="0" data-slug-hash="vWqGoy" data-default-tab="html,result" data-user="cfjedimaster" data-embed-version="2" data-pen-title="form validation 3" class="codepen">在 <a href="https://codepen.io">CodePen</a> 查看 Raymond Camden (<a href="https://codepen.io/cfjedimaster">@cfjedimaster</a>) 的 <a href="https://codepen.io/cfjedimaster/pen/vWqGoy/">表单校验3</a>。</p>
 <script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>

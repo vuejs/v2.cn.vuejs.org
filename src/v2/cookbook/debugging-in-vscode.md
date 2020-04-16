@@ -101,7 +101,7 @@ module.exports = {
 
 ### Vue Devtools
 
-我们还有一些其它的调试方法，复杂度不尽相同。其中最流行和简单的是使用非常棒的 [Chrome 版本](https://chrome.google.com/webstore/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd) 和 [Firefox 版本](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)的 Vue.js devtools。使用 devtools 有很多好处，比如它可以让你能够实时编辑数据property并立即看到其反映出来的变化。另一个主要的好处是能够为 Vuex 提供时间旅行式的调试体验。
+我们还有一些其它的调试方法，复杂度不尽相同。其中最流行和简单的是使用非常棒的 [Chrome 版本](https://chrome.google.com/webstore/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)和 [Firefox 版本](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)的 Vue.js devtools。使用 devtools 有很多好处，比如它可以让你能够实时编辑数据 property 并立即看到其反映出来的变化。另一个主要的好处是能够为 Vuex 提供时间旅行式的调试体验。
 
 ![Devtools Timetravel Debugger](/images/devtools-timetravel.gif)
 

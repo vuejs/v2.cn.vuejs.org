@@ -12,7 +12,7 @@ order: 0
 
 * **更有深度**：为了避免指南写得太长，我们试着只包含了尽可能简单的示例来帮助你理解每个功能，然后就奔下一个话题了。在 cookbook 里，我们以更生动的形式包含了更复杂的示例并结合特性。每个案例都可以尽可能的翔实，以彻底探索这个领域。
 
-* **传授 JavaScript**：在指南里，我们假设你至少具有 ES5 JavaScript 的中级水平。例如，我们不会解释 `Array.prototype.filter` 在computed property中是如何过滤一个列表的。然而在 cookbook 里，我们将对一些必要的 JavaScript 特性 (包括 ES6/2015+) 进行探索和解释，以帮助我们构建更好的 Vue 应用。
+* **传授 JavaScript**：在指南里，我们假设你至少具有 ES5 JavaScript 的中级水平。例如，我们不会解释 `Array.prototype.filter` 在 computed property 中是如何过滤一个列表的。然而在 cookbook 里，我们将对一些必要的 JavaScript 特性 (包括 ES6/2015+) 进行探索和解释，以帮助我们构建更好的 Vue 应用。
 
 * **探索生态系统**：对于高级特性，我们会假设你已经对生态系统有一定了解。例如，如果你想在 webpack 中使用单文件组件，我们不会解释如何在 webpack 中配置 Vue 以外的部分。在 cookbook 里，我们有空间去更深度探索这些生态系统中的库——至少能到对 Vue 开发者普遍使用的程度。
 
