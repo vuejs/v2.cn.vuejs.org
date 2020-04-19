@@ -56,7 +56,7 @@ Vue.js 的插件应该暴露一个 `install` 方法。这个方法的第一个�
 
 ``` js
 MyPlugin.install = function (Vue, options) {
-  // 1. 添加全局方法或property
+  // 1. 添加全局方法或 property
   Vue.myGlobalMethod = function () {
     // 逻辑...
   }

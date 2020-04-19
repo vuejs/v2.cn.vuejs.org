@@ -308,7 +308,7 @@ export default {
 <router-link to="/about">About</router-link>
 ```
 
-注意：`<router-link>` 不支持 `target="_blank"` property，如果你想打开一个新标签页，你必须用 `<a>` 标签。
+注意：`<router-link>` 不支持 `target="_blank"`，如果你想打开一个新标签页，你必须用 `<a>` 标签。
 
 {% raw %}
 <div class="upgrade-path">
@@ -319,7 +319,7 @@ export default {
 
 ### `v-link-active` <sup>替换</sup>
 
-`v-link-active` 也因为指定了一个在 [`<router-link>` 组件](https://router.vuejs.org/zh-cn/api/router-link.html)上的 tag property 而被弃用了。举个例子，你需要更新：
+`v-link-active` 也因为指定了一个在 [`<router-link>` 组件](https://router.vuejs.org/zh-cn/api/router-link.html)上的 tag attribute 而被弃用了。举个例子，你需要更新：
 
 ``` html
 <li v-link-active>

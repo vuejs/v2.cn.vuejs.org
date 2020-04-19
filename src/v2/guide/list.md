@@ -223,7 +223,7 @@ new Vue({
 
 这个默认的模式是高效的，但是**只适用于不依赖子组件状态或临时 DOM 状态 (例如：表单输入值) 的列表渲染输出**。
 
-为了给 Vue 一个提示，以便它能跟踪每个节点的身份，从而重用和重新排序现有元素，你需要为每项提供一个唯一 `key` property：
+为了给 Vue 一个提示，以便它能跟踪每个节点的身份，从而重用和重新排序现有元素，你需要为每项提供一个唯一 `key` attribute：
 
 ``` html
 <div v-for="item in items" v-bind:key="item.id">
@@ -424,7 +424,7 @@ methods: {
 </div>
 ```
 
-<p class="tip">注意这里的 `is="todo-item"` property。这种做法在使用 DOM 模板时是十分必要的，因为在 `<ul>` 元素内只有 `<li>` 元素会被看作有效内容。这样做实现的效果与 `<todo-item>` 相同，但是可以避开一些潜在的浏览器解析错误。查看 [DOM 模板解析说明](components.html#解析-DOM-模板时的注意事项) 来了解更多信息。</p>
+<p class="tip">注意这里的 `is="todo-item"` attribute。这种做法在使用 DOM 模板时是十分必要的，因为在 `<ul>` 元素内只有 `<li>` 元素会被看作有效内容。这样做实现的效果与 `<todo-item>` 相同，但是可以避开一些潜在的浏览器解析错误。查看 [DOM 模板解析说明](components.html#解析-DOM-模板时的注意事项) 来了解更多信息。</p>
 
 ``` js
 Vue.component('todo-item', {

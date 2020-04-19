@@ -225,7 +225,7 @@ Vue.component('my-component', {
 
 当 prop 验证失败的时候，(开发环境构建版本的) Vue 将会产生一个控制台的警告。
 
-<p class="tip">注意那些 prop 会在一个组件实例创建**之前**进行验证，所以实例的property (如 `data`、`computed` 等) 在 `default` 或 `validator` 函数中是不可用的。</p>
+<p class="tip">注意那些 prop 会在一个组件实例创建**之前**进行验证，所以实例的 property (如 `data`、`computed` 等) 在 `default` 或 `validator` 函数中是不可用的。</p>
 
 ### 类型检查
 

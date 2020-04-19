@@ -208,7 +208,7 @@ mounted: function () {
 
 ### `track-by` <sup>替换</sup>
 
-`track-by` 已经替换为 `key`，它的工作方式与其他 property 一样，没有 `v-bind` 或者 `:` 前缀，它会被作为一个字符串处理。多数情况下，你需要使用具有完整表达式的动态绑定 (dynamic binding) 来替换静态的 key。例如，替换：
+`track-by` 已经替换为 `key`，它的工作方式与其他 attribute 一样，没有 `v-bind` 或者 `:` 前缀，它会被作为一个字符串处理。多数情况下，你需要使用具有完整表达式的动态绑定 (dynamic binding) 来替换静态的 key。例如，替换：
 
 {% codeblock lang:html %}
 <div v-for="item in items" track-by="id">
@@ -385,7 +385,7 @@ methods: {
 
 在 2.0 中使用 `v-bind` 时，只有 `null`，`undefined`，和 `false` 被看作是假。这意味着，`0` 和空字符串将被作为真值渲染。比如 `v-bind:draggable="''"` 将被渲染为 `draggable="true"`。
 
-对于枚举 property，除了以上假值之外，字符串 `"false"` 也会被渲染为 `attr="false"`。
+对于枚举 attribute，除了以上假值之外，字符串 `"false"` 也会被渲染为 `attr="false"`。
 
 <p class="tip">注意，对于其它钩子函数 (如 `v-if` 和 `v-show`)，他们依然遵循 js 对真假值判断的一般规则。</p>
 
@@ -635,7 +635,9 @@ strings.map(function (str) {
 
 ### `v-el` 和 `v-ref` <sup>替换</sup>
 
-简单起见，`v-el` 和 `v-ref` 合并为一个 `ref` property 了，可以在组件实例中通过 `$refs` 来调用。这意味着 `v-el:my-element` 将写成这样：`ref="myElement"`，`v-ref:my-component` 变成了这样：`ref="myComponent"`。绑定在一般元素上时，`ref` 指 DOM 元素，绑定在组件上时，`ref` 为一组件实例。因为 `v-ref` 不再是一个指令了而是一个特殊的 property，它也可以被动态定义了。这样在和 `v-for` 结合的时候是很有用的：
+简单起见，`v-el` 和 `v-ref` 合并为一个 `ref` attribute 了，可以在组件实例中通过 `$refs` 来调用。这意味着 `v-el:my-element` 将写成这样：`ref="myElement"`，`v-ref:my-component` 变成了这样：`ref="myComponent"`。绑定在一般元素上时，`ref` 指 DOM 元素，绑定在组件上时，`ref` 为一组件实例。
+
+因为 `v-ref` 不再是一个指令了而是一个特殊的 attribute，它也可以被动态定义了。这样在和 `v-for` 结合的时候是很有用的：
 
 ``` html
 <p v-for="item in items" v-bind:ref="'item' + item.id"></p>
@@ -725,14 +727,14 @@ strings.map(function (str) {
 
 ## 过渡
 
-### `transition` 参数<sup>替换</sup>
+### `transition` Attrubute<sup>替换</sup>
 
-Vue 的过渡系统有了彻底的改变，现在通过使用 `<transition>` 和 `<transition-group>` 来包裹元素实现过渡效果，而不再使用 `transition` property。详见 [Transitions guide](transitions.html)。
+Vue 的过渡系统有了彻底的改变，现在通过使用 `<transition>` 和 `<transition-group>` 来包裹元素实现过渡效果，而不再使用 `transition` attribute。详见 [Transitions guide](transitions.html)。
 
 {% raw %}
 <div class="upgrade-path">
   <h4>升级方式</h4>
-  <p>运行<a href="https://github.com/vuejs/vue-migration-helper">迁移工具</a>找到使用 <code>transition</code> property的地方。</p>
+  <p>运行<a href="https://github.com/vuejs/vue-migration-helper">迁移工具</a>找到使用 <code>transition</code> attribute 的地方。</p>
 </div>
 {% endraw %}
 
@@ -743,18 +745,18 @@ Vue 的过渡系统有了彻底的改变，现在通过使用 `<transition>` 和
 {% raw %}
 <div class="upgrade-path">
   <h4>升级方式</h4>
-  <p>运行<a href="https://github.com/vuejs/vue-migration-helper">迁移工具</a>找到使用 <code>transition</code> property的地方。</p>
+  <p>运行<a href="https://github.com/vuejs/vue-migration-helper">迁移工具</a>找到使用 <code>transition</code> attribute 的地方。</p>
 </div>
 {% endraw %}
 
-### 过渡的 `stagger` 参数<sup>移除</sup>
+### 过渡的 `stagger` Attribute<sup>移除</sup>
 
-如果希望在列表渲染中使用渐近过渡，可以通过设置元素的 `data-index` (或类似 property) 来控制时间。请参考[这个例子](transitions.html#列表的渐进过渡)。
+如果希望在列表渲染中使用渐近过渡，可以通过设置元素的 `data-index` (或类似 attribute) 来控制时间。请参考[这个例子](transitions.html#列表的渐进过渡)。
 
 {% raw %}
 <div class="upgrade-path">
   <h4>升级方式</h4>
-  <p>运行<a href="https://github.com/vuejs/vue-migration-helper">迁移工具</a>找到使用 <code>transition</code> property的地方。升级期间，你可以“过渡”到新的过渡策略。</p>
+  <p>运行<a href="https://github.com/vuejs/vue-migration-helper">迁移工具</a>找到使用 <code>transition</code> attribute 的地方。升级期间，你可以“过渡”到新的过渡策略。</p>
 </div>
 {% endraw %}
 
@@ -1148,11 +1150,11 @@ function pluralizeKnife (count) {
 </div>
 {% endraw %}
 
-## 特殊 property
+## 特殊 attribute
 
-### `keep-alive` property <sup>替换</sup>
+### `keep-alive` attribute <sup>替换</sup>
 
-`keep-alive` 不再是一个特殊 property 而是一个包裹组件，类似于 `<transition>` 比如：
+`keep-alive` 不再是一个特殊 attribute 而是一个包裹组件，类似于 `<transition>` 比如：
 
 ``` html
 <keep-alive>
@@ -1184,15 +1186,15 @@ function pluralizeKnife (count) {
 {% raw %}
 <div class="upgrade-path">
   <h4>升级方式</h4>
-  <p>运行<a href="https://github.com/vuejs/vue-migration-helper">迁移工具</a>找到<code>keep-alive</code> property。</p>
+  <p>运行<a href="https://github.com/vuejs/vue-migration-helper">迁移工具</a>找到<code>keep-alive</code> attribute。</p>
 </div>
 {% endraw %}
 
 ## 计算插值
 
-### property 内部的计算插值<sup>移除</sup>
+### Attribute 内部的计算插值<sup>移除</sup>
 
-property 内部的计算插值已经不能再使用了：
+Attribute 内部的计算插值已经不能再使用了：
 
 ``` html
 <button class="btn btn-{{ size }}"></button>

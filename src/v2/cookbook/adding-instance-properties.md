@@ -1,5 +1,5 @@
 ---
-title: 添加实例property
+title: 添加实例 property
 type: cookbook
 order: 2
 ---
@@ -45,7 +45,7 @@ Vue.prototype.appName = 'My App'
 ``` js
 new Vue({
   data: {
-    // 啊哦，`appName` *也*是一个我们定义的实例property名！😯
+    // 啊哦，`appName` *也*是一个我们定义的实例 property 名！😯
     appName: 'The name of some other app'
   },
   beforeCreate: function () {
@@ -178,7 +178,7 @@ var App = Object.freeze({
 })
 ```
 
-<p class="tip">如果你在好奇 `Object.freeze`，它做的事情是阻止这个对象在未来被修改。这实质上是将它的property都设为了常量，避免在未来出现状态的 bug。</p>
+<p class="tip">如果你在好奇 `Object.freeze`，它做的事情是阻止这个对象在未来被修改。这实质上是将它的 property 都设为了常量，避免在未来出现状态的 bug。</p>
 
 现在这些被共享的 property 的来源就更加明显了：在应用中的某个地方有一个被定义好的 `App` 对象。你只需在项目中搜索就可以找到它。
 

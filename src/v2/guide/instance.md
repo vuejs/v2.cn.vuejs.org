@@ -50,11 +50,11 @@ var vm = new Vue({
   data: data
 })
 
-// 获得这个实例上的property
+// 获得这个实例上的 property
 // 返回源数据中对应的字段
 vm.a == data.a // => true
 
-// 设置property也会影响到原始数据
+// 设置 property 也会影响到原始数据
 vm.a = 2
 data.a // => 2
 
@@ -122,7 +122,7 @@ vm.$watch('a', function (newValue, oldValue) {
 })
 ```
 
-以后你可以在 [API 参考](../api/#实例property)中查阅到完整的实例 property 和方法的列表。
+以后你可以在 [API 参考](../api/#实例-property)中查阅到完整的实例 property 和方法的列表。
 
 ## 实例生命周期钩子
 
@@ -147,7 +147,7 @@ new Vue({
 
 也有一些其它的钩子，在实例生命周期的不同阶段被调用，如 [`mounted`](../api/#mounted)、[`updated`](../api/#updated) 和 [`destroyed`](../api/#destroyed)。生命周期钩子的 `this` 上下文指向调用它的 Vue 实例。
 
-<p class="tip">不要在选项property或回调上使用[箭头函数](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Functions/Arrow_functions)，比如 `created: () => console.log(this.a)` 或 `vm.$watch('a', newValue => this.myMethod())`。因为箭头函数并没有 `this`，`this` 会作为变量一直向上级词法作用域查找，直至找到为止，经常导致 `Uncaught TypeError: Cannot read property of undefined` 或 `Uncaught TypeError: this.myMethod is not a function` 之类的错误。</p>
+<p class="tip">不要在选项 property 或回调上使用[箭头函数](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Functions/Arrow_functions)，比如 `created: () => console.log(this.a)` 或 `vm.$watch('a', newValue => this.myMethod())`。因为箭头函数并没有 `this`，`this` 会作为变量一直向上级词法作用域查找，直至找到为止，经常导致 `Uncaught TypeError: Cannot read property of undefined` 或 `Uncaught TypeError: this.myMethod is not a function` 之类的错误。</p>
 
 ## 生命周期图示
 

@@ -722,7 +722,7 @@ type: api
 
   <p class="tip"> 提供的元素只能作为挂载点。不同于 Vue 1.x，所有的挂载元素会被 Vue 生成的 DOM 替换。因此不推荐挂载 root 实例到 `<html>` 或者 `<body>` 上。</p>
 
-  <p class="tip">如果 `render` 函数和 `template` property都不存在，挂载 DOM 元素的 HTML 会被提取出来用作模板，此时，必须使用 Runtime + Compiler 构建的 Vue 库。</p>
+  <p class="tip">如果 `render` 函数和 `template` property 都不存在，挂载 DOM 元素的 HTML 会被提取出来用作模板，此时，必须使用 Runtime + Compiler 构建的 Vue 库。</p>
 
 - **参考**：
   - [生命周期图示](../guide/instance.html#生命周期图示)
@@ -789,7 +789,7 @@ type: api
 
 ## 选项 / 生命周期钩子
 
-<p class="tip">所有的生命周期钩子自动绑定 `this` 上下文到实例中，因此你可以访问数据，对property和方法进行运算。这意味着**你不能使用箭头函数来定义一个生命周期方法** (例如 `created: () => this.fetchTodos()`)。这是因为箭头函数绑定了父上下文，因此 `this` 与你期待的 Vue 实例不同，`this.fetchTodos` 的行为未定义。</p>
+<p class="tip">所有的生命周期钩子自动绑定 `this` 上下文到实例中，因此你可以访问数据，对 property 和方法进行运算。这意味着**你不能使用箭头函数来定义一个生命周期方法** (例如 `created: () => this.fetchTodos()`)。这是因为箭头函数绑定了父上下文，因此 `this` 与你期待的 Vue 实例不同，`this.fetchTodos` 的行为未定义。</p>
 
 ### beforeCreate
 
@@ -2052,7 +2052,7 @@ type: api
   <div v-for="(val, name, index) in object"></div>
   ```
 
-  `v-for` 的默认行为会尝试原地修改元素而不是移动它们。要强制其重新排序元素，你需要用特殊 property `key` 来提供一个排序提示：
+  `v-for` 的默认行为会尝试原地修改元素而不是移动它们。要强制其重新排序元素，你需要用特殊 attribute `key` 来提供一个排序提示：
 
   ``` html
   <div v-for="item in items" :key="item.id">
@@ -2186,7 +2186,7 @@ type: api
 - **示例**：
 
   ```html
-  <!-- 绑定一个property -->
+  <!-- 绑定一个 attribute -->
   <img v-bind:src="imageSrc">
 
   <!-- 动态 attribute 名 (2.6.0+) -->
@@ -2210,10 +2210,10 @@ type: api
   <div :style="{ fontSize: size + 'px' }"></div>
   <div :style="[styleObjectA, styleObjectB]"></div>
 
-  <!-- 绑定一个有property的对象 -->
+  <!-- 绑定一个全是 attribute 的对象 -->
   <div v-bind="{ id: someProp, 'other-attr': otherProp }"></div>
 
-  <!-- 通过 prop 修饰符绑定 DOM property -->
+  <!-- 通过 prop 修饰符绑定 DOM attribute -->
   <div v-bind:text-content.prop="text"></div>
 
   <!-- prop 绑定。“prop”必须在 my-component 中声明。-->
@@ -2387,7 +2387,7 @@ type: api
 
 - **预期**：`number | string`
 
-  `key` 的特殊 property 主要用在 Vue 的虚拟 DOM 算法，在新旧 nodes 对比时辨识 VNodes。如果不使用 key，Vue 会使用一种最大限度减少动态元素并且尽可能的尝试就地修改/复用相同类型元素的算法。而使用 key 时，它会基于 key 的变化重新排列元素顺序，并且会移除 key 不存在的元素。
+  `key` 的特殊 attribute 主要用在 Vue 的虚拟 DOM 算法，在新旧 nodes 对比时辨识 VNodes。如果不使用 key，Vue 会使用一种最大限度减少动态元素并且尽可能的尝试就地修改/复用相同类型元素的算法。而使用 key 时，它会基于 key 的变化重新排列元素顺序，并且会移除 key 不存在的元素。
 
   有相同父元素的子元素必须有**独特的 key**。重复的 key 会造成渲染错误。
 
@@ -2479,7 +2479,7 @@ type: api
 
   用于将元素或组件表示为作用域插槽。attribute 的值应该是可以出现在函数签名的参数位置的合法的 JavaScript 表达式。这意味着在支持的环境中，你还可以在表达式中使用 ES2015 解构。它在 2.5.0+ 中替代了 [`scope`](#scope-replaced)。
 
-  此 property 不支持动态绑定。
+  此 attribute 不支持动态绑定。
 
 - **参考**：[作用域插槽](../guide/components-slots.html#作用域插槽)
 
@@ -2506,7 +2506,7 @@ type: api
   渲染一个“元组件”为动态组件。依 `is` 的值，来决定哪个组件被渲染。
 
   ```html
-  <!-- 动态组件由 vm 实例的property值 `componentId` 控制 -->
+  <!-- 动态组件由 vm 实例的 `componentId` property 控制 -->
   <component :is="componentId"></component>
 
   <!-- 也能够渲染注册过的组件或 prop 传入的组件 -->
@@ -2597,11 +2597,11 @@ type: api
 
 - **用法**：
 
-  `<transition-group>` 元素作为多个元素/组件的过渡效果。`<transition-group>` 渲染一个真实的 DOM 元素。默认渲染 `<span>`，可以通过 `tag` property 配置哪个元素应该被渲染。
+  `<transition-group>` 元素作为多个元素/组件的过渡效果。`<transition-group>` 渲染一个真实的 DOM 元素。默认渲染 `<span>`，可以通过 `tag` attribute 配置哪个元素应该被渲染。
 
   注意，每个 `<transition-group>` 的子节点必须有**独立的 key**，动画才能正常工作
 
-  `<transition-group>` 支持通过 CSS transform 过渡移动。当一个子节点被更新，从屏幕上的位置发生变化，它会被应用一个移动中的 CSS 类 (通过 `name` property 或配置 `move-class` property 自动生成)。如果 CSS `transform` property 是“可过渡”property，当应用移动类时，将会使用 [FLIP 技术](https://aerotwist.com/blog/flip-your-animations/)使元素流畅地到达动画终点。
+  `<transition-group>` 支持通过 CSS transform 过渡移动。当一个子节点被更新，从屏幕上的位置发生变化，它会被应用一个移动中的 CSS 类 (通过 `name` attribute 或配置 `move-class` attribute 自动生成)。如果 CSS `transform` property 是“可过渡”property，当应用移动类时，将会使用 [FLIP 技术](https://aerotwist.com/blog/flip-your-animations/)使元素流畅地到达动画终点。
 
   ```html
   <transition-group tag="ul" name="slide">
@@ -2656,7 +2656,7 @@ type: api
 
   > 2.1.0 新增
 
-  `include` 和 `exclude` property 允许组件有条件地缓存。二者都可以用逗号分隔字符串、正则表达式或一个数组来表示：
+  `include` 和 `exclude` prop 允许组件有条件地缓存。二者都可以用逗号分隔字符串、正则表达式或一个数组来表示：
 
   ``` html
   <!-- 逗号分隔字符串 -->
