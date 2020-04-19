@@ -240,7 +240,7 @@ mounted: function () {
 
 ## Props
 
-### `coerce` Prop 的参数<sup>移除</sup>
+### `coerce` Prop 的选项<sup>移除</sup>
 
 如果需要检查 prop 的值，创建一个内部的 computed 值，而不再在 props 内部去定义，例如：
 
@@ -284,7 +284,7 @@ computed: {
 </div>
 {% endraw %}
 
-### `twoWay` Prop 的参数<sup>移除</sup>
+### `twoWay` Prop 的选项<sup>移除</sup>
 
 Props 现在只能单向传递。为了对父组件产生反向影响，子组件需要显式地传递一个事件而不是依赖于隐式地双向绑定。详见：
 
@@ -295,7 +295,7 @@ Props 现在只能单向传递。为了对父组件产生反向影响，子组�
 {% raw %}
 <div class="upgrade-path">
   <h4>升级方式</h4>
-  <p>运行 <a href="https://github.com/vuejs/vue-migration-helper">迁移工具</a>，找出含有 <code>twoWay</code> 参数的实例。</p>
+  <p>运行 <a href="https://github.com/vuejs/vue-migration-helper">迁移工具</a>，找出含有 <code>twoWay</code> 选项的实例。</p>
 </div>
 {% endraw %}
 
@@ -461,7 +461,7 @@ new Vue({
 </script>
 {% endraw %}
 
-使用 `debounce` 参数，便无法观察“Typing”的状态。因为无法对输入状态进行实时检测。然而，通过将 `debounce` 与 Vue 解耦，可以仅仅只延迟我们想要控制的操作，从而避开这些局限性：
+使用 `debounce` attribute，便无法观察“Typing”的状态。因为无法对输入状态进行实时检测。然而，通过将 `debounce` 与 Vue 解耦，可以仅仅只延迟我们想要控制的操作，从而避开这些局限性：
 
 ``` html
 <!--
@@ -519,11 +519,11 @@ new Vue({
 {% raw %}
 <div class="upgrade-path">
   <h4>Upgrade Path</h4>
-  <p>运行<a href="https://github.com/vuejs/vue-migration-helper">迁移工具</a>找出使用 <code>debounce</code> 参数的 实例。</p>
+  <p>运行<a href="https://github.com/vuejs/vue-migration-helper">迁移工具</a>找出使用 <code>debounce</code> attribute 的实例。</p>
 </div>
 {% endraw %}
 
-### 使用 `lazy` 或者 `number` 参数的 `v-model`。<sup>替换</sup>
+### 使用 `lazy` 或者 `number` 参数 attribute 的 `v-model`。<sup>替换</sup>
 
 `lazy` 和 `number` 参数现在以修饰符的形式使用，这样看起来更加清晰，而不是这样：
 
@@ -546,9 +546,9 @@ new Vue({
 </div>
 {% endraw %}
 
-### 使用内联 `value` 的 `v-model` <sup>移除</sup>
+### 使用 `value` attribute 的 `v-model` <sup>移除</sup>
 
-`v-model` 不再以内联 `value` 方式初始化的初值了，显然他将以实例的 data 相应的 property 作为真正的初值。
+`v-model` 不再以 `value` attribute 方式初始化的初值了，显然他将以实例的 data 相应的 property 作为真正的初值。
 
 这意味着以下元素：
 
@@ -577,7 +577,7 @@ data: {
 {% raw %}
 <div class="upgrade-path">
   <h4>升级方式</h4>
-  <p>升级后运行端对端测试，注意关于<code>v-model</code>内联参数的 <strong>console warnings</strong></p>
+  <p>升级后运行端对端测试，注意关于 <code>v-model</code> 的内联 value attribute 的 <strong>console warnings</strong></p>
 </div>
 {% endraw %}
 
@@ -1139,9 +1139,9 @@ function pluralizeKnife (count) {
 </div>
 {% endraw %}
 
-### `slot` 样式参数<sup>移除</sup>
+### `slot` attribute 的样式<sup>移除</sup>
 
-通过具名 `<slot>` 插入的片段不再保持 `slot` 的参数。请用一个包裹元素来控制样式。或者用更高级方法：通过编程方式修改内容：[render functions](render-function.html)。
+通过具名 `<slot>` 插入的片段不再保持 `slot` 的 attribute。请用一个包裹元素来控制样式。或者用更高级方法：通过编程方式修改内容：[render functions](render-function.html)。
 
 {% raw %}
 <div class="upgrade-path">
