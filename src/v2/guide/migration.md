@@ -727,7 +727,7 @@ strings.map(function (str) {
 
 ## 过渡
 
-### `transition` Attrubute<sup>替换</sup>
+### `transition` Attrubute <sup>替换</sup>
 
 Vue 的过渡系统有了彻底的改变，现在通过使用 `<transition>` 和 `<transition-group>` 来包裹元素实现过渡效果，而不再使用 `transition` attribute。详见 [Transitions guide](transitions.html)。
 
@@ -749,7 +749,7 @@ Vue 的过渡系统有了彻底的改变，现在通过使用 `<transition>` 和
 </div>
 {% endraw %}
 
-### 过渡的 `stagger` Attribute<sup>移除</sup>
+### 过渡的 `stagger` Attribute <sup>移除</sup>
 
 如果希望在列表渲染中使用渐近过渡，可以通过设置元素的 `data-index` (或类似 attribute) 来控制时间。请参考[这个例子](transitions.html#列表的渐进过渡)。
 
