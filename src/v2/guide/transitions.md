@@ -362,7 +362,7 @@ Vue 为了知道过渡的完成，必须设置相应的事件监听器。它可�
 
 在很多情况下，Vue 可以自动得出过渡效果的完成时机。默认情况下，Vue 会等待其在过渡效果的根元素的第一个 `transitionend` 或 `animationend` 事件。然而也可以不这样设定——比如，我们可以拥有一个精心编排的一系列过渡效果，其中一些嵌套的内部元素相比于过渡效果的根元素有延迟的或更长的过渡效果。
 
-在这种情况下你可以用 `<transition>` 组件上的 `duration` property 定制一个显性的过渡持续时间 (以毫秒计)：
+在这种情况下你可以用 `<transition>` 组件上的 `duration` prop 定制一个显性的过渡持续时间 (以毫秒计)：
 
 ``` html
 <transition :duration="1000">...</transition>
@@ -376,7 +376,7 @@ Vue 为了知道过渡的完成，必须设置相应的事件监听器。它可�
 
 ### JavaScript 钩子
 
-可以在 property 中声明 JavaScript 钩子
+可以在 attribute 中声明 JavaScript 钩子
 
 ``` html
 <transition
@@ -960,7 +960,7 @@ new Vue({
 
 - 不同于 `<transition>`，它会以一个真实元素呈现：默认为一个 `<span>`。你也可以通过 `tag` attribute 更换为其他元素。
 - [过渡模式](#过渡模式)不可用，因为我们不再相互切换特有的元素。
-- 内部元素**总是需要**提供唯一的 `key` property 值。
+- 内部元素**总是需要**提供唯一的 `key` attribute 值。
 - CSS 过渡的类将会应用在内部的元素中，而不是这个组/容器本身。
 
 ### 列表的进入/离开过渡
@@ -1064,7 +1064,7 @@ new Vue({
 
 ### 列表的排序过渡
 
-`<transition-group>` 组件还有一个特殊之处。不仅可以进入和离开动画，还可以改变定位。要使用这个新功能只需了解新增的 **`v-move` attribute**，它会在元素的改变定位的过程中应用。像之前的类名一样，可以通过 `name` property 来自定义前缀，也可以通过 `move-class` property 手动设置。
+`<transition-group>` 组件还有一个特殊之处。不仅可以进入和离开动画，还可以改变定位。要使用这个新功能只需了解新增的 **`v-move` class**，它会在元素的改变定位的过程中应用。像之前的类名一样，可以通过 `name` attribute 来自定义前缀，也可以通过 `move-class` attribute 手动设置。
 
 `v-move` 对于设置过渡的切换时机和过渡曲线非常有用，你会看到如下的例子：
 
@@ -1312,7 +1312,7 @@ new Vue({
 
 ### 列表的交错过渡
 
-通过 data property 与 JavaScript 通信，就可以实现列表的交错过渡：
+通过 data attribute 与 JavaScript 通信，就可以实现列表的交错过渡：
 
 ``` html
 <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.3/velocity.min.js"></script>

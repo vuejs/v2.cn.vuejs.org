@@ -82,7 +82,7 @@ Vue.component('anchored-heading', {
 })
 ```
 
-看起来简单多了！这样代码精简很多，但是需要非常熟悉 Vue 的实例 property。在这个例子中，你需要知道，向组件中传递不带 `v-slot` 指令的子节点时，比如 `anchored-heading` 中的 `Hello world!`，这些子节点被存储在组件实例中的 `$slots.default` 中。如果你还不了解，**在深入渲染函数之前推荐阅读[实例 property API](../api/#实例property)。**
+看起来简单多了！这样代码精简很多，但是需要非常熟悉 Vue 的实例 property。在这个例子中，你需要知道，向组件中传递不带 `v-slot` 指令的子节点时，比如 `anchored-heading` 中的 `Hello world!`，这些子节点被存储在组件实例中的 `$slots.default` 中。如果你还不了解，**在深入渲染函数之前推荐阅读[实例 property API](../api/#实例-property)。**
 
 ## 节点、树以及虚拟 DOM
 
@@ -143,7 +143,7 @@ createElement(
   'div',
 
   // {Object}
-  // 一个与模板中property对应的数据对象。可选。
+  // 一个与模板中 attribute 对应的数据对象。可选。
   {
     // (详情见下一节)
   },
@@ -193,7 +193,7 @@ createElement(
   domProps: {
     innerHTML: 'baz'
   },
-  // 事件监听器在 `on` property内，
+  // 事件监听器在 `on` 内，
   // 但不再支持如 `v-on:keyup.enter` 这样的修饰器。
   // 需要在处理函数中手动检查 keyCode。
   on: {
@@ -224,7 +224,7 @@ createElement(
   },
   // 如果组件是其它组件的子组件，需为插槽指定名称
   slot: 'name-of-slot',
-  // 其它特殊顶层property
+  // 其它特殊顶层 property
   key: 'myKey',
   ref: 'myRef',
   // 如果你在渲染函数中给多个元素都应用了相同的 ref 名，

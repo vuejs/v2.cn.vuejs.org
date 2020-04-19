@@ -20,7 +20,7 @@ order: 403
   "compilerOptions": {
     // 与 Vue 的浏览器支持保持一致
     "target": "es5",
-    // 这可以对 `this` 上的数据property进行更严格的推断
+    // 这可以对 `this` 上的数据 property 进行更严格的推断
     "strict": true,
     // 如果使用 webpack 2+ 或 rollup，可以利用 tree-shake:
     "module": "es2015",
@@ -83,7 +83,7 @@ import Component from 'vue-class-component'
   template: '<button @click="onClick">Click!</button>'
 })
 export default class MyComponent extends Vue {
-  // 初始数据可以直接声明为实例的property
+  // 初始数据可以直接声明为实例的 property
   message: string = 'Hello!'
 
   // 组件方法也可以直接声明为实例的方法
@@ -128,7 +128,7 @@ import Vue from 'vue'
 
 declare module 'vue/types/vue' {
   // 可以使用 `VueConstructor` 接口
-  // 来声明全局property
+  // 来声明全局 property
   interface VueConstructor {
     $myGlobal: string
   }
@@ -145,7 +145,7 @@ declare module 'vue/types/options' {
 上述的声明允许下面的代码顺利编译通过：
 
 ```ts
-// 全局property
+// 全局 property
 console.log(Vue.$myGlobal)
 
 // 额外的组件选项
