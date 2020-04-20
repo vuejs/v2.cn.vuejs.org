@@ -187,3 +187,34 @@ const Component = Vue.extend({
 ```
 
 如果你发现类型推导或成员补齐不工作了，标注某个方法也许可以帮助你解决这个问题。使用 `--noImplicitAny` 选项将会帮助你找到这些未标注的方法。
+
+<!-- todo: translation -->
+## Annotating Props
+
+```ts
+import Vue, { PropType } from 'vue'
+
+interface ComplexMessage { 
+  title: string,
+  okMessage: string,
+  cancelMessage: string
+}
+const Component = Vue.extend({
+  props: {
+    name: String,
+    success: { type: String },
+    callback: { 
+      type: Function as PropType<() => void>
+    },
+    message: {
+      type: Object as PropType<ComplexMessage>,
+      required: true,
+      validator (message: ComplexMessage) {
+        return !!message.title;
+      }
+    }
+  }
+})
+```
+
+If you find validator not getting type inference or member completion isn't working, annotating the argument with the expected type may help address these problems.
