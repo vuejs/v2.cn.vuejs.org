@@ -314,11 +314,11 @@ Props 现在只能单向传递。为了对父组件产生反向影响，子组�
 </div>
 {% endraw %}
 
-### 修改 Props <sup>弃用</sup>
+### 变更 Props <sup>弃用</sup>
 
-组件内修改 prop 是反模式 (不推荐的) 的。比如，先声明一个 prop，然后在组件中通过 `this.myProp = 'someOtherValue'` 改变 prop 的值。根据渲染机制，当父组件重新渲染时，子组件的内部 prop 值也将被覆盖。
+组件内变更 prop 是反模式 (不推荐的) 的。比如，先声明一个 prop，然后在组件中通过 `this.myProp = 'someOtherValue'` 改变 prop 的值。根据渲染机制，当父组件重新渲染时，子组件的内部 prop 值也将被覆盖。
 
-大多数情况下，改变 prop 值可以用以下选项替代：
+大多数情况下，变更 prop 值可以用以下选项替代：
 
 - 通过 data 属性，用 prop 去设置一个 data 属性的默认值。
 - 通过 computed 属性。
@@ -326,7 +326,7 @@ Props 现在只能单向传递。为了对父组件产生反向影响，子组�
 {% raw %}
 <div class="upgrade-path">
   <h4>升级方式</h4>
-  <p>运行端对端测试，查看关于 prop 修改的<strong>控制台警告信息</strong>。</p>
+  <p>运行端对端测试，查看关于 prop 变更的<strong>控制台警告信息</strong>。</p>
 </div>
 {% endraw %}
 
