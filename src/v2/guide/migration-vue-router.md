@@ -18,7 +18,7 @@ router.start({
 }, '#app')
 ```
 
-你只需要传一个路由属性给 Vue 实例：
+你只需要传一个路由 property 给 Vue 实例：
 
 ``` js
 new Vue({
@@ -222,9 +222,9 @@ alias: ['/manage', '/administer', '/administrate']
 </div>
 {% endraw %}
 
-### 任意的 Route 属性<sup>替换</sup>
+### 任意的 Route property <sup>替换</sup>
 
-现在任意的 route 属性必须在新 meta 属性的作用域内，以避免和以后的新特性发生冲突。举个例子，如果你以前这样定义：
+现在任意的 route property 必须在新 meta property 的作用域内，以避免和以后的新特性发生冲突。举个例子，如果你以前这样定义：
 
 ``` js
 '/admin': {
@@ -245,7 +245,7 @@ alias: ['/manage', '/administer', '/administrate']
 }
 ```
 
-如果在一个路由上访问一个属性，你仍然会通过 meta。举个例子：
+如果在一个路由上访问一个 property，你仍然会通过 meta。举个例子：
 
 ``` js
 if (route.meta.requiresAuth) {
@@ -308,7 +308,7 @@ export default {
 <router-link to="/about">About</router-link>
 ```
 
-注意：`<router-link>` 不支持 `target="_blank"` 属性，如果你想打开一个新标签页，你必须用 `<a>` 标签。
+注意：`<router-link>` 不支持 `target="_blank"`，如果你想打开一个新标签页，你必须用 `<a>` 标签。
 
 {% raw %}
 <div class="upgrade-path">
@@ -319,7 +319,7 @@ export default {
 
 ### `v-link-active` <sup>替换</sup>
 
-`v-link-active` 也因为指定了一个在 [`<router-link>` 组件](https://router.vuejs.org/zh-cn/api/router-link.html)上的 tag 属性而被弃用了。举个例子，你需要更新：
+`v-link-active` 也因为指定了一个在 [`<router-link>` 组件](https://router.vuejs.org/zh-cn/api/router-link.html)上的 tag attribute 而被弃用了。举个例子，你需要更新：
 
 ``` html
 <li v-link-active>
@@ -537,7 +537,7 @@ scrollBehavior: function (to, from, savedPosition) {
 
 ### `data` <sup>替换</sup>
 
-`$route` 属性是响应式的，所以你可以就使用一个 watcher 去响应路由的改变，就像这样：
+`$route` property 是响应式的，所以你可以就使用一个 watcher 去响应路由的改变，就像这样：
 
 ``` js
 watch: {
@@ -559,7 +559,7 @@ methods: {
 
 ### `$loadingRouteData` <sup>移除</sup>
 
-定义你自己的属性 (例如：`isLoading`)，然后在路由上的 watcher 中更新加载状态。举个例子，如果使用 [axios](https://github.com/mzabriskie/axios) 获取数据：
+定义你自己的 property (例如：`isLoading`)，然后在路由上的 watcher 中更新加载状态。举个例子，如果使用 [axios](https://github.com/mzabriskie/axios) 获取数据：
 
 ``` js
 data: function () {

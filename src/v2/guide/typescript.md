@@ -20,7 +20,7 @@ order: 403
   "compilerOptions": {
     // 与 Vue 的浏览器支持保持一致
     "target": "es5",
-    // 这可以对 `this` 上的数据属性进行更严格的推断
+    // 这可以对 `this` 上的数据 property 进行更严格的推断
     "strict": true,
     // 如果使用 webpack 2+ 或 rollup，可以利用 tree-shake:
     "module": "es2015",
@@ -83,7 +83,7 @@ import Component from 'vue-class-component'
   template: '<button @click="onClick">Click!</button>'
 })
 export default class MyComponent extends Vue {
-  // 初始数据可以直接声明为实例的属性
+  // 初始数据可以直接声明为实例的 property
   message: string = 'Hello!'
 
   // 组件方法也可以直接声明为实例的方法
@@ -96,9 +96,9 @@ export default class MyComponent extends Vue {
 
 ## 增强类型以配合插件使用
 
-插件可以增加 Vue 的全局/实例属性和组件选项。在这些情况下，在 TypeScript 中制作插件需要类型声明。庆幸的是，TypeScript 有一个特性来补充现有的类型，叫做[模块补充 (module augmentation)](https://www.typescriptlang.org/docs/handbook/declaration-merging.html#module-augmentation)。
+插件可以增加 Vue 的全局/实例 property 和组件选项。在这些情况下，在 TypeScript 中制作插件需要类型声明。庆幸的是，TypeScript 有一个特性来补充现有的类型，叫做[模块补充 (module augmentation)](https://www.typescriptlang.org/docs/handbook/declaration-merging.html#module-augmentation)。
 
-例如，声明一个 `string` 类型的实例属性 `$myProperty`：
+例如，声明一个 `string` 类型的实例 property `$myProperty`：
 
 ``` ts
 // 1. 确保在声明补充的类型之前导入 'vue'
@@ -121,14 +121,14 @@ var vm = new Vue()
 console.log(vm.$myProperty) // 将会顺利编译通过
 ```
 
-你也可以声明额外的属性和组件选项：
+你也可以声明额外的 property 和组件选项：
 
 ```ts
 import Vue from 'vue'
 
 declare module 'vue/types/vue' {
   // 可以使用 `VueConstructor` 接口
-  // 来声明全局属性
+  // 来声明全局 property
   interface VueConstructor {
     $myGlobal: string
   }
@@ -145,7 +145,7 @@ declare module 'vue/types/options' {
 上述的声明允许下面的代码顺利编译通过：
 
 ```ts
-// 全局属性
+// 全局 property
 console.log(Vue.$myGlobal)
 
 // 额外的组件选项

@@ -21,7 +21,7 @@ this.$emit('myEvent')
 <my-component v-on:my-event="doSomething"></my-component>
 ```
 
-不同于组件和 prop，事件名不会被用作一个 JavaScript 变量名或属性名，所以就没有理由使用 camelCase 或 PascalCase 了。并且 `v-on` 事件监听器在 DOM 模板中会被自动转换为全小写 (因为 HTML 是大小写不敏感的)，所以 `v-on:myEvent` 将会变成 `v-on:myevent`——导致 `myEvent` 不可能被监听到。
+不同于组件和 prop，事件名不会被用作一个 JavaScript 变量名或 property 名，所以就没有理由使用 camelCase 或 PascalCase 了。并且 `v-on` 事件监听器在 DOM 模板中会被自动转换为全小写 (因为 HTML 是大小写不敏感的)，所以 `v-on:myEvent` 将会变成 `v-on:myevent`——导致 `myEvent` 不可能被监听到。
 
 因此，我们推荐你**始终使用 kebab-case 的事件名**。
 
@@ -56,7 +56,7 @@ Vue.component('base-checkbox', {
 <base-checkbox v-model="lovingVue"></base-checkbox>
 ```
 
-这里的 `lovingVue` 的值将会传入这个名为 `checked` 的 prop。同时当 `<base-checkbox>` 触发一个 `change` 事件并附带一个新的值的时候，这个 `lovingVue` 的属性将会被更新。
+这里的 `lovingVue` 的值将会传入这个名为 `checked` 的 prop。同时当 `<base-checkbox>` 触发一个 `change` 事件并附带一个新的值的时候，这个 `lovingVue` 的 property 将会被更新。
 
 <p class="tip">注意你仍然需要在组件的 <code>props</code> 选项里声明 <code>checked</code> 这个 prop。</p>
 
@@ -83,7 +83,7 @@ Vue.component('base-checkbox', {
 
 这时，父级的 `.native` 监听器将静默失败。它不会产生任何报错，但是 `onFocus` 处理函数不会如你预期地被调用。
 
-为了解决这个问题，Vue 提供了一个 `$listeners` 属性，它是一个对象，里面包含了作用在这个组件上的所有监听器。例如：
+为了解决这个问题，Vue 提供了一个 `$listeners` property，它是一个对象，里面包含了作用在这个组件上的所有监听器。例如：
 
 ```js
 {
@@ -92,7 +92,7 @@ Vue.component('base-checkbox', {
 }
 ```
 
-有了这个 `$listeners` 属性，你就可以配合 `v-on="$listeners"` 将所有的事件监听器指向这个组件的某个特定的子元素。对于类似 `<input>` 的你希望它也可以配合 `v-model` 工作的组件来说，为这些监听器创建一个类似下述 `inputListeners` 的计算属性通常是非常有用的：
+有了这个 `$listeners` property，你就可以配合 `v-on="$listeners"` 将所有的事件监听器指向这个组件的某个特定的子元素。对于类似 `<input>` 的你希望它也可以配合 `v-model` 工作的组件来说，为这些监听器创建一个类似下述 `inputListeners` 的计算属性通常是非常有用的：
 
 ```js
 Vue.component('base-input', {
@@ -143,7 +143,7 @@ Vue.component('base-input', {
 this.$emit('update:title', newTitle)
 ```
 
-然后父组件可以监听那个事件并根据需要更新一个本地的数据属性。例如：
+然后父组件可以监听那个事件并根据需要更新一个本地的数据 property。例如：
 
 ```html
 <text-document
@@ -158,7 +158,7 @@ this.$emit('update:title', newTitle)
 <text-document v-bind:title.sync="doc.title"></text-document>
 ```
 
-<p class="tip">注意带有 <code>.sync</code> 修饰符的 <code>v-bind</code> <strong>不能</strong>和表达式一起使用 (例如 <code>v-bind:title.sync="doc.title + '!'"</code> 是无效的)。取而代之的是，你只能提供你想要绑定的属性名，类似 <code>v-model</code>。</p>
+<p class="tip">注意带有 <code>.sync</code> 修饰符的 <code>v-bind</code> <strong>不能</strong>和表达式一起使用 (例如 <code>v-bind:title.sync="doc.title + '!'"</code> 是无效的)。取而代之的是，你只能提供你想要绑定的 property 名，类似 <code>v-model</code>。</p>
 
 当我们用一个对象同时设置多个 prop 的时候，也可以将这个 `.sync` 修饰符和 `v-bind` 配合使用：
 
@@ -166,6 +166,6 @@ this.$emit('update:title', newTitle)
 <text-document v-bind.sync="doc"></text-document>
 ```
 
-这样会把 `doc` 对象中的每一个属性 (如 `title`) 都作为一个独立的 prop 传进去，然后各自添加用于更新的 `v-on` 监听器。
+这样会把 `doc` 对象中的每一个 property (如 `title`) 都作为一个独立的 prop 传进去，然后各自添加用于更新的 `v-on` 监听器。
 
 <p class="tip">将 <code>v-bind.sync</code> 用在一个字面量的对象上，例如 <code>v-bind.sync="{ title: doc.title }"</code>，是无法正常工作的，因为在解析一个像这样的复杂表达式的时候，有很多边缘情况需要考虑。</p>

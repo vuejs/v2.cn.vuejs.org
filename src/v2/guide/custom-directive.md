@@ -52,7 +52,7 @@ directives: {
 }
 ```
 
-然后你可以在模板中任何元素上使用新的 `v-focus` 属性，如下：
+然后你可以在模板中任何元素上使用新的 `v-focus` property，如下：
 
 ``` html
 <input v-focus>
@@ -81,7 +81,7 @@ directives: {
 指令钩子函数会被传入以下参数：
 
 - `el`：指令所绑定的元素，可以用来直接操作 DOM。
-- `binding`：一个对象，包含以下属性：
+- `binding`：一个对象，包含以下 property：
   - `name`：指令名，不包括 `v-` 前缀。
   - `value`：指令的绑定值，例如：`v-my-directive="1 + 1"` 中，绑定值为 `2`。
   - `oldValue`：指令绑定的前一个值，仅在 `update` 和 `componentUpdated` 钩子中可用。无论值是否改变都可用。
@@ -93,7 +93,7 @@ directives: {
 
 <p class="tip">除了 `el` 之外，其它参数都应该是只读的，切勿进行修改。如果需要在钩子之间共享数据，建议通过元素的 [`dataset`](https://developer.mozilla.org/zh-CN/docs/Web/API/HTMLElement/dataset) 来进行。</p>
 
-这是一个使用了这些属性的自定义钩子样例：
+这是一个使用了这些 property 的自定义钩子样例：
 
 ``` html
 <div id="hook-arguments-example" v-demo:foo.a.b="message"></div>

@@ -82,7 +82,7 @@ new Vue({
 
 ## 解决这个内存泄漏问题
 
-在上述的示例中，我们可以用 `hide()` 方法在将选择框从 DOM 中移除之前做一些清理工作，来解决内存泄露问题。为了做到这一点，我们会在 Vue 实例的数据对象中保留一个属性，并会使用 [Choices API 中的](https://github.com/jshjohnson/Choices) `destroy()` 方法将其清除。
+在上述的示例中，我们可以用 `hide()` 方法在将选择框从 DOM 中移除之前做一些清理工作，来解决内存泄露问题。为了做到这一点，我们会在 Vue 实例的数据对象中保留一个 property，并会使用 [Choices API 中的](https://github.com/jshjohnson/Choices) `destroy()` 方法将其清除。
 
 通过这个[更新之后的 CodePen 示例](https://codepen.io/freeman-g/pen/mxWMor)可以再重新看看内存的使用情况。
 

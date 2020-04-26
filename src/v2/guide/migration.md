@@ -208,7 +208,7 @@ mounted: function () {
 
 ### `track-by` <sup>替换</sup>
 
-`track-by` 已经替换为 `key`，它的工作方式与其他属性一样，没有 `v-bind` 或者 `:` 前缀，它会被作为一个字符串处理。多数情况下，你需要使用具有完整表达式的动态绑定 (dynamic binding) 来替换静态的 key。例如，替换：
+`track-by` 已经替换为 `key`，它的工作方式与其他 attribute 一样，没有 `v-bind` 或者 `:` 前缀，它会被作为一个字符串处理。多数情况下，你需要使用具有完整表达式的动态绑定 (dynamic binding) 来替换静态的 key。例如，替换：
 
 {% codeblock lang:html %}
 <div v-for="item in items" track-by="id">
@@ -240,7 +240,7 @@ mounted: function () {
 
 ## Props
 
-### `coerce` Prop 的参数<sup>移除</sup>
+### `coerce` Prop 的选项<sup>移除</sup>
 
 如果需要检查 prop 的值，创建一个内部的 computed 值，而不再在 props 内部去定义，例如：
 
@@ -284,7 +284,7 @@ computed: {
 </div>
 {% endraw %}
 
-### `twoWay` Prop 的参数<sup>移除</sup>
+### `twoWay` Prop 的选项<sup>移除</sup>
 
 Props 现在只能单向传递。为了对父组件产生反向影响，子组件需要显式地传递一个事件而不是依赖于隐式地双向绑定。详见：
 
@@ -295,7 +295,7 @@ Props 现在只能单向传递。为了对父组件产生反向影响，子组�
 {% raw %}
 <div class="upgrade-path">
   <h4>升级方式</h4>
-  <p>运行 <a href="https://github.com/vuejs/vue-migration-helper">迁移工具</a>，找出含有 <code>twoWay</code> 参数的实例。</p>
+  <p>运行 <a href="https://github.com/vuejs/vue-migration-helper">迁移工具</a>，找出含有 <code>twoWay</code> 选项的实例。</p>
 </div>
 {% endraw %}
 
@@ -320,8 +320,8 @@ Props 现在只能单向传递。为了对父组件产生反向影响，子组�
 
 大多数情况下，变更 prop 值可以用以下选项替代：
 
-- 通过 data 属性，用 prop 去设置一个 data 属性的默认值。
-- 通过 computed 属性。
+- 通过 data property，用 prop 去设置一个 data property 的默认值。
+- 通过计算属性。
 
 {% raw %}
 <div class="upgrade-path">
@@ -385,7 +385,7 @@ methods: {
 
 在 2.0 中使用 `v-bind` 时，只有 `null`，`undefined`，和 `false` 被看作是假。这意味着，`0` 和空字符串将被作为真值渲染。比如 `v-bind:draggable="''"` 将被渲染为 `draggable="true"`。
 
-对于枚举属性，除了以上假值之外，字符串 `"false"` 也会被渲染为 `attr="false"`。
+对于枚举 attribute，除了以上假值之外，字符串 `"false"` 也会被渲染为 `attr="false"`。
 
 <p class="tip">注意，对于其它钩子函数 (如 `v-if` 和 `v-show`)，他们依然遵循 js 对真假值判断的一般规则。</p>
 
@@ -413,7 +413,7 @@ methods: {
 
 ### 带有 `debounce` 的 `v-model` <sup>移除</sup>
 
-Debouncing 曾经被用来控制 Ajax 请求及其它高耗任务的频率。Vue 中 `v-model` 的 `debounce` 属性参数使得在一些简单情况下非常容易实现这种控制。但实际上，这是控制了**状态更新**的频率，而不是控制高耗时任务本身。这是个微小的差别，但是会随着应用增长而显现出局限性。
+Debouncing 曾经被用来控制 Ajax 请求及其它高耗任务的频率。Vue 中 `v-model` 的 `debounce` property 参数使得在一些简单情况下非常容易实现这种控制。但实际上，这是控制了**状态更新**的频率，而不是控制高耗时任务本身。这是个微小的差别，但是会随着应用增长而显现出局限性。
 
 例如在设计一个搜索提示时的局限性：
 
@@ -461,7 +461,7 @@ new Vue({
 </script>
 {% endraw %}
 
-使用 `debounce` 参数，便无法观察“Typing”的状态。因为无法对输入状态进行实时检测。然而，通过将 `debounce` 与 Vue 解耦，可以仅仅只延迟我们想要控制的操作，从而避开这些局限性：
+使用 `debounce` attribute，便无法观察“Typing”的状态。因为无法对输入状态进行实时检测。然而，通过将 `debounce` 与 Vue 解耦，可以仅仅只延迟我们想要控制的操作，从而避开这些局限性：
 
 ``` html
 <!--
@@ -519,11 +519,11 @@ new Vue({
 {% raw %}
 <div class="upgrade-path">
   <h4>Upgrade Path</h4>
-  <p>运行<a href="https://github.com/vuejs/vue-migration-helper">迁移工具</a>找出使用 <code>debounce</code> 参数的 实例。</p>
+  <p>运行<a href="https://github.com/vuejs/vue-migration-helper">迁移工具</a>找出使用 <code>debounce</code> attribute 的实例。</p>
 </div>
 {% endraw %}
 
-### 使用 `lazy` 或者 `number` 参数的 `v-model`。<sup>替换</sup>
+### 使用 `lazy` 或者 `number` 参数 attribute 的 `v-model`。<sup>替换</sup>
 
 `lazy` 和 `number` 参数现在以修饰符的形式使用，这样看起来更加清晰，而不是这样：
 
@@ -546,9 +546,9 @@ new Vue({
 </div>
 {% endraw %}
 
-### 使用内联 `value` 的 `v-model` <sup>移除</sup>
+### 使用 `value` attribute 的 `v-model` <sup>移除</sup>
 
-`v-model` 不再以内联 `value` 方式初始化的初值了，显然他将以实例的 data 相应的属性作为真正的初值。
+`v-model` 不再以 `value` attribute 方式初始化的初值了，显然他将以实例的 data 相应的 property 作为真正的初值。
 
 这意味着以下元素：
 
@@ -577,7 +577,7 @@ data: {
 {% raw %}
 <div class="upgrade-path">
   <h4>升级方式</h4>
-  <p>升级后运行端对端测试，注意关于<code>v-model</code>内联参数的 <strong>console warnings</strong></p>
+  <p>升级后运行端对端测试，注意关于 <code>v-model</code> 的内联 value attribute 的 <strong>console warnings</strong></p>
 </div>
 {% endraw %}
 
@@ -635,7 +635,9 @@ strings.map(function (str) {
 
 ### `v-el` 和 `v-ref` <sup>替换</sup>
 
-简单起见，`v-el` 和 `v-ref` 合并为一个 `ref` 属性了，可以在组件实例中通过 `$refs` 来调用。这意味着 `v-el:my-element` 将写成这样：`ref="myElement"`，`v-ref:my-component` 变成了这样：`ref="myComponent"`。绑定在一般元素上时，`ref` 指 DOM 元素，绑定在组件上时，`ref` 为一组件实例。因为 `v-ref` 不再是一个指令了而是一个特殊的属性，它也可以被动态定义了。这样在和 `v-for` 结合的时候是很有用的：
+简单起见，`v-el` 和 `v-ref` 合并为一个 `ref` attribute 了，可以在组件实例中通过 `$refs` 来调用。这意味着 `v-el:my-element` 将写成这样：`ref="myElement"`，`v-ref:my-component` 变成了这样：`ref="myComponent"`。绑定在一般元素上时，`ref` 指 DOM 元素，绑定在组件上时，`ref` 为一组件实例。
+
+因为 `v-ref` 不再是一个指令了而是一个特殊的 attribute，它也可以被动态定义了。这样在和 `v-for` 结合的时候是很有用的：
 
 ``` html
 <p v-for="item in items" v-bind:ref="'item' + item.id"></p>
@@ -725,14 +727,14 @@ strings.map(function (str) {
 
 ## 过渡
 
-### `transition` 参数<sup>替换</sup>
+### `transition` Attrubute <sup>替换</sup>
 
-Vue 的过渡系统有了彻底的改变，现在通过使用 `<transition>` 和 `<transition-group>` 来包裹元素实现过渡效果，而不再使用 `transition` 属性。详见 [Transitions guide](transitions.html)。
+Vue 的过渡系统有了彻底的改变，现在通过使用 `<transition>` 和 `<transition-group>` 来包裹元素实现过渡效果，而不再使用 `transition` attribute。详见 [Transitions guide](transitions.html)。
 
 {% raw %}
 <div class="upgrade-path">
   <h4>升级方式</h4>
-  <p>运行<a href="https://github.com/vuejs/vue-migration-helper">迁移工具</a>找到使用 <code>transition</code> 属性的地方。</p>
+  <p>运行<a href="https://github.com/vuejs/vue-migration-helper">迁移工具</a>找到使用 <code>transition</code> attribute 的地方。</p>
 </div>
 {% endraw %}
 
@@ -743,18 +745,18 @@ Vue 的过渡系统有了彻底的改变，现在通过使用 `<transition>` 和
 {% raw %}
 <div class="upgrade-path">
   <h4>升级方式</h4>
-  <p>运行<a href="https://github.com/vuejs/vue-migration-helper">迁移工具</a>找到使用 <code>transition</code> 属性的地方。</p>
+  <p>运行<a href="https://github.com/vuejs/vue-migration-helper">迁移工具</a>找到使用 <code>transition</code> attribute 的地方。</p>
 </div>
 {% endraw %}
 
-### 过渡的 `stagger` 参数<sup>移除</sup>
+### 过渡的 `stagger` Attribute <sup>移除</sup>
 
-如果希望在列表渲染中使用渐近过渡，可以通过设置元素的 `data-index` (或类似属性) 来控制时间。请参考[这个例子](transitions.html#列表的渐进过渡)。
+如果希望在列表渲染中使用渐近过渡，可以通过设置元素的 `data-index` (或类似 attribute) 来控制时间。请参考[这个例子](transitions.html#列表的渐进过渡)。
 
 {% raw %}
 <div class="upgrade-path">
   <h4>升级方式</h4>
-  <p>运行<a href="https://github.com/vuejs/vue-migration-helper">迁移工具</a>找到使用 <code>transition</code> 属性的地方。升级期间，你可以“过渡”到新的过渡策略。</p>
+  <p>运行<a href="https://github.com/vuejs/vue-migration-helper">迁移工具</a>找到使用 <code>transition</code> attribute 的地方。升级期间，你可以“过渡”到新的过渡策略。</p>
 </div>
 {% endraw %}
 
@@ -913,7 +915,7 @@ methods: {
 <p v-for="item in items | limitBy 10">{{ item }}</p>
 ```
 
-在 computed 属性中使用 js 内置方法：[`.slice` method](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/slice#Examples)：
+在计算属性中使用 js 内置方法：[`.slice` method](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/slice#Examples)：
 
 ``` html
 <p v-for="item in filteredItems">{{ item }}</p>
@@ -935,7 +937,7 @@ computed: {
 <p v-for="user in users | filterBy searchQuery in 'name'">{{ user.name }}</p>
 ```
 
-在 computed 属性中使用 js 内置方法 [`.filter` method](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter#Examples)：
+在计算属性中使用 js 内置方法 [`.filter` method](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter#Examples)：
 
 ``` html
 <p v-for="user in filteredUsers">{{ user.name }}</p>
@@ -952,7 +954,7 @@ computed: {
 }
 ```
 
-js 原生的 `.filter` 同样能实现很多复杂的过滤器操作，因为可以在计算 computed 属性中使用所有 js 方法。比如，想要通过匹配用户名字和电子邮箱地址 (不区分大小写) 找到用户：
+js 原生的 `.filter` 同样能实现很多复杂的过滤器操作，因为可以在计算计算属性中使用所有 js 方法。比如，想要通过匹配用户名字和电子邮箱地址 (不区分大小写) 找到用户：
 
 ``` js
 var self = this
@@ -973,7 +975,7 @@ self.users.filter(function (user) {
 <p v-for="user in users | orderBy 'name'">{{ user.name }}</p>
 ```
 
-而是在 computed 属性中使用 [lodash's `orderBy`](https://lodash.com/docs/4.15.0#orderBy) (或者可能是 [`sortBy`](https://lodash.com/docs/4.15.0#sortBy))：
+而是在计算属性中使用 [lodash's `orderBy`](https://lodash.com/docs/4.15.0#orderBy) (或者可能是 [`sortBy`](https://lodash.com/docs/4.15.0#sortBy))：
 
 ``` html
 <p v-for="user in orderedUsers">{{ user.name }}</p>
@@ -1137,9 +1139,9 @@ function pluralizeKnife (count) {
 </div>
 {% endraw %}
 
-### `slot` 样式参数<sup>移除</sup>
+### `slot` attribute 的样式<sup>移除</sup>
 
-通过具名 `<slot>` 插入的片段不再保持 `slot` 的参数。请用一个包裹元素来控制样式。或者用更高级方法：通过编程方式修改内容：[render functions](render-function.html)。
+通过具名 `<slot>` 插入的片段不再保持 `slot` 的 attribute。请用一个包裹元素来控制样式。或者用更高级方法：通过编程方式修改内容：[render functions](render-function.html)。
 
 {% raw %}
 <div class="upgrade-path">
@@ -1148,11 +1150,11 @@ function pluralizeKnife (count) {
 </div>
 {% endraw %}
 
-## 特殊属性
+## 特殊 attribute
 
-### `keep-alive` 属性<sup>替换</sup>
+### `keep-alive` attribute <sup>替换</sup>
 
-`keep-alive` 不再是一个特殊属性而是一个包裹组件，类似于 `<transition>` 比如：
+`keep-alive` 不再是一个特殊 attribute 而是一个包裹组件，类似于 `<transition>` 比如：
 
 ``` html
 <keep-alive>
@@ -1184,15 +1186,15 @@ function pluralizeKnife (count) {
 {% raw %}
 <div class="upgrade-path">
   <h4>升级方式</h4>
-  <p>运行<a href="https://github.com/vuejs/vue-migration-helper">迁移工具</a>找到<code>keep-alive</code> 属性。</p>
+  <p>运行<a href="https://github.com/vuejs/vue-migration-helper">迁移工具</a>找到<code>keep-alive</code> attribute。</p>
 </div>
 {% endraw %}
 
 ## 计算插值
 
-### 属性内部的计算插值<sup>移除</sup>
+### Attribute 内部的计算插值<sup>移除</sup>
 
-属性内部的计算插值已经不能再使用了：
+Attribute 内部的计算插值已经不能再使用了：
 
 ``` html
 <button class="btn btn-{{ size }}"></button>
@@ -1221,7 +1223,7 @@ computed: {
 {% raw %}
 <div class="upgrade-path">
   <h4>升级方式</h4>
-  <p>运行<a href="https://github.com/vuejs/vue-migration-helper">迁移工具</a>找到属性内部的计算插值</p>
+  <p>运行<a href="https://github.com/vuejs/vue-migration-helper">迁移工具</a>找到property内部的计算插值</p>
 </div>
 {% endraw %}
 
@@ -1327,7 +1329,7 @@ methods: {
 
 ### Vue 实例上的 `Vue.set` 和 `Vue.delete` <sup>移除</sup>
 
-`Vue.set` 和 `Vue.delete` 在实例上将不再起作用。现在都强制在实例的 data 选项中声明所有顶级响应值。如果删除实例属性或实例 `$data` 上的某个值，直接将它设置为 null 即可。
+`Vue.set` 和 `Vue.delete` 在实例上将不再起作用。现在都强制在实例的 data 选项中声明所有顶级响应值。如果删除实例 property 或实例 `$data` 上的某个值，直接将它设置为 null 即可。
 
 {% raw %}
 <div class="upgrade-path">

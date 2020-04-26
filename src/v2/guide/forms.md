@@ -12,9 +12,9 @@ order: 10
 
 <p class="tip">`v-model` 会忽略所有表单元素的 `value`、`checked`、`selected` attribute 的初始值而总是将 Vue 实例的数据作为数据来源。你应该通过 JavaScript 在组件的 `data` 选项中声明初始值。</p>
 
-`v-model` 在内部为不同的输入元素使用不同的属性并抛出不同的事件：
-- text 和 textarea 元素使用 `value` 属性和 `input` 事件；
-- checkbox 和 radio 使用 `checked` 属性和 `change` 事件；
+`v-model` 在内部为不同的输入元素使用不同的 property 并抛出不同的事件：
+- text 和 textarea 元素使用 `value` property 和 `input` 事件；
+- checkbox 和 radio 使用 `checked` property 和 `change` 事件；
 - select 字段将 `value` 作为 prop 并将 `change` 作为事件。
 
 <p class="tip" id="vmodel-ime-tip">对于需要使用[输入法](https://zh.wikipedia.org/wiki/%E8%BE%93%E5%85%A5%E6%B3%95) (如中文、日文、韩文等) 的语言，你会发现 `v-model` 不会在输入法组合文字过程中得到更新。如果你也想处理这个过程，请使用 `input` 事件。</p>
@@ -338,7 +338,7 @@ new Vue({
 </select>
 ```
 
-但是有时我们可能想把值绑定到 Vue 实例的一个动态属性上，这时可以用 `v-bind` 实现，并且这个属性的值可以不是字符串。
+但是有时我们可能想把值绑定到 Vue 实例的一个动态 property 上，这时可以用 `v-bind` 实现，并且这个 property 的值可以不是字符串。
 
 ### 复选框
 

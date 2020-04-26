@@ -10,7 +10,7 @@ order: 9
 
 在本次实践中，我们会使用 [CoinDesk API](https://www.coindesk.com/api/) 来完成展示比特币价格且每分钟更新的工作。首先，我们要通过 npm/Yarn 或一个 CDN 链接安装 axios。
 
-我们有很多种方式可以从 API 请求信息，但是最好首先确认这些数据看起来长什么样，以便进一步确定如何展示它。为此，我们会调用一次这个 API 并输出结果，以便我们能够看清楚它。如 CoinDesk 的 API 文档所述，请求会发送到 `https://api.coindesk.com/v1/bpi/currentprice.json`。所以，我们首先创建一个 data 里的属性以最终放置信息，然后将会在 `mounted` 生命周期钩子中获取数据并赋值过去：
+我们有很多种方式可以从 API 请求信息，但是最好首先确认这些数据看起来长什么样，以便进一步确定如何展示它。为此，我们会调用一次这个 API 并输出结果，以便我们能够看清楚它。如 CoinDesk 的 API 文档所述，请求会发送到 `https://api.coindesk.com/v1/bpi/currentprice.json`。所以，我们首先创建一个 data 里的 property 以最终放置信息，然后将会在 `mounted` 生命周期钩子中获取数据并赋值过去：
 
 ```js
 new Vue({
