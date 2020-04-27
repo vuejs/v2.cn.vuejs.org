@@ -69,7 +69,7 @@ Vue 实现了一套内容分发的 API，这套 API 的设计灵感源自 [Web C
 <navigation-link url="/profile">
   Clicking here will send you to: {{ url }}
   <!--
-  这里的 `url` 会是 undefined，因为 "/profile" 是
+  这里的 `url` 会是 undefined，因为这段内容（指该插槽）是
   _传递给_ <navigation-link> 的而不是
   在 <navigation-link> 组件*内部*定义的。
   -->
