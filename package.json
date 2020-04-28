@@ -7,6 +7,7 @@
   "scripts": {
     "start": "hexo server",
     "lint": "zhlint 'src/v2/{guide,api,style-guide}/*.md'",
+    "lint:fix": "zhlint 'src/v2/{guide,api,style-guide}/*.md' --fix",
     "build": "node pre-deploy.js && hexo clean && hexo generate",
     "deploy": "npm run build && hexo deploy"
   },
