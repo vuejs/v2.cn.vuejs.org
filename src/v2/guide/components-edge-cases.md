@@ -120,7 +120,7 @@ methods: {
 this.$refs.usernameInput.focus()
 ```
 
-当 `ref` 和 `v-for` 一起使用的时候，你得到 ref 将会是一个包含了对应数据源的这些子组件的数组。
+当 `ref` 和 `v-for` 一起使用的时候，你得到的 ref 将会是一个包含了对应数据源的这些子组件的数组。
 
 <p class="tip"><code>$refs</code> 只会在组件渲染完成之后生效，并且它们不是响应式的。这仅作为一个用于直接操作子组件的“逃生舱”——你应该避免在模板或计算属性中访问 <code>$refs</code>。</p>
 
