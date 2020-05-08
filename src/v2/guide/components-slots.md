@@ -6,7 +6,7 @@ order: 104
 
 > 该页面假设你已经阅读过了[组件基础](components.html)。如果你还对组件不太了解，推荐你先阅读它。
 
-> 在 2.6.0 中，我们为具名插槽和作用域插槽引入了一个新的统一的语法 (即 `v-slot` 指令)。它取代了 `slot` 和 `slot-scope` 这两个目前已被废弃但未被移除且仍在[文档中](#废弃了的语法)的 attribute。新语法的由来可查阅这份 [RFC](https://github.com/vuejs/rfcs/blob/master/active-rfcs/0001-new-slot-syntax.md)。
+> 在 2.6.0 中，我们为命名插槽和作用域插槽引入了一个新的统一的语法 (即 `v-slot` 指令)。它取代了 `slot` 和 `slot-scope` 这两个目前已被废弃但未被移除且仍在[文档中](#废弃了的语法)的 attribute。新语法的由来可查阅这份 [RFC](https://github.com/vuejs/rfcs/blob/master/active-rfcs/0001-new-slot-syntax.md)。
 
 ## 插槽内容
 
@@ -128,7 +128,7 @@ Vue 实现了一套内容分发的 API，这套 API 的设计灵感源自 [Web C
 </button>
 ```
 
-## 具名插槽
+## 命名插槽
 
 > 自 2.6.0 起有所更新。已废弃的使用 `slot` attribute 的语法在[这里](#废弃了的语法)。
 
@@ -166,7 +166,7 @@ Vue 实现了一套内容分发的 API，这套 API 的设计灵感源自 [Web C
 
 一个不带 `name` 的 `<slot>` 出口会带有隐含的名字“default”。
 
-在向具名插槽提供内容的时候，我们可以在一个 `<template>` 元素上使用 `v-slot` 指令，并以 `v-slot` 的参数的形式提供其名称：
+在向命名插槽提供内容的时候，我们可以在一个 `<template>` 元素上使用 `v-slot` 指令，并以 `v-slot` 的参数的形式提供其名称：
 
 ```html
 <base-layout>
@@ -285,7 +285,7 @@ Vue 实现了一套内容分发的 API，这套 API 的设计灵感源自 [Web C
 </current-user>
 ```
 
-注意默认插槽的缩写语法**不能**和具名插槽混用，因为它会导致作用域不明确：
+注意默认插槽的缩写语法**不能**和命名插槽混用，因为它会导致作用域不明确：
 
 ``` html
 <!-- 无效，会导致警告 -->
@@ -359,7 +359,7 @@ function (slotProps) {
 </base-layout>
 ```
 
-## 具名插槽的缩写
+## 命名插槽的缩写
 
 > 2.6.0 新增
 
@@ -451,11 +451,11 @@ function (slotProps) {
 
 > `v-slot` 指令自 Vue 2.6.0 起被引入，提供更好的支持 `slot` 和 `slot-scope` attribute 的 API 替代方案。`v-slot` 完整的由来参见这份 [RFC](https://github.com/vuejs/rfcs/blob/master/active-rfcs/0001-new-slot-syntax.md)。在接下来所有的 2.x 版本中 `slot` 和 `slot-scope` attribute 仍会被支持，但已经被官方废弃且不会出现在 Vue 3 中。
 
-### 带有 `slot` attribute 的具名插槽
+### 带有 `slot` attribute 的命名插槽
 
-> 自 2.6.0 起<abbr title="在所有 Vue 2.x 版本中仍被支持，但不再推荐使用。">被废弃</abbr>。新推荐的语法请查阅[这里](#具名插槽)。
+> 自 2.6.0 起<abbr title="在所有 Vue 2.x 版本中仍被支持，但不再推荐使用。">被废弃</abbr>。新推荐的语法请查阅[这里](#命名插槽)。
 
-在 `<template>` 上使用特殊的 `slot` attribute，可以将内容从父级传给具名插槽 (把[这里](#具名插槽)提到过的 `<base-layout>` 组件作为示例)：
+在 `<template>` 上使用特殊的 `slot` attribute，可以将内容从父级传给命名插槽 (把[这里](#命名插槽)提到过的 `<base-layout>` 组件作为示例)：
 
 ```html
 <base-layout>
