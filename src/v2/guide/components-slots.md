@@ -51,7 +51,7 @@ Vue 实现了一套内容分发的 API，这套 API 的设计灵感源自 [Web C
 </navigation-link>
 ```
 
-如果 `<navigation-link>` **没有**包含一个 `<slot>` 元素，则该组件起始标签和结束标签之间的任何内容都会被抛弃。
+如果 `<navigation-link>` 的 `template` 中**没有**包含一个 `<slot>` 元素，则该组件起始标签和结束标签之间的任何内容都会被抛弃。
 
 ## 编译作用域
 
