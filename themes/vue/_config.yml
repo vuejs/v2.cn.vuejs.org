@@ -73,6 +73,9 @@ gold_sponsors:
   - url: 'https://www.vpnranks.com/'
     img: vpnranks.png
     name: VPNRanks
+  - url: 'https://www.bacancytechnology.com/hire-vuejs-developer'
+    img: bacancy_technology.png
+    name: Bacancy Technology
   - url: 'https://www.bestvpn.co/'
     img: bestvpn_co.png
     name: BestVPN.co
@@ -88,18 +91,15 @@ gold_sponsors:
   - url: 'https://usave.co.uk/utilities/broadband'
     img: usave.png
     name: usave
-  - url: 'http://www.pullrequest.com'
-    img: pullrequest.svg
-    name: PullRequest
-  - url: 'https://unicorn.io/'
-    img: unicorn_io.png
-    name: Unicorn.io
   - url: 'https://www.vuescreencasts.com/'
     img: happy_programmer_llc.png
     name: Happy Programmer LLC
   - url: 'https://www.primefaces.org/primevue'
     img: primevue.png
     name: PrimeVue
+  - url: 'https://cooltechzone.com/netflix-vpn'
+    img: netflix_vpn.png
+    name: Netflix VPN
 silver_sponsors:
   - url: 'https://roadster.com'
     img: roadster.png
@@ -107,6 +107,9 @@ silver_sponsors:
   - url: 'https://www.inkoop.io'
     img: inkoop.png
     name: Inkoop
+  - url: 'https://www.thecasinodb.com'
+    img: isolutions_uk_limited.png
+    name: iSolutions UK Limited
 bronze_sponsors:
   - url: 'https://www.accelebrate.com/'
     img: accelebrate.png

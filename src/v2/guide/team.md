@@ -340,12 +340,12 @@ order: 803
     },
     {
       name: 'Pine Wu',
+      city: 'Shanghai, China',
       languages: ['zh', 'en', 'jp'],
       github: 'octref',
       twitter: 'octref',
       work: {
-        role: 'Engineer on VSCode',
-        org: 'Microsoft'
+        role: 'Nomad'
       },
       reposOfficial: [
         'vetur'
@@ -561,14 +561,6 @@ order: 803
       ]
     },
     {
-      name: 'Darek Gusto Wędrychowski',
-      title: 'Google Search Virtuoso',
-      city: 'Kraków, Poland',
-      languages: ['pl', 'en'],
-      github: 'gustojs',
-      twitter: 'gustojs'
-    },
-    {
       name: 'Phan An',
       title: 'Backend Designer & Process Poet',
       city: 'Munich, Germany',
@@ -780,6 +772,21 @@ order: 803
   ])
 
   var partners = [
+    {
+      name: 'Maria Lamardo',
+      title: 'Front End Engineer at Pendo',
+      city: 'Raleigh, NC, USA',
+      languages: ['en', 'es'],
+      work: {
+        role: 'Front End Engineer',
+        org: 'Pendo'
+      },
+      github: 'mlama007',
+      twitter: 'MariaLamardo',
+      reposPersonal: [
+        'vuejs/events'
+      ]
+    },
     {
       name: 'Pratik Patel',
       title: 'Organizer of VueConf US',

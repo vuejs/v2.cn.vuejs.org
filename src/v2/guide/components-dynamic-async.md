@@ -227,12 +227,12 @@ Vue.component('async-webpack-example', function (resolve) {
 })
 ```
 
-你也可以在工厂函数中返回一个 `Promise`，所以把 webpack 2 和 ES2015 语法加在一起，我们可以写成这样：
+你也可以在工厂函数中返回一个 `Promise`，所以把 webpack 2 和 ES2015 语法加在一起，我们可以这样使用动态导入：
 
 ``` js
 Vue.component(
   'async-webpack-example',
-  // 这个 `import` 函数会返回一个 `Promise` 对象。
+  // 这个动态导入会返回一个 `Promise` 对象。
   () => import('./my-async-component')
 )
 ```
