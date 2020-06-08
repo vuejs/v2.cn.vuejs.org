@@ -2385,7 +2385,7 @@ type: api
 
 ### key
 
-- **预期**：`number | string`
+- **预期**：`number | string | boolean (2.4.2 新增) | symbol (2.5.12 新增)`
 
   `key` 的特殊 attribute 主要用在 Vue 的虚拟 DOM 算法，在新旧 nodes 对比时辨识 VNodes。如果不使用 key，Vue 会使用一种最大限度减少动态元素并且尽可能的尝试就地修改/复用相同类型元素的算法。而使用 key 时，它会基于 key 的变化重新排列元素顺序，并且会移除 key 不存在的元素。
 
