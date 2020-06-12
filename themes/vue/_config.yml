@@ -13,9 +13,9 @@ video_sponsors_china:
     img: youku.png
 special_sponsors:
   - url: 'https://stdlib.com/'
-    img: stdlib.png
-    name: Standard Library
-    description: 几分钟内在云端构建发布 API，免费试用。
+    img: autocode.svg
+    name: Autocode
+    description: Build app-to-app workflows and connect APIs
 platinum_sponsors:
   - url: >-
       https://vueschool.io/?utm_source=Vuejs.org&utm_medium=Banner&utm_campaign=Sponsored%20Banner&utm_content=V1
