@@ -353,7 +353,7 @@ function (slotProps) {
 
 ``` html
 <base-layout>
-  <template v-slot:[dynamicSlotName]>
+  <template v-slot:[dynamic]>
     ...
   </template>
 </base-layout>
