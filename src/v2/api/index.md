@@ -2089,7 +2089,7 @@ type: api
   - `.left` - (2.2.0) 只当点击鼠标左键时触发。
   - `.right` - (2.2.0) 只当点击鼠标右键时触发。
   - `.middle` - (2.2.0) 只当点击鼠标中键时触发。
-  - `.passive` - (2.3.0) 以 `{ passive: true }` 模式添加侦听器
+  - `.passive` - (2.3.0) 以 `{ passive: true }` 模式添加侦听器，指示函数listener永远不会调用preventDefault()。
 
 - **用法**：
 
