@@ -96,7 +96,7 @@ Vue.component('anchored-heading', {
 </div>
 ```
 
-当浏览器读到这些代码时，它会建立一个[“DOM 节点”树](https://javascript.info/dom-nodes)来保持追踪所有内容，如同你会画一张家谱树来追踪家庭成员的发展一样。
+当浏览器读到这些代码时，它会建立一个[“DOM 节点树”](https://javascript.info/dom-nodes)来保持追踪所有内容，如同你会画一张家谱树来追踪家庭成员的发展一样。
 
 上述 HTML 对应的 DOM 节点树如下图所示：
 
