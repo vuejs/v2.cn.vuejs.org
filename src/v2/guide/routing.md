@@ -35,7 +35,7 @@ new Vue({
   render (h) { return h(this.ViewComponent) }
 })
 ```
-结合 HTML5 History API，你可以建立一个麻雀虽小五脏俱全的客户端路由器。可以直接看[实例应用](https://github.com/chrisvfritz/vue-2.0-simple-routing-example)。
+结合 HTML5 History API，你可以建立一个麻雀虽小但是五脏俱全的客户端路由器。可以直接看[实例应用](https://github.com/chrisvfritz/vue-2.0-simple-routing-example)。
 
 ## 整合第三方路由
 
