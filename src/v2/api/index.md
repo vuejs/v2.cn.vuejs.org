@@ -1387,9 +1387,14 @@ type: api
 
 - **只读**
 
+- **响应性**：否
+
 - **详细**：
 
   用来访问被[插槽分发](../guide/components.html#通过插槽分发内容)的内容。每个[具名插槽](../guide/components-slots.html#具名插槽)有其相应的 property (例如：`v-slot:foo` 中的内容将会在 `vm.$slots.foo` 中被找到)。`default` property 包括了所有没有被包含在具名插槽中的节点，或 `v-slot:default` 的内容。
+
+  <!-- TODO: translation -->
+  Please note that slots are **not** reactive. If you need a component to re-render based on changes to data passed to a slot, we suggest considering a different strategy that relies on a reactive instance option, such as `props` or `data`.
 
   **注意：**`v-slot:foo` 在 2.6 以上的版本才支持。对于之前的版本，你可以使用[废弃了的语法](../guide/components-slots.html#废弃了的语法)。
 
