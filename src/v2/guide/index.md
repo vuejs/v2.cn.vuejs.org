@@ -227,7 +227,7 @@ var app5 = new Vue({
 {% raw %}
 <div id="app-5" class="demo">
   <p>{{ message }}</p>
-  <button v-on:click="reverseMessage">逆转消息</button>
+  <button v-on:click="reverseMessage">反转消息</button>
 </div>
 <script>
 var app5 = new Vue({
