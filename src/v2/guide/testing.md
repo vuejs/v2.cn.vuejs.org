@@ -1,174 +1,167 @@
 ---
-title: Testing
+title: 测试
 type: guide
 order: 402
 ---
 
-# Testing
+# 测试
 
-<!-- TODO: translation -->
+## 介绍
 
-## Introduction
+当构建可靠的应用时，测试在个人或团队构建新特性、重构代码、修复 bug 等工作中扮演了关键的角色。尽管测试的流派有很多，它们在 web 应用这个领域里主要有三大类：
 
-When it comes to building reliable applications, tests can play a critical role in an individual or team's ability to build new features, refactor code, fix bugs, etc. While there are many schools of thought with testing, there are three categories often discussed in the context of web applications:
+- 单元测试
+- 组件测试
+- 端到端 (E2E) 测试
 
-- Unit Testing
-- Component Testing
-- End-To-End (E2E) Testing
+本章节致力于引导大家了解测试的生态系统的并为 Vue 应用或组件库选择适合的工具。
 
-This section aims to provide guidance to navigating the testing ecosystem and choosing the right tools for your Vue application or component library.
+## 单元测试
 
-## Unit Testing
+### 介绍
 
-### Introduction
+单元测试允许你将独立单元的代码进行隔离测试。单元测试的目的是为开发者提供对代码的信心。通过编写有意义的测试，你能够有信心在构建新特性或重构已有代码的同时，保持应用的功能和稳定。
 
-Unit tests allow you to test individual units of code in isolation. The purpose of unit testing is to provide developers with confidence in their code. By writing thorough, meaningful tests, you achieve the confidence that as new features are built or your code is refactored your application will remain functional and stable.
+为一个 Vue 应用做单元测试并没有和为其它类型的应用做测试有什么明显的区别。
 
-Unit testing a Vue application does not significantly differ from testing other types of applications.
+### 选择框架
 
-### Choosing Your Framework
+因为单元测试的建议通常是框架无关的，这里只是当你在评估应用的单元测试工具时需要的一些基本指导。
 
-Since unit testing advice is often framework-agnostic, here are some basic guidelines to keep in mind when evaluating which unit testing tool is best for your application.
+#### 一流的错误报告
 
-#### First-class error reporting
+当测试失败时，提供有用的错误信息对于单元测试框架来说至关重要。这是断言库应尽的职责。一个具有高质量错误信息的断言能够最小化调试问题所需的时间。除了简单地告诉你什么测试失败了，断言库还应额外提供上下文以及测试失败的原因，例如预期结果 vs. 实际得到的结果。
 
-When tests fail, it is critical that your unit testing framework provides useful errors. This is the job of the assertion library. An assertion with high-quality error messages helps minimize the amount of time it takes to debug the problem. In addition to simply telling you what test is failing, assertion libraries provide context for why a test fails, e.g., what is expected vs what was received.
+一些诸如 Jest 这样的单元测试框架会包含断言库。另一些诸如 Mocha 需要你单独安装断言库 (通常会用 Chai)。
 
-Some unit testing frameworks, like Jest, include assertion libraries. Others, like Mocha, require you to install assertion libraries separately (usually Chai).
+#### 活跃的社区和团队
 
-#### Active community and team
+因为主流的单元测试框架都是开源的，所以对于一些旨在长期维护其测试且确保项目本身保持活跃的团队来说，拥有一个活跃的社区时至关重要的。额外的好处是，在任何时候遇到问题时，一个活跃的社区会为你提供更多的支持。
 
-Since the majority of unit testing frameworks are open-source, having a community that is active can be critical to some teams that will be maintaining their tests for a long period of time and needs to ensure that a project will be actively maintained. In addition, having an active community has the benefit of providing more support whenever you run into issues.
+### 框架
 
-### Frameworks
-
-While there are many tools in the ecosystem, here are some common unit testing tools that are being used in the Vue.js ecosystem.
+尽管生态系统里有很多工具，这里我们列出一些在 Vue 生态系统中常用的单元测试工具。
 
 #### Jest
 
-Jest is a JavaScript test framework that is focused on simplicity. One of its unique features is the ability to take snapshots of tests in order to provide an alternative means of verifying units of your application.
+Jest 是一个专注于简易性的 JavaScript 测试框架。一个其独特的功能是可以为测试生成快照 (snapshot)，以提供另一种验证应用单元的方法。
 
-**Resources:**
+**资料：**
 
-- [Official Jest Website](https://jestjs.io)
-- [Official Vue 2 CLI Plugin - Jest](https://cli.vuejs.org/core-plugins/unit-jest.html)
+- [Jest 官网](https://jestjs.io/zh-Hans/)
+- [Vue CLI 官方插件 - Jest](https://cli.vuejs.org/core-plugins/unit-jest.html)
 
 #### Mocha
 
-Mocha is a JavaScript test framework that is focused on being flexible. Because of this flexibility, it allows you to choose different libraries to fulfill other common features such as spying (e.g., Sinon) and assertions (e.g., Chai). Another unique feature of Mocha is that it can also execute tests in the browser in addition to Node.js.
+Mocha 是一个专注于灵活性的 JavaScript 测试框架。因为其灵活性，它允许你选择不同的库来满足诸如侦听 (如 Sinon) 和断言 (如 Chai) 等其它常见的功能。另一个 Mocha 独特的功能是它不止可以在 Node.js 里运行测试，还可以在浏览器里运行测试。
 
-**Resources:**
+**资料：**
 
-- [Official Mocha Website](https://mochajs.org)
-- [Official Vue CLI Plugin - Mocha](https://cli.vuejs.org/core-plugins/unit-mocha.html)
+- [Mocha 官网](https://mochajs.org)
+- [Vue CLI 官方插件 - Mocha](https://cli.vuejs.org/core-plugins/unit-mocha.html)
 
-## Component Testing
+## 组件测试
 
-### Introduction
+### 介绍
 
-To test most Vue components, they must be mounted to the DOM (either virtual or real) in order to fully assert that they are working. This is another framework-agnostic concept. As a result, component testing frameworks were created to give users the ability to do this in a reliable way while also providing Vue-specific conveniences such as integrations for Vuex, Vue Router, and other Vue plugins.
+测试大多数 Vue 组件时都必须将它们挂载到 DOM (虚拟或真实) 上，才能完全断言它们正在工作。这是另一个与框架无关的概念。因此组件测试框架的诞生，是为了让用户能够以可靠的方式完成这项工作，同时还提供了 Vue 特有的诸如对 Vuex、Vue Router 和其他 Vue 插件的集成的便利性。
 
-### Choosing Your Framework
+### 选择框架
 
-The following section provides guidelines on things to keep in mind when evaluating which component testing framework is best for your application.
+以下章节提供了在评估最适合你的应用的组件测试框架时需要记住的事项。
 
-#### Optimal compatibility with the Vue ecosystem
+#### 与 Vue 生态系统的最佳兼容性
 
-It should be no surprise that one of the first criteria is that a component testing library should have is being as compatible with the Vue ecosystem as possible. While this may seem comprehensive, some key integration areas to keep in mind include single file components (SFCs), Vuex, Vue Router, and any other Vue specific plugins that your application relies on.
+毋容置疑，最重要的标准之一就是组件测试库应该尽可能与 Vue 生态系统兼容。虽然这看起来很全面，但需要记住的一些关键集成领域包括单文件组件 (SFC)、Vuex、Vue Router 以及应用所依赖的任何其他特定于 Vue 的插件。
 
-#### First-class error reporting
+#### 一流的错误报告
 
-When tests fail, it is critical that your component testing framework provides useful error logs that help to minimize the amount of time it takes to debug the problem. In addition to simply telling you what test fails, they should also provides context for why a test fails, e.g., what is expected vs what was received.
+当测试失败时，提供有用的错误日志以最小化调试问题所需的时间对于组件测试框架来说至关重要。除了简单地告诉你什么测试失败了，他们还应额外提供上下文以及测试失败的原因，例如预期结果 vs. 实际得到的结果。
 
-### Recommendations
+### 推荐
 
 #### Vue Testing Library (@testing-library/vue)
 
-Vue Testing Library is a set of tools focused on testing components without relying on implementation details. Built with accessibility in mind, its approach also makes refactoring a breeze.
+Vue Testing Library 是一组专注于测试组件而不依赖实现细节的工具。在考虑可访问性时，它的方法也使重构变得轻而易举。
 
-Its guiding principle is that the more tests resemble the way software is used, the more confidence they can provide.
+它的指导原则是，与软件使用方式相似的测试越多，它们提供的可信度就越高。
 
-**Resources:**
+**资料：**
 
-- [Official Vue Testing Library Website](https://testing-library.com/docs/vue-testing-library/intro)
+- [Vue Testing Library 官网](https://testing-library.com/docs/vue-testing-library/intro)
 
-#### Vue Test Utils
+#### Vue Test Utils 
 
-Vue Test Utils is the official low-level component testing library that was written to provide users access to Vue specific APIs. If you are new to testing Vue applications, we would recommend using Vue Testing Library, which is an abstraction over Vue Test Utils.
+Vue Test Utils 是官方的低级组件测试库，它是为用户提供对 Vue 特定 API 的访问而编写的。如果你对测试 Vue 应用不熟悉，我们建议你使用 Vue Testing Library，它是 Vue Test Utils 的抽象。
 
-**Resources**
+**资源：**
 
-- [Official Vue Test Utils Documentation](https://vue-test-utils.vuejs.org)
-- [Vue Testing Handbook](https://lmiller1990.github.io/vue-testing-handbook/#what-is-this-guide) by Lachlan Miller
-- [Cookbook: Unit Testing Vue Components](https://vuejs.org/v2/cookbook/unit-testing-vue-components.html)
+- [Vue Test Utils 官方文档](https://vue-test-utils.vuejs.org)
+- [Vue 测试指南](https://lmiller1990.github.io/vue-testing-handbook/zh-CN/) by Lachlan Miller
 
-## End-to-End (E2E) Testing
+## 端到端 (E2E) 测试
 
-### Introduction
+### 介绍
 
-While unit tests provide developers with some degree of confidence, unit and component tests are limited in their abilities to provide holistic coverage of an application when deployed to production. As a result, end-to-end (E2E) tests provide coverage on what is arguably the most important aspect of an application: what happens when users actually use your applications.
+虽然单元测试为开发者提供了一定程度的信心，但是单元测试和组件测试在部署到生产环境时提供应用整体覆盖的能力是有限的。因此，端到端 (E2E) 测试可以说从应用最重要的方面进行测试覆盖：当用户实际使用应用时会发生什么。
 
-In other words, E2E tests validate all of the layers in your application. This not only includes your frontend code, but all associated backend services and infrastructure that are more representative of the environment that your users will be in. By testing how user actions impact your application, E2E tests are often the key to higher confidence in whether an application is functioning properly or not.
+换句话说，E2E 测试验证应用中的所有层。这不仅包括你的前端代码，还包括所有相关的后端服务和基础设施，它们更能代表你的用户所处的环境。通过测试用户操作如何影响应用，E2E 测试通常是提高应用是否正常运行的信心的关键。
 
-### Choosing Your Framework
+### 选择框架
 
-While end-to-end (E2E) testing on the web has gained a negative reputation for unreliable (flaky) tests and slowing down development processes, modern E2E tools have made strides forward to create more reliable, interactive, and useful tests. When choosing an E2E testing framework, the following sections provide some guidance on things to keep in mind when choosing a testing framework for your application.
+虽然 web 上的端到端 (E2E) 测试因不可信赖 (片面的) 测试和减慢开发过程而得到负面的声誉，但现代 E2E 工具在创建更可靠的、交互的和实用的测试方面取得了长足进步。在选择 E2E 测试框架时，以下章节在你为应用选择测试框架时提供了一些指导。
 
-#### Cross-browser testing
+#### 跨浏览器测试
 
-One of the primary benefits that end-to-end (E2E) testing is known for is its ability to test your application across multiple browsers. While it may seem desirable to have 100% cross-browser coverage, it is important to note that cross browser testing has diminishing returns on a team's resources due the additional time and machine power required to run them consistently. As a result, it is important to be mindful of this trade-off when choosing the amount of cross-browser testing your application needs.
+端到端 (E2E) 测试的一个主要优点是它能够跨多个浏览器测试应用。虽然我们看上去渴望得到 100% 的跨浏览器覆盖率似乎，但需要注意的是，因为持续运行这些跨浏览器测试需要额外的时间和机器消耗，它会降低团队的资源回报。因此，在选择应用需要的跨浏览器测试数量时，必须注意这种权衡。
 
-::: tip
-A recent development in for catching browser-specific issues is using application monitoring and error reporting tools (e.g., Sentry, LogRocket, etc.) for browsers that are not as commonly used (e.g., < IE11, older Safari versions, etc.).
+:::tip
+针对浏览器特定问题的一个最新进展是，针对不常用的浏览器 (如：< IE11、旧版 Safari 等) 使用应用监视和错误报告工具 (如：Sentry、LogRocket 等)。
 :::
 
-#### Faster feedback loops
+#### 更快的反馈路径
 
-One of the primary problems with end-to-end (E2E) tests and development is that running the entire suite takes a long time. Typically, this is only done in continuous integration and deployment (CI/CD) pipelines. Modern E2E testing frameworks have helped to solve this by adding features like parallelization, which allows for CI/CD pipelines to often run magnitudes faster than before. In addition, when developing locally, the ability to selectively run a single test for the page you are working on while also providing hot reloading of tests can help to boost a developer's workflow and productivity.
+端到端 (E2E) 测试和开发的主要问题之一是运行整个套件需要很长时间。通常，这只在持续集成和部署 (CI/CD) 管道中完成。现代的 E2E 测试框架通过添加类似并行化的特性来帮助解决这个问题，这使得 CI/CD 管道的运行速度通常比以前快。此外，在本地开发时，有选择地为正在处理的页面运行单个测试的能力，同时还提供测试的热重新加载，这有助于提高开发者的工作流程和工作效率。
 
-#### First class debugging experience
+#### 一流的调试经验
 
-While developers have traditionally relied on scanning logs in a terminal window to help determine what went wrong in a test, modern end-to-end (E2E) test frameworks allow developers to leverage tools that they are already familiar with, e.g. browser developer tools.
+虽然开发者传统上依赖于在终端窗口中扫描日志来帮助确定测试中出了什么问题，但现代端到端 (E2E) 测试框架允许开发者利用他们已经熟悉的工具，例如浏览器开发工具。
 
-#### Visibility in headless mode
+### 推荐
 
-When end-to-end (E2E) tests are run in continuous integration / deployment pipelines, they are often run in headless browsers (i.e., no visible browser is opened for the user to watch). As a result, when errors occur, a critical feature that modern E2E testing frameworks provide 1st class support for is the ability to see snapshots and/or videos of your applications during various testing stages in order to provide insight into why errors are happening. Historically, it was tedious to maintain these integrations.
-
-### Recommendations
-
-While there are many tools in the ecosystem, here are some common end-to-end (E2E) testing frameworks that are being used in the Vue.js ecosystem.
+虽然生态系统中有许多工具，但以下是一些 Vue.js 生态系统中常用的端到端 (E2E) 测试框架。
 
 #### Cypress.io
 
-Cypress.io is a testing framework that aims to enhance developer productivity by enabling developers to reliably test their applications while providing a first class developer experience.
+Cypress.io 是一个测试框架，旨在通过使开发者能够可靠地测试他们的应用，同时提供一流的开发者体验，来提高开发者的生产率。
 
-**Resources**
+**资料：**
 
-- [Cypress' Official Website](https://www.cypress.io)
-- [Official Vue CLI Cypress Plugin](https://cli.vuejs.org/core-plugins/e2e-cypress.html)
+- [Cypress 官网](https://www.cypress.io)
+- [Vue CLI 官方插件 - Cypress](https://cli.vuejs.org/core-plugins/e2e-cypress.html)
 - [Cypress Testing Library](https://github.com/testing-library/cypress-testing-library)
 
 #### Nightwatch.js
 
-Nightwatch.js is an end-to-end testing framework that can be used to test web applications and websites, as well as Node.js unit and integration testing.
+Nightwatch.js 是一个端到端测试框架，可用于测试 web 应用和网站，以及 Node.js 单元测试和集成测试。
 
-**Resources:**
+**资料：**
 
-- [Nightwatch's Official Website](https://nightwatchjs.org)
-- [Official Vue CLI Nightwatch Plugin](https://cli.vuejs.org/core-plugins/e2e-nightwatch.html)
+- [Nightwatch 官网](https://nightwatchjs.org)
+- [Vue CLI 官方插件 - Nightwatch](https://cli.vuejs.org/core-plugins/e2e-nightwatch.html)
 
 #### Puppeteer
 
-Puppeteer is a Node library that provides a high-level API to control the browser and can pair with other test runners (e.g., Jest) to test your application.
+Puppeteer 是一个 Node.js 库，它提供高阶 API 来控制浏览器，并可以与其他测试运行程序 (例如 Jest) 配对来测试应用。
 
-**Resources:**
+**资料：**
 
-- [Puppeteer's Official Website](https://pptr.dev)
+- [Puppeteer 官网](https://pptr.dev)
 
 #### TestCafe
 
-TestCafe is a Node.js based end-to-end framework that aims to provide easy setup so that developers can focus on creating tests that are easy to write and reliable.
+TestCafe 是一个基于端到端的 Node.js 框架，旨在提供简单的设置，以便开发者能够专注于创建易于编写和可靠的测试。
 
-**Resources:**
+**资料：**
 
-- [TestCafe's Official Website](https://devexpress.github.io/testcafe/)
+- [TestCafe 官网](https://devexpress.github.io/testcafe/)
