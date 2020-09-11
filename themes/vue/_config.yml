@@ -12,10 +12,10 @@ video_sponsors_china:
   - url: http://cloud.youku.com/index.php?source=vuejs
     img: youku.png
 special_sponsors:
-  - url: 'https://stdlib.com/'
-    img: stdlib.png
-    name: Standard Library
-    description: 几分钟内在云端构建发布 API，免费试用。
+  - url: 'https://autocode.com/'
+    img: autocode.svg
+    name: Autocode
+    description: 'Instant Webhooks, Scripts and APIs'
 platinum_sponsors:
   - url: >-
       https://vueschool.io/?utm_source=Vuejs.org&utm_medium=Banner&utm_campaign=Sponsored%20Banner&utm_content=V1
@@ -52,9 +52,6 @@ gold_sponsors:
   - url: 'https://neds.com.au/'
     img: neds.png
     name: Neds
-  - url: 'https://icons8.com/'
-    img: icons_8.png
-    name: Icons 8
   - url: 'https://vuejobs.com/?ref=vuejs'
     img: vuejobs.png
     name: VueJobs
@@ -91,15 +88,21 @@ gold_sponsors:
   - url: 'https://usave.co.uk/utilities/broadband'
     img: usave.png
     name: usave
-  - url: 'https://www.vuescreencasts.com/'
-    img: happy_programmer_llc.png
-    name: Happy Programmer LLC
-  - url: 'https://www.primefaces.org/primevue'
-    img: primevue.png
-    name: PrimeVue
-  - url: 'https://cooltechzone.com/netflix-vpn'
-    img: netflix_vpn.png
-    name: Netflix VPN
+  - url: 'https://www.foo.software'
+    img: foo.png
+    name: Foo
+  - url: 'https://flatlogic.com/templates'
+    img: flatlogic_templates.svg
+    name: Flatlogic Templates
+  - url: 'http://moovweb.com/'
+    img: moovweb.png
+    name: Moovweb
+  - url: 'https://vpn-review.com/netflix-vpn'
+    img: vpn_review.png
+    name: VPN Review
+  - url: 'https://cosmos.network/'
+    img: tendermint.png
+    name: Tendermint
 silver_sponsors:
   - url: 'https://roadster.com'
     img: roadster.png
