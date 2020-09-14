@@ -157,7 +157,7 @@ var app3 = new Vue({
 ``` html
 <div id="app-4">
   <ol>
-    <li v-for="todo in todos">
+     <li v-for="todo in todos" :key="todo.tex">
       {{ todo.text }}
     </li>
   </ol>
