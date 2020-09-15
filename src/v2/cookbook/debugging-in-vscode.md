@@ -45,7 +45,7 @@ module.exports = {
 
 ### 从 VS Code 启动应用
 
-<p class="tip>我们这里假设端口号为 `8080`。如果与实际情况不符 (比如 `8080` 端口已经被占用且 Vue CLI 为你自动选取了另一个端口号)，可以修改相应的配置。</p>
+<p class="tip">我们这里假设端口号为 `8080`。如果与实际情况不符 (比如 `8080` 端口已经被占用且 Vue CLI 为你自动选取了另一个端口号)，可以修改相应的配置。</p>
 
 点击在 Activity Bar 里的 Debugger 图标来到 Debug 视图，然后点击那个齿轮图标来配置一个 `launch.json` 的文件，选择 **Chrome/Firefox：Launch** 环境。然后将生成的 `launch.json` 的内容替换成为相应的配置：
 
