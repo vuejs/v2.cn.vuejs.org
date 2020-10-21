@@ -27,14 +27,14 @@ Vue (读音 /vjuː/，类似于 **view**) 是一套用于构建用户界面的**
 
 ``` html
 <!-- 开发环境版本，包含了有帮助的命令行警告 -->
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
 ```
 
 或者：
 
 ``` html
 <!-- 生产环境版本，优化了尺寸和速度 -->
-<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
 ```
 
 [安装教程](/guide/installation.html)给出了更多安装 Vue 的方式。请注意我们**不推荐**新手直接使用 `vue-cli`，尤其是在你还不熟悉基于 Node.js 的构建工具时。

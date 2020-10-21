@@ -10,7 +10,7 @@ order: 403
 
 静态类型系统能帮助你有效防止许多潜在的运行时错误，而且随着你的应用日渐丰满会更加显著。这就是为什么 Vue 不仅仅为 Vue core 提供了针对 [TypeScript](https://www.typescriptlang.org/) 的[官方类型声明](https://github.com/vuejs/vue/tree/dev/types)，还为 [Vue Router](https://github.com/vuejs/vue-router/tree/dev/types) 和 [Vuex](https://github.com/vuejs/vuex/tree/dev/types) 也提供了相应的声明文件。
 
-而且，我们已经把它们[发布到了 NPM](https://cdn.jsdelivr.net/npm/vue/types/)，最新版本的 TypeScript 也知道该如何自己从 NPM 包里解析类型声明。这意味着只要你成功地通过 NPM 安装了，就不再需要任何额外的工具辅助，即可在 Vue 中使用 TypeScript 了。
+而且，我们已经把它们[发布到了 NPM](https://cdn.jsdelivr.net/npm/vue@2/types/)，最新版本的 TypeScript 也知道该如何自己从 NPM 包里解析类型声明。这意味着只要你成功地通过 NPM 安装了，就不再需要任何额外的工具辅助，即可在 Vue 中使用 TypeScript 了。
 
 ## 推荐配置
 
@@ -193,7 +193,7 @@ const Component = Vue.extend({
 ```ts
 import Vue, { PropType } from 'vue'
 
-interface ComplexMessage { 
+interface ComplexMessage {
   title: string,
   okMessage: string,
   cancelMessage: string
@@ -202,7 +202,7 @@ const Component = Vue.extend({
   props: {
     name: String,
     success: { type: String },
-    callback: { 
+    callback: {
       type: Function as PropType<() => void>
     },
     message: {
