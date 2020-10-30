@@ -31,9 +31,17 @@
 
   <div id="special">
     <h3>特别赞助</h3>
+    <%_
+    function getSponsorImage(s) {
+      if (s.alt_img) {
+        return Math.random() >= 0.5 ? s.img : s.alt_img
+      }
+      return s.img
+    }
+    _%>
     <%_ for (const sponsor of theme.platinum_sponsors_china) { _%>
     <a href="<%- sponsor.url %>" target="_blank" rel="noopener sponsored">
-      <img src="<%- url_for(`/images/${sponsor.img}`) %>" style="width:200px">
+      <img src="<%- url_for(`/images/${getSponsorImage(sponsor)}`) %>" style="width:200px">
     </a>
     <%_ } _%>
     <%_if (theme.platinum_sponsors_china.length < 2) { _%>
