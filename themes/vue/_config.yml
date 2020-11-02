@@ -3,10 +3,12 @@ google_analytics: UA-46852172-3
 root_domain: cn.vuejs.org
 vue_version: 2.5.16
 platinum_sponsors_china:
-  - url: http://www.dcloud.io/?hmsr=vuejsorg&hmpl=&hmcu=&hmkw=&hmci=
+  - name: dcloud
+    url: http://www.dcloud.io/?hmsr=vuejsorg&hmpl=&hmcu=&hmkw=&hmci=
     img: dcloud1.png
     alt_img: dcloud2.png
-  - url: https://coding.imooc.com/?c=vuejs&mc_marking=7cf403c3c89d6fccf944791e71e7a959&mc_channel=vuezwsq
+  - name: imooc
+    url: https://coding.imooc.com/?c=vuejs&mc_marking=7cf403c3c89d6fccf944791e71e7a959&mc_channel=vuezwsq
     img: imooc-sponsor.png
     ad_img: imooc-sponsor2.png
 video_sponsors_china:
