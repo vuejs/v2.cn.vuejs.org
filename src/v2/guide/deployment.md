@@ -56,7 +56,7 @@ NODE_ENV=production browserify -g envify -e main.js | uglifyjs -c -m > build.js
 - 或者在 Gulp 中使用 [envify](https://github.com/hughsk/envify)：
 
   ``` js
-  // 使用 envify 的自定义模块来定制环境变量
+  // 使用 envify 自定义模块指定环境变量
   var envify = require('envify/custom')
 
   browserify(browserifyOptions)
@@ -82,7 +82,7 @@ NODE_ENV=production browserify -g envify -e main.js | uglifyjs -c -m > build.js
         configure: b => b
           .transform('vueify')
           .transform(
-            // 用来处理 `node_modules` 文件
+            // 必填项，以处理 node_modules 里的文件
             { global: true },
             envify({ NODE_ENV: 'production' })
           )
