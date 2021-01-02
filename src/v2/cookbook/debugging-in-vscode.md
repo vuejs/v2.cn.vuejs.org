@@ -12,8 +12,6 @@ order: 8
 
 ## 先决条件
 
-你必须安装好 Chrome 和 VS Code。同时请确保自己在 VS Code 中安装了 [Debugger for Chrome](https://marketplace.visualstudio.com/items?itemName=msjsdiag.debugger-for-chrome) 扩展的最新版本。
-
 请确保你安装了 VS Code 以及适合的浏览器，并且安装激活了最新版的相应的 Debugger 扩展：
 
 * [Debugger for Chrome](https://marketplace.visualstudio.com/items?itemName=msjsdiag.debugger-for-chrome)
