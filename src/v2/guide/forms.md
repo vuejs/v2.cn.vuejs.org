@@ -188,9 +188,9 @@ new Vue({
 <div id="example-5">
   <select v-model="selected">
     <option disabled value="">请选择</option>
-    <option>A</option>
-    <option>B</option>
-    <option>C</option>
+    <option value="A">A</option>
+    <option value="B">B</option>
+    <option value="C">C</option>
   </select>
   <span>Selected: {{ selected }}</span>
 </div>
@@ -232,9 +232,9 @@ new Vue({
 ``` html
 <div id="example-6">
   <select v-model="selected" multiple style="width: 50px;">
-    <option>A</option>
-    <option>B</option>
-    <option>C</option>
+    <option value="A">A</option>
+    <option value="B">B</option>
+    <option value="C">C</option>
   </select>
   <br>
   <span>Selected: {{ selected }}</span>
