@@ -29,7 +29,7 @@ order: 401
 - [CommonJS 模块](https://webpack.js.org/concepts/modules/#what-is-a-webpack-module)
 - [组件作用域的 CSS](https://vue-loader.vuejs.org/zh-cn/features/scoped-css.html)
 
-正如我们说过的，我们可以使用预处理器来构建简洁和功能更丰富的组件，比如 Pug，Babel (with ES2015 modules)，和 Stylus。
+正如我们说过的，我们可以使用预处理器来构建简洁和功能更丰富的组件，比如 Pug，Babel (with ES2015 modules)，和 Styles。
 
 <a href="https://gist.github.com/chrisvfritz/1c9f2daea9bc078dcb47e9a82e5f7587" target="_blank" rel="noopener noreferrer"><img src="/images/vue-component-with-preprocessors.png" alt="带预处理器的单文件组件的示例 (点击查看文本版的代码)" style="display: block; margin: 30px auto;"></a>
 
