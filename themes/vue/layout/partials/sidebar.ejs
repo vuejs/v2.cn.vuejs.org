@@ -3,35 +3,38 @@
 <div class="sidebar">
   <div class="sidebar-inner">
     <% if (isHomePage) { %>
-      <ul class="main-menu">
-        <%- partial('partials/main_menu', { context: 'sidebar' }) %>
-      </ul>
+    <ul class="main-menu">
+      <%- partial('partials/main_menu', { context: 'sidebar' }) %>
+    </ul>
     <% } %>
     <div class="list">
-      <%- partial('partials/sponsors_sidebar') %>
-      <% if (type !== 'search') { %>
-        <h2>
-          <% titles = {
-            api: 'API',
-            examples: '示例',
-            guide: '教程',
-            cookbook: 'Cookbook<sup class="beta">beta</sup>',
-            'style-guide': '风格指南'
-          } %>
-          <%- titles[type] %>
-          <% if (['cookbook', 'style-guide'].indexOf(type) === -1) { %>
-            <select class="version-select">
-              <option value="v3">3.x-beta</option>
-              <option value="SELF" selected>2.x</option>
-              <option value="v1">1.0</option>
-              <option value="012">0.12</option>
-              <option value="011">0.11</option>
-            </select>
-          <% } %>
-        </h2>
-        <%- partial('partials/toc', { type: type }) %>
-      <% } %>
+      <%- partial('partials/sponsors_sidebar') %> <% if (type !== 'search') { %>
+      <h2>
+        <% titles = { api: 'API', examples: '示例', guide: '教程', cookbook:
+        'Cookbook<sup class="beta">beta</sup>', 'style-guide': '风格指南' } %>
+        <%- titles[type] %> <% if (['cookbook', 'style-guide'].indexOf(type) ===
+        -1) { %>
+        <select class="version-select">
+          <option value="v3">3.x-beta</option>
+          <option value="SELF" selected>2.x</option>
+          <option value="v1">1.0</option>
+          <option value="012">0.12</option>
+          <option value="011">0.11</option>
+        </select>
+        <% } %>
+      </h2>
+      <%- partial('partials/toc', { type: type }) %> <% } %>
     </div>
+    <div
+      class="wwads-cn wwads-vertical"
+      data-id="53"
+      style="max-width: 200px"
+    ></div>
+    <script
+      type="text/javascript"
+      src="https://wwads.cn/js/ads.js"
+      async
+    ></script>
   </div>
 </div>
 <!--
