@@ -154,7 +154,7 @@ new Vue({
 重新创建动态组件的行为通常是非常有用的，但是在这个案例中，我们更希望那些标签的组件实例能够被在它们第一次被创建的时候缓存下来。为了解决这个问题，我们可以用一个 `<keep-alive>` 元素将其动态组件包裹起来。
 
 ``` html
-<!-- 失活的组件将会被缓存！-->
+<!-- 灵活的组件将会被缓存！-->
 <keep-alive>
   <component v-bind:is="currentTabComponent"></component>
 </keep-alive>
