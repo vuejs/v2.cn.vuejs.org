@@ -427,6 +427,7 @@ function (slotProps) {
     将 `todo` 对象作为一个插槽的 prop 传入。
     -->
     <slot name="todo" v-bind:todo="todo">
+      <!--上面的name应该为:name,不然获取的是'todo'字符串-->
       <!-- 后备内容 -->
       {{ todo.text }}
     </slot>
