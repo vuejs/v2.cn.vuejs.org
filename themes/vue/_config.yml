@@ -130,6 +130,12 @@ gold_sponsors:
   - url: 'https://quickbookstoolhub.com/'
     img: quickbooks_tool_hub.png
     name: Quickbooks Tool Hub
+  - url: 'https://linecorp.com'
+    img: line_corporation.png
+    name: LINE Corporation
+  - url: 'https://exmax.it/'
+    img: exmax.png
+    name: Exmax
 silver_sponsors:
   - url: 'https://roadster.com'
     img: roadster.png
