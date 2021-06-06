@@ -1,5 +1,6 @@
 <div id="sidebar-sponsors-special">
   <div class="main-sponsor">
+    <!-- start: special logic for cn -->
     <%_ if (theme.platinum_sponsors_china.length) { _%>
     <span>特别赞助商</span>
     <%_ for (const sponsor of theme.platinum_sponsors_china) { _%>
@@ -25,6 +26,7 @@
       点击了解详情
     </a>
     <%_ } _%>
+    <!-- end: special logic for cn -->
   </div>
 </div>
 <!--

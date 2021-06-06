@@ -74,6 +74,7 @@
       // Abort if the current page doesn't match the page regex
       if (!pageRegex.test(window.location.pathname)) return
 
+      // inline: special logic for cn
       var redirectPath = redirects[decodeURIComponent(window.location.hash.slice(1))]
       if (redirectPath) {
         window.location.href = window.location.origin + redirectPath
@@ -270,6 +271,7 @@
       return
     }
 
+    // inline: special logic for cn
     var videoWrapper = videoModal.querySelector('.video-space')
     var overlay = document.createElement('div')
         overlay.className = 'overlay'
@@ -280,6 +282,7 @@
       videoModal.classList.toggle('open')
       document.body.classList.toggle('stop-scroll')
       document.body.appendChild(overlay)
+      // inline: special logic for cn
       videoWrapper.innerHTML = '<iframe style="height: 100%; left: 0; position: absolute; top: 0; width: 100%;" src="//player.youku.com/embed/XMzMwMTYyODMyNA==?autoplay=true&client_id=37ae6144009e277d" frameborder="0" allowfullscreen></iframe>'
       isOpen = true
     })
@@ -289,6 +292,7 @@
         videoModal.classList.remove('open')
         document.body.classList.remove('stop-scroll')
         document.body.removeChild(overlay)
+        // inline: special logic for cn
         videoWrapper.innerHTML = ''
         isOpen = false
       }
