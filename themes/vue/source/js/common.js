@@ -306,13 +306,21 @@
       var version = e.target.value
       var section = window.location.pathname.match(/\/v\d\/(\w+?)\//)[1]
       if (version === 'SELF') return
-      window.location.assign(
-        'https://' +
-        version +
-        (version && '.') +
-        'vuejs.org/' + section + '/'
-      )
+      // inline: special logic for cn
+      window.location.assign(getVersionOrigin(version) + section + '/')
     })
+  }
+
+  // function: special logic for cn
+  function getVersionOrigin (version) {
+    var originMap = {
+      'v3': 'https://v3.cn.vuejs.org/',
+      'SELF': 'https://cn.vuejs.org/',
+      'v1': 'https://v1-cn.vuejs.org/',
+      '012': 'https://012-cn.vuejs.org/'
+    }
+    var origin = originMap[version]
+    return origin || 'https://' + version + (version && '.') + 'vuejs.org/'
   }
 
   /**
