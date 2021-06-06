@@ -31,6 +31,7 @@
 
   <div id="special">
     <h3>特别赞助</h3>
+    <!-- start: special logic for cn -->
     <%_ for (const sponsor of theme.platinum_sponsors_china) { _%>
     <a href="<%- sponsor.url %>" target="_blank" rel="noopener sponsored">
       <img id="s-<%-sponsor.name-%>" alt="<%-sponsor.name-%>" style="width:200px">
@@ -46,6 +47,7 @@
     </a>
     <%_ } _%>
     <%_if (theme.platinum_sponsors_china.length < 2) { _%>
+    <!-- end: special logic for cn -->
     <br>
     <a class="become-backer" href="/support-vuejs/#special-sponsor-china">
       成为特别赞助商
@@ -134,9 +136,11 @@
   Copyright &copy; 2014-<%- new Date().getFullYear() %> Evan You</p>
 </footer>
 
+<!-- start: special logic for cn -->
 <div id="video-modal" class="modal">
   <div class="video-space" style="padding: 56.25% 0 0 0; position: relative;"></div>
 </div>
+<!-- end: special logic for cn -->
 
 <script>
 (function () {

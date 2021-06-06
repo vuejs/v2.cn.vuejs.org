@@ -8,6 +8,10 @@
   </div>
 <% } %>
 <div class="content <%- page.type ? page.type + ' with-sidebar' : '' %> <%- page.type === 'guide' ? page.path.replace(/.+\//, '').replace('.html', '') + '-guide' : '' %>">
+  <p class="tip warning v3-warning">
+    您在浏览的是 v2.x 及更早版本的文档。v3.x 的文档<a href="https://v3.cn.vuejs.org/">在这里</a>。
+  </p>
+
   <% if (page.type) { %>
     <% if (page.type === 'menu') { %>
       <form id="search-form">
@@ -22,7 +26,9 @@
     <h1><%- page.title %><%- page.type === 'examples' ? ' Example' : '' %></h1>
   <% } %>
 
+  <!-- start: special logic for cn -->
   <%- partial('partials/ad-pagetop') %>
+  <!-- end: special logic for cn -->
 
   <% if (page.sponsors) { %>
     <%- partial('sponsors-page') %>
@@ -53,5 +59,9 @@
     <a href="https://github.com/vuejs/cn.vuejs.org/blob/master/src/<%- page.path.replace(/\.html$/, '.md') %>" rel="noopener" target="_blank">
       在 GitHub 上编辑此页！
     </a>
+    <!-- Deployed on
+    <a href="https://url.netlify.com/HJ8X2mxP8" rel="noopener" target="_blank">
+      Netlify
+    </a>. -->
   </div>
 </div>

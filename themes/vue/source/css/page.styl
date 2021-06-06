@@ -17,7 +17,9 @@
 @import "_vue-mastery"
 @import "_themes"
 
+// start: special logic for cn
 @import "_ad-pagetop.styl"
+// end: special logic for cn
 
 #header
   box-shadow: 0 0 1px rgba(0,0,0,.25)
@@ -179,6 +181,13 @@
         content: "\f00c"
         font-family: FontAwesome
         background-color: $green
+    &.warning
+      border-left-color: orange
+      &:before
+        background-color: orange
+
+    &.v3-warning
+      margin-top: 0
 
 .guide-links
   margin-top: 2em

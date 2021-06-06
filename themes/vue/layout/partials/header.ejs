@@ -1,9 +1,16 @@
-<header id="header">
-  <a id="logo" href="<%- url_for("/") %>">
-    <img src="<%- url_for("/images/logo.svg") %>" alt="vue logo">
-    <span>Vue.js</span>
-  </a>
-  <ul id="nav">
-    <%- partial('partials/main_menu', { context: 'nav' }) %>
-  </ul>
-</header>
+<div>
+  <div id="v3-banner">
+    <span class="hidden-sm">您在浏览的是 v2.x 及更早版本的文档。</span
+    >v3.x 的文档<a href="https://v3.cn.vuejs.org/">在这里</a>。
+  </div>
+
+  <header id="header">
+    <a id="logo" href="<%- url_for("/") %>">
+      <img src="<%- url_for("/images/logo.svg") %>" alt="vue logo">
+      <span>Vue.js</span>
+    </a>
+    <ul id="nav">
+      <%- partial('partials/main_menu', { context: 'nav' }) %>
+    </ul>
+  </header>
+</div>
