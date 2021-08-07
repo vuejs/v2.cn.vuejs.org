@@ -48,7 +48,6 @@
       'sync-修饰符': '/v2/guide/components-custom-events.html#sync-修饰符',
       '使用自定义事件的表单输入组件': '/v2/guide/components-custom-events.html#将原生事件绑定到组件',
       '自定义组件的-v-model': '/v2/guide/components-custom-events.html#自定义组件的-v-model',
-      '在组件上使用-v-model': '/v2/guide/components-custom-events.html#自定义组件的-v-model',
       '非父子组件的通信': '/v2/guide/state-management.html',
       '使用插槽分发内容': '/v2/guide/components.html#通过插槽分发内容',
       '编译作用域': '/v2/guide/components-slots.html#编译作用域',
