@@ -789,7 +789,7 @@ type: api
 
 ## 选项 / 生命周期钩子
 
-<p class="tip">所有的生命周期钩子自动绑定 `this` 上下文到实例中，因此你可以访问 data ，computed properties (计算属性)和 methods 。这意味着**你不应该使用箭头函数来定义一个生命周期方法**  (例如 `created: () => this.fetchTodos()`)。这是因为箭头函数绑定了父级上下文，因此 `this` 不会指向预期的组件实例，并且`this.fetchTodos` 的结果将会是undefined。</p>
+<p class="tip">所有生命周期钩子的 `this` 上下文将自动绑定至实例中，因此你可以访问 data，computed property (计算属性) 和 methods 。这意味着**你不应该使用箭头函数来定义一个生命周期方法** (例如 `created: () => this.fetchTodos()`) 。因为箭头函数绑定了父级上下文，所以 `this` 不会指向预期的组件实例，并且`this.fetchTodos` 将会是 undefined。</p>
 
 ### beforeCreate
 
@@ -797,7 +797,7 @@ type: api
 
 - **详细**：
 
-  在实例初始化之后被立刻调用，随后进行data observation (数据观测) 和 event/watcher (事件/侦听器)的配置 。
+  在实例初始化之后被立刻同步调用，随后进行data observation (数据观测) 和 event/watcher (事件/侦听器)的配置 。
 
 - **参考**：[生命周期图示](../guide/instance.html#生命周期图示)
 
@@ -807,7 +807,7 @@ type: api
 
 - **详细**：
 
-  在实例创建完成后被立即调用。在这一步，实例已完成以下的配置：data observation(数据观测)，computed properties(计算属性),methods，event/watcher (事件/侦听器)的回调函数。然而，挂载阶段还没开始，`$el` property 目前尚不可用。
+  在实例创建完成后被立即调用。在这一步，实例已完成以下的配置：data observation(数据观测)，computed property (计算属性),methods，event/watcher (事件/侦听器)的回调函数。然而，挂载阶段还没开始，`$el` property 目前尚不可用。
 
 - **参考**：[生命周期图示](../guide/instance.html#生命周期图示)
 
@@ -851,7 +851,7 @@ type: api
 
 - **详细**：
 
-  在数据发生改变时被调用，发生在 DOM 更新之前。这里适合在更新之前访问现有的 DOM，比如移除手动添加的事件监听器。
+  在数据发生改变后，DOM 被更新之前被调用。这里适合在现有 DOM 将要被更新之前访问它，比如移除手动添加的事件监听器。
 
   **该钩子在服务器端渲染期间不被调用，因为只有初次渲染会在服务器端进行。**
 
@@ -863,7 +863,7 @@ type: api
 
 - **详细**：
 
-  在数据更改导致虚拟 DOM 重新渲染完毕和更新后被调用。
+  在数据更改导致的虚拟 DOM 重新渲染和更新完毕之后被调用。
 
   当这个钩子被调用时，组件 DOM 已经更新，所以你现在可以执行依赖于 DOM 的操作。然而在大多数情况下，你应该避免在此期间更改状态。如果要相应状态改变，通常最好使用[计算属性](#computed)或 [watcher](#watch) 取而代之。
 
