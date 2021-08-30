@@ -78,11 +78,11 @@ Vue 会尽可能高效地渲染元素，通常会复用已有元素而不是从�
 ``` html
 <template v-if="loginType === 'username'">
   <label>Username</label>
-  <input placeholder="Enter your username">
+  <input placeholder="Enter your username" />
 </template>
 <template v-else>
   <label>Email</label>
-  <input placeholder="Enter your email address">
+  <input placeholder="Enter your email address" />
 </template>
 ```
 
@@ -95,11 +95,11 @@ Vue 会尽可能高效地渲染元素，通常会复用已有元素而不是从�
   <div>
     <template v-if="loginType === 'username'">
       <label>Username</label>
-      <input placeholder="Enter your username">
+      <input placeholder="Enter your username" />
     </template>
     <template v-else>
       <label>Email</label>
-      <input placeholder="Enter your email address">
+      <input placeholder="Enter your email address" />
     </template>
   </div>
   <button @click="toggleLoginType">Toggle login type</button>
@@ -124,11 +124,11 @@ new Vue({
 ``` html
 <template v-if="loginType === 'username'">
   <label>Username</label>
-  <input placeholder="Enter your username" key="username-input">
+  <input placeholder="Enter your username" key="username-input" />
 </template>
 <template v-else>
   <label>Email</label>
-  <input placeholder="Enter your email address" key="email-input">
+  <input placeholder="Enter your email address" key="email-input" />
 </template>
 ```
 
@@ -139,11 +139,11 @@ new Vue({
   <div>
     <template v-if="loginType === 'username'">
       <label>Username</label>
-      <input placeholder="Enter your username" key="username-input">
+      <input placeholder="Enter your username" key="username-input" />
     </template>
     <template v-else>
       <label>Email</label>
-      <input placeholder="Enter your email address" key="email-input">
+      <input placeholder="Enter your email address" key="email-input" />
     </template>
   </div>
   <button @click="toggleLoginType">Toggle login type</button>
