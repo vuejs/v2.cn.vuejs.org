@@ -8,7 +8,7 @@ order: 105
 
 ## 在动态组件上使用 `keep-alive`
 
-我们之前曾经在一个多标签的界面中使用 `is` attribute 来切换不同的组件：
+我们之前在一个多标签的界面中使用 `is` attribute 来切换不同的组件：
 
 {% codeblock lang:html %}
 <component v-bind:is="currentTabComponent"></component>
