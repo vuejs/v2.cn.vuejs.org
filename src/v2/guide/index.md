@@ -331,7 +331,7 @@ Vue.component('todo-item', {
     <todo-item
       v-for="item in groceryList"
       v-bind:todo="item"
-      v-bind:key="item.id"
+      v-bind:groceryKey="item.id"
     ></todo-item>
   </ol>
 </div>
