@@ -61,9 +61,6 @@ gold_sponsors:
   - url: 'https://icons8.com/'
     img: icons_8.png
     name: Icons 8
-  - url: 'https://vuejobs.com/?ref=vuejs'
-    img: vuejobs.png
-    name: VueJobs
   - url: 'https://tidelift.com/subscription/npm/vue'
     img: tidelift.png
     name: Tidelift
@@ -97,15 +94,18 @@ gold_sponsors:
   - url: 'https://usave.co.uk/utilities/broadband'
     img: usave.png
     name: usave
+  - url: 'https://storekit.com'
+    img: storekit.png
+    name: StoreKit
   - url: 'https://www.foo.software'
     img: foo.png
     name: Foo
   - url: 'https://flatlogic.com/templates'
     img: flatlogic_templates.svg
     name: Flatlogic Templates
-  - url: 'http://moovweb.com/'
-    img: moovweb.png
-    name: Moovweb
+  - url: 'https://www.layer0.co'
+    img: layer0.png
+    name: Layer0
   - url: 'https://vpn-review.com/netflix-vpn'
     img: vpn_review.png
     name: VPN Review
@@ -139,6 +139,9 @@ gold_sponsors:
   - url: 'https://exmax.it/'
     img: exmax.png
     name: Exmax
+  - url: 'https://plaid.co.jp/'
+    img: plaid__inc_.svg
+    name: 'PLAID, Inc.'
 silver_sponsors:
   - url: 'https://roadster.com'
     img: roadster.png
