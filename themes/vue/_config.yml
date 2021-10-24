@@ -2,6 +2,11 @@ site_description: Vue.js - The Progressive JavaScript Framework
 google_analytics: UA-46852172-3
 root_domain: cn.vuejs.org
 vue_version: 2.5.16
+special_sponsors:
+  - url: 'https://www.dcloud.io/hbuilderx.html?hmsr=vue-en&hmpl=&hmcu=&hmkw=&hmci='
+    img: hbuilder.png
+    name: HBuilder
+    description: An IDE for Vue
 platinum_sponsors_china:
   - name: dcloud
     url: http://www.dcloud.io/?hmsr=vuejsorg&hmpl=&hmcu=&hmkw=&hmci=
@@ -14,11 +19,6 @@ platinum_sponsors_china:
 video_sponsors_china:
   - url: http://cloud.youku.com/index.php?source=vuejs
     img: youku.png
-special_sponsors:
-  - url: 'https://autocode.com/'
-    img: autocode.svg
-    name: Autocode
-    description: 'Instant Webhooks, Scripts and APIs'
 platinum_sponsors:
   - url: >-
       https://vueschool.io/?utm_source=Vuejs.org&utm_medium=Banner&utm_campaign=Sponsored%20Banner&utm_content=V1
@@ -43,6 +43,9 @@ platinum_sponsors:
   - url: 'https://nuxtjs.org/'
     img: nuxt.png
     name: Nuxt
+  - url: 'https://www.daskeyboard.com/?utm_source=vuejs&utm_medium=sponsorship'
+    img: das_keyboard.png
+    name: Das Keyboard
 gold_sponsors:
   - url: 'https://www.vuemastery.com/'
     img: vuemastery.png
@@ -143,6 +146,23 @@ gold_sponsors:
   - url: 'https://plaid.co.jp/'
     img: plaid__inc_.svg
     name: 'PLAID, Inc.'
+  - url: 'https://troypoint.com'
+    img: troypoint.png
+    name: TROYPOINT
+  - url: >-
+      https://webreinvent.com?utm_source=vuejs.org&utm_medium=logo&utm_campaign=patreon-sponsors
+    img: webreinvent_technologies_pvt_ltd.svg
+    name: WebReinvent Technologies Pvt Ltd
+  - url: 'https://www.dronahq.com/?ref=github_Vuejs'
+    img: dronahq.png
+    name: DronaHQ
+  - url: 'https://www.emqx.com'
+    img: emq.png
+    name: EMQ
+  - url: >-
+      https://www.tatvasoft.com/software-development-technology/vue-js-development-services
+    img: tatvasoft.png
+    name: TatvaSoft
 silver_sponsors:
   - url: 'https://roadster.com'
     img: roadster.png
@@ -162,6 +182,12 @@ silver_sponsors:
   - url: 'https://betting.bet'
     img: betting_bet.png
     name: betting.bet
+  - url: 'https://www.takt.io'
+    img: takt.png
+    name: Takt
+  - url: 'https://technology.doximity.com/'
+    img: doximity.png
+    name: Doximity
 bronze_sponsors:
   - url: 'https://www.accelebrate.com/'
     img: accelebrate.png
