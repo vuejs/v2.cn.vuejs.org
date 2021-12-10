@@ -13,7 +13,8 @@ platinum_sponsors_china:
     img: dcloud1.png
     alt_img: dcloud2.png
   - name: authing
-    url: https://authing.cn/welcome?from=vuejs
+    url: https://www.authing.cn/welcome?utm_source=Vuejs&utm_medium=CPT&utm_campaign=CN&utm_term=banner-CN
+    alt_url: https://www.authing.cn/welcome?utm_source=Vuejs&utm_medium=CPT&utm_campaign=CN&utm_term=page-CN
     img: authing.svg
     height: 58
   - name: qingfuwu
