@@ -61,7 +61,10 @@ module.exports = {
       "webRoot": "${workspaceFolder}/src",
       "breakOnLoad": true,
       "sourceMapPathOverrides": {
-        "webpack:///src/*": "${webRoot}/*"
+        "webpack:///src/*": "${webRoot}/*",
+        // 如遇js文件、Vue文件断点打不了或打断点的位子不对，可根据Chrome的DevTools下的Sources栏目中的`webpack://`中的文件配置相应的通配符，例如Vue CLI 4 配置如下
+        // "webpack:///./src/*.js": "${webRoot}/*.js", // Vue CLI 4 配置
+        // "webpack:///src/*.vue": "${webRoot}/*.vue" // Vue CLI 4 配置
       }
     },
     {
