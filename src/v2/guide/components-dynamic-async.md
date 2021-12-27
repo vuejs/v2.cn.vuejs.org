@@ -14,7 +14,7 @@ order: 105
 <component v-bind:is="currentTabComponent"></component>
 {% endcodeblock %}
 
-当在这些组件之间切换的时候，你有时会想保持这些组件的状态，以避免反复重渲染导致的性能问题。例如我们来展开说一说这个多标签界面：
+当在这些组件之间切换的时候，你有时会想保持这些组件的状态，以避免反复重新渲染导致的性能问题。例如我们来展开说一说这个多标签界面：
 
 {% raw %}
 <div id="dynamic-component-demo" class="demo">
