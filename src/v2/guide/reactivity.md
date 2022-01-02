@@ -97,7 +97,7 @@ vm.$set(vm.items, indexOfItem, newValue)
 为了解决第二类问题，你可以使用 `splice`：
 
 ``` js
-vm.items.splice(newLength)
+vm.items.splice(indexOfItem, deleteCount, newValue)
 ```
 
 ## 声明响应式 property
