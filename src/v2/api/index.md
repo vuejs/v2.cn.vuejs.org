@@ -516,7 +516,7 @@ type: api
     - `required`：`Boolean`
     定义该 prop 是否是必填项。在非生产环境中，如果这个值为 truthy 且该 prop 没有被传入的，则一个控制台警告将会被抛出。
     - `validator`：`Function`
-    自定义验证函数会将该 prop 的值作为唯一的参数代入。在非生产环境下，如果该函数返回一个 falsy 的值 (也就是验证失败)，一个控制台警告将会被抛出。你可以在[这里](../guide/components-props.html#Prop-验证)查阅更多 prop 验证的相关信息。
+    自定义验证函数会将该 prop 的值作为唯一的参数代入。在非生产环境下，如果该函数返回一个 false 的值 (也就是验证失败)，一个控制台警告将会被抛出。你可以在[这里](../guide/components-props.html#Prop-验证)查阅更多 prop 验证的相关信息。
 
 - **示例**：
 
