@@ -35,8 +35,12 @@ $ npm start # 开发服务器地址为 http://localhost:4000
 
 ## 致谢
 
+<<<<<<< HEAD
 <!-- TODO: update when v3 becomes the main docsite -->
 网站在创立之初得到了很多朋友们的帮助，大家一起分工协作完成了整站的翻译工作。[这个页面](https://cn.vuejs.org/about/)集中记录了大家这段时期的努力和付出，以表谢意！
+=======
+If you feel okay with translating quite alone, you can fork the repo, post a comment on the [Community Translation Announcements](https://github.com/vuejs/v2.vuejs.org/issues/2015) issue page to inform others that you're doing the translation and go for it.
+>>>>>>> 0e31221f (fix repo link)
 
 **感谢所有参与翻译的朋友们！**
 
