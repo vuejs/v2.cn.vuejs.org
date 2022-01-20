@@ -23,7 +23,7 @@ Vue (读音 /vjuː/，类似于 **view**) 是一套用于构建用户界面的**
 
 <a class="button" href="installation.html">安装</a>
 
-尝试 Vue.js 最简单的方法是使用 [Hello World 例子](https://codesandbox.io/s/github/vuejs/vuejs.org/tree/master/src/v2/examples/vue-20-hello-world)。你可以在浏览器新标签页中打开它，跟着例子学习一些基础用法。或者你也可以<a href="https://github.com/vuejs/vuejs.org/blob/master/src/v2/examples/vue-20-hello-world/index.html" target="_blank" download="index.html" rel="noopener noreferrer">创建一个 <code>.html</code> 文件</a>，然后通过如下方式引入 Vue：
+尝试 Vue.js 最简单的方法是使用 [Hello World 例子](https://codesandbox.io/s/github/vuejs/v2.vuejs.org/tree/master/src/v2/examples/vue-20-hello-world)。你可以在浏览器新标签页中打开它，跟着例子学习一些基础用法。或者你也可以<a href="https://github.com/vuejs/v2.vuejs.org/blob/master/src/v2/examples/vue-20-hello-world/index.html" target="_blank" download="index.html" rel="noopener noreferrer">创建一个 <code>.html</code> 文件</a>，然后通过如下方式引入 Vue：
 
 ``` html
 <!-- 开发环境版本，包含了有帮助的命令行警告 -->
