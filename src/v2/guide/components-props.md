@@ -86,7 +86,7 @@ props: {
 
 ```html
 <!-- 包含该 prop 没有值的情况在内，都意味着 `true`。-->
-<blog-post is-published></blog-post>
+<blog-post v-bind:is-published></blog-post>
 
 <!-- 即便 `false` 是静态的，我们仍然需要 `v-bind` 来告诉 Vue -->
 <!-- 这是一个 JavaScript 表达式而不是一个字符串。-->
