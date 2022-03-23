@@ -119,7 +119,7 @@
   function parseRawHash (hash) {
     // Remove leading hash
     if (hash.charAt(0) === '#') {
-      hash = hash.substr(1)
+      hash = hash.slice(1)
     }
 
     // Escape characters
