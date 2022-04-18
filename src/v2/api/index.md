@@ -2204,7 +2204,7 @@ type: api
   <!-- class 绑定 -->
   <div :class="{ red: isRed }"></div>
   <div :class="[classA, classB]"></div>
-  <div :class="[classA, { classB: isB, classC: isC }]">
+  <div :class="[classA, { classB: isB, classC: isC }]"></div>
 
   <!-- style 绑定 -->
   <div :style="{ fontSize: size + 'px' }"></div>
