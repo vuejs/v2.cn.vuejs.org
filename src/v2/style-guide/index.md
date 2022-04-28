@@ -789,22 +789,6 @@ components/
 
 - 因为组件名应该始终是多个单词，所以这样做可以避免你在包裹简单组件时随意选择前缀 (比如 `MyButton`、`VueButton`)。
 
-- 因为这些组件会被频繁使用，所以你可能想把它们放到全局而不是在各处分别导入它们。使用相同的前缀可以让 webpack 这样工作：
-
-  ``` js
-  var requireComponent = require.context("./src", true, /Base[A-Z]\w+\.(vue|js)$/)
-  requireComponent.keys().forEach(function (fileName) {
-    var baseComponentConfig = requireComponent(fileName)
-    baseComponentConfig = baseComponentConfig.default || baseComponentConfig
-    var baseComponentName = baseComponentConfig.name || (
-      fileName
-        .replace(/^.+\//, '')
-        .replace(/\.\w+$/, '')
-    )
-    Vue.component(baseComponentName, baseComponentConfig)
-  })
-  ```
-
 {% raw %}</details>{% endraw %}
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
