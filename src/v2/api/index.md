@@ -2175,7 +2175,7 @@ type: api
 
 - **用法**：
 
-  动态地绑定一个或多个 attribute，或一个组件 prop 到表达式。
+  动态地绑定一个或多个 attribute，或一个组件 prop 的表达式。
 
   在绑定 `class` 或 `style` attribute 时，支持其它类型的值，如数组或对象。可以通过下面的教程链接查看详情。
 
