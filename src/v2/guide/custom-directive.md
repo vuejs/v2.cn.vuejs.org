@@ -212,7 +212,7 @@ new Vue({
 
 ## 函数简写
 
-在很多时候，你可能想在 `bind` 和 `update` 时触发相同行为，而不关心其它的钩子。比如这样写：
+在很多时候，你可能想在 `bind` 和 `update` 时触发相同行为，而不关心其它的钩子。此时，我们可以将指令定义成一个函数：
 
 ``` js
 Vue.directive('color-swatch', function (el, binding) {
