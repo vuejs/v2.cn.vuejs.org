@@ -724,7 +724,7 @@ components/
 
 
 
-### 单文件组件文件的大小写<sup data-p="b">强烈推荐</sup>
+### 单文件组件文件名的大小写<sup data-p="b">强烈推荐</sup>
 
 **[单文件组件](../guide/single-file-components.html)的文件名应该要么始终是单词大写开头 (PascalCase)，要么始终是横线连接 (kebab-case)。**
 
