@@ -32,6 +32,7 @@ Vue 在其所有项目中公布的功能和行为都遵循[语义化版本控制
 
 <p class="tip">在开发环境下不要使用压缩版本，不然你就失去了所有常见错误相关的警告!</p>
 
+<!-- TODO: update when v3 becomes the main docsite -->
 <div id="downloads">
   <a class="button" href="https://cn.vuejs.org/js/vue.js" download>开发版本</a><span class="light info">包含完整的警告和调试模式</span>
 

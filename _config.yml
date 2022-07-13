@@ -12,6 +12,7 @@ language: zh-CN
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
+# TODO: update when v3 becomes the main docsite
 url: https://cn.vuejs.org
 root: /
 permalink: :year/:month/:day/:title/
@@ -144,6 +145,7 @@ markdown:
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
   type: git
+  # TODO: update when v3 becomes the main docsite
   repository: git@github.com:vuejs/cn.vuejs.org.git
   branch: gh-pages
 

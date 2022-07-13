@@ -40,6 +40,7 @@ jobs:
             git init
             git config user.email "zhaojinjiang@me.com"
             git config user.name "Jinjiang"
+            # TODO: update when v3 becomes the main docsite
             git remote add origin https://jinjiang:$GITHUB_TOKEN@github.com/vuejs/cn.vuejs.org.git
             git add .
             git commit -m "generated docs"

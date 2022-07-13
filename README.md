@@ -26,6 +26,7 @@ $ npm start # 开发服务器地址为 http://localhost:4000
 * 发 issue 讨论译法或书写格式
 * 发 issue 讨论部署或协作流程上的问题
 
+<!-- TODO: update when v3 becomes the main docsite -->
 有劳在翻译之前移步 [wiki](https://github.com/vuejs/cn.vuejs.org/wiki) 了解相关注意事项。
 
 **注意：**
@@ -40,4 +41,5 @@ $ npm start # 开发服务器地址为 http://localhost:4000
 
 **感谢所有参与翻译的朋友们！**
 
+<!-- TODO: update when v3 becomes the main docsite -->
 目前网站已处于维护状态，最新的文档/翻译贡献情况可以参阅 GitHub 提供的 [contributors](https://github.com/vuejs/cn.vuejs.org/graphs/contributors) 页面。
