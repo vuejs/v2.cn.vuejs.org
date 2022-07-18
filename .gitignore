@@ -1,3 +1,4 @@
+# General
 .DS_Store
 Thumbs.db
 db.json
@@ -8,3 +9,10 @@ public/
 src/_drafts
 package-lock.json
 .avoscloud/
+
+# Temporary
+tmp/
+temp/
+TODOs.md
+draft.md
+

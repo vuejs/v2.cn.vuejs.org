@@ -2,8 +2,8 @@
 title: 安装
 type: guide
 order: 1
-vue_version: 2.5.16
-gz_size: "30.90"
+vue_version: 2.7.4
+gz_size: "37.12"
 ---
 
 ### 兼容性
@@ -32,6 +32,7 @@ Vue 在其所有项目中公布的功能和行为都遵循[语义化版本控制
 
 <p class="tip">在开发环境下不要使用压缩版本，不然你就失去了所有常见错误相关的警告!</p>
 
+<!-- TODO: update when v3 becomes the main docsite -->
 <div id="downloads">
   <a class="button" href="https://cn.vuejs.org/js/vue.js" download>开发版本</a><span class="light info">包含完整的警告和调试模式</span>
 
@@ -43,20 +44,20 @@ Vue 在其所有项目中公布的功能和行为都遵循[语义化版本控制
 对于制作原型或学习，你可以这样使用最新版本：
 
 ``` html
-<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.7.4/dist/vue.js"></script>
 ```
 
 对于生产环境，我们推荐链接到一个明确的版本号和构建文件，以避免新版本造成的不可预期的破坏：
 
 ``` html
-<script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.7.4"></script>
 ```
 
 如果你使用原生 ES Modules，这里也有一个兼容 ES Module 的构建文件：
 
 ``` html
 <script type="module">
-  import Vue from 'https://cdn.jsdelivr.net/npm/vue@2.6.0/dist/vue.esm.browser.js'
+  import Vue from 'https://cdn.jsdelivr.net/npm/vue@2.7.4/dist/vue.esm.browser.js'
 </script>
 ```
 
@@ -85,7 +86,7 @@ Vue 提供了一个[官方的 CLI](https://github.com/vuejs/vue-cli)，为单页
 
 ## 对不同构建版本的解释
 
-在 [NPM 包的 `dist/` 目录](https://cdn.jsdelivr.net/npm/vue@2/dist/)你将会找到很多不同的 Vue.js 构建版本。这里列出了它们之间的差别：
+在 [NPM 包的 `dist/` 目录](https://cdn.jsdelivr.net/npm/vue@2.7.4/dist/)你将会找到很多不同的 Vue.js 构建版本。这里列出了它们之间的差别：
 
 | | UMD | CommonJS | ES Module (基于构建工具使用) | ES Module (直接用于浏览器) |
 | --- | --- | --- | --- | --- |
@@ -102,7 +103,7 @@ Vue 提供了一个[官方的 CLI](https://github.com/vuejs/vue-cli)，为单页
 
 - **运行时**：用来创建 Vue 实例、渲染并处理虚拟 DOM 等的代码。基本上就是除去编译器的其它一切。
 
-- **[UMD](https://github.com/umdjs/umd)**：UMD 版本可以通过 `<script>` 标签直接用在浏览器中。jsDelivr CDN 的 [https://cdn.jsdelivr.net/npm/vue@2](https://cdn.jsdelivr.net/npm/vue@2) 默认文件就是运行时 + 编译器的 UMD 版本 (`vue.js`)。
+- **[UMD](https://github.com/umdjs/umd)**：UMD 版本可以通过 `<script>` 标签直接用在浏览器中。jsDelivr CDN 的 [https://cdn.jsdelivr.net/npm/vue@2.7.4](https://cdn.jsdelivr.net/npm/vue@2.7.4) 默认文件就是运行时 + 编译器的 UMD 版本 (`vue.js`)。
 
 - **[CommonJS](http://wiki.commonjs.org/wiki/Modules/1.1)**：CommonJS 版本用来配合老的打包工具比如 [Browserify](http://browserify.org/) 或 [webpack 1](https://webpack.github.io)。这些打包工具的默认文件 (`pkg.main`) 是只包含运行时的 CommonJS 版本 (`vue.runtime.common.js`)。
 

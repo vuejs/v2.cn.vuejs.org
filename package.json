@@ -1,20 +1,22 @@
 {
+  "TODO": "TODO: update when v3 becomes the main docsite",
   "name": "cn.vuejs.org",
   "private": true,
   "hexo": {
     "version": "3.9.0"
   },
   "scripts": {
-    "start": "hexo server",
+    "dev": "node _scripts/sync-sponsors.js && hexo server",
+    "build": "node _scripts/pre-deploy.js && hexo clean && hexo generate",
+    "deploy": "npm run build && hexo deploy",
     "lint": "zhlint 'src/v2/{guide,api,style-guide}/*.md'",
-    "lint:fix": "zhlint 'src/v2/{guide,api,style-guide}/*.md' --fix",
-    "build": "node pre-deploy.js && hexo clean && hexo generate",
-    "deploy": "npm run build && hexo deploy"
+    "lint:fix": "zhlint 'src/v2/{guide,api,style-guide}/*.md' --fix"
   },
   "engines": {
     "node": ">=12.0.0"
   },
   "dependencies": {
+    "axios": "^0.27.2",
     "hexo": "^3.6.0",
     "hexo-deployer-git": "0.3.1",
     "hexo-generator-alias": "git+https://github.com/chrisvfritz/vuejs.org-hexo-generator-alias.git",
@@ -29,7 +31,7 @@
     "hexo-renderer-stylus": "^0.3.3",
     "hexo-server": "^0.3.1",
     "hoek": "^6.1.2",
-    "request": "^2.85.0",
+    "js-yaml": "^4.1.0",
     "zhlint": "^0.2.2"
   }
 }

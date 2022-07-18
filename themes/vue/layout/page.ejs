@@ -9,6 +9,7 @@
 <% } %>
 <div class="content <%- page.type ? page.type + ' with-sidebar' : '' %> <%- page.type === 'guide' ? page.path.replace(/.+\//, '').replace('.html', '') + '-guide' : '' %>">
   <p class="tip warning v3-warning">
+    <!-- TODO: update when v3 becomes the main docsite -->
     您在浏览的是 v2.x 及更早版本的文档。v3.x 的文档<a href="https://v3.cn.vuejs.org/">在这里</a>。
   </p>
 
@@ -56,6 +57,7 @@
       <%- partial('partials/ad-text') %>
     <%_ } _%>
     发现错误？想参与编辑？
+    <!-- TODO: update when v3 becomes the main docsite -->
     <a href="https://github.com/vuejs/cn.vuejs.org/blob/master/src/<%- page.path.replace(/\.html$/, '.md') %>" rel="noopener" target="_blank">
       在 GitHub 上编辑此页！
     </a>

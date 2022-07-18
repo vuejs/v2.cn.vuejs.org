@@ -789,22 +789,6 @@ components/
 
 - 因为组件名应该始终是多个单词，所以这样做可以避免你在包裹简单组件时随意选择前缀 (比如 `MyButton`、`VueButton`)。
 
-- 因为这些组件会被频繁使用，所以你可能想把它们放到全局而不是在各处分别导入它们。使用相同的前缀可以让 webpack 这样工作：
-
-  ``` js
-  var requireComponent = require.context("./src", true, /Base[A-Z]\w+\.(vue|js)$/)
-  requireComponent.keys().forEach(function (fileName) {
-    var baseComponentConfig = requireComponent(fileName)
-    baseComponentConfig = baseComponentConfig.default || baseComponentConfig
-    var baseComponentName = baseComponentConfig.name || (
-      fileName
-        .replace(/^.+\//, '')
-        .replace(/\.\w+$/, '')
-    )
-    Vue.component(baseComponentName, baseComponentConfig)
-  })
-  ```
-
 {% raw %}</details>{% endraw %}
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
@@ -1804,7 +1788,7 @@ computed: {
 
 **如果一组 `v-if` + `v-else` 的元素类型相同，最好使用 `key` (比如两个 `<div>` 元素)。**
 
-默认情况下，Vue 会尽可能高效的更新 DOM。这意味着其在相同类型的元素之间切换时，会修补已存在的元素，而不是将旧的元素移除然后在同一位置添加一个新元素。如果本不相同的元素被识别为相同，则会出现[意料之外的结果](https://codesandbox.io/s/github/vuejs/vuejs.org/tree/master/src/v2/examples/vue-20-priority-d-rules-unintended-consequences)。
+默认情况下，Vue 会尽可能高效的更新 DOM。这意味着其在相同类型的元素之间切换时，会修补已存在的元素，而不是将旧的元素移除然后在同一位置添加一个新元素。如果本不相同的元素被识别为相同，则会出现[意料之外的结果](https://codesandbox.io/s/github/vuejs/v2.vuejs.org/tree/master/src/v2/examples/vue-20-priority-d-rules-unintended-consequences)。
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
 
@@ -1857,7 +1841,7 @@ computed: {
 
 为了给样式设置作用域，Vue 会为元素添加一个独一无二的 attribute，例如 `data-v-f3f3eg9`。然后修改选择器，使得在匹配选择器的元素中，只有带这个 attribute 才会真正生效 (比如 `button[data-v-f3f3eg9]`)。
 
-问题在于大量的[元素和 attribute 组合的选择器](http://stevesouders.com/efws/css-selectors/csscreate.php?n=1000&sel=a%5Bhref%5D&body=background%3A+%23CFD&ne=1000) (比如 `button[data-v-f3f3eg9]`) 会比[类和 attribute 组合的选择器](http://stevesouders.com/efws/css-selectors/csscreate.php?n=1000&sel=.class%5Bhref%5D&body=background%3A+%23CFD&ne=1000)慢，所以应该尽可能选用类选择器。
+问题在于大量的元素和 attribute 组合的选择器 (比如 `button[data-v-f3f3eg9]`) 会比类和 attribute 组合的选择器 (比如 `.btn-close[data-v-f3f3eg9]`) 慢，所以应该尽可能选用类选择器。
 
 {% raw %}</details>{% endraw %}
 

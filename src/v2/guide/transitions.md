@@ -1247,7 +1247,7 @@ new Vue({
 
 <p class="tip">需要注意的是使用 FLIP 过渡的元素不能设置为 `display: inline` 。作为替代方案，可以设置为 `display: inline-block` 或者放置于 flex 中</p>
 
-FLIP 动画不仅可以实现单列过渡，多维网格也[同样可以过渡](https://codesandbox.io/s/github/vuejs/vuejs.org/tree/master/src/v2/examples/vue-20-list-move-transitions)：
+FLIP 动画不仅可以实现单列过渡，多维网格也[同样可以过渡](https://codesandbox.io/s/github/vuejs/v2.vuejs.org/tree/master/src/v2/examples/vue-20-list-move-transitions)：
 
 {% raw %}
 <div id="sudoku-demo" class="demo">

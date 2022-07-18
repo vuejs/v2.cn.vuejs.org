@@ -366,7 +366,7 @@ function generatePoints (stats) {
 </style>
 {% endraw %}
 
-上述 demo 背后的代码可以通过[这个示例](https://codesandbox.io/s/github/vuejs/vuejs.org/tree/master/src/v2/examples/vue-20-dynamic-state-transitions)进行详阅。
+上述 demo 背后的代码可以通过[这个示例](https://codesandbox.io/s/github/vuejs/v2.vuejs.org/tree/master/src/v2/examples/vue-20-dynamic-state-transitions)进行详阅。
 
 ## 把过渡放到组件里
 
