@@ -61,7 +61,7 @@ module.exports = {
       "webRoot": "${workspaceFolder}/src",
       "breakOnLoad": true,
       "sourceMapPathOverrides": {
-        "webpack:///src/*": "${webRoot}/*"
+        "webpack://${workspaceRootFolderName}/*": "${workspaceFolder}/*"
       }
     },
     {
@@ -70,7 +70,12 @@ module.exports = {
       "name": "vuejs: firefox",
       "url": "http://localhost:8080",
       "webRoot": "${workspaceFolder}/src",
-      "pathMappings": [{ "url": "webpack:///src/", "path": "${webRoot}/" }]
+      "pathMappings": [
+        {
+          "url": "webpack://${workspaceRootFolderName}/",
+          "path": "${workspaceFolder}/"
+        },
+      ]
     }
   ]
 }
