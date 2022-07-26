@@ -37,14 +37,14 @@
     <!-- start: special logic for cn -->
     <%_ for (const sponsor of theme.platinum_china) { _%>
     <a href="<%- sponsor.url %>" target="_blank" rel="noopener sponsored">
-      <img id="s-<%-sponsor.name-%>" alt="<%-sponsor.name-%>" style="height:<%- sponsor.height || 70 -%>px">
+      <img id="s-<%-sponsor.name-%>" alt="<%-sponsor.name-%>" style="height:<%- sponsor.height || 55 -%>px">
       <script>
       (function(){
         var el = document.getElementById("s-<%-sponsor.name-%>");
-        var adImg = <%-sponsor.ad_img ? JSON.stringify(logo(sponsor.ad_img)) : 'null'-%>;
-        var altImg = <%-sponsor.alt_img ? JSON.stringify(logo(sponsor.alt_img)) : 'null'-%>;
+        var adImg = <%- sponsor.ad_img ? JSON.stringify(url_for(`/images/${sponsor.ad_img}`)) : 'null' -%>;
+        var altImg = <%- sponsor.alt_img ? JSON.stringify(url_for(`/images/${sponsor.alt_img}`)) : 'null' -%>;
         var img = "<%-logo(sponsor.img)-%>";
-        el.src = adImg || (altImg && Math.random() >= 0.5 ? altImg : img);
+        el.src = (altImg && Math.random() >= 0.5 ? altImg : (adImg || img));
       })()
       </script>
     </a>

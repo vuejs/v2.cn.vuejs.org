@@ -54,6 +54,9 @@ platinum_china:
   - name: HBuilder
     url: https://www.dcloud.io/hbuilderx.html?hmsr=vue-en&hmpl=&hmcu=&hmkw=&hmci=
     img: hbuilder.png
+    ad_img: dcloud1.png
+    alt_img: dcloud2.png
+    height: 70
   - name: 稀土掘金技术社区
     url: https://juejin.cn/frontend?utm_source=vue&utm_campaign=sponsor
     img: xitujuejinjishushequ.png
@@ -130,9 +133,6 @@ gold:
   - name: Cypress.io
     url: https://cypress.io
     img: cypress_io.svg
-  - name: QuickBooks Tool Hub
-    url: https://quickbookstoolhub.com
-    img: quickbooks_tool_hub.png
   - name: Snyk
     url: https://snyk.co/vuejs
     img: snyk.png?v2
@@ -187,9 +187,6 @@ bronze:
   - name: RStudio
     url: https://rstudio.com
     img: rstudio.png
-  - name: Custouch Marketing Automation
-    url: http://www.custouch.com
-    img: custouch_marketing_automation.png
   - name: Darkhorse Analytics
     url: https://www.darkhorseanalytics.com/
     img: darkhorse_analytics.png

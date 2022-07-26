@@ -1,5 +1,4 @@
 <% function logo(img) { return `https://sponsors.vuejs.org/images/${img}` } %>
-
 <%_ if (theme.platinum_china) { _%>
 <div id="sidebar-sponsors-special">
   <div class="main-sponsor">
@@ -8,24 +7,29 @@
     <span>特别赞助商</span>
     <%_ for (const sponsor of theme.platinum_china) { _%>
     <div>
-    <a href="<%- sponsor.alt_url || sponsor.url %>" target="_blank" rel="sponsored noopener" class="logo">
-      <img id="s-<%-sponsor.name-%>" alt="<%-sponsor.name-%>">
-      <script>
-      (function(){
-        var el = document.getElementById("s-<%-sponsor.name-%>");
-        var adImg = <%-sponsor.ad_img ? JSON.stringify(logo(sponsor.ad_img)) : 'null'-%>;
-        var altImg = <%-sponsor.alt_img ? JSON.stringify(logo(sponsor.alt_img)) : 'null'-%>;
-        var img = "<%-logo(sponsor.img)-%>";
-        el.src = adImg || (altImg && Math.random() >= 0.5 ? altImg : img);
-      })()
-      </script>
-    </a>
+      <a
+        href="<%- sponsor.alt_url || sponsor.url %>"
+        target="_blank"
+        rel="sponsored noopener"
+        class="logo"
+      >
+        <img id="s-<%-sponsor.name-%>" alt="<%-sponsor.name-%>" />
+        <script>
+          (function(){
+            var el = document.getElementById("s-<%-sponsor.name-%>");
+            var adImg = <%- sponsor.ad_img ? JSON.stringify(url_for(`/images/${sponsor.ad_img}`)) : 'null' -%>;
+            var altImg = <%- sponsor.alt_img ? JSON.stringify(url_for(`/images/${sponsor.alt_img}`)) : 'null' -%>;
+            var img = "<%-logo(sponsor.img)-%>";
+            console.log(adImg, altImg, img)
+            el.src = (altImg && Math.random() >= 0.5 ? altImg : (adImg || img));
+          })()
+        </script>
+      </a>
     </div>
-    <%_ } _%>
-    <%_ } else { _%>
+    <%_ } _%> <%_ } else { _%>
     <a class="become-backer" href="/support-vuejs/#special-sponsor-china">
       特别赞助商广告位
-      <br>
+      <br />
       点击了解详情
     </a>
     <%_ } _%>
