@@ -9,8 +9,8 @@ _注：Vue 3.0 的中文文档请移步至 https://github.com/vuejs-translations
 ## 开发
 
 ``` bash
-$ npm install
-$ npm start # 开发服务器地址为 http://localhost:4000
+$ pnpm install
+$ pnpm start # 开发服务器地址为 http://localhost:4000
 ```
 
 ## 部署
