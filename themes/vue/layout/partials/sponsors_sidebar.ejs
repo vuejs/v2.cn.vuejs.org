@@ -20,7 +20,6 @@
             var adImg = <%- sponsor.ad_img ? JSON.stringify(url_for(`/images/${sponsor.ad_img}`)) : 'null' -%>;
             var altImg = <%- sponsor.alt_img ? JSON.stringify(url_for(`/images/${sponsor.alt_img}`)) : 'null' -%>;
             var img = "<%-logo(sponsor.img)-%>";
-            console.log(adImg, altImg, img)
             el.src = (altImg && Math.random() >= 0.5 ? altImg : (adImg || img));
           })()
         </script>
