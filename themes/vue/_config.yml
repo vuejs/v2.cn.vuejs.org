@@ -7,7 +7,7 @@ vue_version: 2.7.8
 special:
   - name: uni-app
     url: https://uniapp.dcloud.io/?hmsr=vueen&hmpl=&hmcu=&hmkw=&hmci=
-    img: uni_app.png
+    img: uni_app.png?v2
     description: Cross-Platform for Vue
 platinum:
   - name: VueMastery
