@@ -12,7 +12,7 @@
     "lint:fix": "zhlint 'src/v2/{guide,api,style-guide}/*.md' --fix"
   },
   "engines": {
-    "node": ">=12.0.0"
+    "node": ">=14.0.0"
   },
   "dependencies": {
     "axios": "^0.27.2",
