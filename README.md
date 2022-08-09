@@ -1,6 +1,8 @@
-# Vue.js 中文文档
+# Vue 2 中文文档
 
-_注：Vue 3.0 的中文文档请移步至 https://github.com/vuejs-translations/docs-zh-cn_
+> ⚠️ 此仓库是 Vue 2 的文档，部署在 v2.cn.vuejs.org，已处于维护模式。
+>
+> Vue 3 的中文文档请移步至 https://github.com/vuejs-translations/docs-zh-cn
 
 该站点基于 [Hexo](https://hexo.io/) 构建而成。网站内容在 `src` 文件夹内，格式为 Markdown。欢迎 issue 或 pull request。
 
