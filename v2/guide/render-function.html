@@ -1,0 +1,1364 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <title>渲染函数 & JSX — Vue.js</title>
+    <meta charset="utf-8">
+    <meta name="description" content="Vue.js - The Progressive JavaScript Framework">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- TODO: update when v3 becomes the main docsite -->
+    <link rel="alternate" hreflang="x-default" href="https://vuejs.org/v2/guide/render-function.html">
+    <link rel="alternate" hreflang="zh" href="https://cn.vuejs.org/v2/guide/render-function.html">
+    <link rel="alternate" hreflang="ja" href="https://jp.vuejs.org/v2/guide/render-function.html">
+    <link rel="alternate" hreflang="ru" href="https://ru.vuejs.org/v2/guide/render-function.html">
+    <link rel="alternate" hreflang="ko" href="https://kr.vuejs.org/v2/guide/render-function.html">
+    <link rel="alternate" hreflang="pt-BR" href="https://br.vuejs.org/v2/guide/render-function.html">
+    <link rel="alternate" hreflang="fr" href="https://fr.vuejs.org/v2/guide/render-function.html">
+    <link rel="alternate" hreflang="es" href="https://es.vuejs.org/v2/guide/render-function.html">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="渲染函数 & JSX — Vue.js">
+    <meta property="og:description" content="Vue.js - The Progressive JavaScript Framework">
+    <meta property="og:image" content="https://cn.vuejs.org/images/logo.png">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="渲染函数 & JSX — Vue.js">
+    <meta name="twitter:description" content="Vue.js - The Progressive JavaScript Framework">
+    <meta name="twitter:image" content="https://cn.vuejs.org/images/logo.png">
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/images/icons/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/images/icons/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/images/icons/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/images/icons/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/images/icons/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/images/icons/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/images/icons/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/images/icons/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/icons/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/images/icons/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/images/icons/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/icons/favicon-16x16.png">
+    <meta name="msapplication-TileImage" content="/images/icons/ms-icon-144x144.png">
+    <link rel="icon" href="/images/logo.svg">
+
+    <meta name="msapplication-TileColor" content="#4fc08d">
+    <meta name="theme-color" content="#4fc08d">
+
+    <meta name="msapplication-config" content="browserconfig.xml">
+    <link rel="manifest" href="/manifest.json">
+
+    <!-- <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin> -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com" rel="preconnect" crossorigin> -->
+
+    <!-- <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600|Roboto Mono&display=swap" rel="stylesheet"> -->
+    <!-- <link href="https://fonts.googleapis.com/css?family=Dosis:500&text=Vue.js&display=swap" rel="stylesheet"> -->
+
+    <link href="//code.bdstatic.com/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <!-- main page styles -->
+    
+<link rel="stylesheet" href="/css/page.css">
+
+
+    <!-- this needs to be loaded before guide's inline scripts -->
+    <script src="/js/vue.js"></script>
+
+    
+
+    <script>
+      Vue.config.productionTip = false
+      window.PAGE_TYPE = "guide"
+    </script>
+
+    <!-- ga -->
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-46852172-3', 'cn.vuejs.org');
+      ga('send', 'pageview');
+    </script>
+
+    <!-- vimeo analytics -->
+    <!-- <script type="text/javascript" defer="defer" src="https://extend.vimeocdn.com/ga/72160148.js"></script> -->
+<meta name="generator" content="Hexo 6.2.0"><link rel="alternate" href="/atom.xml" title="Vue.js" type="application/atom+xml">
+</head>
+  <body class="docs">
+
+    
+
+    <div id="mobile-bar" >
+      <a class="menu-button"></a>
+      <a class="logo" href="/"></a>
+    </div>
+    <div>
+  <div id="v3-banner">
+    <!-- TODO: update when v3 becomes the main docsite -->
+    <span class="hidden-sm">您在浏览的是 v2.x 及更早版本的文档。</span
+    >v3.x 的文档<a target="_blank" rel="noopener" href="https://v3.cn.vuejs.org/">在这里</a>。
+  </div>
+
+  <header id="header">
+    <a id="logo" href="/">
+      <img src="/images/logo.svg" alt="vue logo">
+      <span>Vue.js</span>
+    </a>
+    <ul id="nav">
+      <li>
+  <form id="search-form">
+    <input type="text" id="search-query-nav" class="search-query st-default-search-input" aria-label="搜索">
+  </form>
+</li>
+<li class="nav-dropdown-container learn">
+  <a class="nav-link current">学习</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li><h4>文档</h4></li>
+    <li>
+      <ul>
+        <li><a href="/v2/guide/" class="nav-link current">教程</a></li>
+        <li><a href="/v2/api/" class="nav-link">API</a></li>
+        <li><a href="/v2/style-guide/" class="nav-link">风格指南</a></li>
+        <li><a href="/v2/examples/" class="nav-link">示例</a></li>
+        <li><a href="/v2/cookbook/" class="nav-link">Cookbook</a></li>
+      </ul>
+    </li>
+    <li><h4>视频教程</h4></li>
+    <li>
+      <ul>
+        <li>
+          <a href="https://www.vuemastery.com/courses/" class="nav-link" target="_blank" rel="sponsored noopener">
+            Vue Mastery (英文)
+          </a>
+        </li>
+        <li>
+          <a
+            href="https://vueschool.io/?friend=vuejs&utm_source=Vuejs.org&utm_medium=Link&utm_content=Navbar%20Dropdown"
+            class="nav-link"
+            target="_blank" rel="sponsored noopener"
+          >
+            Vue School (英文)
+          </a>
+        </li>
+        <!-- start: special logic for cn -->
+        <li>
+          <a href="https://learning.dcloud.io/" class="nav-link" target="_blank" rel="sponsored noopener">
+            DCloud 视频教程
+          </a>
+        </li>
+        <!-- end: special logic for cn -->
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li class="nav-dropdown-container ecosystem">
+  <a class="nav-link">生态系统</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li><h4>帮助</h4></li>
+    <li><ul>
+      <li><a href="https://forum.vuejs.org/" class="nav-link" target="_blank" rel="noopener">论坛</a></li>
+      <li><a href="https://chat.vuejs.org/" class="nav-link" target="_blank" rel="noopener">聊天室</a></li>
+      <li><a href="https://events.vuejs.org/meetups/" class="nav-link" target="_blank" rel="noopener">聚会</a></li>
+    </ul></li>
+    <li><h4>工具</h4></li>
+    <li>
+      <ul>
+        <li><a href="https://github.com/vuejs/vue-devtools" class="nav-link" target="_blank" rel="noopener">Devtools</a></li>
+        <li><a href="https://cli.vuejs.org/zh/" class="nav-link" target="_blank" rel="noopener">Vue CLI</a></li>
+        <li><a href="https://vue-loader.vuejs.org/zh/" class="nav-link" target="_blank" rel="noopener">Vue Loader</a></li>
+      </ul>
+    </li>
+    <li><h4>核心插件</h4></li>
+    <li><ul>
+      <li><a href="https://router.vuejs.org/zh/" class="nav-link" target="_blank" rel="noopener">Vue Router</a></li>
+      <li><a href="https://vuex.vuejs.org/zh/" class="nav-link" target="_blank" rel="noopener">Vuex</a></li>
+      <li><a href="https://v2.ssr.vuejs.org/zh/" class="nav-link" target="_blank" rel="noopener">Vue 服务端渲染</a></li>
+    </ul></li>
+    <li><h4>信息</h4></li>
+    <li><ul>
+      <li><a href="https://news.vuejs.org" class="nav-link" target="_blank" rel="noopener">周刊</a></li>
+      <li><a href="https://github.com/vuejs/vue/projects/6" class="nav-link" target="_blank" rel="noopener">Roadmap</a></li>
+      <li><a href="https://events.vuejs.org/" class="nav-link" target="_blank" rel="noopener">活动</a></li>
+      <li><a href="https://twitter.com/vuejs" class="nav-link" target="_blank" rel="noopener">Twitter</a></li>
+      <li><a href="https://medium.com/the-vue-point" class="nav-link" target="_blank" rel="noopener">博客</a></li>
+      <li><a href="https://vuejobs.com/?ref=vuejs" class="nav-link" target="_blank" rel="noopener">工作</a></li>
+      <li><a href="https://dev.to/t/vue" class="nav-link" target="_blank" rel="noopener">DEV 社区</a></li>
+    </ul></li>
+  </ul>
+</li>
+
+<li>
+  <a href="/v2/guide/team.html" class="nav-link team">团队</a>
+</li>
+<li class="nav-dropdown-container resources">
+  <a href="#" class="nav-link">资源列表</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li><a href="/resources/partners.html" class="nav-link">合作伙伴</a></li>
+    <li><a href="/resources/themes.html" class="nav-link">主题</a></li>
+    <li><a href="https://github.com/vuejs/awesome-vue" class="nav-link" target="_blank" rel="noopener">Awesome Vue</a></li>
+    <li><a href="https://awesomejs.dev/for/vue/" class="nav-link" target="_blank" rel="noopener">浏览和 Vue 相关的包</a></li>
+  </ul>
+</li>
+
+<!-- <li>
+  <a href="/partners" class="nav-link ">Partners</a>
+</li> -->
+<li class="nav-dropdown-container support-vue">
+  <a href="/support-vuejs/" class="nav-link">支持 Vue</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li><a href="/support-vuejs/#One-time-Donations" class="nav-link">一次性赞助</a></li>
+    <li><a href="/support-vuejs/#Recurring-Pledges" class="nav-link">周期性赞助</a></li>
+    <!-- start: special logic for cn -->
+    <li><a target="_blank" href="https://www.smallsticker.com/%E8%B4%B4%E7%BA%B8/vue.html" rel="noopener noopener" class="nav-link">贴纸</a></li>
+    <li><a target="_blank" href="https://osholic.com/?utm_source=vue&utm_medium=dropdown" rel="noopener noopener" class="nav-link">周边</a></li>
+    <!-- end: special logic for cn -->
+    <li><a href="https://vue.threadless.com" target="_blank" rel="noopener" class="nav-link">T 恤商店</a></li>
+  </ul>
+</li>
+
+<li class="nav-dropdown-container language">
+  <a class="nav-link">多语言</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li><a target="_blank" rel="noopener" href="https://v2.vuejs.org/v2/guide/render-function.html" class="nav-link">English</a></li>
+    <li><a target="_blank" rel="noopener" href="https://jp.vuejs.org/v2/guide/render-function.html" class="nav-link">日本語</a></li>
+    <li><a target="_blank" rel="noopener" href="https://ru.vuejs.org/v2/guide/render-function.html" class="nav-link">Русский</a></li>
+    <li><a target="_blank" rel="noopener" href="https://kr.vuejs.org/v2/guide/render-function.html" class="nav-link">한국어</a></li>
+    <li><a target="_blank" rel="noopener" href="https://br.vuejs.org/v2/guide/render-function.html" class="nav-link">Português</a></li>
+    <li><a target="_blank" rel="noopener" href="https://fr.vuejs.org/v2/guide/render-function.html" class="nav-link">Français</a></li>
+    <li><a target="_blank" rel="noopener" href="https://vi.vuejs.org/v2/guide/render-function.html" class="nav-link">Tiếng Việt</a></li>
+    <li><a target="_blank" rel="noopener" href="https://es.vuejs.org/v2/guide/render-function.html" class="nav-link">Español</a></li>
+    <li><a target="_blank" rel="noopener" href="https://docs.vuejs.id/v2/guide/render-function.html" class="nav-link">Bahasa Indonesia</a></li>
+  </ul>
+</li>
+
+<!-- start: special logic for cn -->
+<!-- TODO: update when v3 becomes the main docsite -->
+<li><a href="https://github.com/vuejs/cn.vuejs.org/" target="_blank" class="nav-link contribute">参与翻译</a></li>
+<!-- end: special logic for cn -->
+
+    </ul>
+  </header>
+</div>
+
+    
+      <div id="main" class="fix-sidebar">
+        
+  
+
+<div class="sidebar">
+  <div class="sidebar-inner">
+    
+    <div class="list">
+      
+<div id="sidebar-sponsors-special">
+  <div class="main-sponsor">
+    <!-- start: special logic for cn -->
+    <span>特别赞助商</span>
+    <div>
+      <a
+        href="https://www.dcloud.io/?hmsr=vuejsorg&hmpl=&hmcu=&hmkw=&hmci="
+        target="_blank"
+        rel="sponsored noopener"
+        class="logo"
+      >
+        <img id="s-HBuilder" alt="HBuilder" />
+        <script>
+          (function(){
+            var el = document.getElementById("s-HBuilder");
+            var adImg = "/images/dcloud1.png";
+            var altImg = "/images/dcloud2.png";
+            var img = "https://sponsors.vuejs.org/images/hbuilder.png";
+            el.src = (altImg && Math.random() >= 0.5 ? altImg : (adImg || img));
+          })()
+        </script>
+      </a>
+    </div>
+    <div>
+      <a
+        href="https://juejin.cn/frontend?utm_source=vue&utm_campaign=sponsor"
+        target="_blank"
+        rel="sponsored noopener"
+        class="logo"
+      >
+        <img id="s-稀土掘金技术社区" alt="稀土掘金技术社区" />
+        <script>
+          (function(){
+            var el = document.getElementById("s-稀土掘金技术社区");
+            var adImg = null;
+            var altImg = null;
+            var img = "https://sponsors.vuejs.org/images/xitujuejinjishushequ.png";
+            el.src = (altImg && Math.random() >= 0.5 ? altImg : (adImg || img));
+          })()
+        </script>
+      </a>
+    </div>
+    <!-- end: special logic for cn -->
+  </div>
+</div>
+<!--
+<div id="sidebar-sponsors-platinum-left">
+  <div class="main-sponsor">
+    <span>白金赞助商</span>
+    <div>
+    <a href="https://www.vuemastery.com/" target="_blank" rel="sponsored noopener" class="logo">
+      <img src="https://sponsors.vuejs.org/images/vuemastery.png" alt="VueMastery">
+    </a>
+    <a href="https://vueschool.io/?utm_source=Vuejs.org&utm_medium=Banner&utm_campaign=Sponsored%20Banner&utm_content=V1" target="_blank" rel="sponsored noopener" class="logo">
+      <img src="https://sponsors.vuejs.org/images/vueschool.png" alt="VueSchool">
+    </a>
+    <a href="https://vehikl.com/" target="_blank" rel="sponsored noopener" class="logo">
+      <img src="https://sponsors.vuejs.org/images/vehikl.png" alt="Vehikl">
+    </a>
+    <a href="https://passionatepeople.io/" target="_blank" rel="sponsored noopener" class="logo">
+      <img src="https://sponsors.vuejs.org/images/passionate_people.png" alt="Passionate People">
+    </a>
+    <a href="https://www.storyblok.com" target="_blank" rel="sponsored noopener" class="logo">
+      <img src="https://sponsors.vuejs.org/images/storyblok.png" alt="Storyblok">
+    </a>
+    <a href="https://ionicframework.com/vue?utm_source=partner&utm_medium=referral&utm_campaign=vuesponsorship&utm_content=vuedocs" target="_blank" rel="sponsored noopener" class="logo">
+      <img src="https://sponsors.vuejs.org/images/ionic.png?v2" alt="Ionic">
+    </a>
+    <a href="https://nuxtjs.org/" target="_blank" rel="sponsored noopener" class="logo">
+      <img src="https://sponsors.vuejs.org/images/nuxt.png" alt="Nuxt">
+    </a>
+    <a href="https://www.refurbed.org/?utm_source=vuejs" target="_blank" rel="sponsored noopener" class="logo">
+      <img src="https://sponsors.vuejs.org/images/refurbed.png" alt="Refurbed">
+    </a>
+    <a href="https://buttercms.com/vuejs-cms/?utm_source=vuejs.org&utm_medium=banner&utm_campaign=sponsorship" target="_blank" rel="sponsored noopener" class="logo">
+      <img src="https://sponsors.vuejs.org/images/buttercms.svg" alt="ButterCMS">
+    </a>
+    <a href="https://www.sanofi.com/" target="_blank" rel="sponsored noopener" class="logo">
+      <img src="https://sponsors.vuejs.org/images/sanofi.png" alt="Sanofi">
+    </a>
+    <a href="https://code-dict.com" target="_blank" rel="sponsored noopener" class="logo">
+      <img src="https://sponsors.vuejs.org/images/codedict.svg" alt="CodeDict">
+    </a>
+    <a href="https://conf.vuejs.de/?utm_source=vuejs-vite&utm_medium=referral&utm_campaign=sponsoring" target="_blank" rel="sponsored noopener" class="logo">
+      <img src="https://sponsors.vuejs.org/images/vuejs_de_conf.svg" alt="vuejs.de Conf">
+    </a>
+    </div>
+  </div>
+  <a class="become-backer" href="/support-vuejs">
+    成为赞助者
+  </a>
+</div>
+
+-->
+
+      
+        <h2>
+          
+          教程
+          
+            <select class="version-select">
+              <option value="">3.x</option>
+              <option value="SELF" selected>2.x</option>
+              <option value="v1">1.0</option>
+              <option value="012">0.12</option>
+              <option value="011">0.11</option>
+            </select>
+          
+        </h2>
+        <ul class="menu-root">
+  
+    
+    
+      
+        <li><h3>基础</h3></li>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/v2/guide/installation.html" class="sidebar-link">安装</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/v2/guide/index.html" class="sidebar-link">介绍</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/v2/guide/instance.html" class="sidebar-link">Vue 实例</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/v2/guide/syntax.html" class="sidebar-link">模板语法</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/v2/guide/computed.html" class="sidebar-link">计算属性和侦听器</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/v2/guide/class-and-style.html" class="sidebar-link">Class 与 Style 绑定</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/v2/guide/conditional.html" class="sidebar-link">条件渲染</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/v2/guide/list.html" class="sidebar-link">列表渲染</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/v2/guide/events.html" class="sidebar-link">事件处理</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/v2/guide/forms.html" class="sidebar-link">表单输入绑定</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/v2/guide/components.html" class="sidebar-link">组件基础</a>
+    </li>
+  
+    
+    
+      
+      
+        <li><h3>深入了解组件</h3></li>
+      
+      
+      
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/v2/guide/components-registration.html" class="sidebar-link">组件注册</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/v2/guide/components-props.html" class="sidebar-link">Prop</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/v2/guide/components-custom-events.html" class="sidebar-link">自定义事件</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/v2/guide/components-slots.html" class="sidebar-link">插槽</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/v2/guide/components-dynamic-async.html" class="sidebar-link">动态组件 & 异步组件</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/v2/guide/components-edge-cases.html" class="sidebar-link">处理边界情况</a>
+    </li>
+  
+    
+    
+      
+      
+      
+        <li><h3>过渡 & 动画</h3></li>
+      
+      
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/v2/guide/transitions.html" class="sidebar-link">进入/离开 & 列表过渡</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/v2/guide/transitioning-state.html" class="sidebar-link">状态过渡</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+        <li><h3>可复用性 & 组合</h3></li>
+      
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/v2/guide/mixins.html" class="sidebar-link">混入</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/v2/guide/custom-directive.html" class="sidebar-link">自定义指令</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/v2/guide/render-function.html" class="sidebar-link current">渲染函数 & JSX</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/v2/guide/plugins.html" class="sidebar-link">插件</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/v2/guide/filters.html" class="sidebar-link">过滤器</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+        <li><h3>工具</h3></li>
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/v2/guide/single-file-components.html" class="sidebar-link">单文件组件</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/v2/guide/testing.html" class="sidebar-link">测试</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/v2/guide/typescript.html" class="sidebar-link">TypeScript 支持</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/v2/guide/deployment.html" class="sidebar-link">生产环境部署</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+      
+        <li><h3>规模化</h3></li>
+      
+      
+      
+      
+    
+    <li>
+      <a href="/v2/guide/routing.html" class="sidebar-link">路由</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/v2/guide/state-management.html" class="sidebar-link">状态管理</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/v2/guide/ssr.html" class="sidebar-link">服务端渲染</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/v2/guide/security.html" class="sidebar-link">安全</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+      
+      
+        <li><h3>内在</h3></li>
+      
+      
+      
+    
+    <li>
+      <a href="/v2/guide/reactivity.html" class="sidebar-link">深入响应式原理</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+      
+      
+      
+        <li><h3>迁移</h3></li>
+      
+      
+    
+    <li>
+      <a href="/v2/guide/migration.html" class="sidebar-link">从 Vue 1.x 迁移</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/v2/guide/migration-vue-router.html" class="sidebar-link">从 Vue Router 0.7.x 迁移</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/v2/guide/migration-vuex.html" class="sidebar-link">从 Vuex 0.6.x 迁移到 1.0</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+      
+      
+      
+      
+        <li><h3>更多</h3></li>
+      
+    
+    <li>
+      <a href="/v2/guide/comparison.html" class="sidebar-link">对比其他框架</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/v2/guide/join.html" class="sidebar-link">加入 Vue.js 社区</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/v2/guide/team.html" class="sidebar-link">认识团队</a>
+    </li>
+  
+</ul>
+
+      
+    </div>
+  </div>
+</div>
+<!--
+
+<div id="sidebar-sponsors-platinum-right">
+  <div class="main-sponsor">
+    <span>白金赞助商</span>
+    <div>
+    <a href="https://www.vuemastery.com/" target="_blank" rel="sponsored noopener" class="logo">
+      <img src="https://sponsors.vuejs.org/images/vuemastery.png" alt="VueMastery">
+    </a>
+    <a href="https://vueschool.io/?utm_source=Vuejs.org&utm_medium=Banner&utm_campaign=Sponsored%20Banner&utm_content=V1" target="_blank" rel="sponsored noopener" class="logo">
+      <img src="https://sponsors.vuejs.org/images/vueschool.png" alt="VueSchool">
+    </a>
+    <a href="https://vehikl.com/" target="_blank" rel="sponsored noopener" class="logo">
+      <img src="https://sponsors.vuejs.org/images/vehikl.png" alt="Vehikl">
+    </a>
+    <a href="https://passionatepeople.io/" target="_blank" rel="sponsored noopener" class="logo">
+      <img src="https://sponsors.vuejs.org/images/passionate_people.png" alt="Passionate People">
+    </a>
+    <a href="https://www.storyblok.com" target="_blank" rel="sponsored noopener" class="logo">
+      <img src="https://sponsors.vuejs.org/images/storyblok.png" alt="Storyblok">
+    </a>
+    <a href="https://ionicframework.com/vue?utm_source=partner&utm_medium=referral&utm_campaign=vuesponsorship&utm_content=vuedocs" target="_blank" rel="sponsored noopener" class="logo">
+      <img src="https://sponsors.vuejs.org/images/ionic.png?v2" alt="Ionic">
+    </a>
+    <a href="https://nuxtjs.org/" target="_blank" rel="sponsored noopener" class="logo">
+      <img src="https://sponsors.vuejs.org/images/nuxt.png" alt="Nuxt">
+    </a>
+    <a href="https://www.refurbed.org/?utm_source=vuejs" target="_blank" rel="sponsored noopener" class="logo">
+      <img src="https://sponsors.vuejs.org/images/refurbed.png" alt="Refurbed">
+    </a>
+    <a href="https://buttercms.com/vuejs-cms/?utm_source=vuejs.org&utm_medium=banner&utm_campaign=sponsorship" target="_blank" rel="sponsored noopener" class="logo">
+      <img src="https://sponsors.vuejs.org/images/buttercms.svg" alt="ButterCMS">
+    </a>
+    <a href="https://www.sanofi.com/" target="_blank" rel="sponsored noopener" class="logo">
+      <img src="https://sponsors.vuejs.org/images/sanofi.png" alt="Sanofi">
+    </a>
+    <a href="https://code-dict.com" target="_blank" rel="sponsored noopener" class="logo">
+      <img src="https://sponsors.vuejs.org/images/codedict.svg" alt="CodeDict">
+    </a>
+    <a href="https://conf.vuejs.de/?utm_source=vuejs-vite&utm_medium=referral&utm_campaign=sponsoring" target="_blank" rel="sponsored noopener" class="logo">
+      <img src="https://sponsors.vuejs.org/images/vuejs_de_conf.svg" alt="vuejs.de Conf">
+    </a>
+    </div>
+  </div>
+  <a class="become-backer" href="/support-vuejs">
+    成为赞助者
+  </a>
+</div>
+
+
+-->
+
+
+<div class="content guide with-sidebar render-function-guide">
+  <p class="tip warning v3-warning">
+    您正在浏览的是 Vue 2.x 的文档。Vue 3 的文档<a href="https://cn.vuejs.org/">在这里</a>。
+  </p>
+
+  
+    
+      
+<div id="ad">
+  <!-- start: special logic for cn -->
+  <div
+    class="wwads-cn wwads-vertical"
+    data-id="53"
+    style="max-width: 200px"
+  ></div>
+  <script
+    type="text/javascript"
+    src="https://cdn.wwads.cn/js/makemoney.js"
+    async
+  ></script>
+  <!-- end: special logic for cn -->
+  <!-- <script
+    async
+    type="text/javascript"
+    src="//cdn.carbonads.com/carbon.js?serve=CEBDT27Y&placement=vuejsorg"
+    id="_carbonads_js"
+  ></script> -->
+</div>
+
+
+    
+  
+  
+    <h1>渲染函数 & JSX</h1>
+  
+
+  <!-- start: special logic for cn -->
+  <!-- start: special logic for cn -->
+<!-- <div class="ad-pagetop">
+  <a href="http://www.vueshop.com.cn/index.php?http_referer=vuejs" target="_blank" rel="noopener noreferrer">
+    <span class="name">VUEshop</span>
+    <span class="description">中国免费商城系统 - 搜豹商城系统 - 免费50小时 Vue 视频教程</span>
+    <span class="action">立即查看 &gt;</span>
+  </a>
+</div> -->
+<!-- end: special logic for cn -->
+
+  <!-- end: special logic for cn -->
+
+  
+    <h2 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h2><p>Vue 推荐在绝大多数情况下使用模板来创建你的 HTML。然而在一些场景中，你真的需要 JavaScript 的完全编程的能力。这时你可以用<strong>渲染函数</strong>，它比模板更接近编译器。</p>
+<p>让我们深入一个简单的例子，这个例子里 <code>render</code> 函数很实用。假设我们要生成一些带锚点的标题：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;hello-world&quot;</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;#hello-world&quot;</span>&gt;</span><br>    Hello world!<br>  <span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<p>对于上面的 HTML，你决定这样定义组件接口：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">anchored-heading</span> <span class="hljs-attr">:level</span>=<span class="hljs-string">&quot;1&quot;</span>&gt;</span>Hello world!<span class="hljs-tag">&lt;/<span class="hljs-name">anchored-heading</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<p>当开始写一个只能通过 <code>level</code> prop 动态生成标题 (heading) 的组件时，你可能很快想到这样实现：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text/x-template&quot;</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;anchored-heading-template&quot;</span>&gt;</span><span class="language-handlebars"><span class="language-xml"></span></span><br><span class="language-xml"><span class="language-handlebars">  <span class="hljs-tag">&lt;<span class="hljs-name">h1</span> <span class="hljs-attr">v-if</span>=<span class="hljs-string">&quot;level === 1&quot;</span>&gt;</span></span></span><br><span class="language-xml"><span class="language-handlebars">    <span class="hljs-tag">&lt;<span class="hljs-name">slot</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">slot</span>&gt;</span></span></span><br><span class="language-xml"><span class="language-handlebars">  <span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span></span></span><br><span class="language-xml"><span class="language-handlebars">  <span class="hljs-tag">&lt;<span class="hljs-name">h2</span> <span class="hljs-attr">v-else-if</span>=<span class="hljs-string">&quot;level === 2&quot;</span>&gt;</span></span></span><br><span class="language-xml"><span class="language-handlebars">    <span class="hljs-tag">&lt;<span class="hljs-name">slot</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">slot</span>&gt;</span></span></span><br><span class="language-xml"><span class="language-handlebars">  <span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span></span></span><br><span class="language-xml"><span class="language-handlebars">  <span class="hljs-tag">&lt;<span class="hljs-name">h3</span> <span class="hljs-attr">v-else-if</span>=<span class="hljs-string">&quot;level === 3&quot;</span>&gt;</span></span></span><br><span class="language-xml"><span class="language-handlebars">    <span class="hljs-tag">&lt;<span class="hljs-name">slot</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">slot</span>&gt;</span></span></span><br><span class="language-xml"><span class="language-handlebars">  <span class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span></span></span><br><span class="language-xml"><span class="language-handlebars">  <span class="hljs-tag">&lt;<span class="hljs-name">h4</span> <span class="hljs-attr">v-else-if</span>=<span class="hljs-string">&quot;level === 4&quot;</span>&gt;</span></span></span><br><span class="language-xml"><span class="language-handlebars">    <span class="hljs-tag">&lt;<span class="hljs-name">slot</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">slot</span>&gt;</span></span></span><br><span class="language-xml"><span class="language-handlebars">  <span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span></span></span><br><span class="language-xml"><span class="language-handlebars">  <span class="hljs-tag">&lt;<span class="hljs-name">h5</span> <span class="hljs-attr">v-else-if</span>=<span class="hljs-string">&quot;level === 5&quot;</span>&gt;</span></span></span><br><span class="language-xml"><span class="language-handlebars">    <span class="hljs-tag">&lt;<span class="hljs-name">slot</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">slot</span>&gt;</span></span></span><br><span class="language-xml"><span class="language-handlebars">  <span class="hljs-tag">&lt;/<span class="hljs-name">h5</span>&gt;</span></span></span><br><span class="language-xml"><span class="language-handlebars">  <span class="hljs-tag">&lt;<span class="hljs-name">h6</span> <span class="hljs-attr">v-else-if</span>=<span class="hljs-string">&quot;level === 6&quot;</span>&gt;</span></span></span><br><span class="language-xml"><span class="language-handlebars">    <span class="hljs-tag">&lt;<span class="hljs-name">slot</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">slot</span>&gt;</span></span></span><br><span class="language-xml"><span class="language-handlebars">  <span class="hljs-tag">&lt;/<span class="hljs-name">h6</span>&gt;</span></span></span><br><span class="language-xml"><span class="language-handlebars"></span></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="code"><pre><code class="hljs js"><span class="hljs-title class_">Vue</span>.<span class="hljs-title function_">component</span>(<span class="hljs-string">&#x27;anchored-heading&#x27;</span>, &#123;<br>  <span class="hljs-attr">template</span>: <span class="hljs-string">&#x27;#anchored-heading-template&#x27;</span>,<br>  <span class="hljs-attr">props</span>: &#123;<br>    <span class="hljs-attr">level</span>: &#123;<br>      <span class="hljs-attr">type</span>: <span class="hljs-title class_">Number</span>,<br>      <span class="hljs-attr">required</span>: <span class="hljs-literal">true</span><br>    &#125;<br>  &#125;<br>&#125;)<br></code></pre></td></tr></table></figure>
+<p>这里用模板并不是最好的选择：不但代码冗长，而且在每一个级别的标题中重复书写了 <code>&lt;slot&gt;&lt;/slot&gt;</code>，在要插入锚点元素时还要再次重复。</p>
+<p>虽然模板在大多数组件中都非常好用，但是显然在这里它就不合适了。那么，我们来尝试使用 <code>render</code> 函数重写上面的例子：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><code class="hljs js"><span class="hljs-title class_">Vue</span>.<span class="hljs-title function_">component</span>(<span class="hljs-string">&#x27;anchored-heading&#x27;</span>, &#123;<br>  <span class="hljs-attr">render</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params">createElement</span>) &#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-title function_">createElement</span>(<br>      <span class="hljs-string">&#x27;h&#x27;</span> + <span class="hljs-variable language_">this</span>.<span class="hljs-property">level</span>,   <span class="hljs-comment">// 标签名称</span><br>      <span class="hljs-variable language_">this</span>.<span class="hljs-property">$slots</span>.<span class="hljs-property">default</span> <span class="hljs-comment">// 子节点数组</span><br>    )<br>  &#125;,<br>  <span class="hljs-attr">props</span>: &#123;<br>    <span class="hljs-attr">level</span>: &#123;<br>      <span class="hljs-attr">type</span>: <span class="hljs-title class_">Number</span>,<br>      <span class="hljs-attr">required</span>: <span class="hljs-literal">true</span><br>    &#125;<br>  &#125;<br>&#125;)<br></code></pre></td></tr></table></figure>
+<p>看起来简单多了！这样代码精简很多，但是需要非常熟悉 Vue 的实例 property。在这个例子中，你需要知道，向组件中传递不带 <code>v-slot</code> 指令的子节点时，比如 <code>anchored-heading</code> 中的 <code>Hello world!</code>，这些子节点被存储在组件实例中的 <code>$slots.default</code> 中。如果你还不了解，<strong>在深入渲染函数之前推荐阅读<a href="../api/#实例-property">实例 property API</a>。</strong></p>
+<h2 id="节点、树以及虚拟-DOM"><a href="#节点、树以及虚拟-DOM" class="headerlink" title="节点、树以及虚拟 DOM"></a>节点、树以及虚拟 DOM</h2><p>在深入渲染函数之前，了解一些浏览器的工作原理是很重要的。以下面这段 HTML 为例：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>My title<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span><br>  Some text content<br>  <span class="hljs-comment">&lt;!-- <span class="hljs-doctag">TODO:</span> Add tagline --&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<p>当浏览器读到这些代码时，它会建立一个<a target="_blank" rel="noopener" href="https://javascript.info/dom-nodes">“DOM 节点”树</a>来保持追踪所有内容，如同你会画一张家谱树来追踪家庭成员的发展一样。</p>
+<p>上述 HTML 对应的 DOM 节点树如下图所示：</p>
+<p><img src="/images/dom-tree.png" alt="DOM 树可视化"></p>
+<p>每个元素都是一个节点。每段文字也是一个节点。甚至注释也都是节点。一个节点就是页面的一个部分。就像家谱树一样，每个节点都可以有孩子节点 (也就是说每个部分可以包含其它的一些部分)。</p>
+<p>高效地更新所有这些节点会是比较困难的，不过所幸你不必手动完成这个工作。你只需要告诉 Vue 你希望页面上的 HTML 是什么，这可以是在一个模板里：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>&#123;&#123; blogTitle &#125;&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<p>或者一个渲染函数里：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><code class="hljs js"><span class="hljs-attr">render</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params">createElement</span>) &#123;<br>  <span class="hljs-keyword">return</span> <span class="hljs-title function_">createElement</span>(<span class="hljs-string">&#x27;h1&#x27;</span>, <span class="hljs-variable language_">this</span>.<span class="hljs-property">blogTitle</span>)<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>在这两种情况下，Vue 都会自动保持页面的更新，即便 <code>blogTitle</code> 发生了改变。</p>
+<h3 id="虚拟-DOM"><a href="#虚拟-DOM" class="headerlink" title="虚拟 DOM"></a>虚拟 DOM</h3><p>Vue 通过建立一个<strong>虚拟 DOM</strong> 来追踪自己要如何改变真实 DOM。请仔细看这行代码：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">return</span> <span class="hljs-title function_">createElement</span>(<span class="hljs-string">&#x27;h1&#x27;</span>, <span class="hljs-variable language_">this</span>.<span class="hljs-property">blogTitle</span>)<br></code></pre></td></tr></table></figure>
+<p><code>createElement</code> 到底会返回什么呢？其实不是一个<em>实际的</em> DOM 元素。它更准确的名字可能是 <code>createNodeDescription</code>，因为它所包含的信息会告诉 Vue 页面上需要渲染什么样的节点，包括及其子节点的描述信息。我们把这样的节点描述为“虚拟节点 (virtual node)”，也常简写它为“<strong>VNode</strong>”。“虚拟 DOM”是我们对由 Vue 组件树建立起来的整个 VNode 树的称呼。</p>
+<h2 id="createElement-参数"><a href="#createElement-参数" class="headerlink" title="createElement 参数"></a><code>createElement</code> 参数</h2><p>接下来你需要熟悉的是如何在 <code>createElement</code> 函数中使用模板中的那些功能。这里是 <code>createElement</code> 接受的参数：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// @returns &#123;VNode&#125;</span><br><span class="hljs-title function_">createElement</span>(<br>  <span class="hljs-comment">// &#123;String | Object | Function&#125;</span><br>  <span class="hljs-comment">// 一个 HTML 标签名、组件选项对象，或者</span><br>  <span class="hljs-comment">// resolve 了上述任何一种的一个 async 函数。必填项。</span><br>  <span class="hljs-string">&#x27;div&#x27;</span>,<br><br>  <span class="hljs-comment">// &#123;Object&#125;</span><br>  <span class="hljs-comment">// 一个与模板中 attribute 对应的数据对象。可选。</span><br>  &#123;<br>    <span class="hljs-comment">// (详情见下一节)</span><br>  &#125;,<br><br>  <span class="hljs-comment">// &#123;String | Array&#125;</span><br>  <span class="hljs-comment">// 子级虚拟节点 (VNodes)，由 `createElement()` 构建而成，</span><br>  <span class="hljs-comment">// 也可以使用字符串来生成“文本虚拟节点”。可选。</span><br>  [<br>    <span class="hljs-string">&#x27;先写一些文字&#x27;</span>,<br>    <span class="hljs-title function_">createElement</span>(<span class="hljs-string">&#x27;h1&#x27;</span>, <span class="hljs-string">&#x27;一则头条&#x27;</span>),<br>    <span class="hljs-title function_">createElement</span>(<span class="hljs-title class_">MyComponent</span>, &#123;<br>      <span class="hljs-attr">props</span>: &#123;<br>        <span class="hljs-attr">someProp</span>: <span class="hljs-string">&#x27;foobar&#x27;</span><br>      &#125;<br>    &#125;)<br>  ]<br>)<br></code></pre></td></tr></table></figure>
+<h3 id="深入数据对象"><a href="#深入数据对象" class="headerlink" title="深入数据对象"></a>深入数据对象</h3><p>有一点要注意：正如 <code>v-bind:class</code> 和 <code>v-bind:style</code> 在模板语法中会被特别对待一样，它们在 VNode 数据对象中也有对应的顶层字段。该对象也允许你绑定普通的 HTML attribute，也允许绑定如 <code>innerHTML</code> 这样的 DOM property (这会覆盖 <code>v-html</code> 指令)。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><code class="hljs js">&#123;<br>  <span class="hljs-comment">// 与 `v-bind:class` 的 API 相同，</span><br>  <span class="hljs-comment">// 接受一个字符串、对象或字符串和对象组成的数组</span><br>  <span class="hljs-string">&#x27;class&#x27;</span>: &#123;<br>    <span class="hljs-attr">foo</span>: <span class="hljs-literal">true</span>,<br>    <span class="hljs-attr">bar</span>: <span class="hljs-literal">false</span><br>  &#125;,<br>  <span class="hljs-comment">// 与 `v-bind:style` 的 API 相同，</span><br>  <span class="hljs-comment">// 接受一个字符串、对象，或对象组成的数组</span><br>  <span class="hljs-attr">style</span>: &#123;<br>    <span class="hljs-attr">color</span>: <span class="hljs-string">&#x27;red&#x27;</span>,<br>    <span class="hljs-attr">fontSize</span>: <span class="hljs-string">&#x27;14px&#x27;</span><br>  &#125;,<br>  <span class="hljs-comment">// 普通的 HTML attribute</span><br>  <span class="hljs-attr">attrs</span>: &#123;<br>    <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;foo&#x27;</span><br>  &#125;,<br>  <span class="hljs-comment">// 组件 prop</span><br>  <span class="hljs-attr">props</span>: &#123;<br>    <span class="hljs-attr">myProp</span>: <span class="hljs-string">&#x27;bar&#x27;</span><br>  &#125;,<br>  <span class="hljs-comment">// DOM property</span><br>  <span class="hljs-attr">domProps</span>: &#123;<br>    <span class="hljs-attr">innerHTML</span>: <span class="hljs-string">&#x27;baz&#x27;</span><br>  &#125;,<br>  <span class="hljs-comment">// 事件监听器在 `on` 内，</span><br>  <span class="hljs-comment">// 但不再支持如 `v-on:keyup.enter` 这样的修饰器。</span><br>  <span class="hljs-comment">// 需要在处理函数中手动检查 keyCode。</span><br>  <span class="hljs-attr">on</span>: &#123;<br>    <span class="hljs-attr">click</span>: <span class="hljs-variable language_">this</span>.<span class="hljs-property">clickHandler</span><br>  &#125;,<br>  <span class="hljs-comment">// 仅用于组件，用于监听原生事件，而不是组件内部使用</span><br>  <span class="hljs-comment">// `vm.$emit` 触发的事件。</span><br>  <span class="hljs-attr">nativeOn</span>: &#123;<br>    <span class="hljs-attr">click</span>: <span class="hljs-variable language_">this</span>.<span class="hljs-property">nativeClickHandler</span><br>  &#125;,<br>  <span class="hljs-comment">// 自定义指令。注意，你无法对 `binding` 中的 `oldValue`</span><br>  <span class="hljs-comment">// 赋值，因为 Vue 已经自动为你进行了同步。</span><br>  <span class="hljs-attr">directives</span>: [<br>    &#123;<br>      <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;my-custom-directive&#x27;</span>,<br>      <span class="hljs-attr">value</span>: <span class="hljs-string">&#x27;2&#x27;</span>,<br>      <span class="hljs-attr">expression</span>: <span class="hljs-string">&#x27;1 + 1&#x27;</span>,<br>      <span class="hljs-attr">arg</span>: <span class="hljs-string">&#x27;foo&#x27;</span>,<br>      <span class="hljs-attr">modifiers</span>: &#123;<br>        <span class="hljs-attr">bar</span>: <span class="hljs-literal">true</span><br>      &#125;<br>    &#125;<br>  ],<br>  <span class="hljs-comment">// 作用域插槽的格式为</span><br>  <span class="hljs-comment">// &#123; name: props =&gt; VNode | Array&lt;VNode&gt; &#125;</span><br>  <span class="hljs-attr">scopedSlots</span>: &#123;<br>    <span class="hljs-attr">default</span>: <span class="hljs-function"><span class="hljs-params">props</span> =&gt;</span> <span class="hljs-title function_">createElement</span>(<span class="hljs-string">&#x27;span&#x27;</span>, props.<span class="hljs-property">text</span>)<br>  &#125;,<br>  <span class="hljs-comment">// 如果组件是其它组件的子组件，需为插槽指定名称</span><br>  <span class="hljs-attr">slot</span>: <span class="hljs-string">&#x27;name-of-slot&#x27;</span>,<br>  <span class="hljs-comment">// 其它特殊顶层 property</span><br>  <span class="hljs-attr">key</span>: <span class="hljs-string">&#x27;myKey&#x27;</span>,<br>  <span class="hljs-attr">ref</span>: <span class="hljs-string">&#x27;myRef&#x27;</span>,<br>  <span class="hljs-comment">// 如果你在渲染函数中给多个元素都应用了相同的 ref 名，</span><br>  <span class="hljs-comment">// 那么 `$refs.myRef` 会变成一个数组。</span><br>  <span class="hljs-attr">refInFor</span>: <span class="hljs-literal">true</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<h3 id="完整示例"><a href="#完整示例" class="headerlink" title="完整示例"></a>完整示例</h3><p>有了这些知识，我们现在可以完成我们最开始想实现的组件：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> getChildrenTextContent = <span class="hljs-keyword">function</span> (<span class="hljs-params">children</span>) &#123;<br>  <span class="hljs-keyword">return</span> children.<span class="hljs-title function_">map</span>(<span class="hljs-keyword">function</span> (<span class="hljs-params">node</span>) &#123;<br>    <span class="hljs-keyword">return</span> node.<span class="hljs-property">children</span><br>      ? <span class="hljs-title function_">getChildrenTextContent</span>(node.<span class="hljs-property">children</span>)<br>      : node.<span class="hljs-property">text</span><br>  &#125;).<span class="hljs-title function_">join</span>(<span class="hljs-string">&#x27;&#x27;</span>)<br>&#125;<br><br><span class="hljs-title class_">Vue</span>.<span class="hljs-title function_">component</span>(<span class="hljs-string">&#x27;anchored-heading&#x27;</span>, &#123;<br>  <span class="hljs-attr">render</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params">createElement</span>) &#123;<br>    <span class="hljs-comment">// 创建 kebab-case 风格的 ID</span><br>    <span class="hljs-keyword">var</span> headingId = <span class="hljs-title function_">getChildrenTextContent</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">$slots</span>.<span class="hljs-property">default</span>)<br>      .<span class="hljs-title function_">toLowerCase</span>()<br>      .<span class="hljs-title function_">replace</span>(<span class="hljs-regexp">/\W+/g</span>, <span class="hljs-string">&#x27;-&#x27;</span>)<br>      .<span class="hljs-title function_">replace</span>(<span class="hljs-regexp">/(^-|-$)/g</span>, <span class="hljs-string">&#x27;&#x27;</span>)<br><br>    <span class="hljs-keyword">return</span> <span class="hljs-title function_">createElement</span>(<br>      <span class="hljs-string">&#x27;h&#x27;</span> + <span class="hljs-variable language_">this</span>.<span class="hljs-property">level</span>,<br>      [<br>        <span class="hljs-title function_">createElement</span>(<span class="hljs-string">&#x27;a&#x27;</span>, &#123;<br>          <span class="hljs-attr">attrs</span>: &#123;<br>            <span class="hljs-attr">name</span>: headingId,<br>            <span class="hljs-attr">href</span>: <span class="hljs-string">&#x27;#&#x27;</span> + headingId<br>          &#125;<br>        &#125;, <span class="hljs-variable language_">this</span>.<span class="hljs-property">$slots</span>.<span class="hljs-property">default</span>)<br>      ]<br>    )<br>  &#125;,<br>  <span class="hljs-attr">props</span>: &#123;<br>    <span class="hljs-attr">level</span>: &#123;<br>      <span class="hljs-attr">type</span>: <span class="hljs-title class_">Number</span>,<br>      <span class="hljs-attr">required</span>: <span class="hljs-literal">true</span><br>    &#125;<br>  &#125;<br>&#125;)<br></code></pre></td></tr></table></figure>
+<h3 id="约束"><a href="#约束" class="headerlink" title="约束"></a>约束</h3><h4 id="VNode-必须唯一"><a href="#VNode-必须唯一" class="headerlink" title="VNode 必须唯一"></a>VNode 必须唯一</h4><p>组件树中的所有 VNode 必须是唯一的。这意味着，下面的渲染函数是不合法的：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><code class="hljs js"><span class="hljs-attr">render</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params">createElement</span>) &#123;<br>  <span class="hljs-keyword">var</span> myParagraphVNode = <span class="hljs-title function_">createElement</span>(<span class="hljs-string">&#x27;p&#x27;</span>, <span class="hljs-string">&#x27;hi&#x27;</span>)<br>  <span class="hljs-keyword">return</span> <span class="hljs-title function_">createElement</span>(<span class="hljs-string">&#x27;div&#x27;</span>, [<br>    <span class="hljs-comment">// 错误 - 重复的 VNode</span><br>    myParagraphVNode, myParagraphVNode<br>  ])<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>如果你真的需要重复很多次的元素/组件，你可以使用工厂函数来实现。例如，下面这渲染函数用完全合法的方式渲染了 20 个相同的段落：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><code class="hljs js"><span class="hljs-attr">render</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params">createElement</span>) &#123;<br>  <span class="hljs-keyword">return</span> <span class="hljs-title function_">createElement</span>(<span class="hljs-string">&#x27;div&#x27;</span>,<br>    <span class="hljs-title class_">Array</span>.<span class="hljs-title function_">apply</span>(<span class="hljs-literal">null</span>, &#123; <span class="hljs-attr">length</span>: <span class="hljs-number">20</span> &#125;).<span class="hljs-title function_">map</span>(<span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>      <span class="hljs-keyword">return</span> <span class="hljs-title function_">createElement</span>(<span class="hljs-string">&#x27;p&#x27;</span>, <span class="hljs-string">&#x27;hi&#x27;</span>)<br>    &#125;)<br>  )<br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="使用-JavaScript-代替模板功能"><a href="#使用-JavaScript-代替模板功能" class="headerlink" title="使用 JavaScript 代替模板功能"></a>使用 JavaScript 代替模板功能</h2><h3 id="v-if-和-v-for"><a href="#v-if-和-v-for" class="headerlink" title="v-if 和 v-for"></a><code>v-if</code> 和 <code>v-for</code></h3><p>只要在原生的 JavaScript 中可以轻松完成的操作，Vue 的渲染函数就不会提供专有的替代方法。比如，在模板中使用的 <code>v-if</code> 和 <code>v-for</code>：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">ul</span> <span class="hljs-attr">v-if</span>=<span class="hljs-string">&quot;items.length&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">v-for</span>=<span class="hljs-string">&quot;item in items&quot;</span>&gt;</span>&#123;&#123; item.name &#125;&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">v-else</span>&gt;</span>No items found.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<p>这些都可以在渲染函数中用 JavaScript 的 <code>if</code>/<code>else</code> 和 <code>map</code> 来重写：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><code class="hljs js"><span class="hljs-attr">props</span>: [<span class="hljs-string">&#x27;items&#x27;</span>],<br><span class="hljs-attr">render</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params">createElement</span>) &#123;<br>  <span class="hljs-keyword">if</span> (<span class="hljs-variable language_">this</span>.<span class="hljs-property">items</span>.<span class="hljs-property">length</span>) &#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-title function_">createElement</span>(<span class="hljs-string">&#x27;ul&#x27;</span>, <span class="hljs-variable language_">this</span>.<span class="hljs-property">items</span>.<span class="hljs-title function_">map</span>(<span class="hljs-keyword">function</span> (<span class="hljs-params">item</span>) &#123;<br>      <span class="hljs-keyword">return</span> <span class="hljs-title function_">createElement</span>(<span class="hljs-string">&#x27;li&#x27;</span>, item.<span class="hljs-property">name</span>)<br>    &#125;))<br>  &#125; <span class="hljs-keyword">else</span> &#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-title function_">createElement</span>(<span class="hljs-string">&#x27;p&#x27;</span>, <span class="hljs-string">&#x27;No items found.&#x27;</span>)<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h3 id="v-model"><a href="#v-model" class="headerlink" title="v-model"></a><code>v-model</code></h3><p>渲染函数中没有与 <code>v-model</code> 的直接对应——你必须自己实现相应的逻辑：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><code class="hljs js"><span class="hljs-attr">props</span>: [<span class="hljs-string">&#x27;value&#x27;</span>],<br><span class="hljs-attr">render</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params">createElement</span>) &#123;<br>  <span class="hljs-keyword">var</span> self = <span class="hljs-variable language_">this</span><br>  <span class="hljs-keyword">return</span> <span class="hljs-title function_">createElement</span>(<span class="hljs-string">&#x27;input&#x27;</span>, &#123;<br>    <span class="hljs-attr">domProps</span>: &#123;<br>      <span class="hljs-attr">value</span>: self.<span class="hljs-property">value</span><br>    &#125;,<br>    <span class="hljs-attr">on</span>: &#123;<br>      <span class="hljs-attr">input</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params">event</span>) &#123;<br>        self.$emit(<span class="hljs-string">&#x27;input&#x27;</span>, event.<span class="hljs-property">target</span>.<span class="hljs-property">value</span>)<br>      &#125;<br>    &#125;<br>  &#125;)<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>这就是深入底层的代价，但与 <code>v-model</code> 相比，这可以让你更好地控制交互细节。</p>
+<h3 id="事件-amp-按键修饰符"><a href="#事件-amp-按键修饰符" class="headerlink" title="事件 &amp; 按键修饰符"></a>事件 &amp; 按键修饰符</h3><p>对于 <code>.passive</code>、<code>.capture</code> 和 <code>.once</code> 这些事件修饰符，Vue 提供了相应的前缀可以用于 <code>on</code>：</p>
+<table>
+<thead>
+<tr>
+<th>修饰符</th>
+<th>前缀</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>.passive</code></td>
+<td><code>&amp;</code></td>
+</tr>
+<tr>
+<td><code>.capture</code></td>
+<td><code>!</code></td>
+</tr>
+<tr>
+<td><code>.once</code></td>
+<td><code>~</code></td>
+</tr>
+<tr>
+<td><code>.capture.once</code> 或<br><code>.once.capture</code></td>
+<td><code>~!</code></td>
+</tr>
+</tbody>
+</table>
+<p>例如：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-attr">on</span>: &#123;<br>  <span class="hljs-string">&#x27;!click&#x27;</span>: <span class="hljs-variable language_">this</span>.<span class="hljs-property">doThisInCapturingMode</span>,<br>  <span class="hljs-string">&#x27;~keyup&#x27;</span>: <span class="hljs-variable language_">this</span>.<span class="hljs-property">doThisOnce</span>,<br>  <span class="hljs-string">&#x27;~!mouseover&#x27;</span>: <span class="hljs-variable language_">this</span>.<span class="hljs-property">doThisOnceInCapturingMode</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<p>对于所有其它的修饰符，私有前缀都不是必须的，因为你可以在事件处理函数中使用事件方法：</p>
+<table>
+<thead>
+<tr>
+<th>修饰符</th>
+<th>处理函数中的等价操作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>.stop</code></td>
+<td><code>event.stopPropagation()</code></td>
+</tr>
+<tr>
+<td><code>.prevent</code></td>
+<td><code>event.preventDefault()</code></td>
+</tr>
+<tr>
+<td><code>.self</code></td>
+<td><code>if (event.target !== event.currentTarget) return</code></td>
+</tr>
+<tr>
+<td>按键：<br><code>.enter</code>, <code>.13</code></td>
+<td><code>if (event.keyCode !== 13) return</code> (对于别的按键修饰符来说，可将 <code>13</code> 改为<a target="_blank" rel="noopener" href="http://keycode.info/">另一个按键码</a>)</td>
+</tr>
+<tr>
+<td>修饰键：<br><code>.ctrl</code>, <code>.alt</code>, <code>.shift</code>, <code>.meta</code></td>
+<td><code>if (!event.ctrlKey) return</code> (将 <code>ctrlKey</code> 分别修改为 <code>altKey</code>、<code>shiftKey</code> 或者 <code>metaKey</code>)</td>
+</tr>
+</tbody>
+</table>
+<p>这里是一个使用所有修饰符的例子：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-attr">on</span>: &#123;<br>  <span class="hljs-attr">keyup</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params">event</span>) &#123;<br>    <span class="hljs-comment">// 如果触发事件的元素不是事件绑定的元素</span><br>    <span class="hljs-comment">// 则返回</span><br>    <span class="hljs-keyword">if</span> (event.<span class="hljs-property">target</span> !== event.<span class="hljs-property">currentTarget</span>) <span class="hljs-keyword">return</span><br>    <span class="hljs-comment">// 如果按下去的不是 enter 键或者</span><br>    <span class="hljs-comment">// 没有同时按下 shift 键</span><br>    <span class="hljs-comment">// 则返回</span><br>    <span class="hljs-keyword">if</span> (!event.<span class="hljs-property">shiftKey</span> || event.<span class="hljs-property">keyCode</span> !== <span class="hljs-number">13</span>) <span class="hljs-keyword">return</span><br>    <span class="hljs-comment">// 阻止 事件冒泡</span><br>    event.<span class="hljs-title function_">stopPropagation</span>()<br>    <span class="hljs-comment">// 阻止该元素默认的 keyup 事件</span><br>    event.<span class="hljs-title function_">preventDefault</span>()<br>    <span class="hljs-comment">// ...</span><br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h3 id="插槽"><a href="#插槽" class="headerlink" title="插槽"></a>插槽</h3><p>你可以通过 <a href="../api/#vm-slots"><code>this.$slots</code></a> 访问静态插槽的内容，每个插槽都是一个 VNode 数组：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><code class="hljs js"><span class="hljs-attr">render</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params">createElement</span>) &#123;<br>  <span class="hljs-comment">// `&lt;div&gt;&lt;slot&gt;&lt;/slot&gt;&lt;/div&gt;`</span><br>  <span class="hljs-keyword">return</span> <span class="hljs-title function_">createElement</span>(<span class="hljs-string">&#x27;div&#x27;</span>, <span class="hljs-variable language_">this</span>.<span class="hljs-property">$slots</span>.<span class="hljs-property">default</span>)<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>也可以通过 <a href="../api/#vm-scopedSlots"><code>this.$scopedSlots</code></a> 访问作用域插槽，每个作用域插槽都是一个返回若干 VNode 的函数：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><code class="hljs js"><span class="hljs-attr">props</span>: [<span class="hljs-string">&#x27;message&#x27;</span>],<br><span class="hljs-attr">render</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params">createElement</span>) &#123;<br>  <span class="hljs-comment">// `&lt;div&gt;&lt;slot :text=&quot;message&quot;&gt;&lt;/slot&gt;&lt;/div&gt;`</span><br>  <span class="hljs-keyword">return</span> <span class="hljs-title function_">createElement</span>(<span class="hljs-string">&#x27;div&#x27;</span>, [<br>    <span class="hljs-variable language_">this</span>.<span class="hljs-property">$scopedSlots</span>.<span class="hljs-title function_">default</span>(&#123;<br>      <span class="hljs-attr">text</span>: <span class="hljs-variable language_">this</span>.<span class="hljs-property">message</span><br>    &#125;)<br>  ])<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>如果要用渲染函数向子组件中传递作用域插槽，可以利用 VNode 数据对象中的 <code>scopedSlots</code> 字段：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><code class="hljs js"><span class="hljs-attr">render</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params">createElement</span>) &#123;<br>  <span class="hljs-comment">// `&lt;div&gt;&lt;child v-slot=&quot;props&quot;&gt;&lt;span&gt;&#123;&#123; props.text &#125;&#125;&lt;/span&gt;&lt;/child&gt;&lt;/div&gt;`</span><br>  <span class="hljs-keyword">return</span> <span class="hljs-title function_">createElement</span>(<span class="hljs-string">&#x27;div&#x27;</span>, [<br>    <span class="hljs-title function_">createElement</span>(<span class="hljs-string">&#x27;child&#x27;</span>, &#123;<br>      <span class="hljs-comment">// 在数据对象中传递 `scopedSlots`</span><br>      <span class="hljs-comment">// 格式为 &#123; name: props =&gt; VNode | Array&lt;VNode&gt; &#125;</span><br>      <span class="hljs-attr">scopedSlots</span>: &#123;<br>        <span class="hljs-attr">default</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params">props</span>) &#123;<br>          <span class="hljs-keyword">return</span> <span class="hljs-title function_">createElement</span>(<span class="hljs-string">&#x27;span&#x27;</span>, props.<span class="hljs-property">text</span>)<br>        &#125;<br>      &#125;<br>    &#125;)<br>  ])<br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="JSX"><a href="#JSX" class="headerlink" title="JSX"></a>JSX</h2><p>如果你写了很多 <code>render</code> 函数，可能会觉得下面这样的代码写起来很痛苦：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><code class="hljs js"><span class="hljs-title function_">createElement</span>(<br>  <span class="hljs-string">&#x27;anchored-heading&#x27;</span>, &#123;<br>    <span class="hljs-attr">props</span>: &#123;<br>      <span class="hljs-attr">level</span>: <span class="hljs-number">1</span><br>    &#125;<br>  &#125;, [<br>    <span class="hljs-title function_">createElement</span>(<span class="hljs-string">&#x27;span&#x27;</span>, <span class="hljs-string">&#x27;Hello&#x27;</span>),<br>    <span class="hljs-string">&#x27; world!&#x27;</span><br>  ]<br>)<br></code></pre></td></tr></table></figure>
+<p>特别是对应的模板如此简单的情况下：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">anchored-heading</span> <span class="hljs-attr">:level</span>=<span class="hljs-string">&quot;1&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>Hello<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span> world!<br><span class="hljs-tag">&lt;/<span class="hljs-name">anchored-heading</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<p>这就是为什么会有一个 <a target="_blank" rel="noopener" href="https://github.com/vuejs/jsx">Babel 插件</a>，用于在 Vue 中使用 JSX 语法，它可以让我们回到更接近于模板的语法上。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">import</span> <span class="hljs-title class_">AnchoredHeading</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./AnchoredHeading.vue&#x27;</span><br><br><span class="hljs-keyword">new</span> <span class="hljs-title class_">Vue</span>(&#123;<br>  <span class="hljs-attr">el</span>: <span class="hljs-string">&#x27;#demo&#x27;</span>,<br>  <span class="hljs-attr">render</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params">h</span>) &#123;<br>    <span class="hljs-keyword">return</span> (<br>      <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">AnchoredHeading</span> <span class="hljs-attr">level</span>=<span class="hljs-string">&#123;1&#125;</span>&gt;</span></span><br><span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>Hello<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span> world!</span><br><span class="language-xml">      <span class="hljs-tag">&lt;/<span class="hljs-name">AnchoredHeading</span>&gt;</span></span><br>    )<br>  &#125;<br>&#125;)<br></code></pre></td></tr></table></figure>
+<p class="tip">将 <code>h</code> 作为 <code>createElement</code> 的别名是 Vue 生态系统中的一个通用惯例，实际上也是 JSX 所要求的。从 Vue 的 Babel 插件的 <a target="_blank" rel="noopener" href="https://github.com/vuejs/babel-plugin-transform-vue-jsx#h-auto-injection">3.4.0 版本</a>开始，我们会在以 ES2015 语法声明的含有 JSX 的任何方法和 getter 中 (不是函数或箭头函数中) 自动注入 <code>const h = this.$createElement</code>，这样你就可以去掉 <code>(h)</code> 参数了。对于更早版本的插件，如果 <code>h</code> 在当前作用域中不可用，应用会抛错。</p>
+
+<p>要了解更多关于 JSX 如何映射到 JavaScript，请阅读<a target="_blank" rel="noopener" href="https://github.com/vuejs/jsx#installation">使用文档</a>。</p>
+<h2 id="函数式组件"><a href="#函数式组件" class="headerlink" title="函数式组件"></a>函数式组件</h2><p>之前创建的锚点标题组件是比较简单，没有管理任何状态，也没有监听任何传递给它的状态，也没有生命周期方法。实际上，它只是一个接受一些 prop 的函数。在这样的场景下，我们可以将组件标记为 <code>functional</code>，这意味它无状态 (没有<a href="../api/#选项-数据">响应式数据</a>)，也没有实例 (没有 <code>this</code> 上下文)。一个<strong>函数式组件</strong>就像这样：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><code class="hljs js"><span class="hljs-title class_">Vue</span>.<span class="hljs-title function_">component</span>(<span class="hljs-string">&#x27;my-component&#x27;</span>, &#123;<br>  <span class="hljs-attr">functional</span>: <span class="hljs-literal">true</span>,<br>  <span class="hljs-comment">// Props 是可选的</span><br>  <span class="hljs-attr">props</span>: &#123;<br>    <span class="hljs-comment">// ...</span><br>  &#125;,<br>  <span class="hljs-comment">// 为了弥补缺少的实例</span><br>  <span class="hljs-comment">// 提供第二个参数作为上下文</span><br>  <span class="hljs-attr">render</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params">createElement, context</span>) &#123;<br>    <span class="hljs-comment">// ...</span><br>  &#125;<br>&#125;)<br></code></pre></td></tr></table></figure>
+<blockquote>
+<p>注意：在 2.3.0 之前的版本中，如果一个函数式组件想要接收 prop，则 <code>props</code> 选项是必须的。在 2.3.0 或以上的版本中，你可以省略 <code>props</code> 选项，所有组件上的 attribute 都会被自动隐式解析为 prop。</p>
+<p>当使用函数式组件时，该引用将会是 HTMLElement，因为他们是无状态的也是无实例的。</p>
+</blockquote>
+<p>在 2.5.0 及以上版本中，如果你使用了<a href="single-file-components.html">单文件组件</a>，那么基于模板的函数式组件可以这样声明：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">template</span> <span class="hljs-attr">functional</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<p>组件需要的一切都是通过 <code>context</code> 参数传递，它是一个包括如下字段的对象：</p>
+<ul>
+<li><code>props</code>：提供所有 prop 的对象</li>
+<li><code>children</code>：VNode 子节点的数组</li>
+<li><code>slots</code>：一个函数，返回了包含所有插槽的对象</li>
+<li><code>scopedSlots</code>：(2.6.0+) 一个暴露传入的作用域插槽的对象。也以函数形式暴露普通插槽。</li>
+<li><code>data</code>：传递给组件的整个<a href="#深入数据对象">数据对象</a>，作为 <code>createElement</code> 的第二个参数传入组件</li>
+<li><code>parent</code>：对父组件的引用</li>
+<li><code>listeners</code>：(2.3.0+) 一个包含了所有父组件为当前组件注册的事件监听器的对象。这是 <code>data.on</code> 的一个别名。</li>
+<li><code>injections</code>：(2.3.0+) 如果使用了 <a href="../api/#provide-inject"><code>inject</code></a> 选项，则该对象包含了应当被注入的 property。</li>
+</ul>
+<p>在添加 <code>functional: true</code> 之后，需要更新我们的锚点标题组件的渲染函数，为其增加 <code>context</code> 参数，并将 <code>this.$slots.default</code> 更新为 <code>context.children</code>，然后将 <code>this.level</code> 更新为 <code>context.props.level</code>。</p>
+<p>因为函数式组件只是函数，所以渲染开销也低很多。</p>
+<p>在作为包装组件时它们也同样非常有用。比如，当你需要做这些时：</p>
+<ul>
+<li>程序化地在多个组件中选择一个来代为渲染；</li>
+<li>在将 <code>children</code>、<code>props</code>、<code>data</code> 传递给子组件之前操作它们。</li>
+</ul>
+<p>下面是一个 <code>smart-list</code> 组件的例子，它能根据传入 prop 的值来代为渲染更具体的组件：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> <span class="hljs-title class_">EmptyList</span> = &#123; <span class="hljs-comment">/* ... */</span> &#125;<br><span class="hljs-keyword">var</span> <span class="hljs-title class_">TableList</span> = &#123; <span class="hljs-comment">/* ... */</span> &#125;<br><span class="hljs-keyword">var</span> <span class="hljs-title class_">OrderedList</span> = &#123; <span class="hljs-comment">/* ... */</span> &#125;<br><span class="hljs-keyword">var</span> <span class="hljs-title class_">UnorderedList</span> = &#123; <span class="hljs-comment">/* ... */</span> &#125;<br><br><span class="hljs-title class_">Vue</span>.<span class="hljs-title function_">component</span>(<span class="hljs-string">&#x27;smart-list&#x27;</span>, &#123;<br>  <span class="hljs-attr">functional</span>: <span class="hljs-literal">true</span>,<br>  <span class="hljs-attr">props</span>: &#123;<br>    <span class="hljs-attr">items</span>: &#123;<br>      <span class="hljs-attr">type</span>: <span class="hljs-title class_">Array</span>,<br>      <span class="hljs-attr">required</span>: <span class="hljs-literal">true</span><br>    &#125;,<br>    <span class="hljs-attr">isOrdered</span>: <span class="hljs-title class_">Boolean</span><br>  &#125;,<br>  <span class="hljs-attr">render</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params">createElement, context</span>) &#123;<br>    <span class="hljs-keyword">function</span> <span class="hljs-title function_">appropriateListComponent</span> () &#123;<br>      <span class="hljs-keyword">var</span> items = context.<span class="hljs-property">props</span>.<span class="hljs-property">items</span><br><br>      <span class="hljs-keyword">if</span> (items.<span class="hljs-property">length</span> === <span class="hljs-number">0</span>)           <span class="hljs-keyword">return</span> <span class="hljs-title class_">EmptyList</span><br>      <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> items[<span class="hljs-number">0</span>] === <span class="hljs-string">&#x27;object&#x27;</span>) <span class="hljs-keyword">return</span> <span class="hljs-title class_">TableList</span><br>      <span class="hljs-keyword">if</span> (context.<span class="hljs-property">props</span>.<span class="hljs-property">isOrdered</span>)      <span class="hljs-keyword">return</span> <span class="hljs-title class_">OrderedList</span><br><br>      <span class="hljs-keyword">return</span> <span class="hljs-title class_">UnorderedList</span><br>    &#125;<br><br>    <span class="hljs-keyword">return</span> <span class="hljs-title function_">createElement</span>(<br>      <span class="hljs-title function_">appropriateListComponent</span>(),<br>      context.<span class="hljs-property">data</span>,<br>      context.<span class="hljs-property">children</span><br>    )<br>  &#125;<br>&#125;)<br></code></pre></td></tr></table></figure>
+<h3 id="向子元素或子组件传递-attribute-和事件"><a href="#向子元素或子组件传递-attribute-和事件" class="headerlink" title="向子元素或子组件传递 attribute 和事件"></a>向子元素或子组件传递 attribute 和事件</h3><p>在普通组件中，没有被定义为 prop 的 attribute 会自动添加到组件的根元素上，将已有的同名 attribute 进行替换或与其进行<a href="class-and-style.html">智能合并</a>。</p>
+<p>然而函数式组件要求你显式定义该行为：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><code class="hljs js"><span class="hljs-title class_">Vue</span>.<span class="hljs-title function_">component</span>(<span class="hljs-string">&#x27;my-functional-button&#x27;</span>, &#123;<br>  <span class="hljs-attr">functional</span>: <span class="hljs-literal">true</span>,<br>  <span class="hljs-attr">render</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params">createElement, context</span>) &#123;<br>    <span class="hljs-comment">// 完全透传任何 attribute、事件监听器、子节点等。</span><br>    <span class="hljs-keyword">return</span> <span class="hljs-title function_">createElement</span>(<span class="hljs-string">&#x27;button&#x27;</span>, context.<span class="hljs-property">data</span>, context.<span class="hljs-property">children</span>)<br>  &#125;<br>&#125;)<br></code></pre></td></tr></table></figure>
+<p>通过向 <code>createElement</code> 传入 <code>context.data</code> 作为第二个参数，我们就把 <code>my-functional-button</code> 上面所有的 attribute 和事件监听器都传递下去了。事实上这是非常透明的，以至于那些事件甚至并不要求 <code>.native</code> 修饰符。</p>
+<p>如果你使用基于模板的函数式组件，那么你还需要手动添加 attribute 和监听器。因为我们可以访问到其独立的上下文内容，所以我们可以使用 <code>data.attrs</code> 传递任何 HTML attribute，也可以使用 <code>listeners</code> <em>(即 <code>data.on</code> 的别名)</em> 传递任何事件监听器。</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">template</span> <span class="hljs-attr">functional</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">button</span></span><br><span class="hljs-tag">    <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;btn btn-primary&quot;</span></span><br><span class="hljs-tag">    <span class="hljs-attr">v-bind</span>=<span class="hljs-string">&quot;data.attrs&quot;</span></span><br><span class="hljs-tag">    <span class="hljs-attr">v-on</span>=<span class="hljs-string">&quot;listeners&quot;</span></span><br><span class="hljs-tag">  &gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">slot</span>/&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<h3 id="slots-和-children-对比"><a href="#slots-和-children-对比" class="headerlink" title="slots() 和 children 对比"></a><code>slots()</code> 和 <code>children</code> 对比</h3><p>你可能想知道为什么同时需要 <code>slots()</code> 和 <code>children</code>。<code>slots().default</code> 不是和 <code>children</code> 类似的吗？在一些场景中，是这样——但如果是如下的带有子节点的函数式组件呢？</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">my-functional-component</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">v-slot:foo</span>&gt;</span><br>    first<br>  <span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>second<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">my-functional-component</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<p>对于这个组件，<code>children</code> 会给你两个段落标签，而 <code>slots().default</code> 只会传递第二个匿名段落标签，<code>slots().foo</code> 会传递第一个具名段落标签。同时拥有 <code>children</code> 和 <code>slots()</code>，因此你可以选择让组件感知某个插槽机制，还是简单地通过传递 <code>children</code>，移交给其它组件去处理。</p>
+<h2 id="模板编译"><a href="#模板编译" class="headerlink" title="模板编译"></a>模板编译</h2><p>你可能会有兴趣知道，Vue 的模板实际上被编译成了渲染函数。这是一个实现细节，通常不需要关心。但如果你想看看模板的功能具体是怎样被编译的，可能会发现会非常有意思。下面是一个使用 <code>Vue.compile</code> 来实时编译模板字符串的简单示例：</p>
+<iframe src="https://codesandbox.io/embed/github/vuejs/v2.vuejs.org/tree/master/src/v2/examples/vue-20-template-compilation?codemirror=1&hidedevtools=1&hidenavigation=1&theme=light&view=preview" style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;" title="vue-20-template-compilation" allow="geolocation; microphone; camera; midi; vr; accelerometer; gyroscope; payment; ambient-light-sensor; encrypted-media; usb" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
+
+  
+  
+    <div class="guide-links">
+      
+      
+        <span>← <a href="/v2/guide/custom-directive.html">自定义指令</a></span>
+      
+      
+      
+        <span style="float: right;"><a href="/v2/guide/plugins.html">插件</a> →</span>
+      
+    </div>
+  
+  <div class="footer">
+      <script src="//m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
+<div id="bsa-native"></div>
+<script>
+_bsa.init('custom', 'CKYD62QM', 'placement:vuejsorg',
+  {
+    target: '#bsa-native',
+    template: '<a class="native-box" href="##statlink##"><div class="native-sponsor">Sponsor</div><div class="native-text"><strong>##company##</strong> — ##description##</div></a>'
+  }
+);
+</script>
+
+
+    发现错误？想参与编辑？
+    <!-- TODO: update when v3 becomes the main docsite -->
+    <a href="https://github.com/vuejs/cn.vuejs.org/blob/master/src/v2/guide/render-function.md" rel="noopener" target="_blank">
+      在 GitHub 上编辑此页！
+    </a>
+    <!-- Deployed on
+    <a href="https://url.netlify.com/HJ8X2mxP8" rel="noopener" target="_blank">
+      Netlify
+    </a>. -->
+  </div>
+</div>
+
+      </div>
+      <script src="/js/smooth-scroll.min.js"></script>
+    
+
+    <!-- main custom script for sidebars, version selects etc. -->
+    <script src="/js/css.escape.js"></script>
+    <script src="/js/common.js"></script>
+
+    <!-- search -->
+    <link href="//code.bdstatic.com/npm/docsearch.js@1.5.0/dist/cdn/docsearch.min.css" rel='stylesheet' type='text/css'>
+    
+<link rel="stylesheet" href="/css/search.css">
+
+    <script src="//code.bdstatic.com/npm/docsearch.js@1.5.0/dist/cdn/docsearch.min.js"></script>
+    <script>
+    [
+      '#search-query-nav',
+      '#search-query-sidebar',
+      '#search-query-menu'
+    ].forEach(function (selector) {
+      if (!document.querySelector(selector)) return
+      // search index defaults to v2
+      var match = window.location.pathname.match(/^\/(v\d+)/)
+      var version = match ? match[1] : 'v2'
+      docsearch({
+        appId: 'BH4D9OD16A',
+        apiKey: '5638280abff9d207417bb03be05f0b25',
+        indexName: 'vuejs_cn2',
+        inputSelector: selector,
+        algoliaOptions: { facetFilters: ["version:" + version] },
+        autocompleteOptions: { hint: false, appendTo: 'body'}
+      })
+    })
+
+    // unregister service worker
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.getRegistrations().then(function(registrations) {
+        for(let registration of registrations) {
+          registration.unregister()
+        }
+      })
+    }
+    </script>
+  </body>
+</html>

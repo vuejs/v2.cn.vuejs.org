@@ -1,0 +1,672 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <title>表单校验 — Vue.js</title>
+    <meta charset="utf-8">
+    <meta name="description" content="Vue.js - The Progressive JavaScript Framework">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- TODO: update when v3 becomes the main docsite -->
+    <link rel="alternate" hreflang="x-default" href="https://vuejs.org/v2/cookbook/form-validation.html">
+    <link rel="alternate" hreflang="zh" href="https://cn.vuejs.org/v2/cookbook/form-validation.html">
+    <link rel="alternate" hreflang="ja" href="https://jp.vuejs.org/v2/cookbook/form-validation.html">
+    <link rel="alternate" hreflang="ru" href="https://ru.vuejs.org/v2/cookbook/form-validation.html">
+    <link rel="alternate" hreflang="ko" href="https://kr.vuejs.org/v2/cookbook/form-validation.html">
+    <link rel="alternate" hreflang="pt-BR" href="https://br.vuejs.org/v2/cookbook/form-validation.html">
+    <link rel="alternate" hreflang="fr" href="https://fr.vuejs.org/v2/cookbook/form-validation.html">
+    <link rel="alternate" hreflang="es" href="https://es.vuejs.org/v2/cookbook/form-validation.html">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="表单校验 — Vue.js">
+    <meta property="og:description" content="Vue.js - The Progressive JavaScript Framework">
+    <meta property="og:image" content="https://cn.vuejs.org/images/logo.png">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="表单校验 — Vue.js">
+    <meta name="twitter:description" content="Vue.js - The Progressive JavaScript Framework">
+    <meta name="twitter:image" content="https://cn.vuejs.org/images/logo.png">
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/images/icons/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/images/icons/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/images/icons/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/images/icons/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/images/icons/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/images/icons/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/images/icons/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/images/icons/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/icons/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/images/icons/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/images/icons/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/icons/favicon-16x16.png">
+    <meta name="msapplication-TileImage" content="/images/icons/ms-icon-144x144.png">
+    <link rel="icon" href="/images/logo.svg">
+
+    <meta name="msapplication-TileColor" content="#4fc08d">
+    <meta name="theme-color" content="#4fc08d">
+
+    <meta name="msapplication-config" content="browserconfig.xml">
+    <link rel="manifest" href="/manifest.json">
+
+    <!-- <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin> -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com" rel="preconnect" crossorigin> -->
+
+    <!-- <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600|Roboto Mono&display=swap" rel="stylesheet"> -->
+    <!-- <link href="https://fonts.googleapis.com/css?family=Dosis:500&text=Vue.js&display=swap" rel="stylesheet"> -->
+
+    <link href="//code.bdstatic.com/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <!-- main page styles -->
+    
+<link rel="stylesheet" href="/css/page.css">
+
+
+    <!-- this needs to be loaded before guide's inline scripts -->
+    <script src="/js/vue.js"></script>
+
+    
+
+    <script>
+      Vue.config.productionTip = false
+      window.PAGE_TYPE = "cookbook"
+    </script>
+
+    <!-- ga -->
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-46852172-3', 'cn.vuejs.org');
+      ga('send', 'pageview');
+    </script>
+
+    <!-- vimeo analytics -->
+    <!-- <script type="text/javascript" defer="defer" src="https://extend.vimeocdn.com/ga/72160148.js"></script> -->
+<meta name="generator" content="Hexo 6.2.0"><link rel="alternate" href="/atom.xml" title="Vue.js" type="application/atom+xml">
+</head>
+  <body class="docs">
+
+    
+
+    <div id="mobile-bar" >
+      <a class="menu-button"></a>
+      <a class="logo" href="/"></a>
+    </div>
+    <div>
+  <div id="v3-banner">
+    <!-- TODO: update when v3 becomes the main docsite -->
+    <span class="hidden-sm">您在浏览的是 v2.x 及更早版本的文档。</span
+    >v3.x 的文档<a target="_blank" rel="noopener" href="https://v3.cn.vuejs.org/">在这里</a>。
+  </div>
+
+  <header id="header">
+    <a id="logo" href="/">
+      <img src="/images/logo.svg" alt="vue logo">
+      <span>Vue.js</span>
+    </a>
+    <ul id="nav">
+      <li>
+  <form id="search-form">
+    <input type="text" id="search-query-nav" class="search-query st-default-search-input" aria-label="搜索">
+  </form>
+</li>
+<li class="nav-dropdown-container learn">
+  <a class="nav-link current">学习</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li><h4>文档</h4></li>
+    <li>
+      <ul>
+        <li><a href="/v2/guide/" class="nav-link">教程</a></li>
+        <li><a href="/v2/api/" class="nav-link">API</a></li>
+        <li><a href="/v2/style-guide/" class="nav-link">风格指南</a></li>
+        <li><a href="/v2/examples/" class="nav-link">示例</a></li>
+        <li><a href="/v2/cookbook/" class="nav-link current">Cookbook</a></li>
+      </ul>
+    </li>
+    <li><h4>视频教程</h4></li>
+    <li>
+      <ul>
+        <li>
+          <a href="https://www.vuemastery.com/courses/" class="nav-link" target="_blank" rel="sponsored noopener">
+            Vue Mastery (英文)
+          </a>
+        </li>
+        <li>
+          <a
+            href="https://vueschool.io/?friend=vuejs&utm_source=Vuejs.org&utm_medium=Link&utm_content=Navbar%20Dropdown"
+            class="nav-link"
+            target="_blank" rel="sponsored noopener"
+          >
+            Vue School (英文)
+          </a>
+        </li>
+        <!-- start: special logic for cn -->
+        <li>
+          <a href="https://learning.dcloud.io/" class="nav-link" target="_blank" rel="sponsored noopener">
+            DCloud 视频教程
+          </a>
+        </li>
+        <!-- end: special logic for cn -->
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li class="nav-dropdown-container ecosystem">
+  <a class="nav-link">生态系统</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li><h4>帮助</h4></li>
+    <li><ul>
+      <li><a href="https://forum.vuejs.org/" class="nav-link" target="_blank" rel="noopener">论坛</a></li>
+      <li><a href="https://chat.vuejs.org/" class="nav-link" target="_blank" rel="noopener">聊天室</a></li>
+      <li><a href="https://events.vuejs.org/meetups/" class="nav-link" target="_blank" rel="noopener">聚会</a></li>
+    </ul></li>
+    <li><h4>工具</h4></li>
+    <li>
+      <ul>
+        <li><a href="https://github.com/vuejs/vue-devtools" class="nav-link" target="_blank" rel="noopener">Devtools</a></li>
+        <li><a href="https://cli.vuejs.org/zh/" class="nav-link" target="_blank" rel="noopener">Vue CLI</a></li>
+        <li><a href="https://vue-loader.vuejs.org/zh/" class="nav-link" target="_blank" rel="noopener">Vue Loader</a></li>
+      </ul>
+    </li>
+    <li><h4>核心插件</h4></li>
+    <li><ul>
+      <li><a href="https://router.vuejs.org/zh/" class="nav-link" target="_blank" rel="noopener">Vue Router</a></li>
+      <li><a href="https://vuex.vuejs.org/zh/" class="nav-link" target="_blank" rel="noopener">Vuex</a></li>
+      <li><a href="https://v2.ssr.vuejs.org/zh/" class="nav-link" target="_blank" rel="noopener">Vue 服务端渲染</a></li>
+    </ul></li>
+    <li><h4>信息</h4></li>
+    <li><ul>
+      <li><a href="https://news.vuejs.org" class="nav-link" target="_blank" rel="noopener">周刊</a></li>
+      <li><a href="https://github.com/vuejs/vue/projects/6" class="nav-link" target="_blank" rel="noopener">Roadmap</a></li>
+      <li><a href="https://events.vuejs.org/" class="nav-link" target="_blank" rel="noopener">活动</a></li>
+      <li><a href="https://twitter.com/vuejs" class="nav-link" target="_blank" rel="noopener">Twitter</a></li>
+      <li><a href="https://medium.com/the-vue-point" class="nav-link" target="_blank" rel="noopener">博客</a></li>
+      <li><a href="https://vuejobs.com/?ref=vuejs" class="nav-link" target="_blank" rel="noopener">工作</a></li>
+      <li><a href="https://dev.to/t/vue" class="nav-link" target="_blank" rel="noopener">DEV 社区</a></li>
+    </ul></li>
+  </ul>
+</li>
+
+<li>
+  <a href="/v2/guide/team.html" class="nav-link team">团队</a>
+</li>
+<li class="nav-dropdown-container resources">
+  <a href="#" class="nav-link">资源列表</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li><a href="/resources/partners.html" class="nav-link">合作伙伴</a></li>
+    <li><a href="/resources/themes.html" class="nav-link">主题</a></li>
+    <li><a href="https://github.com/vuejs/awesome-vue" class="nav-link" target="_blank" rel="noopener">Awesome Vue</a></li>
+    <li><a href="https://awesomejs.dev/for/vue/" class="nav-link" target="_blank" rel="noopener">浏览和 Vue 相关的包</a></li>
+  </ul>
+</li>
+
+<!-- <li>
+  <a href="/partners" class="nav-link ">Partners</a>
+</li> -->
+<li class="nav-dropdown-container support-vue">
+  <a href="/support-vuejs/" class="nav-link">支持 Vue</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li><a href="/support-vuejs/#One-time-Donations" class="nav-link">一次性赞助</a></li>
+    <li><a href="/support-vuejs/#Recurring-Pledges" class="nav-link">周期性赞助</a></li>
+    <!-- start: special logic for cn -->
+    <li><a target="_blank" href="https://www.smallsticker.com/%E8%B4%B4%E7%BA%B8/vue.html" rel="noopener noopener" class="nav-link">贴纸</a></li>
+    <li><a target="_blank" href="https://osholic.com/?utm_source=vue&utm_medium=dropdown" rel="noopener noopener" class="nav-link">周边</a></li>
+    <!-- end: special logic for cn -->
+    <li><a href="https://vue.threadless.com" target="_blank" rel="noopener" class="nav-link">T 恤商店</a></li>
+  </ul>
+</li>
+
+<li class="nav-dropdown-container language">
+  <a class="nav-link">多语言</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li><a target="_blank" rel="noopener" href="https://v2.vuejs.org/v2/cookbook/form-validation.html" class="nav-link">English</a></li>
+    <li><a target="_blank" rel="noopener" href="https://jp.vuejs.org/v2/cookbook/form-validation.html" class="nav-link">日本語</a></li>
+    <li><a target="_blank" rel="noopener" href="https://ru.vuejs.org/v2/cookbook/form-validation.html" class="nav-link">Русский</a></li>
+    <li><a target="_blank" rel="noopener" href="https://kr.vuejs.org/v2/cookbook/form-validation.html" class="nav-link">한국어</a></li>
+    <li><a target="_blank" rel="noopener" href="https://br.vuejs.org/v2/cookbook/form-validation.html" class="nav-link">Português</a></li>
+    <li><a target="_blank" rel="noopener" href="https://fr.vuejs.org/v2/cookbook/form-validation.html" class="nav-link">Français</a></li>
+    <li><a target="_blank" rel="noopener" href="https://vi.vuejs.org/v2/cookbook/form-validation.html" class="nav-link">Tiếng Việt</a></li>
+    <li><a target="_blank" rel="noopener" href="https://es.vuejs.org/v2/cookbook/form-validation.html" class="nav-link">Español</a></li>
+    <li><a target="_blank" rel="noopener" href="https://docs.vuejs.id/v2/cookbook/form-validation.html" class="nav-link">Bahasa Indonesia</a></li>
+  </ul>
+</li>
+
+<!-- start: special logic for cn -->
+<!-- TODO: update when v3 becomes the main docsite -->
+<li><a href="https://github.com/vuejs/cn.vuejs.org/" target="_blank" class="nav-link contribute">参与翻译</a></li>
+<!-- end: special logic for cn -->
+
+    </ul>
+  </header>
+</div>
+
+    
+      <div id="main" class="fix-sidebar">
+        
+  
+
+<div class="sidebar">
+  <div class="sidebar-inner">
+    
+    <div class="list">
+      
+<div id="sidebar-sponsors-special">
+  <div class="main-sponsor">
+    <!-- start: special logic for cn -->
+    <span>特别赞助商</span>
+    <div>
+      <a
+        href="https://www.dcloud.io/?hmsr=vuejsorg&hmpl=&hmcu=&hmkw=&hmci="
+        target="_blank"
+        rel="sponsored noopener"
+        class="logo"
+      >
+        <img id="s-HBuilder" alt="HBuilder" />
+        <script>
+          (function(){
+            var el = document.getElementById("s-HBuilder");
+            var adImg = "/images/dcloud1.png";
+            var altImg = "/images/dcloud2.png";
+            var img = "https://sponsors.vuejs.org/images/hbuilder.png";
+            el.src = (altImg && Math.random() >= 0.5 ? altImg : (adImg || img));
+          })()
+        </script>
+      </a>
+    </div>
+    <div>
+      <a
+        href="https://juejin.cn/frontend?utm_source=vue&utm_campaign=sponsor"
+        target="_blank"
+        rel="sponsored noopener"
+        class="logo"
+      >
+        <img id="s-稀土掘金技术社区" alt="稀土掘金技术社区" />
+        <script>
+          (function(){
+            var el = document.getElementById("s-稀土掘金技术社区");
+            var adImg = null;
+            var altImg = null;
+            var img = "https://sponsors.vuejs.org/images/xitujuejinjishushequ.png";
+            el.src = (altImg && Math.random() >= 0.5 ? altImg : (adImg || img));
+          })()
+        </script>
+      </a>
+    </div>
+    <!-- end: special logic for cn -->
+  </div>
+</div>
+<!--
+<div id="sidebar-sponsors-platinum-left">
+  <div class="main-sponsor">
+    <span>白金赞助商</span>
+    <div>
+    <a href="https://www.vuemastery.com/" target="_blank" rel="sponsored noopener" class="logo">
+      <img src="https://sponsors.vuejs.org/images/vuemastery.png" alt="VueMastery">
+    </a>
+    <a href="https://vueschool.io/?utm_source=Vuejs.org&utm_medium=Banner&utm_campaign=Sponsored%20Banner&utm_content=V1" target="_blank" rel="sponsored noopener" class="logo">
+      <img src="https://sponsors.vuejs.org/images/vueschool.png" alt="VueSchool">
+    </a>
+    <a href="https://vehikl.com/" target="_blank" rel="sponsored noopener" class="logo">
+      <img src="https://sponsors.vuejs.org/images/vehikl.png" alt="Vehikl">
+    </a>
+    <a href="https://passionatepeople.io/" target="_blank" rel="sponsored noopener" class="logo">
+      <img src="https://sponsors.vuejs.org/images/passionate_people.png" alt="Passionate People">
+    </a>
+    <a href="https://www.storyblok.com" target="_blank" rel="sponsored noopener" class="logo">
+      <img src="https://sponsors.vuejs.org/images/storyblok.png" alt="Storyblok">
+    </a>
+    <a href="https://ionicframework.com/vue?utm_source=partner&utm_medium=referral&utm_campaign=vuesponsorship&utm_content=vuedocs" target="_blank" rel="sponsored noopener" class="logo">
+      <img src="https://sponsors.vuejs.org/images/ionic.png?v2" alt="Ionic">
+    </a>
+    <a href="https://nuxtjs.org/" target="_blank" rel="sponsored noopener" class="logo">
+      <img src="https://sponsors.vuejs.org/images/nuxt.png" alt="Nuxt">
+    </a>
+    <a href="https://www.refurbed.org/?utm_source=vuejs" target="_blank" rel="sponsored noopener" class="logo">
+      <img src="https://sponsors.vuejs.org/images/refurbed.png" alt="Refurbed">
+    </a>
+    <a href="https://buttercms.com/vuejs-cms/?utm_source=vuejs.org&utm_medium=banner&utm_campaign=sponsorship" target="_blank" rel="sponsored noopener" class="logo">
+      <img src="https://sponsors.vuejs.org/images/buttercms.svg" alt="ButterCMS">
+    </a>
+    <a href="https://www.sanofi.com/" target="_blank" rel="sponsored noopener" class="logo">
+      <img src="https://sponsors.vuejs.org/images/sanofi.png" alt="Sanofi">
+    </a>
+    <a href="https://code-dict.com" target="_blank" rel="sponsored noopener" class="logo">
+      <img src="https://sponsors.vuejs.org/images/codedict.svg" alt="CodeDict">
+    </a>
+    <a href="https://conf.vuejs.de/?utm_source=vuejs-vite&utm_medium=referral&utm_campaign=sponsoring" target="_blank" rel="sponsored noopener" class="logo">
+      <img src="https://sponsors.vuejs.org/images/vuejs_de_conf.svg" alt="vuejs.de Conf">
+    </a>
+    </div>
+  </div>
+  <a class="become-backer" href="/support-vuejs">
+    成为赞助者
+  </a>
+</div>
+
+-->
+
+      
+        <h2>
+          
+          Cookbook<sup class="beta">beta</sup>
+          
+        </h2>
+        <ul class="menu-root">
+  
+    
+    
+    <li>
+      <a href="/v2/cookbook/index.html" class="sidebar-link">介绍</a>
+    </li>
+  
+    
+    
+    <li>
+      <a href="/v2/cookbook/adding-instance-properties.html" class="sidebar-link">添加实例 property</a>
+    </li>
+  
+    
+    
+    <li>
+      <a href="/v2/cookbook/form-validation.html" class="sidebar-link current">表单校验</a>
+    </li>
+  
+    
+    
+    <li>
+      <a href="/v2/cookbook/editable-svg-icons.html" class="sidebar-link">可编辑的 SVG 图标系统</a>
+    </li>
+  
+    
+    
+    <li>
+      <a href="/v2/cookbook/serverless-blog.html" class="sidebar-link">创建一个基于 CMS 的博客</a>
+    </li>
+  
+    
+    
+    <li>
+      <a href="/v2/cookbook/unit-testing-vue-components.html" class="sidebar-link">Vue 组件的单元测试</a>
+    </li>
+  
+    
+    
+    <li>
+      <a href="/v2/cookbook/creating-custom-scroll-directives.html" class="sidebar-link">创建自定义滚动指令</a>
+    </li>
+  
+    
+    
+    <li>
+      <a href="/v2/cookbook/debugging-in-vscode.html" class="sidebar-link">在 VS Code 中调试</a>
+    </li>
+  
+    
+    
+    <li>
+      <a href="/v2/cookbook/using-axios-to-consume-apis.html" class="sidebar-link">使用 axios 访问 API</a>
+    </li>
+  
+    
+    
+    <li>
+      <a href="/v2/cookbook/avoiding-memory-leaks.html" class="sidebar-link">避免内存泄漏</a>
+    </li>
+  
+    
+    
+    <li>
+      <a href="/v2/cookbook/client-side-storage.html" class="sidebar-link">客户端存储</a>
+    </li>
+  
+    
+    
+    <li>
+      <a href="/v2/cookbook/packaging-sfc-for-npm.html" class="sidebar-link">Packaging Vue Components for npm</a>
+    </li>
+  
+    
+    
+    <li>
+      <a href="/v2/cookbook/dockerize-vuejs-app.html" class="sidebar-link">Dockerize Vue.js App</a>
+    </li>
+  
+    
+    
+    <li>
+      <a href="/v2/cookbook/practical-use-of-scoped-slots.html" class="sidebar-link">Practical use of scoped slots with GoogleMaps</a>
+    </li>
+  
+</ul>
+
+      
+    </div>
+  </div>
+</div>
+<!--
+
+<div id="sidebar-sponsors-platinum-right">
+  <div class="main-sponsor">
+    <span>白金赞助商</span>
+    <div>
+    <a href="https://www.vuemastery.com/" target="_blank" rel="sponsored noopener" class="logo">
+      <img src="https://sponsors.vuejs.org/images/vuemastery.png" alt="VueMastery">
+    </a>
+    <a href="https://vueschool.io/?utm_source=Vuejs.org&utm_medium=Banner&utm_campaign=Sponsored%20Banner&utm_content=V1" target="_blank" rel="sponsored noopener" class="logo">
+      <img src="https://sponsors.vuejs.org/images/vueschool.png" alt="VueSchool">
+    </a>
+    <a href="https://vehikl.com/" target="_blank" rel="sponsored noopener" class="logo">
+      <img src="https://sponsors.vuejs.org/images/vehikl.png" alt="Vehikl">
+    </a>
+    <a href="https://passionatepeople.io/" target="_blank" rel="sponsored noopener" class="logo">
+      <img src="https://sponsors.vuejs.org/images/passionate_people.png" alt="Passionate People">
+    </a>
+    <a href="https://www.storyblok.com" target="_blank" rel="sponsored noopener" class="logo">
+      <img src="https://sponsors.vuejs.org/images/storyblok.png" alt="Storyblok">
+    </a>
+    <a href="https://ionicframework.com/vue?utm_source=partner&utm_medium=referral&utm_campaign=vuesponsorship&utm_content=vuedocs" target="_blank" rel="sponsored noopener" class="logo">
+      <img src="https://sponsors.vuejs.org/images/ionic.png?v2" alt="Ionic">
+    </a>
+    <a href="https://nuxtjs.org/" target="_blank" rel="sponsored noopener" class="logo">
+      <img src="https://sponsors.vuejs.org/images/nuxt.png" alt="Nuxt">
+    </a>
+    <a href="https://www.refurbed.org/?utm_source=vuejs" target="_blank" rel="sponsored noopener" class="logo">
+      <img src="https://sponsors.vuejs.org/images/refurbed.png" alt="Refurbed">
+    </a>
+    <a href="https://buttercms.com/vuejs-cms/?utm_source=vuejs.org&utm_medium=banner&utm_campaign=sponsorship" target="_blank" rel="sponsored noopener" class="logo">
+      <img src="https://sponsors.vuejs.org/images/buttercms.svg" alt="ButterCMS">
+    </a>
+    <a href="https://www.sanofi.com/" target="_blank" rel="sponsored noopener" class="logo">
+      <img src="https://sponsors.vuejs.org/images/sanofi.png" alt="Sanofi">
+    </a>
+    <a href="https://code-dict.com" target="_blank" rel="sponsored noopener" class="logo">
+      <img src="https://sponsors.vuejs.org/images/codedict.svg" alt="CodeDict">
+    </a>
+    <a href="https://conf.vuejs.de/?utm_source=vuejs-vite&utm_medium=referral&utm_campaign=sponsoring" target="_blank" rel="sponsored noopener" class="logo">
+      <img src="https://sponsors.vuejs.org/images/vuejs_de_conf.svg" alt="vuejs.de Conf">
+    </a>
+    </div>
+  </div>
+  <a class="become-backer" href="/support-vuejs">
+    成为赞助者
+  </a>
+</div>
+
+
+-->
+
+
+<div class="content cookbook with-sidebar ">
+  <p class="tip warning v3-warning">
+    您正在浏览的是 Vue 2.x 的文档。Vue 3 的文档<a href="https://cn.vuejs.org/">在这里</a>。
+  </p>
+
+  
+    
+      
+<div id="ad">
+  <!-- start: special logic for cn -->
+  <div
+    class="wwads-cn wwads-vertical"
+    data-id="53"
+    style="max-width: 200px"
+  ></div>
+  <script
+    type="text/javascript"
+    src="https://cdn.wwads.cn/js/makemoney.js"
+    async
+  ></script>
+  <!-- end: special logic for cn -->
+  <!-- <script
+    async
+    type="text/javascript"
+    src="//cdn.carbonads.com/carbon.js?serve=CEBDT27Y&placement=vuejsorg"
+    id="_carbonads_js"
+  ></script> -->
+</div>
+
+
+    
+  
+  
+    <h1>表单校验</h1>
+  
+
+  <!-- start: special logic for cn -->
+  <!-- start: special logic for cn -->
+<!-- <div class="ad-pagetop">
+  <a href="http://www.vueshop.com.cn/index.php?http_referer=vuejs" target="_blank" rel="noopener noreferrer">
+    <span class="name">VUEshop</span>
+    <span class="description">中国免费商城系统 - 搜豹商城系统 - 免费50小时 Vue 视频教程</span>
+    <span class="action">立即查看 &gt;</span>
+  </a>
+</div> -->
+<!-- end: special logic for cn -->
+
+  <!-- end: special logic for cn -->
+
+  
+    <h2 id="基本的示例"><a href="#基本的示例" class="headerlink" title="基本的示例"></a>基本的示例</h2><div class="vueschool"><a href="https://vueschool.io/lessons/vuejs-form-validation-diy?friend=vuejs" target="_blank" rel="sponsored noopener" title="Free Vue.js Form Validation Lesson">Watch a free lesson on Vue School</a></div>
+
+<p>表单校验是浏览器原生支持的，但是有的时候用不同的浏览器处理起来需要一些小技巧。即使当表单校验已经被完美支持，你也还是有很多时候需要进行自定义的校验。这时一个更加手动的基于 Vue 的解决方案可能会更适合。我们来看一个简单的示例。</p>
+<p>给定一个表单，包含三个字段，其中两个是必填项。我们先来看看 HTML：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">form</span></span><br><span class="hljs-tag">  <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;app&quot;</span></span><br><span class="hljs-tag">  @<span class="hljs-attr">submit</span>=<span class="hljs-string">&quot;checkForm&quot;</span></span><br><span class="hljs-tag">  <span class="hljs-attr">action</span>=<span class="hljs-string">&quot;https://vuejs.org/&quot;</span></span><br><span class="hljs-tag">  <span class="hljs-attr">method</span>=<span class="hljs-string">&quot;post&quot;</span></span><br><span class="hljs-tag">&gt;</span><br><br>  <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">v-if</span>=<span class="hljs-string">&quot;errors.length&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">b</span>&gt;</span>Please correct the following error(s):<span class="hljs-tag">&lt;/<span class="hljs-name">b</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">ul</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">v-for</span>=<span class="hljs-string">&quot;error in errors&quot;</span>&gt;</span>&#123;&#123; error &#125;&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br><br>  <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">label</span> <span class="hljs-attr">for</span>=<span class="hljs-string">&quot;name&quot;</span>&gt;</span>Name<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">input</span></span><br><span class="hljs-tag">      <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;name&quot;</span></span><br><span class="hljs-tag">      <span class="hljs-attr">v-model</span>=<span class="hljs-string">&quot;name&quot;</span></span><br><span class="hljs-tag">      <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text&quot;</span></span><br><span class="hljs-tag">      <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;name&quot;</span></span><br><span class="hljs-tag">    &gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br><br>  <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">label</span> <span class="hljs-attr">for</span>=<span class="hljs-string">&quot;age&quot;</span>&gt;</span>Age<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">input</span></span><br><span class="hljs-tag">      <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;age&quot;</span></span><br><span class="hljs-tag">      <span class="hljs-attr">v-model</span>=<span class="hljs-string">&quot;age&quot;</span></span><br><span class="hljs-tag">      <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;number&quot;</span></span><br><span class="hljs-tag">      <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;age&quot;</span></span><br><span class="hljs-tag">      <span class="hljs-attr">min</span>=<span class="hljs-string">&quot;0&quot;</span></span><br><span class="hljs-tag">    &gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br><br>  <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">label</span> <span class="hljs-attr">for</span>=<span class="hljs-string">&quot;movie&quot;</span>&gt;</span>Favorite Movie<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">select</span></span><br><span class="hljs-tag">      <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;movie&quot;</span></span><br><span class="hljs-tag">      <span class="hljs-attr">v-model</span>=<span class="hljs-string">&quot;movie&quot;</span></span><br><span class="hljs-tag">      <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;movie&quot;</span></span><br><span class="hljs-tag">    &gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">option</span>&gt;</span>Star Wars<span class="hljs-tag">&lt;/<span class="hljs-name">option</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">option</span>&gt;</span>Vanilla Sky<span class="hljs-tag">&lt;/<span class="hljs-name">option</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">option</span>&gt;</span>Atomic Blonde<span class="hljs-tag">&lt;/<span class="hljs-name">option</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br><br>  <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;submit&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;Submit&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br><br><span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<p>我们从头到尾看一遍，这个 <code>&lt;form&gt;</code> 标记上有一个我们将会用在 Vue 组件上的 ID。这里有一个你稍后会看到的 <code>submit</code> 处理函数，而这里的 <code>action</code> 是一个可能指向了某个真实服务器的临时 URL (当然你在服务端也是要有校验的)。</p>
+<p>下面有一段内容，会根据错误状态进行显示或隐藏。它将会在表单的最顶端渲染一个简单的错误列表。同时要注意我们会在提交的时候进行校验，而不是每个字段被修改的时候。</p>
+<p>最后值得注意的是这三个字段都有一个对应的 <code>v-model</code> 来连接它们的值，我们将会在 JavaScript 中使用它。现在我们就来看一下。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Vue</span>(&#123;<br>  <span class="hljs-attr">el</span>: <span class="hljs-string">&#x27;#app&#x27;</span>,<br>  <span class="hljs-attr">data</span>: &#123;<br>    <span class="hljs-attr">errors</span>: [],<br>    <span class="hljs-attr">name</span>: <span class="hljs-literal">null</span>,<br>    <span class="hljs-attr">age</span>: <span class="hljs-literal">null</span>,<br>    <span class="hljs-attr">movie</span>: <span class="hljs-literal">null</span><br>  &#125;,<br>  <span class="hljs-attr">methods</span>:&#123;<br>    <span class="hljs-attr">checkForm</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params">e</span>) &#123;<br>      <span class="hljs-keyword">if</span> (<span class="hljs-variable language_">this</span>.<span class="hljs-property">name</span> &amp;&amp; <span class="hljs-variable language_">this</span>.<span class="hljs-property">age</span>) &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>      &#125;<br><br>      <span class="hljs-variable language_">this</span>.<span class="hljs-property">errors</span> = [];<br><br>      <span class="hljs-keyword">if</span> (!<span class="hljs-variable language_">this</span>.<span class="hljs-property">name</span>) &#123;<br>        <span class="hljs-variable language_">this</span>.<span class="hljs-property">errors</span>.<span class="hljs-title function_">push</span>(<span class="hljs-string">&#x27;Name required.&#x27;</span>);<br>      &#125;<br>      <span class="hljs-keyword">if</span> (!<span class="hljs-variable language_">this</span>.<span class="hljs-property">age</span>) &#123;<br>        <span class="hljs-variable language_">this</span>.<span class="hljs-property">errors</span>.<span class="hljs-title function_">push</span>(<span class="hljs-string">&#x27;Age required.&#x27;</span>);<br>      &#125;<br><br>      e.<span class="hljs-title function_">preventDefault</span>();<br>    &#125;<br>  &#125;<br>&#125;)<br></code></pre></td></tr></table></figure>
+<p>非常短小精悍。我们定义了一个数组来放置错误，并将这三个表单字段的默认值设为 <code>null</code>。<code>checkForm</code> 的逻辑 (在表单提交时运行) 只会检查姓名和年龄，因为电影是选填的。如果它们是空的，那么我们会检查每一个字段并设置相应的错误，差不多就是这样。你可以在下面运行这个 demo。不要忘记提交成功时它会 POST 到一个临时的 URL。</p>
+<p><p data-height="265" data-theme-id="0" data-slug-hash="GObpZM" data-default-tab="html,result" data-user="cfjedimaster" data-embed-version="2" data-pen-title="form validation 1" class="codepen">在 <a target="_blank" rel="noopener" href="https://codepen.io">CodePen</a> 查看 Raymond Camden (<a target="_blank" rel="noopener" href="https://codepen.io/cfjedimaster">@cfjedimaster</a>) 的 <a target="_blank" rel="noopener" href="https://codepen.io/cfjedimaster/pen/GObpZM/">表单校验 1</a>。</p></p>
+<script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
+
+<h2 id="使用自定义校验"><a href="#使用自定义校验" class="headerlink" title="使用自定义校验"></a>使用自定义校验</h2><p>对于第二个示例来说，第二个文本字段 (年龄) 变换成了电子邮件地址，它将会通过一些自定义的逻辑来校验。这部分代码来自 StackOverflow 的问题：<a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/46155/how-to-validate-email-address-in-javascript">如何在 JavaScript 中校验电子邮件地址</a>。这是一个很好的问题，因为它会让 Facebook 上最激烈的政治、宗教争论看上去都只是“哪家的啤酒最好喝”这样的小分歧了。讲真的这很疯狂。我们来看 HTML，尽管它和第一个例子很接近。</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">form</span></span><br><span class="hljs-tag">  <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;app&quot;</span></span><br><span class="hljs-tag">  @<span class="hljs-attr">submit</span>=<span class="hljs-string">&quot;checkForm&quot;</span></span><br><span class="hljs-tag">  <span class="hljs-attr">action</span>=<span class="hljs-string">&quot;https://vuejs.org/&quot;</span></span><br><span class="hljs-tag">  <span class="hljs-attr">method</span>=<span class="hljs-string">&quot;post&quot;</span></span><br><span class="hljs-tag">  <span class="hljs-attr">novalidate</span>=<span class="hljs-string">&quot;true&quot;</span></span><br><span class="hljs-tag">&gt;</span><br><br>  <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">v-if</span>=<span class="hljs-string">&quot;errors.length&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">b</span>&gt;</span>Please correct the following error(s):<span class="hljs-tag">&lt;/<span class="hljs-name">b</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">ul</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">v-for</span>=<span class="hljs-string">&quot;error in errors&quot;</span>&gt;</span>&#123;&#123; error &#125;&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br><br>  <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">label</span> <span class="hljs-attr">for</span>=<span class="hljs-string">&quot;name&quot;</span>&gt;</span>Name<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">input</span></span><br><span class="hljs-tag">      <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;name&quot;</span></span><br><span class="hljs-tag">      <span class="hljs-attr">v-model</span>=<span class="hljs-string">&quot;name&quot;</span></span><br><span class="hljs-tag">      <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text&quot;</span></span><br><span class="hljs-tag">      <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;name&quot;</span></span><br><span class="hljs-tag">    &gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br><br>  <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">label</span> <span class="hljs-attr">for</span>=<span class="hljs-string">&quot;email&quot;</span>&gt;</span>Email<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">input</span></span><br><span class="hljs-tag">      <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;email&quot;</span></span><br><span class="hljs-tag">      <span class="hljs-attr">v-model</span>=<span class="hljs-string">&quot;email&quot;</span></span><br><span class="hljs-tag">      <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;email&quot;</span></span><br><span class="hljs-tag">      <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;email&quot;</span></span><br><span class="hljs-tag">    &gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br><br>  <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">label</span> <span class="hljs-attr">for</span>=<span class="hljs-string">&quot;movie&quot;</span>&gt;</span>Favorite Movie<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">select</span></span><br><span class="hljs-tag">      <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;movie&quot;</span></span><br><span class="hljs-tag">      <span class="hljs-attr">v-model</span>=<span class="hljs-string">&quot;movie&quot;</span></span><br><span class="hljs-tag">      <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;movie&quot;</span></span><br><span class="hljs-tag">    &gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">option</span>&gt;</span>Star Wars<span class="hljs-tag">&lt;/<span class="hljs-name">option</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">option</span>&gt;</span>Vanilla Sky<span class="hljs-tag">&lt;/<span class="hljs-name">option</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">option</span>&gt;</span>Atomic Blonde<span class="hljs-tag">&lt;/<span class="hljs-name">option</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br><br>  <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">input</span></span><br><span class="hljs-tag">      <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;submit&quot;</span></span><br><span class="hljs-tag">      <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;Submit&quot;</span></span><br><span class="hljs-tag">    &gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br><br><span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<p>尽管这里的不同点很小，注意顶端的 <code>novalidate=&quot;true&quot;</code>。但是这很重要，因为浏览器会尝试在 <code>type=&quot;email&quot;</code> 的字段校验邮件地址。坦白说在这个案例中浏览器的校验规则是值得信任的，不过我们想要创建一个自定义校验的例子，所以把它禁用了。以下是更新后的 JavaScript。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Vue</span>(&#123;<br>  <span class="hljs-attr">el</span>: <span class="hljs-string">&#x27;#app&#x27;</span>,<br>  <span class="hljs-attr">data</span>: &#123;<br>    <span class="hljs-attr">errors</span>: [],<br>    <span class="hljs-attr">name</span>: <span class="hljs-literal">null</span>,<br>    <span class="hljs-attr">email</span>: <span class="hljs-literal">null</span>,<br>    <span class="hljs-attr">movie</span>: <span class="hljs-literal">null</span><br>  &#125;,<br>  <span class="hljs-attr">methods</span>: &#123;<br>    <span class="hljs-attr">checkForm</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params">e</span>) &#123;<br>      <span class="hljs-variable language_">this</span>.<span class="hljs-property">errors</span> = [];<br><br>      <span class="hljs-keyword">if</span> (!<span class="hljs-variable language_">this</span>.<span class="hljs-property">name</span>) &#123;<br>        <span class="hljs-variable language_">this</span>.<span class="hljs-property">errors</span>.<span class="hljs-title function_">push</span>(<span class="hljs-string">&quot;Name required.&quot;</span>);<br>      &#125;<br>      <span class="hljs-keyword">if</span> (!<span class="hljs-variable language_">this</span>.<span class="hljs-property">email</span>) &#123;<br>        <span class="hljs-variable language_">this</span>.<span class="hljs-property">errors</span>.<span class="hljs-title function_">push</span>(<span class="hljs-string">&#x27;Email required.&#x27;</span>);<br>      &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (!<span class="hljs-variable language_">this</span>.<span class="hljs-title function_">validEmail</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">email</span>)) &#123;<br>        <span class="hljs-variable language_">this</span>.<span class="hljs-property">errors</span>.<span class="hljs-title function_">push</span>(<span class="hljs-string">&#x27;Valid email required.&#x27;</span>);<br>      &#125;<br><br>      <span class="hljs-keyword">if</span> (!<span class="hljs-variable language_">this</span>.<span class="hljs-property">errors</span>.<span class="hljs-property">length</span>) &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>      &#125;<br><br>      e.<span class="hljs-title function_">preventDefault</span>();<br>    &#125;,<br>    <span class="hljs-attr">validEmail</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params">email</span>) &#123;<br>      <span class="hljs-keyword">var</span> re = <span class="hljs-regexp">/^(([^&lt;&gt;()[\]\\.,;:\s@&quot;]+(\.[^&lt;&gt;()[\]\\.,;:\s@&quot;]+)*)|(&quot;.+&quot;))@((\[[0-9]&#123;1,3&#125;\.[0-9]&#123;1,3&#125;\.[0-9]&#123;1,3&#125;\.[0-9]&#123;1,3&#125;\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]&#123;2,&#125;))$/</span>;<br>      <span class="hljs-keyword">return</span> re.<span class="hljs-title function_">test</span>(email);<br>    &#125;<br>  &#125;<br>&#125;)<br></code></pre></td></tr></table></figure>
+<p>如你所见，我们添加了一个新方法 <code>validEmail</code>，它将会在 <code>checkForm</code> 中被调用了。我们现在可以这样运行示例：</p>
+<p><p data-height="265" data-theme-id="0" data-slug-hash="vWqNXZ" data-default-tab="html,result" data-user="cfjedimaster" data-embed-version="2" data-pen-title="form validation 2" class="codepen">在 <a target="_blank" rel="noopener" href="https://codepen.io">CodePen</a> 查看 Raymond Camden (<a target="_blank" rel="noopener" href="https://codepen.io/cfjedimaster">@cfjedimaster</a>) 的 <a target="_blank" rel="noopener" href="https://codepen.io/cfjedimaster/pen/vWqNXZ/">表单校验 2</a>。</p></p>
+<script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
+
+<h2 id="另一个自定义校验的例子"><a href="#另一个自定义校验的例子" class="headerlink" title="另一个自定义校验的例子"></a>另一个自定义校验的例子</h2><p>在第三个示例中，我们已经构建了一些你可能在一些调研类应用中见过的东西。用户需要花掉“预算”来为歼星舰模型装配一套部件。总价必须等于 100。先看 HTML。</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">form</span></span><br><span class="hljs-tag">  <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;app&quot;</span></span><br><span class="hljs-tag">  @<span class="hljs-attr">submit</span>=<span class="hljs-string">&quot;checkForm&quot;</span></span><br><span class="hljs-tag">  <span class="hljs-attr">action</span>=<span class="hljs-string">&quot;https://vuejs.org/&quot;</span></span><br><span class="hljs-tag">  <span class="hljs-attr">method</span>=<span class="hljs-string">&quot;post&quot;</span></span><br><span class="hljs-tag">  <span class="hljs-attr">novalidate</span>=<span class="hljs-string">&quot;true&quot;</span></span><br><span class="hljs-tag">&gt;</span><br><br>  <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">v-if</span>=<span class="hljs-string">&quot;errors.length&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">b</span>&gt;</span>Please correct the following error(s):<span class="hljs-tag">&lt;/<span class="hljs-name">b</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">ul</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">v-for</span>=<span class="hljs-string">&quot;error in errors&quot;</span>&gt;</span>&#123;&#123; error &#125;&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br><br>  <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><br>    Given a budget of 100 dollars, indicate how much<br>    you would spend on the following features for the<br>    next generation Star Destroyer. Your total must sum up to 100.<br>  <span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br><br>  <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">input</span></span><br><span class="hljs-tag">      <span class="hljs-attr">v-model.number</span>=<span class="hljs-string">&quot;weapons&quot;</span></span><br><span class="hljs-tag">      <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;number&quot;</span></span><br><span class="hljs-tag">      <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;weapons&quot;</span></span><br><span class="hljs-tag">    &gt;</span> Weapons <span class="hljs-tag">&lt;<span class="hljs-name">br</span>/&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">input</span></span><br><span class="hljs-tag">      <span class="hljs-attr">v-model.number</span>=<span class="hljs-string">&quot;shields&quot;</span></span><br><span class="hljs-tag">      <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;number&quot;</span></span><br><span class="hljs-tag">      <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;shields&quot;</span></span><br><span class="hljs-tag">    &gt;</span> Shields <span class="hljs-tag">&lt;<span class="hljs-name">br</span>/&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">input</span></span><br><span class="hljs-tag">      <span class="hljs-attr">v-model.number</span>=<span class="hljs-string">&quot;coffee&quot;</span></span><br><span class="hljs-tag">      <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;number&quot;</span></span><br><span class="hljs-tag">      <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;coffee&quot;</span></span><br><span class="hljs-tag">    &gt;</span> Coffee <span class="hljs-tag">&lt;<span class="hljs-name">br</span>/&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">input</span></span><br><span class="hljs-tag">      <span class="hljs-attr">v-model.number</span>=<span class="hljs-string">&quot;ac&quot;</span></span><br><span class="hljs-tag">      <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;number&quot;</span></span><br><span class="hljs-tag">      <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;ac&quot;</span></span><br><span class="hljs-tag">    &gt;</span> Air Conditioning <span class="hljs-tag">&lt;<span class="hljs-name">br</span>/&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">input</span></span><br><span class="hljs-tag">      <span class="hljs-attr">v-model.number</span>=<span class="hljs-string">&quot;mousedroids&quot;</span></span><br><span class="hljs-tag">      <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;number&quot;</span></span><br><span class="hljs-tag">      <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;mousedroids&quot;</span></span><br><span class="hljs-tag">    &gt;</span> Mouse Droids <span class="hljs-tag">&lt;<span class="hljs-name">br</span>/&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br><br>  <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><br>    Current Total: &#123;&#123;total&#125;&#125;<br>  <span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br><br>  <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">input</span></span><br><span class="hljs-tag">      <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;submit&quot;</span></span><br><span class="hljs-tag">      <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;Submit&quot;</span></span><br><span class="hljs-tag">    &gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br><br><span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<p>这组输入框覆盖了五个不同的部件。注意这里为 <code>v-model</code> attribute 添加了 <code>.number</code>。它会告诉 Vue 将其值作为数字来使用。不过这里有一个小小的 bug，那就是当其值为空的时候，它会回到字符串格式，稍后你将会看到变通的办法。为了让用户使用起来更方便，我们添加展示了一个当前的总和，这样我们就能够实时的看到它们一共花掉了多少钱。现在我们来看看 JavaScript。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Vue</span>(&#123;<br>  <span class="hljs-attr">el</span>: <span class="hljs-string">&#x27;#app&#x27;</span>,<br>  <span class="hljs-attr">data</span>:&#123;<br>    <span class="hljs-attr">errors</span>: [],<br>    <span class="hljs-attr">weapons</span>: <span class="hljs-number">0</span>,<br>    <span class="hljs-attr">shields</span>: <span class="hljs-number">0</span>,<br>    <span class="hljs-attr">coffee</span>: <span class="hljs-number">0</span>,<br>    <span class="hljs-attr">ac</span>: <span class="hljs-number">0</span>,<br>    <span class="hljs-attr">mousedroids</span>: <span class="hljs-number">0</span><br>  &#125;,<br>  <span class="hljs-attr">computed</span>: &#123;<br>     <span class="hljs-attr">total</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>       <span class="hljs-comment">// 必须解析，因为 Vue 会将空值转换为字符串</span><br>       <span class="hljs-keyword">return</span> <span class="hljs-title class_">Number</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">weapons</span>) +<br>         <span class="hljs-title class_">Number</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">shields</span>) +<br>         <span class="hljs-title class_">Number</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">coffee</span>) +<br>         <span class="hljs-title class_">Number</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">ac</span>+<span class="hljs-variable language_">this</span>.<span class="hljs-property">mousedroids</span>);<br>     &#125;<br>  &#125;,<br>  <span class="hljs-attr">methods</span>:&#123;<br>    <span class="hljs-attr">checkForm</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params">e</span>) &#123;<br>      <span class="hljs-variable language_">this</span>.<span class="hljs-property">errors</span> = [];<br><br>      <span class="hljs-keyword">if</span> (<span class="hljs-variable language_">this</span>.<span class="hljs-property">total</span> != <span class="hljs-number">100</span>) &#123;<br>        <span class="hljs-variable language_">this</span>.<span class="hljs-property">errors</span>.<span class="hljs-title function_">push</span>(<span class="hljs-string">&#x27;Total must be 100!&#x27;</span>);<br>      &#125;<br><br>      <span class="hljs-keyword">if</span> (!<span class="hljs-variable language_">this</span>.<span class="hljs-property">errors</span>.<span class="hljs-property">length</span>) &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>      &#125;<br><br>      e.<span class="hljs-title function_">preventDefault</span>();<br>    &#125;<br>  &#125;<br>&#125;)<br></code></pre></td></tr></table></figure>
+<p>我们将总和设置为了一个计算属性，从那个我们解决掉的 bug 外面看上去，这已经足够了。我的 <code>checkForm</code> 方法现在只需要关注总和是不是 100 了。你可以在这里试用：</p>
+<p><p data-height="265" data-theme-id="0" data-slug-hash="vWqGoy" data-default-tab="html,result" data-user="cfjedimaster" data-embed-version="2" data-pen-title="form validation 3" class="codepen">在 <a target="_blank" rel="noopener" href="https://codepen.io">CodePen</a> 查看 Raymond Camden (<a target="_blank" rel="noopener" href="https://codepen.io/cfjedimaster">@cfjedimaster</a>) 的 <a target="_blank" rel="noopener" href="https://codepen.io/cfjedimaster/pen/vWqGoy/">表单校验3</a>。</p></p>
+<script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
+
+<h2 id="服务端校验"><a href="#服务端校验" class="headerlink" title="服务端校验"></a>服务端校验</h2><p>在我们最终的示例中，我们构建了一些用到 Ajax 的服务端校验的东西。这个表单将会问你为一个新产品起名字，并且将会确保这个名字是唯一的。我们快速写了一个 <a target="_blank" rel="noopener" href="https://netlify.com/">Netlify</a> 的 serverless action 来进行这个校验。虽然这不是非常重要，但其逻辑如下：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><code class="hljs js"><span class="hljs-built_in">exports</span>.<span class="hljs-property">handler</span> = <span class="hljs-keyword">async</span> (event, context) =&gt; &#123;<br>  <br>    <span class="hljs-keyword">const</span> badNames = [<span class="hljs-string">&#x27;vista&#x27;</span>, <span class="hljs-string">&#x27;empire&#x27;</span>, <span class="hljs-string">&#x27;mbp&#x27;</span>];<br>    <span class="hljs-keyword">const</span> name = event.<span class="hljs-property">queryStringParameters</span>.<span class="hljs-property">name</span>;<br><br>    <span class="hljs-keyword">if</span> (badNames.<span class="hljs-title function_">includes</span>(name)) &#123;<br>      <span class="hljs-keyword">return</span> &#123; <br>        <span class="hljs-attr">statusCode</span>: <span class="hljs-number">400</span>,         <br>        <span class="hljs-attr">body</span>: <span class="hljs-title class_">JSON</span>.<span class="hljs-title function_">stringify</span>(&#123;<span class="hljs-attr">error</span>: <span class="hljs-string">&#x27;Invalid name passed.&#x27;</span>&#125;) <br>      &#125;<br>    &#125;<br><br>    <span class="hljs-keyword">return</span> &#123;<br>      <span class="hljs-attr">statusCode</span>: <span class="hljs-number">204</span><br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+<p>基本上除了“vista”、“empire”和“mbp”的名字都是可以接受的。好，让我们来看看表单。</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">form</span></span><br><span class="hljs-tag">  <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;app&quot;</span></span><br><span class="hljs-tag">  @<span class="hljs-attr">submit</span>=<span class="hljs-string">&quot;checkForm&quot;</span></span><br><span class="hljs-tag">  <span class="hljs-attr">method</span>=<span class="hljs-string">&quot;post&quot;</span></span><br><span class="hljs-tag">&gt;</span><br><br>  <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">v-if</span>=<span class="hljs-string">&quot;errors.length&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">b</span>&gt;</span>Please correct the following error(s):<span class="hljs-tag">&lt;/<span class="hljs-name">b</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">ul</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">v-for</span>=<span class="hljs-string">&quot;error in errors&quot;</span>&gt;</span>&#123;&#123; error &#125;&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br><br>  <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">label</span> <span class="hljs-attr">for</span>=<span class="hljs-string">&quot;name&quot;</span>&gt;</span>New Product Name: <span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">input</span></span><br><span class="hljs-tag">      <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;name&quot;</span></span><br><span class="hljs-tag">      <span class="hljs-attr">v-model</span>=<span class="hljs-string">&quot;name&quot;</span></span><br><span class="hljs-tag">      <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text&quot;</span></span><br><span class="hljs-tag">      <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;name&quot;</span></span><br><span class="hljs-tag">    &gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br><br>  <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">input</span></span><br><span class="hljs-tag">      <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;submit&quot;</span></span><br><span class="hljs-tag">      <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;Submit&quot;</span></span><br><span class="hljs-tag">    &gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br><br><span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<p>这里没有任何特殊的东西。接下来我们再看看 JavaScript。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> apiUrl = <span class="hljs-string">&#x27;https://vuecookbook.netlify.com/.netlify/functions/product-name?name=&#x27;</span>;<br><br><span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Vue</span>(&#123;<br>  <span class="hljs-attr">el</span>: <span class="hljs-string">&#x27;#app&#x27;</span>,<br>  <span class="hljs-attr">data</span>: &#123;<br>    <span class="hljs-attr">errors</span>: [],<br>    <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;&#x27;</span><br>  &#125;,<br>  <span class="hljs-attr">methods</span>:&#123;<br>    <span class="hljs-attr">checkForm</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params">e</span>) &#123;<br>      e.<span class="hljs-title function_">preventDefault</span>();<br><br>      <span class="hljs-variable language_">this</span>.<span class="hljs-property">errors</span> = [];<br><br>      <span class="hljs-keyword">if</span> (<span class="hljs-variable language_">this</span>.<span class="hljs-property">name</span> === <span class="hljs-string">&#x27;&#x27;</span>) &#123;<br>        <span class="hljs-variable language_">this</span>.<span class="hljs-property">errors</span>.<span class="hljs-title function_">push</span>(<span class="hljs-string">&#x27;Product name is required.&#x27;</span>);<br>      &#125; <span class="hljs-keyword">else</span> &#123;<br>        <span class="hljs-title function_">fetch</span>(apiUrl + <span class="hljs-built_in">encodeURIComponent</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">name</span>))<br>        .<span class="hljs-title function_">then</span>(<span class="hljs-keyword">async</span> res =&gt; &#123;<br>          <span class="hljs-keyword">if</span> (res.<span class="hljs-property">status</span> === <span class="hljs-number">204</span>) &#123;<br>            <span class="hljs-title function_">alert</span>(<span class="hljs-string">&#x27;OK&#x27;</span>);<br>          &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (res.<span class="hljs-property">status</span> === <span class="hljs-number">400</span>) &#123;<br>            <span class="hljs-keyword">let</span> errorResponse = <span class="hljs-keyword">await</span> res.<span class="hljs-title function_">json</span>();<br>            <span class="hljs-variable language_">this</span>.<span class="hljs-property">errors</span>.<span class="hljs-title function_">push</span>(errorResponse.<span class="hljs-property">error</span>);<br>          &#125;<br>        &#125;);<br>      &#125;<br>    &#125;<br>  &#125;<br>&#125;)<br></code></pre></td></tr></table></figure>
+<p>我们从一个运行在 OpenWhisk 的 API 的 URL 变量开始。现在注意 <code>checkForm</code>。在这个版本中，我们始终阻止了表单的提交 (当然，它也可以通过 Vue 在 HTML 中完成)。你可以看到一个基本的校验，即 <code>this.name</code> 是否为空，然后我们请求这个 API。如果名字是无效的，我们就添加一个错误。如果是有效的，我们就不做任何事 (只是一个 alert)，但是你可以引导用户去一个新页面，在 URL 中带上产品的名字，或者其它行为。接下来你可以体验这个 demo：</p>
+<p><p data-height="265" data-theme-id="0" data-slug-hash="BmgzeM" data-default-tab="js,result" data-user="cfjedimaster" data-embed-version="2" data-pen-title="form validation 4" class="codepen">在 <a target="_blank" rel="noopener" href="https://codepen.io">CodePen</a> 查看 Raymond Camden (<a target="_blank" rel="noopener" href="https://codepen.io/cfjedimaster">@cfjedimaster</a>) 的 <a target="_blank" rel="noopener" href="https://codepen.io/cfjedimaster/pen/BmgzeM/">表单校验4。</p></p>
+<script async src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
+
+<h2 id="其它替代模式"><a href="#其它替代模式" class="headerlink" title="其它替代模式"></a>其它替代模式</h2><p>这份秘笈专注在“手动”校验表单，当然一些非常棒的 Vue 的库会为你搞定这些事情。使用一些预打包的库可能会影响你的应用最终的体积，但是好处是非常多的。这里有经过充分测试且保持日常更新的代码。其中包括以下 Vue 的表单校验库：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/monterail/vuelidate">vuelidate</a></li>
+<li><a target="_blank" rel="noopener" href="https://logaretm.github.io/vee-validate/">VeeValidate</a></li>
+</ul>
+
+  
+  
+  <div class="footer">
+      <script src="//m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
+<div id="bsa-native"></div>
+<script>
+_bsa.init('custom', 'CKYD62QM', 'placement:vuejsorg',
+  {
+    target: '#bsa-native',
+    template: '<a class="native-box" href="##statlink##"><div class="native-sponsor">Sponsor</div><div class="native-text"><strong>##company##</strong> — ##description##</div></a>'
+  }
+);
+</script>
+
+
+    发现错误？想参与编辑？
+    <!-- TODO: update when v3 becomes the main docsite -->
+    <a href="https://github.com/vuejs/cn.vuejs.org/blob/master/src/v2/cookbook/form-validation.md" rel="noopener" target="_blank">
+      在 GitHub 上编辑此页！
+    </a>
+    <!-- Deployed on
+    <a href="https://url.netlify.com/HJ8X2mxP8" rel="noopener" target="_blank">
+      Netlify
+    </a>. -->
+  </div>
+</div>
+
+      </div>
+      <script src="/js/smooth-scroll.min.js"></script>
+    
+
+    <!-- main custom script for sidebars, version selects etc. -->
+    <script src="/js/css.escape.js"></script>
+    <script src="/js/common.js"></script>
+
+    <!-- search -->
+    <link href="//code.bdstatic.com/npm/docsearch.js@1.5.0/dist/cdn/docsearch.min.css" rel='stylesheet' type='text/css'>
+    
+<link rel="stylesheet" href="/css/search.css">
+
+    <script src="//code.bdstatic.com/npm/docsearch.js@1.5.0/dist/cdn/docsearch.min.js"></script>
+    <script>
+    [
+      '#search-query-nav',
+      '#search-query-sidebar',
+      '#search-query-menu'
+    ].forEach(function (selector) {
+      if (!document.querySelector(selector)) return
+      // search index defaults to v2
+      var match = window.location.pathname.match(/^\/(v\d+)/)
+      var version = match ? match[1] : 'v2'
+      docsearch({
+        appId: 'BH4D9OD16A',
+        apiKey: '5638280abff9d207417bb03be05f0b25',
+        indexName: 'vuejs_cn2',
+        inputSelector: selector,
+        algoliaOptions: { facetFilters: ["version:" + version] },
+        autocompleteOptions: { hint: false, appendTo: 'body'}
+      })
+    })
+
+    // unregister service worker
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.getRegistrations().then(function(registrations) {
+        for(let registration of registrations) {
+          registration.unregister()
+        }
+      })
+    }
+    </script>
+  </body>
+</html>

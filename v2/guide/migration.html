@@ -1,0 +1,1947 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <title>从 Vue 1.x 迁移 — Vue.js</title>
+    <meta charset="utf-8">
+    <meta name="description" content="Vue.js - The Progressive JavaScript Framework">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- TODO: update when v3 becomes the main docsite -->
+    <link rel="alternate" hreflang="x-default" href="https://vuejs.org/v2/guide/migration.html">
+    <link rel="alternate" hreflang="zh" href="https://cn.vuejs.org/v2/guide/migration.html">
+    <link rel="alternate" hreflang="ja" href="https://jp.vuejs.org/v2/guide/migration.html">
+    <link rel="alternate" hreflang="ru" href="https://ru.vuejs.org/v2/guide/migration.html">
+    <link rel="alternate" hreflang="ko" href="https://kr.vuejs.org/v2/guide/migration.html">
+    <link rel="alternate" hreflang="pt-BR" href="https://br.vuejs.org/v2/guide/migration.html">
+    <link rel="alternate" hreflang="fr" href="https://fr.vuejs.org/v2/guide/migration.html">
+    <link rel="alternate" hreflang="es" href="https://es.vuejs.org/v2/guide/migration.html">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="从 Vue 1.x 迁移 — Vue.js">
+    <meta property="og:description" content="Vue.js - The Progressive JavaScript Framework">
+    <meta property="og:image" content="https://cn.vuejs.org/images/logo.png">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="从 Vue 1.x 迁移 — Vue.js">
+    <meta name="twitter:description" content="Vue.js - The Progressive JavaScript Framework">
+    <meta name="twitter:image" content="https://cn.vuejs.org/images/logo.png">
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/images/icons/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/images/icons/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/images/icons/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/images/icons/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/images/icons/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/images/icons/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/images/icons/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/images/icons/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/icons/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/images/icons/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/images/icons/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/icons/favicon-16x16.png">
+    <meta name="msapplication-TileImage" content="/images/icons/ms-icon-144x144.png">
+    <link rel="icon" href="/images/logo.svg">
+
+    <meta name="msapplication-TileColor" content="#4fc08d">
+    <meta name="theme-color" content="#4fc08d">
+
+    <meta name="msapplication-config" content="browserconfig.xml">
+    <link rel="manifest" href="/manifest.json">
+
+    <!-- <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin> -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com" rel="preconnect" crossorigin> -->
+
+    <!-- <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600|Roboto Mono&display=swap" rel="stylesheet"> -->
+    <!-- <link href="https://fonts.googleapis.com/css?family=Dosis:500&text=Vue.js&display=swap" rel="stylesheet"> -->
+
+    <link href="//code.bdstatic.com/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <!-- main page styles -->
+    
+<link rel="stylesheet" href="/css/page.css">
+
+
+    <!-- this needs to be loaded before guide's inline scripts -->
+    <script src="/js/vue.js"></script>
+
+    
+
+    <script>
+      Vue.config.productionTip = false
+      window.PAGE_TYPE = "guide"
+    </script>
+
+    <!-- ga -->
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-46852172-3', 'cn.vuejs.org');
+      ga('send', 'pageview');
+    </script>
+
+    <!-- vimeo analytics -->
+    <!-- <script type="text/javascript" defer="defer" src="https://extend.vimeocdn.com/ga/72160148.js"></script> -->
+<meta name="generator" content="Hexo 6.2.0"><link rel="alternate" href="/atom.xml" title="Vue.js" type="application/atom+xml">
+</head>
+  <body class="docs">
+
+    
+
+    <div id="mobile-bar" >
+      <a class="menu-button"></a>
+      <a class="logo" href="/"></a>
+    </div>
+    <div>
+  <div id="v3-banner">
+    <!-- TODO: update when v3 becomes the main docsite -->
+    <span class="hidden-sm">您在浏览的是 v2.x 及更早版本的文档。</span
+    >v3.x 的文档<a target="_blank" rel="noopener" href="https://v3.cn.vuejs.org/">在这里</a>。
+  </div>
+
+  <header id="header">
+    <a id="logo" href="/">
+      <img src="/images/logo.svg" alt="vue logo">
+      <span>Vue.js</span>
+    </a>
+    <ul id="nav">
+      <li>
+  <form id="search-form">
+    <input type="text" id="search-query-nav" class="search-query st-default-search-input" aria-label="搜索">
+  </form>
+</li>
+<li class="nav-dropdown-container learn">
+  <a class="nav-link current">学习</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li><h4>文档</h4></li>
+    <li>
+      <ul>
+        <li><a href="/v2/guide/" class="nav-link current">教程</a></li>
+        <li><a href="/v2/api/" class="nav-link">API</a></li>
+        <li><a href="/v2/style-guide/" class="nav-link">风格指南</a></li>
+        <li><a href="/v2/examples/" class="nav-link">示例</a></li>
+        <li><a href="/v2/cookbook/" class="nav-link">Cookbook</a></li>
+      </ul>
+    </li>
+    <li><h4>视频教程</h4></li>
+    <li>
+      <ul>
+        <li>
+          <a href="https://www.vuemastery.com/courses/" class="nav-link" target="_blank" rel="sponsored noopener">
+            Vue Mastery (英文)
+          </a>
+        </li>
+        <li>
+          <a
+            href="https://vueschool.io/?friend=vuejs&utm_source=Vuejs.org&utm_medium=Link&utm_content=Navbar%20Dropdown"
+            class="nav-link"
+            target="_blank" rel="sponsored noopener"
+          >
+            Vue School (英文)
+          </a>
+        </li>
+        <!-- start: special logic for cn -->
+        <li>
+          <a href="https://learning.dcloud.io/" class="nav-link" target="_blank" rel="sponsored noopener">
+            DCloud 视频教程
+          </a>
+        </li>
+        <!-- end: special logic for cn -->
+      </ul>
+    </li>
+  </ul>
+</li>
+
+<li class="nav-dropdown-container ecosystem">
+  <a class="nav-link">生态系统</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li><h4>帮助</h4></li>
+    <li><ul>
+      <li><a href="https://forum.vuejs.org/" class="nav-link" target="_blank" rel="noopener">论坛</a></li>
+      <li><a href="https://chat.vuejs.org/" class="nav-link" target="_blank" rel="noopener">聊天室</a></li>
+      <li><a href="https://events.vuejs.org/meetups/" class="nav-link" target="_blank" rel="noopener">聚会</a></li>
+    </ul></li>
+    <li><h4>工具</h4></li>
+    <li>
+      <ul>
+        <li><a href="https://github.com/vuejs/vue-devtools" class="nav-link" target="_blank" rel="noopener">Devtools</a></li>
+        <li><a href="https://cli.vuejs.org/zh/" class="nav-link" target="_blank" rel="noopener">Vue CLI</a></li>
+        <li><a href="https://vue-loader.vuejs.org/zh/" class="nav-link" target="_blank" rel="noopener">Vue Loader</a></li>
+      </ul>
+    </li>
+    <li><h4>核心插件</h4></li>
+    <li><ul>
+      <li><a href="https://router.vuejs.org/zh/" class="nav-link" target="_blank" rel="noopener">Vue Router</a></li>
+      <li><a href="https://vuex.vuejs.org/zh/" class="nav-link" target="_blank" rel="noopener">Vuex</a></li>
+      <li><a href="https://v2.ssr.vuejs.org/zh/" class="nav-link" target="_blank" rel="noopener">Vue 服务端渲染</a></li>
+    </ul></li>
+    <li><h4>信息</h4></li>
+    <li><ul>
+      <li><a href="https://news.vuejs.org" class="nav-link" target="_blank" rel="noopener">周刊</a></li>
+      <li><a href="https://github.com/vuejs/vue/projects/6" class="nav-link" target="_blank" rel="noopener">Roadmap</a></li>
+      <li><a href="https://events.vuejs.org/" class="nav-link" target="_blank" rel="noopener">活动</a></li>
+      <li><a href="https://twitter.com/vuejs" class="nav-link" target="_blank" rel="noopener">Twitter</a></li>
+      <li><a href="https://medium.com/the-vue-point" class="nav-link" target="_blank" rel="noopener">博客</a></li>
+      <li><a href="https://vuejobs.com/?ref=vuejs" class="nav-link" target="_blank" rel="noopener">工作</a></li>
+      <li><a href="https://dev.to/t/vue" class="nav-link" target="_blank" rel="noopener">DEV 社区</a></li>
+    </ul></li>
+  </ul>
+</li>
+
+<li>
+  <a href="/v2/guide/team.html" class="nav-link team">团队</a>
+</li>
+<li class="nav-dropdown-container resources">
+  <a href="#" class="nav-link">资源列表</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li><a href="/resources/partners.html" class="nav-link">合作伙伴</a></li>
+    <li><a href="/resources/themes.html" class="nav-link">主题</a></li>
+    <li><a href="https://github.com/vuejs/awesome-vue" class="nav-link" target="_blank" rel="noopener">Awesome Vue</a></li>
+    <li><a href="https://awesomejs.dev/for/vue/" class="nav-link" target="_blank" rel="noopener">浏览和 Vue 相关的包</a></li>
+  </ul>
+</li>
+
+<!-- <li>
+  <a href="/partners" class="nav-link ">Partners</a>
+</li> -->
+<li class="nav-dropdown-container support-vue">
+  <a href="/support-vuejs/" class="nav-link">支持 Vue</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li><a href="/support-vuejs/#One-time-Donations" class="nav-link">一次性赞助</a></li>
+    <li><a href="/support-vuejs/#Recurring-Pledges" class="nav-link">周期性赞助</a></li>
+    <!-- start: special logic for cn -->
+    <li><a target="_blank" href="https://www.smallsticker.com/%E8%B4%B4%E7%BA%B8/vue.html" rel="noopener noopener" class="nav-link">贴纸</a></li>
+    <li><a target="_blank" href="https://osholic.com/?utm_source=vue&utm_medium=dropdown" rel="noopener noopener" class="nav-link">周边</a></li>
+    <!-- end: special logic for cn -->
+    <li><a href="https://vue.threadless.com" target="_blank" rel="noopener" class="nav-link">T 恤商店</a></li>
+  </ul>
+</li>
+
+<li class="nav-dropdown-container language">
+  <a class="nav-link">多语言</a><span class="arrow"></span>
+  <ul class="nav-dropdown">
+    <li><a target="_blank" rel="noopener" href="https://v2.vuejs.org/v2/guide/migration.html" class="nav-link">English</a></li>
+    <li><a target="_blank" rel="noopener" href="https://jp.vuejs.org/v2/guide/migration.html" class="nav-link">日本語</a></li>
+    <li><a target="_blank" rel="noopener" href="https://ru.vuejs.org/v2/guide/migration.html" class="nav-link">Русский</a></li>
+    <li><a target="_blank" rel="noopener" href="https://kr.vuejs.org/v2/guide/migration.html" class="nav-link">한국어</a></li>
+    <li><a target="_blank" rel="noopener" href="https://br.vuejs.org/v2/guide/migration.html" class="nav-link">Português</a></li>
+    <li><a target="_blank" rel="noopener" href="https://fr.vuejs.org/v2/guide/migration.html" class="nav-link">Français</a></li>
+    <li><a target="_blank" rel="noopener" href="https://vi.vuejs.org/v2/guide/migration.html" class="nav-link">Tiếng Việt</a></li>
+    <li><a target="_blank" rel="noopener" href="https://es.vuejs.org/v2/guide/migration.html" class="nav-link">Español</a></li>
+    <li><a target="_blank" rel="noopener" href="https://docs.vuejs.id/v2/guide/migration.html" class="nav-link">Bahasa Indonesia</a></li>
+  </ul>
+</li>
+
+<!-- start: special logic for cn -->
+<!-- TODO: update when v3 becomes the main docsite -->
+<li><a href="https://github.com/vuejs/cn.vuejs.org/" target="_blank" class="nav-link contribute">参与翻译</a></li>
+<!-- end: special logic for cn -->
+
+    </ul>
+  </header>
+</div>
+
+    
+      <div id="main" class="fix-sidebar">
+        
+  
+
+<div class="sidebar">
+  <div class="sidebar-inner">
+    
+    <div class="list">
+      
+<div id="sidebar-sponsors-special">
+  <div class="main-sponsor">
+    <!-- start: special logic for cn -->
+    <span>特别赞助商</span>
+    <div>
+      <a
+        href="https://www.dcloud.io/?hmsr=vuejsorg&hmpl=&hmcu=&hmkw=&hmci="
+        target="_blank"
+        rel="sponsored noopener"
+        class="logo"
+      >
+        <img id="s-HBuilder" alt="HBuilder" />
+        <script>
+          (function(){
+            var el = document.getElementById("s-HBuilder");
+            var adImg = "/images/dcloud1.png";
+            var altImg = "/images/dcloud2.png";
+            var img = "https://sponsors.vuejs.org/images/hbuilder.png";
+            el.src = (altImg && Math.random() >= 0.5 ? altImg : (adImg || img));
+          })()
+        </script>
+      </a>
+    </div>
+    <div>
+      <a
+        href="https://juejin.cn/frontend?utm_source=vue&utm_campaign=sponsor"
+        target="_blank"
+        rel="sponsored noopener"
+        class="logo"
+      >
+        <img id="s-稀土掘金技术社区" alt="稀土掘金技术社区" />
+        <script>
+          (function(){
+            var el = document.getElementById("s-稀土掘金技术社区");
+            var adImg = null;
+            var altImg = null;
+            var img = "https://sponsors.vuejs.org/images/xitujuejinjishushequ.png";
+            el.src = (altImg && Math.random() >= 0.5 ? altImg : (adImg || img));
+          })()
+        </script>
+      </a>
+    </div>
+    <!-- end: special logic for cn -->
+  </div>
+</div>
+<!--
+<div id="sidebar-sponsors-platinum-left">
+  <div class="main-sponsor">
+    <span>白金赞助商</span>
+    <div>
+    <a href="https://www.vuemastery.com/" target="_blank" rel="sponsored noopener" class="logo">
+      <img src="https://sponsors.vuejs.org/images/vuemastery.png" alt="VueMastery">
+    </a>
+    <a href="https://vueschool.io/?utm_source=Vuejs.org&utm_medium=Banner&utm_campaign=Sponsored%20Banner&utm_content=V1" target="_blank" rel="sponsored noopener" class="logo">
+      <img src="https://sponsors.vuejs.org/images/vueschool.png" alt="VueSchool">
+    </a>
+    <a href="https://vehikl.com/" target="_blank" rel="sponsored noopener" class="logo">
+      <img src="https://sponsors.vuejs.org/images/vehikl.png" alt="Vehikl">
+    </a>
+    <a href="https://passionatepeople.io/" target="_blank" rel="sponsored noopener" class="logo">
+      <img src="https://sponsors.vuejs.org/images/passionate_people.png" alt="Passionate People">
+    </a>
+    <a href="https://www.storyblok.com" target="_blank" rel="sponsored noopener" class="logo">
+      <img src="https://sponsors.vuejs.org/images/storyblok.png" alt="Storyblok">
+    </a>
+    <a href="https://ionicframework.com/vue?utm_source=partner&utm_medium=referral&utm_campaign=vuesponsorship&utm_content=vuedocs" target="_blank" rel="sponsored noopener" class="logo">
+      <img src="https://sponsors.vuejs.org/images/ionic.png?v2" alt="Ionic">
+    </a>
+    <a href="https://nuxtjs.org/" target="_blank" rel="sponsored noopener" class="logo">
+      <img src="https://sponsors.vuejs.org/images/nuxt.png" alt="Nuxt">
+    </a>
+    <a href="https://www.refurbed.org/?utm_source=vuejs" target="_blank" rel="sponsored noopener" class="logo">
+      <img src="https://sponsors.vuejs.org/images/refurbed.png" alt="Refurbed">
+    </a>
+    <a href="https://buttercms.com/vuejs-cms/?utm_source=vuejs.org&utm_medium=banner&utm_campaign=sponsorship" target="_blank" rel="sponsored noopener" class="logo">
+      <img src="https://sponsors.vuejs.org/images/buttercms.svg" alt="ButterCMS">
+    </a>
+    <a href="https://www.sanofi.com/" target="_blank" rel="sponsored noopener" class="logo">
+      <img src="https://sponsors.vuejs.org/images/sanofi.png" alt="Sanofi">
+    </a>
+    <a href="https://code-dict.com" target="_blank" rel="sponsored noopener" class="logo">
+      <img src="https://sponsors.vuejs.org/images/codedict.svg" alt="CodeDict">
+    </a>
+    <a href="https://conf.vuejs.de/?utm_source=vuejs-vite&utm_medium=referral&utm_campaign=sponsoring" target="_blank" rel="sponsored noopener" class="logo">
+      <img src="https://sponsors.vuejs.org/images/vuejs_de_conf.svg" alt="vuejs.de Conf">
+    </a>
+    </div>
+  </div>
+  <a class="become-backer" href="/support-vuejs">
+    成为赞助者
+  </a>
+</div>
+
+-->
+
+      
+        <h2>
+          
+          教程
+          
+            <select class="version-select">
+              <option value="">3.x</option>
+              <option value="SELF" selected>2.x</option>
+              <option value="v1">1.0</option>
+              <option value="012">0.12</option>
+              <option value="011">0.11</option>
+            </select>
+          
+        </h2>
+        <ul class="menu-root">
+  
+    
+    
+      
+        <li><h3>基础</h3></li>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/v2/guide/installation.html" class="sidebar-link">安装</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/v2/guide/index.html" class="sidebar-link">介绍</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/v2/guide/instance.html" class="sidebar-link">Vue 实例</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/v2/guide/syntax.html" class="sidebar-link">模板语法</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/v2/guide/computed.html" class="sidebar-link">计算属性和侦听器</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/v2/guide/class-and-style.html" class="sidebar-link">Class 与 Style 绑定</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/v2/guide/conditional.html" class="sidebar-link">条件渲染</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/v2/guide/list.html" class="sidebar-link">列表渲染</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/v2/guide/events.html" class="sidebar-link">事件处理</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/v2/guide/forms.html" class="sidebar-link">表单输入绑定</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/v2/guide/components.html" class="sidebar-link">组件基础</a>
+    </li>
+  
+    
+    
+      
+      
+        <li><h3>深入了解组件</h3></li>
+      
+      
+      
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/v2/guide/components-registration.html" class="sidebar-link">组件注册</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/v2/guide/components-props.html" class="sidebar-link">Prop</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/v2/guide/components-custom-events.html" class="sidebar-link">自定义事件</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/v2/guide/components-slots.html" class="sidebar-link">插槽</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/v2/guide/components-dynamic-async.html" class="sidebar-link">动态组件 & 异步组件</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/v2/guide/components-edge-cases.html" class="sidebar-link">处理边界情况</a>
+    </li>
+  
+    
+    
+      
+      
+      
+        <li><h3>过渡 & 动画</h3></li>
+      
+      
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/v2/guide/transitions.html" class="sidebar-link">进入/离开 & 列表过渡</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/v2/guide/transitioning-state.html" class="sidebar-link">状态过渡</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+        <li><h3>可复用性 & 组合</h3></li>
+      
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/v2/guide/mixins.html" class="sidebar-link">混入</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/v2/guide/custom-directive.html" class="sidebar-link">自定义指令</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/v2/guide/render-function.html" class="sidebar-link">渲染函数 & JSX</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/v2/guide/plugins.html" class="sidebar-link">插件</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/v2/guide/filters.html" class="sidebar-link">过滤器</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+        <li><h3>工具</h3></li>
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/v2/guide/single-file-components.html" class="sidebar-link">单文件组件</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/v2/guide/testing.html" class="sidebar-link">测试</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/v2/guide/typescript.html" class="sidebar-link">TypeScript 支持</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/v2/guide/deployment.html" class="sidebar-link">生产环境部署</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+      
+        <li><h3>规模化</h3></li>
+      
+      
+      
+      
+    
+    <li>
+      <a href="/v2/guide/routing.html" class="sidebar-link">路由</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/v2/guide/state-management.html" class="sidebar-link">状态管理</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/v2/guide/ssr.html" class="sidebar-link">服务端渲染</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/v2/guide/security.html" class="sidebar-link">安全</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+      
+      
+        <li><h3>内在</h3></li>
+      
+      
+      
+    
+    <li>
+      <a href="/v2/guide/reactivity.html" class="sidebar-link">深入响应式原理</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+      
+      
+      
+        <li><h3>迁移</h3></li>
+      
+      
+    
+    <li>
+      <a href="/v2/guide/migration.html" class="sidebar-link current">从 Vue 1.x 迁移</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/v2/guide/migration-vue-router.html" class="sidebar-link">从 Vue Router 0.7.x 迁移</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/v2/guide/migration-vuex.html" class="sidebar-link">从 Vuex 0.6.x 迁移到 1.0</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+      
+      
+      
+      
+        <li><h3>更多</h3></li>
+      
+    
+    <li>
+      <a href="/v2/guide/comparison.html" class="sidebar-link">对比其他框架</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/v2/guide/join.html" class="sidebar-link">加入 Vue.js 社区</a>
+    </li>
+  
+    
+    
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    
+    <li>
+      <a href="/v2/guide/team.html" class="sidebar-link">认识团队</a>
+    </li>
+  
+</ul>
+
+      
+    </div>
+  </div>
+</div>
+<!--
+
+<div id="sidebar-sponsors-platinum-right">
+  <div class="main-sponsor">
+    <span>白金赞助商</span>
+    <div>
+    <a href="https://www.vuemastery.com/" target="_blank" rel="sponsored noopener" class="logo">
+      <img src="https://sponsors.vuejs.org/images/vuemastery.png" alt="VueMastery">
+    </a>
+    <a href="https://vueschool.io/?utm_source=Vuejs.org&utm_medium=Banner&utm_campaign=Sponsored%20Banner&utm_content=V1" target="_blank" rel="sponsored noopener" class="logo">
+      <img src="https://sponsors.vuejs.org/images/vueschool.png" alt="VueSchool">
+    </a>
+    <a href="https://vehikl.com/" target="_blank" rel="sponsored noopener" class="logo">
+      <img src="https://sponsors.vuejs.org/images/vehikl.png" alt="Vehikl">
+    </a>
+    <a href="https://passionatepeople.io/" target="_blank" rel="sponsored noopener" class="logo">
+      <img src="https://sponsors.vuejs.org/images/passionate_people.png" alt="Passionate People">
+    </a>
+    <a href="https://www.storyblok.com" target="_blank" rel="sponsored noopener" class="logo">
+      <img src="https://sponsors.vuejs.org/images/storyblok.png" alt="Storyblok">
+    </a>
+    <a href="https://ionicframework.com/vue?utm_source=partner&utm_medium=referral&utm_campaign=vuesponsorship&utm_content=vuedocs" target="_blank" rel="sponsored noopener" class="logo">
+      <img src="https://sponsors.vuejs.org/images/ionic.png?v2" alt="Ionic">
+    </a>
+    <a href="https://nuxtjs.org/" target="_blank" rel="sponsored noopener" class="logo">
+      <img src="https://sponsors.vuejs.org/images/nuxt.png" alt="Nuxt">
+    </a>
+    <a href="https://www.refurbed.org/?utm_source=vuejs" target="_blank" rel="sponsored noopener" class="logo">
+      <img src="https://sponsors.vuejs.org/images/refurbed.png" alt="Refurbed">
+    </a>
+    <a href="https://buttercms.com/vuejs-cms/?utm_source=vuejs.org&utm_medium=banner&utm_campaign=sponsorship" target="_blank" rel="sponsored noopener" class="logo">
+      <img src="https://sponsors.vuejs.org/images/buttercms.svg" alt="ButterCMS">
+    </a>
+    <a href="https://www.sanofi.com/" target="_blank" rel="sponsored noopener" class="logo">
+      <img src="https://sponsors.vuejs.org/images/sanofi.png" alt="Sanofi">
+    </a>
+    <a href="https://code-dict.com" target="_blank" rel="sponsored noopener" class="logo">
+      <img src="https://sponsors.vuejs.org/images/codedict.svg" alt="CodeDict">
+    </a>
+    <a href="https://conf.vuejs.de/?utm_source=vuejs-vite&utm_medium=referral&utm_campaign=sponsoring" target="_blank" rel="sponsored noopener" class="logo">
+      <img src="https://sponsors.vuejs.org/images/vuejs_de_conf.svg" alt="vuejs.de Conf">
+    </a>
+    </div>
+  </div>
+  <a class="become-backer" href="/support-vuejs">
+    成为赞助者
+  </a>
+</div>
+
+
+-->
+
+
+<div class="content guide with-sidebar migration-guide">
+  <p class="tip warning v3-warning">
+    您正在浏览的是 Vue 2.x 的文档。Vue 3 的文档<a href="https://cn.vuejs.org/">在这里</a>。
+  </p>
+
+  
+    
+      
+<div id="ad">
+  <!-- start: special logic for cn -->
+  <div
+    class="wwads-cn wwads-vertical"
+    data-id="53"
+    style="max-width: 200px"
+  ></div>
+  <script
+    type="text/javascript"
+    src="https://cdn.wwads.cn/js/makemoney.js"
+    async
+  ></script>
+  <!-- end: special logic for cn -->
+  <!-- <script
+    async
+    type="text/javascript"
+    src="//cdn.carbonads.com/carbon.js?serve=CEBDT27Y&placement=vuejsorg"
+    id="_carbonads_js"
+  ></script> -->
+</div>
+
+
+    
+  
+  
+    <h1>从 Vue 1.x 迁移</h1>
+  
+
+  <!-- start: special logic for cn -->
+  <!-- start: special logic for cn -->
+<!-- <div class="ad-pagetop">
+  <a href="http://www.vueshop.com.cn/index.php?http_referer=vuejs" target="_blank" rel="noopener noreferrer">
+    <span class="name">VUEshop</span>
+    <span class="description">中国免费商城系统 - 搜豹商城系统 - 免费50小时 Vue 视频教程</span>
+    <span class="action">立即查看 &gt;</span>
+  </a>
+</div> -->
+<!-- end: special logic for cn -->
+
+  <!-- end: special logic for cn -->
+
+  
+    <h2 id="FAQ"><a href="#FAQ" class="headerlink" title="FAQ"></a>FAQ</h2><blockquote>
+<p>哇，非常长的一页！是否意味着 Vue 2.0 已经完全不同了呢，是否需要从头学起呢，Vue 1.0 的项目是不是没法迁移了？</p>
+</blockquote>
+<p>非常开心地告诉你，并不是！几乎 90% 的 API 和核心概念都没有变。因为本节包含了很多详尽的阐述以及许多迁移的例子，所以显得有点长。不用担心，<strong>你不必从头到尾把本节读一遍！</strong></p>
+<blockquote>
+<p>我该从哪里开始项目迁移呢？</p>
+</blockquote>
+<ol>
+<li><p>首先，在当前项目下运行<a target="_blank" rel="noopener" href="https://github.com/vuejs/vue-migration-helper">迁移工具</a>。我们非常谨慎地把高级 Vue 升级过程简化为使用一个简单的命令行工具。当工具识别出旧有的特性后，就会告知你并给出建议，同时附上关于详细信息的链接。</p>
+</li>
+<li><p>然后，浏览本页面的侧边栏列出的内容。如果发现有的标题对你的项目有影响，但是迁移工具没有给出提示，请检查自己的项目。</p>
+</li>
+<li><p>如果你的项目有测试代码，运行并查看仍然失败的地方。如果没有测试代码，在浏览器中打开你的程序，通过导航环顾并留意那些报错或警告信息。</p>
+</li>
+<li><p>现在，你的应用程序应该已彻底完成迁移。如果你渴望了解更多，可以阅读本页面剩余部分 - 或者从<a href="index.html">介绍</a>部分，从头开始深入新的文档和改进过的指南。由于你已经熟悉一些核心概念，所以许多部分已经被删除掉。</p>
+</li>
+</ol>
+<blockquote>
+<p>将 Vue 1.x 版本的应用程序迁移到 2.0 要花多长时间？</p>
+</blockquote>
+<p>这取决于几个因素：</p>
+<ul>
+<li><p>取决于你应用程序的规模 (中小型的基本上一天内就可以搞定)。</p>
+</li>
+<li><p>取决于你分心和开始 2.0 最酷的新功能的次数。😉 &nbsp;无法判断时间，我们构建 2.0 应用的时候也经常发生这种事！</p>
+</li>
+<li><p>取决于你使用了哪些旧有的特性。大部分可以通过查找和替换 (find-and-replace) 来实现升级，但有一些可能还是要花点时间。如果你没有遵循最佳实践，Vue 2.0 会尽力强迫你去遵循。这有利于项目的长期运行，但也可能意味着重大重构 (尽管有些需要重构的部分可能已经过时)。</p>
+</li>
+</ul>
+<blockquote>
+<p>如果我升级到到 Vue 2，我还必须同时升级 Vuex 和 Vue Router？</p>
+</blockquote>
+<p>只有 Vue Router 2 与 Vue 2 保持兼容，所以 Vue Router 是需要升级的，你必须遵循 <a href="migration-vue-router.html">Vue Router 迁移方式</a>来处理。幸运的是，大多数应用没有很多 router 相关代码，所以迁移可能不会超过一个小时。</p>
+<p>对于 Vuex，版本 0.8+ 与 Vue 2 保持兼容，所以部分不必强制升级。可以促使你立即升级的唯一理由，是你想要使用那些 Vuex 2 中新的高级特性，比如模块 (modules) 和减少的样板文件 (reduced boilerplate)。</p>
+<h2 id="模板"><a href="#模板" class="headerlink" title="模板"></a>模板</h2><h3 id="片段实例移除"><a href="#片段实例移除" class="headerlink" title="片段实例移除"></a>片段实例<sup>移除</sup></h3><p>每个组件必须只有一个根元素。不再允许片段实例，如果你有这样的模板：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>foo<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>bar<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<p>最好把整个内容都简单包裹到一个新的元素里，如下所示：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>foo<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>bar<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<div class="upgrade-path">
+  <h4>升级方式</h4>
+  <p>升级后运行端到端测试套件 (end-to-end test suite) 或运行应用程序，并查看<strong>控制台警告 (console warnings)</strong> 来找出那些模板中有多个根元素的地方。
+</div>
+
+<h2 id="生命周期钩子函数"><a href="#生命周期钩子函数" class="headerlink" title="生命周期钩子函数"></a>生命周期钩子函数</h2><h3 id="beforeCompile-移除"><a href="#beforeCompile-移除" class="headerlink" title="beforeCompile 移除"></a><code>beforeCompile</code> <sup>移除</sup></h3><p>使用 <code>created</code> 钩子函数替代。</p>
+
+<div class="upgrade-path">
+  <h4>升级方式</h4>
+  <p>在代码库中运行<a target="_blank" rel="noopener" href="https://github.com/vuejs/vue-migration-helper">迁移工具</a>来找出所有使用此钩子函数的示例。</p>
+</div>
+
+<h3 id="compiled-替换"><a href="#compiled-替换" class="headerlink" title="compiled 替换"></a><code>compiled</code> <sup>替换</sup></h3><p>使用 <code>mounted</code> 钩子函数替代。</p>
+
+<div class="upgrade-path">
+  <h4>升级方式</h4>
+  <p>在代码库中运行<a target="_blank" rel="noopener" href="https://github.com/vuejs/vue-migration-helper">迁移工具</a>来找出所有使用此钩子函数的示例。</p>
+</div>
+
+<h3 id="attached-移除"><a href="#attached-移除" class="headerlink" title="attached 移除"></a><code>attached</code> <sup>移除</sup></h3><p>使用其他钩子函数内置的 DOM 检测 (DOM check) 方法。例如，替换如下：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><code class="hljs js"><span class="hljs-attr">attached</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-title function_">doSomething</span>()<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>可以这样使用：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><code class="hljs js"><span class="hljs-attr">mounted</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-variable language_">this</span>.$nextTick(<span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-title function_">doSomething</span>()<br>  &#125;)<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<div class="upgrade-path">
+  <h4>升级方式</h4>
+  <p>在代码库中运行<a target="_blank" rel="noopener" href="https://github.com/vuejs/vue-migration-helper">迁移工具</a>来找出所有使用此钩子函数的示例。</p>
+</div>
+
+<h3 id="detached-移除"><a href="#detached-移除" class="headerlink" title="detached 移除"></a><code>detached</code> <sup>移除</sup></h3><p>使用其他钩子函数内的 DOM 检测 (DOM check) 方法。例如，替换如下：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><code class="hljs js"><span class="hljs-attr">detached</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-title function_">doSomething</span>()<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>可以这样使用：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><code class="hljs js"><span class="hljs-attr">destroyed</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-variable language_">this</span>.$nextTick(<span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-title function_">doSomething</span>()<br>  &#125;)<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<div class="upgrade-path">
+  <h4>升级方式</h4>
+  <p>在代码库中运行<a target="_blank" rel="noopener" href="https://github.com/vuejs/vue-migration-helper">迁移工具</a>来找出所有使用此钩子函数的示例。</p>
+</div>
+
+<h3 id="init-重新命名"><a href="#init-重新命名" class="headerlink" title="init 重新命名"></a><code>init</code> <sup>重新命名</sup></h3><p>使用新的 <code>beforeCreate</code> 钩子函数替代，本质上 beforeCreate 和 init 完全相同。init 被重新命名是为了和其他的生命周期方法的命名方式保持一致。</p>
+
+<div class="upgrade-path">
+  <h4>升级方式</h4>
+  <p>在代码库中运行<a target="_blank" rel="noopener" href="https://github.com/vuejs/vue-migration-helper">迁移工具</a>来找出所有使用此钩子函数的示例。</p>
+</div>
+
+<h3 id="ready-替换"><a href="#ready-替换" class="headerlink" title="ready 替换"></a><code>ready</code> <sup>替换</sup></h3><p>使用新的 <code>mounted</code> 钩子函数替代。应该注意的是，使用 <code>mounted</code> 并不能保证钩子函数中的 this.$el 在 document 中。为此还应该引入 <code>Vue.nextTick</code>/<code>vm.$nextTick</code>。例如：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><code class="hljs js"><span class="hljs-attr">mounted</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-variable language_">this</span>.$nextTick(<span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-comment">// 代码保证 this.$el 在 document 中</span><br>  &#125;)<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<div class="upgrade-path">
+  <h4>升级方式</h4>
+  <p>在代码库中运行<a target="_blank" rel="noopener" href="https://github.com/vuejs/vue-migration-helper">迁移工具</a>来找出所有使用此钩子函数的示例。</p>
+</div>
+
+<h2 id="v-for"><a href="#v-for" class="headerlink" title="v-for"></a><code>v-for</code></h2><h3 id="v-for-遍历数组时的参数顺序变更"><a href="#v-for-遍历数组时的参数顺序变更" class="headerlink" title="v-for 遍历数组时的参数顺序变更"></a><code>v-for</code> 遍历数组时的参数顺序<sup>变更</sup></h3><p>当包含 <code>index</code> 时，之前遍历数组时的参数顺序是 <code>(index, value)</code>。现在是 <code>(value, index)</code>，来和 JavaScript 的原生数组方法 (例如 <code>forEach</code> 和 <code>map</code>) 保持一致。</p>
+
+<div class="upgrade-path">
+  <h4>升级方式</h4>
+  <p>在代码库中运行<a target="_blank" rel="noopener" href="https://github.com/vuejs/vue-migration-helper">迁移工具</a>来找出那些使用旧有参数顺序的示例。注意，如果你将你的 index 参数命名为一些不通用的名字 (例如 <code>position</code> 或 <code>num</code>)，迁移工具将不会把它们标记出来。</p>
+</div>
+
+<h3 id="v-for-遍历对象时的参数顺序变更"><a href="#v-for-遍历对象时的参数顺序变更" class="headerlink" title="v-for 遍历对象时的参数顺序变更"></a><code>v-for</code> 遍历对象时的参数顺序<sup>变更</sup></h3><p>当包含 property 名称/key 时，之前遍历对象的参数顺序是 <code>(name, value)</code>。现在是 <code>(value, name)</code>，来和常见的对象迭代器 (例如 lodash) 保持一致。</p>
+
+<div class="upgrade-path">
+  <h4>升级方式</h4>
+  <p>在代码库中运行<a target="_blank" rel="noopener" href="https://github.com/vuejs/vue-migration-helper">迁移工具</a>来找出那些使用旧有参数顺序的示例。注意，如果你将你的 key 参数命名为一些不通用的名字 (例如 <code>name</code> 或 <code>property</code>)，迁移工具将不会把它们标记出来。</p>
+</div>
+
+<h3 id="index-and-key-移除"><a href="#index-and-key-移除" class="headerlink" title="$index and $key 移除"></a><code>$index</code> and <code>$key</code> <sup>移除</sup></h3><p>已经移除了 <code>$index</code> 和 <code>$key</code> 这两个隐式声明变量，以便在 <code>v-for</code> 中显式定义。这可以使没有太多 Vue 开发经验的开发者更好地阅读代码，并且在处理嵌套循环时也能产生更清晰的行为。</p>
+
+<div class="upgrade-path">
+  <h4>升级方式</h4>
+  <p>在代码库中运行<a target="_blank" rel="noopener" href="https://github.com/vuejs/vue-migration-helper">迁移工具</a>来找出使用这些移除变量的示例。如果你没有找到，也可以在<strong>控制台错误</strong>中查找 (例如 <code>Uncaught ReferenceError: $index is not defined</code>)。</p>
+</div>
+
+<h3 id="track-by-替换"><a href="#track-by-替换" class="headerlink" title="track-by 替换"></a><code>track-by</code> <sup>替换</sup></h3><p><code>track-by</code> 已经替换为 <code>key</code>，它的工作方式与其他 attribute 一样，没有 <code>v-bind</code> 或者 <code>:</code> 前缀，它会被作为一个字符串处理。多数情况下，你需要使用具有完整表达式的动态绑定 (dynamic binding) 来替换静态的 key。例如，替换：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">v-for</span>=<span class="hljs-string">&quot;item in items&quot;</span> <span class="hljs-attr">track-by</span>=<span class="hljs-string">&quot;id&quot;</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<p>你现在应该写为：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">v-for</span>=<span class="hljs-string">&quot;item in items&quot;</span> <span class="hljs-attr">v-bind:key</span>=<span class="hljs-string">&quot;item.id&quot;</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<div class="upgrade-path">
+  <h4>升级方式</h4>
+  <p>在代码库中运行<a target="_blank" rel="noopener" href="https://github.com/vuejs/vue-migration-helper">迁移工具</a>来找出那些使用<code>track-by</code>的示例。</p>
+</div>
+
+<h3 id="v-for-范围值变更"><a href="#v-for-范围值变更" class="headerlink" title="v-for 范围值变更"></a><code>v-for</code> 范围值<sup>变更</sup></h3><p>之前，<code>v-for=&quot;number in 10&quot;</code> 的 <code>number</code> 从 0 开始到 9 结束，现在从 1 开始，到 10 结束。</p>
+
+<div class="upgrade-path">
+  <h4>升级方式</h4>
+  <p>在代码库中使用正则 <code>/\w+ in \d+/</code>搜索。当出现在 <code>v-for</code> 中，请检查是否受到影响。</p>
+</div>
+
+<h2 id="Props"><a href="#Props" class="headerlink" title="Props"></a>Props</h2><h3 id="coerce-Prop-的选项移除"><a href="#coerce-Prop-的选项移除" class="headerlink" title="coerce Prop 的选项移除"></a><code>coerce</code> Prop 的选项<sup>移除</sup></h3><p>如果需要检查 prop 的值，创建一个内部的 computed 值，而不再在 props 内部去定义，例如：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><code class="hljs js"><span class="hljs-attr">props</span>: &#123;<br>  <span class="hljs-attr">username</span>: &#123;<br>    <span class="hljs-attr">type</span>: <span class="hljs-title class_">String</span>,<br>    <span class="hljs-attr">coerce</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params">value</span>) &#123;<br>      <span class="hljs-keyword">return</span> value<br>        .<span class="hljs-title function_">toLowerCase</span>()<br>        .<span class="hljs-title function_">replace</span>(<span class="hljs-regexp">/\s+/</span>, <span class="hljs-string">&#x27;-&#x27;</span>)<br>    &#125;<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>现在应该写为：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><code class="hljs js"><span class="hljs-attr">props</span>: &#123;<br>  <span class="hljs-attr">username</span>: <span class="hljs-title class_">String</span>,<br>&#125;,<br><span class="hljs-attr">computed</span>: &#123;<br>  <span class="hljs-attr">normalizedUsername</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span>.<span class="hljs-property">username</span><br>      .<span class="hljs-title function_">toLowerCase</span>()<br>      .<span class="hljs-title function_">replace</span>(<span class="hljs-regexp">/\s+/</span>, <span class="hljs-string">&#x27;-&#x27;</span>)<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>这样有一些好处：</p>
+<ul>
+<li>你可以对保持原始 prop 值的操作权限。</li>
+<li>通过给予验证后的值一个不同的命名，强制开发者使用显式申明。</li>
+</ul>
+
+<div class="upgrade-path">
+  <h4>升级方式</h4>
+  <p>运行<a target="_blank" rel="noopener" href="https://github.com/vuejs/vue-migration-helper">迁移工具</a>找出包含 <code>coerce</code> 选项的实例。</p>
+</div>
+
+<h3 id="twoWay-Prop-的选项移除"><a href="#twoWay-Prop-的选项移除" class="headerlink" title="twoWay Prop 的选项移除"></a><code>twoWay</code> Prop 的选项<sup>移除</sup></h3><p>Props 现在只能单向传递。为了对父组件产生反向影响，子组件需要显式地传递一个事件而不是依赖于隐式地双向绑定。详见：</p>
+<ul>
+<li><a href="components.html#监听子组件事件">自定义组件事件</a></li>
+<li><a href="components-custom-events.html#将原生事件绑定到组件">自定义输入组件</a> (使用组件事件)</li>
+<li><a href="state-management.html">全局状态管理</a></li>
+</ul>
+
+<div class="upgrade-path">
+  <h4>升级方式</h4>
+  <p>运行 <a target="_blank" rel="noopener" href="https://github.com/vuejs/vue-migration-helper">迁移工具</a>，找出含有 <code>twoWay</code> 选项的实例。</p>
+</div>
+
+<h3 id="v-bind-的-once-和-sync-修饰符移除"><a href="#v-bind-的-once-和-sync-修饰符移除" class="headerlink" title="v-bind 的 .once 和 .sync 修饰符移除"></a><code>v-bind</code> 的 <code>.once</code> 和 <code>.sync</code> 修饰符<sup>移除</sup></h3><p>Props 现在只能单向传递。为了对父组件产生反向影响，子组件需要显式地传递一个事件而不是依赖于隐式地双向绑定。详见：</p>
+<ul>
+<li><a href="components.html#监听子组件事件">自定义组件事件</a></li>
+<li><a href="components-custom-events.html#将原生事件绑定到组件">自定义输入组件</a> (使用组件事件)</li>
+<li><a href="state-management.html">全局状态管理</a></li>
+</ul>
+
+<div class="upgrade-path">
+  <h4>升级方式</h4>
+  <p>运行<a target="_blank" rel="noopener" href="https://github.com/vuejs/vue-migration-helper">迁移工具</a>找到使用 <code>.once</code> 和 <code>.sync</code> 修饰符的实例。</p>
+</div>
+
+<h3 id="变更-Props-弃用"><a href="#变更-Props-弃用" class="headerlink" title="变更 Props 弃用"></a>变更 Props <sup>弃用</sup></h3><p>组件内变更 prop 是反模式 (不推荐的) 的。比如，先声明一个 prop，然后在组件中通过 <code>this.myProp = &#39;someOtherValue&#39;</code> 改变 prop 的值。根据渲染机制，当父组件重新渲染时，子组件的内部 prop 值也将被覆盖。</p>
+<p>大多数情况下，变更 prop 值可以用以下选项替代：</p>
+<ul>
+<li>通过 data property，用 prop 去设置一个 data property 的默认值。</li>
+<li>通过计算属性。</li>
+</ul>
+
+<div class="upgrade-path">
+  <h4>升级方式</h4>
+  <p>运行端对端测试，查看关于 prop 变更的<strong>控制台警告信息</strong>。</p>
+</div>
+
+<h3 id="根实例的-Props-替换"><a href="#根实例的-Props-替换" class="headerlink" title="根实例的 Props 替换"></a>根实例的 Props <sup>替换</sup></h3><p>对于一个根实例来说 (比如：用 <code>new Vue(&#123; ... &#125;)</code> 创建的实例)，只能用 <code>propsData</code> 而不是 <code>props</code>。</p>
+
+<div class="upgrade-path">
+  <h4>升级方式</h4>
+  <p>运行端对端测试，将会弹出 <strong>failed tests</strong> 来通知你使用 <code>props</code> 的根实例已经失效。</p>
+</div>
+
+<h2 id="计算属性"><a href="#计算属性" class="headerlink" title="计算属性"></a>计算属性</h2><h3 id="cache-false-弃用"><a href="#cache-false-弃用" class="headerlink" title="cache: false 弃用"></a><code>cache: false</code> <sup>弃用</sup></h3><p>在 Vue 未来的大版本中，计算属性的缓存验证将会被移除。把不缓存的计算属性转换为方法可以得到和之前相同的结果。</p>
+<p>示例：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><code class="hljs js"><span class="hljs-attr">template</span>: <span class="hljs-string">&#x27;&lt;p&gt;message: &#123;&#123; timeMessage &#125;&#125;&lt;/p&gt;&#x27;</span>,<br><span class="hljs-attr">computed</span>: &#123;<br>  <span class="hljs-attr">timeMessage</span>: &#123;<br>    <span class="hljs-attr">cache</span>: <span class="hljs-literal">false</span>,<br>    <span class="hljs-attr">get</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>      <span class="hljs-keyword">return</span> <span class="hljs-title class_">Date</span>.<span class="hljs-title function_">now</span>() + <span class="hljs-variable language_">this</span>.<span class="hljs-property">message</span><br>    &#125;<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>或者使用组件方法：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><code class="hljs js"><span class="hljs-attr">template</span>: <span class="hljs-string">&#x27;&lt;p&gt;message: &#123;&#123; getTimeMessage() &#125;&#125;&lt;/p&gt;&#x27;</span>,<br><span class="hljs-attr">methods</span>: &#123;<br>  <span class="hljs-attr">getTimeMessage</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-title class_">Date</span>.<span class="hljs-title function_">now</span>() + <span class="hljs-variable language_">this</span>.<span class="hljs-property">message</span><br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<div class="upgrade-path">
+  <h4>升级方式</h4>
+  <p>运行<a target="_blank" rel="noopener" href="https://github.com/vuejs/vue-migration-helper">迁移工具</a>找到 <code>cache: false</code> 的选项。</p>
+</div>
+
+<h2 id="Built-In-指令"><a href="#Built-In-指令" class="headerlink" title="Built-In 指令"></a>Built-In 指令</h2><h3 id="v-bind-真-假值变更"><a href="#v-bind-真-假值变更" class="headerlink" title="v-bind 真/假值变更"></a><code>v-bind</code> 真/假值<sup>变更</sup></h3><p>在 2.0 中使用 <code>v-bind</code> 时，只有 <code>null</code>，<code>undefined</code>，和 <code>false</code> 被看作是假。这意味着，<code>0</code> 和空字符串将被作为真值渲染。比如 <code>v-bind:draggable=&quot;&#39;&#39;&quot;</code> 将被渲染为 <code>draggable=&quot;true&quot;</code>。</p>
+<p>对于枚举 attribute，除了以上假值之外，字符串 <code>&quot;false&quot;</code> 也会被渲染为 <code>attr=&quot;false&quot;</code>。</p>
+<p class="tip">注意，对于其它钩子函数 (如 <code>v-if</code> 和 <code>v-show</code>)，他们依然遵循 js 对真假值判断的一般规则。</p>
+
+
+<div class="upgrade-path">
+  <h4>升级方式</h4>
+  <p>运行端到端测试，如果你 app 的任何部分有可能被这个升级影响到，将会弹出<strong>failed tests</strong></p>
+</div>
+
+<h3 id="用-v-on-监听原生事件变更"><a href="#用-v-on-监听原生事件变更" class="headerlink" title="用 v-on 监听原生事件变更"></a>用 <code>v-on</code> 监听原生事件<sup>变更</sup></h3><p>  现在在组件上使用 <code>v-on</code> 只会监听自定义事件 (组件用 <code>$emit</code> 触发的事件)。如果要监听根元素的原生事件，可以使用 <code>.native</code> 修饰符，比如：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">my-component</span> <span class="hljs-attr">v-on:click.native</span>=<span class="hljs-string">&quot;doSomething&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">my-component</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<div class="upgrade-path">
+  <h4>升级方式</h4>
+  <p>运行端对端测试，如果你 app 的任何部分有可能被这个升级影响到，将会弹出<strong>failed tests</strong> </p>
+</div>
+
+<h3 id="带有-debounce-的-v-model-移除"><a href="#带有-debounce-的-v-model-移除" class="headerlink" title="带有 debounce 的 v-model 移除"></a>带有 <code>debounce</code> 的 <code>v-model</code> <sup>移除</sup></h3><p>Debouncing 曾经被用来控制 Ajax 请求及其它高耗任务的频率。Vue 中 <code>v-model</code> 的 <code>debounce</code> property 参数使得在一些简单情况下非常容易实现这种控制。但实际上，这是控制了<strong>状态更新</strong>的频率，而不是控制高耗时任务本身。这是个微小的差别，但是会随着应用增长而显现出局限性。</p>
+<p>例如在设计一个搜索提示时的局限性：</p>
+
+<script src="https://cdn.jsdelivr.net/lodash/4.13.1/lodash.js"></script>
+<div id="debounce-search-demo" class="demo">
+  <input v-model="searchQuery" placeholder="Type something">
+  <strong>{{ searchIndicator }}</strong>
+</div>
+<script>
+new Vue({
+  el: '#debounce-search-demo',
+  data: {
+    searchQuery: '',
+    searchQueryIsDirty: false,
+    isCalculating: false
+  },
+  computed: {
+    searchIndicator: function () {
+      if (this.isCalculating) {
+        return '⟳ Fetching new results'
+      } else if (this.searchQueryIsDirty) {
+        return '... Typing'
+      } else {
+        return '✓ Done'
+      }
+    }
+  },
+  watch: {
+    searchQuery: function () {
+      this.searchQueryIsDirty = true
+      this.expensiveOperation()
+    }
+  },
+  methods: {
+    expensiveOperation: _.debounce(function () {
+      this.isCalculating = true
+      setTimeout(function () {
+        this.isCalculating = false
+        this.searchQueryIsDirty = false
+      }.bind(this), 1000)
+    }, 500)
+  }
+})
+</script>
+
+<p>使用 <code>debounce</code> attribute，便无法观察“Typing”的状态。因为无法对输入状态进行实时检测。然而，通过将 <code>debounce</code> 与 Vue 解耦，可以仅仅只延迟我们想要控制的操作，从而避开这些局限性：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><code class="hljs html"><span class="hljs-comment">&lt;!--</span><br><span class="hljs-comment">通过使用 lodash 或者其它库的 debounce 函数，</span><br><span class="hljs-comment">我们相信 debounce 实现是一流的，</span><br><span class="hljs-comment">并且可以随处使用它，不仅仅是在模板中。</span><br><span class="hljs-comment">--&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://cdn.jsdelivr.net/lodash/4.13.1/lodash.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;debounce-search-demo&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">v-model</span>=<span class="hljs-string">&quot;searchQuery&quot;</span> <span class="hljs-attr">placeholder</span>=<span class="hljs-string">&quot;Type something&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">strong</span>&gt;</span>&#123;&#123; searchIndicator &#125;&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">strong</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">new</span> <span class="hljs-title class_">Vue</span>(&#123;<br>  <span class="hljs-attr">el</span>: <span class="hljs-string">&#x27;#debounce-search-demo&#x27;</span>,<br>  <span class="hljs-attr">data</span>: &#123;<br>    <span class="hljs-attr">searchQuery</span>: <span class="hljs-string">&#x27;&#x27;</span>,<br>    <span class="hljs-attr">searchQueryIsDirty</span>: <span class="hljs-literal">false</span>,<br>    <span class="hljs-attr">isCalculating</span>: <span class="hljs-literal">false</span><br>  &#125;,<br>  <span class="hljs-attr">computed</span>: &#123;<br>    <span class="hljs-attr">searchIndicator</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>      <span class="hljs-keyword">if</span> (<span class="hljs-variable language_">this</span>.<span class="hljs-property">isCalculating</span>) &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;⟳ Fetching new results&#x27;</span><br>      &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-variable language_">this</span>.<span class="hljs-property">searchQueryIsDirty</span>) &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;... Typing&#x27;</span><br>      &#125; <span class="hljs-keyword">else</span> &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;✓ Done&#x27;</span><br>      &#125;<br>    &#125;<br>  &#125;,<br>  <span class="hljs-attr">watch</span>: &#123;<br>    <span class="hljs-attr">searchQuery</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>      <span class="hljs-variable language_">this</span>.<span class="hljs-property">searchQueryIsDirty</span> = <span class="hljs-literal">true</span><br>      <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">expensiveOperation</span>()<br>    &#125;<br>  &#125;,<br>  <span class="hljs-attr">methods</span>: &#123;<br>    <span class="hljs-comment">// 这是 debounce 实现的地方。</span><br>    <span class="hljs-attr">expensiveOperation</span>: _.<span class="hljs-title function_">debounce</span>(<span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>      <span class="hljs-variable language_">this</span>.<span class="hljs-property">isCalculating</span> = <span class="hljs-literal">true</span><br>      <span class="hljs-built_in">setTimeout</span>(<span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>        <span class="hljs-variable language_">this</span>.<span class="hljs-property">isCalculating</span> = <span class="hljs-literal">false</span><br>        <span class="hljs-variable language_">this</span>.<span class="hljs-property">searchQueryIsDirty</span> = <span class="hljs-literal">false</span><br>      &#125;.<span class="hljs-title function_">bind</span>(<span class="hljs-variable language_">this</span>), <span class="hljs-number">1000</span>)<br>    &#125;, <span class="hljs-number">500</span>)<br>  &#125;<br>&#125;)<br></code></pre></td></tr></table></figure>
+<p>这种方式的另外一个优点是：当包裹函数执行时间与延时时间相当时，将会等待较长时间。比如，当给出搜索建议时，要等待用户输入停止一段时间后才给出建议，这个体验非常差。其实，这时候更适合用 <strong>throttling</strong> 函数。因为现在你可以自由的使用类似 lodash 之类的库，所以很快就可以用 throttling 重构项目。</p>
+
+<div class="upgrade-path">
+  <h4>Upgrade Path</h4>
+  <p>运行<a target="_blank" rel="noopener" href="https://github.com/vuejs/vue-migration-helper">迁移工具</a>找出使用 <code>debounce</code> attribute 的实例。</p>
+</div>
+
+<h3 id="使用-lazy-或者-number-参数-attribute-的-v-model。替换"><a href="#使用-lazy-或者-number-参数-attribute-的-v-model。替换" class="headerlink" title="使用 lazy 或者 number 参数 attribute 的 v-model。替换"></a>使用 <code>lazy</code> 或者 <code>number</code> 参数 attribute 的 <code>v-model</code>。<sup>替换</sup></h3><p><code>lazy</code> 和 <code>number</code> 参数现在以修饰符的形式使用，这样看起来更加清晰，而不是这样：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">v-model</span>=<span class="hljs-string">&quot;name&quot;</span> <span class="hljs-attr">lazy</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">v-model</span>=<span class="hljs-string">&quot;age&quot;</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;number&quot;</span> <span class="hljs-attr">number</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<p>现在写成这样：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">v-model.lazy</span>=<span class="hljs-string">&quot;name&quot;</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">v-model.number</span>=<span class="hljs-string">&quot;age&quot;</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;number&quot;</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<div class="upgrade-path">
+  <h4>升级方式</h4>
+  <p>运行 <a target="_blank" rel="noopener" href="https://github.com/vuejs/vue-migration-helper">迁移工具</a>找到这些弃用参数。</p>
+</div>
+
+<h3 id="使用-value-attribute-的-v-model-移除"><a href="#使用-value-attribute-的-v-model-移除" class="headerlink" title="使用 value attribute 的 v-model 移除"></a>使用 <code>value</code> attribute 的 <code>v-model</code> <sup>移除</sup></h3><p><code>v-model</code> 不再以 <code>value</code> attribute 方式初始化的初值了，显然他将以实例的 data 相应的 property 作为真正的初值。</p>
+<p>这意味着以下元素：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">v-model</span>=<span class="hljs-string">&quot;text&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;foo&quot;</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<p>在 data 选项中有下面写法的：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><code class="hljs js"><span class="hljs-attr">data</span>: &#123;<br>  <span class="hljs-attr">text</span>: <span class="hljs-string">&#x27;bar&#x27;</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<p>将渲染 model 为“bar”而不是“foo”。同样，对 <code>&lt;textarea&gt;</code> 已有的值来说：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">textarea</span> <span class="hljs-attr">v-model</span>=<span class="hljs-string">&quot;text&quot;</span>&gt;</span><br>  hello world<br><span class="hljs-tag">&lt;/<span class="hljs-name">textarea</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<p>必须保证 <code>text</code> 初值为“hello world”</p>
+
+<div class="upgrade-path">
+  <h4>升级方式</h4>
+  <p>升级后运行端对端测试，注意关于 <code>v-model</code> 的内联 value attribute 的 <strong>console warnings</strong></p>
+</div>
+
+<h3 id="v-model-with-v-for-Iterated-Primitive-Values-移除"><a href="#v-model-with-v-for-Iterated-Primitive-Values-移除" class="headerlink" title="v-model with v-for Iterated Primitive Values 移除"></a><code>v-model</code> with <code>v-for</code> Iterated Primitive Values <sup>移除</sup></h3><p>像这样的写法将失效：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">v-for</span>=<span class="hljs-string">&quot;str in strings&quot;</span> <span class="hljs-attr">v-model</span>=<span class="hljs-string">&quot;str&quot;</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<p>因为 <code>&lt;input&gt;</code> 将被编译成类似下面的 js 代码：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><code class="hljs js">strings.<span class="hljs-title function_">map</span>(<span class="hljs-keyword">function</span> (<span class="hljs-params">str</span>) &#123;<br>  <span class="hljs-keyword">return</span> <span class="hljs-title function_">createElement</span>(<span class="hljs-string">&#x27;input&#x27;</span>, ...)<br>&#125;)<br></code></pre></td></tr></table></figure>
+<p>这样，<code>v-model</code> 的双向绑定在这里就失效了。把 <code>str</code> 赋值给迭代器里的另一个值也没有用，因为它仅仅是函数内部的一个变量。</p>
+<p>替代方案是，你可以使用对象数组，这样 <code>v-model</code> 就可以同步更新对象里面的字段了，例如：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">v-for</span>=<span class="hljs-string">&quot;obj in objects&quot;</span> <span class="hljs-attr">v-model</span>=<span class="hljs-string">&quot;obj.str&quot;</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<div class="upgrade-path">
+  <h4>升级方式</h4>
+  <p>运行测试，如果你的 app 有地方被这个更新影响到的话将会弹出<strong>failed tests</strong>提示。</p>
+</div>
+
+<h3 id="带有-important-的-v-bind-style-移除"><a href="#带有-important-的-v-bind-style-移除" class="headerlink" title="带有 !important 的 v-bind:style 移除"></a>带有 <code>!important</code> 的 <code>v-bind:style</code> <sup>移除</sup></h3><p>这样写将失效：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">v-bind:style</span>=<span class="hljs-string">&quot;&#123; color: myColor + &#x27; !important&#x27; &#125;&quot;</span>&gt;</span>hello<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<p>如果确实需要覆盖其它的 <code>!important</code>，最好用字符串形式去写：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">v-bind:style</span>=<span class="hljs-string">&quot;&#x27;color: &#x27; + myColor + &#x27; !important&#x27;&quot;</span>&gt;</span>hello<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<div class="upgrade-path">
+  <h4>升级方式</h4>
+  <p>运行 <a target="_blank" rel="noopener" href="https://github.com/vuejs/vue-migration-helper"> 迁移帮助工具。</a>找到含有 <code>!important</code> 的 style 绑定对象。</p>
+</div>
+
+<h3 id="v-el-和-v-ref-替换"><a href="#v-el-和-v-ref-替换" class="headerlink" title="v-el 和 v-ref 替换"></a><code>v-el</code> 和 <code>v-ref</code> <sup>替换</sup></h3><p>简单起见，<code>v-el</code> 和 <code>v-ref</code> 合并为一个 <code>ref</code> attribute 了，可以在组件实例中通过 <code>$refs</code> 来调用。这意味着 <code>v-el:my-element</code> 将写成这样：<code>ref=&quot;myElement&quot;</code>，<code>v-ref:my-component</code> 变成了这样：<code>ref=&quot;myComponent&quot;</code>。绑定在一般元素上时，<code>ref</code> 指 DOM 元素，绑定在组件上时，<code>ref</code> 为一组件实例。</p>
+<p>因为 <code>v-ref</code> 不再是一个指令了而是一个特殊的 attribute，它也可以被动态定义了。这样在和 <code>v-for</code> 结合的时候是很有用的：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">v-for</span>=<span class="hljs-string">&quot;item in items&quot;</span> <span class="hljs-attr">v-bind:ref</span>=<span class="hljs-string">&quot;&#x27;item&#x27; + item.id&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<p>以前 <code>v-el</code>/<code>v-ref</code> 和 <code>v-for</code> 一起使用将产生一个 DOM 数组或者组件数组，因为没法给每个元素一个特定名字。现在你还仍然可以这样做，给每个元素一个同样的 <code>ref</code>：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">v-for</span>=<span class="hljs-string">&quot;item in items&quot;</span> <span class="hljs-attr">ref</span>=<span class="hljs-string">&quot;items&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<p>和 1.x 中不同，<code>$refs</code> 不是响应的，因为它们在渲染过程中注册/更新。只有监听变化并重复渲染才能使它们响应。</p>
+<p>另一方面，设计 <code>$refs</code> 主要是提供给 js 程序访问的，并不建议在模板中过度依赖使用它。因为这意味着在实例之外去访问实例状态，违背了 Vue 数据驱动的思想。</p>
+
+<div class="upgrade-path">
+  <h4>升级方式</h4>
+  <p>运行<a target="_blank" rel="noopener" href="https://github.com/vuejs/vue-migration-helper">迁移工具</a>找出实例中的 <code>v-el</code> 和 <code>v-ref</code> 。</p>
+</div>
+
+<h3 id="v-show-后面使用-v-else-移除"><a href="#v-show-后面使用-v-else-移除" class="headerlink" title="v-show 后面使用 v-else 移除"></a><code>v-show</code> 后面使用 <code>v-else</code> <sup>移除</sup></h3><p><code>v-else</code> 不能再跟在 <code>v-show</code> 后面使用。请在 <code>v-if</code> 的否定分支中使用 <code>v-show</code> 来替代。例如：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">v-if</span>=<span class="hljs-string">&quot;foo&quot;</span>&gt;</span>Foo<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">v-else</span> <span class="hljs-attr">v-show</span>=<span class="hljs-string">&quot;bar&quot;</span>&gt;</span>Not foo, but bar<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<p>现在应该写出这样：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">v-if</span>=<span class="hljs-string">&quot;foo&quot;</span>&gt;</span>Foo<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">v-if</span>=<span class="hljs-string">&quot;!foo &amp;&amp; bar&quot;</span>&gt;</span>Not foo, but bar<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<div class="upgrade-path">
+  <h4>升级方式</h4>
+  <p>运行<a target="_blank" rel="noopener" href="https://github.com/vuejs/vue-migration-helper">迁移工具</a>找出实例中存在的 <code>v-else</code> 以及 <code>v-show</code>。</p>
+</div>
+
+<h2 id="自定义指令简化"><a href="#自定义指令简化" class="headerlink" title="自定义指令简化"></a>自定义指令<sup>简化</sup></h2><p>在新版中，指令的使用范围已经大大减小了：现在指令仅仅被用于低级的 DOM 操作。大多数情况下，最好是使用组件作为代码复用的抽象层。</p>
+<p>显要的改变有如下几点：</p>
+<ul>
+<li>指令不再拥有实例。意思是，在指令的钩子函数中不再拥有实例的 <code>this</code>。替代的是，你可以在参数中接受你需要的任何数据。如果确实需要，可以通过 <code>el</code> 来访问实例。</li>
+<li>类似 <code>acceptStatement</code>、<code>deep</code>、<code>priority</code> 等都已被弃用。为了替换“双向”指令，见<a href="#双向过滤器-替换">示例</a>。</li>
+<li>现在有些钩子的意义和以前不一样了，并且多了两个钩子函数。</li>
+</ul>
+<p>幸运的是，新钩子更加简单，更加容易掌握。详见<a href="custom-directive.html">自定义指令指南</a>。</p>
+
+<div class="upgrade-path">
+  <h4>升级方式</h4>
+  <p>运行<a target="_blank" rel="noopener" href="https://github.com/vuejs/vue-migration-helper">迁移工具</a>找到定义指令的地方。在 helper 工具会把这些地方标记出来，因为很有可能这些地方需要重构。</p>
+</div>
+
+<h3 id="指令-literal-修饰符移除"><a href="#指令-literal-修饰符移除" class="headerlink" title="指令 .literal 修饰符移除"></a>指令 <code>.literal</code> 修饰符<sup>移除</sup></h3><p><code>.literal</code> 修饰符已经被移除，为了获取一样的功能，可以简单地提供字符串修饰符作为值。</p>
+<p>示例，如下更改：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">v-my-directive.literal</span>=<span class="hljs-string">&quot;foo bar baz&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<p>只是：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">v-my-directive</span>=<span class="hljs-string">&quot;&#x27;foo bar baz&#x27;&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<div class="upgrade-path">
+  <h4>升级方式</h4>
+  <p>运行<a target="_blank" rel="noopener" href="https://github.com/vuejs/vue-migration-helper">迁移工具</a>找到实例中使用 `.literal` 修饰符的地方。</p>
+</div>
+
+<h2 id="过渡"><a href="#过渡" class="headerlink" title="过渡"></a>过渡</h2><h3 id="transition-Attrubute-替换"><a href="#transition-Attrubute-替换" class="headerlink" title="transition Attrubute 替换"></a><code>transition</code> Attrubute <sup>替换</sup></h3><p>Vue 的过渡系统有了彻底的改变，现在通过使用 <code>&lt;transition&gt;</code> 和 <code>&lt;transition-group&gt;</code> 来包裹元素实现过渡效果，而不再使用 <code>transition</code> attribute。详见 <a href="transitions.html">Transitions guide</a>。</p>
+
+<div class="upgrade-path">
+  <h4>升级方式</h4>
+  <p>运行<a target="_blank" rel="noopener" href="https://github.com/vuejs/vue-migration-helper">迁移工具</a>找到使用 <code>transition</code> attribute 的地方。</p>
+</div>
+
+<h3 id="可复用的过渡-Vue-transition-替换"><a href="#可复用的过渡-Vue-transition-替换" class="headerlink" title="可复用的过渡 Vue.transition 替换"></a>可复用的过渡 <code>Vue.transition</code> <sup>替换</sup></h3><p>在新的过渡系统中，可以<a href="transitions.html#Reusable-Transitions">通过模板复用过渡效果</a>。</p>
+
+<div class="upgrade-path">
+  <h4>升级方式</h4>
+  <p>运行<a target="_blank" rel="noopener" href="https://github.com/vuejs/vue-migration-helper">迁移工具</a>找到使用 <code>transition</code> attribute 的地方。</p>
+</div>
+
+<h3 id="过渡的-stagger-Attribute-移除"><a href="#过渡的-stagger-Attribute-移除" class="headerlink" title="过渡的 stagger Attribute 移除"></a>过渡的 <code>stagger</code> Attribute <sup>移除</sup></h3><p>如果希望在列表渲染中使用渐近过渡，可以通过设置元素的 <code>data-index</code> (或类似 attribute) 来控制时间。请参考<a href="transitions.html#列表的渐进过渡">这个例子</a>。</p>
+
+<div class="upgrade-path">
+  <h4>升级方式</h4>
+  <p>运行<a target="_blank" rel="noopener" href="https://github.com/vuejs/vue-migration-helper">迁移工具</a>找到使用 <code>transition</code> attribute 的地方。升级期间，你可以“过渡”到新的过渡策略。</p>
+</div>
+
+<h2 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h2><h3 id="events-选项移除"><a href="#events-选项移除" class="headerlink" title="events 选项移除"></a><code>events</code> 选项<sup>移除</sup></h3><p><code>events</code> 选项被弃用。事件处理器现在在 <code>created</code> 钩子中被注册。参考详细示例 <a href="#dispatch-和-broadcast-替换"><code>$dispatch</code> and <code>$broadcast</code> 迁移指南</a></p>
+<h3 id="Vue-directive-39-on-39-keyCodes-替换"><a href="#Vue-directive-39-on-39-keyCodes-替换" class="headerlink" title="Vue.directive(&#39;on&#39;).keyCodes 替换"></a><code>Vue.directive(&#39;on&#39;).keyCodes</code> <sup>替换</sup></h3><p>新的简明配置 <code>keyCodes</code> 的方式是通过 <code>Vue.config.keyCodes</code> 例如：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// v-on:keyup.f1 不可用</span><br><span class="hljs-title class_">Vue</span>.<span class="hljs-property">config</span>.<span class="hljs-property">keyCodes</span>.<span class="hljs-property">f1</span> = <span class="hljs-number">112</span><br></code></pre></td></tr></table></figure>
+
+<div class="upgrade-path">
+  <h4>升级方式</h4>
+  <p>运行<a target="_blank" rel="noopener" href="https://github.com/vuejs/vue-migration-helper">迁移工具</a>找到过时的 <code>keyCode</code> 配置</p>
+</div>
+
+<h3 id="dispatch-和-broadcast-替换"><a href="#dispatch-和-broadcast-替换" class="headerlink" title="$dispatch 和 $broadcast 替换"></a><code>$dispatch</code> 和 <code>$broadcast</code> <sup>替换</sup></h3><p><code>$dispatch</code> 和 <code>$broadcast</code> 已经被弃用。请使用更多简明清晰的组件间通信和更好的状态管理方案，如：<a target="_blank" rel="noopener" href="https://github.com/vuejs/vuex">Vuex</a>。</p>
+<p>因为基于组件树结构的事件流方式实在是让人难以理解，并且在组件结构扩展的过程中会变得越来越脆弱。这种事件方式确实不太好，我们也不希望在以后让开发者们太痛苦。并且 <code>$dispatch</code> 和 <code>$broadcast</code> 也没有解决兄弟组件间的通信问题。</p>
+<p>对于 <code>$dispatch</code> 和 <code>$broadcast</code> 最简单的升级方式就是：通过使用事件中心，允许组件自由交流，无论组件处于组件树的哪一层。由于 Vue 实例实现了一个事件分发接口，你可以通过实例化一个空的 Vue 实例来实现这个目的。</p>
+<p>这些方法的最常见用途之一是父子组件的相互通信。在这些情况下，你可以使用 <a href="components-custom-events.html#将原生事件绑定到组件"><code>v-on</code> 监听子组件上 $emit 的变化</a>。这可以允许你很方便的添加事件显性。</p>
+<p>然而，如果是跨多层父子组件通信的话，<code>$emit</code> 并没有什么用。相反，用集中式的事件中间件可以做到简单的升级。这会让组件之间的通信非常顺利，即使是兄弟组件。因为 Vue 通过事件发射器接口执行实例，实际上你可以使用一个空的 Vue 实例。</p>
+<p>比如，假设我们有个 todo 的应用结构如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs plaintext">Todos<br>├─ NewTodoInput<br>└─ Todo<br>   └─ DeleteTodoButton<br></code></pre></td></tr></table></figure>
+<p>可以通过单独的事件中心管理组件间的通信：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// 将在各处使用该事件中心</span><br><span class="hljs-comment">// 组件通过它来通信</span><br><span class="hljs-keyword">var</span> eventHub = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Vue</span>()<br></code></pre></td></tr></table></figure>
+<p>然后在组件中，可以使用 <code>$emit</code>，<code>$on</code>，<code>$off</code> 分别来分发、监听、取消监听事件：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// NewTodoInput</span><br><span class="hljs-comment">// ...</span><br><span class="hljs-attr">methods</span>: &#123;<br>  <span class="hljs-attr">addTodo</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>    eventHub.$emit(<span class="hljs-string">&#x27;add-todo&#x27;</span>, &#123; <span class="hljs-attr">text</span>: <span class="hljs-variable language_">this</span>.<span class="hljs-property">newTodoText</span> &#125;)<br>    <span class="hljs-variable language_">this</span>.<span class="hljs-property">newTodoText</span> = <span class="hljs-string">&#x27;&#x27;</span><br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// DeleteTodoButton</span><br><span class="hljs-comment">// ...</span><br><span class="hljs-attr">methods</span>: &#123;<br>  <span class="hljs-attr">deleteTodo</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params">id</span>) &#123;<br>    eventHub.$emit(<span class="hljs-string">&#x27;delete-todo&#x27;</span>, id)<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// Todos</span><br><span class="hljs-comment">// ...</span><br><span class="hljs-attr">created</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>  eventHub.$on(<span class="hljs-string">&#x27;add-todo&#x27;</span>, <span class="hljs-variable language_">this</span>.<span class="hljs-property">addTodo</span>)<br>  eventHub.$on(<span class="hljs-string">&#x27;delete-todo&#x27;</span>, <span class="hljs-variable language_">this</span>.<span class="hljs-property">deleteTodo</span>)<br>&#125;,<br><span class="hljs-comment">// 最好在组件销毁前</span><br><span class="hljs-comment">// 清除事件监听</span><br><span class="hljs-attr">beforeDestroy</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>  eventHub.$off(<span class="hljs-string">&#x27;add-todo&#x27;</span>, <span class="hljs-variable language_">this</span>.<span class="hljs-property">addTodo</span>)<br>  eventHub.$off(<span class="hljs-string">&#x27;delete-todo&#x27;</span>, <span class="hljs-variable language_">this</span>.<span class="hljs-property">deleteTodo</span>)<br>&#125;,<br><span class="hljs-attr">methods</span>: &#123;<br>  <span class="hljs-attr">addTodo</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params">newTodo</span>) &#123;<br>    <span class="hljs-variable language_">this</span>.<span class="hljs-property">todos</span>.<span class="hljs-title function_">push</span>(newTodo)<br>  &#125;,<br>  <span class="hljs-attr">deleteTodo</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params">todoId</span>) &#123;<br>    <span class="hljs-variable language_">this</span>.<span class="hljs-property">todos</span> = <span class="hljs-variable language_">this</span>.<span class="hljs-property">todos</span>.<span class="hljs-title function_">filter</span>(<span class="hljs-keyword">function</span> (<span class="hljs-params">todo</span>) &#123;<br>      <span class="hljs-keyword">return</span> todo.<span class="hljs-property">id</span> !== todoId<br>    &#125;)<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>在简单的情况下这样做可以替代 <code>$dispatch</code> 和 <code>$broadcast</code>，但是对于大多数复杂情况，更推荐使用一个专用的状态管理层如：<a target="_blank" rel="noopener" href="https://github.com/vuejs/vuex">Vuex</a>。</p>
+
+<div class="upgrade-path">
+  <h4>升级方式</h4>
+  <p>运行<a target="_blank" rel="noopener" href="https://github.com/vuejs/vue-migration-helper">迁移工具</a>找出使用 <code>$dispatch</code> 和 <code>$broadcast</code>的实例。</p>
+</div>
+
+<h2 id="过滤器"><a href="#过滤器" class="headerlink" title="过滤器"></a>过滤器</h2><h3 id="插入文本之外的过滤器移除"><a href="#插入文本之外的过滤器移除" class="headerlink" title="插入文本之外的过滤器移除"></a>插入文本之外的过滤器<sup>移除</sup></h3><p>现在过滤器只能用在插入文本中 (<code>{{ }}</code> tags)。我们发现在指令 (如：<code>v-model</code>，<code>v-on</code> 等) 中使用过滤器使事情变得更复杂。像 <code>v-for</code> 这样的列表过滤器最好把处理逻辑作为一个计算属性放在 js 里面，这样就可以在整个模板中复用。</p>
+<p>总之，能在原生 js 中实现的东西，我们尽量避免引入一个新的符号去重复处理同样的问题。下面是如何替换 Vue 内置过滤器：</p>
+<h4 id="替换-debounce-过滤器"><a href="#替换-debounce-过滤器" class="headerlink" title="替换 debounce 过滤器"></a>替换 <code>debounce</code> 过滤器</h4><p>不再这样写</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">v-on:keyup</span>=<span class="hljs-string">&quot;doStuff | debounce 500&quot;</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="code"><pre><code class="hljs js"><span class="hljs-attr">methods</span>: &#123;<br>  <span class="hljs-attr">doStuff</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-comment">// ...</span><br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>请使用 <a target="_blank" rel="noopener" href="https://lodash.com/docs/4.15.0#debounce">lodash’s <code>debounce</code></a> (也有可能是 <a target="_blank" rel="noopener" href="https://lodash.com/docs/4.15.0#throttle"><code>throttle</code></a>) 来直接控制高耗任务。可以这样来实现上面的功能：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">v-on:keyup</span>=<span class="hljs-string">&quot;doStuff&quot;</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="code"><pre><code class="hljs js"><span class="hljs-attr">methods</span>: &#123;<br>  <span class="hljs-attr">doStuff</span>: _.<span class="hljs-title function_">debounce</span>(<span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-comment">// ...</span><br>  &#125;, <span class="hljs-number">500</span>)<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>这种写法的更多优点详见：<a href="#带有-debounce-的-v-model移除"><code>v-model</code> 示例</a>。</p>
+<h4 id="替换-limitBy-过滤器"><a href="#替换-limitBy-过滤器" class="headerlink" title="替换 limitBy 过滤器"></a>替换 <code>limitBy</code> 过滤器</h4><p>不再这样写：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">v-for</span>=<span class="hljs-string">&quot;item in items | limitBy 10&quot;</span>&gt;</span>&#123;&#123; item &#125;&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<p>在计算属性中使用 js 内置方法：<a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/slice#Examples"><code>.slice</code> method</a>：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">v-for</span>=<span class="hljs-string">&quot;item in filteredItems&quot;</span>&gt;</span>&#123;&#123; item &#125;&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="code"><pre><code class="hljs js"><span class="hljs-attr">computed</span>: &#123;<br>  <span class="hljs-attr">filteredItems</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span>.<span class="hljs-property">items</span>.<span class="hljs-title function_">slice</span>(<span class="hljs-number">0</span>, <span class="hljs-number">10</span>)<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h4 id="替换-filterBy-过滤器"><a href="#替换-filterBy-过滤器" class="headerlink" title="替换 filterBy 过滤器"></a>替换 <code>filterBy</code> 过滤器</h4><p>不再这样写：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">v-for</span>=<span class="hljs-string">&quot;user in users | filterBy searchQuery in &#x27;name&#x27;&quot;</span>&gt;</span>&#123;&#123; user.name &#125;&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<p>在计算属性中使用 js 内置方法 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter#Examples"><code>.filter</code> method</a>：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">v-for</span>=<span class="hljs-string">&quot;user in filteredUsers&quot;</span>&gt;</span>&#123;&#123; user.name &#125;&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="code"><pre><code class="hljs js"><span class="hljs-attr">computed</span>: &#123;<br>  <span class="hljs-attr">filteredUsers</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-keyword">var</span> self = <span class="hljs-variable language_">this</span><br>    <span class="hljs-keyword">return</span> self.<span class="hljs-property">users</span>.<span class="hljs-title function_">filter</span>(<span class="hljs-keyword">function</span> (<span class="hljs-params">user</span>) &#123;<br>      <span class="hljs-keyword">return</span> user.<span class="hljs-property">name</span>.<span class="hljs-title function_">indexOf</span>(self.<span class="hljs-property">searchQuery</span>) !== -<span class="hljs-number">1</span><br>    &#125;)<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>js 原生的 <code>.filter</code> 同样能实现很多复杂的过滤器操作，因为可以在计算计算属性中使用所有 js 方法。比如，想要通过匹配用户名字和电子邮箱地址 (不区分大小写) 找到用户：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> self = <span class="hljs-variable language_">this</span><br>self.<span class="hljs-property">users</span>.<span class="hljs-title function_">filter</span>(<span class="hljs-keyword">function</span> (<span class="hljs-params">user</span>) &#123;<br>  <span class="hljs-keyword">var</span> searchRegex = <span class="hljs-keyword">new</span> <span class="hljs-title class_">RegExp</span>(self.<span class="hljs-property">searchQuery</span>, <span class="hljs-string">&#x27;i&#x27;</span>)<br>  <span class="hljs-keyword">return</span> user.<span class="hljs-property">isActive</span> &amp;&amp; (<br>    searchRegex.<span class="hljs-title function_">test</span>(user.<span class="hljs-property">name</span>) ||<br>    searchRegex.<span class="hljs-title function_">test</span>(user.<span class="hljs-property">email</span>)<br>  )<br>&#125;)<br></code></pre></td></tr></table></figure>
+<h4 id="替换-orderBy-过滤器"><a href="#替换-orderBy-过滤器" class="headerlink" title="替换 orderBy 过滤器"></a>替换 <code>orderBy</code> 过滤器</h4><p>不这样写：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">v-for</span>=<span class="hljs-string">&quot;user in users | orderBy &#x27;name&#x27;&quot;</span>&gt;</span>&#123;&#123; user.name &#125;&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<p>而是在计算属性中使用 <a target="_blank" rel="noopener" href="https://lodash.com/docs/4.15.0#orderBy">lodash’s <code>orderBy</code></a> (或者可能是 <a target="_blank" rel="noopener" href="https://lodash.com/docs/4.15.0#sortBy"><code>sortBy</code></a>)：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">v-for</span>=<span class="hljs-string">&quot;user in orderedUsers&quot;</span>&gt;</span>&#123;&#123; user.name &#125;&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="code"><pre><code class="hljs js"><span class="hljs-attr">computed</span>: &#123;<br>  <span class="hljs-attr">orderedUsers</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-keyword">return</span> _.<span class="hljs-title function_">orderBy</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">users</span>, <span class="hljs-string">&#x27;name&#x27;</span>)<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>甚至可以字段排序：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><code class="hljs js">_.<span class="hljs-title function_">orderBy</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">users</span>, [<span class="hljs-string">&#x27;name&#x27;</span>, <span class="hljs-string">&#x27;last_login&#x27;</span>], [<span class="hljs-string">&#x27;asc&#x27;</span>, <span class="hljs-string">&#x27;desc&#x27;</span>])<br></code></pre></td></tr></table></figure>
+
+<div class="upgrade-path">
+  <h4>升级方式</h4>
+  <p>运行<a target="_blank" rel="noopener" href="https://github.com/vuejs/vue-migration-helper">迁移工具</a>找到指令中使用的过滤器。如果有些没找到，看看<strong>控制台错误信息</strong>。</p>
+</div>
+
+<h3 id="过滤器参数符号变更"><a href="#过滤器参数符号变更" class="headerlink" title="过滤器参数符号变更"></a>过滤器参数符号<sup>变更</sup></h3><p>现在过滤器参数形式可以更好地与 js 函数调用方式一致，因此不用再用空格分隔参数：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>&#123;&#123; date | formatDate &#x27;YY-MM-DD&#x27; timeZone &#125;&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<p>现在用圆括号括起来并用逗号分隔：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>&#123;&#123; date | formatDate(&#x27;YY-MM-DD&#x27;, timeZone) &#125;&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<div class="upgrade-path">
+  <h4>升级方式</h4>
+  <p>运行<a target="_blank" rel="noopener" href="https://github.com/vuejs/vue-migration-helper">迁移工具</a>找到老式的调用符号，如果有遗漏，请看<strong>控制台错误信息</strong>。</p>
+</div>
+
+<h3 id="内置文本过滤器移除"><a href="#内置文本过滤器移除" class="headerlink" title="内置文本过滤器移除"></a>内置文本过滤器<sup>移除</sup></h3><p>尽管插入文本内部的过滤器依然有效，但是所有内置过滤器已经移除了。取代的是，推荐在每个区域使用更专业的库来解决。(比如用 <a target="_blank" rel="noopener" href="https://date-fns.org/"><code>date-fns</code></a> 来格式化日期，用 <a target="_blank" rel="noopener" href="https://openexchangerates.github.io/accounting.js/"><code>accounting</code></a> 来格式化货币)。</p>
+<p>对于每个内置过滤器，我们大概总结了下该怎么替换。代码示例可能写在自定义 helper 函数，方法或计算属性中。</p>
+<h4 id="替换-json-过滤器"><a href="#替换-json-过滤器" class="headerlink" title="替换 json 过滤器"></a>替换 <code>json</code> 过滤器</h4><p>不用一个个改，因为 Vue 已经帮你自动格式化好了，无论是字符串，数字还是数组，对象。如果想用 js 的 <code>JSON.stringify</code> 功能去实现，你也可以把它写在方法或者计算属性里面。</p>
+<h4 id="替换-capitalize-过滤器"><a href="#替换-capitalize-过滤器" class="headerlink" title="替换 capitalize 过滤器"></a>替换 <code>capitalize</code> 过滤器</h4><figure class="highlight js"><table><tr><td class="code"><pre><code class="hljs js">text[<span class="hljs-number">0</span>].<span class="hljs-title function_">toUpperCase</span>() + text.<span class="hljs-title function_">slice</span>(<span class="hljs-number">1</span>)<br></code></pre></td></tr></table></figure>
+<h4 id="替换-uppercase-过滤器"><a href="#替换-uppercase-过滤器" class="headerlink" title="替换 uppercase 过滤器"></a>替换 <code>uppercase</code> 过滤器</h4><figure class="highlight js"><table><tr><td class="code"><pre><code class="hljs js">text.<span class="hljs-title function_">toUpperCase</span>()<br></code></pre></td></tr></table></figure>
+<h4 id="替换-lowercase-过滤器"><a href="#替换-lowercase-过滤器" class="headerlink" title="替换 lowercase 过滤器"></a>替换 <code>lowercase</code> 过滤器</h4><figure class="highlight js"><table><tr><td class="code"><pre><code class="hljs js">text.<span class="hljs-title function_">toLowerCase</span>()<br></code></pre></td></tr></table></figure>
+<h4 id="替换-pluralize-过滤器"><a href="#替换-pluralize-过滤器" class="headerlink" title="替换 pluralize 过滤器"></a>替换 <code>pluralize</code> 过滤器</h4><p>npm 上的 <a target="_blank" rel="noopener" href="https://www.npmjs.com/package/pluralize">pluralize</a> 库可以很好的实现这个功能。如果仅仅想将特定的词格式化成复数形式或者想给特定的值 (<code>0</code>) 指定特定的输出，也可以很容易地自定义复数格式化过滤器：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">pluralizeKnife</span> (count) &#123;<br>  <span class="hljs-keyword">if</span> (count === <span class="hljs-number">0</span>) &#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;no knives&#x27;</span><br>  &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (count === <span class="hljs-number">1</span>) &#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;1 knife&#x27;</span><br>  &#125; <span class="hljs-keyword">else</span> &#123;<br>    <span class="hljs-keyword">return</span> count + <span class="hljs-string">&#x27;knives&#x27;</span><br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h4 id="Replacing-the-currency-Filter"><a href="#Replacing-the-currency-Filter" class="headerlink" title="Replacing the currency Filter"></a>Replacing the <code>currency</code> Filter</h4><p>对于简单的问题，可以这样做：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><code class="hljs js"><span class="hljs-string">&#x27;$&#x27;</span> + price.<span class="hljs-title function_">toFixed</span>(<span class="hljs-number">2</span>)<br></code></pre></td></tr></table></figure>
+<p>大多数情况下，仍然会有奇怪的现象 (比如 <code>0.035.toFixed(2)</code> 向上取舍得到 <code>0.04</code>，但是 <code>0.045</code> 向下取舍却也得到 <code>0.04</code>)。解决这些问题可以使用 <a target="_blank" rel="noopener" href="https://openexchangerates.github.io/accounting.js/"><code>accounting</code></a> 库来实现更多可靠的货币格式化。</p>
+
+<div class="upgrade-path">
+  <h4>升级方式</h4>
+  <p>运行<a target="_blank" rel="noopener" href="https://github.com/vuejs/vue-migration-helper">迁移工具</a>找到舍弃的过滤器。如果有些遗漏，请参考<strong>控制台错误信息</strong>。</p>
+</div>
+
+<h3 id="双向过滤器替换"><a href="#双向过滤器替换" class="headerlink" title="双向过滤器替换"></a>双向过滤器<sup>替换</sup></h3><p>有些用户已经乐于通过 <code>v-model</code> 使用双向过滤器，以很少的代码创建有趣的输入。尽管表面上很<em>简单</em>，双向过滤器也会暗藏一些巨大的复杂性——甚至促使状态更新变得迟钝影响用户体验。推荐用包裹一个输入的组件取而代之，这样以更显性且功能更丰富的方式创建自定义的输入。</p>
+<p>我们现在做一次双向汇率过滤器的迁移作为示范：</p>
+<iframe src="https://codesandbox.io/embed/github/vuejs/v2.vuejs.org/tree/master/src/v2/examples/vue-10-two-way-currency-filter?codemirror=1&hidedevtools=1&hidenavigation=1&theme=light" style="width:100%; height:300px; border:0; border-radius: 4px; overflow:hidden;" title="vue-20-template-compilation" allow="geolocation; microphone; camera; midi; vr; accelerometer; gyroscope; payment; ambient-light-sensor; encrypted-media; usb" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
+
+<p>它基本工作良好，但是拖延的状态更新会导致奇怪的行为。比如试着在其中一个输入框中输入 <code>9.999</code>。当输入框失去焦点的时候，其值将会更新到 <code>$10.00</code>。然而当我们从整个计算器的角度看时，你会发现存储的数据是 <code>9.999</code>。用户看到的已经不是真实的同步了！</p>
+<p>为了过渡到一个更加健壮的 Vue 2.0 的方案，让我们首先在一个新的 <code>&lt;currency-input&gt;</code> 组件中包裹这个过滤器：</p>
+<iframe src="https://codesandbox.io/embed/github/vuejs/v2.vuejs.org/tree/master/src/v2/examples/vue-10-two-way-currency-filter-v2?codemirror=1&hidedevtools=1&hidenavigation=1&theme=light" style="width:100%; height:300px; border:0; border-radius: 4px; overflow:hidden;" title="vue-20-template-compilation" allow="geolocation; microphone; camera; midi; vr; accelerometer; gyroscope; payment; ambient-light-sensor; encrypted-media; usb" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
+
+<p>它允许我们添加独立过滤器无法封装的行为，比如选择输入框聚焦的内容。下一步我们从过滤器中提取业务逻辑。接下来是我们把所有的东西放到一个外部的 <a target="_blank" rel="noopener" href="https://gist.github.com/chrisvfritz/5f0a639590d6e648933416f90ba7ae4e"><code>currencyValidator</code> 对象</a>中：</p>
+<iframe src="https://codesandbox.io/embed/github/vuejs/v2.vuejs.org/tree/master/src/v2/examples/vue-10-two-way-currency-filter-v3?codemirror=1&hidedevtools=1&hidenavigation=1&theme=light" style="width:100%; height:300px; border:0; border-radius: 4px; overflow:hidden;" title="vue-20-template-compilation" allow="geolocation; microphone; camera; midi; vr; accelerometer; gyroscope; payment; ambient-light-sensor; encrypted-media; usb" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
+
+<p>这会更加模块化，不只是更容易的迁移到 Vue 2，同时也允许汇率间隙和格式化：</p>
+<ul>
+<li>从你的 Vue 代码中独立出来进行单元测试</li>
+<li>在你的应用程序的别的部分中使用，比如验证验证一个 API 端的负荷</li>
+</ul>
+<p>把这个验证器提取出来之后，我们也可以更舒适的把它构建到更健壮的解决方案中。那些古怪的状态也消除了，用户不再可能会输入错误，就像浏览器原生的数字输入框一样。</p>
+<p>然而在 Vue 1.0 的过滤器中，我们仍然是受限的，所以还是完全升级到 Vue 2.0 吧：</p>
+<iframe src="https://codesandbox.io/embed/github/vuejs/v2.vuejs.org/tree/master/src/v2/examples/vue-20-two-way-currency-filter?codemirror=1&hidedevtools=1&hidenavigation=1&theme=light" style="width:100%; height:300px; border:0; border-radius: 4px; overflow:hidden;" title="vue-20-template-compilation" allow="geolocation; microphone; camera; midi; vr; accelerometer; gyroscope; payment; ambient-light-sensor; encrypted-media; usb" sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
+
+<p>你可能注意到了：</p>
+<ul>
+<li>我们的输入框的各方面都更显性，使用生命周期钩子和 DOM 事件以替代双向过滤器的隐藏行为。</li>
+<li>我们现在可以在自定义输入框中直接使用 <code>v-model</code>，其不只是固定配合正常的输入框来使用，这也意味着我们的组件是对 Vuex 友好的。</li>
+<li>因为我们已经不再要求过滤器选项必须要有一个返回值，所以实际上我们的汇率工作可以异步完成。这意味着如果我们有很多应用需要和汇率打交道，我们可以轻松的提炼这个逻辑并成为一个共享的微服务。</li>
+</ul>
+
+<div class="upgrade-path">
+  <h4>升级方式</h4>
+  <p>运行<a target="_blank" rel="noopener" href="https://github.com/vuejs/vue-migration-helper">迁移工具</a>找到在例如 <code>v-model</code> 的指令中使用过滤器的例子。如果你错过了，则应该会收到<strong>命令行报错</strong>。</p>
+</div>
+
+<h2 id="插槽"><a href="#插槽" class="headerlink" title="插槽"></a>插槽</h2><h3 id="重名的插槽移除"><a href="#重名的插槽移除" class="headerlink" title="重名的插槽移除"></a>重名的插槽<sup>移除</sup></h3><p>同一模板中的重名 <code>&lt;slot&gt;</code> 已经弃用。当一个插槽已经被渲染过了，那么就不能在同一模板其它地方被再次渲染了。如果要在不同位置渲染同一内容，可以用 prop 来传递。</p>
+
+<div class="upgrade-path">
+  <h4>升级方式</h4>
+  <p>更新后运行测试，查看<strong>控制台警告信息</strong> 关于重名 slots 的提示 <code>v-model</code>。</p>
+</div>
+
+<h3 id="slot-attribute-的样式移除"><a href="#slot-attribute-的样式移除" class="headerlink" title="slot attribute 的样式移除"></a><code>slot</code> attribute 的样式<sup>移除</sup></h3><p>通过具名 <code>&lt;slot&gt;</code> 插入的片段不再保持 <code>slot</code> 的 attribute。请用一个包裹元素来控制样式。或者用更高级方法：通过编程方式修改内容：<a href="render-function.html">render functions</a>。</p>
+
+<div class="upgrade-path">
+  <h4>升级方式</h4>
+  <p>运行<a target="_blank" rel="noopener" href="https://github.com/vuejs/vue-migration-helper">迁移工具</a>找到选择 slots 标签 CSS 选择器 (例如：<code>[slot="my-slot-name"]</code>)。</p>
+</div>
+
+<h2 id="特殊-attribute"><a href="#特殊-attribute" class="headerlink" title="特殊 attribute"></a>特殊 attribute</h2><h3 id="keep-alive-attribute-替换"><a href="#keep-alive-attribute-替换" class="headerlink" title="keep-alive attribute 替换"></a><code>keep-alive</code> attribute <sup>替换</sup></h3><p><code>keep-alive</code> 不再是一个特殊 attribute 而是一个包裹组件，类似于 <code>&lt;transition&gt;</code> 比如：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">keep-alive</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">component</span> <span class="hljs-attr">v-bind:is</span>=<span class="hljs-string">&quot;view&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">component</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">keep-alive</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<p>这样可以在含多种状态子组件中使用 <code>&lt;keep-alive&gt;</code>：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">keep-alive</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">todo-list</span> <span class="hljs-attr">v-if</span>=<span class="hljs-string">&quot;todos.length &gt; 0&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">todo-list</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">no-todos-gif</span> <span class="hljs-attr">v-else</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">no-todos-gif</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">keep-alive</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<p class="tip">当 <code>&lt;keep-alive&gt;</code> 含有不同子组件时，应该分别影响到每一个子组件。不仅是第一个而是所有的子组件都将被忽略。</p>
+
+<p>和 <code>&lt;transition&gt;</code> 一起使用时，确保把内容包裹在内：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">transition</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">keep-alive</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">component</span> <span class="hljs-attr">v-bind:is</span>=<span class="hljs-string">&quot;view&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">component</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">keep-alive</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">transition</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<div class="upgrade-path">
+  <h4>升级方式</h4>
+  <p>运行<a target="_blank" rel="noopener" href="https://github.com/vuejs/vue-migration-helper">迁移工具</a>找到<code>keep-alive</code> attribute。</p>
+</div>
+
+<h2 id="计算插值"><a href="#计算插值" class="headerlink" title="计算插值"></a>计算插值</h2><h3 id="Attribute-内部的计算插值移除"><a href="#Attribute-内部的计算插值移除" class="headerlink" title="Attribute 内部的计算插值移除"></a>Attribute 内部的计算插值<sup>移除</sup></h3><p>Attribute 内部的计算插值已经不能再使用了：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;btn btn-&#123;&#123; size &#125;&#125;&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<p>应该写成行内表达式：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">v-bind:class</span>=<span class="hljs-string">&quot;&#x27;btn btn-&#x27; + size&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<p>或者计算属性：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">v-bind:class</span>=<span class="hljs-string">&quot;buttonClasses&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="code"><pre><code class="hljs js"><span class="hljs-attr">computed</span>: &#123;<br>  <span class="hljs-attr">buttonClasses</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;btn btn-&#x27;</span> + size<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<div class="upgrade-path">
+  <h4>升级方式</h4>
+  <p>运行<a target="_blank" rel="noopener" href="https://github.com/vuejs/vue-migration-helper">迁移工具</a>找到property内部的计算插值</p>
+</div>
+
+<h3 id="HTML-计算插值移除"><a href="#HTML-计算插值移除" class="headerlink" title="HTML 计算插值移除"></a>HTML 计算插值<sup>移除</sup></h3><p>HTML 的计算插值 (<code>{{{ foo }}}</code>) 已经移除，取代的是 <a href="../api/#v-html"><code>v-html</code> 指令</a>。</p>
+
+<div class="upgrade-path">
+  <h4>升级方式</h4>
+  <p>运行<a target="_blank" rel="noopener" href="https://github.com/vuejs/vue-migration-helper">迁移工具</a>找到 HTML 计算插值。</p>
+</div>
+
+<h3 id="单次绑定替换"><a href="#单次绑定替换" class="headerlink" title="单次绑定替换"></a>单次绑定<sup>替换</sup></h3><p>单次绑定 (<code>{{* foo }}</code>) 已经被新的 <a href="../api/#v-once"><code>v-once</code> directive</a> 取代。</p>
+
+<div class="upgrade-path">
+  <h4>升级方式</h4>
+  <p>运行 <a target="_blank" rel="noopener" href="https://github.com/vuejs/vue-migration-helper">迁移工具</a>找到单次绑定使用位置。</p>
+</div>
+
+<h2 id="响应"><a href="#响应" class="headerlink" title="响应"></a>响应</h2><h3 id="vm-watch-changed"><a href="#vm-watch-changed" class="headerlink" title="vm.$watch changed"></a><code>vm.$watch</code> <sup>changed</sup></h3><p>通过 <code>vm.$watch</code> 创建的观察器现在将在组件渲染时被激活。这样可以让你在组件渲染前更新状态，不用做不必要的更新。比如可以通过观察组件的 prop 变化来更新组件本身的值。</p>
+<p>如果以前通过 <code>vm.$watch</code> 在组件更新后与 DOM 交互，现在就可以通过 <code>updated</code> 生命周期钩子来做这些。</p>
+
+<div class="upgrade-path">
+  <h4>升级方式</h4>
+  <p>运行测试，如果有依赖于老方法的观察器将弹出 <strong>failed tests</strong>。</p>
+</div>
+
+<h3 id="vm-set-变更"><a href="#vm-set-变更" class="headerlink" title="vm.$set 变更"></a><code>vm.$set</code> <sup>变更</sup></h3><p> <code>vm.$set</code> 只是 <a href="../api/#Vue-set"><code>Vue.set</code></a> 的别名。</p>
+
+<div class="upgrade-path">
+  <h4>升级方式</h4>
+  <p>运行<a target="_blank" rel="noopener" href="https://github.com/vuejs/vue-migration-helper">迁移工具</a>找到过时的用法</p>
+</div>
+
+<h3 id="vm-delete-变更"><a href="#vm-delete-变更" class="headerlink" title="vm.$delete 变更"></a><code>vm.$delete</code> <sup>变更</sup></h3><p><code>vm.$delete</code> 现在只是：<a href="../api/#Vue-delete"><code>Vue.delete</code></a> 别名。</p>
+
+<div class="upgrade-path">
+  <h4>升级方式</h4>
+  <p>运行<a target="_blank" rel="noopener" href="https://github.com/vuejs/vue-migration-helper">迁移工具</a>找到过时的用法</p>
+</div>
+
+<h3 id="Array-prototype-set-弃用"><a href="#Array-prototype-set-弃用" class="headerlink" title="Array.prototype.$set 弃用"></a><code>Array.prototype.$set</code> <sup>弃用</sup></h3><p>用 <code>Vue.set</code> 替代</p>
+
+<div class="upgrade-path">
+  <h4>升级方式</h4>
+  <p>运行<a target="_blank" rel="noopener" href="https://github.com/vuejs/vue-migration-helper">迁移工具</a>找到数组上的<code>.$set</code>。如有遗漏请参考<strong>控制台错误信息</strong>。</p>
+</div>
+
+<h3 id="Array-prototype-remove-移除"><a href="#Array-prototype-remove-移除" class="headerlink" title="Array.prototype.$remove 移除"></a><code>Array.prototype.$remove</code> <sup>移除</sup></h3><p>用 <code>Array.prototype.splice</code> 替代，例如：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><code class="hljs js"><span class="hljs-attr">methods</span>: &#123;<br>  <span class="hljs-attr">removeTodo</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params">todo</span>) &#123;<br>    <span class="hljs-keyword">var</span> index = <span class="hljs-variable language_">this</span>.<span class="hljs-property">todos</span>.<span class="hljs-title function_">indexOf</span>(todo)<br>    <span class="hljs-variable language_">this</span>.<span class="hljs-property">todos</span>.<span class="hljs-title function_">splice</span>(index, <span class="hljs-number">1</span>)<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>或者更好的方法，直接给除去的方法一个 index 参数：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><code class="hljs js"><span class="hljs-attr">methods</span>: &#123;<br>  <span class="hljs-attr">removeTodo</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params">index</span>) &#123;<br>    <span class="hljs-variable language_">this</span>.<span class="hljs-property">todos</span>.<span class="hljs-title function_">splice</span>(index, <span class="hljs-number">1</span>)<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<div class="upgrade-path">
+  <h4>升级方式</h4>
+  <p>运行<a target="_blank" rel="noopener" href="https://github.com/vuejs/vue-migration-helper">迁移工具</a>找到数组上的<code>.$remove</code>。如有遗漏请参考<strong>控制台错误信息</strong></p>
+</div>
+
+<h3 id="Vue-实例上的-Vue-set-和-Vue-delete-移除"><a href="#Vue-实例上的-Vue-set-和-Vue-delete-移除" class="headerlink" title="Vue 实例上的 Vue.set 和 Vue.delete 移除"></a>Vue 实例上的 <code>Vue.set</code> 和 <code>Vue.delete</code> <sup>移除</sup></h3><p><code>Vue.set</code> 和 <code>Vue.delete</code> 在实例上将不再起作用。现在都强制在实例的 data 选项中声明所有顶级响应值。如果删除实例 property 或实例 <code>$data</code> 上的某个值，直接将它设置为 null 即可。</p>
+
+<div class="upgrade-path">
+  <h4>升级方式</h4>
+  <p>运行<a target="_blank" rel="noopener" href="https://github.com/vuejs/vue-migration-helper">迁移工具</a>找到实例中的 <code>Vue.set</code> 或 <code>Vue.delete</code> 。如有遗漏请参考<strong>控制台错误信息</strong>。</p>
+</div>
+
+<h3 id="替换-vm-data-移除"><a href="#替换-vm-data-移除" class="headerlink" title="替换 vm.$data 移除"></a>替换 <code>vm.$data</code> <sup>移除</sup></h3><p>现在禁止替换实例的 $data。这样防止了响应系统的一些极端情况并且让组件状态更加可控可预测 (特别是对于存在类型检查的系统)。</p>
+
+<div class="upgrade-path">
+  <h4>升级方式</h4>
+  <p>运行<a target="_blank" rel="noopener" href="https://github.com/vuejs/vue-migration-helper">迁移工具</a>找到覆盖 <code>vm.$data</code>的位置。如有遗漏请参考<strong>控制台警告信息</strong>。</p>
+</div>
+
+<h3 id="vm-get-移除"><a href="#vm-get-移除" class="headerlink" title="vm.$get 移除"></a><code>vm.$get</code> <sup>移除</sup></h3><p>可以直接取回响应数据。</p>
+
+<div class="upgrade-path">
+  <h4>升级方式</h4>
+  <p>运行 <a target="_blank" rel="noopener" href="https://github.com/vuejs/vue-migration-helper">迁移工具</a>找到 <code>vm.$get</code> 的位置。如有遗漏请参考 <strong>控制台错误信息</strong>。</p>
+</div>
+
+<h2 id="围绕-DOM-的实例方法"><a href="#围绕-DOM-的实例方法" class="headerlink" title="围绕 DOM 的实例方法"></a>围绕 DOM 的实例方法</h2><h3 id="vm-appendTo-移除"><a href="#vm-appendTo-移除" class="headerlink" title="vm.$appendTo 移除"></a><code>vm.$appendTo</code> <sup>移除</sup></h3><p>使用 DOM 原生方法：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><code class="hljs js">myElement.<span class="hljs-title function_">appendChild</span>(vm.<span class="hljs-property">$el</span>)<br></code></pre></td></tr></table></figure>
+
+<div class="upgrade-path">
+  <h4>升级方式</h4>
+  <p>运行<a target="_blank" rel="noopener" href="https://github.com/vuejs/vue-migration-helper">迁移工具</a>找到 <code>vm.$appendTo</code> 的位置。如果有遗漏可以参考<strong>控制台错误信息</strong>。</p>
+</div>
+
+<h3 id="vm-before-移除"><a href="#vm-before-移除" class="headerlink" title="vm.$before 移除"></a><code>vm.$before</code> <sup>移除</sup></h3><p>使用 DOM 原生方法：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><code class="hljs js">myElement.<span class="hljs-property">parentNode</span>.<span class="hljs-title function_">insertBefore</span>(vm.<span class="hljs-property">$el</span>, myElement)<br></code></pre></td></tr></table></figure>
+
+<div class="upgrade-path">
+  <h4>升级方式</h4>
+  <p>运行 <a target="_blank" rel="noopener" href="https://github.com/vuejs/vue-migration-helper">迁移工具</a>找到 <code>vm.$before</code>。如有遗漏，请参考 <strong>控制台错误信息</strong>。</p>
+</div>
+
+<h3 id="vm-after-移除"><a href="#vm-after-移除" class="headerlink" title="vm.$after 移除"></a><code>vm.$after</code> <sup>移除</sup></h3><p>使用 DOM 原生方法：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><code class="hljs js">myElement.<span class="hljs-property">parentNode</span>.<span class="hljs-title function_">insertBefore</span>(vm.<span class="hljs-property">$el</span>, myElement.<span class="hljs-property">nextSibling</span>)<br></code></pre></td></tr></table></figure>
+<p>如果 <code>myElement</code> 是最后一个节点也可以这样写：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><code class="hljs js">myElement.<span class="hljs-property">parentNode</span>.<span class="hljs-title function_">appendChild</span>(vm.<span class="hljs-property">$el</span>)<br></code></pre></td></tr></table></figure>
+
+<div class="upgrade-path">
+  <h4>升级方式</h4>
+  <p>运行<a target="_blank" rel="noopener" href="https://github.com/vuejs/vue-migration-helper">迁移工具</a>找到 <code>vm.$after</code> 的位置。如有遗漏，请参考<strong>控制台错误信息</strong>。</p>
+</div>
+
+<h3 id="vm-remove-移除"><a href="#vm-remove-移除" class="headerlink" title="vm.$remove 移除"></a><code>vm.$remove</code> <sup>移除</sup></h3><p>使用 DOM 原生方法：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><code class="hljs js">vm.<span class="hljs-property">$el</span>.<span class="hljs-title function_">remove</span>()<br></code></pre></td></tr></table></figure>
+
+<div class="upgrade-path">
+  <h4>升级方式</h4>
+  <p>运行 <a target="_blank" rel="noopener" href="https://github.com/vuejs/vue-migration-helper">迁移工具</a>找到<code>vm.$remove</code>。如有遗漏，请参考<strong>控制台错误信息</strong>。</p>
+</div>
+
+<h2 id="底层实例方法"><a href="#底层实例方法" class="headerlink" title="底层实例方法"></a>底层实例方法</h2><h3 id="vm-eval-移除"><a href="#vm-eval-移除" class="headerlink" title="vm.$eval 移除"></a><code>vm.$eval</code> <sup>移除</sup></h3><p>尽量不要使用，如果必须使用该功能并且不肯定如何使用请参考 <a target="_blank" rel="noopener" href="https://forum.vuejs.org/">the forum</a>。</p>
+
+<div class="upgrade-path">
+  <h4>升级方式</h4>
+  <p>运行<a target="_blank" rel="noopener" href="https://github.com/vuejs/vue-migration-helper">迁移工具</a>找到使用 <code>vm.$eval</code> 的位置。如有遗漏请参考<strong>控制台错误信息</strong>。</p>
+</div>
+
+<h3 id="vm-interpolate-移除"><a href="#vm-interpolate-移除" class="headerlink" title="vm.$interpolate 移除"></a><code>vm.$interpolate</code> <sup>移除</sup></h3><p>尽量不要使用，如果必须使用该功能并且不肯定如何使用请参考 <a target="_blank" rel="noopener" href="https://forum.vuejs.org/">the forum</a>。</p>
+
+<div class="upgrade-path">
+  <h4>升级方式</h4>
+  <p>运行<a target="_blank" rel="noopener" href="https://github.com/vuejs/vue-migration-helper">迁移工具</a>找到<code>vm.$interpolate</code>。如有遗漏请参考<strong>控制台错误信息</strong>.</p>
+</div>
+
+<h3 id="vm-log-移除"><a href="#vm-log-移除" class="headerlink" title="vm.$log 移除"></a><code>vm.$log</code> <sup>移除</sup></h3><p>请使用 <a target="_blank" rel="noopener" href="https://github.com/vuejs/vue-devtools">Vue Devtools</a> 感受最佳 debug 体验。</p>
+
+<div class="upgrade-path">
+  <h4>升级方式</h4>
+  <p>运行<a target="_blank" rel="noopener" href="https://github.com/vuejs/vue-migration-helper">迁移工具</a>找到 <code>vm.$log</code>。如有遗漏请参考<strong>控制台错误信息</strong>.</p>
+</div>
+
+<h2 id="实例-DOM-选项"><a href="#实例-DOM-选项" class="headerlink" title="实例 DOM 选项"></a>实例 DOM 选项</h2><h3 id="replace-false-移除"><a href="#replace-false-移除" class="headerlink" title="replace: false 移除"></a><code>replace: false</code> <sup>移除</sup></h3><p>现在组件总是会替换掉他们被绑定的元素。为了模仿 <code>replace: false</code> 的行为，可以用一个和将要替换元素类似的元素将根组件包裹起来：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">new</span> <span class="hljs-title class_">Vue</span>(&#123;<br>  <span class="hljs-attr">el</span>: <span class="hljs-string">&#x27;#app&#x27;</span>,<br>  <span class="hljs-attr">template</span>: <span class="hljs-string">&#x27;&lt;div id=&quot;app&quot;&gt; ... &lt;/div&gt;&#x27;</span><br>&#125;)<br></code></pre></td></tr></table></figure>
+<p>或者使用渲染函数：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">new</span> <span class="hljs-title class_">Vue</span>(&#123;<br>  <span class="hljs-attr">el</span>: <span class="hljs-string">&#x27;#app&#x27;</span>,<br>  <span class="hljs-attr">render</span>: <span class="hljs-keyword">function</span> (<span class="hljs-params">h</span>) &#123;<br>    <span class="hljs-title function_">h</span>(<span class="hljs-string">&#x27;div&#x27;</span>, &#123;<br>      <span class="hljs-attr">attrs</span>: &#123;<br>        <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;app&#x27;</span>,<br>      &#125;<br>    &#125;, <span class="hljs-comment">/* ... */</span>)<br>  &#125;<br>&#125;)<br></code></pre></td></tr></table></figure>
+
+<div class="upgrade-path">
+  <h4>升级方式</h4>
+  <p>运行<a target="_blank" rel="noopener" href="https://github.com/vuejs/vue-migration-helper">迁移工具</a>找到 <code>replace: false</code>使用的位置。</p>
+</div>
+
+<h2 id="全局配置"><a href="#全局配置" class="headerlink" title="全局配置"></a>全局配置</h2><h3 id="Vue-config-debug-移除"><a href="#Vue-config-debug-移除" class="headerlink" title="Vue.config.debug 移除"></a><code>Vue.config.debug</code> <sup>移除</sup></h3><p>不再需要，因为警告信息将默认在堆栈信息里输出。</p>
+
+<div class="upgrade-path">
+  <h4>升级方式</h4>
+  <p>运行<a target="_blank" rel="noopener" href="https://github.com/vuejs/vue-migration-helper">迁移工具</a>找到包含<code>Vue.config.debug</code>的地方。</p>
+</div>
+
+<h3 id="Vue-config-async-移除"><a href="#Vue-config-async-移除" class="headerlink" title="Vue.config.async 移除"></a><code>Vue.config.async</code> <sup>移除</sup></h3><p>异步操作现在需要渲染性能的支持。</p>
+
+<div class="upgrade-path">
+  <h4>升级方式</h4>
+  <p>运行 <a target="_blank" rel="noopener" href="https://github.com/vuejs/vue-migration-helper">迁移工具</a>找到使用<code>Vue.config.async</code>的实例。</p>
+</div>
+
+<h3 id="Vue-config-delimiters-替换"><a href="#Vue-config-delimiters-替换" class="headerlink" title="Vue.config.delimiters 替换"></a><code>Vue.config.delimiters</code> <sup>替换</sup></h3><p>以<a href="../api/#delimiters">模板选项</a>的方式使用。这样可以在使用自定义分隔符时避免影响第三方模板。</p>
+
+<div class="upgrade-path">
+  <h4>升级方式</h4>
+  <p>运行<a target="_blank" rel="noopener" href="https://github.com/vuejs/vue-migration-helper">迁移工具</a>找到使用<code>Vue.config.delimiters</code>的实例。</p>
+</div>
+
+<h3 id="Vue-config-unsafeDelimiters-移除"><a href="#Vue-config-unsafeDelimiters-移除" class="headerlink" title="Vue.config.unsafeDelimiters 移除"></a><code>Vue.config.unsafeDelimiters</code> <sup>移除</sup></h3><p>HTML 插值<a href="#HTML-计算插值-移除">替换为 <code>v-html</code></a>。</p>
+
+<div class="upgrade-path">
+  <h4>升级方式</h4>
+  <p>运行<a target="_blank" rel="noopener" href="https://github.com/vuejs/vue-migration-helper">迁移工具</a>找到 <code>Vue.config.unsafeDelimiters</code>。然后 helper 工具也会找到 HTML 插入的实例，可以用`v-html`来替换。</p>
+</div>
+
+<h2 id="全局-API"><a href="#全局-API" class="headerlink" title="全局 API"></a>全局 API</h2><h3 id="带-el-的-Vue-extend-移除"><a href="#带-el-的-Vue-extend-移除" class="headerlink" title="带 el 的 Vue.extend 移除"></a>带 <code>el</code> 的 <code>Vue.extend</code> <sup>移除</sup></h3><p>el 选项不再在 <code>Vue.extend</code> 中使用。仅在实例创建参数中可用。</p>
+
+<div class="upgrade-path">
+  <h4>升级方式</h4>
+  <p>更新后运行测试在<strong>控制台警告信息</strong>中找到关于带有<code>Vue.extend</code>的<code>el</code>。</p>
+</div>
+
+<h3 id="Vue-elementDirective-移除"><a href="#Vue-elementDirective-移除" class="headerlink" title="Vue.elementDirective 移除"></a><code>Vue.elementDirective</code> <sup>移除</sup></h3><p>用组件来替代</p>
+
+<div class="upgrade-path">
+  <h4>升级方式</h4>
+  <p>运行<a target="_blank" rel="noopener" href="https://github.com/vuejs/vue-migration-helper">迁移工具</a>找到包含<code>Vue.elementDirective</code>的实例。</p>
+</div>
+
+<h3 id="Vue-partial-移除"><a href="#Vue-partial-移除" class="headerlink" title="Vue.partial 移除"></a><code>Vue.partial</code> <sup>移除</sup></h3><p>Partials 已被移除，取而代之的是更明确的组件之间的数据流–props。除非你正在使用一个部分性能关键型区域，否则建议只使用一个 <a href="components.html">normal component</a> 来代替。如果你是动态绑定部分的 <code>name</code>，您可以使用 <a href="components.html#动态组件">dynamic component</a>。</p>
+<p>如果你碰巧在你的应用程序的性能关键部分使用 partials，那么你应该升级到<a href="render-function.html#函数式组件">函数式组件</a>。它们必须在纯 JS / JSX 文件中 (而不是在 <code>.vue</code> 文件中)，并且是无状态的和无实例的，就像 partials。这使得渲染极快。</p>
+<p>函数式组件相对于 partials 一个好处是它们可以更具动态性，因为它们允许您访问 JavaScript 的全部功能。然而，这是有成本的。如果你从来没有使用过渲染式的组件框架，你可能需要花费更长的时间来学习它们。</p>
+
+<div class="upgrade-path">
+  <h4>升级方式</h4>
+  <p>运行<a target="_blank" rel="noopener" href="https://github.com/vuejs/vue-migration-helper">迁移工具</a>找到包含 <code>Vue.partial</code>的实例</p>
+</div>
+
+
+  
+  
+    <div class="guide-links">
+      
+      
+        <span>← <a href="/v2/guide/reactivity.html">深入响应式原理</a></span>
+      
+      
+      
+        <span style="float: right;"><a href="/v2/guide/migration-vue-router.html">从 Vue Router 0.7.x 迁移</a> →</span>
+      
+    </div>
+  
+  <div class="footer">
+      <script src="//m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
+<div id="bsa-native"></div>
+<script>
+_bsa.init('custom', 'CKYD62QM', 'placement:vuejsorg',
+  {
+    target: '#bsa-native',
+    template: '<a class="native-box" href="##statlink##"><div class="native-sponsor">Sponsor</div><div class="native-text"><strong>##company##</strong> — ##description##</div></a>'
+  }
+);
+</script>
+
+
+    发现错误？想参与编辑？
+    <!-- TODO: update when v3 becomes the main docsite -->
+    <a href="https://github.com/vuejs/cn.vuejs.org/blob/master/src/v2/guide/migration.md" rel="noopener" target="_blank">
+      在 GitHub 上编辑此页！
+    </a>
+    <!-- Deployed on
+    <a href="https://url.netlify.com/HJ8X2mxP8" rel="noopener" target="_blank">
+      Netlify
+    </a>. -->
+  </div>
+</div>
+
+      </div>
+      <script src="/js/smooth-scroll.min.js"></script>
+    
+
+    <!-- main custom script for sidebars, version selects etc. -->
+    <script src="/js/css.escape.js"></script>
+    <script src="/js/common.js"></script>
+
+    <!-- search -->
+    <link href="//code.bdstatic.com/npm/docsearch.js@1.5.0/dist/cdn/docsearch.min.css" rel='stylesheet' type='text/css'>
+    
+<link rel="stylesheet" href="/css/search.css">
+
+    <script src="//code.bdstatic.com/npm/docsearch.js@1.5.0/dist/cdn/docsearch.min.js"></script>
+    <script>
+    [
+      '#search-query-nav',
+      '#search-query-sidebar',
+      '#search-query-menu'
+    ].forEach(function (selector) {
+      if (!document.querySelector(selector)) return
+      // search index defaults to v2
+      var match = window.location.pathname.match(/^\/(v\d+)/)
+      var version = match ? match[1] : 'v2'
+      docsearch({
+        appId: 'BH4D9OD16A',
+        apiKey: '5638280abff9d207417bb03be05f0b25',
+        indexName: 'vuejs_cn2',
+        inputSelector: selector,
+        algoliaOptions: { facetFilters: ["version:" + version] },
+        autocompleteOptions: { hint: false, appendTo: 'body'}
+      })
+    })
+
+    // unregister service worker
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.getRegistrations().then(function(registrations) {
+        for(let registration of registrations) {
+          registration.unregister()
+        }
+      })
+    }
+    </script>
+  </body>
+</html>
