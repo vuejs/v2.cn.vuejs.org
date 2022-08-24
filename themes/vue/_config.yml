@@ -2,12 +2,12 @@ site_description: Vue.js - The Progressive JavaScript Framework
 google_analytics: UA-46852172-3
 # TODO: update when v3 becomes the main docsite?
 root_domain: cn.vuejs.org
-vue_version: 2.7.8
+vue_version: 2.7.10
 # START SPONSORS
 special:
   - name: uni-app
     url: https://uniapp.dcloud.io/?hmsr=vueen&hmpl=&hmcu=&hmkw=&hmci=
-    img: uni_app.png?v2
+    img: uni_app.png?v3
     description: Cross-Platform for Vue
 platinum:
   - name: VueMastery
@@ -33,9 +33,6 @@ platinum:
   - name: Nuxt
     url: https://nuxtjs.org/
     img: nuxt.png
-  - name: Refurbed
-    url: https://www.refurbed.org/?utm_source=vuejs
-    img: refurbed.png
   - name: ButterCMS
     url: >-
       https://buttercms.com/vuejs-cms/?utm_source=vuejs.org&utm_medium=banner&utm_campaign=sponsorship
@@ -50,13 +47,13 @@ platinum:
     url: >-
       https://conf.vuejs.de/?utm_source=vuejs-vite&utm_medium=referral&utm_campaign=sponsoring
     img: vuejs_de_conf.svg
+  - name: Chrome Frameworks Fund
+    url: https://opencollective.com/2021-frameworks-fund
+    img: chrome_frameworks_fund.png
 platinum_china:
-  - name: HBuilder
+  - name: DCloud
     url: https://www.dcloud.io/?hmsr=vuejsorg&hmpl=&hmcu=&hmkw=&hmci=
-    img: hbuilder.png
-    ad_img: dcloud1.png
-    alt_img: dcloud2.png
-    height: 70
+    img: dcloud.png
   - name: 稀土掘金技术社区
     url: https://juejin.cn/frontend?utm_source=vue&utm_campaign=sponsor
     img: xitujuejinjishushequ.png
@@ -139,6 +136,15 @@ gold:
   - name: Quickbooks tool hub
     url: https://quickbookstoolhub.com
     img: quickbooks_tool_hub.png
+  - name: Casinoburst.com
+    url: https://casinoburst.com/casino-utan-licens/
+    img: casinoburst_com.png
+  - name: uudetkasinot.com
+    url: https://www.uudetkasinot.com
+    img: uudetkasinot_com.png
+  - name: spinsify.com/uk
+    url: https://www.spinsify.com/uk/new-casinos
+    img: spinsify_com_uk.png
 silver:
   - name: Draxlr
     url: https://www.draxlr.com
@@ -165,9 +171,6 @@ silver:
     url: >-
       https://localazy.com/blog/how-to-localize-vuejs-app-with-vue-i18n-and-localazy?utm_source=vuejs&utm_medium=banner&utm_campaign=sponsorships_vuejs&utm_content=logo
     img: localazy.png
-  - name: AddWeb Solution
-    url: http://addwebsolution.com/
-    img: addweb_solution.png?v2
   - name: 1394TA
     url: https://1394ta.org
     img: 1394ta.png
@@ -196,6 +199,9 @@ bronze:
   - name: Monarch Air Group
     url: https://monarchairgroup.com
     img: monarch_air_group.png
+  - name: The Codest
+    url: https://thecodest.co/
+    img: the_codest.png
 # END SPONSORS
 video_china:
   - url: http://cloud.youku.com/index.php?source=vuejs

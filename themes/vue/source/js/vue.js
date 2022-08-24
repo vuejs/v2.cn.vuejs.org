@@ -1,5 +1,5 @@
 /*!
- * Vue.js v2.7.8
+ * Vue.js v2.7.10
  * (c) 2014-2022 Evan You
  * Released under the MIT License.
  */
@@ -655,13 +655,13 @@
               'referenced during render. Make sure that this property is reactive, ' +
               'either in the data option, or for class-based components, by ' +
               'initializing the property. ' +
-              'See: https://vuejs.org/v2/guide/reactivity.html#Declaring-Reactive-Properties.', target);
+              'See: https://v2.vuejs.org/v2/guide/reactivity.html#Declaring-Reactive-Properties.', target);
       };
       var warnReservedPrefix_1 = function (target, key) {
           warn$2("Property \"".concat(key, "\" must be accessed with \"$data.").concat(key, "\" because ") +
               'properties starting with "$" or "_" are not proxied in the Vue instance to ' +
               'prevent conflicts with Vue internals. ' +
-              'See: https://vuejs.org/v2/api/#data', target);
+              'See: https://v2.vuejs.org/v2/api/#data', target);
       };
       var hasProxy_1 = typeof Proxy !== 'undefined' && isNative(Proxy);
       if (hasProxy_1) {
@@ -2822,8 +2822,13 @@
               vm.$el.__vue__ = vm;
           }
           // if parent is an HOC, update its $el as well
-          if (vm.$vnode && vm.$parent && vm.$vnode === vm.$parent._vnode) {
-              vm.$parent.$el = vm.$el;
+          var wrapper = vm;
+          while (wrapper &&
+              wrapper.$vnode &&
+              wrapper.$parent &&
+              wrapper.$vnode === wrapper.$parent._vnode) {
+              wrapper.$parent.$el = wrapper.$el;
+              wrapper = wrapper.$parent;
           }
           // updated hook is called by the scheduler to ensure that children are
           // updated in a parent's updated hook.
@@ -3383,8 +3388,7 @@
       var oldValue = isMultiSource ? [] : INITIAL_WATCHER_VALUE;
       // overwrite default run
       watcher.run = function () {
-          if (!watcher.active &&
-              !(flush === 'pre' && instance && instance._isBeingDestroyed)) {
+          if (!watcher.active) {
               return;
           }
           if (cb) {
@@ -3947,17 +3951,21 @@
   var onUpdated = createLifeCycle('updated');
   var onBeforeUnmount = createLifeCycle('beforeDestroy');
   var onUnmounted = createLifeCycle('destroyed');
-  var onErrorCaptured = createLifeCycle('errorCaptured');
   var onActivated = createLifeCycle('activated');
   var onDeactivated = createLifeCycle('deactivated');
   var onServerPrefetch = createLifeCycle('serverPrefetch');
   var onRenderTracked = createLifeCycle('renderTracked');
   var onRenderTriggered = createLifeCycle('renderTriggered');
+  var injectErrorCapturedHook = createLifeCycle('errorCaptured');
+  function onErrorCaptured(hook, target) {
+      if (target === void 0) { target = currentInstance; }
+      injectErrorCapturedHook(hook, target);
+  }
 
   /**
    * Note: also update dist/vue.runtime.mjs when adding new exports to this file.
    */
-  var version = '2.7.8';
+  var version = '2.7.10';
   /**
    * @internal type is manually declared in <root>/types/v3-define-component.d.ts
    */
@@ -4017,12 +4025,12 @@
     onUpdated: onUpdated,
     onBeforeUnmount: onBeforeUnmount,
     onUnmounted: onUnmounted,
-    onErrorCaptured: onErrorCaptured,
     onActivated: onActivated,
     onDeactivated: onDeactivated,
     onServerPrefetch: onServerPrefetch,
     onRenderTracked: onRenderTracked,
-    onRenderTriggered: onRenderTriggered
+    onRenderTriggered: onRenderTriggered,
+    onErrorCaptured: onErrorCaptured
   });
 
   var seenObjects = new _Set();
@@ -4076,11 +4084,16 @@
    */
   var Watcher = /** @class */ (function () {
       function Watcher(vm, expOrFn, cb, options, isRenderWatcher) {
-          recordEffectScope(this, activeEffectScope || (vm ? vm._scope : undefined));
-          if ((this.vm = vm)) {
-              if (isRenderWatcher) {
-                  vm._watcher = this;
-              }
+          recordEffectScope(this, 
+          // if the active effect scope is manually created (not a component scope),
+          // prioritize it
+          activeEffectScope && !activeEffectScope._vm
+              ? activeEffectScope
+              : vm
+                  ? vm._scope
+                  : undefined);
+          if ((this.vm = vm) && isRenderWatcher) {
+              vm._watcher = this;
           }
           // options
           if (options) {
@@ -4348,7 +4361,7 @@
       if (!isPlainObject(data)) {
           data = {};
           warn$2('data functions should return an object:\n' +
-                  'https://vuejs.org/v2/guide/components.html#data-Must-Be-a-Function', vm);
+                  'https://v2.vuejs.org/v2/guide/components.html#data-Must-Be-a-Function', vm);
       }
       // proxy data on instance
       var keys = Object.keys(data);
@@ -4644,6 +4657,7 @@
           vm.__v_skip = true;
           // effect scope
           vm._scope = new EffectScope(true /* detached */);
+          vm._scope._vm = true;
           // merge options
           if (options && options._isComponent) {
               // optimize internal component instantiation
@@ -7193,7 +7207,16 @@
           }
           res[getRawDirName(dir)] = dir;
           if (vm._setupState && vm._setupState.__sfc) {
-              dir.def = dir.def || resolveAsset(vm, '_setupState', 'v-' + dir.name);
+              var setupDef = dir.def || resolveAsset(vm, '_setupState', 'v-' + dir.name);
+              if (typeof setupDef === 'function') {
+                  dir.def = {
+                      bind: setupDef,
+                      update: setupDef,
+                  };
+              }
+              else {
+                  dir.def = setupDef;
+              }
           }
           dir.def = dir.def || resolveAsset(vm.$options, 'directives', dir.name, true);
       }
