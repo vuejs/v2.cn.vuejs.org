@@ -1,7 +1,6 @@
 site_description: Vue.js - The Progressive JavaScript Framework
 google_analytics: UA-46852172-3
-# TODO: update when v3 becomes the main docsite?
-root_domain: cn.vuejs.org
+root_domain: v2.cn.vuejs.org
 vue_version: 2.7.10
 # START SPONSORS
 special:
