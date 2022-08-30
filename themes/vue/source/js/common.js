@@ -334,10 +334,9 @@
 
   // function: special logic for cn
   function getVersionOrigin (version) {
-    // TODO: update when v3 becomes the main docsite
     var originMap = {
-      'v3': 'https://v3.cn.vuejs.org/',
-      'SELF': 'https://cn.vuejs.org/',
+      'v3': 'https://cn.vuejs.org/',
+      'SELF': 'https://v2.cn.vuejs.org/',
       'v1': 'https://v1-cn.vuejs.org/',
       '012': 'https://012-cn.vuejs.org/'
     }
