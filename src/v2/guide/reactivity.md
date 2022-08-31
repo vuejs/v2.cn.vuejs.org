@@ -88,8 +88,7 @@ Vue.set(vm.items, indexOfItem, newValue)
 vm.items.splice(indexOfItem, 1, newValue)
 ```
 
-<!-- TODO: update when v3 becomes the main docsite -->
-你也可以使用 [`vm.$set`](https://cn.vuejs.org/v2/api/#vm-set) 实例方法，该方法是全局方法 `Vue.set` 的一个别名：
+你也可以使用 [`vm.$set`](https://v2.cn.vuejs.org/v2/api/#vm-set) 实例方法，该方法是全局方法 `Vue.set` 的一个别名：
 
 ``` js
 vm.$set(vm.items, indexOfItem, newValue)
