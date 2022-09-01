@@ -4,10 +4,10 @@ root_domain: v2.cn.vuejs.org
 vue_version: 2.7.10
 # START SPONSORS
 special:
-  - name: uni-app
-    url: https://uniapp.dcloud.io/?hmsr=vueen&hmpl=&hmcu=&hmkw=&hmci=
-    img: uni_app.png?v3
-    description: Cross-Platform for Vue
+  - name: appwrite
+    url: https://appwrite.io
+    img: appwrite.svg
+    description: Open Source Firebase Alternative
 platinum:
   - name: VueMastery
     url: https://www.vuemastery.com/
@@ -49,13 +49,10 @@ platinum:
   - name: Chrome Frameworks Fund
     url: https://opencollective.com/2021-frameworks-fund
     img: chrome_frameworks_fund.png
-platinum_china:
-  - name: DCloud
-    url: https://www.dcloud.io/?hmsr=vuejsorg&hmpl=&hmcu=&hmkw=&hmci=
-    img: dcloud.png
-  - name: 稀土掘金技术社区
-    url: https://juejin.cn/frontend?utm_source=vue&utm_campaign=sponsor
-    img: xitujuejinjishushequ.png
+  - name: Marker.io
+    url: >-
+      https://marker.io/?utm_source=vuejs&utm_medium=sponsor&utm_campaign=dev-community
+    img: marker_io.svg
 gold:
   - name: Laravel
     url: https://laravel.com
@@ -201,6 +198,10 @@ bronze:
   - name: The Codest
     url: https://thecodest.co/
     img: the_codest.png
+platinum_china:
+  - name: 稀土掘金技术社区
+    url: https://juejin.cn/frontend?utm_source=vue&utm_campaign=sponsor
+    img: xitujuejinjishushequ.png
 # END SPONSORS
 video_china:
   - url: http://cloud.youku.com/index.php?source=vuejs
