@@ -237,7 +237,7 @@ new Vue({
 
 <p class="tip">不要使用对象或数组之类的非基本类型值作为 `v-for` 的 `key`。请用字符串或数值类型的值。</p>
 
-更多 `key` attribute 的细节用法请移步至 [`key` 的 API 文档](https://v2.cn.vuejs.org/v2/api/#key)。
+更多 `key` attribute 的细节用法请移步至 [`key` 的 API 文档](/v2/api/#key)。
 
 ## 数组更新检测
 

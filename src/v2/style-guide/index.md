@@ -192,7 +192,7 @@ new Vue({
 </summary>
 {% endraw %}
 
-细致的 [prop 定义](../guide/components-props.html#Prop-验证)有两个好处：
+细致的 [prop 定义](/v2/guide/components-props.html#Prop-验证)有两个好处：
 
 - 它们写明了组件的 API，所以很容易看懂组件的用法；
 - 在开发环境下，如果向一个组件提供格式不正确的 prop，Vue 将会告警，以帮助你捕获潜在的错误来源。
@@ -1980,9 +1980,9 @@ Vue.component('TodoItem', {
 
 **应该优先通过 [Vuex](https://github.com/vuejs/vuex) 管理全局状态，而不是通过 `this.$root` 或一个全局事件总线。**
 
-通过 `this.$root` 和/或[全局事件总线](../guide/migration.html#dispatch-和-broadcast-替换)管理状态在很多简单的情况下都是很方便的，但是并不适用于绝大多数的应用。
+通过 `this.$root` 和/或[全局事件总线](/v2/guide/migration.html#dispatch-和-broadcast-替换)管理状态在很多简单的情况下都是很方便的，但是并不适用于绝大多数的应用。
 
-Vuex 是 Vue 的[官方类 flux 实现](../guide/state-management.html#类-Flux-状态管理的官方实现)，其提供的不仅是一个管理状态的中心区域，还是组织、追踪和调试状态变更的好工具。它很好地集成在了 Vue 生态系统之中 (包括完整的 [Vue DevTools](../guide/installation.html#Vue-Devtools) 支持)。
+Vuex 是 Vue 的[官方类 flux 实现](/v2/guide/state-management.html#类-Flux-状态管理的官方实现)，其提供的不仅是一个管理状态的中心区域，还是组织、追踪和调试状态变更的好工具。它很好地集成在了 Vue 生态系统之中 (包括完整的 [Vue DevTools](/v2/guide/installation.html#Vue-Devtools) 支持)。
 
 {% raw %}</details>{% endraw %}
 
