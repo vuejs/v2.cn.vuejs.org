@@ -163,7 +163,7 @@ inject: ['getMap']
 
 <p class="tip">然而，依赖注入还是有负面影响的。它将你应用程序中的组件与它们当前的组织方式耦合起来，使重构变得更加困难。同时所提供的 property 是非响应式的。这是出于设计的考虑，因为使用它们来创建一个中心化规模化的数据跟<a href="#访问根实例">使用 <code>$root</code></a>做这件事都是不够好的。如果你想要共享的这个 property 是你的应用特有的，而不是通用化的，或者如果你想在祖先组件中更新所提供的数据，那么这意味着你可能需要换用一个像 <a href="https://github.com/vuejs/vuex">Vuex</a> 这样真正的状态管理方案了。</p>
 
-你可以在 [API 参考文档](https://v2.cn.vuejs.org/v2/api/#provide-inject)学习更多关于依赖注入的知识。
+你可以在 [API 参考文档](/v2/api/#provide-inject)学习更多关于依赖注入的知识。
 
 ## 程序化的事件侦听器
 
@@ -235,7 +235,7 @@ methods: {
 
 查阅[这个示例](https://codesandbox.io/s/github/vuejs/v2.vuejs.org/tree/master/src/v2/examples/vue-20-programmatic-event-listeners)可以了解到完整的代码。注意，即便如此，如果你发现自己不得不在单个组件里做很多建立和清理的工作，最好的方式通常还是创建更多的模块化组件。在这个例子中，我们推荐创建一个可复用的 `<input-datepicker>` 组件。
 
-想了解更多程序化侦听器的内容，请查阅[实例方法 / 事件](https://v2.cn.vuejs.org/v2/api/#实例方法-事件)相关的 API。
+想了解更多程序化侦听器的内容，请查阅[实例方法 / 事件](/v2/api/#实例方法-事件)相关的 API。
 
 <p class="tip">注意 Vue 的事件系统不同于浏览器的 <a href="https://developer.mozilla.org/zh-CN/docs/Web/API/EventTarget">EventTarget API</a>。尽管它们工作起来是相似的，但是 <code>$emit</code>、<code>$on</code>, 和 <code>$off</code> 并不是 <code>dispatchEvent</code>、<code>addEventListener</code> 和 <code>removeEventListener</code> 的别名。</p>
 
@@ -363,7 +363,7 @@ x-template 需要定义在 Vue 所属的 DOM 元素外。
 
 <p class="tip">如果你发现你自己需要在 Vue 中做一次强制更新，99.9% 的情况，是你在某个地方做错了事。</p>
 
-你可能还没有留意到[数组](https://v2.cn.vuejs.org/v2/guide/list.html#注意事项)或[对象](https://v2.cn.vuejs.org/v2/guide/list.html#对象变更检测注意事项)的变更检测注意事项，或者你可能依赖了一个未被 Vue 的响应式系统追踪的状态。
+你可能还没有留意到[数组](/v2/guide/list.html#注意事项)或[对象](/v2/guide/list.html#对象变更检测注意事项)的变更检测注意事项，或者你可能依赖了一个未被 Vue 的响应式系统追踪的状态。
 
 然而，如果你已经做到了上述的事项仍然发现在极少数的情况下需要手动强制更新，那么你可以通过 [`$forceUpdate`](../api/#vm-forceUpdate) 来做这件事。
 

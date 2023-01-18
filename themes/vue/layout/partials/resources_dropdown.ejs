@@ -1,9 +1,39 @@
 <li class="nav-dropdown-container resources">
   <a href="#" class="nav-link">资源列表</a><span class="arrow"></span>
   <ul class="nav-dropdown">
-    <li><a href="<%- url_for("/resources/partners.html") %>" class="nav-link">合作伙伴</a></li>
-    <li><a href="<%- url_for("/resources/themes.html") %>" class="nav-link">主题</a></li>
-    <li><a href="https://github.com/vuejs/awesome-vue" class="nav-link" target="_blank" rel="noopener">Awesome Vue</a></li>
-    <li><a href="https://awesomejs.dev/for/vue/" class="nav-link" target="_blank" rel="noopener">浏览和 Vue 相关的包</a></li>
+    <li>
+      <a
+        href="https://cn.vuejs.org/about/team.html"
+        class="nav-link team<%- page.path.match(/team\.html/) ? ' current' : '' %>"
+        >团队</a
+      >
+    </li>
+    <li>
+      <a href="https://cn.vuejs.org/sponsor/">赞助商</a>
+    </li>
+    <li><a href="https://cn.vuejs.org/partners/" class="nav-link">合作伙伴</a></li>
+    <li>
+      <a href="https://cn.vuejs.org/resources/themes.html" class="nav-link"
+        >主题</a
+      >
+    </li>
+    <li>
+      <a
+        href="https://github.com/vuejs/awesome-vue"
+        class="nav-link"
+        target="_blank"
+        rel="noopener"
+        >Awesome Vue</a
+      >
+    </li>
+    <li>
+      <a
+        href="https://awesomejs.dev/for/vue/"
+        class="nav-link"
+        target="_blank"
+        rel="noopener"
+        >浏览和 Vue 相关的包</a
+      >
+    </li>
   </ul>
 </li>

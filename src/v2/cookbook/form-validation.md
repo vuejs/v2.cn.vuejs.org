@@ -391,7 +391,7 @@ exports.handler = async (event, context) => {
 这里没有任何特殊的东西。接下来我们再看看 JavaScript。
 
 ``` js
-const apiUrl = 'https://vuecookbook.netlify.com/.netlify/functions/product-name?name=';
+const apiUrl = 'https://vuecookbook.netlify.app/.netlify/functions/product-name?name=';
 
 const app = new Vue({
   el: '#app',
