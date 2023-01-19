@@ -1,42 +1,41 @@
-<!-- TODO: translation -->
-# Vue 2 LTS, EOL & Extended Support
+# Vue 2 的长期技术支持 (LTS)、生命周期截止日 (EOL) 以及后续的延长服务
 
-## How long will Vue 2 be supported?
+## Vue 2 的技术支持会持续多久？
 
-Vue 2.7 is the current, and final minor release of Vue 2.x. Vue 2.7 receives 18 months of LTS (long-term support) starting from its release date on July 1st, 2022. During this period, Vue 2 will receive necessary bug and security fixes, but will no longer receive new features.
+Vue 2.7 是当前，同时也是最后一个 Vue 2.x 的小版本更新。Vue 2.7 会以其发布日期，即 2022 年 7 月 1 日开始计算，提供 18 个月的长期技术支持 (LTS：long-term support)。在此期间，Vue 2 将会提供必要的 bug 修复和安全修复，但不再提供新特性。
 
-**Vue 2 will reach End of Life (EOL) on December 31st, 2023**. After that date, Vue 2 will continue to be available in all existing distribution channels (CDNs and package managers), but will no longer receive updates, including security and browser compatibility fixes.
+**Vue 2 的生命周期截止日将会是 2023 年 12 月 31 日**。在此之后，Vue 2 在已有的分发渠道 (各类 CDN 和包管理器) 中仍然可用，但不再进行更新，包括对安全问题和浏览器兼容性问题的修复等。
 
-## Options for dealing with EOL
+## 应对生命周期截止日的几个选项
 
-### Upgrade to Vue 3
+### 升级到 Vue 3
 
-Vue 3 is the current, latest major version of Vue. It provides better performance, better TypeScript support, and contains new features that are not present in Vue 2, such as Teleport, Suspense, and multiple root elements per template.
+Vue 3 是当前 Vue 的最高主版本。它提供了更好的性能和更好的 TypeScript 支持，并拥有诸如 Teleport、Suspense 和模板中多个根元素等 Vue 2 中没有的新特性。
 
-Vue 3 contains breaking changes that make it incompatible with Vue 2, so migration will require a certain level of effort depending on your project. Full details are documented in the [Vue 3 Migration Guide](https://v3-migration.vuejs.org/).
+Vue 3 也存在一些和 Vue 2 不兼容的变更，所以该迁移工作依据项目情况需要一定程度的工作量。完整的细节详见 [Vue 3 迁移指南](https://v3-migration.vuejs.org/zh/)。
 
-Despite the breaking changes, the majority of Vue APIs are shared between the two major versions, so most of your team's Vue 2 knowledge will continue to work in Vue 3. In the long run, we also intend to avoid major breaking upgrades like the one between Vue 2 and Vue 3. Compatibility and ecosystem stability will be our topmost priority for future releases, and new features will be introduced in a way that does not require major migrations.
+尽管存在不兼容变更，Vue 两个主版本之间主要的 API 依然是共享的。所以团队仍然可以把 Vue 2 的相关知识带到 Vue 3 使用。长期来看，我们也会尽可能避免类似 Vue 2 和 Vue 3 之间的这种不兼容变更。兼容性和生态的稳定性将会是我们未来发布的最高优先考量。而新特性的引入也不会导致大的迁移。
 
-### Stay on Vue 2
+### 留在 Vue 2
 
-Some teams may not be able to upgrade to Vue 3 by this timeline due to limited bandwidth, budget, risk tolerance, or reliance on Vue-3-incompatible dependencies. We totally understand this, and want to ensure that staying on Vue 2 beyond EOL is a viable option.
+有些团队可能鉴于有限的投入、预算、风险承受能力、或不兼容 Vue 3 的依赖，不会升级到 Vue 3。我们完全可以理解这种做法，并将确保留在 Vue 2 是完全可行的选项，即便在其生命周期截止之后。
 
-#### The Technical Perspective
+#### 技术角度
 
-From a technical perspective, Vue 2 is a stable and battle-tested piece of technology. If it is serving you well now, it will continue to do so for the foreseeable future.
+从技术角度看，Vue 2 是一项稳定且实战考验过的技术。如果它现在可以很好的支持你的工作，我们相信在可预见的未来它会仍然如此。
 
-In addition, we have backported some of the most important Vue 3 features to [Vue 2.7](/v2/guide/migration-vue-2-7.html), including Composition API and `<script setup>`. This allows Vue 2 projects to improve scalability, leverage new ecosystem libraries, and better prepare for potential migration to Vue 3.
+此外，我们也已经把大部分 Vue 3 重要的特性带回了 [Vue 2.7](/v2/guide/migration-vue-2-7.html)，包括组合式 API 和 `<script setup>`。这使得 Vue 2 的项目可以提升其可扩展性、充分利用生态系统中最新的库、以及为潜在的 Vue 3 升级机会做更好的准备。
 
-Vue 2.7 will also be the maintained release before EOL hits, so if you intend to stay on Vue 2, you should at least upgrade to Vue 2.7.
+Vue 2.7 也是在生命周期截止日之前保持维护的版本，所以如果你打算留在 Vue 2，应该至少升级至 2.7。
 
-#### Security & Compliance
+#### 安全和合规的角度
 
-For some teams, the main concern lies in security, compliance, and browser compatibility.
+有些团队的主要鼓励可能来自于安全、合规和浏览器兼容性方面。
 
-- You won't receive security fixes from EOL software. For the record, Vue 2 hasn't really had any real vulnerabilities in the past, but you may need a supported version to fullfil regulations or company policies.
+- 软件的生命周期截止之后通常不会修复新的安全问题。Vue 2 在过去尚未有过真正的安全问题的记录，但是你可能会需要一个版本来应对合规或公司政策问题。
 
-- If you are shipping your application to customers with SLAs. You *will* want to avoid including EOL software in your stack.
+- 如果你在向客户提供带有 SLA (Service Level Agreement) 协议的应用，你*需要*在技术栈中避免包含生命周期截止日的软件。
 
-- Browsers sometimes ship changes that break legacy libraries. This is extremely rare, but could happen in theory.
+- 浏览器有时会发布一些会破坏老旧库的变更。这样的情况技术发生，但理论上难以避免。
 
-To address these concerns, we have partnered with industry experts to provide **Extended LTS for Vue 2**. This service will provide a version of Vue 2 that will continue to receive security and browser compatibility fixes, with SLAs (Service Level Agreements). If you expect to be using Vue 2 beyond the EOL date of December 31st, 2023, make sure to plan ahead: [Learn more about HeroDevs' NES (Never-Ending Support) for Vue 2](https://www.herodevs.com/support/vue).
+为了解决以上顾虑，我们和业内的专家们合作推出了**延长版 Vue 2 LTS** 的服务。该服务会提供 Vue 2 安全和浏览器兼容性相关问题的修复版本，且带有 SLA 协议。如果你希望在 Vue 2 的生命周期截止日，即 2023 年 12 月 31 日之后，仍然使用它，一定要移步至：[学习更多关于 HeroDevs 对 Vue 2 的无限期支持](https://www.herodevs.com/support/vue)。
