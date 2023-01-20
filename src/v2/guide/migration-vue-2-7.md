@@ -64,41 +64,41 @@ Vue 2.7 是 Vue 2 最新的次级版本。其提供了内置的[组合式 API](h
 - ❌ 响应性语法糖 (仍处于试验阶段)
 - ❌ 选项式组件不支持 `expose` (但是在 `<script setup>` 中支持 `defineExpose()`)。
 
-## Upgrade Guide
+## 升级指南
 
 ### Vue CLI / webpack
 
-1. Upgrade local `@vue/cli-xxx` dependencies the latest version in your major version range (if applicable):
+1. 将本地的 `@vue/cli-xxx` 依赖升级至所在主版本范围内的最新版本 (如有)：
 
-   - `~4.5.18` for v4
-   - `~5.0.6` for v5
+   - v4 升级至 `~4.5.18`
+   - v5 升级至 `~5.0.6`
 
-2. Upgrade `vue` to `^2.7.0`. You can also remove `vue-template-compiler` from the dependencies - it is no longer needed in 2.7.
+2. 将 `vue` 升级至 `^2.7.0`。同时你可以从依赖中移除 `vue-template-compiler`——它在 2.7 中已经不再需要了。
 
-   Note: if you are using `@vue/test-utils`, you will need to keep `vue-template-compiler` in the dependencies because test utils rely on some APIs only exposed in this package.
+   注意：如果你在使用 `@vue/test-utils`，那么 `vue-template-compiler` 需要保留，因为该测试工具集依赖了一些只有这个包会暴露的 API。
 
-3. Check your package manager lockfile to ensure the following dependencies meet the version requirements. They may be transitive dependencies not listed in `package.json`.
+3. 检查包管理工具的版本锁定文件，以确保以下依赖的版本符合要求。它们可能是间接依赖所以未必罗列在了 `package.json` 中。
 
    - `vue-loader`: `^15.10.0`
    - `vue-demi`: `^0.13.1`
 
-   If not, you will need to remove `node_modules` and the lockfile and perform a fresh install to ensure they are bumped to the latest version.
+   如果没有这样做，你需要移除整个 `node_modules` 和版本锁定文件，然后重新安装，以确保它们都升到了最新版本。
 
-4. If you were previously using [`@vue/composition-api`](https://github.com/vuejs/composition-api), update imports from it to `vue` instead. Note that some APIs exported by the plugin, e.g. `createApp`, are not ported in 2.7.
+4. 如果你曾经使用了 [`@vue/composition-api`](https://github.com/vuejs/composition-api)，将其导入语句切换至 `vue` 即可。注意有些通过插件暴露的 API，例如 `createApp`，并没有被带回 2.7。
 
-5. Update `eslint-plugin-vue` to latest version (9+) if you run into unused variable lint errors when using `<script setup>`.
+5. 如果你在 `<script setup>` 中遇到了未使用变量的 lint 错误，请更新 `eslint-plugin-vue` 至最新版本 (9+)。
 
-6. The SFC compiler for 2.7 now uses PostCSS 8 (upgraded from 7). PostCSS 8 should be backwards compatible with most plugins, but the upgrade **may** cause issues if you were previously using a custom PostCSS plugin that can only work with PostCSS 7. In such cases, you will need to upgrade the relevant plugins to their PostCSS 8 compatible versions.
+6. 2.7 的单文件组件编译器使用了 PostCSS 8 (从 7 升级而来)。PostCSS 8 应该向下兼容了绝大多数插件，但是该升级**可能**在你使用了一些只支持 PostCSS 7 的自定义插件时遇到问题。这种情况下，你需要升级相应的插件至其兼容 PostCSS 8 的版本。
 
 ### Vite
 
-2.7 support for Vite is provided via a new plugin: [@vitejs/plugin-vue2](https://github.com/vitejs/vite-plugin-vue2). This new plugin requires Vue 2.7 or above and supersedes the existing [vite-plugin-vue2](https://github.com/underfin/vite-plugin-vue2).
+2.7 通过一个新的插件提供对 Vite 的支持：[@vitejs/plugin-vue2](https://github.com/vitejs/vite-plugin-vue2)。这个新的插件需要 Vue 2.7 或更高版本，并取代了已有的 [vite-plugin-vue2](https://github.com/underfin/vite-plugin-vue2)。
 
-Note that the new plugin does not handle Vue-specific JSX / TSX transform, which is intentional. Vue 2 JSX / TSX transform for Vite is handled in a separate, dedicated plugin: [@vitejs/plugin-vue2-jsx](https://github.com/vitejs/vite-plugin-vue2-jsx).
+注意这个新插件刻意不会处理 Vue 特有的 JSX / TSX 转换。在 Vite 中，Vue 2 的 JSX / TSX 转换是通过一个独立的插件进行处理的：[@vitejs/plugin-vue2-jsx](https://github.com/vitejs/vite-plugin-vue2-jsx)。
 
-### Volar Compatibility
+### Volar 兼容性
 
-2.7 ships improved type definitions so it is no longer necessary to install `@vue/runtime-dom` just for Volar template type inference support. All you need now is the following config in `tsconfig.json`:
+2.7 的发布改进了类型定义，所以我们不必再只为支持 Volar 的模板类型推断而安装 `@vue/runtime-dom`。你现在只需要在 `tsconfig.json` 中进行以下配置：
 
 ```json
 {
@@ -109,12 +109,12 @@ Note that the new plugin does not handle Vue-specific JSX / TSX transform, which
 }
 ```
 
-### Devtools Support
+### 开发者工具支持
 
-Vue Devtools 6.2.0 has added support for inspecting 2.7 Composition API state, but the extensions may still need a few days to go through review on respective publishing platforms.
+Vue Devtools 6.2.0 已经支持了 2.7 组合式 API 状态的审查，但该扩展可能仍然需要几天时间在各自的发布平台上通过审核。
 
-## Implications of the 2.7 Release
+## 2.7 发布的后续
 
-As stated before, 2.7 is the final minor release of Vue 2.x. After this release, Vue 2 has entered LTS (long-term support) which lasts for 18 months from now, and will no longer receive new features.
+如我们之前所提到的，2.7 是 Vue 2.x 的最后一个次级版本。在此发布之后，Vue 2 将会进入长期技术支持 (LTS：long-term support) 状态，该状态从现在起计算会持续 18 个月，且不再提供新特性。
 
-This means **Vue 2 will reach End of Life on December 31st, 2023**. We believe this should provide plenty of time for most of the ecosystem to migrate over to Vue 3. However, we also understand that there could be teams or projects that cannot upgrade by this timeline while still need to fullfil security and compliance requirements. If your team expects to be using Vue 2 beyond end of 2023, make sure to plan head and understand your options: learn more about [Vue 2 LTS and Extended Support](/lts/).
+这意味着 **Vue 2 的生命周期截止日将会是 2023 年 12 月 31 日**。我们相信这将为生态系统的绝大部分提供充足的时间迁移至 Vue 3。然而，我们也理解有些团队或项目可能无法在这个时间段内升级，同时还要满足安全和合规等要求。如果你的团队希望在 2023 年底之后继续使用Vue 2，请确保提前做好计划并了解你的可选项：了解更多关于 [Vue 2 LTS 及其延长版服务](/lts/)。
