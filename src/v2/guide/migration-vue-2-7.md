@@ -1,70 +1,68 @@
 ---
-title: Migration to Vue 2.7
+title: 迁移至 Vue 2.7
 type: guide
 order: 704
 ---
 
-<!-- TODO: translation -->
+Vue 2.7 是 Vue 2 最新的次级版本。其提供了内置的[组合式 API](https://cn.vuejs.org/guide/extras/composition-api-faq.html#composition-api-faq) 支持。
 
-Vue 2.7 is the latest minor version of Vue 2. It provides built-in support for the [Composition API](https://vuejs.org/guide/extras/composition-api-faq.html#composition-api-faq).
+尽管 Vue 3 是当前的默认主版本，我们非常理解许多由于依赖的兼容性、浏览器的兼容性需求、或精力有限不足以完成升级等因素，仍然留在 Vue 2 的用户。在 Vue 2.7 中，我们从 Vue 3 带回了最重要的一些特性，使得 Vue 2 用户也可以享有这些便利。
 
-Despite Vue 3 now being the default version, we understand that there are still many users who have to stay on Vue 2 due to dependency compatibility, browser support requirements, or simply not enough bandwidth to upgrade. In Vue 2.7, we have backported some of the most important features from Vue 3 so that Vue 2 users can benefit from them as well.
+## 带回的特性
 
-## Backported Features
+- [组合式 API](https://cn.vuejs.org/guide/extras/composition-api-faq.html)
+- 单文件组件内的 [`<script setup>`](https://cn.vuejs.org/api/sfc-script-setup.html)
+- 单文件组件内的 [CSS v-bind](https://cn.vuejs.org/api/sfc-css-features.html#v-bind-in-css)
 
-- [Composition API](https://vuejs.org/guide/extras/composition-api-faq.html)
-- SFC [`<script setup>`](https://vuejs.org/api/sfc-script-setup.html)
-- SFC [CSS v-bind](https://vuejs.org/api/sfc-css-features.html#v-bind-in-css)
+此外我们还支持了以下 API：
 
-In addition, the following APIs are also supported:
+- `defineComponent()` 以改善类型推断 (较之于 `Vue.extend`)
+- `h()`、`useSlot()`、`useAttrs()`、`useCssModules()`
+- `set()`、`del()` 和 `nextTick()` 也在 ESM 构建版本中被导出为具名 API。
+- 支持 `emits` 选项，但仅以类型检查为目的 (并不会影响运行时的行为)
 
-- `defineComponent()` with improved type inference (compared to `Vue.extend`)
-- `h()`, `useSlot()`, `useAttrs()`, `useCssModules()`
-- `set()`, `del()` and `nextTick()` are also provided as named exports in ESM builds.
-- The `emits` option is also supported, but only for type-checking purposes (does not affect runtime behavior)
+  2.7 也在模板表达式中支持了 ESNext 语法。当配合构建系统使用时，编译后的模板渲染函数将会经过和处理普通 JavaScript 相同配置的 loader / 插件。这意味着如果你为 `.js` 文件配置了 Babel，这些配置也会应用在单文件组件的模板表达式中。
 
-  2.7 also supports using ESNext syntax in template expressions. When using a build system, the compiled template render function will go through the same loaders / plugins configured for normal JavaScript. This means if you have configured Babel for `.js` files, it will also apply to the expressions in your SFC templates.
+### 关于被导出的 API 的注意事项
 
-### Notes on API exposure
-
-- In ESM builds, these APIs are provided as named exports (and named exports only):
+- 在 ESM 构建版本中，这些 API 会 (且仅会) 被导出为具名 API：
 
   ```js
   import Vue, { ref } from "vue";
 
-  Vue.ref; // undefined, use named export instead
+  Vue.ref; // undefined，请换为使用具名导出的 API
   ```
 
-- In UMD and CJS builds, these APIs are exposed as properties on the global `Vue` object.
+- 在 UMD 和 CJS 构建版本里，这些 API 会被导出为全局对象 `Vue` 的属性。
 
-- When bundling with CJS builds externalized, bundlers should be able to handle ESM interop when externalizing CJS builds.
+- 当从外部构建 CJS 版本时，打包工具应该有能力在内部对 ESM 进行转换 (ESM interop)。
 
-### Behavior Differences from Vue 3
+### 和 Vue 3 不同的行为
 
-The Composition API is backported using Vue 2's getter/setter-based reactivity system to ensure browser compatibility. This means there are some important behavior differences from Vue 3's proxy-based system:
+组合式 API 使用了 Vue 2 中基于 getter/setter 的响应式系统，以确保浏览器的兼容性。这意味着其行为和 Vue 3 中基于代理的系统相比有一些重要的区别：
 
-- All [Vue 2 change detection caveats](https://v2.vuejs.org/v2/guide/reactivity.html#Change-Detection-Caveats) still apply.
+- 所有 [Vue 2 检测变化的注意事项](https://v2.cn.vuejs.org/v2/guide/reactivity.html#%E6%A3%80%E6%B5%8B%E5%8F%98%E5%8C%96%E7%9A%84%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9)依然存在。
 
-- `reactive()`, `ref()`, and `shallowReactive()` will directly convert original objects instead of creating proxies. This means:
+- `reactive()`、`ref()` 和 `shallowReactive()` 会直接转换原始的对象而不是创建代理。这意味着：
 
   ```js
-  // true in 2.7, false in 3.x
+  // 2.7 中为 true，3.x 中为 false
   reactive(foo) === foo;
   ```
 
-- `readonly()` **does** create a separate object, but it won't track newly added properties and does not work on arrays.
+- `readonly()` **会**创建一个独立的对象，但是其不会追踪新添加的属性，也不会在数组上工作。
 
-- Avoid using arrays as root values in `reactive()` because without property access the array's mutation won't be tracked (this will result in a warning).
+- 避免将数组作为 `reactive()` 的根值。因为无法访问属性，数组的变更不会被追踪到 (这样做会产生一则警告)。
 
-- Reactivity APIs ignore properties with symbol keys.
+- 响应式 API 会忽略以 symbol 作为 key 的属性。
 
-In addition, the following features are explicitly **NOT** ported:
+此外，我们**并没有**带回以下特性：
 
-- ❌ `createApp()` (Vue 2 doesn't have isolated app scope)
-- ❌ Top-level `await` in `<script setup>` (Vue 2 does not support async component initialization)
-- ❌ TypeScript syntax in template expressions (incompatible w/ Vue 2 parser)
-- ❌ Reactivity transform (still experimental)
-- ❌ `expose` option is not supported for options components (but `defineExpose()` is supported in `<script setup>`).
+- ❌ `createApp()` (Vue 2 不支持相互隔离的应用 scope)
+- ❌ `<script setup>` 中的顶级 `await` (Vue 2 不支持异步组件初始化)
+- ❌ 模板表达式中的 TypeScript 语法 (与 Vue 2 parser 不兼容)
+- ❌ 响应性语法糖 (仍处于试验阶段)
+- ❌ 选项式组件不支持 `expose` (但是在 `<script setup>` 中支持 `defineExpose()`)。
 
 ## Upgrade Guide
 
