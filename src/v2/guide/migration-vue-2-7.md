@@ -6,9 +6,9 @@ order: 704
 
 Vue 2.7 是 Vue 2 最新的次级版本。其提供了内置的[组合式 API](https://cn.vuejs.org/guide/extras/composition-api-faq.html#composition-api-faq) 支持。
 
-尽管 Vue 3 是当前的默认主版本，我们非常理解许多由于依赖的兼容性、浏览器的兼容性需求、或精力有限不足以完成升级等因素，仍然留在 Vue 2 的用户。在 Vue 2.7 中，我们从 Vue 3 带回了最重要的一些特性，使得 Vue 2 用户也可以享有这些便利。
+尽管 Vue 3 是当前的默认主版本，我们非常理解许多由于依赖的兼容性、浏览器的兼容性需求、或精力有限不足以完成升级等因素，仍然留在 Vue 2 的用户。在 Vue 2.7 中，我们从 Vue 3 移植回了最重要的一些特性，使得 Vue 2 用户也可以享有这些便利。
 
-## 带回的特性
+## 移植回来的特性
 
 - [组合式 API](https://cn.vuejs.org/guide/extras/composition-api-faq.html)
 - 单文件组件内的 [`<script setup>`](https://cn.vuejs.org/api/sfc-script-setup.html)
@@ -35,9 +35,9 @@ Vue 2.7 是 Vue 2 最新的次级版本。其提供了内置的[组合式 API](h
 
 - 在 UMD 和 CJS 构建版本里，这些 API 会被导出为全局对象 `Vue` 的属性。
 
-- 当从外部构建 CJS 版本时，打包工具应该有能力在内部对 ESM 进行转换 (ESM interop)。
+- 当调用外置的 CJS 版本进行打包时，打包工具应该有能力处理与 ESM 模块的互操作 (ESM interop)。
 
-### 和 Vue 3 不同的行为
+### 与 Vue 3 的行为差异
 
 组合式 API 使用了 Vue 2 中基于 getter/setter 的响应式系统，以确保浏览器的兼容性。这意味着其行为和 Vue 3 中基于代理的系统相比有一些重要的区别：
 
@@ -50,16 +50,16 @@ Vue 2.7 是 Vue 2 最新的次级版本。其提供了内置的[组合式 API](h
   reactive(foo) === foo;
   ```
 
-- `readonly()` **会**创建一个独立的对象，但是其不会追踪新添加的属性，也不会在数组上工作。
+- `readonly()` **会**创建一个独立的对象，但是其不会追踪新添加的属性，也不会对数组生效。
 
 - 避免将数组作为 `reactive()` 的根值。因为无法访问属性，数组的变更不会被追踪到 (这样做会产生一则警告)。
 
 - 响应式 API 会忽略以 symbol 作为 key 的属性。
 
-此外，我们**并没有**带回以下特性：
+此外，我们**并没有**移植回以下特性：
 
 - ❌ `createApp()` (Vue 2 不支持相互隔离的应用 scope)
-- ❌ `<script setup>` 中的顶级 `await` (Vue 2 不支持异步组件初始化)
+- ❌ `<script setup>` 中的顶层 `await` (Vue 2 不支持异步组件初始化)
 - ❌ 模板表达式中的 TypeScript 语法 (与 Vue 2 parser 不兼容)
 - ❌ 响应性语法糖 (仍处于试验阶段)
 - ❌ 选项式组件不支持 `expose` (但是在 `<script setup>` 中支持 `defineExpose()`)。
