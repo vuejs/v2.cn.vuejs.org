@@ -72,7 +72,7 @@ Vue 也可以在 [unpkg](https://unpkg.com/vue@{{vue_version}}/dist/vue.js) 和 
 
 ``` bash
 # 最新稳定版
-$ npm install vue
+$ npm install vue@^2
 ```
 
 ## 命令行工具 (CLI)
