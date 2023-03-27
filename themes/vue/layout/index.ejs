@@ -48,13 +48,17 @@
       })()
       </script>
     </a>
+    <br>
+    <a class="description" href="<%- sponsor.url %>" target="_blank" rel="noopener sponsored">
+      <%-sponsor.description-%>
+    </a>
     <%_ } _%>
     <%_if (theme.platinum_china.length < 2) { _%>
     <!-- end: special logic for cn -->
     <br>
-    <a class="become-backer" href="/support-vuejs/#special-sponsor-china">
+    <!-- <a class="become-backer" href="/support-vuejs/#special-sponsor-china">
       成为特别赞助商
-    </a>
+    </a> -->
     <%_} _%>
   </div>
   <%_ } _%>
