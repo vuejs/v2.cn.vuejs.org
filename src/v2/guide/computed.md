@@ -239,7 +239,8 @@ var watchExampleVM = new Vue({
         .catch(function (error) {
           vm.answer = 'Error! Could not reach the API. ' + error
         })
-    }
+    },
+    debouncedGetAnswer: null
   }
 })
 </script>
