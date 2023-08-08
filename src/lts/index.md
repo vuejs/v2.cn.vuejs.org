@@ -1,7 +1,7 @@
 # Vue 2 的长期技术支持 (LTS)、终止支持 (EOL) 及其延长版服务
 
 <p class="info"><b>希望继续留在 Vue 2？</b>
-如果你希望在 Vue 2 的终止支持时间 (2023 年 12 月 31 日) 之后仍然使用它，并且需要一个能够满足安全和浏览器兼容性要求的维护版本，请移步至：[学习更多关于 HeroDevs 对 Vue 2 的无限期支持](https://www.herodevs.com/support/vue)。
+如果你希望在 Vue 2 的终止支持时间 (2023 年 12 月 31 日) 之后仍然使用它，并且需要一个能够满足安全和浏览器兼容性要求的维护版本，请移步至：[学习更多关于 HeroDevs 对 Vue 2 的无限期支持](https://www.herodevs.com/support/nes-vue?utm_source=vuejs-org&utm_medium=link&utm_campaign=lts-faq)。
 </p>
 
 ## Vue 2 的技术支持会持续多久？
@@ -56,4 +56,4 @@ Vue 2.7 也是在终止支持之前保持维护的版本，所以如果你打算
 
 - 浏览器有时会发布一些会破坏老旧库的变更。这样的情况极少发生，但理论上难以完全避免。
 
-为了解决以上顾虑，我们和业内的专家们合作推出了 **Vue 2 的延长版 LTS 服务**。该服务会提供 Vue 2 安全和浏览器兼容性相关问题的修复版本，且带有 SLA 协议。如果你希望在 Vue 2 的终止支持时间，即 2023 年 12 月 31 日之后，仍然使用它，一定要移步至：[学习更多关于 HeroDevs 对 Vue 2 的无限期支持](https://www.herodevs.com/support/vue)。
+为了解决以上顾虑，我们和业内的专家们合作推出了 **Vue 2 的延长版 LTS 服务**。该服务会提供 Vue 2 安全和浏览器兼容性相关问题的修复版本，且带有 SLA 协议。如果你希望在 Vue 2 的终止支持时间，即 2023 年 12 月 31 日之后，仍然使用它，一定要移步至：[学习更多关于 HeroDevs 对 Vue 2 的无限期支持](https://www.herodevs.com/support/nes-vue?utm_source=vuejs-org&utm_medium=link&utm_campaign=lts-faq)。
