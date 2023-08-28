@@ -1,5 +1,5 @@
 /*!
- * Vue.js v2.7.10
+ * Vue.js v2.7.14
  * (c) 2014-2022 Evan You
  * Released under the MIT License.
  */
@@ -117,7 +117,13 @@
    * Remove an item from an array.
    */
   function remove$2(arr, item) {
-      if (arr.length) {
+      var len = arr.length;
+      if (len) {
+          // fast path for the only / last item
+          if (item === arr[len - 1]) {
+              arr.length = len - 1;
+              return;
+          }
           var index = arr.indexOf(item);
           if (index > -1) {
               return arr.splice(index, 1);
@@ -746,6 +752,15 @@
   };
 
   var uid$2 = 0;
+  var pendingCleanupDeps = [];
+  var cleanupDeps = function () {
+      for (var i = 0; i < pendingCleanupDeps.length; i++) {
+          var dep = pendingCleanupDeps[i];
+          dep.subs = dep.subs.filter(function (s) { return s; });
+          dep._pending = false;
+      }
+      pendingCleanupDeps.length = 0;
+  };
   /**
    * A dep is an observable that can have multiple
    * directives subscribing to it.
@@ -753,6 +768,8 @@
    */
   var Dep = /** @class */ (function () {
       function Dep() {
+          // pending subs cleanup
+          this._pending = false;
           this.id = uid$2++;
           this.subs = [];
       }
@@ -760,7 +777,15 @@
           this.subs.push(sub);
       };
       Dep.prototype.removeSub = function (sub) {
-          remove$2(this.subs, sub);
+          // #12696 deps with massive amount of subscribers are extremely slow to
+          // clean up in Chromium
+          // to workaround this, we unset the sub for now, and clear them on
+          // next scheduler flush.
+          this.subs[this.subs.indexOf(sub)] = null;
+          if (!this._pending) {
+              this._pending = true;
+              pendingCleanupDeps.push(this);
+          }
       };
       Dep.prototype.depend = function (info) {
           if (Dep.target) {
@@ -772,7 +797,7 @@
       };
       Dep.prototype.notify = function (info) {
           // stabilize the subscriber list first
-          var subs = this.subs.slice();
+          var subs = this.subs.filter(function (s) { return s; });
           if (!config.async) {
               // subs aren't sorted in scheduler if not running async
               // we need to sort them now to make sure they fire in correct
@@ -780,12 +805,12 @@
               subs.sort(function (a, b) { return a.id - b.id; });
           }
           for (var i = 0, l = subs.length; i < l; i++) {
+              var sub = subs[i];
               if (info) {
-                  var sub = subs[i];
                   sub.onTrigger &&
                       sub.onTrigger(__assign({ effect: subs[i] }, info));
               }
-              subs[i].update();
+              sub.update();
           }
       };
       return Dep;
@@ -937,21 +962,18 @@
    * or the existing observer if the value already has one.
    */
   function observe(value, shallow, ssrMockReactivity) {
-      if (!isObject(value) || isRef(value) || value instanceof VNode) {
-          return;
+      if (value && hasOwn(value, '__ob__') && value.__ob__ instanceof Observer) {
+          return value.__ob__;
       }
-      var ob;
-      if (hasOwn(value, '__ob__') && value.__ob__ instanceof Observer) {
-          ob = value.__ob__;
-      }
-      else if (shouldObserve &&
+      if (shouldObserve &&
           (ssrMockReactivity || !isServerRendering()) &&
           (isArray(value) || isPlainObject(value)) &&
           Object.isExtensible(value) &&
-          !value.__v_skip /* ReactiveFlags.SKIP */) {
-          ob = new Observer(value, shallow, ssrMockReactivity);
+          !value.__v_skip /* ReactiveFlags.SKIP */ &&
+          !isRef(value) &&
+          !(value instanceof VNode)) {
+          return new Observer(value, shallow, ssrMockReactivity);
       }
-      return ob;
   }
   /**
    * Define a reactive property on an Object.
@@ -1177,7 +1199,10 @@
       return raw ? toRaw(raw) : observed;
   }
   function markRaw(value) {
-      def(value, "__v_skip" /* ReactiveFlags.SKIP */, true);
+      // non-extensible objects won't be observed anyway
+      if (Object.isExtensible(value)) {
+          def(value, "__v_skip" /* ReactiveFlags.SKIP */, true);
+      }
       return value;
   }
   /**
@@ -1342,6 +1367,9 @@
               }
           }
           return target;
+      }
+      if (!Object.isExtensible(target)) {
+          warn$2("Vue 2 does not support creating readonly proxy for non-extensible object.");
       }
       // already a readonly object
       if (isReadonly(target)) {
@@ -3183,6 +3211,7 @@
       // call component updated and activated hooks
       callActivatedHooks(activatedQueue);
       callUpdatedHooks(updatedQueue);
+      cleanupDeps();
       // devtool hook
       /* istanbul ignore if */
       if (devtools && config.devtools) {
@@ -3468,6 +3497,7 @@
   var EffectScope = /** @class */ (function () {
       function EffectScope(detached) {
           if (detached === void 0) { detached = false; }
+          this.detached = detached;
           /**
            * @internal
            */
@@ -3480,8 +3510,8 @@
            * @internal
            */
           this.cleanups = [];
+          this.parent = activeEffectScope;
           if (!detached && activeEffectScope) {
-              this.parent = activeEffectScope;
               this.index =
                   (activeEffectScope.scopes || (activeEffectScope.scopes = [])).push(this) - 1;
           }
@@ -3530,7 +3560,7 @@
                   }
               }
               // nested scope, dereference from parent to avoid memory leaks
-              if (this.parent && !fromParent) {
+              if (!this.detached && this.parent && !fromParent) {
                   // optimized O(1) removal
                   var last = this.parent.scopes.pop();
                   if (last && last !== this) {
@@ -3538,6 +3568,7 @@
                       last.index = this.index;
                   }
               }
+              this.parent = undefined;
               this.active = false;
           }
       };
@@ -3965,7 +3996,7 @@
   /**
    * Note: also update dist/vue.runtime.mjs when adding new exports to this file.
    */
-  var version = '2.7.10';
+  var version = '2.7.14';
   /**
    * @internal type is manually declared in <root>/types/v3-define-component.d.ts
    */
@@ -4048,6 +4079,7 @@
       var i, keys;
       var isA = isArray(val);
       if ((!isA && !isObject(val)) ||
+          val.__v_skip /* ReactiveFlags.SKIP */ ||
           Object.isFrozen(val) ||
           val instanceof VNode) {
           return;
@@ -5166,7 +5198,8 @@
   /**
    * Helper that recursively merges two data objects together.
    */
-  function mergeData(to, from) {
+  function mergeData(to, from, recursive) {
+      if (recursive === void 0) { recursive = true; }
       if (!from)
           return to;
       var key, toVal, fromVal;
@@ -5180,7 +5213,7 @@
               continue;
           toVal = to[key];
           fromVal = from[key];
-          if (!hasOwn(to, key)) {
+          if (!recursive || !hasOwn(to, key)) {
               set(to, key, fromVal);
           }
           else if (toVal !== fromVal &&
@@ -5340,7 +5373,19 @@
                           extend(ret, childVal);
                       return ret;
                   };
-  strats.provide = mergeDataOrFn;
+  strats.provide = function (parentVal, childVal) {
+      if (!parentVal)
+          return childVal;
+      return function () {
+          var ret = Object.create(null);
+          mergeData(ret, isFunction(parentVal) ? parentVal.call(this) : parentVal);
+          if (childVal) {
+              mergeData(ret, isFunction(childVal) ? childVal.call(this) : childVal, false // non-recursive
+              );
+          }
+          return ret;
+      };
+  };
   /**
    * Default strategy.
    */
@@ -11094,7 +11139,7 @@
           !el.key) {
           state.warn("<".concat(el.tag, " v-for=\"").concat(alias, " in ").concat(exp, "\">: component lists rendered with ") +
               "v-for should have explicit keys. " +
-              "See https://vuejs.org/guide/list.html#key for more info.", el.rawAttrsMap['v-for'], true /* tip */);
+              "See https://v2.vuejs.org/v2/guide/list.html#key for more info.", el.rawAttrsMap['v-for'], true /* tip */);
       }
       el.forProcessed = true; // avoid recursion
       return ("".concat(altHelper || '_l', "((").concat(exp, "),") +

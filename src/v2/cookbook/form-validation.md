@@ -433,4 +433,4 @@ const app = new Vue({
 这份秘笈专注在“手动”校验表单，当然一些非常棒的 Vue 的库会为你搞定这些事情。使用一些预打包的库可能会影响你的应用最终的体积，但是好处是非常多的。这里有经过充分测试且保持日常更新的代码。其中包括以下 Vue 的表单校验库：
 
 * [vuelidate](https://github.com/monterail/vuelidate)
-* [VeeValidate](https://logaretm.github.io/vee-validate/)
+* [VeeValidate](https://vee-validate.logaretm.com/v3/)
