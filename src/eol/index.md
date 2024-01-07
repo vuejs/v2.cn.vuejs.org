@@ -1,46 +1,44 @@
-# Vue 2 Has Reached End of Life
+# Vue 2 已经到达终止支持 (EOL) 时间
 
-Vue 2.0 was released more than 7 years ago in 2016. It was a major milestone in Vue's journey of becoming a mainstream framework. Many current Vue users started using Vue during the Vue 2 era, and many great things have been built with it.
+Vue 2.0 发布于 7 年前的 2016 年。这是 Vue 成为主流框架过程中的一个重要里程碑。目前的许多 Vue 用户都是在 Vue 2 时代开始使用 Vue 的，并用它构建了许多伟大的东西。
 
-However, active maintenance of two major versions in parallel isn't sustainable for us. As Vue 3 and its ecosystem have matured, it is time for the team to move on and focus our energy on the latest major version.
+然而，同时活跃维护两个大版本对我们来说是不可持续的。随着 Vue 3 及其生态系统的成熟，团队是时候继续前进，将精力集中在最新的大版本上。
 
-**Vue 2 has reached End of Life on December 31st, 2023. It no longer receives new features, updates, or fixes. However, it is still available on all existing distribution channels (CDNs, package managers, Github, etc).**
+**Vue 2 已于 2023 年 12 月 31 日达到终止支持时间。它不再接收新功能、更新或修复。不过，它仍然可以在所有现有的分发渠道 (CDN、包管理器、Github 等) 上获得。**
 
-If you are starting a new project, please start with the [latest version of Vue (3.x)](https://vuejs.org/). We also strongly recommend current Vue 2 users to upgrade ([guide](https://v3-migration.vuejs.org/)), but we also acknowledge that not all users have the bandwidth or incentive to do so. If you have to stay on Vue 2 but also have compliance or security requirements about unmaintained software, check out [Vue 2 NES by HeroDevs](https://www.herodevs.com/support/nes-vue?utm_source=vuejs-org&utm_medium=vue2-eol-banner).
+如果你要启动一个新项目，请从 [Vue 的最新版本 (3.x)](https://vuejs.org/) 开始。我们也强烈建议当前的 Vue 2 用户了解([迁移指南](https://v3-migration.vuejs.org/zh/))，但我们也理解并非所有用户都有足够的资源或动力进行升级。如果你需要继续使用 Vue 2，但又对不在维护的软件有合规性或安全性要求，请移步了解 [HeroDevs 对 Vue 2 的无限期支持 (NES)](https://www.herodevs.com/support/nes-vue?utm_source=vuejs-org&utm_medium=vue2-eol-banner)。
 
-## What’s Next
+## 下一步
 
-Vue 3 has been the default version of Vue since February 7, 2022. Users who have migrated have enjoyed:
+自 2022 年 2 月 7 日起，Vue 3 已成为 Vue 的默认版本。已经迁移的用户可以享受到：
 
-* Better performance with a smaller bundle size and faster rendering.
-* Enhanced TypeScript support for easier large-scale application development.
-* More efficient Proxy-based reactivity system.
-* New built-in components like Fragment, Teleport, and Suspense.
-* Improved build tooling support and Vue Devtools experience.
-* …and more!
+* 更小的包大小和更快的渲染速度带来的更好的性能。
+* 对 TypeScript 支持的增强，使大规模应用开发更轻松。
+* 效率更高的基于 Proxy 的响应性系统。
+* 新的内置组件，如 Fragment、Teleport 和 Suspense。
+* 改进了对构建工具的支持和 Vue Devtools 的体验。
+* …以及更多！
 
-When and if you can, consider migrating!
+如果条件允许，请考虑迁移！
 
-## Still on Vue 2? Here Are Your Options.
+## 仍使用 Vue 2？看看这些选项
 
-Recognizing the various situations that arise during transitions, we are also fully aware that users may need other options until they’re able to migrate, or maybe migration simply isn't a feasible path. Here are some other options to consider.
+我们理解到在过渡期间会出现各种情况，也充分意识到用户在迁移之前可能需要其他选择，或者迁移根本不可行。以下是一些可以考虑的其他方案。
 
+### 更新至 Vue 2 最终版本
 
-### Update to the Vue 2 Final Release
+Vue 2 的最新版本 2.7.16，也是 Vue 2 的最终版本。该补丁版本包含一些对 2.7 功能的最终修复，并基于与 Vue 3 的一致性改进了类型。我们强烈建议更新至 2.7.16。这是下述扩展支持的起点。
 
-The latest release of Vue 2, 2.7.16, is the final release of Vue 2. This patch release includes a few final fixes for 2.7 features and improves type alignment with Vue 3. We strongly encourage you to update to 2.7.16. This will be the starting point for extended support mentioned below.
+### 购买 Vue 2 的扩展支持
 
-### Purchase Extended Support for Vue 2
+如果你需要在终止支持 (EOL) 后继续使用 Vue 2，我们已与 HeroDevs 合作提供无限期支持 (NES)。Vue 2 无限期支持为 Vue 2 提供持续更新和安全补丁，即使在终止支持之后也是如此，从而使具有严格合规性要求的应用程序保持安全和合规。它还保证 Vue 2 应用程序将继续在现代浏览器中有效运行，并保持与 Nuxt、Vuex 和 Vuetify 2 等重要库的兼容性。 最后，Vue 2 无限期支持具有持续的安全监控和为问题修复提供的 14 天 SLA。
 
-If you have to stay on Vue 2 post-EOL, we have partnered with HeroDevs to offer Never-Ending Support (NES). Vue 2 NES provides ongoing updates and security patches for Vue 2 even after EOL so that applications with strict compliance requirements remain secure and compliant. It also guarantees that Vue 2 applications will continue to operate effectively in modern browsers and maintain compatibility with essential libraries like Nuxt, Vuex, and Vuetify 2. Finally, Vue 2 NES has continuous security monitoring and a 14-day SLA for fixes.
+Vue 2 无限期支持是你在 Vue 2 长期技术支持 (LTS) 期间所享受的支持的延续，而且是无限期的。更多详细信息，请访问 [HeroDevs 的 Vue 2 无限期支持页面](https://www.herodevs.com/support/nes-vue?utm_source=vuejs-org&utm_medium=blog&utm_campaign=eol-by-eoy)。
 
-Vue 2 NES is the continuation of the support you’ve enjoyed during the Vue 2 LTS period — but indefinitely. For more detailed information, visit the [HeroDevs Vue 2 NES page](https://www.herodevs.com/support/nes-vue?utm_source=vuejs-org&utm_medium=blog&utm_campaign=eol-by-eoy).
+### 通知用户你的 Vue 2 终止支持后的计划 
 
+如果你目前无法迁移到 Vue 3 或使用 Vue 2 无限期支持，但仍使用 Vue 2，你可能需要考虑如何跟客户沟通你的 Vue 2 安全计划。
 
-### Notify Your Users of your Vue 2 Post-EOL Plan 
+这并不适用于所有 Vue 用户，但许多团队被 SLA、合同和协议或其他下游方的义务所禁止，不得交付*不在维护的软件*。他们可能是客户、合规机构，甚至是公司内部部门。对于越来越多的行业来说，监管机构也在提高对软件创建者责任的期望。
 
-If you can’t migrate to Vue 3 or use Vue 2 NES at the moment but still remain on Vue 2, you may need to consider how you will communicate your Vue 2 security plans to your customers.
-
-This does not apply to all Vue users, but many teams are prohibited from shipping _unsupported software_ by SLAs, Contracts & Agreements, or other obligations to downstream parties. These could be with customers, compliance agencies, or even internal company departments. For an increasing number of industries, governing regulatory bodies are also raising expectations on what software creators are accountable for.
-
-If you work with such business requirements, You may need to let your customers, managers, CISO, or other relevant stakeholders, know about your plan to manage support and address any potential CVEs. [Vue 2 hasn’t had major vulnerabilities](https://v2.vuejs.org/lts/#:~:text=For%20the%20record%2C%20Vue%202%20hasn%E2%80%99t%20really%20had%20any%20real%20vulnerabilities%20in%20the%20past%2C%20but%20you%20may%20need%20a%20supported%20version%20to%20fullfil%20regulations%20or%20company%20policies.) in the past, but CVEs do turn up for even the most mature EOL projects — whether directly or via compromised dependencies. Subscribing to CVE notifications through organizations like [OpenCVE](https://www.opencve.io/) and [Snyk](https://snyk.io) can be a good way to find out about vulnerabilities as soon as they’re discovered. Browsers may also ship changes that break legacy libraries - this is rare, but it does happen.
+如果你的工作涉及此类业务需求，你可能需要让客户、经理、首席信息安全官 (CISO) 或其他相关利益方了解你的支持管理计划，并解决任何潜在的公共漏洞披露 (CVE) 问题。[Vue 2 在过去并未出现重大漏洞](https://v2.cn.vuejs.org/lts/#:~:text=Vue%202%20%E5%9C%A8%E8%BF%87%E5%8E%BB%E5%B0%9A%E6%9C%AA%E6%9C%89%E8%BF%87%E7%9C%9F%E6%AD%A3%E7%9A%84%E5%AE%89%E5%85%A8%E9%97%AE%E9%A2%98%E7%9A%84%E8%AE%B0%E5%BD%95%EF%BC%8C%E4%BD%86%E6%98%AF%E4%BD%A0%E5%8F%AF%E8%83%BD%E4%BC%9A%E9%9C%80%E8%A6%81%E4%B8%80%E4%B8%AA%E7%89%88%E6%9C%AC%E6%9D%A5%E5%BA%94%E5%AF%B9%E5%90%88%E8%A7%84%E6%88%96%E5%85%AC%E5%8F%B8%E6%94%BF%E7%AD%96%E9%97%AE%E9%A2%98%E3%80%82)，即使是最成熟的项目终止支持后也会出现 CVE——无论是直接出现还是通过受损的依赖关系出现。通过 [OpenCVE](https://www.opencve.io/) 和 [Snyk](https://snyk.io) 等组织订阅 CVE 通知，可以在漏洞被发现后第一时间发现它们。浏览器也可能会发布不兼容旧版库的变更——这种情况很少见，但确实会发生。
