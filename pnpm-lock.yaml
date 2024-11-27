@@ -750,7 +750,7 @@ packages:
       micromatch: 4.0.5
       moize: 6.1.1
       moment: 2.29.4
-      moment-timezone: 0.5.34
+      moment-timezone: 0.5.44
       nunjucks: 3.2.3
       picocolors: 1.0.0
       pretty-hrtime: 1.0.3
@@ -1025,8 +1025,8 @@ packages:
       micro-memoize: 4.0.10
     dev: false
 
-  /moment-timezone@0.5.34:
-    resolution: {integrity: sha512-3zAEHh2hKUs3EXLESx/wsgw6IQdusOT8Bxm3D9UrHPQR7zlMmzwybC8zHEM1tQ4LJwP7fcxrWr8tuBg05fFCbg==}
+  /moment-timezone@0.5.44:
+    resolution: {integrity: sha512-nv3YpzI/8lkQn0U6RkLd+f0W/zy/JnoR5/EyPz/dNkPTBjA2jNLCVxaiQ8QpeLymhSZvX0wCL5s27NQWdOPwAw==}
     dependencies:
       moment: 2.29.4
     dev: false
