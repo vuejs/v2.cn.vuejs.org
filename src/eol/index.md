@@ -6,7 +6,7 @@ Vue 2.0 发布于 7 年前的 2016 年。这是 Vue 成为主流框架过程中�
 
 **Vue 2 已于 2023 年 12 月 31 日达到终止支持时间。它不再会有新增功能、更新或问题修复。不过，它依然可以从所有现有的分发渠道 (CDN、包管理器、GitHub 等) 上获得。**
 
-如果你要启动一个新项目，请从 [Vue 的最新版本 (3.x)](https://vuejs.org/) 开始。我们也强烈建议当前的 Vue 2 用户了解([迁移指南](https://v3-migration.vuejs.org/zh/))，尽管我们理解并非所有用户都有足够的资源或动力进行升级。如果你需要继续使用 Vue 2，但又对不在维护的软件有合规性或安全性要求，请移步了解 [HeroDevs 对 Vue 2 的无限期支持 (NES)](https://www.herodevs.com/support/nes-vue?utm_source=vuejs-org&utm_medium=vue2-eol-banner)。
+如果你要启动一个新项目，请从 [Vue 的最新版本 (3.x)](https://vuejs.org/) 开始。我们也强烈建议当前的 Vue 2 用户了解([迁移指南](https://v3-migration.vuejs.org/zh/))，尽管我们理解并非所有用户都有足够的资源或动力进行升级。如果你需要继续使用 Vue 2，但又对不再维护的软件有合规性或安全性要求，请移步了解 [HeroDevs 对 Vue 2 的无限期支持 (NES)](https://www.herodevs.com/support/nes-vue?utm_source=vuejs-org&utm_medium=vue2-eol-banner)。
 
 ## 下一步计划
 
