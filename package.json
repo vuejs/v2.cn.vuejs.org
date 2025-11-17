@@ -28,7 +28,7 @@
     "hexo-renderer-stylus": "^2.1.0",
     "hexo-server": "^3.0.0",
     "hoek": "^6.1.2",
-    "js-yaml": "^4.1.0",
+    "js-yaml": "^4.1.1",
     "zhlint": "^0.6.0"
   }
 }
